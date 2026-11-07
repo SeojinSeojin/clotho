@@ -35,6 +35,17 @@ Last updated: 2026-11-07
 - Baselines: template lookup; MDSA and MLSA (`run_baseline_OOD.py` logic); SLL (`run_baseline_SLL.py` logic: mean input-prompt token log-prob, higher = pass, sign not tuned); output entropy over the 10 parsed outputs (post-generation); random. All use the same reference and test sets.
 - Results in RESULTS_REPO `results_phase3/` and `reports/`. SLL pickles in `data/results_llama/log_parsing/precalculated_metrics/rules_template/`. The findings text lives in `experiments/reports/log_parsing_phase3_findings.md`, and the report includes it on regeneration.
 
+## Phase 3a/3b (2026-11-07): reference sampling and layer tuning
+Report: `experiments/reports/log_parsing_tuning.{md,json}` (also in RESULTS_REPO `reports/`; per-run JSON under `results_phase3/tuning/`). Driver: `experiments/log_parsing_tuning.py` (protocol in its docstring). Standard split, 5 seeds, rules_template, strict_match.
+- **3a. Sampling.** Confirmed: Phase 2 and Phase 3 used `random` extension (`random_pca` = core `extend_reference_set_random` + PCA). The paper's method (`balanced` in core, also the default of `simulate_iterations`: 5 inputs by GMM entropy + 5 by max-min distance per iteration, diversity only before the GMM can be fitted, `ensure_nonzero_entropy`, adaptive n_features/n_components) is now in the harness (`clotho_run(method="balanced")`). It gives the same ROC-AUC as `rci.simulate_iterations(refset_extension_method="balanced")` at all 20 reference sizes tested on HDFS.
+  - Macro ROC-AUC over 13 systems at layer 21: random 0.684 / 0.730 / 0.770, balanced **0.714 / 0.764 / 0.813** at ref 50 / 100 / 200. Balanced wins on 11 of 13 at ref 200. Exceptions: Apache (0.746 -> 0.619, high variance) and OpenStack at ref 50.
+  - Caveat: under balanced the test set is whatever the active sampler left out (it removes the uncertain inputs), so the two methods are scored on different test sets. The paper evaluates the same way.
+- **3b. Layers.** New hidden states: layers 11, 16, 24 for all 13 suites + initial tests (`experiments/log_parsing_layers.py`; recomputed layer 21 is bit-identical to the stored vectors on all 13 systems + initial set). In RESULTS_REPO under `data/.../input_hidden_states/rules_template/<ds>/layer_<L>/`.
+  - Tuning (HDFS, Spark, Linux; selection = mean balanced AUC over 3 systems x 5 seeds x refs 50/100/200, fixed before any result was seen): layer 11 0.799, **16 0.820 (chosen)**, 21 0.785, 24 0.794.
+  - Held-out (10 other systems, layer 16 unchanged), macro AUC balanced: **0.770 @100, 0.808 @200**, vs layer 21: 0.759, 0.798. Random: 0.740 / 0.779 vs 0.728 / 0.764. So the gain carries over but is small (~+0.01). It is not uniform: BGL +0.09, HPC +0.05, Mac +0.07 @200, but OpenStack -0.08, Hadoop -0.02, OpenSSH -0.02.
+  - Tuning-system macro (in-sample, optimistic): balanced L16 0.820 @100 / 0.862 @200 vs L21 0.779 / 0.865.
+- Recommended config for the baseline comparison: balanced, layer 16. Phase 3 baselines (`log_parsing_phase3.py`) still use random + layer 21; rerunning them needs `method`/`layer` passed through `evaluate`.
+
 ## Decisions (2026-11-07: scorer, template, dropped systems)
 
 Inputs: all 28 generations (2 templates x 14 systems x 500 inputs x 10 samples), rescored without regeneration by `experiments/log_parsing_rescore.py` (report: `experiments/reports/log_parsing_rescore.md`, also in RESULTS_REPO `reports/`).

@@ -1,0 +1,37 @@
+{
+ "chosen_layer": 16,
+ "selection_score": {
+  "11": 0.7988499165151413,
+  "16": 0.8198284542464361,
+  "21": 0.7854934992271996,
+  "24": 0.7944346129491107
+ },
+ "sampling_layer21_macro": {
+  "random@50": 0.6837,
+  "balanced@50": 0.7144,
+  "random@100": 0.7296,
+  "balanced@100": 0.7639,
+  "random@200": 0.7699,
+  "balanced@200": 0.8133
+ },
+ "held-out_macro": {
+  "L16_random@100": 0.7402,
+  "L16_balanced@100": 0.7703,
+  "L21_random@100": 0.7283,
+  "L21_balanced@100": 0.7593,
+  "L16_random@200": 0.7786,
+  "L16_balanced@200": 0.8078,
+  "L21_random@200": 0.7636,
+  "L21_balanced@200": 0.7978
+ },
+ "tuning_macro": {
+  "L16_random@100": 0.7495,
+  "L16_balanced@100": 0.8201,
+  "L21_random@100": 0.7338,
+  "L21_balanced@100": 0.779,
+  "L16_random@200": 0.8047,
+  "L16_balanced@200": 0.862,
+  "L21_random@200": 0.7908,
+  "L21_balanced@200": 0.8648
+ }
+}
