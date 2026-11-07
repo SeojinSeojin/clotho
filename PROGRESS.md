@@ -12,11 +12,11 @@ Last updated: 2026-11-07
 - Phase 2 setup (user decisions 2026-11-07: both prompts, all 14 systems x 500, Clotho per system): 14 suites in `clotho/dataset/log_parsing/`, `rules_template`, parser fix for literal `*` runs, scripts `run_log_parsing_all.py`, `log_parsing_initial_set.py`, `run_clotho_log_parsing.py`, `log_parsing_phase2_report.py`.
 
 ## In progress
-- Clotho on rules_template, 13 systems (Proxifier dropped): `cd experiments && python run_clotho_log_parsing.py -p rules_template -d <13 systems>` (log: `logs/clotho_rules.log`). Resumable: skips runs already in RESULTS_REPO.
+- Nothing running.
 
 ## Next
-- `cd experiments && python log_parsing_phase2_report.py -p rules_template`, commit `reports/log_parsing_phase2.*`.
-- Optional: Clotho on messages_template for comparison (hidden + generations exist for all 14 systems).
+- Optional: Clotho on messages_template for comparison (hidden + generations exist for all 14 systems): `cd experiments && python run_clotho_log_parsing.py -p messages_template`.
+- Thunderbird separation is weak (mean AUC 0.55). Worth a look at its failures before drawing conclusions.
 
 ## Decisions (2026-11-07: scorer, template, dropped systems)
 
@@ -61,6 +61,11 @@ Lenient-failure inspection (messages_template, lenient scorer, random parsed fai
 - Total 21 real / 19 convention. Caveat found here: the lenient rule is looser than "prefix conventions": a whitespace token holding `<*>` swallows constant text attached to it (`local=<*> remote=<*>].` -> `<*>`, `<*>:Got` -> `<*>`). That is one more reason not to use it as the label.
 
 Why this pass definition measures real model errors. With the rules prompt, the model is told the Loghub-2.0 convention explicitly (one `<*>` per whole variable token, prefixes, slashes and ports included) and given generic examples. So a strict mismatch is a failure to follow an instruction it actually received, not a hidden convention. The 40 inspected failures show that strict and lenient differences are mostly the model not applying that stated rule (`blk_<*>`, `/<*>:<*>`, `<>`), along with plain errors: dropped or altered constants, hallucinated tokens, missed variables. Strict and normalized differ by at most 3 points everywhere, so whitespace and adjacent-wildcard quirks are not driving the labels. Choosing the least lenient scorer that still gives 20 to 80% PASS on 11 of 14 systems keeps the label as close as possible to "the model produced the correct Loghub template", which is what a log parser user needs. It also leaves enough passing inputs (60 to 285 of 500 per kept system; Mac 60, HPC 92) for Clotho's GMM. The remaining caveat: some strict failures are Loghub labelling choices that one message cannot reveal (state names or booleans labelled as variables, about 5 of 40 inspected). These add label noise that no scorer change can remove.
+
+## Phase 2 Clotho results (rules_template, strict_match, 13 systems; 2026-11-07)
+Report: `experiments/reports/log_parsing_phase2.{md,json}` (random/pca, layer 21, seed 0). All 13 runs `ok` (~3 min each); Proxifier is listed as "not run" (dropped).
+- Macro ROC-AUC across 13 systems: 0.712 @ref50, 0.729 @ref100, 0.764 @ref200, mean over iterations 0.761.
+- Best: HDFS 0.873, HPC 0.836, HealthApp 0.829, OpenStack 0.811, Zookeeper 0.810 (mean AUC). Weakest: Thunderbird 0.552, BGL 0.705, Mac 0.710.
 
 ## Known issues
 - A fully skipped `gen_vllm` run still runs the parity check and loads the vLLM engine (~45 s) before noticing nothing is pending.
