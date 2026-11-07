@@ -394,6 +394,20 @@ initial_tests = {
             "token": ["This"],
             "label": ["DT"]
         }
+    ],
+    # Synthetic messages in Loghub-2.0 labelling style (not taken from Loghub, so
+    # disjoint from every loghub_* target suite).
+    'log_parsing': [
+        {"content": "Connection from 192.168.1.15:52314 closed", "label": ["Connection from <*> closed"]},  # 1
+        {"content": "Worker 7 finished job job_20231104_0032 in 532 ms", "label": ["Worker <*> finished job <*> in <*> ms"]},  # 2
+        {"content": "User alice logged in from 10.0.0.42", "label": ["User <*> logged in from <*>"]},  # 3
+        {"content": "Deleted file /var/tmp/cache/session_8841.tmp", "label": ["Deleted file <*>"]},  # 4
+        {"content": "Cache hit ratio is 0.87 after 12000 requests", "label": ["Cache hit ratio is <*> after <*> requests"]},  # 5
+        {"content": "Server started successfully", "label": ["Server started successfully"]},  # 6
+        {"content": "Failed to open socket on port 8080: Address already in use", "label": ["Failed to open socket on port <*>: Address already in use"]},  # 7
+        {"content": "Retrying request 5a3f9c2e (attempt 3 of 5)", "label": ["Retrying request <*> (attempt <*> of <*>)"]},  # 8
+        {"content": "Disk usage on /dev/sda1 reached 91 percent", "label": ["Disk usage on <*> reached <*> percent"]},  # 9
+        {"content": "Received heartbeat from node-14 after 3021 ms", "label": ["Received heartbeat from <*> after <*> ms"]},  # 10
     ]
 }
 
@@ -401,7 +415,9 @@ initial_tests = {
 if __name__ == "__main__":
     model = 'llama'
     
-    tasks = ['syntactic_bug_detection', 'topic_classification', 'spell_check', 'adding_odd_numbers', 'github_typo_check', 'json_repair', 'model_name_extraction', 'pos_detection']
+    import sys
+    # optional: python generate_initial_set_data.py log_parsing  (default: the original 8 tasks)
+    tasks = sys.argv[1:] or ['syntactic_bug_detection', 'topic_classification', 'spell_check', 'adding_odd_numbers', 'github_typo_check', 'json_repair', 'model_name_extraction', 'pos_detection']
     produce_inference_results = True
     
     if model == 'llama':

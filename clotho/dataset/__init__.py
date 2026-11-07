@@ -6,3 +6,4 @@ from . import pos_detection
 from . import adding_odd_numbers
 from . import model_name_extraction
 from . import topic_classification
+from . import log_parsing

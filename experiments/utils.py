@@ -23,7 +23,8 @@ prompt_templates = {
     'pos_detection': 'messages_template',
     'topic_classification': 'messages_template',
     'adding_odd_numbers': 'messages_template',
-    'model_name_extraction': 'messages_template'
+    'model_name_extraction': 'messages_template',
+    'log_parsing': 'messages_template',
 }
 
 target_testsuites = {
@@ -34,7 +35,9 @@ target_testsuites = {
     'pos_detection': ['cleaned_and_sampled_pos_tags', 'cleaned_and_sampled_pos_tags_trainset'],
     'topic_classification': ['ag_news_test'],
     'adding_odd_numbers': ['integer_sequences_length_1_to_10_uniform'],
-    'model_name_extraction': ['ml_arxiv_papers_no_conflicting_labels', 'synthetic_abstracts_gpt4o_3600']
+    'model_name_extraction': ['ml_arxiv_papers_no_conflicting_labels', 'synthetic_abstracts_gpt4o_3600'],
+    # Datasets listed here are concatenated into one target set. Pilot: HDFS only.
+    'log_parsing': ['loghub_hdfs_500'],
 }
 
 

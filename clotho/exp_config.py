@@ -8,7 +8,9 @@ supported_datasets = {
     'pos_detection': ['cleaned_and_sampled_pos_tags', 'cleaned_and_sampled_pos_tags_trainset'],
     'adding_odd_numbers': ['integer_sequences_length_1_to_10_uniform'],
     'model_name_extraction': ['ml_arxiv_papers_no_conflicting_labels', 'synthetic_abstracts_gpt4o_3600'],
-    'topic_classification': ['ag_news_test']
+    'topic_classification': ['ag_news_test'],
+    # one dataset per Loghub-2.0 system (see clotho/dataset/log_parsing/prepare_loghub.py)
+    'log_parsing': ['loghub_hdfs_500', 'loghub_spark_500'],
 }
 
 task2template = {
@@ -19,7 +21,8 @@ task2template = {
     'pos_detection': clotho_dataset.pos_detection.templates.template_map,
     'adding_odd_numbers': clotho_dataset.adding_odd_numbers.templates.template_map,
     'model_name_extraction': clotho_dataset.model_name_extraction.templates.template_map,
-    'topic_classification': clotho_dataset.topic_classification.templates.template_map
+    'topic_classification': clotho_dataset.topic_classification.templates.template_map,
+    'log_parsing': clotho_dataset.log_parsing.templates.template_map,
 }
 
 task2labeler = {
@@ -30,7 +33,8 @@ task2labeler = {
     'pos_detection': clotho_dataset.pos_detection.output_parsers.label_output,
     'adding_odd_numbers': clotho_dataset.adding_odd_numbers.output_parsers.label_output,
     'model_name_extraction': clotho_dataset.model_name_extraction.output_parsers.label_output,
-    'topic_classification': clotho_dataset.topic_classification.output_parsers.label_output
+    'topic_classification': clotho_dataset.topic_classification.output_parsers.label_output,
+    'log_parsing': clotho_dataset.log_parsing.output_parsers.label_output,
 }
 
 # Module paths for prompt-template variations, used by the `--use_variation` flag
@@ -46,7 +50,8 @@ task2input_key = {
     'pos_detection': None,
     'adding_odd_numbers': None,
     'model_name_extraction': None,
-    'topic_classification': None
+    'topic_classification': None,
+    'log_parsing': 'content',
 }
 
 task2template_keywords = {
@@ -57,7 +62,8 @@ task2template_keywords = {
     'pos_detection': ['Reasoning:', 'Part of Speech:'],
     'adding_odd_numbers': ['Identified odd numbers:', 'Sum of odd numbers:', 'Result:'],
     'model_name_extraction': ['Reasoning:', 'Extracted names:'],
-    'topic_classification': ['Reasoning:', 'Category:']
+    'topic_classification': ['Reasoning:', 'Category:'],
+    'log_parsing': ['Reasoning:', 'Template:'],
 }
 
 task2answer_key_list = {
@@ -68,5 +74,6 @@ task2answer_key_list = {
     'pos_detection': ['upos'],
     'adding_odd_numbers': ['sum_of_odds'],
     'model_name_extraction': ['model_names'],
-    'topic_classification': ['topic']
+    'topic_classification': ['topic'],
+    'log_parsing': ['template'],
 }
