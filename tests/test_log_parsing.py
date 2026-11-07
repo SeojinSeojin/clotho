@@ -79,6 +79,11 @@ class TestParser(unittest.TestCase):
     def test_template_mentioned_mid_line_is_not_an_answer(self):
         self.assertEqual(parse("Reasoning: the Template: field holds ids."), (None, "parse_failure"))
 
+    def test_literal_asterisk_runs_preserved(self):
+        for t in ["******* GOODBYE <*> ********", "**** [X][start] -- Completed -- <*> ****"]:
+            self.assertEqual(parse(f"Reasoning: x\nTemplate: {t}"), (t, None))
+        self.assertEqual(parse("Template: **a <*> b**"), ("a <*> b", None))
+
     def test_inner_backticks_preserved(self):
         self.assertEqual(parse("Template: run `ls` on <*>")[0], "run `ls` on <*>")
 
@@ -127,6 +132,20 @@ class TestDatasets(unittest.TestCase):
         self.assertEqual([m["role"] for m in msgs], ["system", "user"])
         self.assertIn("Log message: Verification succeeded for blk_1\n", msgs[1]["content"])
         self.assertTrue(msgs[1]["content"].endswith("Template: <the log template>"))
+
+    def test_every_template_renders_and_parses(self):
+        from clotho.dataset.log_parsing.output_parsers import template2parser
+        self.assertEqual(set(template_map), set(template2parser))
+        for name, fn in template_map.items():
+            user = fn("Verification succeeded for blk_1")[1]["content"]
+            self.assertIn("Log message: Verification succeeded for blk_1\n", user, name)
+            self.assertTrue(user.endswith("Template: <the log template>"), name)
+            self.assertEqual(label_output("Reasoning: x\nTemplate: a <*>", ["a <*>"], name), (True, None))
+
+    def test_registered_datasets_exist(self):
+        from clotho.exp_config import supported_datasets
+        for ds in supported_datasets["log_parsing"]:
+            self.assertTrue((DATA_DIR / f"{ds}.jsonl").exists(), ds)
 
 
 if __name__ == "__main__":

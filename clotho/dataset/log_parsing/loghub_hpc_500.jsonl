@@ -1,0 +1,500 @@
+{"id": "hpc-334640", "system": "HPC", "content": "Failed subcommands 2260\\ 2262\\ 2276", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-10027", "system": "HPC", "content": "wait (command 2481)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-70917", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage313 is no longer served by node node-8", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-870", "system": "HPC", "content": "risBoot (command 1906)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-334990", "system": "HPC", "content": "boot (command 2276) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-39587", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4383 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-402529", "system": "HPC", "content": "boot (command 4168) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-359706", "system": "HPC", "content": "boot (command 2690) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-64939", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:00:5:0", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-394886", "system": "HPC", "content": "boot (command 3939) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-23350", "system": "HPC", "content": "member_delete (command 3906)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-143751", "system": "HPC", "content": "critical", "template": "critical", "template_id": "E65"}
+{"id": "hpc-340367", "system": "HPC", "content": "Failed subcommands 2336\\ 2339\\ 2341", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-340373", "system": "HPC", "content": "Failed subcommands 2333\\ 2336\\ 2339\\ 2355", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-266", "system": "HPC", "content": "risBoot (command 1902)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-67105", "system": "HPC", "content": "ServerFileSystem domain lsf_domain is full", "template": "ServerFileSystem domain <*> is full", "template_id": "E35"}
+{"id": "hpc-31550", "system": "HPC", "content": "Targeting domains:node-D0 and nodes:node-[0-7] child of command 4046", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-17699", "system": "HPC", "content": "wait (command 3254)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-378851", "system": "HPC", "content": "boot (command 3031) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-39530", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1512", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-67427", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage112 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-340363", "system": "HPC", "content": "Failed subcommands 2348", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-379624", "system": "HPC", "content": "haltcluster (command 2980) Error: haltcluster: bad spawn id", "template": "haltcluster (command <*>) Error: haltcluster: bad spawn id", "template_id": "E21"}
+{"id": "hpc-324227", "system": "HPC", "content": "boot (command 2142) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-14002", "system": "HPC", "content": "member_delete (command 2921)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-144219", "system": "HPC", "content": "ambient=25", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-370112", "system": "HPC", "content": "haltcluster (command 2811) Error: haltcluster: bad spawn id", "template": "haltcluster (command <*>) Error: haltcluster: bad spawn id", "template_id": "E21"}
+{"id": "hpc-323989", "system": "HPC", "content": "Failed subcommands 2146", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-27869", "system": "HPC", "content": "Command has completed successfully", "template": "Command has completed successfully", "template_id": "E33"}
+{"id": "hpc-411171", "system": "HPC", "content": "NIFF: node node-254 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-31722", "system": "HPC", "content": "psu failure\\ ambient=28", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-77164", "system": "HPC", "content": "blocked", "template": "blocked", "template_id": "E71"}
+{"id": "hpc-385152", "system": "HPC", "content": "boot (command 3156) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-3923", "system": "HPC", "content": "halt (command 2108)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-146157", "system": "HPC", "content": "ambient=38", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-373976", "system": "HPC", "content": "boot (command 2836) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-31769", "system": "HPC", "content": "PSU status ( on off )", "template": "PSU status (<*> <*>)", "template_id": "E61"}
+{"id": "hpc-9402", "system": "HPC", "content": "wait (command 2507)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-385284", "system": "HPC", "content": "Failed subcommands 3406", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-143750", "system": "HPC", "content": "warning", "template": "warning", "template_id": "E67"}
+{"id": "hpc-68619", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root23_tmp is no longer served by node node-54", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-143753", "system": "HPC", "content": "normal", "template": "normal", "template_id": "E74"}
+{"id": "hpc-362961", "system": "HPC", "content": "boot (command 2703) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-374007", "system": "HPC", "content": "Failed subcommands 2813", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-3848", "system": "HPC", "content": "haltcluster (command 2126)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-375136", "system": "HPC", "content": "boot (command 2885) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-62118", "system": "HPC", "content": "update received", "template": "update received", "template_id": "E53"}
+{"id": "hpc-268", "system": "HPC", "content": "bootGenvmunix (command 1900)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-17908", "system": "HPC", "content": "boot (command 3311)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-39565", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage911", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-64943", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:01:0:5", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-31663", "system": "HPC", "content": "Targeting domains:node-D3 and nodes:node-[104-127] child of command 4163", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-354088", "system": "HPC", "content": "boot (command 2574) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-428097", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=5777)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-33398", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage214", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-137625", "system": "HPC", "content": "inconsistent nodesets node-0 0x000001fe <ok> node-3 0x0001e1fe <ok> node-2 0x0001e1fe <ok> node-1 0x0001e1fe <ok> node-6 0x2001fdfe <ok> node-7 0x2001fdfe <ok> node-4 0x2001fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-12406", "system": "HPC", "content": "halt (command 2724)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-335017", "system": "HPC", "content": "boot (command 2270) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-4046", "system": "HPC", "content": "clusterAddMember (command 2162)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-83", "system": "HPC", "content": "halt (command 1889)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-33636", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1011", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-17135", "system": "HPC", "content": "boot (command 3202)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-4303", "system": "HPC", "content": "halt (command 2223)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-13994", "system": "HPC", "content": "risBoot (command 2927)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-109904", "system": "HPC", "content": "inconsistent nodesets node-39 0x1fffffffe <ok> node-45 0x0403fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-66012", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage421 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-10305", "system": "HPC", "content": "boot (command 2607)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-340581", "system": "HPC", "content": "boot (command 2359) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-370114", "system": "HPC", "content": "haltcluster (command 2808) Error: haltcluster: bad spawn id", "template": "haltcluster (command <*>) Error: haltcluster: bad spawn id", "template_id": "E21"}
+{"id": "hpc-305581", "system": "HPC", "content": "bootGenvmunix (command 1905) Error: Timeout waiting for system to come up: <ABORT code completed>", "template": "bootGenvmunix (command <*>) Error: Timeout waiting for system to come up: <ABORT code completed>", "template_id": "E3"}
+{"id": "hpc-65275", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:2:7", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-386945", "system": "HPC", "content": "boot (command 3508) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-64944", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:01:1:5", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-58831", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4411 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-394082", "system": "HPC", "content": "bootGenvmunix (command 3907) Error: Timeout waiting for system to come up: <ABORT code completed>", "template": "bootGenvmunix (command <*>) Error: Timeout waiting for system to come up: <ABORT code completed>", "template_id": "E3"}
+{"id": "hpc-12364", "system": "HPC", "content": "wait (command 2694)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-62226", "system": "HPC", "content": "Link ok", "template": "Link ok", "template_id": "E72"}
+{"id": "hpc-379505", "system": "HPC", "content": "Command Failed on: node-254\\ node-224\\ node-226\\ node-225\\ node-227\\ node-229\\ node-228\\ node-231\\ node-230\\ node-233\\ node-232\\ node-234\\ node-235\\ node-236\\ node-238\\ node-240\\ node-239\\ node-237\\ node-241\\ node-242\\ node-243\\ node-246\\ node-244\\ node-245\\ node-248\\ node-247\\ node-250\\ node-252\\ node-249\\ node-251\\ node-255\\ node-253", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-13299", "system": "HPC", "content": "member_delete (command 2848)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-39526", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage322", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-370118", "system": "HPC", "content": "haltcluster (command 2805) Error: haltcluster: bad spawn id", "template": "haltcluster (command <*>) Error: haltcluster: bad spawn id", "template_id": "E21"}
+{"id": "hpc-31743", "system": "HPC", "content": "psu failure\\ ambient=29", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-348144", "system": "HPC", "content": "boot (command 2503) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-39576", "system": "HPC", "content": "fan failure\\ ambient=27", "template": "fan failure\\ ambient=<*>", "template_id": "E47"}
+{"id": "hpc-427353", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6000-1fe1-0010-ed90-0009-0390-9323-007a\\042 is in the available state (HWID=69)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-4048", "system": "HPC", "content": "risBoot (command 2163)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-394839", "system": "HPC", "content": "boot (command 3937) Error: timeout waiting for Loading LMF licenses", "template": "boot (command <*>) Error: timeout waiting for Loading LMF licenses", "template_id": "E17"}
+{"id": "hpc-377222", "system": "HPC", "content": "boot (command 2915) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-59230", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4655 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-32361", "system": "HPC", "content": "Temperature (42C) exceeds warning threshold", "template": "Temperature <*> exceeds warning threshold", "template_id": "E32"}
+{"id": "hpc-305449", "system": "HPC", "content": "bootGenvmunix (command 1903) Error: Timeout waiting for system to come up: <ABORT code completed>", "template": "bootGenvmunix (command <*>) Error: Timeout waiting for system to come up: <ABORT code completed>", "template_id": "E3"}
+{"id": "hpc-39157", "system": "HPC", "content": "NIFF: node node-69 detected a failed network connection on network 5.5.0.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-61348", "system": "HPC", "content": "Command has been aborted", "template": "Command has been aborted", "template_id": "E43"}
+{"id": "hpc-39517", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1432", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-427315", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-0198-0002-0000-0016-0000\\042 is in the available state (HWID=917)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-20855", "system": "HPC", "content": "boot (command 3614)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-31746", "system": "HPC", "content": "psu failure\\ ambient=25", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-409697", "system": "HPC", "content": "NIFF: node node-25 has detected an available network connection on network 10.96.0.0 via interface scip0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-405586", "system": "HPC", "content": "NIFF: node node-176 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-405607", "system": "HPC", "content": "NIFF: node node-128 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-33455", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage613", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-377445", "system": "HPC", "content": "boot (command 2919) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-18334", "system": "HPC", "content": "wait (command 3336)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-64937", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:00:2:5", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-394869", "system": "HPC", "content": "boot (command 3934) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-66437", "system": "HPC", "content": "ServerFileSystem domain give_domain is full", "template": "ServerFileSystem domain <*> is full", "template_id": "E35"}
+{"id": "hpc-77090", "system": "HPC", "content": "configured out", "template": "configured out", "template_id": "E55"}
+{"id": "hpc-26946", "system": "HPC", "content": "boot (command 4174)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-385262", "system": "HPC", "content": "boot (command 3314) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-30014", "system": "HPC", "content": "Targeting domains:node-D0 and nodes:node-[0-7] child of command 2308", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-322338", "system": "HPC", "content": "boot (command 2095) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-383256", "system": "HPC", "content": "boot (command 3112) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-414968", "system": "HPC", "content": "NIFF: node node-62 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-4045", "system": "HPC", "content": "member_delete (command 2161)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-128368", "system": "HPC", "content": "inconsistent nodesets node-95 0x1fffffffe <ok> node-66 0x1fffffffc <ok> node-65 0x1fffffffc <ok> node-79 0x1fffffffc <ok> node-94 0x1fffffffc <ok> node-89 0x1fffffffc <ok> node-77 0x1fffffffc <ok> node-74 0x1fffffffc <ok> node-90 0x1fffffffc <ok> node-78 0x1fffffffc <ok> node-75 0x1fffffffc <ok> node-87 0x1fffffffc <ok> node-72 0x1fffffffc <ok> node-86 0x1fffffffc <ok> node-69 0x1fffffffc <ok> node-67 0x1fffffffc <ok> node-92 0x1fffffffc <ok> node-91 0x1fffffffc <ok> node-71 0x1fffffffc <ok> node-84 0x1fffffffc <ok> node-73 0x1fffffffc <ok> node-68 0x1fffffffc <ok> node-93 0x1fffffffc <ok> node-88 0x1fffffffc <ok> node-81 0x1fffffffc <ok> node-76 0x1fffffffc <ok> node-85 0x1fffffffc <ok> node-82 0x1fffffffc <ok> node-83 0x1fffffffc <ok> node-70 0x1fffffffc <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-404358", "system": "HPC", "content": "NIFF: node node-216 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-78189", "system": "HPC", "content": "starting", "template": "starting", "template_id": "E64"}
+{"id": "hpc-32318", "system": "HPC", "content": "Temperature (43C) exceeds warning threshold", "template": "Temperature <*> exceeds warning threshold", "template_id": "E32"}
+{"id": "hpc-14616", "system": "HPC", "content": "boot (command 3028)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-395548", "system": "HPC", "content": "wait (command 3964) Error: Console-Busy Port already in use", "template": "wait (command <*>) Error: Console-Busy Port already in use", "template_id": "E22"}
+{"id": "hpc-389699", "system": "HPC", "content": "boot (command 3586) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-370124", "system": "HPC", "content": "haltcluster (command 2806) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-26919", "system": "HPC", "content": "wait (command 4183)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-66011", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain cluster_root is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-322596", "system": "HPC", "content": "boot (command 2092) Error: timeout waiting for Loading LMF licenses", "template": "boot (command <*>) Error: timeout waiting for Loading LMF licenses", "template_id": "E17"}
+{"id": "hpc-65989", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root7_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-23349", "system": "HPC", "content": "clusterAddMember (command 3907)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-70969", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage731 is no longer served by node node-26", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-947", "system": "HPC", "content": "risBoot (command 1912)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-385286", "system": "HPC", "content": "boot (command 3433) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-89851", "system": "HPC", "content": "inconsistent nodesets node-36 0x000001fe <ok> node-33 0x000001fe <ok> node-38 0x000001fe <ok> node-34 0x000001fe <ok> node-35 0x000001fe <ok> node-37 0x000001fe <ok> node-39 0x000001fe <ok> node-32 0x000001fe <ok> node-44 0x0801fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-386931", "system": "HPC", "content": "boot (command 3512) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-61573", "system": "HPC", "content": "Command Failed on: node-160\\ node-161\\ node-162\\ node-163\\ node-164\\ node-165\\ node-166\\ node-167", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-39141", "system": "HPC", "content": "NIFF: node node-9 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-31433", "system": "HPC", "content": "Targeting domains:node-D5 and nodes:node-[168-191] child of command 3925", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-13337", "system": "HPC", "content": "boot (command 2851)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-65995", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root13_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-31841", "system": "HPC", "content": "psu failure\\ ambient=34", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-880", "system": "HPC", "content": "member_delete (command 1908)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-12425", "system": "HPC", "content": "boot (command 2765)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-4231", "system": "HPC", "content": "halt (command 2232)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-64955", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:02:5:2", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-33684", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage121", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-64957", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:02:5:4", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-65988", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root3_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-61617", "system": "HPC", "content": "Command Failed on: node-206", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-89284", "system": "HPC", "content": "inconsistent nodesets node-225 0x000001fe <ok> node-224 0x000001fe <ok> node-226 0x000001fe <ok> node-228 0x000001fe <ok> node-229 0x000001fe <ok> node-227 0x0001e1fe <ok> node-231 0x0001e1fe <ok> node-230 0x0001e1fe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-307495", "system": "HPC", "content": "bootGenvmunix (command 1918) Error: node returned to srm while booting: <ABORT code completed>", "template": "bootGenvmunix (command <*>) Error: node returned to srm while booting: <ABORT code completed>", "template_id": "E4"}
+{"id": "hpc-132827", "system": "HPC", "content": "inconsistent nodesets node-128 0x000001fe <ok> node-129 0x000001fe <ok> node-132 0x000001fe <ok> node-130 0x000001fe <ok> node-133 0x0801fdfe <ok> node-134 0x0801fdfe <ok> node-135 0x0801fdfe <ok> node-131 0x0801fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-23299", "system": "HPC", "content": "clusterAddMember (command 3867)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-39506", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1223", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-38656", "system": "HPC", "content": "NIFF: node node-106 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-427336", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-0134-0001-e000-002a-0000\\042 is in the available state (HWID=923)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-385264", "system": "HPC", "content": "boot (command 3321) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-324298", "system": "HPC", "content": "Command Failed on: node-D3", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-427257", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=5009)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-38431", "system": "HPC", "content": "NIFF: node node-141 detected a failed network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-378853", "system": "HPC", "content": "Failed subcommands 3012\\ 3022", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-371250", "system": "HPC", "content": "boot (command 2799) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-342758", "system": "HPC", "content": "Command Failed on: node-128", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-27315", "system": "HPC", "content": "bootGenvmunix (command 4185)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-394891", "system": "HPC", "content": "boot (command 3931) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-327", "system": "HPC", "content": "risBoot (command 1904)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-318492", "system": "HPC", "content": "Command Failed on: node-32", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-17042", "system": "HPC", "content": "wait (command 3203)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-404407", "system": "HPC", "content": "NIFF: node node-13 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-379271", "system": "HPC", "content": "boot (command 3019) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-391066", "system": "HPC", "content": "wait (command 3845) Error: Unknown We failed to determine the state of this node", "template": "wait (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E8"}
+{"id": "hpc-65056", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:3:4", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-64952", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:02:2:5", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-13301", "system": "HPC", "content": "risBoot (command 2849)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-173449", "system": "HPC", "content": "ambient=39", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-395327", "system": "HPC", "content": "clusterAddMember (command 3913) Error: Cannot run clusterAddMember\\ because node-219 connection state is REFUSED and needs to be SRM", "template": "clusterAddMember (command <*>) Error: Cannot run clusterAddMember\\ because <*> connection state is REFUSED and needs to be SRM", "template_id": "E2"}
+{"id": "hpc-390398", "system": "HPC", "content": "boot (command 3607) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-68252", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root1_tmp is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-429256", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4321)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-1016", "system": "HPC", "content": "risBoot (command 1917)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-24041", "system": "HPC", "content": "member_delete (command 3914)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-69317", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root16_tmp is no longer served by node node-15", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-64958", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:03:0:5", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-39544", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage712", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-143927", "system": "HPC", "content": "ambient=28", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-338077", "system": "HPC", "content": "boot (command 2330) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-20827", "system": "HPC", "content": "boot (command 3597)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-38594", "system": "HPC", "content": "NIFF: node node-76 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-31869", "system": "HPC", "content": "PSU status ( off on )", "template": "PSU status (<*> <*>)", "template_id": "E61"}
+{"id": "hpc-143973", "system": "HPC", "content": "ambient=32", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-411207", "system": "HPC", "content": "NIFF: node node-190 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-3853", "system": "HPC", "content": "wait (command 2117)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-300921", "system": "HPC", "content": "halt (command 1887) Error: timeout waiting for SRM prompt", "template": "halt (command <*>) Error: timeout waiting for SRM prompt", "template_id": "E25"}
+{"id": "hpc-58832", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4141 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-390387", "system": "HPC", "content": "boot (command 3607) Error: System could not find kernel", "template": "boot (command <*>) Error: System could not find kernel", "template_id": "E28"}
+{"id": "hpc-304745", "system": "HPC", "content": "Linkerror event interval expired", "template": "Linkerror event interval expired", "template_id": "E34"}
+{"id": "hpc-402538", "system": "HPC", "content": "boot (command 4168) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-31718", "system": "HPC", "content": "psu failure\\ ambient=26", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-33367", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1113", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-377226", "system": "HPC", "content": "boot (command 2917) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-145373", "system": "HPC", "content": "ambient=35", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-128543", "system": "HPC", "content": "inconsistent nodesets node-223 0x1fffffffe <ok> node-194 0x1fffffffc <ok> node-193 0x1fffffffc <ok> node-210 0x1fffffffc <ok> node-214 0x1fffffffc <ok> node-206 0x1fffffffc <ok> node-216 0x1fffffffc <ok> node-220 0x1fffffffc <ok> node-203 0x1fffffffc <ok> node-208 0x1fffffffc <ok> node-195 0x1fffffffc <ok> node-213 0x1fffffffc <ok> node-212 0x1fffffffc <ok> node-197 0x1fffffffc <ok> node-204 0x1fffffffc <ok> node-196 0x1fffffffc <ok> node-222 0x1fffffffc <ok> node-221 0x1fffffffc <ok> node-218 0x1fffffffc <ok> node-207 0x1fffffffc <ok> node-217 0x1fffffffc <ok> node-215 0x1fffffffc <ok> node-200 0x1fffffffc <ok> node-199 0x1fffffffc <ok> node-209 0x1fffffffc <ok> node-211 0x1fffffffc <ok> node-219 0x1fffffffc <ok> node-205 0x1fffffffc <ok> node-198 0x1fffffffc <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-31747", "system": "HPC", "content": "psu failure\\ ambient=35", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-13300", "system": "HPC", "content": "clusterAddMember (command 2849)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-30531", "system": "HPC", "content": "Targeting domains:node-D5 and nodes:node-[160-167] child of command 2892", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-385218", "system": "HPC", "content": "boot (command 3224) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-11782", "system": "HPC", "content": "boot (command 2532)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-30018", "system": "HPC", "content": "Targeting domains:node-D2 and nodes:node-[64-71] child of command 2310", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-38734", "system": "HPC", "content": "NIFF: node node-158 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-334643", "system": "HPC", "content": "Command Failed on: node-111", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-31748", "system": "HPC", "content": "psu failure\\ ambient=23", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-386952", "system": "HPC", "content": "boot (command 3506) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-32282", "system": "HPC", "content": "ambient=40 threshold exceeded", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-143900", "system": "HPC", "content": "ambient=26", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-38613", "system": "HPC", "content": "NIFF: node node-123 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-368111", "system": "HPC", "content": "boot (command 2755) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-10623", "system": "HPC", "content": "haltcluster (command 2598)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-14000", "system": "HPC", "content": "member_delete (command 2923)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-31481", "system": "HPC", "content": "Targeting domains:node-D4 and nodes:node-[128-135] child of command 3970", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-66029", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root28_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-31860", "system": "HPC", "content": "psu failure\\ ambient=37", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-31798", "system": "HPC", "content": "psu failure\\ ambient=36", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-126824", "system": "HPC", "content": "inconsistent nodesets node-67 0x000001fe <ok> node-64 0x000001fe <ok> node-65 0x000001fe <ok> node-66 0x000001fe <ok> node-71 0x000001fe <ok> node-69 0x000001fe <ok> node-70 0x0001f9fe <ok> node-68 0x0001fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-61634", "system": "HPC", "content": "Command Failed on: node-128\\ node-129\\ node-134\\ node-130\\ node-131\\ node-132\\ node-133\\ node-135", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-379197", "system": "HPC", "content": "Command Failed on: node-36\\ node-32", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-301566", "system": "HPC", "content": "boot (command 1880) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-31729", "system": "HPC", "content": "psu failure\\ ambient=32", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-147941", "system": "HPC", "content": "ambient=37", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-12507", "system": "HPC", "content": "haltcluster (command 2807)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-23348", "system": "HPC", "content": "risBoot (command 3907)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-394846", "system": "HPC", "content": "boot (command 3931) Error: timeout waiting for Loading LMF licenses", "template": "boot (command <*>) Error: timeout waiting for Loading LMF licenses", "template_id": "E17"}
+{"id": "hpc-354161", "system": "HPC", "content": "boot (command 2588) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-75413", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root1_tmp_backup is no longer served by node node-64", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-23297", "system": "HPC", "content": "bootGenvmunix (command 3867)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-143974", "system": "HPC", "content": "ambient=23", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-405601", "system": "HPC", "content": "NIFF: node node-179 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-306744", "system": "HPC", "content": "member_delete (command 1908) Error: node-108 is NOT a member of cluster node-D3", "template": "member_delete (command <*>) Error: <*> is NOT a member of cluster <*>", "template_id": "E20"}
+{"id": "hpc-330172", "system": "HPC", "content": "boot (command 2201) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-340374", "system": "HPC", "content": "Failed subcommands 2333\\ 2336\\ 2339\\ 2340", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-64975", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:2:1", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-385280", "system": "HPC", "content": "boot (command 3379) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-13999", "system": "HPC", "content": "clusterAddMember (command 2924)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-33606", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1433", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-134976", "system": "HPC", "content": "inconsistent nodesets node-36 0x000001fe <ok> node-32 0x000001fe <ok> node-33 0x000001fe <ok> node-34 0x0001fdfe <ok> node-37 0x0001fdfe <ok> node-35 0x1001fdfe <ok> node-38 0x1001fdfe <ok> node-39 0x1001fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-33457", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage343", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-58844", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4787 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-24039", "system": "HPC", "content": "risBoot (command 3915)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-370116", "system": "HPC", "content": "haltcluster (command 2807) Error: haltcluster: bad spawn id", "template": "haltcluster (command <*>) Error: haltcluster: bad spawn id", "template_id": "E21"}
+{"id": "hpc-324041", "system": "HPC", "content": "Command Failed on: node-235", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-33253", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1032", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-69033", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root22_domain is no longer served by node node-117", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-31720", "system": "HPC", "content": "psu failure\\ ambient=27", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-404327", "system": "HPC", "content": "NIFF: node node-199 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-81951", "system": "HPC", "content": "responding", "template": "responding", "template_id": "E62"}
+{"id": "hpc-427488", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-0169-0000-f000-0038-0000\\042 is in the available state (HWID=5971)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-395324", "system": "HPC", "content": "member_delete (command 3914) Error: node-219 is NOT a member of cluster node-D6", "template": "member_delete (command <*>) Error: <*> is NOT a member of cluster <*>", "template_id": "E20"}
+{"id": "hpc-107766", "system": "HPC", "content": "inconsistent nodesets node-97 0x000001fe <ok> node-96 0x000001fe <ok> node-98 0x4001fdfe <ok> node-102 0x4001fdfe <ok> node-101 0x4001fdfe <ok> node-100 0x4001fdfe <ok> node-103 0x4001fdfe <ok> node-99 0x4001fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-429433", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-4053-0001-4000-003c-0000\\042 is in the available state (HWID=5949)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-38554", "system": "HPC", "content": "NIFF: node node-25 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-70935", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage433 is no longer served by node node-14", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-389401", "system": "HPC", "content": "Failed subcommands 3565", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-67097", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage911 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-12582", "system": "HPC", "content": "bootGenvmunix (command 2795)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-377388", "system": "HPC", "content": "member_delete (command 2921) Error: node is up according to cluster_get_info", "template": "member_delete (command <*>) Error: node is up according to cluster_get_info", "template_id": "E7"}
+{"id": "hpc-379026", "system": "HPC", "content": "boot (command 3018) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-65929", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage232 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-12584", "system": "HPC", "content": "clusterAddMember (command 2795)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-427987", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=3885)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-69550", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root29_local is no longer served by node node-60", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-305888", "system": "HPC", "content": "Command Failed on: node-108\\ node-113", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-124147", "system": "HPC", "content": "inconsistent nodesets node-103 0x000001fe <ok> node-96 0x000001fe <ok> node-102 0x000001fe <ok> node-101 0x000001fe <ok> node-100 0x000001fe <ok> node-99 0x000001fe <ok> node-97 0x000001fe <ok> node-98 0x1001fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-23300", "system": "HPC", "content": "member_delete (command 3866)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-302", "system": "HPC", "content": "risBoot (command 1903)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-39359", "system": "HPC", "content": "NIFF: node node-219 detected a failed network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-64762", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0T00:00:2:1", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-17576", "system": "HPC", "content": "wait (command 3217)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-370120", "system": "HPC", "content": "haltcluster (command 2804) Error: haltcluster: bad spawn id", "template": "haltcluster (command <*>) Error: haltcluster: bad spawn id", "template_id": "E21"}
+{"id": "hpc-65194", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:6:3", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-3850", "system": "HPC", "content": "haltcluster (command 2122)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-12509", "system": "HPC", "content": "haltcluster (command 2804)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-307166", "system": "HPC", "content": "risBoot (command 1913) Error: failed to RIS boot: <ABORT code completed>", "template": "risBoot (command <*>) Error: failed to RIS boot: <ABORT code completed>", "template_id": "E13"}
+{"id": "hpc-29916", "system": "HPC", "content": "Targeting domains:node-D3 and nodes:node-[104-127] child of command 2178", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-378103", "system": "HPC", "content": "boot (command 2954) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-38220", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain root32_local", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-65993", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root17_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-402519", "system": "HPC", "content": "boot (command 4177) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-58936", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4166 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-324573", "system": "HPC", "content": "Command Cancelled - cluster would lose quorum", "template": "Command Cancelled - cluster would lose quorum", "template_id": "E30"}
+{"id": "hpc-273", "system": "HPC", "content": "clusterAddMember (command 1903)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-324301", "system": "HPC", "content": "haltcluster (command 2127) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-341238", "system": "HPC", "content": "haltcluster (command 2374) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-353215", "system": "HPC", "content": "boot (command 2614) Error: timeout while booting.", "template": "boot (command <*>) Error: timeout while booting.", "template_id": "E31"}
+{"id": "hpc-39534", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1221", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-68774", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root10_domain is no longer served by node node-192", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-58473", "system": "HPC", "content": "Fan speeds ( 3552 3552 3391 4500 3515 3497 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-390413", "system": "HPC", "content": "Failed subcommands 3599", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-318493", "system": "HPC", "content": "boot (command 1994) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-143915", "system": "HPC", "content": "ambient=33", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-9795", "system": "HPC", "content": "wait (command 2508)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-12585", "system": "HPC", "content": "member_delete (command 2794)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-62211", "system": "HPC", "content": "Link error", "template": "Link error", "template_id": "E63"}
+{"id": "hpc-3836", "system": "HPC", "content": "haltcluster (command 2129)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-10622", "system": "HPC", "content": "haltcluster (command 2597)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-330", "system": "HPC", "content": "bootGenvmunix (command 1903)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-1720", "system": "HPC", "content": "wait (command 1959)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-326441", "system": "HPC", "content": "clusterAddMember (command 2162) Error: Cannot run clusterAddMember\\ because node-235 connection state is REFUSED and needs to be SRM", "template": "clusterAddMember (command <*>) Error: Cannot run clusterAddMember\\ because <*> connection state is REFUSED and needs to be SRM", "template_id": "E2"}
+{"id": "hpc-33648", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1543", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-324287", "system": "HPC", "content": "haltcluster (command 2129) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-334813", "system": "HPC", "content": "boot (command 2266) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-42856", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 8881 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-13297", "system": "HPC", "content": "risBoot (command 2847)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-264", "system": "HPC", "content": "risBoot (command 1901)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-394889", "system": "HPC", "content": "boot (command 3937) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-78330", "system": "HPC", "content": "closing", "template": "closing", "template_id": "E68"}
+{"id": "hpc-30556", "system": "HPC", "content": "Targeting domains:node-D7 and nodes:node-[232-255] child of command 2875", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-385274", "system": "HPC", "content": "haltcluster (command 3331) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-395550", "system": "HPC", "content": "Command Failed on: node-21", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-378855", "system": "HPC", "content": "boot (command 3022) Error: timeout while booting.", "template": "boot (command <*>) Error: timeout while booting.", "template_id": "E31"}
+{"id": "hpc-69200", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root20_domain is no longer served by node node-179", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-23347", "system": "HPC", "content": "bootGenvmunix (command 3907)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-13302", "system": "HPC", "content": "bootGenvmunix (command 2849)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-323097", "system": "HPC", "content": "boot (command 2090) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-68097", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage342 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-10628", "system": "HPC", "content": "haltcluster (command 2596)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-39575", "system": "HPC", "content": "fan failure\\ ambient=26", "template": "fan failure\\ ambient=<*>", "template_id": "E47"}
+{"id": "hpc-323991", "system": "HPC", "content": "boot (command 2146) Error: timeout while booting.", "template": "boot (command <*>) Error: timeout while booting.", "template_id": "E31"}
+{"id": "hpc-948", "system": "HPC", "content": "clusterAddMember (command 1912)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-61680", "system": "HPC", "content": "power/control ok", "template": "power/control ok", "template_id": "E51"}
+{"id": "hpc-99694", "system": "HPC", "content": "unknown", "template": "unknown", "template_id": "E69"}
+{"id": "hpc-1", "system": "HPC", "content": "1 failed to configure resourcemgmt subsystem err = 10", "template": "<*> failed to configure resourcemgmt subsystem err = <*>", "template_id": "E29"}
+{"id": "hpc-31731", "system": "HPC", "content": "psu failure\\ ambient=33", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-32284", "system": "HPC", "content": "Temperature (41C) exceeds warning threshold", "template": "Temperature <*> exceeds warning threshold", "template_id": "E32"}
+{"id": "hpc-305124", "system": "HPC", "content": "clusterAddMember (command 1900) Error: cluster_add_member failed unexpectedly\\ check /cluster/admin/cluster_add_member.log: <ABORT code errored: kill: 601373: no such process>", "template": "clusterAddMember (command <*>) Error: cluster_add_member failed unexpectedly\\ check <*>: <ABORT code errored: kill: <*>: no such process>", "template_id": "E1"}
+{"id": "hpc-64973", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:0:3", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-11141", "system": "HPC", "content": "boot (command 2564)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-38526", "system": "HPC", "content": "NIFF: node node-103 detected a failed network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-23298", "system": "HPC", "content": "risBoot (command 3867)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-70828", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage1323 is no longer served by node node-241", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-12368", "system": "HPC", "content": "halt (command 2693)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-31084", "system": "HPC", "content": "Targeting domains:node-D5 and nodes:node-[160-167] child of command 3514", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-13995", "system": "HPC", "content": "clusterAddMember (command 2927)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-415012", "system": "HPC", "content": "NIFF: node node-51 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-347902", "system": "HPC", "content": "Failed subcommands 2495", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-14021", "system": "HPC", "content": "member_delete (command 2967)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-29614", "system": "HPC", "content": "Targeting domains:node-D4 and nodes:node-157", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-307126", "system": "HPC", "content": "risBoot (command 1912) Error: failed to RIS boot: <ABORT code completed>", "template": "risBoot (command <*>) Error: failed to RIS boot: <ABORT code completed>", "template_id": "E13"}
+{"id": "hpc-69150", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root18_domain is no longer served by node node-113", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-262", "system": "HPC", "content": "risBoot (command 1900)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-18420", "system": "HPC", "content": "boot (command 3353)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-390378", "system": "HPC", "content": "boot (command 3608) Error: System could not find kernel", "template": "boot (command <*>) Error: System could not find kernel", "template_id": "E28"}
+{"id": "hpc-31703", "system": "HPC", "content": "Targeting domains:node-D2 and nodes:node-[72-95] child of command 4207", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-4047", "system": "HPC", "content": "clusterAddMember (command 2163)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-33542", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage341", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-305320", "system": "HPC", "content": "risBoot (command 1905) Error: Timed out while waiting for SRM prompt: <ABORT code completed>", "template": "risBoot (command <*>) Error: Timed out while waiting for SRM prompt: <ABORT code completed>", "template_id": "E5"}
+{"id": "hpc-69681", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root6_local is no longer served by node node-229", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-38719", "system": "HPC", "content": "NIFF: node node-183 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-66711", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root25_tmp is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-54924", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 4066 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-5275", "system": "HPC", "content": "halt (command 2243)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-318578", "system": "HPC", "content": "boot (command 1993) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-12403", "system": "HPC", "content": "halt (command 2726)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-878", "system": "HPC", "content": "bootGenvmunix (command 1907)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-163454", "system": "HPC", "content": "ambient=22", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-379494", "system": "HPC", "content": "boot (command 3002) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-31741", "system": "HPC", "content": "psu failure\\ ambient=24", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-379525", "system": "HPC", "content": "Command Failed on: node-129\\ node-130\\ node-133\\ node-134\\ node-131\\ node-132\\ node-136\\ node-137\\ node-135\\ node-138\\ node-140\\ node-139\\ node-141\\ node-142\\ node-143\\ node-128\\ node-144\\ node-146\\ node-145\\ node-147\\ node-148\\ node-149\\ node-150\\ node-151\\ node-152\\ node-154\\ node-153\\ node-155\\ node-158\\ node-156\\ node-157\\ node-159", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-76680", "system": "HPC", "content": "running", "template": "running", "template_id": "E70"}
+{"id": "hpc-251", "system": "HPC", "content": "clusterAddMember (command 1902)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-15364", "system": "HPC", "content": "haltcluster (command 2984)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-24043", "system": "HPC", "content": "member_delete (command 3912)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-35874", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage112", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-1017", "system": "HPC", "content": "bootGenvmunix (command 1917)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-38780", "system": "HPC", "content": "NIFF: node node-172 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-282", "system": "HPC", "content": "bootGenvmunix (command 1902)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-77193", "system": "HPC", "content": "not responding", "template": "not responding", "template_id": "E54"}
+{"id": "hpc-428121", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4642)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-39547", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage632", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-14022", "system": "HPC", "content": "halt (command 2966)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-140158", "system": "HPC", "content": "inconsistent nodesets node-7 0x000001fe <ok> node-1 0x000001fe <ok> node-4 0x000001fe <ok> node-0 0x000001fe <ok> node-3 0x000001fe <ok> node-6 0x000001fe <ok> node-5 0x000001fe <ok> node-2 0x000001fe <ok> node-12 0x0801fdfe <ok> node-15 0x0801fdfe <ok> node-14 0x0801fdfe <ok> node-13 0x0807fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-13996", "system": "HPC", "content": "member_delete (command 2926)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-87359", "system": "HPC", "content": "inconsistent nodesets node-97 0x000001fe <ok> node-96 0x000001fe <ok> node-99 0x0001fdfe <ok> node-98 0x0201fdfe <ok> node-101 0x0201fdfe <ok> node-100 0x0201fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-427551", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-010b-0001-5000-0038-0000\\042 is in the available state (HWID=5959)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-385169", "system": "HPC", "content": "boot (command 3154) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-354001", "system": "HPC", "content": "boot (command 2574) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-20210", "system": "HPC", "content": "halt (command 3555)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-324295", "system": "HPC", "content": "Failed subcommands 2120\\ 2123\\ 2127", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-15392", "system": "HPC", "content": "halt (command 2979)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-305173", "system": "HPC", "content": "risBoot (command 1903) Error: Timed out while waiting for SRM prompt: <ABORT code completed>", "template": "risBoot (command <*>) Error: Timed out while waiting for SRM prompt: <ABORT code completed>", "template_id": "E5"}
+{"id": "hpc-3849", "system": "HPC", "content": "haltcluster (command 2124)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-65051", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:5:3", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-13997", "system": "HPC", "content": "bootGenvmunix (command 2924)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-16287", "system": "HPC", "content": "wait (command 3122)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-143971", "system": "HPC", "content": "ambient=30", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-305258", "system": "HPC", "content": "risBoot (command 1900) Error: failed to RIS boot: <ABORT code completed>", "template": "risBoot (command <*>) Error: failed to RIS boot: <ABORT code completed>", "template_id": "E13"}
+{"id": "hpc-324299", "system": "HPC", "content": "haltcluster (command 2123) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-39531", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1522", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-385222", "system": "HPC", "content": "boot (command 3222) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-39516", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1442", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-353759", "system": "HPC", "content": "Command Failed on: node-247\\ node-254\\ node-233", "template": "Command Failed on: <*>", "template_id": "E50"}
+{"id": "hpc-32391", "system": "HPC", "content": "ambient=44 threshold exceeded", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-24042", "system": "HPC", "content": "clusterAddMember (command 3913)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-1111", "system": "HPC", "content": "member_delete (command 1919)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-38513", "system": "HPC", "content": "NIFF: node node-26 detected a failed network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-379544", "system": "HPC", "content": "halt (command 2991) Error: Couldn\\047t Connect to console (state = REFUSED)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-13298", "system": "HPC", "content": "bootGenvmunix (command 2847)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-281", "system": "HPC", "content": "bootGenvmunix (command 1901)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-38400", "system": "HPC", "content": "NIFF: node node-151 detected a failed network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-411285", "system": "HPC", "content": "NIFF: node node-18 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-427486", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-0159-0001-0000-005c-0000\\042 is in the available state (HWID=5940)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-404613", "system": "HPC", "content": "NIFF: node node-104 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-386521", "system": "HPC", "content": "boot (command 3519) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-15367", "system": "HPC", "content": "haltcluster (command 2981)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-39553", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage442", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-14017", "system": "HPC", "content": "bootGenvmunix (command 2969)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-33499", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage614", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-11805", "system": "HPC", "content": "halt (command 2528)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-30230", "system": "HPC", "content": "Targeting domains:node-D5 and nodes:node-[160-191] child of command 2597", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-31879", "system": "HPC", "content": "psu failure\\ ambient=38", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-4706", "system": "HPC", "content": "wait (command 2189)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-71093", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root26_local is no longer served by node node-153", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-338302", "system": "HPC", "content": "Failed subcommands 2308\\ 2315", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-390220", "system": "HPC", "content": "boot (command 3596) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-18331", "system": "HPC", "content": "halt (command 3338)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-388870", "system": "HPC", "content": "boot (command 3580) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-8360", "system": "HPC", "content": "boot (command 2449)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-7630", "system": "HPC", "content": "haltcluster (command 2375)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-38747", "system": "HPC", "content": "NIFF: node node-132 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-8471", "system": "HPC", "content": "wait (command 2441)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-334644", "system": "HPC", "content": "Failed subcommands 2266", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-27312", "system": "HPC", "content": "member_delete (command 4184)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-379376", "system": "HPC", "content": "boot (command 3006) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-39559", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage721", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-33291", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1234", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-39511", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1542", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-391067", "system": "HPC", "content": "boot (command 3833) Error: CMF-Port This node\\047s port is not connected", "template": "boot (command <*>) Error: CMF-Port This node\\047s port is not connected", "template_id": "E15"}
+{"id": "hpc-340060", "system": "HPC", "content": "boot (command 2341) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-15365", "system": "HPC", "content": "haltcluster (command 2983)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-1018", "system": "HPC", "content": "clusterAddMember (command 1918)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-39580", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 7336 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-427491", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-4d57-0001-9000-008f-0000\\042 is in the available state (HWID=6309)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-39510", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1543", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-65943", "system": "HPC", "content": "ServerFileSystem domain root_domain is full", "template": "ServerFileSystem domain <*> is full", "template_id": "E35"}
+{"id": "hpc-38676", "system": "HPC", "content": "NIFF: node node-250 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-30423", "system": "HPC", "content": "Targeting domains:node-D6 and nodes:node-[192-223] child of command 2803", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-377693", "system": "HPC", "content": "clusterAddMember (command 2968) Error: Cannot run clusterAddMember\\ because node-183 connection state is REFUSED and needs to be SRM", "template": "clusterAddMember (command <*>) Error: Cannot run clusterAddMember\\ because <*> connection state is REFUSED and needs to be SRM", "template_id": "E2"}
+{"id": "hpc-13295", "system": "HPC", "content": "member_delete (command 2846)", "template": "member_delete (command <*>)", "template_id": "E42"}
+{"id": "hpc-31273", "system": "HPC", "content": "Targeting domains:node-D4 and nodes:node-[136-159] child of command 3684", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-143926", "system": "HPC", "content": "ambient=34", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-80249", "system": "HPC", "content": "active", "template": "active", "template_id": "E73"}
+{"id": "hpc-322481", "system": "HPC", "content": "boot (command 2093) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-21644", "system": "HPC", "content": "wait (command 3649)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-16881", "system": "HPC", "content": "halt (command 3161)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-374292", "system": "HPC", "content": "boot (command 2869) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-340128", "system": "HPC", "content": "boot (command 2353) Error: node went to SRM while booting", "template": "boot (command <*>) Error: node went to SRM while booting", "template_id": "E27"}
+{"id": "hpc-62225", "system": "HPC", "content": "Link in reset", "template": "Link in reset", "template_id": "E59"}
+{"id": "hpc-427260", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=5353)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-42100", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 5487 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-394837", "system": "HPC", "content": "boot (command 3941) Error: timeout waiting for Loading LMF licenses", "template": "boot (command <*>) Error: timeout waiting for Loading LMF licenses", "template_id": "E17"}
+{"id": "hpc-14019", "system": "HPC", "content": "clusterAddMember (command 2969)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-378814", "system": "HPC", "content": "boot (command 3035) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-41416", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 56250 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-58982", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4383 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-24038", "system": "HPC", "content": "bootGenvmunix (command 3915)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-385214", "system": "HPC", "content": "halt (command 3163) Error: timeout waiting for SRM prompt", "template": "halt (command <*>) Error: timeout waiting for SRM prompt", "template_id": "E25"}
+{"id": "hpc-65996", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root12_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-10629", "system": "HPC", "content": "haltcluster (command 2592)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-65939", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage1213 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-39564", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage742", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-390265", "system": "HPC", "content": "link errors remain current", "template": "link errors remain current", "template_id": "E40"}
+{"id": "hpc-64941", "system": "HPC", "content": "Link error on broadcast tree Interconnect-0N01:00:5:2", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-267", "system": "HPC", "content": "bootGenvmunix (command 1899)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}
+{"id": "hpc-341206", "system": "HPC", "content": "haltcluster (command 2377) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-14018", "system": "HPC", "content": "risBoot (command 2969)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-14904", "system": "HPC", "content": "boot (command 3029)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-338078", "system": "HPC", "content": "boot (command 2316) Error: node went to SRM while trying to boot", "template": "boot (command <*>) Error: node went to SRM while trying to boot", "template_id": "E19"}
+{"id": "hpc-2381", "system": "HPC", "content": "boot (command 1997)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-61681", "system": "HPC", "content": "power/control problem", "template": "power/control problem", "template_id": "E44"}
+{"id": "hpc-227", "system": "HPC", "content": "clusterAddMember (command 1899)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-353758", "system": "HPC", "content": "Failed subcommands 2588\\ 2589", "template": "Failed subcommands <*>", "template_id": "E48"}
+{"id": "hpc-74231", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain domain_dsk4a is no longer served by node node-128", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-385276", "system": "HPC", "content": "boot (command 3351) Error: Console-Busy Port already in use", "template": "boot (command <*>) Error: Console-Busy Port already in use", "template_id": "E23"}
+{"id": "hpc-12505", "system": "HPC", "content": "haltcluster (command 2811)", "template": "haltcluster (command <*>)", "template_id": "E45"}
+{"id": "hpc-404061", "system": "HPC", "content": "NIFF: node node-246 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-404023", "system": "HPC", "content": "NIFF: node node-239 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-11235", "system": "HPC", "content": "wait (command 2549)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-141732", "system": "HPC", "content": "inconsistent nodesets node-36 0x000001fe <ok> node-32 0x000001fe <ok> node-33 0x000001fe <ok> node-39 0x0801fdfe <ok> node-38 0x0801fdfe <ok> node-37 0x0801fdfe <ok> node-35 0x0801fdfe <ok> node-34 0x0801fdfe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-58256", "system": "HPC", "content": "Fan speeds ( 3552 3552 3391 4383 3515 3497 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-142231", "system": "HPC", "content": "inconsistent nodesets node-159 0x1fc7ffffe <ok> node-128 0x1fffffffe <ok> node-130 0x1fffffffe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-65934", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage141 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-323101", "system": "HPC", "content": "boot (command 2088) Error: HALT asserted\\ cannot continue", "template": "boot (command <*>) Error: HALT asserted\\ cannot continue", "template_id": "E24"}
+{"id": "hpc-62116", "system": "HPC", "content": "no recent update", "template": "no recent update", "template_id": "E52"}
+{"id": "hpc-39602", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 8333 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-1112", "system": "HPC", "content": "clusterAddMember (command 1920)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-33600", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1342", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-31737", "system": "HPC", "content": "psu failure\\ ambient=31", "template": "psu failure\\ ambient=<*>", "template_id": "E46"}
+{"id": "hpc-415093", "system": "HPC", "content": "NIFF: node node-225 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-427498", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-018f-0001-0000-00c2-0000\\042 is in the available state (HWID=6269)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-368312", "system": "HPC", "content": "halt (command 2749) Error: timeout waiting for SRM prompt", "template": "halt (command <*>) Error: timeout waiting for SRM prompt", "template_id": "E25"}
+{"id": "hpc-324297", "system": "HPC", "content": "haltcluster (command 2120) Error: timeout waiting for SRM prompts", "template": "haltcluster (command <*>) Error: timeout waiting for SRM prompts", "template_id": "E18"}
+{"id": "hpc-385235", "system": "HPC", "content": "boot (command 3211) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-429427", "system": "HPC", "content": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-4053-0001-4000-0045-0000\\042 is in the available state (HWID=5950)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-30170", "system": "HPC", "content": "Targeting domains:node-D5 and nodes:node-[160-167] child of command 2459", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-325003", "system": "HPC", "content": "Command Failed on: node-246\\ node-249\\ node-247\\ node-252\\ node-248\\ node-250\\ node-251\\ node-253", "template": "Command Failed on: <*>", "template_id": "E50"}

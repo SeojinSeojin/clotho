@@ -10,7 +10,10 @@ supported_datasets = {
     'model_name_extraction': ['ml_arxiv_papers_no_conflicting_labels', 'synthetic_abstracts_gpt4o_3600'],
     'topic_classification': ['ag_news_test'],
     # one dataset per Loghub-2.0 system (see clotho/dataset/log_parsing/prepare_loghub.py)
-    'log_parsing': ['loghub_hdfs_500', 'loghub_spark_500'],
+    'log_parsing': ['loghub_apache_500', 'loghub_bgl_500', 'loghub_hdfs_500', 'loghub_hpc_500',
+                    'loghub_hadoop_500', 'loghub_healthapp_500', 'loghub_linux_500', 'loghub_mac_500',
+                    'loghub_openssh_500', 'loghub_openstack_500', 'loghub_proxifier_500',
+                    'loghub_spark_500', 'loghub_thunderbird_500', 'loghub_zookeeper_500'],
 }
 
 task2template = {

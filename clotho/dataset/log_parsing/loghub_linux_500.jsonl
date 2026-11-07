@@ -1,0 +1,500 @@
+{"id": "linux-11707", "system": "Linux", "content": "[<02142d47>] invalidate_inode_buffers+0x9/0x33", "template": "[<*>] invalidate_inode_buffers+<*>", "template_id": "E137"}
+{"id": "linux-12387", "system": "Linux", "content": "[<021287f4>] __print_symbol+0x35/0x121", "template": "[<*>] __print_symbol+<*>", "template_id": "E260"}
+{"id": "linux-183", "system": "Linux", "content": "Bluetooth: HCI socket layer initialized", "template": "Bluetooth: HCI socket layer initialized", "template_id": "E72"}
+{"id": "linux-223", "system": "Linux", "content": "starting BIND 9.2.3 -u named -t /var/named/chroot", "template": "starting BIND <*> -u <*> -t <*>", "template_id": "E285"}
+{"id": "linux-5381", "system": "Linux", "content": "no longer listening on 127.0.0.1#53", "template": "no longer listening on <*>", "template_id": "E228"}
+{"id": "linux-11662", "system": "Linux", "content": "[<02141447>] do_sync_write+0x68/0x9d", "template": "[<*>] do_sync_write+<*>", "template_id": "E276"}
+{"id": "linux-16", "system": "Linux", "content": "Normal zone: 28334 pages, LIFO batch:6", "template": "Normal zone: <*> pages, LIFO batch:<*>", "template_id": "E153"}
+{"id": "linux-11617", "system": "Linux", "content": "[<02135342>] follow_page+0xda/0xe5", "template": "[<*>] follow_page+<*>", "template_id": "E291"}
+{"id": "linux-397", "system": "Linux", "content": "kernel.core_uses_pid = 1", "template": "kernel.core_uses_pid = <*>", "template_id": "E217"}
+{"id": "linux-182", "system": "Linux", "content": "Bluetooth: HCI device and connection manager initialized", "template": "Bluetooth: HCI device and connection manager initialized", "template_id": "E18"}
+{"id": "linux-6", "system": "Linux", "content": "BIOS-provided physical RAM map:", "template": "BIOS-provided physical RAM map:", "template_id": "E128"}
+{"id": "linux-22094", "system": "Linux", "content": "audit: enabled (after initialization)", "template": "audit: enabled (after initialization)", "template_id": "E81"}
+{"id": "linux-2878", "system": "Linux", "content": "Jul 27 14:42:19 Privoxy(-150806400) Info: loading configuration file '/etc/privoxy/config':", "template": "<*> Privoxy(<*>) Info: loading configuration file <*>", "template_id": "E61"}
+{"id": "linux-11643", "system": "Linux", "content": "httpd: page allocation failure. order:0, mode:0x50", "template": "httpd: page allocation failure. order:<*>, mode:<*>", "template_id": "E52"}
+{"id": "linux-219", "system": "Linux", "content": "Starting readahead: succeeded", "template": "Starting readahead: succeeded", "template_id": "E145"}
+{"id": "linux-22236", "system": "Linux", "content": "audit(1138278092.486:112647): avc: denied { setattr } for pid=509 exe=/usr/bin/rhgb name=/ dev= ino=1021 scontext=system_u:system_r:kernel_t tcontext=system_u:object_r:ramfs_t tclass=dir", "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>", "template_id": "E4"}
+{"id": "linux-11661", "system": "Linux", "content": "[<0a8ddb99>] ext3_file_write+0x19/0x88 [ext3]", "template": "[<*>] ext3_file_write+<*>", "template_id": "E249"}
+{"id": "linux-316", "system": "Linux", "content": "session closed for user news", "template": "session closed for user <*>", "template_id": "E227"}
+{"id": "linux-184", "system": "Linux", "content": "Bluetooth: L2CAP ver 2.1", "template": "Bluetooth: <*> ver <*>", "template_id": "E310"}
+{"id": "linux-13058", "system": "Linux", "content": "[<021364c6>] handle_mm_fault+0xbc/0xe2", "template": "[<*>] handle_mm_fault+<*>", "template_id": "E246"}
+{"id": "linux-22226", "system": "Linux", "content": "SELinux: initialized (dev , type tmpfs), uses transition SIDs", "template": "SELinux: initialized (dev , type <*>), uses <*>", "template_id": "E88"}
+{"id": "linux-7352", "system": "Linux", "content": "connection from 84.57.172.16 (dslb-084-057-172-016.pools.arcor-ip.net) at Sat Nov 5 06:44:34 2005", "template": "connection from <*> (<*>) at <*>", "template_id": "E261"}
+{"id": "linux-79", "system": "Linux", "content": "pci_hotplug: PCI Hot Plug PCI Core version: 0.5", "template": "pci_hotplug: PCI Hot Plug PCI Core version: <*>", "template_id": "E65"}
+{"id": "linux-129", "system": "Linux", "content": "md: md driver 0.90.0 MAX_MD_DEVS=256, MD_SB_DISKS=27", "template": "md: md driver <*> MAX_MD_DEVS=<*>, MD_SB_DISKS=<*>", "template_id": "E68"}
+{"id": "linux-11", "system": "Linux", "content": "BIOS-e820: 00000000ffb00000 - 0000000100000000 (reserved)", "template": "BIOS-e820: <*> - <*> (reserved)", "template_id": "E219"}
+{"id": "linux-1361", "system": "Linux", "content": "Authentication failed from 163.27.187.39 (163.27.187.39): Software caused connection abort", "template": "Authentication failed from <*> (<*>): Software caused connection abort", "template_id": "E11"}
+{"id": "linux-185", "system": "Linux", "content": "Bluetooth: RFCOMM ver 1.2", "template": "Bluetooth: <*> ver <*>", "template_id": "E310"}
+{"id": "linux-51", "system": "Linux", "content": "Enabling unmasked SIMD FPU exception support... done.", "template": "Enabling unmasked SIMD FPU exception support... done.", "template_id": "E25"}
+{"id": "linux-11910", "system": "Linux", "content": "[<021359c3>] do_wp_page+0x97/0x21c", "template": "[<*>] do_wp_page+<*>", "template_id": "E301"}
+{"id": "linux-11042", "system": "Linux", "content": "[<0227ecc1>] schedule+0x3ed/0x44d", "template": "[<*>] schedule+<*>", "template_id": "E315"}
+{"id": "linux-20536", "system": "Linux", "content": "bad username [\\]", "template": "bad username [<*>]", "template_id": "E309"}
+{"id": "linux-11658", "system": "Linux", "content": "[<021c8bda>] vt_console_print+0x64/0x28f", "template": "[<*>] vt_console_print+<*>", "template_id": "E233"}
+{"id": "linux-69", "system": "Linux", "content": "PCI: Using IRQ router PIIX/ICH [8086/2410] at 0000:00:1f.0", "template": "PCI: Using IRQ router PIIX/ICH [<*>] at <*>", "template_id": "E112"}
+{"id": "linux-113", "system": "Linux", "content": "Device: /dev/hda, found in smartd database.", "template": "Device: <*>, found in smartd database.", "template_id": "E116"}
+{"id": "linux-538", "system": "Linux", "content": "Squid Parent: child process 2295 started", "template": "Squid Parent: child process <*> started", "template_id": "E109"}
+{"id": "linux-218", "system": "Linux", "content": "Starting background readahead:", "template": "Starting background readahead:", "template_id": "E126"}
+{"id": "linux-1516", "system": "Linux", "content": "connection from 203.101.45.59 (dsl-Chn-static-059.45.101.203.touchtelindia.net) at Sun Jul 3 10:05:25 2005", "template": "connection from <*> (<*>) at <*>", "template_id": "E261"}
+{"id": "linux-13545", "system": "Linux", "content": "[<0a8e11ed>] ext3_get_inode_loc+0x119/0x201 [ext3]", "template": "[<*>] ext3_get_inode_loc+<*>", "template_id": "E209"}
+{"id": "linux-17053", "system": "Linux", "content": "Out of Memory: Killed process 25861 (httpd).", "template": "Out of Memory: Killed process <*> (<*>).", "template_id": "E135"}
+{"id": "linux-17", "system": "Linux", "content": "HighMem zone: 0 pages, LIFO batch:1", "template": "HighMem zone: <*> pages, LIFO batch:<*>", "template_id": "E136"}
+{"id": "linux-6687", "system": "Linux", "content": "rsync: connection unexpectedly closed (0 bytes read so far)", "template": "rsync: connection unexpectedly closed (<*> bytes read so far)", "template_id": "E19"}
+{"id": "linux-717", "system": "Linux", "content": "session opened for user test by (uid=509)", "template": "session opened for user <*> by <*>", "template_id": "E208"}
+{"id": "linux-22617", "system": "Linux", "content": "audit(1138297993.375:1376285): item=0 name=/dev/pts/1 inode=3 dev=88:01", "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>", "template_id": "E140"}
+{"id": "linux-161", "system": "Linux", "content": "Adding 262072k swap on /dev/hda3. Priority:-1 extents:1", "template": "Adding <*> swap on <*>. Priority:<*> extents:<*>", "template_id": "E120"}
+{"id": "linux-314", "system": "Linux", "content": "ALERT exited abnormally with [1]", "template": "ALERT exited abnormally with <*>", "template_id": "E173"}
+{"id": "linux-20539", "system": "Linux", "content": "ttloop: read: Connection timed out", "template": "ttloop: read: Connection timed out", "template_id": "E113"}
+{"id": "linux-17836", "system": "Linux", "content": "Out of Memory: Killed process 30361 (httpd).", "template": "Out of Memory: Killed process <*> (<*>).", "template_id": "E135"}
+{"id": "linux-12677", "system": "Linux", "content": "[<021284a0>] module_text_address+0x3a/0x5d", "template": "[<*>] module_text_address+<*>", "template_id": "E201"}
+{"id": "linux-5419", "system": "Linux", "content": "Kernel logging (proc) stopped.", "template": "Kernel logging <*> stopped.", "template_id": "E216"}
+{"id": "linux-39", "system": "Linux", "content": "selinux_register_security: Registering secondary module capability", "template": "selinux_register_security: Registering secondary module capability", "template_id": "E6"}
+{"id": "linux-1019", "system": "Linux", "content": "Received SNMP packet(s) from 67.170.148.126", "template": "Received SNMP packet(s) from <*>", "template_id": "E171"}
+{"id": "linux-24", "system": "Linux", "content": "mapped 4G/4G trampoline to ffff3000.", "template": "mapped <*> trampoline to <*>.", "template_id": "E245"}
+{"id": "linux-144", "system": "Linux", "content": "kjournald starting. Commit interval 5 seconds", "template": "kjournald starting. Commit interval <*> seconds", "template_id": "E55"}
+{"id": "linux-243", "system": "Linux", "content": "listening on IPv4 interface eth0:13, 63.126.79.87#53", "template": "listening on IPv4 interface <*>, <*>", "template_id": "E167"}
+{"id": "linux-72", "system": "Linux", "content": "audit(1118297138.4294965368:0): initialized", "template": "audit(<*>): initialized", "template_id": "E238"}
+{"id": "linux-11649", "system": "Linux", "content": "[<0a8e1123>] ext3_get_inode_loc+0x4f/0x201 [ext3]", "template": "[<*>] ext3_get_inode_loc+<*>", "template_id": "E209"}
+{"id": "linux-3290", "system": "Linux", "content": "ttloop: read: Connection reset by peer", "template": "ttloop: read: Connection reset by peer", "template_id": "E93"}
+{"id": "linux-22415", "system": "Linux", "content": "SELinux: initialized (dev , type rpc_pipefs), uses genfs_contexts", "template": "SELinux: initialized (dev , type <*>), uses <*>", "template_id": "E88"}
+{"id": "linux-5618", "system": "Linux", "content": "Sep 28 09:11:18 Privoxy(-150880128) Info: loading configuration file '/etc/privoxy/config':", "template": "<*> Privoxy(<*>) Info: loading configuration file <*>", "template_id": "E61"}
+{"id": "linux-172", "system": "Linux", "content": "FDC 0 is a National Semiconductor PC87306", "template": "FDC <*> is a National Semiconductor <*>", "template_id": "E156"}
+{"id": "linux-66", "system": "Linux", "content": "PCI: Probing PCI hardware", "template": "PCI: Probing PCI hardware", "template_id": "E203"}
+{"id": "linux-11651", "system": "Linux", "content": "[<0a8e1ba6>] ext3_reserve_inode_write+0x21/0x81 [ext3]", "template": "[<*>] ext3_reserve_inode_write+<*>", "template_id": "E139"}
+{"id": "linux-138", "system": "Linux", "content": "md: Autodetecting RAID arrays.", "template": "md: Autodetecting RAID arrays.", "template_id": "E142"}
+{"id": "linux-11729", "system": "Linux", "content": "[<0212d1de>] generic_file_aio_write_nolock+0x4fe/0x84e", "template": "[<*>] generic_file_aio_write_nolock+<*>", "template_id": "E97"}
+{"id": "linux-130", "system": "Linux", "content": "NET: Registered protocol family 2", "template": "NET: Registered protocol family <*>", "template_id": "E132"}
+{"id": "linux-8", "system": "Linux", "content": "BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)", "template": "BIOS-e820: <*> - <*> (reserved)", "template_id": "E219"}
+{"id": "linux-284", "system": "Linux", "content": "creating device node '/udev/vcsa6'", "template": "creating device node <*>", "template_id": "E258"}
+{"id": "linux-11647", "system": "Linux", "content": "[<02143014>] __getblk_slow+0xa1/0xcb", "template": "[<*>] __getblk_slow+<*>", "template_id": "E274"}
+{"id": "linux-11646", "system": "Linux", "content": "[<02142ed7>] grow_dev_page+0x27/0xc3", "template": "[<*>] grow_dev_page+<*>", "template_id": "E275"}
+{"id": "linux-146", "system": "Linux", "content": "EXT3-fs: recovery complete.", "template": "EXT3-fs: recovery complete.", "template_id": "E170"}
+{"id": "linux-167", "system": "Linux", "content": "parport0: PC-style at 0x378 (0x778) [PCSPP,TRISTATE,EPP]", "template": "parport0: PC-style at <*> (<*>) [<*>]", "template_id": "E199"}
+{"id": "linux-179", "system": "Linux", "content": "process `syslogd' is using obsolete setsockopt SO_BSDCOMPAT", "template": "process <*> is using obsolete setsockopt SO_BSDCOMPAT", "template_id": "E30"}
+{"id": "linux-193", "system": "Linux", "content": "No such internal service: services/stream - DISABLING", "template": "No such internal service: <*> - DISABLING", "template_id": "E102"}
+{"id": "linux-63", "system": "Linux", "content": "ACPI: ACPI tables contain no PCI IRQ routing entries", "template": "ACPI: ACPI tables contain no PCI IRQ routing entries", "template_id": "E29"}
+{"id": "linux-3072", "system": "Linux", "content": "Stopping MySQL: succeeded", "template": "Stopping MySQL: succeeded", "template_id": "E192"}
+{"id": "linux-229", "system": "Linux", "content": "listening on IPv4 interface eth0:1, 63.126.79.69#53", "template": "listening on IPv4 interface <*>, <*>", "template_id": "E167"}
+{"id": "linux-5388", "system": "Linux", "content": "no longer listening on 63.126.79.75#53", "template": "no longer listening on <*>", "template_id": "E228"}
+{"id": "linux-22375", "system": "Linux", "content": "audit(1138296118.152:350122): syscall=5 exit=7 a0=fef1b880 a1=0 a2=4 a3=0 items=1 pid=1263 loginuid=-1 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0", "template": "audit(<*>): syscall=<*> exit=<*> a0=<*> a1=<*> a2=<*> a3=<*> items=<*> pid=<*> loginuid=<*> uid=<*> gid=<*> euid=<*> suid=<*> fsuid=<*> egid=<*> sgid=<*> fsgid=<*>", "template_id": "E1"}
+{"id": "linux-225", "system": "Linux", "content": "named startup succeeded", "template": "<*> startup succeeded", "template_id": "E283"}
+{"id": "linux-209", "system": "Linux", "content": "session opened for user htt by (uid=0)", "template": "session opened for user <*> by <*>", "template_id": "E208"}
+{"id": "linux-6886", "system": "Linux", "content": "net.ipv4.conf.default.rp_filter = 1", "template": "net.ipv4.conf.default.rp_filter = <*>", "template_id": "E105"}
+{"id": "linux-81", "system": "Linux", "content": "isapnp: No Plug & Play device found", "template": "isapnp: No Plug & Play device found", "template_id": "E122"}
+{"id": "linux-17653", "system": "Linux", "content": "[<02137c1f>] unmap_vma_list+0xe/0x17", "template": "[<*>] unmap_vma_list+<*>", "template_id": "E259"}
+{"id": "linux-3087", "system": "Linux", "content": "*** info [client.c(284)]:", "template": "*** info [client.c(<*>)]:", "template_id": "E225"}
+{"id": "linux-83", "system": "Linux", "content": "Linux agpgart interface v0.100 (c) Dave Jones", "template": "Linux agpgart interface <*> (c) Dave Jones", "template_id": "E86"}
+{"id": "linux-760", "system": "Linux", "content": "bad username [;;]", "template": "bad username [<*>]", "template_id": "E309"}
+{"id": "linux-5409", "system": "Linux", "content": "crond shutdown succeeded", "template": "<*> shutdown succeeded", "template_id": "E264"}
+{"id": "linux-49", "system": "Linux", "content": "CPU: Intel Pentium III (Coppermine) stepping 06", "template": "CPU: Intel Pentium III (Coppermine) stepping <*>", "template_id": "E56"}
+{"id": "linux-5450", "system": "Linux", "content": "Detected 730.921 MHz processor.", "template": "Detected <*> MHz processor.", "template_id": "E215"}
+{"id": "linux-23", "system": "Linux", "content": "Kernel command line: ro root=LABEL=/ rhgb quiet", "template": "Kernel command line: ro root=<*> rhgb quiet", "template_id": "E87"}
+{"id": "linux-5414", "system": "Linux", "content": "1+0 records in", "template": "<*> records in", "template_id": "E329"}
+{"id": "linux-6686", "system": "Linux", "content": "Client hung up - probable port-scan", "template": "Client hung up - probable port-scan", "template_id": "E115"}
+{"id": "linux-53", "system": "Linux", "content": "POSIX conformance testing by UNIFIX", "template": "POSIX conformance testing by UNIFIX", "template_id": "E107"}
+{"id": "linux-20027", "system": "Linux", "content": "named shutdown failed", "template": "<*> shutdown failed", "template_id": "E293"}
+{"id": "linux-5742", "system": "Linux", "content": "sm-client shutdown failed", "template": "<*> shutdown failed", "template_id": "E293"}
+{"id": "linux-186", "system": "Linux", "content": "Bluetooth: RFCOMM socket layer initialized", "template": "Bluetooth: RFCOMM socket layer initialized", "template_id": "E58"}
+{"id": "linux-6690", "system": "Linux", "content": "connect from 88-213-181-81-cable.canals.ro", "template": "connect from <*>", "template_id": "E318"}
+{"id": "linux-5405", "system": "Linux", "content": "exiting", "template": "exiting", "template_id": "E337"}
+{"id": "linux-73", "system": "Linux", "content": "Total HugeTLB memory allocated, 0", "template": "Total HugeTLB memory allocated, <*>", "template_id": "E133"}
+{"id": "linux-85", "system": "Linux", "content": "agpgart: Maximum main memory to use for agp memory: 93M", "template": "agpgart: Maximum main memory to use for agp memory: <*>", "template_id": "E35"}
+{"id": "linux-2580", "system": "Linux", "content": "notify question section contains no SOA", "template": "notify question section contains no SOA", "template_id": "E82"}
+{"id": "linux-11664", "system": "Linux", "content": "[<02118726>] __call_console_drivers+0x36/0x42", "template": "[<*>] __call_console_drivers+<*>", "template_id": "E166"}
+{"id": "linux-6693", "system": "Linux", "content": "Unable to get command line from client!", "template": "Unable to get command line from client!", "template_id": "E91"}
+{"id": "linux-125", "system": "Linux", "content": "serio: i8042 AUX port at 0x60,0x64 irq 12", "template": "serio: i8042 AUX port at <*>,<*> irq <*>", "template_id": "E191"}
+{"id": "linux-20", "system": "Linux", "content": "You can enable it with acpi=force", "template": "You can enable it with <*>", "template_id": "E257"}
+{"id": "linux-17650", "system": "Linux", "content": "[<02134aa0>] clear_page_tables+0x7c/0x8f", "template": "[<*>] clear_page_tables+<*>", "template_id": "E220"}
+{"id": "linux-197", "system": "Linux", "content": "Service telnet failed to start and is deactivated.", "template": "Service telnet failed to start and is deactivated.", "template_id": "E34"}
+{"id": "linux-257", "system": "Linux", "content": "configure: keyword \"authenticate\" unknown, line ignored", "template": "configure: keyword <*> unknown, line ignored", "template_id": "E60"}
+{"id": "linux-5378", "system": "Linux", "content": "smartd is exiting (exit status 0)", "template": "smartd is exiting (exit status <*>)", "template_id": "E152"}
+{"id": "linux-22222", "system": "Linux", "content": "SELinux: initialized (dev , type hugetlbfs), not configured for labeling", "template": "SELinux: initialized (dev , type <*>), not configured for labeling", "template_id": "E14"}
+{"id": "linux-208", "system": "Linux", "content": "gpm startup succeeded", "template": "<*> startup succeeded", "template_id": "E283"}
+{"id": "linux-11055", "system": "Linux", "content": "VM: killing process httpd", "template": "VM: killing process <*>", "template_id": "E265"}
+{"id": "linux-236", "system": "Linux", "content": "listening on IPv4 interface eth0:8, 63.126.79.81#53", "template": "listening on IPv4 interface <*>, <*>", "template_id": "E167"}
+{"id": "linux-196", "system": "Linux", "content": "bind failed (Address already in use (errno = 98)). service = telnet", "template": "bind failed (Address already in use (errno = <*>)). service = <*>", "template_id": "E21"}
+{"id": "linux-159", "system": "Linux", "content": "EXT3 FS on hda2, internal journal", "template": "EXT3 FS on <*>, internal journal", "template_id": "E185"}
+{"id": "linux-5380", "system": "Linux", "content": "shutting down", "template": "shutting down", "template_id": "E312"}
+{"id": "linux-126", "system": "Linux", "content": "input: ImPS/2 Logitech Wheel Mouse on isa0060/serio1", "template": "input: <*> on <*>", "template_id": "E334"}
+{"id": "linux-3024", "system": "Linux", "content": "ttloop: peer died: Invalid or incomplete multibyte or wide character", "template": "ttloop: peer died: Invalid or incomplete multibyte or wide character", "template_id": "E9"}
+{"id": "linux-65", "system": "Linux", "content": "Initializing random number generator: succeeded", "template": "Initializing random number generator: succeeded", "template_id": "E32"}
+{"id": "linux-152", "system": "Linux", "content": "Disabled Privacy Extensions on device 022db720(lo)", "template": "Disabled Privacy Extensions on device <*>(<*>)", "template_id": "E77"}
+{"id": "linux-2598", "system": "Linux", "content": "warning: can't get client address: Connection reset by peer", "template": "warning: can't get client address: Connection reset by peer", "template_id": "E16"}
+{"id": "linux-6771", "system": "Linux", "content": "sendmail shutdown succeeded", "template": "<*> shutdown succeeded", "template_id": "E264"}
+{"id": "linux-20037", "system": "Linux", "content": "rpc.statd shutdown failed", "template": "<*> shutdown failed", "template_id": "E293"}
+{"id": "linux-77", "system": "Linux", "content": "SELinux: Registering netfilter hooks", "template": "SELinux: Registering netfilter hooks", "template_id": "E94"}
+{"id": "linux-274", "system": "Linux", "content": "removing device node '/udev/vcs5'", "template": "removing device node <*>", "template_id": "E253"}
+{"id": "linux-5367", "system": "Linux", "content": "Stopping Canna server: succeeded", "template": "Stopping Canna server: succeeded", "template_id": "E121"}
+{"id": "linux-7373", "system": "Linux", "content": "connection from 84.57.172.16 (dslb-084-057-172-016.pools.arcor-ip.net) at Sat Nov 5 06:44:57 2005", "template": "connection from <*> (<*>) at <*>", "template_id": "E261"}
+{"id": "linux-11648", "system": "Linux", "content": "[<0214328d>] __getblk+0x25/0x2b", "template": "[<*>] __getblk+<*>", "template_id": "E314"}
+{"id": "linux-11038", "system": "Linux", "content": "[<02135e66>] do_swap_page+0x5d/0x1f9", "template": "[<*>] do_swap_page+<*>", "template_id": "E287"}
+{"id": "linux-5345", "system": "Linux", "content": "shutting down for system reboot", "template": "shutting down for system reboot", "template_id": "E141"}
+{"id": "linux-6267", "system": "Linux", "content": "1 more authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=81.196.56.67 user=test", "template": "<*> more authentication failure; logname= uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E5"}
+{"id": "linux-11612", "system": "Linux", "content": "[<0212c71b>] filemap_nopage+0x119/0x26d", "template": "[<*>] filemap_nopage+<*>", "template_id": "E262"}
+{"id": "linux-245", "system": "Linux", "content": "listening on IPv4 interface eth0:14, 63.126.79.89#53", "template": "listening on IPv4 interface <*>, <*>", "template_id": "E167"}
+{"id": "linux-11656", "system": "Linux", "content": "[<0215456f>] inode_update_time+0x8e/0x96", "template": "[<*>] inode_update_time+<*>", "template_id": "E221"}
+{"id": "linux-145", "system": "Linux", "content": "EXT3-fs: hda2: 4 orphan inodes deleted", "template": "EXT3-fs: <*>: <*> orphan inodes deleted", "template_id": "E134"}
+{"id": "linux-5557", "system": "Linux", "content": "smartd has fork()ed into background mode. New PID=1760.", "template": "smartd has fork()ed into background mode. New PID=<*>.", "template_id": "E31"}
+{"id": "linux-5416", "system": "Linux", "content": "Caught signal 15, un-registering and exiting.", "template": "Caught signal <*>, un-registering and exiting.", "template_id": "E59"}
+{"id": "linux-57", "system": "Linux", "content": "ACPI: Subsystem revision 20040326", "template": "ACPI: Subsystem revision <*>", "template_id": "E205"}
+{"id": "linux-5410", "system": "Linux", "content": "Exiting", "template": "Exiting", "template_id": "E336"}
+{"id": "linux-42", "system": "Linux", "content": "Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)", "template": "Inode-cache hash table entries: <*> (order: <*>, <*> bytes)", "template_id": "E44"}
+{"id": "linux-111", "system": "Linux", "content": "ide1 at 0x170-0x177,0x376 on irq 15", "template": "ide1 at <*> on irq <*>", "template_id": "E320"}
+{"id": "linux-20853", "system": "Linux", "content": "Received SNMP packet(s) from 62.193.6.2", "template": "Received SNMP packet(s) from <*>", "template_id": "E171"}
+{"id": "linux-124", "system": "Linux", "content": "mice: PS/2 mouse device common for all mice", "template": "mice: <*> mouse device common for all mice", "template_id": "E104"}
+{"id": "linux-93", "system": "Linux", "content": "Serial: 8250/16550 driver $Revision: 1.90 $ 8 ports, IRQ sharing enabled", "template": "Serial: <*> driver $Revision: <*> $ <*> ports, IRQ sharing enabled", "template_id": "E23"}
+{"id": "linux-165", "system": "Linux", "content": "microcode: CPU0 already at revision 0x8 (current=0x8)", "template": "microcode: CPU0 already at revision <*> (current=<*>)", "template_id": "E49"}
+{"id": "linux-11036", "system": "Linux", "content": "[<0213d341>] read_swap_cache_async+0x41/0x84", "template": "[<*>] read_swap_cache_async+<*>", "template_id": "E175"}
+{"id": "linux-22392", "system": "Linux", "content": "audit(1138296123.351:395836): syscall=5 exit=4 a0=8051591 a1=0 a2=fee75ba4 a3=0 items=1 pid=1437 loginuid=-1 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0", "template": "audit(<*>): syscall=<*> exit=<*> a0=<*> a1=<*> a2=<*> a3=<*> items=<*> pid=<*> loginuid=<*> uid=<*> gid=<*> euid=<*> suid=<*> fsuid=<*> egid=<*> sgid=<*> fsgid=<*>", "template_id": "E1"}
+{"id": "linux-22470", "system": "Linux", "content": "audit(1138296165.180:606909): avc: denied { write } for pid=2089 exe=/bin/su name=exec dev= ino=136904725 scontext=system_u:system_r:kernel_t tcontext=system_u:system_r:kernel_t tclass=file", "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>", "template_id": "E4"}
+{"id": "linux-96", "system": "Linux", "content": "Mounting other filesystems: succeeded", "template": "Mounting other filesystems: succeeded", "template_id": "E80"}
+{"id": "linux-166", "system": "Linux", "content": "microcode: No suitable data for cpu 0", "template": "microcode: No suitable data for cpu <*>", "template_id": "E117"}
+{"id": "linux-5421", "system": "Linux", "content": "klogd shutdown succeeded", "template": "<*> shutdown succeeded", "template_id": "E264"}
+{"id": "linux-28", "system": "Linux", "content": "PID hash table entries: 512 (order 9: 4096 bytes)", "template": "PID hash table entries: <*> (order <*>: <*> bytes)", "template_id": "E96"}
+{"id": "linux-11763", "system": "Linux", "content": "[<0213f423>] put_user_size+0x29/0x2d", "template": "[<*>] put_user_size+<*>", "template_id": "E268"}
+{"id": "linux-11705", "system": "Linux", "content": "[<0211c01d>] do_proc_dointvec_conv+0x0/0x36", "template": "[<*>] do_proc_dointvec_conv+<*>", "template_id": "E176"}
+{"id": "linux-11611", "system": "Linux", "content": "[<021303bd>] do_page_cache_readahead+0xa3/0x101", "template": "[<*>] do_page_cache_readahead+<*>", "template_id": "E158"}
+{"id": "linux-4924", "system": "Linux", "content": "Sep 19 05:57:58 Privoxy(-150429568) Info: loading configuration file '/etc/privoxy/config':", "template": "<*> Privoxy(<*>) Info: loading configuration file <*>", "template_id": "E61"}
+{"id": "linux-22315", "system": "Linux", "content": "audit(1138296105.194:235300): item=0 name=/udev/device-mapper inode=283649 dev=0a:3f", "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>", "template_id": "E140"}
+{"id": "linux-462", "system": "Linux", "content": "smartd has fork()ed into background mode. New PID=1788.", "template": "smartd has fork()ed into background mode. New PID=<*>.", "template_id": "E31"}
+{"id": "linux-22228", "system": "Linux", "content": "SELinux: initialized (dev , type sockfs), uses task SIDs", "template": "SELinux: initialized (dev , type <*>), uses <*>", "template_id": "E88"}
+{"id": "linux-5346", "system": "Linux", "content": "Switching to runlevel: 6", "template": "Switching to runlevel: <*>", "template_id": "E224"}
+{"id": "linux-70", "system": "Linux", "content": "apm: BIOS version 1.2 Flags 0x03 (Driver version 1.16ac)", "template": "apm: BIOS version <*> Flags <*> (Driver version <*>)", "template_id": "E79"}
+{"id": "linux-6888", "system": "Linux", "content": "kernel.sysrq = 0", "template": "kernel.sysrq = <*>", "template_id": "E308"}
+{"id": "linux-173", "system": "Linux", "content": "PCI: Found IRQ 5 for device 0000:01:0c.0", "template": "PCI: Found IRQ <*> for device <*>", "template_id": "E218"}
+{"id": "linux-11034", "system": "Linux", "content": "httpd: page allocation failure. order:0, mode:0xd2", "template": "httpd: page allocation failure. order:<*>, mode:<*>", "template_id": "E52"}
+{"id": "linux-22221", "system": "Linux", "content": "SELinux: initialized (dev , type mqueue), not configured for labeling", "template": "SELinux: initialized (dev , type <*>), not configured for labeling", "template_id": "E14"}
+{"id": "linux-17651", "system": "Linux", "content": "[<02137b89>] free_pgtables+0x76/0x7b", "template": "[<*>] free_pgtables+<*>", "template_id": "E269"}
+{"id": "linux-127", "system": "Linux", "content": "serio: i8042 KBD port at 0x60,0x64 irq 1", "template": "serio: i8042 KBD port at <*>,<*> irq <*>", "template_id": "E189"}
+{"id": "linux-11041", "system": "Linux", "content": "[<0210737b>] do_IRQ+0x15d/0x169", "template": "[<*>] do_IRQ+<*>", "template_id": "E327"}
+{"id": "linux-210", "system": "Linux", "content": "session closed for user htt", "template": "session closed for user <*>", "template_id": "E227"}
+{"id": "linux-171", "system": "Linux", "content": "Floppy drive(s): fd0 is 1.44M", "template": "Floppy drive(s): <*> is <*>", "template_id": "E266"}
+{"id": "linux-135", "system": "Linux", "content": "NET: Registered protocol family 17", "template": "NET: Registered protocol family <*>", "template_id": "E132"}
+{"id": "linux-22627", "system": "Linux", "content": "audit(1138298150.141:1454728): syscall=212 exit=0 a0=808dd54 a1=0 a2=0 a3=808dd54 items=1 pid=3128 loginuid=-1 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0", "template": "audit(<*>): syscall=<*> exit=<*> a0=<*> a1=<*> a2=<*> a3=<*> items=<*> pid=<*> loginuid=<*> uid=<*> gid=<*> euid=<*> suid=<*> fsuid=<*> egid=<*> sgid=<*> fsgid=<*>", "template_id": "E1"}
+{"id": "linux-11905", "system": "Linux", "content": "sendmail: page allocation failure. order:0, mode:0x1d2", "template": "sendmail: page allocation failure. order:<*>, mode:<*>", "template_id": "E36"}
+{"id": "linux-133", "system": "Linux", "content": "Initializing IPsec netlink socket", "template": "Initializing IPsec netlink socket", "template_id": "E114"}
+{"id": "linux-29", "system": "Linux", "content": "Detected 731.214 MHz processor.", "template": "Detected <*> MHz processor.", "template_id": "E215"}
+{"id": "linux-136", "system": "Linux", "content": "checking if image is initramfs...it isn't (no cpio magic); looks like an initrd", "template": "checking if image is initramfs...it isn't (no cpio magic); looks like an initrd", "template_id": "E3"}
+{"id": "linux-20038", "system": "Linux", "content": "portmap shutdown failed", "template": "<*> shutdown failed", "template_id": "E293"}
+{"id": "linux-11663", "system": "Linux", "content": "[<021c8b76>] vt_console_print+0x0/0x28f", "template": "[<*>] vt_console_print+<*>", "template_id": "E233"}
+{"id": "linux-7523", "system": "Linux", "content": "hda: status timeout: status=0xd0 { Busy }", "template": "hda: status timeout: status=<*> <*>", "template_id": "E174"}
+{"id": "linux-142", "system": "Linux", "content": "VFS: Mounted root (ext2 filesystem).", "template": "VFS: Mounted root (ext2 filesystem).", "template_id": "E99"}
+{"id": "linux-64", "system": "Linux", "content": "PCI: Invalid ACPI-PCI IRQ routing table", "template": "PCI: Invalid ACPI-PCI IRQ routing table", "template_id": "E83"}
+{"id": "linux-22438", "system": "Linux", "content": "audit(1138296133.544:515571): item=0 name=/etc/ptal inode=309507 dev=00:00", "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>", "template_id": "E140"}
+{"id": "linux-34", "system": "Linux", "content": "Security Scaffold v1.0.0 initialized", "template": "Security Scaffold <*> initialized", "template_id": "E148"}
+{"id": "linux-43", "system": "Linux", "content": "Mount-cache hash table entries: 512 (order: 0, 4096 bytes)", "template": "Mount-cache hash table entries: <*> (order: <*>, <*> bytes)", "template_id": "E43"}
+{"id": "linux-5373", "system": "Linux", "content": "Stopping squid: succeeded", "template": "Stopping squid: succeeded", "template_id": "E194"}
+{"id": "linux-11833", "system": "Linux", "content": "[<0212c784>] filemap_nopage+0x182/0x26d", "template": "[<*>] filemap_nopage+<*>", "template_id": "E262"}
+{"id": "linux-131", "system": "Linux", "content": "IP: routing cache hash table of 512 buckets, 4Kbytes", "template": "IP: routing cache hash table of <*> buckets, <*>", "template_id": "E89"}
+{"id": "linux-116", "system": "Linux", "content": "hda: 29336832 sectors (15020 MB) w/1916KiB Cache, CHS=29104/16/63, UDMA(66)", "template": "hda: <*> sectors (<*> MB) w/<*> Cache, CHS=<*>, UDMA(<*>)", "template_id": "E90"}
+{"id": "linux-6497", "system": "Linux", "content": "connection from 211.107.232.1 () at Sun Oct 16 12:31:50 2005", "template": "connection from <*> (<*>) at <*>", "template_id": "E261"}
+{"id": "linux-313", "system": "Linux", "content": "session closed for user cyrus", "template": "session closed for user <*>", "template_id": "E227"}
+{"id": "linux-11037", "system": "Linux", "content": "[<02135dee>] swapin_readahead+0x2c/0x47", "template": "[<*>] swapin_readahead+<*>", "template_id": "E234"}
+{"id": "linux-121", "system": "Linux", "content": "ide-floppy driver 0.99.newide", "template": "ide-floppy driver <*>", "template_id": "E280"}
+{"id": "linux-169", "system": "Linux", "content": "SCSI subsystem initialized", "template": "SCSI subsystem initialized", "template_id": "E182"}
+{"id": "linux-2810", "system": "Linux", "content": "smartd has fork()ed into background mode. New PID=1770.", "template": "smartd has fork()ed into background mode. New PID=<*>.", "template_id": "E31"}
+{"id": "linux-22308", "system": "Linux", "content": "audit(1138296104.852:227147): avc: denied { setattr } for pid=716 exe=/sbin/udev name=device-mapper dev=hda2 ino=283649 scontext=system_u:system_r:kernel_t tcontext=system_u:object_r:file_t tclass=chr_file", "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>", "template_id": "E4"}
+{"id": "linux-11614", "system": "Linux", "content": "[<02135fdc>] do_swap_page+0x1d3/0x1f9", "template": "[<*>] do_swap_page+<*>", "template_id": "E287"}
+{"id": "linux-190", "system": "Linux", "content": "cupsd startup succeeded", "template": "<*> startup succeeded", "template_id": "E283"}
+{"id": "linux-20116", "system": "Linux", "content": "audit(1133871737.703:0): initialized", "template": "audit(<*>): initialized", "template_id": "E238"}
+{"id": "linux-58", "system": "Linux", "content": "ACPI: Interpreter disabled.", "template": "ACPI: Interpreter disabled.", "template_id": "E169"}
+{"id": "linux-5360", "system": "Linux", "content": "messagebus -TERM succeeded", "template": "messagebus -TERM succeeded", "template_id": "E178"}
+{"id": "linux-117", "system": "Linux", "content": "Monitoring 1 ATA and 0 SCSI devices", "template": "Monitoring <*> ATA and <*> SCSI devices", "template_id": "E155"}
+{"id": "linux-11654", "system": "Linux", "content": "[<0a8e1c7c>] ext3_dirty_inode+0x4f/0x5f [ext3]", "template": "[<*>] ext3_dirty_inode+<*>", "template_id": "E232"}
+{"id": "linux-7", "system": "Linux", "content": "BIOS-e820: 0000000000000000 - 00000000000a0000 (usable)", "template": "BIOS-e820: <*> - <*> (usable)", "template_id": "E244"}
+{"id": "linux-92", "system": "Linux", "content": "Bringing up loopback interface: succeeded", "template": "Bringing up loopback interface: succeeded", "template_id": "E64"}
+{"id": "linux-308", "system": "Linux", "content": "kernel time sync disabled 0041", "template": "kernel time sync disabled <*>", "template_id": "E204"}
+{"id": "linux-106", "system": "Linux", "content": "Home page is http://smartmontools.sourceforge.net/", "template": "Home page is <*>", "template_id": "E324"}
+{"id": "linux-54", "system": "Linux", "content": "NET: Registered protocol family 16", "template": "NET: Registered protocol family <*>", "template_id": "E132"}
+{"id": "linux-11704", "system": "Linux", "content": "[<0211c38d>] proc_dointvec+0x11/0x15", "template": "[<*>] proc_dointvec+<*>", "template_id": "E270"}
+{"id": "linux-11659", "system": "Linux", "content": "[<021288cf>] __print_symbol+0x110/0x121", "template": "[<*>] __print_symbol+<*>", "template_id": "E260"}
+{"id": "linux-101", "system": "Linux", "content": "ICH: chipset revision 2", "template": "ICH: chipset revision <*>", "template_id": "E241"}
+{"id": "linux-148", "system": "Linux", "content": "Freeing unused kernel memory: 144k freed", "template": "Freeing unused kernel memory: <*> freed", "template_id": "E110"}
+{"id": "linux-22785", "system": "Linux", "content": "1 more authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=80.96.171.182 user=test", "template": "<*> more authentication failure; logname= uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E5"}
+{"id": "linux-254", "system": "Linux", "content": "frequency initialized 0.000 PPM from /var/lib/ntp/drift", "template": "frequency initialized <*> PPM from <*>", "template_id": "E157"}
+{"id": "linux-46", "system": "Linux", "content": "CPU: L1 I cache: 16K, L1 D cache: 16K", "template": "CPU: L1 I cache: <*>, L1 D cache: <*>", "template_id": "E197"}
+{"id": "linux-104", "system": "Linux", "content": "ide1: BM-DMA at 0xffa8-0xffaf, BIOS settings: hdc:DMA, hdd:pio", "template": "ide1: BM-DMA at <*>, BIOS settings: hdc:<*>, hdd:<*>", "template_id": "E69"}
+{"id": "linux-1692", "system": "Linux", "content": "session closed for user root", "template": "session closed for user <*>", "template_id": "E227"}
+{"id": "linux-272", "system": "Linux", "content": "removing device node '/udev/vcs1'", "template": "removing device node <*>", "template_id": "E253"}
+{"id": "linux-309", "system": "Linux", "content": "kernel time sync enabled 0001", "template": "kernel time sync enabled <*>", "template_id": "E214"}
+{"id": "linux-99", "system": "Linux", "content": "Version 3.0.2 (APM BIOS 1.2, Linux driver 1.16ac)", "template": "Version <*> (APM BIOS <*>, Linux driver <*>)", "template_id": "E138"}
+{"id": "linux-288", "system": "Linux", "content": "removing device node '/udev/vcsa3'", "template": "removing device node <*>", "template_id": "E253"}
+{"id": "linux-22217", "system": "Linux", "content": "security: 30 classes, 303377 rules", "template": "security: <*> classes, <*> rules", "template_id": "E207"}
+{"id": "linux-22467", "system": "Linux", "content": "pam_check_access failed, user does not have proper access: system_u:system_r:kernel_t", "template": "pam_check_access failed, user does not have proper access: <*>", "template_id": "E17"}
+{"id": "linux-20014", "system": "Linux", "content": "Stopping MySQL: failed", "template": "Stopping MySQL: failed", "template_id": "E222"}
+{"id": "linux-11670", "system": "Linux", "content": "[<02119ccc>] do_exit+0x9f/0x2e3", "template": "[<*>] do_exit+<*>", "template_id": "E321"}
+{"id": "linux-11657", "system": "Linux", "content": "[<0212cfe2>] generic_file_aio_write_nolock+0x302/0x84e", "template": "[<*>] generic_file_aio_write_nolock+<*>", "template_id": "E97"}
+{"id": "linux-22684", "system": "Linux", "content": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=61.162.81.22 user=test", "template": "authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E8"}
+{"id": "linux-6694", "system": "Linux", "content": "Authentication failed from 81.181.213.88 (88-213-181-81-cable.canals.ro): Software caused connection abort", "template": "Authentication failed from <*> (<*>): Software caused connection abort", "template_id": "E11"}
+{"id": "linux-180", "system": "Linux", "content": "Bluetooth: Core ver 2.4", "template": "Bluetooth: <*> ver <*>", "template_id": "E310"}
+{"id": "linux-22145", "system": "Linux", "content": "audit(1138278081.612:0): initialized", "template": "audit(<*>): initialized", "template_id": "E238"}
+{"id": "linux-50", "system": "Linux", "content": "Enabling fast FPU save and restore... done.", "template": "Enabling fast FPU save and restore... done.", "template_id": "E62"}
+{"id": "linux-249", "system": "Linux", "content": "precision = 1.000 usec", "template": "precision = <*> usec", "template_id": "E296"}
+{"id": "linux-11832", "system": "Linux", "content": "[<0212c5b2>] page_cache_read+0x2a/0x7a", "template": "[<*>] page_cache_read+<*>", "template_id": "E247"}
+{"id": "linux-241", "system": "Linux", "content": "listening on IPv4 interface eth0:12, 63.126.79.85#53", "template": "listening on IPv4 interface <*>, <*>", "template_id": "E167"}
+{"id": "linux-37", "system": "Linux", "content": "There is already a security framework initialized, register_security failed.", "template": "There is already a security framework initialized, register_security failed.", "template_id": "E2"}
+{"id": "linux-187", "system": "Linux", "content": "Bluetooth: RFCOMM TTY layer initialized", "template": "Bluetooth: RFCOMM TTY layer initialized", "template_id": "E71"}
+{"id": "linux-147", "system": "Linux", "content": "EXT3-fs: mounted filesystem with ordered data mode.", "template": "EXT3-fs: mounted filesystem with ordered data mode.", "template_id": "E27"}
+{"id": "linux-59", "system": "Linux", "content": "Linux Plug and Play Support v0.97 (c) Adam Belay", "template": "Linux Plug and Play Support <*> (c) Adam Belay", "template_id": "E76"}
+{"id": "linux-5", "system": "Linux", "content": "Linux version 2.6.5-1.358 (bhcompile@bugs.build.redhat.com) (gcc version 3.3.3 20040412 (Red Hat Linux 3.3.3-7)) #1 Sat May 8 09:04:50 EDT 2004", "template": "Linux version <*> (<*>) (gcc version <*> (Red Hat Linux <*>)) <*>", "template_id": "E57"}
+{"id": "linux-22370", "system": "Linux", "content": "audit(1138296118.152:350118): syscall=5 exit=6 a0=806aca9 a1=18800 a2=5fbe83 a3=0 items=1 pid=1263 loginuid=-1 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0", "template": "audit(<*>): syscall=<*> exit=<*> a0=<*> a1=<*> a2=<*> a3=<*> items=<*> pid=<*> loginuid=<*> uid=<*> gid=<*> euid=<*> suid=<*> fsuid=<*> egid=<*> sgid=<*> fsgid=<*>", "template_id": "E1"}
+{"id": "linux-6692", "system": "Linux", "content": "[smux_accept] accepted fd 12 from 81.181.213.88:1896", "template": "[smux_accept] accepted fd <*> from <*>", "template_id": "E154"}
+{"id": "linux-1", "system": "Linux", "content": "restart.", "template": "restart.", "template_id": "E332"}
+{"id": "linux-562", "system": "Linux", "content": "precision = 2.000 usec", "template": "precision = <*> usec", "template_id": "E296"}
+{"id": "linux-3084", "system": "Linux", "content": "*** info [client.c(137)]:", "template": "*** info [client.c(<*>)]:", "template_id": "E225"}
+{"id": "linux-6167", "system": "Linux", "content": "wall: user test broadcasted 1 lines (36 chars)", "template": "wall: user test broadcasted <*> lines (<*> chars)", "template_id": "E67"}
+{"id": "linux-22047", "system": "Linux", "content": "Squid Parent: child process 2284 exited with status 0", "template": "Squid Parent: child process <*> exited with status <*>", "template_id": "E53"}
+{"id": "linux-11916", "system": "Linux", "content": "[<0214201b>] __fput+0xb3/0xd1", "template": "[<*>] __fput+<*>", "template_id": "E326"}
+{"id": "linux-258", "system": "Linux", "content": "couldn't add command channel 127.0.0.1#953: not found", "template": "couldn't add command channel <*> not found", "template_id": "E95"}
+{"id": "linux-5366", "system": "Linux", "content": "jserver shutdown succeeded", "template": "<*> shutdown succeeded", "template_id": "E264"}
+{"id": "linux-23139", "system": "Linux", "content": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=mail.varpalota.hu user=root", "template": "authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E8"}
+{"id": "linux-55", "system": "Linux", "content": "PCI: PCI BIOS revision 2.10 entry at 0xfc0ce, last bus=1", "template": "PCI: PCI BIOS revision <*> entry at <*>, last bus=<*>", "template_id": "E78"}
+{"id": "linux-5396", "system": "Linux", "content": "no longer listening on 63.126.79.89#53", "template": "no longer listening on <*>", "template_id": "E228"}
+{"id": "linux-84", "system": "Linux", "content": "agpgart: Detected an Intel i810 E Chipset.", "template": "agpgart: Detected an <*> Chipset.", "template_id": "E161"}
+{"id": "linux-123", "system": "Linux", "content": "usbcore: registered new driver hid", "template": "usbcore: registered new driver <*>", "template_id": "E149"}
+{"id": "linux-120", "system": "Linux", "content": "Uniform CD-ROM driver Revision: 3.20", "template": "Uniform CD-ROM driver Revision: <*>", "template_id": "E131"}
+{"id": "linux-60", "system": "Linux", "content": "usbcore: registered new driver usbfs", "template": "usbcore: registered new driver <*>", "template_id": "E149"}
+{"id": "linux-22224", "system": "Linux", "content": "SELinux: initialized (dev , type eventpollfs), uses genfs_contexts", "template": "SELinux: initialized (dev , type <*>), uses <*>", "template_id": "E88"}
+{"id": "linux-191", "system": "Linux", "content": "succeeded", "template": "succeeded", "template_id": "E328"}
+{"id": "linux-36", "system": "Linux", "content": "SELinux: Starting in permissive mode", "template": "SELinux: Starting in permissive mode", "template_id": "E98"}
+{"id": "linux-107", "system": "Linux", "content": "ide0 at 0x1f0-0x1f7,0x3f6 on irq 14", "template": "ide0 at <*> on irq <*>", "template_id": "E319"}
+{"id": "linux-201", "system": "Linux", "content": "Jun 09 06:06:44 Privoxy(-150093696) Info: loading configuration file '/etc/privoxy/config':", "template": "<*> Privoxy(<*>) Info: loading configuration file <*>", "template_id": "E61"}
+{"id": "linux-5399", "system": "Linux", "content": "no longer listening on 63.126.79.100#53", "template": "no longer listening on <*>", "template_id": "E228"}
+{"id": "linux-22410", "system": "Linux", "content": "audit(1138296126.645:429627): avc: denied { read } for pid=1574 exe=/sbin/klogd name=kmsg dev= ino=-268435446 scontext=system_u:system_r:kernel_t tcontext=system_u:object_r:proc_kmsg_t tclass=file", "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>", "template_id": "E4"}
+{"id": "linux-761", "system": "Linux", "content": "Couldn't authenticate user", "template": "Couldn't authenticate user", "template_id": "E179"}
+{"id": "linux-1691", "system": "Linux", "content": "session opened for user root by LOGIN(uid=0)", "template": "session opened for user <*> by <*>", "template_id": "E208"}
+{"id": "linux-20243", "system": "Linux", "content": "Dec 06 12:23:28 Privoxy(-150085504) Info: loading configuration file '/etc/privoxy/config':", "template": "<*> Privoxy(<*>) Info: loading configuration file <*>", "template_id": "E61"}
+{"id": "linux-97", "system": "Linux", "content": "ide: Assuming 33MHz system bus speed for PIO modes; override with idebus=xx", "template": "ide: Assuming <*> system bus speed for PIO modes; override with idebus=<*>", "template_id": "E10"}
+{"id": "linux-3538", "system": "Linux", "content": "connection from 68.143.90.52 (iis.willowtec.com) at Tue Aug 16 03:59:57 2005", "template": "connection from <*> (<*>) at <*>", "template_id": "E261"}
+{"id": "linux-11730", "system": "Linux", "content": "[<02115f01>] __wake_up+0xe/0x16", "template": "[<*>] __wake_up+<*>", "template_id": "E311"}
+{"id": "linux-12", "system": "Linux", "content": "126MB LOWMEM available.", "template": "<*> LOWMEM available.", "template_id": "E282"}
+{"id": "linux-13508", "system": "Linux", "content": "[<0211fc74>] sys_rt_sigprocmask+0x87/0x9a", "template": "[<*>] sys_rt_sigprocmask+<*>", "template_id": "E210"}
+{"id": "linux-22435", "system": "Linux", "content": "audit(1138296133.544:515571): avc: denied { relabelto } for pid=1792 exe=/sbin/restorecon name=ptal dev=hda2 ino=309507 scontext=system_u:system_r:kernel_t tcontext=system_u:object_r:etc_t tclass=dir", "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>", "template_id": "E4"}
+{"id": "linux-48", "system": "Linux", "content": "Intel machine check architecture supported.", "template": "Intel machine check architecture supported.", "template_id": "E54"}
+{"id": "linux-13057", "system": "Linux", "content": "[<021359f7>] do_wp_page+0xcb/0x21c", "template": "[<*>] do_wp_page+<*>", "template_id": "E301"}
+{"id": "linux-3452", "system": "Linux", "content": "tty2: invalid character 0x1b in login name", "template": "tty2: invalid character <*> in login name", "template_id": "E100"}
+{"id": "linux-13503", "system": "Linux", "content": "[<021529bb>] d_alloc+0x38/0x1b0", "template": "[<*>] d_alloc+<*>", "template_id": "E322"}
+{"id": "linux-5052", "system": "Linux", "content": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=pcp0012132427pcs.benslm01.pa.comcast.net user=webmaster", "template": "authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E8"}
+{"id": "linux-20012", "system": "Linux", "content": "jserver shutdown failed", "template": "<*> shutdown failed", "template_id": "E293"}
+{"id": "linux-11653", "system": "Linux", "content": "[<0a8b23ef>] journal_start+0x78/0x9e [jbd]", "template": "[<*>] journal_start+<*>", "template_id": "E277"}
+{"id": "linux-11668", "system": "Linux", "content": "[<02129a6c>] do_acct_process+0x283/0x297", "template": "[<*>] do_acct_process+<*>", "template_id": "E248"}
+{"id": "linux-11665", "system": "Linux", "content": "[<021189cd>] printk+0x106/0x113", "template": "[<*>] printk+<*>", "template_id": "E325"}
+{"id": "linux-22594", "system": "Linux", "content": "audit(1138296216.366:837154): item=0 name=/udev/vcsa5 inode=283654 dev=07:85", "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>", "template_id": "E140"}
+{"id": "linux-5364", "system": "Linux", "content": "terminating", "template": "terminating", "template_id": "E316"}
+{"id": "linux-158", "system": "Linux", "content": "uhci_hcd 0000:00:1f.2: new USB bus registered, assigned bus number 1", "template": "uhci_hcd <*>: new USB bus registered, assigned bus number <*>", "template_id": "E26"}
+{"id": "linux-175", "system": "Linux", "content": "ip_tables: (C) 2000-2002 Netfilter core team", "template": "ip_tables: (C) <*> Netfilter core team", "template_id": "E118"}
+{"id": "linux-76", "system": "Linux", "content": "Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)", "template": "Dquot-cache hash table entries: <*> (order <*>, <*> bytes)", "template_id": "E51"}
+{"id": "linux-105", "system": "Linux", "content": "Using cfq io scheduler", "template": "Using <*> io scheduler", "template_id": "E281"}
+{"id": "linux-17641", "system": "Linux", "content": "printk: 185 messages suppressed.", "template": "printk: <*> messages suppressed.", "template_id": "E164"}
+{"id": "linux-23000", "system": "Linux", "content": "User unknown timed out after 900 seconds at Mon Feb 6 12:24:00 2006", "template": "User <*> timed out after <*> seconds at <*>", "template_id": "E165"}
+{"id": "linux-114", "system": "Linux", "content": "hda: max request size: 128KiB", "template": "hda: max request size: <*>", "template_id": "E239"}
+{"id": "linux-71", "system": "Linux", "content": "audit: initializing netlink socket (disabled)", "template": "audit: initializing netlink socket (disabled)", "template_id": "E45"}
+{"id": "linux-41", "system": "Linux", "content": "Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)", "template": "Dentry cache hash table entries: <*> (order: <*>, <*> bytes)", "template_id": "E42"}
+{"id": "linux-206", "system": "Linux", "content": "*** info [mice.c(1766)]:", "template": "*** info [mice.c(<*>)]:", "template_id": "E254"}
+{"id": "linux-160", "system": "Linux", "content": "cdrom: open failed.", "template": "cdrom: open failed.", "template_id": "E263"}
+{"id": "linux-30", "system": "Linux", "content": "Using tsc for high-res timesource", "template": "Using tsc for high-res timesource", "template_id": "E124"}
+{"id": "linux-3884", "system": "Linux", "content": "User unknown timed out after 900 seconds at Sat Aug 27 18:30:18 2005", "template": "User <*> timed out after <*> seconds at <*>", "template_id": "E165"}
+{"id": "linux-11650", "system": "Linux", "content": "[<0212db65>] mempool_alloc+0x5d/0xf6", "template": "[<*>] mempool_alloc+<*>", "template_id": "E273"}
+{"id": "linux-33", "system": "Linux", "content": "Calibrating delay loop... 1441.79 BogoMIPS", "template": "Calibrating delay loop... <*> BogoMIPS", "template_id": "E111"}
+{"id": "linux-11709", "system": "Linux", "content": "[<0227e913>] schedule+0x3f/0x44d", "template": "[<*>] schedule+<*>", "template_id": "E315"}
+{"id": "linux-5150", "system": "Linux", "content": "Received SNMP packet(s) from 211.241.209.135", "template": "Received SNMP packet(s) from <*>", "template_id": "E171"}
+{"id": "linux-9", "system": "Linux", "content": "BIOS-e820: 0000000000100000 - 0000000007eae000 (usable)", "template": "BIOS-e820: <*> - <*> (usable)", "template_id": "E244"}
+{"id": "linux-8233", "system": "Linux", "content": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=153.19.130.15 user=root", "template": "authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E8"}
+{"id": "linux-311", "system": "Linux", "content": "select reported EBADF but no bad file descriptors were found", "template": "select reported EBADF but no bad file descriptors were found", "template_id": "E15"}
+{"id": "linux-1348", "system": "Linux", "content": "Kerberos authentication failed", "template": "Kerberos authentication failed", "template_id": "E129"}
+{"id": "linux-11645", "system": "Linux", "content": "[<0212bd04>] find_or_create_page+0x39/0x70", "template": "[<*>] find_or_create_page+<*>", "template_id": "E200"}
+{"id": "linux-19", "system": "Linux", "content": "ACPI disabled because your bios is from 2000 and too old", "template": "ACPI disabled because your bios is from <*> and too old", "template_id": "E38"}
+{"id": "linux-22362", "system": "Linux", "content": "audit(1138296117.905:349720): syscall=5 exit=4 a0=fef1ae20 a1=0 a2=1b6 a3=1b6 items=1 pid=1263 loginuid=-1 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0", "template": "audit(<*>): syscall=<*> exit=<*> a0=<*> a1=<*> a2=<*> a3=<*> items=<*> pid=<*> loginuid=<*> uid=<*> gid=<*> euid=<*> suid=<*> fsuid=<*> egid=<*> sgid=<*> fsgid=<*>", "template_id": "E1"}
+{"id": "linux-112", "system": "Linux", "content": "Charge: * * * (-1% unknown)", "template": "Charge: * * * (<*> unknown)", "template_id": "E243"}
+{"id": "linux-22404", "system": "Linux", "content": "Jan 26 12:22:42 Privoxy(-150327168) Info: loading configuration file '/etc/privoxy/config':", "template": "<*> Privoxy(<*>) Info: loading configuration file <*>", "template_id": "E61"}
+{"id": "linux-140", "system": "Linux", "content": "RAMDISK: Compressed image found at block 0", "template": "RAMDISK: Compressed image found at block <*>", "template_id": "E75"}
+{"id": "linux-18", "system": "Linux", "content": "DMI 2.3 present.", "template": "DMI <*> present.", "template_id": "E317"}
+{"id": "linux-110", "system": "Linux", "content": "Device: /dev/hda, opened", "template": "Device: <*>, opened", "template_id": "E294"}
+{"id": "linux-261", "system": "Linux", "content": "running", "template": "running", "template_id": "E338"}
+{"id": "linux-122", "system": "Linux", "content": "usbcore: registered new driver hiddev", "template": "usbcore: registered new driver <*>", "template_id": "E149"}
+{"id": "linux-283", "system": "Linux", "content": "creating device node '/udev/vcs4'", "template": "creating device node <*>", "template_id": "E258"}
+{"id": "linux-154", "system": "Linux", "content": "USB Universal Host Controller Interface driver v2.2", "template": "USB Universal Host Controller Interface driver <*>", "template_id": "E47"}
+{"id": "linux-88", "system": "Linux", "content": "HCI daemon ver 2.4 started", "template": "HCI daemon ver <*> started", "template_id": "E240"}
+{"id": "linux-3085", "system": "Linux", "content": "Connecting at fd 6", "template": "Connecting at fd <*>", "template_id": "E295"}
+{"id": "linux-5492", "system": "Linux", "content": "audit(1127898608.244:0): initialized", "template": "audit(<*>): initialized", "template_id": "E238"}
+{"id": "linux-5377", "system": "Linux", "content": "smartd received signal 15: Terminated", "template": "smartd received signal <*>: Terminated", "template_id": "E108"}
+{"id": "linux-5371", "system": "Linux", "content": "Stopping squid:", "template": "Stopping squid:", "template_id": "E292"}
+{"id": "linux-16559", "system": "Linux", "content": "Out of Memory: Killed process 24174 (httpd).", "template": "Out of Memory: Killed process <*> (<*>).", "template_id": "E135"}
+{"id": "linux-5638", "system": "Linux", "content": "Squid Parent: child process 2267 started", "template": "Squid Parent: child process <*> started", "template_id": "E109"}
+{"id": "linux-11669", "system": "Linux", "content": "[<02129a95>] acct_process+0x15/0x1f", "template": "[<*>] acct_process+<*>", "template_id": "E286"}
+{"id": "linux-11797", "system": "Linux", "content": "[<021295e4>] check_free_space+0x1b5/0x1cb", "template": "[<*>] check_free_space+<*>", "template_id": "E230"}
+{"id": "linux-11609", "system": "Linux", "content": "httpd: page allocation failure. order:0, mode:0x1d2", "template": "httpd: page allocation failure. order:<*>, mode:<*>", "template_id": "E52"}
+{"id": "linux-15", "system": "Linux", "content": "DMA zone: 4096 pages, LIFO batch:1", "template": "DMA zone: <*> pages, LIFO batch:<*>", "template_id": "E188"}
+{"id": "linux-1347", "system": "Linux", "content": "Authentication failed from 163.27.187.39 (163.27.187.39): Permission denied in replay cache code", "template": "Authentication failed from <*> (<*>): Permission denied in replay cache code", "template_id": "E7"}
+{"id": "linux-22216", "system": "Linux", "content": "security: 5 users, 7 roles, 1244 types, 1 bools", "template": "security: <*> users, <*> roles, <*> types, <*> bools", "template_id": "E106"}
+{"id": "linux-315", "system": "Linux", "content": "session opened for user news by (uid=0)", "template": "session opened for user <*> by <*>", "template_id": "E208"}
+{"id": "linux-12057", "system": "Linux", "content": "[<021208bf>] sys_rt_sigaction+0x6b/0x80", "template": "[<*>] sys_rt_sigaction+<*>", "template_id": "E231"}
+{"id": "linux-310", "system": "Linux", "content": "file descriptor of service comsat has been closed", "template": "file descriptor of service comsat has been closed", "template_id": "E37"}
+{"id": "linux-17652", "system": "Linux", "content": "[<02137ca8>] unmap_region+0x80/0xaa", "template": "[<*>] unmap_region+<*>", "template_id": "E288"}
+{"id": "linux-52", "system": "Linux", "content": "Checking 'hlt' instruction... OK.", "template": "Checking <*> instruction... OK.", "template_id": "E146"}
+{"id": "linux-155", "system": "Linux", "content": "PCI: Found IRQ 11 for device 0000:00:1f.2", "template": "PCI: Found IRQ <*> for device <*>", "template_id": "E218"}
+{"id": "linux-82", "system": "Linux", "content": "Real Time Clock Driver v1.12", "template": "Real Time Clock Driver <*>", "template_id": "E237"}
+{"id": "linux-762", "system": "Linux", "content": "bad username []", "template": "bad username [<*>]", "template_id": "E309"}
+{"id": "linux-157", "system": "Linux", "content": "uhci_hcd 0000:00:1f.2: irq 11, io base 0000ff80", "template": "uhci_hcd <*>: irq <*>, io base <*>", "template_id": "E250"}
+{"id": "linux-20020", "system": "Linux", "content": "Squid Parent: child process 2263 exited with status 0", "template": "Squid Parent: child process <*> exited with status <*>", "template_id": "E53"}
+{"id": "linux-23525", "system": "Linux", "content": "1 more authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=80.96.171.181 user=test", "template": "<*> more authentication failure; logname= uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E5"}
+{"id": "linux-256", "system": "Linux", "content": "listening on IPv4 interface eth0:22, 63.126.79.125#53", "template": "listening on IPv4 interface <*>, <*>", "template_id": "E167"}
+{"id": "linux-4642", "system": "Linux", "content": "User unknown timed out after 900 seconds at Thu Sep 15 17:45:16 2005", "template": "User <*> timed out after <*> seconds at <*>", "template_id": "E165"}
+{"id": "linux-207", "system": "Linux", "content": "imps2: Auto-detected intellimouse PS/2", "template": "imps2: Auto-detected intellimouse PS/2", "template_id": "E73"}
+{"id": "linux-13539", "system": "Linux", "content": "sendmail: page allocation failure. order:0, mode:0x50", "template": "sendmail: page allocation failure. order:<*>, mode:<*>", "template_id": "E36"}
+{"id": "linux-11043", "system": "Linux", "content": "[<0215242b>] dput+0x12c/0x13a", "template": "[<*>] dput+<*>", "template_id": "E335"}
+{"id": "linux-170", "system": "Linux", "content": "inserting floppy driver for 2.6.5-1.358", "template": "inserting floppy driver for <*>", "template_id": "E184"}
+{"id": "linux-68", "system": "Linux", "content": "Transparent bridge - 0000:00:1e.0", "template": "Transparent bridge - <*>", "template_id": "E255"}
+{"id": "linux-3240", "system": "Linux", "content": "User unknown timed out after 900 seconds at Sun Aug 7 07:07:07 2005", "template": "User <*> timed out after <*> seconds at <*>", "template_id": "E165"}
+{"id": "linux-22887", "system": "Linux", "content": "Received SNMP packet(s) from 208.53.158.10", "template": "Received SNMP packet(s) from <*>", "template_id": "E171"}
+{"id": "linux-3174", "system": "Linux", "content": "FAILED LOGIN 2 FROM (null) FOR , Authentication failure", "template": "FAILED LOGIN <*> FROM (<*>) FOR , Authentication failure", "template_id": "E40"}
+{"id": "linux-44", "system": "Linux", "content": "Version 1.0.6 Starting", "template": "Version <*> Starting", "template_id": "E289"}
+{"id": "linux-95", "system": "Linux", "content": "Uniform Multi-Platform E-IDE driver Revision: 7.00alpha2", "template": "Uniform Multi-Platform E-IDE driver Revision: <*>", "template_id": "E48"}
+{"id": "linux-5372", "system": "Linux", "content": "Squid Parent: child process 2294 exited with status 0", "template": "Squid Parent: child process <*> exited with status <*>", "template_id": "E53"}
+{"id": "linux-61", "system": "Linux", "content": "usbcore: registered new driver hub", "template": "usbcore: registered new driver <*>", "template_id": "E149"}
+{"id": "linux-137", "system": "Linux", "content": "Freeing initrd memory: 186k freed", "template": "Freeing initrd memory: <*> freed", "template_id": "E172"}
+{"id": "linux-5412", "system": "Linux", "content": "ntpd exiting on signal 15", "template": "ntpd exiting on signal <*>", "template_id": "E242"}
+{"id": "linux-13564", "system": "Linux", "content": "[<02221a76>] input_unregister_device+0xd/0xc1", "template": "[<*>] input_unregister_device+<*>", "template_id": "E159"}
+{"id": "linux-242", "system": "Linux", "content": "NET-SNMP version 5.1.1", "template": "NET-SNMP version <*>", "template_id": "E290"}
+{"id": "linux-31", "system": "Linux", "content": "Console: colour VGA+ 80x25", "template": "Console: colour <*>", "template_id": "E297"}
+{"id": "linux-11652", "system": "Linux", "content": "[<0a8e1c17>] ext3_mark_inode_dirty+0x11/0x27 [ext3]", "template": "[<*>] ext3_mark_inode_dirty+<*>", "template_id": "E177"}
+{"id": "linux-204", "system": "Linux", "content": "*** info [startup.c(95)]:", "template": "*** info [startup.c(<*>)]:", "template_id": "E213"}
+{"id": "linux-259", "system": "Linux", "content": "couldn't add command channel ::1#953: not found", "template": "couldn't add command channel <*> not found", "template_id": "E95"}
+{"id": "linux-22551", "system": "Linux", "content": "audit(1138296212.406:734910): item=0 name=/initrd/XFree86.0.log inode=1021 dev=00:00", "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>", "template_id": "E140"}
+{"id": "linux-226", "system": "Linux", "content": "loading configuration from '/etc/named.conf'", "template": "loading configuration from <*>", "template_id": "E186"}
+{"id": "linux-91", "system": "Linux", "content": "agpgart: AGP aperture is 64M @ 0xf4000000", "template": "agpgart: AGP aperture is <*> @ <*>", "template_id": "E206"}
+{"id": "linux-344", "system": "Linux", "content": "Detected 731.221 MHz processor.", "template": "Detected <*> MHz processor.", "template_id": "E215"}
+{"id": "linux-212", "system": "Linux", "content": "started.", "template": "started.", "template_id": "E331"}
+{"id": "linux-22879", "system": "Linux", "content": "ANONYMOUS FTP LOGIN FROM 81.240.142.171, 171-142.240.81.adsl.skynet.be (Sgpuser@home.com)", "template": "ANONYMOUS FTP LOGIN FROM <*>, <*> (<*>)", "template_id": "E190"}
+{"id": "linux-6899", "system": "Linux", "content": "audit(1130234885.488:0): initialized", "template": "audit(<*>): initialized", "template_id": "E238"}
+{"id": "linux-9297", "system": "Linux", "content": "Out of Memory: Killed process 22983 (httpd).", "template": "Out of Memory: Killed process <*> (<*>).", "template_id": "E135"}
+{"id": "linux-2596", "system": "Linux", "content": "getpeername (ftpd): Transport endpoint is not connected", "template": "getpeername (ftpd): Transport endpoint is not connected", "template_id": "E20"}
+{"id": "linux-11618", "system": "Linux", "content": "[<0213f1ba>] rw_vm+0x1ce/0x1ea", "template": "[<*>] rw_vm+<*>", "template_id": "E330"}
+{"id": "linux-11706", "system": "Linux", "content": "[<0211bdc5>] do_rw_proc+0x79/0x8d", "template": "[<*>] do_rw_proc+<*>", "template_id": "E303"}
+{"id": "linux-11660", "system": "Linux", "content": "[<0212d602>] generic_file_aio_write+0x69/0x7c", "template": "[<*>] generic_file_aio_write+<*>", "template_id": "E168"}
+{"id": "linux-198", "system": "Linux", "content": "xinetd Version 2.3.13 started with libwrap loadavg options compiled in.", "template": "xinetd Version <*> started with <*> options compiled in.", "template_id": "E41"}
+{"id": "linux-285", "system": "Linux", "content": "creating device node '/udev/vcsa4'", "template": "creating device node <*>", "template_id": "E258"}
+{"id": "linux-32", "system": "Linux", "content": "Memory: 125312k/129720k available (1540k kernel code, 3860k reserved, 599k data, 144k init, 0k highmem)", "template": "Memory: <*> available (<*> kernel code, <*> reserved, <*> data, <*> init, <*> highmem)", "template_id": "E13"}
+{"id": "linux-11667", "system": "Linux", "content": "[<02106159>] dump_stack+0x11/0x13", "template": "[<*>] dump_stack+<*>", "template_id": "E302"}
+{"id": "linux-94", "system": "Linux", "content": "RAMDISK driver initialized: 16 RAM disks of 16384K size 1024 blocksize", "template": "RAMDISK driver initialized: <*> RAM disks of <*> size <*> blocksize", "template_id": "E22"}
+{"id": "linux-6698", "system": "Linux", "content": "Connection from 81.181.213.88 on illegal port", "template": "Connection from <*> on illegal port", "template_id": "E147"}
+{"id": "linux-67", "system": "Linux", "content": "PCI: Probing PCI hardware (bus 00)", "template": "PCI: Probing PCI hardware (bus <*>)", "template_id": "E151"}
+{"id": "linux-19988", "system": "Linux", "content": "Master rebooting...", "template": "Master rebooting...", "template_id": "E251"}
+{"id": "linux-224", "system": "Linux", "content": "using 1 CPU", "template": "using <*> CPU", "template_id": "E333"}
+{"id": "linux-118", "system": "Linux", "content": "smartd has fork()ed into background mode. New PID=1757.", "template": "smartd has fork()ed into background mode. New PID=<*>.", "template_id": "E31"}
+{"id": "linux-11040", "system": "Linux", "content": "[<02114537>] do_page_fault+0x12f/0x446", "template": "[<*>] do_page_fault+<*>", "template_id": "E278"}
+{"id": "linux-151", "system": "Linux", "content": "NET: Registered protocol family 10", "template": "NET: Registered protocol family <*>", "template_id": "E132"}
+{"id": "linux-22219", "system": "Linux", "content": "SELinux: Setting up existing superblocks.", "template": "SELinux: Setting up existing superblocks.", "template_id": "E63"}
+{"id": "linux-35", "system": "Linux", "content": "SELinux: Initializing.", "template": "SELinux: Initializing.", "template_id": "E212"}
+{"id": "linux-163", "system": "Linux", "content": "EXT3 FS on hda1, internal journal", "template": "EXT3 FS on <*>, internal journal", "template_id": "E185"}
+{"id": "linux-307", "system": "Linux", "content": "synchronized to LOCAL(0), stratum=10", "template": "synchronized to LOCAL(<*>), stratum=<*>", "template_id": "E119"}
+{"id": "linux-22200", "system": "Linux", "content": "smartd has fork()ed into background mode. New PID=1767.", "template": "smartd has fork()ed into background mode. New PID=<*>.", "template_id": "E31"}
+{"id": "linux-22235", "system": "Linux", "content": "SELinux: initialized (dev , type ramfs), uses genfs_contexts", "template": "SELinux: initialized (dev , type <*>), uses <*>", "template_id": "E88"}
+{"id": "linux-11044", "system": "Linux", "content": "[<02114408>] do_page_fault+0x0/0x446", "template": "[<*>] do_page_fault+<*>", "template_id": "E278"}
+{"id": "linux-128", "system": "Linux", "content": "input: AT Translated Set 2 keyboard on isa0060/serio0", "template": "input: <*> on <*>", "template_id": "E334"}
+{"id": "linux-8894", "system": "Linux", "content": "Out of Memory: Killed process 15905 (httpd).", "template": "Out of Memory: Killed process <*> (<*>).", "template_id": "E135"}
+{"id": "linux-11035", "system": "Linux", "content": "[<0212ebf3>] __alloc_pages+0x274/0x281", "template": "[<*>] __alloc_pages+<*>", "template_id": "E272"}
+{"id": "linux-205", "system": "Linux", "content": "Started gpm successfully. Entered daemon mode.", "template": "Started gpm successfully. Entered daemon mode.", "template_id": "E46"}
+{"id": "linux-4795", "system": "Linux", "content": "audit(1127109407.969:0): initialized", "template": "audit(<*>): initialized", "template_id": "E238"}
+{"id": "linux-12058", "system": "Linux", "content": "[<0213f3d3>] get_user_size+0x30/0x57", "template": "[<*>] get_user_size+<*>", "template_id": "E279"}
+{"id": "linux-304", "system": "Linux", "content": "removing device node '/udev/vcsa7'", "template": "removing device node <*>", "template_id": "E253"}
+{"id": "linux-13", "system": "Linux", "content": "zapping low mappings.", "template": "zapping low mappings.", "template_id": "E236"}
+{"id": "linux-11613", "system": "Linux", "content": "[<021361c7>] do_no_page+0xa1/0x235", "template": "[<*>] do_no_page+<*>", "template_id": "E304"}
+{"id": "linux-4945", "system": "Linux", "content": "Squid Parent: child process 2294 started", "template": "Squid Parent: child process <*> started", "template_id": "E109"}
+{"id": "linux-5748", "system": "Linux", "content": "open(/dev/pts/0): No such file or directory", "template": "open(<*>): No such file or directory", "template_id": "E130"}
+{"id": "linux-89", "system": "Linux", "content": "Setting network parameters: succeeded", "template": "Setting network parameters: succeeded", "template_id": "E84"}
+{"id": "linux-2706", "system": "Linux", "content": "Detected 731.219 MHz processor.", "template": "Detected <*> MHz processor.", "template_id": "E215"}
+{"id": "linux-260", "system": "Linux", "content": "Starting MySQL: succeeded", "template": "Starting MySQL: succeeded", "template_id": "E193"}
+{"id": "linux-11884", "system": "Linux", "content": "[<02115617>] recalc_task_prio+0x141/0x14c", "template": "[<*>] recalc_task_prio+<*>", "template_id": "E235"}
+{"id": "linux-25", "system": "Linux", "content": "Initializing CPU#0", "template": "Initializing CPU#<*>", "template_id": "E284"}
+{"id": "linux-5374", "system": "Linux", "content": "sshd -TERM succeeded", "template": "sshd -TERM succeeded", "template_id": "E252"}
+{"id": "linux-312", "system": "Linux", "content": "session opened for user cyrus by (uid=0)", "template": "session opened for user <*> by <*>", "template_id": "E208"}
+{"id": "linux-11655", "system": "Linux", "content": "[<02158800>] __mark_inode_dirty+0x20/0xca", "template": "[<*>] __mark_inode_dirty+<*>", "template_id": "E211"}
+{"id": "linux-267", "system": "Linux", "content": "creating device node '/udev/vcs5'", "template": "creating device node <*>", "template_id": "E258"}
+{"id": "linux-87", "system": "Linux", "content": "agpgart: detected 4MB dedicated video ram.", "template": "agpgart: detected <*> dedicated video ram.", "template_id": "E85"}
+{"id": "linux-3271", "system": "Linux", "content": "service(sshd) ignoring max retries; 7 > 3", "template": "service(<*>) ignoring max retries; <*> > <*>", "template_id": "E125"}
+{"id": "linux-4641", "system": "Linux", "content": "User unknown timed out after 900 seconds at Thu Sep 15 17:45:15 2005", "template": "User <*> timed out after <*> seconds at <*>", "template_id": "E165"}
+{"id": "linux-22292", "system": "Linux", "content": "audit(1138296102.679:186229): syscall=197 exit=0 a0=3 a1=805a2e4 a2=68cffc a3=88237c8 items=0 pid=658 loginuid=-1 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0", "template": "audit(<*>): syscall=<*> exit=<*> a0=<*> a1=<*> a2=<*> a3=<*> items=<*> pid=<*> loginuid=<*> uid=<*> gid=<*> euid=<*> suid=<*> fsuid=<*> egid=<*> sgid=<*> fsgid=<*>", "template_id": "E1"}
+{"id": "linux-302", "system": "Linux", "content": "creating device node '/udev/vcsa7'", "template": "creating device node <*>", "template_id": "E258"}
+{"id": "linux-3067", "system": "Linux", "content": "session opened for user root by (uid=0)", "template": "session opened for user <*> by <*>", "template_id": "E208"}
+{"id": "linux-22489", "system": "Linux", "content": "Squid Parent: child process 2275 started", "template": "Squid Parent: child process <*> started", "template_id": "E109"}
+{"id": "linux-98", "system": "Linux", "content": "ICH: IDE controller at PCI slot 0000:00:1f.1", "template": "ICH: IDE controller at PCI slot <*>", "template_id": "E163"}
+{"id": "linux-3", "system": "Linux", "content": "klogd startup succeeded", "template": "<*> startup succeeded", "template_id": "E283"}
+{"id": "linux-5415", "system": "Linux", "content": "1+0 records out", "template": "<*> records out", "template_id": "E323"}
+{"id": "linux-21", "system": "Linux", "content": "Built 1 zonelists", "template": "Built <*> zonelists", "template_id": "E298"}
+{"id": "linux-3363", "system": "Linux", "content": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=211.233.9.185 user=root", "template": "authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E8"}
+{"id": "linux-22629", "system": "Linux", "content": "Warning! Could not relabel with system_u:object_r:devpts_t, not relabeling.", "template": "Warning! Could not relabel with <*>, not relabeling.", "template_id": "E39"}
+{"id": "linux-181", "system": "Linux", "content": "NET: Registered protocol family 31", "template": "NET: Registered protocol family <*>", "template_id": "E132"}
+{"id": "linux-74", "system": "Linux", "content": "Starting pcmcia: succeeded", "template": "Starting pcmcia: succeeded", "template_id": "E181"}
+{"id": "linux-252", "system": "Linux", "content": "kernel time sync status 0040", "template": "kernel time sync status <*>", "template_id": "E226"}
+{"id": "linux-20007", "system": "Linux", "content": "messagebus shutdown failed", "template": "<*> shutdown failed", "template_id": "E293"}
+{"id": "linux-13860", "system": "Linux", "content": "Out of Memory: Killed process 15873 (python).", "template": "Out of Memory: Killed process <*> (<*>).", "template_id": "E135"}
+{"id": "linux-11048", "system": "Linux", "content": "[<02135e6d>] do_swap_page+0x64/0x1f9", "template": "[<*>] do_swap_page+<*>", "template_id": "E287"}
+{"id": "linux-6688", "system": "Linux", "content": "rsync error: error in rsync protocol data stream (code 12) at io.c(342)", "template": "rsync error: error in rsync protocol data stream (code <*>) at io.c(<*>)", "template_id": "E12"}
+{"id": "linux-6023", "system": "Linux", "content": "password changed for test", "template": "password changed for <*>", "template_id": "E256"}
+{"id": "linux-38", "system": "Linux", "content": "Failure registering capabilities with the kernel", "template": "Failure registering capabilities with the kernel", "template_id": "E33"}
+{"id": "linux-40", "system": "Linux", "content": "Capability LSM initialized", "template": "Capability LSM initialized", "template_id": "E180"}
+{"id": "linux-156", "system": "Linux", "content": "uhci_hcd 0000:00:1f.2: UHCI Host Controller", "template": "uhci_hcd <*>: UHCI Host Controller", "template_id": "E150"}
+{"id": "linux-3171", "system": "Linux", "content": "bad username [ ]", "template": "bad username [<*>]", "template_id": "E309"}
+{"id": "linux-2899", "system": "Linux", "content": "Squid Parent: child process 2276 started", "template": "Squid Parent: child process <*> started", "template_id": "E109"}
+{"id": "linux-5413", "system": "Linux", "content": "ntpd shutdown succeeded", "template": "<*> shutdown succeeded", "template_id": "E264"}
+{"id": "linux-100", "system": "Linux", "content": "apmd startup succeeded", "template": "<*> startup succeeded", "template_id": "E283"}
+{"id": "linux-22229", "system": "Linux", "content": "SELinux: initialized (dev , type proc), uses genfs_contexts", "template": "SELinux: initialized (dev , type <*>), uses <*>", "template_id": "E88"}
+{"id": "linux-22218", "system": "Linux", "content": "SELinux: Completing initialization.", "template": "SELinux: Completing initialization.", "template_id": "E92"}
+{"id": "linux-4752", "system": "Linux", "content": "Detected 731.217 MHz processor.", "template": "Detected <*> MHz processor.", "template_id": "E215"}
+{"id": "linux-17654", "system": "Linux", "content": "[<0212144c>] sys_setuid+0xdd/0xe9", "template": "[<*>] sys_setuid+<*>", "template_id": "E305"}
+{"id": "linux-13504", "system": "Linux", "content": "[<02152b72>] d_instantiate+0x3f/0x42", "template": "[<*>] d_instantiate+<*>", "template_id": "E271"}
+{"id": "linux-6025", "system": "Linux", "content": "1 more authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=bozesan.teleson.ro user=test", "template": "<*> more authentication failure; logname= uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E5"}
+{"id": "linux-22432", "system": "Linux", "content": "audit(1138296132.911:505629): avc: denied { relabelto } for pid=1788 exe=/sbin/restorecon name=ptal-mlcd dev=hda2 ino=1502894 scontext=system_u:system_r:kernel_t tcontext=system_u:object_r:var_run_t tclass=dir", "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>", "template_id": "E4"}
+{"id": "linux-6768", "system": "Linux", "content": "Squid Parent: child process 2267 exited with status 0", "template": "Squid Parent: child process <*> exited with status <*>", "template_id": "E53"}
+{"id": "linux-718", "system": "Linux", "content": "session closed for user test", "template": "session closed for user <*>", "template_id": "E227"}
+{"id": "linux-8189", "system": "Linux", "content": "connection from 66.15.25.56 (bdsl.66.15.25.56.gte.net) at Fri Nov 18 09:13:22 2005", "template": "connection from <*> (<*>) at <*>", "template_id": "E261"}
+{"id": "linux-3252", "system": "Linux", "content": "service(sshd) ignoring max retries; 8 > 3", "template": "service(<*>) ignoring max retries; <*> > <*>", "template_id": "E125"}
+{"id": "linux-11666", "system": "Linux", "content": "[<021060c2>] show_trace+0x92/0x97", "template": "[<*>] show_trace+<*>", "template_id": "E306"}
+{"id": "linux-348", "system": "Linux", "content": "Calibrating delay loop... 1445.88 BogoMIPS", "template": "Calibrating delay loop... <*> BogoMIPS", "template_id": "E111"}
+{"id": "linux-141", "system": "Linux", "content": "Starting hpoj: succeeded", "template": "Starting hpoj: succeeded", "template_id": "E202"}
+{"id": "linux-109", "system": "Linux", "content": "Configuration file /etc/smartd.conf parsed.", "template": "Configuration file <*> parsed.", "template_id": "E183"}
+{"id": "linux-115", "system": "Linux", "content": "Device: /dev/hda, is SMART capable. Adding to \"monitor\" list.", "template": "Device: <*>, is SMART capable. Adding to \"monitor\" list.", "template_id": "E28"}
+{"id": "linux-150", "system": "Linux", "content": "SELinux: Unregistering netfilter hooks", "template": "SELinux: Unregistering netfilter hooks", "template_id": "E74"}
+{"id": "linux-7522", "system": "Linux", "content": "hda: dma_timer_expiry: dma status == 0x20", "template": "hda: dma_timer_expiry: dma status == <*>", "template_id": "E103"}
+{"id": "linux-174", "system": "Linux", "content": "3c59x: Donald Becker and others. www.scyld.com/network/vortex.html", "template": "<*>: Donald Becker and others. <*>", "template_id": "E196"}
+{"id": "linux-4", "system": "Linux", "content": "klogd 1.4.1, log source = /proc/kmsg started.", "template": "klogd <*>, log source = <*> started.", "template_id": "E187"}
+{"id": "linux-3172", "system": "Linux", "content": "FAILED LOGIN 1 FROM (null) FOR , Authentication failure", "template": "FAILED LOGIN <*> FROM (<*>) FOR , Authentication failure", "template_id": "E40"}
+{"id": "linux-618", "system": "Linux", "content": "check pass; user unknown", "template": "check pass; user <*>", "template_id": "E299"}
+{"id": "linux-268", "system": "Linux", "content": "creating device node '/udev/vcsa5'", "template": "creating device node <*>", "template_id": "E258"}
+{"id": "linux-279", "system": "Linux", "content": "removing device node '/udev/vcsa2'", "template": "removing device node <*>", "template_id": "E253"}
+{"id": "linux-293", "system": "Linux", "content": "removing device node '/udev/vcsa6'", "template": "removing device node <*>", "template_id": "E253"}
+{"id": "linux-22334", "system": "Linux", "content": "audit(1138296107.867:267232): item=0 name=/proc/sys/kernel/modprobe inode=4026531894 dev=00:00", "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>", "template_id": "E140"}
+{"id": "linux-80", "system": "Linux", "content": "isapnp: Scanning for PnP cards...", "template": "isapnp: Scanning for PnP cards...", "template_id": "E123"}
+{"id": "linux-108", "system": "Linux", "content": "Opened configuration file /etc/smartd.conf", "template": "Opened configuration file <*>", "template_id": "E195"}
+{"id": "linux-6707", "system": "Linux", "content": "1 more authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=88-213-181-81-cable.canals.ro user=root", "template": "<*> more authentication failure; logname= uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>", "template_id": "E5"}
+{"id": "linux-143", "system": "Linux", "content": "EXT3-fs: write access will be enabled during recovery.", "template": "EXT3-fs: write access will be enabled during recovery.", "template_id": "E24"}
+{"id": "linux-222", "system": "Linux", "content": "Squid Parent: child process 2264 started", "template": "Squid Parent: child process <*> started", "template_id": "E109"}
+{"id": "linux-75", "system": "Linux", "content": "VFS: Disk quotas dquot_6.5.1", "template": "VFS: Disk quotas <*>", "template_id": "E300"}
+{"id": "linux-262", "system": "Linux", "content": "rsyncd version 2.6.2 starting, listening on port 873", "template": "rsyncd version <*> starting, listening on port <*>", "template_id": "E66"}
+{"id": "linux-5362", "system": "Linux", "content": "privoxy shutdown succeeded", "template": "<*> shutdown succeeded", "template_id": "E264"}
+{"id": "linux-153", "system": "Linux", "content": "IPv6 over IPv4 tunneling driver", "template": "IPv6 over IPv4 tunneling driver", "template_id": "E144"}
+{"id": "linux-5387", "system": "Linux", "content": "no longer listening on 63.126.79.73#53", "template": "no longer listening on <*>", "template_id": "E228"}
+{"id": "linux-12174", "system": "Linux", "content": "VM: killing process sendmail", "template": "VM: killing process <*>", "template_id": "E265"}
+{"id": "linux-11671", "system": "Linux", "content": "[<0211476a>] do_page_fault+0x362/0x446", "template": "[<*>] do_page_fault+<*>", "template_id": "E278"}
+{"id": "linux-13063", "system": "Linux", "content": "[<02107352>] do_IRQ+0x134/0x169", "template": "[<*>] do_IRQ+<*>", "template_id": "E327"}
+{"id": "linux-78", "system": "Linux", "content": "Initializing Cryptographic API", "template": "Initializing Cryptographic API", "template_id": "E127"}
+{"id": "linux-11039", "system": "Linux", "content": "[<021364a7>] handle_mm_fault+0x9d/0xe2", "template": "[<*>] handle_mm_fault+<*>", "template_id": "E246"}
+{"id": "linux-149", "system": "Linux", "content": "SELinux: Disabled at runtime.", "template": "SELinux: Disabled at runtime.", "template_id": "E160"}
+{"id": "linux-11735", "system": "Linux", "content": "[<02115ed2>] __wake_up_common+0x2f/0x50", "template": "[<*>] __wake_up_common+<*>", "template_id": "E229"}
+{"id": "linux-168", "system": "Linux", "content": "parport0: irq 7 detected", "template": "parport0: irq <*> detected", "template_id": "E223"}
+{"id": "linux-14", "system": "Linux", "content": "On node 0 totalpages: 32430", "template": "On node <*> totalpages: <*>", "template_id": "E267"}
+{"id": "linux-3086", "system": "Linux", "content": "*** info [client.c(275)]:", "template": "*** info [client.c(<*>)]:", "template_id": "E225"}
+{"id": "linux-27", "system": "Linux", "content": "CPU 0 irqstacks, hard=02345000 soft=02344000", "template": "CPU <*> irqstacks, hard=<*> soft=<*>", "template_id": "E198"}
+{"id": "linux-12902", "system": "Linux", "content": "[<02135b2f>] do_wp_page+0x203/0x21c", "template": "[<*>] do_wp_page+<*>", "template_id": "E301"}
+{"id": "linux-102", "system": "Linux", "content": "ide0: BM-DMA at 0xffa0-0xffa7, BIOS settings: hda:DMA, hdb:pio", "template": "ide0: BM-DMA at <*>, BIOS settings: hda:<*>, hdb:<*>", "template_id": "E70"}
+{"id": "linux-5395", "system": "Linux", "content": "no longer listening on 63.126.79.87#53", "template": "no longer listening on <*>", "template_id": "E228"}
+{"id": "linux-56", "system": "Linux", "content": "PCI: Using configuration type 1", "template": "PCI: Using configuration type <*>", "template_id": "E162"}
+{"id": "linux-5420", "system": "Linux", "content": "Kernel log daemon terminating.", "template": "Kernel log daemon terminating.", "template_id": "E143"}
+{"id": "linux-11615", "system": "Linux", "content": "[<0213647b>] handle_mm_fault+0x71/0xe2", "template": "[<*>] handle_mm_fault+<*>", "template_id": "E246"}
+{"id": "linux-132", "system": "Linux", "content": "TCP: Hash tables configured (established 8192 bind 16384)", "template": "TCP: Hash tables configured (established <*> bind <*>)", "template_id": "E50"}
+{"id": "linux-47", "system": "Linux", "content": "CPU: L2 cache: 256K", "template": "CPU: L2 cache: <*>", "template_id": "E313"}
+{"id": "linux-10", "system": "Linux", "content": "BIOS-e820: 0000000007eae000 - 0000000008000000 (reserved)", "template": "BIOS-e820: <*> - <*> (reserved)", "template_id": "E219"}
+{"id": "linux-23707", "system": "Linux", "content": "ANONYMOUS FTP LOGIN FROM 84.102.20.91, 91.20.102-84.rev.gaoland.net (anonymous)", "template": "ANONYMOUS FTP LOGIN FROM <*>, <*> (<*>)", "template_id": "E190"}
+{"id": "linux-139", "system": "Linux", "content": "md: autorun ...", "template": "md: autorun ...", "template_id": "E307"}
+{"id": "linux-199", "system": "Linux", "content": "Started working: 30 available services", "template": "Started working: <*> available services", "template_id": "E101"}
+{"id": "linux-221", "system": "Linux", "content": "httpd startup succeeded", "template": "<*> startup succeeded", "template_id": "E283"}

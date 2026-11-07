@@ -8,6 +8,7 @@ layout mirrors `experiments/`:
 
     data/results_<model>/<task>/...        merged, canonical results
     results_clotho/...                     (optional) Clotho iteration outputs
+    results_clotho_log_parsing/<template>/<dataset>/...  per-system log_parsing Clotho runs
     shards/<model>/<task>/<dataset>/<template>/<stage>/size<N>/shard_XXXXX/...
                                            per-shard outputs + DONE.json
     shards/.../size<N>/progress.log        per-job progress log
@@ -32,7 +33,7 @@ MODEL_ALLOW_PATTERNS = ["*.json", "*.safetensors", "tokenizer*", "*.model"]
 MODEL_IGNORE_PATTERNS = ["original/*", "*.pth", "*.bin", "*.gguf"]
 
 # What a fresh session pulls from RESULTS_REPO into experiments/.
-PULL_PATTERNS = ["data/**", "results_clotho/**"]
+PULL_PATTERNS = ["data/**", "results_clotho/**", "results_clotho_log_parsing/**"]
 
 
 def get_token():
@@ -125,7 +126,7 @@ def cmd_pull_results(args):
     repo = get_results_repo()
     ensure_repo(repo)
     files = list_repo_files(repo)
-    wanted = [f for f in files if f.startswith(("data/", "results_clotho/"))]
+    wanted = [f for f in files if f.startswith(("data/", "results_clotho/", "results_clotho_log_parsing/"))]
     if not wanted:
         print(f"[hub_sync] {repo}: no data/ or results_clotho/ files yet (fresh repo).")
         return

@@ -13,9 +13,11 @@ def _strip_decoration(s):
     m = re.fullmatch(r"(`{1,3})(.*)\1", s, flags=re.S)
     if m:
         s = m.group(2).strip()
-    # leftover bold markers around the whole answer: **x**
+    # leftover bold markers around the whole answer: **x**. Not when the inner text
+    # itself starts/ends with '*': literal asterisk runs are part of real templates
+    # (Zookeeper "******* GOODBYE <*> ********", Mac "**** [...] ****").
     m = re.fullmatch(r"\*\*(.*)\*\*", s, flags=re.S)
-    if m:
+    if m and not m.group(1).strip().startswith("*") and not m.group(1).strip().endswith("*"):
         s = m.group(1).strip()
     return s
 
@@ -51,6 +53,7 @@ def parse_result_messages_template(result):
 
 template2parser = {
     'messages_template': parse_result_messages_template,
+    'rules_template': parse_result_messages_template,  # same answer format
 }
 
 
