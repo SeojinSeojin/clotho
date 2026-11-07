@@ -1,0 +1,15 @@
+{
+  "messages_template/loghub_hdfs_500": {
+    "n": 500,
+    "out_pass": 0.1064,
+    "parse_fail": 0.0002,
+    "inp_pass": 0.026,
+    "n_pass": 13,
+    "first_fit": null,
+    "auc@50": null,
+    "auc@100": null,
+    "auc@200": null,
+    "mean_auc": null,
+    "clotho_status": "not run"
+  }
+}
