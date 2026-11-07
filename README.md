@@ -38,7 +38,7 @@ For machines that are wiped after every session. `setup.sh` rebuilds everything 
 ```bash
 export HF_TOKEN=hf_...                      # never commit this
 export RESULTS_REPO=<hf-user>/clotho-results
-git clone https://github.com/<you>/clotho && cd clotho && bash setup.sh   # ~1-5 min
+git clone https://github.com/<you>/clotho && cd clotho && bash setup.sh   # ~1 min on the L40S (venvs ~40s, 16GB weights ~15s, in parallel)
 source .venv/bin/activate
 tmux new -s run                              # so an SSH drop doesn't kill the job
 
@@ -59,6 +59,8 @@ Re-run the same commands in the next session and finished shards are skipped. Wh
 Useful flags: `--status` (what is done, locally or remote), `--limit_shards N` (smoke test; its merge goes to `experiments/sharded_work/merged_partial/`, never to `experiments/data`), `--shard_size N`, `--merge_only`, `--session_hours 10 --safety_margin_min 20` (won't start a shard that would overrun the session).
 Progress, with time per shard and an ETA, is written to `experiments/sharded_work/<shard path>/progress.log` and uploaded with every shard.
 `gen_vllm` first runs `experiments/sharded/check_prompt_parity.py`, which compares the real `clotho/models/llama.py` code path against the vLLM path (prompt strings, token ids, output post-processing) and refuses to generate on any mismatch. The vLLM path supports Llama only for now.
+Measured on the L40S (spell_check, 500 inputs per shard): `hidden` takes about 39 s per shard, mostly model load. `gen_vllm` takes about 53 s per shard for 500 inputs × 10 samples, plus about 50 s of engine start-up per run.
+The vLLM path needs no CUDA toolkit: `setup.sh` uses uv-managed Pythons, which include `Python.h`, and `vllm_generate.py` turns off FlashInfer's nvcc-compiled sampler (`VLLM_USE_FLASHINFER_SAMPLER=0`).
 Environment knobs for `setup.sh`: `MODELS` (space-separated HF ids), `INSTALL_VLLM=0`, `VLLM_VERSION`.
 
 ### Installing Clotho Package
