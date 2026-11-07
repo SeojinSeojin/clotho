@@ -347,19 +347,29 @@ def report(push=False):
         L_ += [f"## {title}\n", f"Standard split, {nsys} systems. Random-order expectation for fail top50: "
                f"{expected_fail(R, st, sp, 100)} @100, {expected_fail(R, st, sp, 200)} @200.\n"] + lines + [""]
     # leakage effect
+    def diff(m, r):
+        a, _ = macro(R, "fair_leaky", "standard", m, r, "auc")
+        b, _ = macro(R, "fair_leakfree", "standard", m, r, "auc")
+        return (statistics.mean(a) - statistics.mean(b)) if a and b else None
+    noleak = [m for m in PRE + LOOKUP]          # cannot see the generations: their shift is label noise only
+    base = {r: statistics.mean(x for x in (diff(m, r) for m in noleak) if x is not None) for r in (100, 200)}
     L_ += ["## Leakage effect (ROC-AUC, standard split, balanced, layer 16)\n",
-           "| method | leaky @100 | leakage-free @100 | diff @100 | leaky @200 | leakage-free @200 | diff @200 |",
-           "|---|---|---|---|---|---|---|"]
+           "`net` = diff minus the mean diff of the methods that never see the generations (pre-generation and "
+           f"lookup: {base[100]:+.3f} @100, {base[200]:+.3f} @200). Those methods move only because the "
+           "leakage-free label is noisier (5 samples, >= 3 of 5) and has a different pass rate, so `net` is the "
+           "part of the change attributable to leakage.\n",
+           "| method | leaky @100 | leakage-free @100 | diff @100 | net @100 | leaky @200 | leakage-free @200 | diff @200 | net @200 |",
+           "|---|---|---|---|---|---|---|---|---|"]
     for m in METHODS:
         c = []
         for r in (100, 200):
             a, _ = macro(R, "fair_leaky", "standard", m, r, "auc")
             b, _ = macro(R, "fair_leakfree", "standard", m, r, "auc")
-            dlt = f"{statistics.mean(a) - statistics.mean(b):+.3f}" if a and b else "n/a"
-            c += [fmt(a), fmt(b), dlt]
+            d = diff(m, r)
+            c += [fmt(a), fmt(b), "n/a" if d is None else f"{d:+.3f}", "n/a" if d is None else f"{d - base[r]:+.3f}"]
         L_.append(f"| {NAMES[m]} | " + " | ".join(c) + " |")
-    L_.append("\nThe leaky label also has a different PASS threshold (> 5 of 10 vs >= 3 of 5) and pass rate, so the "
-              "pre-generation columns move too; the post-generation change beyond that is the leakage.\n")
+    J["leakage_baseline_shift"] = base
+    L_.append("")
     # hybrid
     L_ += ["## Hybrid: Drain lookup where the group was seen in the reference set, else Clotho (main setting)\n",
            "| split | ref | systems | Clotho | Lookup (Drain) | Lookup (oracle) | Hybrid | test inputs with a seen Drain group |",
