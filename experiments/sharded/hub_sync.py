@@ -105,11 +105,18 @@ def commit_files(repo_id, files, message, retries=5):
 
 def cmd_download_model(args):
     from huggingface_hub import snapshot_download
+    from huggingface_hub.errors import GatedRepoError
     t0 = time.time()
-    path = snapshot_download(
-        repo_id=args.model_id, token=get_token(),
-        allow_patterns=MODEL_ALLOW_PATTERNS, ignore_patterns=MODEL_IGNORE_PATTERNS,
-    )
+    try:
+        path = snapshot_download(
+            repo_id=args.model_id, token=get_token(),
+            allow_patterns=MODEL_ALLOW_PATTERNS, ignore_patterns=MODEL_IGNORE_PATTERNS,
+        )
+    except GatedRepoError:
+        raise SystemExit(
+            f"[hub_sync] {args.model_id} is gated and this HF account/token has no access.\n"
+            f"  1. Request access at https://huggingface.co/{args.model_id} (with the account that owns HF_TOKEN)\n"
+            f"  2. For a fine-grained token, also enable 'Read access to contents of all public gated repos'.")
     size = sum(f.stat().st_size for f in Path(path).rglob("*") if f.is_file()) / 1e9
     print(f"[hub_sync] {args.model_id}: {size:.1f} GB in {time.time() - t0:.0f}s -> {path}")
 
