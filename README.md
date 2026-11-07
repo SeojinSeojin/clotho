@@ -27,6 +27,40 @@ To attach to the running container, use:
 docker exec -it clotho /bin/bash
 ```
 
+### Ephemeral GPU servers: `setup.sh` + sharded, resumable runs (no Docker)
+
+For machines that are wiped after every session. `setup.sh` rebuilds everything in a few minutes. Long jobs run in shards (500 inputs by default), and each finished shard is uploaded to a private Hugging Face dataset repo (`RESULTS_REPO`). That way an interrupted session loses at most the shard that was running.
+
+**One-time:** create an HF token with *write* access, accept the [Llama 3.1 license](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct), and pick a repo name (it is created as private on first use).
+
+**At the start of every session:**
+
+```bash
+export HF_TOKEN=hf_...                      # never commit this
+export RESULTS_REPO=<hf-user>/clotho-results
+git clone https://github.com/<you>/clotho && cd clotho && bash setup.sh   # ~1-5 min
+source .venv/bin/activate
+tmux new -s run                              # so an SSH drop doesn't kill the job
+
+T="-t spell_check -d misspell_injected_wordnet"
+python experiments/sharded/run_sharded.py --stage hidden   $T   # LIHS (1-1 script, HF forward pass)
+python experiments/sharded/run_sharded.py --stage gen_vllm $T   # outputs for pass/fail labels (vLLM)
+cd experiments && python run_clotho_iterations.py --target_task spell_check --target_llm llama --refset_extension_methods random --seeds 0
+```
+
+Re-run the same commands in the next session and finished shards are skipped. When every shard of a job is done, the runner merges them into the original files (`experiments/data/results_llama/...`) and uploads those under `data/` in `RESULTS_REPO`. `setup.sh` pulls `data/` back down in the next session.
+
+| Stage | What runs | Output |
+|---|---|---|
+| `hidden` | `1-1_extract_input_hidden_states.py`, unmodified, once per shard | `input_hidden_states/.../layer_{21,23}/hidden_vectors.pt` |
+| `gen_vllm` | `experiments/sharded/vllm_generate.py` in `.venv-vllm` | `inference_results/.../<dataset>_R10_T0.8.json` (no output hidden states) |
+| `gen_hf` | `2-1_generate_outputs_and_record_hidden_states.py`, unmodified (slow) | same JSON + `output_hidden_states/` (kept in the repo as one tar per shard; merge extracts them locally) |
+
+Useful flags: `--status` (what is done, locally or remote), `--limit_shards N` (smoke test; its merge goes to `experiments/sharded_work/merged_partial/`, never to `experiments/data`), `--shard_size N`, `--merge_only`, `--session_hours 10 --safety_margin_min 20` (won't start a shard that would overrun the session).
+Progress, with time per shard and an ETA, is written to `experiments/sharded_work/<shard path>/progress.log` and uploaded with every shard.
+`gen_vllm` first runs `experiments/sharded/check_prompt_parity.py`, which compares the real `clotho/models/llama.py` code path against the vLLM path (prompt strings, token ids, output post-processing) and refuses to generate on any mismatch. The vLLM path supports Llama only for now.
+Environment knobs for `setup.sh`: `MODELS` (space-separated HF ids), `INSTALL_VLLM=0`, `VLLM_VERSION`.
+
 ### Installing Clotho Package
 The `clotho` toolkit, provided as a Python package, includes code for dataset construction used in our study, hidden state extraction from Hugging Face–deployed open LLMs, and functions for computing both baseline and Clotho’s adequacy metrics based on the extracted hidden state vectors.
 
