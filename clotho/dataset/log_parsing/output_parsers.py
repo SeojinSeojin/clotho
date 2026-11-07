@@ -82,7 +82,7 @@ def lenient(template, extensions=()):
 LENIENT_EXTENSIONS = []
 
 # Which match level is the Clotho pass label. See PROGRESS.md "Decisions".
-PASS_SCORER = "normalized_match"
+PASS_SCORER = "strict_match"
 SCORERS = ("strict_match", "normalized_match", "lenient_match") + tuple(
     f"lenient_x{i + 1}_match" for i in range(len(LENIENT_EXTENSIONS)))
 
@@ -109,7 +109,7 @@ def score_output(actual_answer, expected_answer, template_name='messages_templat
 
 
 def label_output(actual_answer, expected_answer, template_name, return_parsed_answer=False, scorer=None):
-    # answer key order: template. Pass/fail label for Clotho = PASS_SCORER.
+    # answer key order: template. Pass/fail label for Clotho = PASS_SCORER (strict_match, PROGRESS.md "Decisions").
     s = score_output(actual_answer, expected_answer, template_name)
     if s["parse_failure"]:
         return False, "parse_failure"

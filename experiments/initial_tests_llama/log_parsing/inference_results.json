@@ -1,14 +1,14 @@
 {
   "test_scores": [
     0.0,
-    0.1,
-    0.5,
+    0.2,
+    0.7,
     0.0,
-    0.6,
-    0.9,
+    0.8,
+    1.0,
     0.4,
     0.0,
-    0.3,
+    0.4,
     0.0
   ],
   "test_labels": [
@@ -31,18 +31,6 @@
       false,
       false,
       false,
-      false,
-      true,
-      false,
-      false
-    ],
-    [
-      true,
-      false,
-      true,
-      false,
-      false,
-      true,
       true,
       false,
       false,
@@ -50,48 +38,12 @@
     ],
     [
       false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ],
-    [
-      true,
-      false,
       true,
       false,
       true,
       true,
       false,
       true,
-      false,
-      true
-    ],
-    [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      false,
-      true
-    ],
-    [
-      false,
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
       true,
       true,
       true
@@ -110,14 +62,38 @@
     ],
     [
       true,
+      true,
+      true,
+      true,
+      true,
       false,
-      false,
-      false,
+      true,
+      true,
+      true,
+      false
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
       false,
       false,
       false,
       true,
+      true,
       false,
+      false,
+      false,
+      true,
       true
     ],
     [
@@ -131,6 +107,185 @@
       false,
       false,
       false
+    ],
+    [
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  ],
+  "scorer": "strict_match",
+  "raw_outputs": [
+    [
+      "Reasoning: The tokens 192.168.1.15 and 52314 are IP addresses and port numbers, which are considered variable parts.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The log message contains an IP address that needs to be replaced.\nTemplate: Connection from <*>:*> closed",
+      "Reasoning: The IP address and port number are variable parts.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The log message contains an IP address, a colon, and a port number, which are variable parts.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The log message contains an IP address which is a variable part.\nTemplate: Connection from <*>:<> closed.",
+      "Reasoning: The log message contains an IP address that needs to be replaced.\nTemplate: Connection from <*>:*> closed.",
+      "Reasoning: The log message contains an IP address and a port number which are variable parts.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The log message contains an IP address that needs to be replaced with <*>.\nTemplate: Connection from <*>:<> closed",
+      "Reasoning: The log message contains an IP address that needs to be replaced with <*>.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The tokens in the log message are IP addresses and port numbers, which are variable.\nTemplate: Connection from <*>: <*> closed."
+    ],
+    [
+      "Reasoning: The worker ID, job name, and execution time are variable parts of the log message.\n\nTemplate: Worker <*> finished job job_<*> in <*> ms",
+      "Reasoning: The numbers in the log message are variables.\nTemplate: Worker <*> finished job job_<*> in <*> ms",
+      "Reasoning: The variables in the log message are the worker ID, job name, and time measurement in milliseconds.\nTemplate: Worker <*> finished job job_<> in <*> ms",
+      "Reasoning: The variable parts are the worker ID, job name, and time taken.\n\nTemplate: Worker <*> finished job job_<*> in <*> ms",
+      "Reasoning: The variables in the log message are the number, job name, and time measurement.\nTemplate: Worker <*> finished job job_<*> in <*> ms",
+      "Reasoning: The worker ID, job name, and time measurement are variable parts.\nTemplate: Worker <*> finished job job_<> in <*> ms",
+      "Reasoning: The tokens \"7\", \"job_20231104_0032\", and \"532\" are variables.\n\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The log message contains a variable worker ID, job ID, and a number representing time in milliseconds.\nTemplate: Worker <*> finished job job_20231104_0032 in <*> ms",
+      "Reasoning: The IDs and numbers in the log message are variables.\n\nTemplate: Worker <*> finished job job_<*> in <*> ms",
+      "Reasoning: The numbers in the log message are variable parts.\nTemplate: Worker <*> finished job <*> in <*> ms"
+    ],
+    [
+      "Reasoning: The tokens \"alice\" and \"10.0.0.42\" are variables as they can change in different log messages.\nTemplate: User <*> logged in from <*>.",
+      "Reasoning: The log message contains an IP address which is a variable part.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens in the log message that can be variable are the username and the IP address.\n\nTemplate: User <*> logged in from <*>.",
+      "Reasoning: The variables in the log message are IP addresses.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The log message contains a variable IP address.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens '10.0.0.42' is an IP address which can vary, so it should be replaced with '<*>'.\n\nTemplate: User alice logged in from <*>",
+      "Reasoning: The variables in the log message are IP address.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens \"alice\", \"10.0.0.42\" are variable parts that need to be replaced.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens \"alice\", \"10.0.0.42\" are variable parts of the log message.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The log message contains a variable IP address.\nTemplate: User <*> logged in from <*>"
+    ],
+    [
+      "Reasoning: The file path, IDs, and the file name are variable parts.\nTemplate: Deleted file /var/tmp/cache/session_*.tmp",
+      "Reasoning: The variable part in this log message is a file path, which includes an ID.\nTemplate: Deleted file /var/tmp/cache/session_<>_.tmp",
+      "Reasoning: The log message contains a file path that contains a variable number.\nTemplate: Deleted file /var/tmp/cache/session_<<*>>.tmp",
+      "Reasoning: The tokens that are variable are file paths and IDs, which are likely to contain unique information.\nTemplate: Deleted file /var/tmp/cache/session_<>.<>.tmp",
+      "Reasoning: The file path and the number in the log message are variable parts.\nTemplate: Deleted file /var/tmp/cache/session_<*>.tmp",
+      "Reasoning: The log message contains a file path with a variable ID (8841) and a directory path (/var/tmp/cache).\nTemplate: Deleted file /var/tmp/cache/<*>.tmp",
+      "Reasoning: The log message contains a variable path with a number at the end.\nTemplate: Deleted file /var/tmp/cache/session_<*>.tmp",
+      "Reasoning: The variable parts in the log message are file path and ID.\nTemplate: Deleted file /var/tmp/cache/session_*.tmp",
+      "Reasoning: The path /var/tmp/cache/session_8841.tmp contains a variable ID '8841'.\nTemplate: Deleted file /var/tmp/cache/session_*.tmp",
+      "Reasoning: The log message contains a variable file path.\nTemplate: Deleted file /var/tmp/cache/session_*.tmp"
+    ],
+    [
+      "Reasoning: The log message contains a variable number that needs to be replaced.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains variables like numbers (0.87, 12000) that need to be replaced.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The variable parts in the log message are the numbers.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The numbers and decimal number are variable parts in the log message.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The numbers in the log message are variables.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains variables such as numbers that represent values and a number that represents requests.\nTemplate: Cache hit ratio is <*> after <*> requests.",
+      "Reasoning: The log message contains a variable number.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains a variable number and a constant string.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains a variable number and a constant text, a variable number and a constant text, and a variable ratio value.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains a variable number, so we need to replace it with <*>.\nTemplate: Cache hit ratio is <*> after <*> requests."
+    ],
+    [
+      "Reasoning: The log message does not contain any variable parts.\nTemplate: Server started successfully",
+      "Reasoning: The log message is a constant success message, so there are no variable parts to replace.\n\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable parts, so no replacement is needed.\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable parts, so everything remains unchanged.\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable parts.\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable parts.\n\nTemplate: Server started successfully",
+      "Reasoning: The log message is a fixed string with no variable parts.\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable parts.\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable parts.\nTemplate: Server started successfully",
+      "Reasoning: The log message contains no variable parts.\nTemplate: Server started successfully"
+    ],
+    [
+      "Reasoning: The variables are port number, address, and verb (in this case, \"use\").\nTemplate: Failed to open socket on port <*>: Address already <*>",
+      "Reasoning: The tokens \"8080\" is a variable as it is a number and \"Address already in use\" is a variable as it's a generic error message that can appear in various situations.\n\nTemplate: Failed to open socket on port <*>: <*>",
+      "Reasoning: The variables are port number and the text that indicates the error reason.\nTemplate: Failed to open socket on port <*>: <*>",
+      "Reasoning: The tokens \"port number\" and \"address\" are variable parts.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The log message contains a number and a string that indicates the reason for the failure.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The tokens '8080' and 'Address already in use' are variable and can be replaced with '<*>'.\n\nTemplate: Failed to open socket on port <*>: <*>",
+      "Reasoning: The log message contains a variable port number and a variable reason for the error.\nTemplate: Failed to open socket on port <*>: <*>",
+      "Reasoning: The tokens \"port 8080\" and \"Address already in use\" are variable parts that contain numbers and text.\nTemplate: Failed to open socket on port <*>: <*>",
+      "Reasoning: The log message contains a variable port number.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The log message contains a number (port number) and an IP address (implied by \"Address\"), which are variable parts.\nTemplate: Failed to open socket on port <*>: Address already in use"
+    ],
+    [
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" and \"5\" are variable parts that need to be replaced.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The IDs, numbers, and hex codes are variable parts.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens '5a3f9c2e' and '3 of 5' are variable parts as they contain IDs and numbers.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens '5a3f9c2e' and '3' and '5' are variable numbers and IDs.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" and \"5\" are variable numbers or IDs, which should be replaced with <*>.\n\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The variables in the log message are the request ID, attempt number, and total number of attempts.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The IDs in the log message are variable parts.\nTemplate: Retrying request <*> (attempt <*> of <*>.",
+      "Reasoning: The tokens '5a3f9c2e' and '3' and '5' are variable parts.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The log message contains a variable ID and attempt count.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The log message contains a variable part which is the request ID and an attempt number.\nTemplate: Retrying request <*> (attempt <*> of <*>."
+    ],
+    [
+      "Reasoning: The log message contains a variable path and a percentage value.\nTemplate: Disk usage on /dev/<*>1 reached <*> percent",
+      "Reasoning: The log message contains a variable part, which is the path \"/dev/sda1\".\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable path and a variable percentage value.\nTemplate: Disk usage on /<*> reached <*> percent",
+      "Reasoning: The variables in the log message are IDs, paths, and numbers, and the IP, so we replace them with <*>.\nTemplate: Disk usage on /<*> reached <*> percent.",
+      "Reasoning: The variables are the disk path and the percentage value.\nTemplate: Disk usage on <*> reached <*> percent.",
+      "Reasoning: The tokens in the log message are variables as they represent dynamic values that may change in different situations.\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable path and a percentage value.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable path \"/dev/sda1\" which needs to be replaced.\nTemplate: Disk usage on <*> reached 91 percent",
+      "Reasoning: The log message contains a variable path and a variable percentage value.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable path and a variable percentage.\nTemplate: Disk usage on /dev/<*> reached <*> percent"
+    ],
+    [
+      "Reasoning: The log message contains a variable part \"node-14\" and a variable number \"3021\".\n\nTemplate: Received heartbeat from node-*> after <*>* ms",
+      "Reasoning: The tokens \"node-14\" and \"3021 ms\" are variable parts of the log message.\n\nTemplate: Received heartbeat from node-<> after <> ms",
+      "Reasoning: The log message contains a variable node ID, a variable time measurement in milliseconds, and the word \"heartbeat\" which is a constant.\n\nTemplate: Received heartbeat from node-<> after <> ms",
+      "Reasoning: The variable parts in the log message are node ID, time duration, and unit.\nTemplate: Received heartbeat from node-<*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variables.\n\nTemplate: Received heartbeat from node-*> after <*> ms",
+      "Reasoning: The variable parts in the log message are the node ID and the time duration.\nTemplate: Received heartbeat from node-<> after <> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variables that need to be replaced.\n\nTemplate: Received heartbeat from node-<> after <> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variable parts of the log message, so they need to be replaced.\nTemplate: Received heartbeat from node-<> after <> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variables.\nTemplate: Received heartbeat from node-<> after <*> ms",
+      "Reasoning: The variable parts in the log message are IDs, numbers, and the word 'node'.\nTemplate: Received heartbeat from node-<*> after <*> ms"
+    ]
+  ],
+  "ground_truths": [
+    [
+      "Connection from <*> closed"
+    ],
+    [
+      "Worker <*> finished job <*> in <*> ms"
+    ],
+    [
+      "User <*> logged in from <*>"
+    ],
+    [
+      "Deleted file <*>"
+    ],
+    [
+      "Cache hit ratio is <*> after <*> requests"
+    ],
+    [
+      "Server started successfully"
+    ],
+    [
+      "Failed to open socket on port <*>: Address already in use"
+    ],
+    [
+      "Retrying request <*> (attempt <*> of <*>)"
+    ],
+    [
+      "Disk usage on <*> reached <*> percent"
+    ],
+    [
+      "Received heartbeat from <*> after <*> ms"
     ]
   ]
 }

@@ -1,0 +1,291 @@
+{
+  "test_scores": [
+    0.2,
+    1.0,
+    0.6,
+    0.4,
+    0.9,
+    0.7,
+    0.7,
+    0.1,
+    0.8,
+    1.0
+  ],
+  "test_labels": [
+    [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      false,
+      true,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  ],
+  "scorer": "strict_match",
+  "raw_outputs": [
+    [
+      "Reasoning: The IP address is a variable token in this log message.\nTemplate: Connection from <*> closed",
+      "Reasoning: The IP address and port are variables.\nTemplate: Connection from <*>:<> closed",
+      "Reasoning: The IP address and port number are variable tokens, and the rest of the log message remains unchanged.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The IP address is a variable.\nTemplate: Connection from <*>:<> closed",
+      "Reasoning: The IP address and port number are variable tokens.\n\nTemplate: Connection from <*>:<*> closed",
+      "Reasoning: The log message contains an IP address and a port number, which are variable tokens.\n\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The IP address is a variable token in the log message.\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The IP address, port number, and the word \"closed\" is the variable parts, but since \"closed\" is a fixed word, it is not replaced.\n\nTemplate: Connection from <*>:<> closed",
+      "Reasoning: The IP address and port number are variable tokens in the log message.\n\nTemplate: Connection from <*>: <*> closed",
+      "Reasoning: The tokens 192.168.1.15:52314 are variable as they represent an IP address and port, which can change between occurrences of the same event.\n\nTemplate: Connection from <*> closed"
+    ],
+    [
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\", and \"532 ms\" are variable.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\" and \"job_20231104_0032\" are variable as they contain IDs, and \"532 ms\" is variable as it contains a duration.\n\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\", and \"532 ms\" are variable as they contain changing information.\n\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\" and \"532 ms\" contain variable parts.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens 'Worker 7', 'job_20231104_0032', and '532 ms' are variable as they contain changing values.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\", and \"532 ms\" are variable tokens as they contain numbers and are not fixed words, so they need to be replaced.\n\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\", and \"532 ms\" are variable parts, containing IDs, timestamps, and durations, respectively.\n\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\" and \"532 ms\" are variables.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens \"Worker 7\", \"job_20231104_0032\", and \"532 ms\" are variable parts in the log message.\n\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: The tokens 'Worker 7' and 'job_20231104_0032' are variable as they contain IDs, while 'in 532 ms' is variable as it contains a duration.\nTemplate: Worker <*> finished job <*> in <*> ms"
+    ],
+    [
+      "Reasoning: The IP address is a variable token.\nTemplate: User alice logged in from <*>.",
+      "Reasoning: The tokens \"10.0.0.42\" are variable IP addresses, which are being replaced with <*>.\nTemplate: User alice logged in from <*>",
+      "Reasoning: The tokens \"alice\" and \"10.0.0.42\" are variable IP addresses, which will be replaced with <*>.\n\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The token \"10.0.0.42\" is a variable IP address, and \"alice\" is a variable user name.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens \"alice\" and \"10.0.0.42\" are variable user ID and IP address, respectively.\n\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens 10.0.0.42 and alice are variable, as they can change between occurrences of the same event.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens \"10.0.0.42\" are variables as they can be IP addresses that change between occurrences of the same event.\nTemplate: User alice logged in from <*>",
+      "Reasoning: The tokens \"alice\" and \"10.0.0.42\" are variables, representing the user name and IP address respectively.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The tokens \"User\", \"alice\" and \"10.0.0.42\" are variable.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: The token \"10.0.0.42\" is a variable IP address.\nTemplate: User alice logged in from <*>"
+    ],
+    [
+      "Reasoning: The tokens \"session_8841\" are variable as they are a part of the file name which changes between occurrences of the same event.\n\nTemplate: Deleted file /var/tmp/<*>",
+      "Reasoning: The tokens'session_8841' are variable as they contain a changing ID.\nTemplate: Deleted file /var/tmp/<*>.tmp",
+      "Reasoning: The file path and the temporary session file ID are variable tokens in the log message.\nTemplate: Deleted file /<*>",
+      "Reasoning: The tokens \"session_8841\" are variables as they contain a variable ID number.\nTemplate: Deleted file /var/tmp/<*>.tmp",
+      "Reasoning: The variable token is the file path and the file name, which contains both dynamic information.\nTemplate: Deleted file <*>",
+      "Reasoning: The file path and the session ID are variable parts of the log message.\nTemplate: Deleted file <*>",
+      "Reasoning: The file path, session ID, and file name are variable tokens in the log message.\n\nTemplate: Deleted file <*>.tmp",
+      "Reasoning: The tokens /var/tmp/cache/session_8841.tmp and session_8841.tmp contain variables.\nTemplate: Deleted file /var/tmp/cache/<*>.tmp",
+      "Reasoning: The file path and the file name are variable tokens.\n\nTemplate: Deleted file <*>",
+      "Reasoning: The tokens /var/tmp/cache/session_8841.tmp contain variable information (session_8841.tmp).\nTemplate: Deleted file <*>"
+    ],
+    [
+      "Reasoning: The tokens '0.87', '12000', and'requests' are variable, representing a number, a count, and a noun, respectively.\n\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The tokens \"0.87\", \"12000\" are variable numbers.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains a variable token representing the cache hit ratio and the number of requests.\n\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The tokens that change are the number of requests.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains variable tokens related to a numerical value and a count.\n\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The log message contains a variable number that changes between occurrences of the same event.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The token \"0.87\" is a variable representing a floating point number and \"12000\" is also a variable representing a whole number.\n\nTemplate: Cache hit ratio is <*>.87 after <*> requests",
+      "Reasoning: The tokens \"0.87\" and \"12000\" are variables representing a value that can change between occurrences of the same event.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The tokens \"0.87\", \"12000\" are variables as they are numbers and change between occurrences of the same event.\n\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The tokens \"0.87\", \"12000\" are variable numeric values, and \"0.87\" and \"12000\" are numbers which are variable, the rest of the text is constant.\nTemplate: Cache hit ratio is <*> after <*> requests"
+    ],
+    [
+      "Reasoning: The log message does not contain any variable tokens.\nTemplate: Server started successfully",
+      "Reasoning: The tokens \"Server\" and \"successfully\" are fixed text, so they remain unchanged, but \"started\" is a variable because it could be \"started\", \"stopped\", or another action, so it is replaced with <*>.\n\nTemplate: Server <*> successfully",
+      "Reasoning: The log message is a simple success message with no variable tokens.\n\nTemplate: Server started successfully",
+      "Reasoning: The word \"Server\" and \"successfully\" are fixed text, but the word \"started\" is often variable, so we'll assume it's variable in this case.\n\nTemplate: Server <*> successfully",
+      "Reasoning: The entire log message does not contain any variable parts.\nTemplate: Server started successfully",
+      "Reasoning: The log message does not contain any variable tokens, so no replacement is needed.\n\nTemplate: Server started successfully",
+      "Reasoning: The token \"Server\" is a fixed word, and \"started successfully\" is a fixed phrase, so only the variable part does not exist in this log message.\nTemplate: Server started successfully",
+      "Reasoning: The log message contains a variable server ID or name since it's likely to change between occurrences of the same event.\nTemplate: Server <*> started successfully.",
+      "Reasoning: The word \"Server\" is a class name, so it should be kept as it is, while \"started\" and \"successfully\" are fixed words, and \"started\" is a verb in this context, so they are not variables.\n\nTemplate: Server started successfully",
+      "Reasoning: The log message contains no variables, so all tokens are considered fixed.\n\nTemplate: Server started successfully"
+    ],
+    [
+      "Reasoning: The tokens 'port 8080' and 'Address already in use' contain variable information.\n\nTemplate: Failed to open socket on <*>: <*>",
+      "Reasoning: The log message contains a variable port number.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The tokens \"port 8080\" are variables because they are numbers.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The tokens \"8080\" and \"Address already in use\" are variable parts of the log message, while \"Failed to open socket on port\" is a fixed phrase.\n\nTemplate: Failed to open socket on port <*>: <*>",
+      "Reasoning: The tokens 'port 8080' and 'Address already in use' are variable as they can have different values, while 'Failed to open socket on' is a fixed phrase.\n\nTemplate: Failed to open socket on <*>: <*>",
+      "Reasoning: The tokens \"port 8080\" are variables as they can change between occurrences of the same event.\n\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The tokens '8080' and 'Address' are variable, but 'Address' is not variable, so the reason is the port number.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The tokens in the log message that change are port numbers and IP addresses, which are variable parts.\n\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The tokens \"port 8080\" are variables because they contain a number that could potentially change.\n\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The log message contains a variable port number and an IP address implied by the error message, but since the error message does not specify an IP address, we will assume that the variable is just the port number and the word \"Address\".\n\nTemplate: Failed to open socket on port <*>: Address already in use"
+    ],
+    [
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" are variable numbers, and the token \"5\" is also a variable number.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3 of 5\" contain variable information.\nTemplate: Retrying request <*> (attempt <*> of <*>).",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" are variable parts representing IDs and a number, respectively.\n\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" and \"5\" are variable numbers and \"attempt 3 of 5\" is a variable range.\n\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens 5a3f9c2e, 3, and 5 are variable parts (ID, attempt number, and total attempts respectively).\nTemplate: Retrying request <*> (attempt <*> of <*>).",
+      "Reasoning: The tokens '5a3f9c2e' and '3 of 5' are variable, so they will be replaced with <*>.\n\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" are variable numbers.\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens '5a3f9c2e' and '3 of 5' are variables.\nTemplate: Retrying request <*> (attempt <*> of <*>)",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" are variable parts of the log message.\n\nTemplate: Retrying request <*> (attempt <*> of <*>",
+      "Reasoning: The tokens \"5a3f9c2e\" and \"3\" are variable numbers.\nTemplate: Retrying request <*> (attempt <*> of 5)"
+    ],
+    [
+      "Reasoning: The variable token is the disk path \"/dev/sda1\", which changes between occurrences of the same event, so it needs to be replaced with <*>.\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The tokens /dev/sda1 and 91 percent are variable parts of the log message as they may change.\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The token \"/dev/sda1\" is a file path, which is a variable.\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable file path and a variable percentage value.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The tokens \"/dev/sda1\" are variable because they represent a file path that can change.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The variable part is the path /dev/sda1, which is a file path.\n\nTemplate: Disk usage on <*> reached 91 percent",
+      "Reasoning: The variable part in this log message is the file path /dev/sda1.\n\nTemplate: Disk usage on <*> reached 91 percent",
+      "Reasoning: The tokens \"/dev/sda1\" and \"91\" are variable as they are values that can change between occurrences of the same event.\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable disk path.\n\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: The log message contains a variable file path.\nTemplate: Disk usage on <*> reached <*> percent"
+    ],
+    [
+      "Reasoning: The token 'node-14' is a variable host name.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variable parts as they contain numbers and can change between occurrences of the same event.\n\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variables.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The log message contains a variable token \"node-14\" which is a variable as it can change between occurrences of the same event.\n\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variables, which are replaced with <*>.\n\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variables.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variable parts of the log message.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The log message contains a variable node ID and a variable duration.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variable numbers and \"ms\" is a fixed unit of measurement.\n\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: The tokens \"node-14\" and \"3021\" are variable parts that need to be replaced.\nTemplate: Received heartbeat from <*> after <*> ms"
+    ]
+  ],
+  "ground_truths": [
+    [
+      "Connection from <*> closed"
+    ],
+    [
+      "Worker <*> finished job <*> in <*> ms"
+    ],
+    [
+      "User <*> logged in from <*>"
+    ],
+    [
+      "Deleted file <*>"
+    ],
+    [
+      "Cache hit ratio is <*> after <*> requests"
+    ],
+    [
+      "Server started successfully"
+    ],
+    [
+      "Failed to open socket on port <*>: Address already in use"
+    ],
+    [
+      "Retrying request <*> (attempt <*> of <*>)"
+    ],
+    [
+      "Disk usage on <*> reached <*> percent"
+    ],
+    [
+      "Received heartbeat from <*> after <*> ms"
+    ]
+  ]
+}

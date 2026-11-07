@@ -15,7 +15,7 @@ import math
 import statistics
 from pathlib import Path
 
-from clotho.dataset.log_parsing.output_parsers import score_output
+from clotho.dataset.log_parsing.output_parsers import PASS_SCORER, score_output
 from clotho.exp_config import supported_datasets
 
 EXP = Path(__file__).resolve().parent
@@ -37,9 +37,9 @@ def pass_rates(model, template, ds):
     for r in res:
         sc = [score_output(o, r["GT"], template) for o in r["inferences"]]
         n_out += len(sc)
-        out_pass += sum(s["normalized_match"] for s in sc)
+        out_pass += sum(s[PASS_SCORER] for s in sc)
         parse_fail += sum(s["parse_failure"] for s in sc)
-        inp_scores.append(sum(s["normalized_match"] for s in sc) / len(sc))
+        inp_scores.append(sum(s[PASS_SCORER] for s in sc) / len(sc))
     n_pass = sum(s > PASS_THRESH for s in inp_scores)
     return {"n": len(res), "out_pass": out_pass / n_out, "parse_fail": parse_fail / n_out,
             "inp_pass": n_pass / len(res), "n_pass": n_pass}
@@ -77,7 +77,7 @@ def main():
     ap.add_argument("-p", "--templates", nargs="+", default=["messages_template", "rules_template"])
     a = ap.parse_args()
     L = ["# log_parsing Phase 2: 14 Loghub-2.0 systems x 2 prompts (llama, vLLM generation, Clotho random/pca, layer 21)\n",
-         "Input PASS = more than 5 of 10 samples match the ground-truth template after normalization. "
+         f"Input PASS = more than 5 of 10 samples match the ground-truth template ({PASS_SCORER}). "
          "ROC-AUC is over inputs not yet in the reference set; reference size includes the 10 initial tests. "
          "`first fit` = reference size at which Clotho first fitted a GMM.\n"]
     summary = {}
