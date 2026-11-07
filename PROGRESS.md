@@ -46,6 +46,51 @@ Report: `experiments/reports/log_parsing_tuning.{md,json}` (also in RESULTS_REPO
   - Tuning-system macro (in-sample, optimistic): balanced L16 0.820 @100 / 0.862 @200 vs L21 0.779 / 0.865.
 - Recommended config for the baseline comparison: balanced, layer 16. Phase 3 baselines (`log_parsing_phase3.py`) still use random + layer 21; rerunning them needs `method`/`layer` passed through `evaluate`.
 
+## Phase 3 final (2026-11-07): fair config, leakage-free label, realistic lookup, hybrid
+Report: `experiments/reports/log_parsing_phase3_final.{md,json}`. Driver: `experiments/log_parsing_phase3_final.py` (`run`, `post`, `report --push`; protocol in its docstring). Per-job JSON in RESULTS_REPO `results_phase3/final/<setting>/<split>/<system>/seed<k>.json` (390 jobs, 11 min on 8 workers).
+- Settings: **fair_leakfree** (main): balanced sampling, layer 16 for Clotho/MDSA/GMMb, label on samples 5-9 (PASS if >= 3 of 5 strict matches), post-generation scores on samples 0-4 only. **fair_leaky**: same config, original label (> 5 of 10) and post-generation scores on all 10 samples. **old_leaky**: Phase 3 setup (random, layer 21, original label), secondary table. Splits: standard and template-disjoint. 5 seeds, reference sizes 50/100/200.
+- Initial tests are relabelled the same way (their raw outputs are stored; the relabel reproduces the stored test_scores exactly).
+- GMMb = the paper's "GMM_base" = `SA(mode="MLSA")` (README: `run_baseline_OOD.py` "computes MDSA and GMM_base").
+- Leakage caveat: the leakage-free label uses 5 samples instead of 10, so it is noisier and every method drops, including pre-generation methods, which cannot leak. Read the post-generation drop beyond the pre-generation drop as the leakage.
+- On disjoint splits, balanced picks come only from the reference pool, and `ensure_nonzero_entropy` runs on pool + reference rather than on every input. The bit-identical check against core covers the standard split only.
+
+**Drain** (`experiments/log_parsing_drain.py`, report `experiments/reports/log_parsing_drain.md`, groups in RESULTS_REPO `data/.../precalculated_metrics/drain_groups.json`): per system, on the 500 suite messages, label-free.
+- `Lookup (Drain)`: logparser3 Drain with the Loghub-2.0 benchmark settings (regex, st, depth) from logpai/loghub-2.0 `benchmark/old_benchmark/Drain_benchmark.py` @ac4aad2, which Loghub-2.0's `Drain_eval.py` uses. These are the same as logparser3's own loghub_2k settings except Spark, which has no regex in Loghub-2.0. Grouping accuracy: mean 0.849. OpenStack is 0.234 because its `\d+` regex breaks instance UUIDs into digit fragments, giving 407 groups for 48 templates. That is how the published setting behaves.
+- `Lookup (Drain, default)`: drain3 `TemplateMiner()` defaults. GA mean 0.850 (OpenStack 0.498).
+- `Lookup (oracle)`: Loghub ground-truth templates (the earlier `template_lookup`).
+- Hybrid: for each test input, use the Drain-lookup score if its Drain (Loghub-2.0) group occurs among the non-initial reference inputs, else the Clotho score; both rank-normalised to [0,1] over the test set.
+
+**Post-generation pass** (`experiments/log_parsing_postgen.py`, user-approved). Teacher-forced HF forward pass over the existing gen_vllm outputs; no regeneration. Outputs go to `data/.../precalculated_metrics/rules_template/<ds>_postgen{,_samples}.pkl`, pushed per system.
+- Tok-Prob/Tok-Ent use sample 0 (paper convention), LOHSvar uses layer 23 at the inference-end token, and Sem-Ent uses DeBERTa-v2-xlarge-mnli strict bidirectional entailment. `*_s04` columns are the samples 0-4 variants.
+- Parity vs the repo helpers (3 inputs x 10 samples): max |diff| 0.015 (mean log-prob) and 0.006 (mean entropy).
+- Fixes found on the way:
+  - The repo helper's `prompt_len` is one token too long (a double `<|begin_of_text|>`), so 3-2/3-3 drop the first output token. `*_paper` columns reproduce this.
+  - The llama wrapper's added `<pad>` row (random lm_head weights) is excluded from the softmax.
+  - The DeBERTa fast tokenizer fails with a protobuf version clash, so the slow tokenizer is used.
+  - `from_pretrained` on DeBERTa hung >10 min in the safetensors auto-conversion lookup; fixed with `use_safetensors=False`.
+- Speed: measured 2.1 inputs/s without semantic entropy (~4 min/system), with the CPU shared. That is slower than my earlier 15-25 min estimate for the whole pass. Semantic entropy runs as a separate DeBERTa-only process (`--se_only --wait`) beside the main pass.
+
+**Cost to scale each kept system to 2,000 inputs (estimate only, not run).** All 13 systems have enough unique messages: from 9,560 (HPC) to 1.2 M (Thunderbird). HDFS and Spark logs are not on this machine; their raw logs are large. Rates measured on this L40S this session:
+
+| step | rate measured | 13 systems x 2,000 (fresh sample) | 13 x 1,500 extra (keep current 500) |
+|---|---|---|---|
+| Loghub download + sampling (CPU) | 394 MB of zips for 10 systems (HDFS, Spark, Thunderbird extra) | ~15-30 min | same |
+| `hidden`, layers 11/16/21/24 in one pass | ~20 inputs/s | ~22 min | ~16 min |
+| `gen_vllm`, 10 samples | 50-75 s per 500 inputs + ~45 s engine start | ~55 min | ~40 min |
+| SLL (could be fused into the hidden pass) | ~20 inputs/s | ~22 min | ~16 min |
+| post-generation pass, no SE | 2.1 inputs/s (CPU contended) | ~3.4 h | ~2.6 h |
+| semantic entropy (DeBERTa) | see report once the run ends | ~1.5-3 h (est.) | ~1.1-2.3 h |
+| Phase 3 final CPU jobs (390) | 11 min at 500 inputs | ~40-60 min (est. 4-5x: PCA, scoring and balanced max-min distances scale with N) | same |
+| storage | hidden 33 MB per layer-system | ~1.7 GB hidden (4 layers) + ~4x generations | ~1.3 GB |
+
+- Total ≈ 7-9 GPU-hours with the current post-gen script, which is more than one 10 h session once setup and pushes are included. Plan for 2 sessions; all stages are resumable by shard or system.
+- Cheap savings:
+  - Batch several inputs per forward pass in post-gen, or share the prompt KV across the 10 samples (likely 3-5x).
+  - Fuse SLL into the hidden pass.
+  - Run the DeBERTa tokenizer fast path once protobuf is fixed.
+- "Keep current 500" means a 1,500-message extension disjoint from the current suite. The stratified sampler does not nest (a 2,000 sample would not contain today's 500), so the extension follows a different template mix. A fresh 2,000 sample is cleaner but regenerates everything.
+- Mac (626 templates) and Thunderbird (1,241) would get every template at 2,000, with ~3 and ~1.6 inputs per template. Templates would repeat in the reference set, which raises the AUC of template-based signals (see "Why Thunderbird is weak").
+
 ## Decisions (2026-11-07: scorer, template, dropped systems)
 
 Inputs: all 28 generations (2 templates x 14 systems x 500 inputs x 10 samples), rescored without regeneration by `experiments/log_parsing_rescore.py` (report: `experiments/reports/log_parsing_rescore.md`, also in RESULTS_REPO `reports/`).

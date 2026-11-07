@@ -179,11 +179,17 @@ def main():
     ap.add_argument("-d", "--datasets", nargs="+",
                     default=[d for d in supported_datasets[TASK] if "proxifier" not in d])
     ap.add_argument("--no_se", action="store_true", help="skip semantic entropy")
+    ap.add_argument("--se_only", action="store_true",
+                    help="add semantic entropy to existing <ds>_postgen.pkl files (uses the stored log-likelihoods)")
     ap.add_argument("--limit_check", type=int, default=0,
                     help="parity check only: compare against the repo helpers on N inputs of the first dataset")
+    ap.add_argument("--wait", action="store_true", help="--se_only: wait for each system's postgen file")
     ap.add_argument("--push", action="store_true")
     a = ap.parse_args()
     os.chdir(EXP)
+    if a.se_only:            # DeBERTa only (no Llama), so it can run beside the main pass
+        se_only(a.datasets, a.template, BatchedNLI("cuda"), a.push, wait=a.wait)
+        return
     import clotho.models.llama as llama
     if a.limit_check:
         parity(llama, a.datasets[0], a.template, a.limit_check)
@@ -191,6 +197,40 @@ def main():
     nli = None if a.no_se else BatchedNLI(llama.device)
     for ds in a.datasets:
         run_system(ds, a.template, llama, nli, a.push)
+
+
+def se_only(datasets, template, nli, push, wait=False):
+    from clotho.metrics.semantic_entropy import logsumexp_by_id, predictive_entropy_rao
+    od = out_dir(template)
+    for ds in datasets:
+        p = od / f"{ds}_postgen.pkl"
+        while wait and not p.exists():
+            time.sleep(20)
+        if not p.exists():
+            print(f"{ds}: no postgen file yet, skip")
+            continue
+        df = pd.read_pickle(p).sort_values("input_index").reset_index(drop=True)
+        if "sem_ent" in df.columns:
+            print(f"{ds}: semantic entropy present, skip")
+            continue
+        sm = pd.read_pickle(od / f"{ds}_postgen_samples.pkl").sort_values(["input_index", "inference_index"])
+        gen = json.load(open(EXP / f"data/results_llama/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))
+        se, se5, nc, ids = [], [], [], []
+        t0 = time.time()
+        for i, g in enumerate(tqdm(gen, desc=f"SE {ds}")):
+            ll = sm[sm.input_index == i]["avg_logprob"].tolist()
+            sid = nli.semantic_ids(g["inferences"])
+            se.append(float(predictive_entropy_rao(logsumexp_by_id(sid, ll))))
+            se5.append(float(predictive_entropy_rao(logsumexp_by_id(sid[:5], ll[:5]))))
+            nc.append(len(set(sid)))
+            ids.append(sid)
+        df["sem_ent"], df["sem_ent_s04"], df["n_sem_clusters"], df["semantic_ids"] = se, se5, nc, ids
+        df.to_pickle(p)
+        print(f"wrote semantic entropy into {p.relative_to(EXP)} ({time.time() - t0:.0f} s)", flush=True)
+        if push:
+            import hub_sync as hs
+            rel = str(p.relative_to(EXP))
+            hs.commit_files(hs.get_results_repo(), {rel: p}, f"log_parsing postgen SE {ds}")
 
 
 def parity(llama, ds, template, n):

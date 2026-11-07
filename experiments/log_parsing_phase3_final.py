@@ -235,8 +235,9 @@ def post_scores(ds, label):
     df = pd.read_pickle(p).sort_values("input_index")
     s = system_data(ds)
     lf = label == "leakfree"
+    se = "sem_ent_s04" if lf else "sem_ent"
     return {"tok_prob": df["tok_prob"].to_numpy(), "tok_ent": -df["tok_ent"].to_numpy(),
-            "sem_ent": -df["sem_ent_s04" if lf else "sem_ent"].to_numpy(),
+            **({"sem_ent": -df[se].to_numpy()} if se in df.columns else {}),
             "loh_var": -df["loh_var_s04" if lf else "loh_var"].to_numpy(),
             "out_entropy": -np.array([_entropy(x[:5] if lf else x) for x in s["parsed"]])}
 
@@ -245,16 +246,18 @@ def add_post():
     done = 0
     for f in sorted(OUT.glob("*/*/*/seed*.json")):
         d = json.loads(f.read_text())
-        if "rows" not in d or any(r["method"] in POST for r in d["rows"]):
+        if "rows" not in d:
             continue
         ps = post_scores(d["system"], d["label"])
-        if ps is None:
+        have = {r["method"] for r in d["rows"]}
+        todo = [m for m in POST if ps is not None and m in ps and m not in have]
+        if not todo:
             continue
         B = build(d["system"], d["setting"])
         for ref_n, r in d["runs"].items():
             t = np.array(r["test"])
             y = B["sc"][t] > L.PASS_THRESH
-            for m in POST:
+            for m in todo:
                 auc, top = L.metrics(y, ps[m][t], d["seed"])
                 d["rows"].append({"ref": int(ref_n), "method": m, "auc": auc, "fail_top50": top})
         f.write_text(json.dumps(d))
