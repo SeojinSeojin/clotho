@@ -36,3 +36,11 @@ clotho/.archived
 clotho/dataset/.not_used
 _playground_transformers_internal_states/
 logs/
+
+# --- session-persistence workflow (setup.sh / experiments/sharded) ---
+!setup.sh
+.venv/
+.venv-vllm/
+experiments/sharded_work/
+experiments/.cache/
+experiments/data/.cache/

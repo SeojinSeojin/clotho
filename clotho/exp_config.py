@@ -33,6 +33,11 @@ task2labeler = {
     'topic_classification': clotho_dataset.topic_classification.output_parsers.label_output
 }
 
+# Module paths for prompt-template variations, used by the `--use_variation` flag
+# of the data_extraction scripts. Those scripts import this name, so it must
+# exist; no task ships variations yet.
+task2template_variation = {}
+
 task2input_key = {
     'syntactic_bug_detection': 'code',
     'spell_check': 'misspelled',
