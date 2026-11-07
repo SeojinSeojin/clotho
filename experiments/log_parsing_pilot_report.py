@@ -93,19 +93,25 @@ def main():
         L.append(f"| {j} | {inp['id']} | {cell(inp['content'])} | {cell(inp['template'])} | {cell(shown)} | "
                  f"{'parse_failure' if s['parse_failure'] else 'mismatch'} |")
 
-    # Clotho ROC-AUC
+    # Clotho ROC-AUC. run_clotho_iterations.py only puts it in plot titles, so it is
+    # recomputed from the result pickle like the RQ notebooks: per iteration, AUC of
+    # (test_score > PASS_THRESH) vs GMM log-likelihood over inputs not yet in the
+    # reference set (label == 'test'). Iterations before the GMM could be fitted
+    # are absent from the pickle.
     pkls = sorted(glob.glob(str(EXP / f"results_clotho/LIHS_refset_iter_*_{a.model}/log_parsing/layer_*_seed_*/*_pca.pkl")))
     if pkls:
         import pandas as pd
-        L.append("\n## Clotho ROC-AUC (on inputs not yet in the reference set)\n")
+        from sklearn.metrics import roc_auc_score
+        L.append("\n## Clotho ROC-AUC (inputs not yet in the reference set)\n")
         for p in pkls:
             df = pd.read_pickle(p)
-            L.append(f"**{Path(p).parent.name} / {Path(p).stem}** (columns: {', '.join(map(str, df.columns))})\n")
-            cols = [c for c in df.columns if "roc" in str(c).lower()]
-            if cols:
-                show = df[[c for c in df.columns if any(k in str(c).lower() for k in ("iter", "refset", "size", "roc", "spearman"))]]
-                L.append("```\n" + show.iloc[[0, 1, 2, 4, 9, 19, -1] if len(show) > 20 else slice(None)].to_string() + "\n```")
-                L.append("")
+            L.append(f"**{Path(p).parent.name} / {Path(p).stem}**: first fitted iteration {df.iteration.min()}\n")
+            L.append("| iteration | reference set | test inputs | test PASS | ROC-AUC |\n|---|---|---|---|---|")
+            for it, g in df.groupby("iteration"):
+                t = g[g.label == "test"]
+                y = (t.test_score > PASS_THRESH).astype(int)
+                auc = roc_auc_score(y, t.logprob) if 0 < y.sum() < len(y) else float("nan")
+                L.append(f"| {it} | {(g.label == 'ref').sum()} | {len(t)} | {y.sum()} | {auc:.3f} |")
     else:
         L.append("\n## Clotho ROC-AUC\n\n(no results_clotho pickles for log_parsing yet)")
 
