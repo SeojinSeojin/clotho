@@ -24,6 +24,8 @@ Outputs (data/results_llama/log_parsing/precalculated_metrics/<template>/):
   <ds>_postgen_samples.pkl  one row per (input, sample): avg log-prob / entropy (correct and paper), per-token arrays
   <ds>_postgen.pkl          one row per input: tok_prob, tok_ent (sample 0), loh_var, sem_ent, n_sem_clusters,
                             plus *_paper and mean-over-10-samples variants
+Leakage-free variants (*_s04) use samples 0-4 only, for a pass label computed on samples 5-9; tok_* use
+sample 0, which is already inside 0-4.
 Higher tok_prob = more confident; higher tok_ent, loh_var, sem_ent = more uncertain.
 """
 import argparse
@@ -93,8 +95,10 @@ def loh_variance(states):
 class BatchedNLI:
     def __init__(self, device):
         from transformers import AutoModelForSequenceClassification, AutoTokenizer
-        self.tok = AutoTokenizer.from_pretrained(NLI)
-        self.model = AutoModelForSequenceClassification.from_pretrained(NLI).to(device).eval()
+        self.tok = AutoTokenizer.from_pretrained(NLI, use_fast=False)   # fast conversion hits a protobuf version clash
+        # the repo has only pytorch_model.bin; without use_safetensors=False, transformers' safetensors
+        # auto-conversion lookup hung for >10 min here
+        self.model = AutoModelForSequenceClassification.from_pretrained(NLI, use_safetensors=False).to(device).eval()
         self.device = device
 
     @torch.no_grad()
@@ -149,11 +153,15 @@ def run_system(ds, template, llama, nli, push):
                "tok_prob_paper": s[0]["avg_logprob_paper"], "tok_ent_paper": s[0]["avg_entropy_paper"],
                "tok_prob_mean10": float(np.mean([x["avg_logprob"] for x in s])),
                "tok_ent_mean10": float(np.mean([x["avg_entropy"] for x in s])),
-               "loh_var": loh_variance([x["ie"] for x in r])}
+               "loh_var": loh_variance([x["ie"] for x in r]),
+               "loh_var_s04": loh_variance([x["ie"] for x in r[:5]])}   # leakage-free variant (label on 5-9)
         if nli is not None:
             sid = nli.semantic_ids(outs)
             row["sem_ent"] = float(predictive_entropy_rao(logsumexp_by_id(sid, [x["avg_logprob"] for x in s])))
             row["n_sem_clusters"] = len(set(sid))
+            # greedy clustering assigns sample j using only representatives i < j, so sid[:5] equals the
+            # clustering of samples 0-4 alone
+            row["sem_ent_s04"] = float(predictive_entropy_rao(logsumexp_by_id(sid[:5], [x["avg_logprob"] for x in s[:5]])))
             row["semantic_ids"] = sid
         irows.append(row)
     pd.DataFrame(srows).to_pickle(od / f"{ds}_postgen_samples.pkl")
