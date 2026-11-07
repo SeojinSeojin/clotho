@@ -134,9 +134,30 @@ def cmd_pull_results(args):
     print(f"[hub_sync] pulled {len(wanted)} files from {repo} into {EXP_DIR} in {time.time() - t0:.0f}s")
 
 
+def cmd_push(args):
+    """Upload paths under experiments/ to the same paths in RESULTS_REPO (one commit)."""
+    files = {}
+    for rel in args.paths:
+        p = (EXP_DIR / rel).resolve()
+        if not p.exists() or EXP_DIR not in p.parents:
+            raise SystemExit(f"{rel}: must be an existing path under {EXP_DIR}")
+        for f in ([p] if p.is_file() else sorted(x for x in p.rglob("*") if x.is_file())):
+            files[f.relative_to(EXP_DIR).as_posix()] = f
+    if not files:
+        raise SystemExit("nothing to push")
+    repo = get_results_repo()
+    ensure_repo(repo)
+    commit_files(repo, files, args.message or f"push {', '.join(args.paths)}")
+    print(f"[hub_sync] pushed {len(files)} file(s) to {repo}")
+
+
 def main():
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
+    u = sub.add_parser("push", help="upload paths (relative to experiments/) to RESULTS_REPO")
+    u.add_argument("paths", nargs="+")
+    u.add_argument("-m", "--message")
+    u.set_defaults(fn=cmd_push)
     d = sub.add_parser("download-model")
     d.add_argument("model_id")
     d.set_defaults(fn=cmd_download_model)
