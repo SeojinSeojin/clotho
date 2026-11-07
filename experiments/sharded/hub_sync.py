@@ -43,9 +43,16 @@ def get_token():
 
 
 def get_results_repo(required=True):
-    repo = os.environ.get("RESULTS_REPO")
+    repo = os.environ.get("RESULTS_REPO", "").strip()
     if not repo and required:
         raise SystemExit("RESULTS_REPO is not set (e.g. export RESULTS_REPO=<user>/clotho-results).")
+    # Accept a pasted URL too: https://huggingface.co/datasets/<user>/<name>[/tree/main]
+    for pre in ("https://huggingface.co/", "http://huggingface.co/", "huggingface.co/", "datasets/"):
+        if repo.startswith(pre):
+            repo = repo[len(pre):]
+    repo = "/".join(repo.strip("/").split("/")[:2])
+    if repo and repo.count("/") != 1:
+        raise SystemExit(f"RESULTS_REPO must look like <user>/<name>, got {os.environ['RESULTS_REPO']!r}")
     return repo or None
 
 
