@@ -65,22 +65,54 @@ def normalize(template):
     return t
 
 
+def lenient(template, extensions=()):
+    """normalize(), then every whitespace token containing <*> becomes exactly <*>
+    ("blk_<*>" -> "<*>", "/<*>:<*>" -> "<*>", "<*>," -> "<*>"), then normalize()
+    again so the resulting adjacent <*> merge. Applied identically to prediction and GT.
+    `extensions`: rewrites applied first (see LENIENT_EXTENSIONS)."""
+    for ext in extensions:
+        template = ext(template)
+    t = normalize(template)
+    t = " ".join("<*>" if "<*>" in tok else tok for tok in t.split(" "))
+    return normalize(t)
+
+
+# Extensions of the lenient rule found by inspecting remaining failures (PROGRESS.md "Decisions").
+# Cumulative: lenient_x1_match uses extension 1, lenient_x2_match uses 1 and 2.
+LENIENT_EXTENSIONS = []
+
+# Which match level is the Clotho pass label. See PROGRESS.md "Decisions".
+PASS_SCORER = "normalized_match"
+SCORERS = ("strict_match", "normalized_match", "lenient_match") + tuple(
+    f"lenient_x{i + 1}_match" for i in range(len(LENIENT_EXTENSIONS)))
+
+
+def lenient_for(scorer):
+    """The canonicalising function behind a lenient* scorer, or None for strict/normalized."""
+    if not scorer.startswith("lenient"):
+        return None
+    k = 0 if scorer == "lenient_match" else int(scorer[len("lenient_x"):-len("_match")])
+    exts = tuple(LENIENT_EXTENSIONS[:k])
+    return lambda t: lenient(t, exts)
+
+
 def score_output(actual_answer, expected_answer, template_name='messages_template'):
-    """Full record for analysis: parsed template, parse_failure, strict_match, normalized_match."""
+    """Full record for analysis: parsed template, parse_failure, strict/normalized/lenient match."""
     parsed, error = template2parser[template_name](actual_answer)
     expected = expected_answer[0]
     if error:
-        return {"parsed": None, "parse_failure": True, "strict_match": False, "normalized_match": False}
+        return {"parsed": None, "parse_failure": True, **{k: False for k in SCORERS}}
     return {"parsed": parsed, "parse_failure": False,
             "strict_match": parsed == expected,
-            "normalized_match": normalize(parsed) == normalize(expected)}
+            "normalized_match": normalize(parsed) == normalize(expected),
+            **{k: lenient_for(k)(parsed) == lenient_for(k)(expected) for k in SCORERS[2:]}}
 
 
-def label_output(actual_answer, expected_answer, template_name, return_parsed_answer=False):
-    # answer key order: template. Pass/fail label for Clotho = normalized match.
+def label_output(actual_answer, expected_answer, template_name, return_parsed_answer=False, scorer=None):
+    # answer key order: template. Pass/fail label for Clotho = PASS_SCORER.
     s = score_output(actual_answer, expected_answer, template_name)
     if s["parse_failure"]:
         return False, "parse_failure"
-    if s["normalized_match"]:
+    if s[scorer or PASS_SCORER]:
         return True, (s["parsed"] if return_parsed_answer else None)
     return False, (s["parsed"] if return_parsed_answer else "mismatch")

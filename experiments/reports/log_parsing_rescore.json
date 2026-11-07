@@ -1,0 +1,30 @@
+{
+  "log_parsing/messages_template/loghub_hdfs_500": {
+    "task": "log_parsing",
+    "template": "messages_template",
+    "dataset": "loghub_hdfs_500",
+    "n_inputs": 500,
+    "n_outputs": 5000,
+    "parse_fail": 0.0002,
+    "out_strict_match": 0.099,
+    "out_normalized_match": 0.1064,
+    "out_lenient_match": 0.4876,
+    "inp_strict_match": 0.026,
+    "inp_normalized_match": 0.026,
+    "inp_lenient_match": 0.44
+  },
+  "log_parsing_rules/messages_template/loghub_hdfs_500": {
+    "task": "log_parsing_rules",
+    "template": "messages_template",
+    "dataset": "loghub_hdfs_500",
+    "n_inputs": 500,
+    "n_outputs": 5000,
+    "parse_fail": 0.0004,
+    "out_strict_match": 0.395,
+    "out_normalized_match": 0.4078,
+    "out_lenient_match": 0.5898,
+    "inp_strict_match": 0.378,
+    "inp_normalized_match": 0.38,
+    "inp_lenient_match": 0.552
+  }
+}

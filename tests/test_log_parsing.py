@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from clotho.dataset.log_parsing.output_parsers import (
-    label_output, normalize, parse_result_messages_template as parse, score_output)
+    label_output, lenient, normalize, parse_result_messages_template as parse, score_output)
 from clotho.dataset.log_parsing.templates import template_map
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "clotho" / "dataset" / "log_parsing"
@@ -30,6 +30,26 @@ class TestNormalize(unittest.TestCase):
     def test_idempotent(self):
         for s in ["<*> <*> x", "  a  b ", "<*><*><*>", ""]:
             self.assertEqual(normalize(normalize(s)), normalize(s))
+
+
+class TestLenient(unittest.TestCase):
+    def test_token_with_wildcard_becomes_wildcard(self):
+        self.assertEqual(lenient("Receiving block blk_<*> src: /<*>:<*> dest: /<*>"), "Receiving block <*> src: <*> dest: <*>")
+        self.assertEqual(lenient("Receiving block <*> src: <*> dest: <*>"), "Receiving block <*> src: <*> dest: <*>")
+
+    def test_merges_after_mapping(self):
+        self.assertEqual(lenient("<*>:<*> <*>, x"), "<*> x")
+
+    def test_constants_untouched(self):
+        self.assertEqual(lenient("BLOCK* ask <*> to replicate"), "BLOCK* ask <*> to replicate")
+        self.assertNotEqual(lenient("Connection reset by <*>"), lenient("Connection reset by peer"))
+        self.assertNotEqual(lenient("<*> is valid"), lenient("Block <*> is valid"))
+
+    def test_lenient_scores(self):
+        s = score_output("Template: Receiving block blk_<*> src: /<*>", ["Receiving block <*> src: <*>"], T)
+        self.assertEqual((s["strict_match"], s["normalized_match"], s["lenient_match"]), (False, False, True))
+        self.assertTrue(label_output("Template: Receiving block blk_<*>", ["Receiving block <*>"], T,
+                                     scorer="lenient_match")[0])
 
 
 class TestParser(unittest.TestCase):
@@ -93,7 +113,7 @@ class TestLabelOutput(unittest.TestCase):
 
     def test_normalized_pass_strict_fail(self):
         out = "Reasoning: path and block id.\nTemplate: BLOCK* NameSystem.allocateBlock: <*>"
-        self.assertEqual(label_output(out, self.GT, T), (True, None))
+        self.assertEqual(label_output(out, self.GT, T, scorer="normalized_match"), (True, None))
         s = score_output(out, self.GT, T)
         self.assertEqual((s["strict_match"], s["normalized_match"], s["parse_failure"]), (False, True, False))
 
@@ -103,8 +123,8 @@ class TestLabelOutput(unittest.TestCase):
 
     def test_mismatch(self):
         out = "Reasoning: x\nTemplate: BLOCK* NameSystem.allocateBlock: /mnt/<*> <*>"
-        self.assertEqual(label_output(out, self.GT, T), (False, "mismatch"))
-        self.assertEqual(label_output(out, self.GT, T, return_parsed_answer=True),
+        self.assertEqual(label_output(out, self.GT, T, scorer="normalized_match"), (False, "mismatch"))
+        self.assertEqual(label_output(out, self.GT, T, return_parsed_answer=True, scorer="normalized_match"),
                          (False, "BLOCK* NameSystem.allocateBlock: /mnt/<*> <*>"))
 
     def test_parse_failure_is_fail(self):
