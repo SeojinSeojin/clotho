@@ -255,6 +255,26 @@ def report(ref_main=100):
             L_.append(f"- {SHORT(ds)}: " + "; ".join(f"{k}: {v}" for k, v in d.items()))
         L_.append("")
 
+    # survival of signal without template overlap, on systems where the disjoint split ran
+    kept = [ds for ds in SYSTEMS if W.get(("disjoint", ds)) and not any("skipped" in d for d in W[("disjoint", ds)])]
+    def sysmean(split, m, ds, r=ref_main):
+        xs = [x for x in collect(W.get((split, ds), []), m, r) if not np.isnan(x)]
+        return statistics.mean(xs) if xs else float("nan")
+    surv = {}
+    for name, split in (("std", "standard"), ("half", "randhalf"), ("disj", "disjoint")):
+        surv[name] = statistics.mean(sysmean(split, "clotho", ds) for ds in kept)
+    surv["lookup_std"] = statistics.mean(sysmean("standard", "template_lookup", ds) for ds in kept)
+    surv["retained_vs_half"] = (surv["disj"] - 0.5) / (surv["half"] - 0.5)
+    surv["retained_vs_std"] = (surv["disj"] - 0.5) / (surv["std"] - 0.5)
+    surv["n_systems"] = len(kept)
+    surv["disj_below_half"] = sum(sysmean("disjoint", "clotho", ds) < sysmean("randhalf", "clotho", ds) for ds in kept)
+    summary["survival"] = surv
+    L_.append(f"Signal without template overlap ({len(kept)} systems with a disjoint split, reference size {ref_main}): "
+              f"Clotho std {surv['std']:.3f}, Clotho half {surv['half']:.3f}, Clotho disj {surv['disj']:.3f}, "
+              f"template lookup {surv['lookup_std']:.3f}. AUC above chance kept by disj: "
+              f"{surv['retained_vs_half']:.0%} of half (same sizes), {surv['retained_vs_std']:.0%} of std. "
+              f"disj < half on {surv['disj_below_half']} of {len(kept)} systems.\n")
+
     # failures in top 50
     L_.append(f"## Failures found in the top 50 (standard split, reference size {ref_main})\n")
     L_.append("Number of failing inputs among the 50 test inputs each method ranks least likely to pass "
@@ -279,7 +299,9 @@ def report(ref_main=100):
         for r in L.REF_SIZES:
             per = []
             for ds in SYSTEMS:
-                runs = [d for d in W.get((split, ds), []) if "skipped" not in d]
+                runs = W.get((split, ds), [])
+                if any("skipped" in d for d in runs):
+                    continue            # system-level skip, as in the main table
                 xs = [x for x in collect(runs, m, r) if not np.isnan(x)]
                 if xs:
                     per.append(statistics.mean(xs))
@@ -297,6 +319,9 @@ def report(ref_main=100):
         L_.append(f"| {SHORT(a)} -> {SHORT(b)} | {runs[0]['shared_templates']} | " + " | ".join(row) + f" | {within} |")
         summary["cross"][f"{SHORT(a)}->{SHORT(b)}"] = dict(zip(("clotho", "lookup", "MDSA", "MLSA"), row))
     L_.append("")
+    findings = EXP / "reports" / "log_parsing_phase3_findings.md"   # hand-written, kept across regenerations
+    if findings.exists():
+        L_[2:2] = [findings.read_text().strip() + "\n"]
     out = EXP / "reports" / "log_parsing_phase3.md"
     out.write_text("\n".join(L_) + "\n")
     (EXP / "reports" / "log_parsing_phase3.json").write_text(json.dumps(summary, indent=1))
@@ -325,7 +350,8 @@ def main():
     else:
         report(a.ref_main)
         if a.push:
-            push([EXP / "reports" / "log_parsing_phase3.md", EXP / "reports" / "log_parsing_phase3.json"])
+            push([EXP / "reports" / f for f in ("log_parsing_phase3.md", "log_parsing_phase3.json",
+                                                "log_parsing_phase3_findings.md") if (EXP / "reports" / f).exists()])
 
 
 if __name__ == "__main__":

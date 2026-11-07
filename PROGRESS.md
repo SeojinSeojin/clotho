@@ -2,6 +2,13 @@
 
 Last updated: 2026-11-07
 
+**Summary (Phase 3, `experiments/reports/log_parsing_phase3.md`; rules_template, strict_match, 13 systems, 5 seeds, reference size 100):**
+1. Template lookup (failure rate of the same template in the reference set) ties Clotho: mean ROC-AUC 0.729 vs 0.730, and it wins on 7 of 13 systems.
+2. With no template shared between reference and test, Clotho falls from 0.722 to 0.650 (12 systems; HPC skipped). That keeps 67% of its above-chance AUC, and AUC stays flat as the reference set grows.
+3. Seeds: Clotho std over seeds is 0.02 to 0.08 (standard split) and up to 0.20 (template-disjoint).
+4. Cross-system reference sets give 0.50 to 0.66 (within-system 0.54 to 0.83). Best within the Hadoop family; none for BGL to Thunderbird.
+5. MDSA ties Clotho (0.732). MLSA 0.640, SLL 0.521, random 0.505. Post-generation output entropy reaches 0.939.
+
 ## Done
 - Phase 1 code: `setup.sh`, sharded resumable runner with RESULTS_REPO sync, vLLM path with prompt parity check, README "Ephemeral GPU servers".
 - spell_check `misspell_injected_wordnet`: shards 0 and 1 (size 500) of `hidden` and `gen_vllm` are in RESULTS_REPO (previous session).
@@ -12,42 +19,21 @@ Last updated: 2026-11-07
 - Phase 2 setup (user decisions 2026-11-07: both prompts, all 14 systems x 500, Clotho per system): 14 suites in `clotho/dataset/log_parsing/`, `rules_template`, parser fix for literal `*` runs, scripts `run_log_parsing_all.py`, `log_parsing_initial_set.py`, `run_clotho_log_parsing.py`, `log_parsing_phase2_report.py`.
 
 ## In progress
-- Clotho on messages_template, 13 systems (comparison; log `logs/clotho_messages.log`). Resumable.
+- Clotho on messages_template, 13 systems (comparison only; log `logs/clotho_messages.log`). Slow (5/13 after ~1 h) because it shared the CPU with Phase 3. Resumable: rerun the same command, finished systems are skipped.
 
 ## Next
-- When the messages_template Clotho run finishes: `cd experiments && python log_parsing_phase2_report.py` (both templates), commit, and add the comparison to PROGRESS.
-- Possible follow-up: separate "Clotho learns which templates are hard" from within-template signal (e.g. AUC computed within templates, or a split held out by template), since repeated templates seem to drive AUC.
+- When messages_template Clotho finishes: `cd experiments && python log_parsing_phase2_report.py` (both templates), commit.
+- Possible follow-ups from Phase 3: test whether Clotho adds anything over template lookup (e.g. a combined score, or AUC within templates); try other layers on the template-disjoint split; test whether MDSA's tie with Clotho holds at other reference sizes.
 
-## Phase 3 baseline plan (updated 2026-11-07, user request)
-Harness: `experiments/log_parsing_phase3.py` / `_lib.py`. Every method is scored on the same reference/test split per seed (standard split, reference size 100 in the main table).
-
-**Pre-generation (paper baselines; the repo implements all three)**
-- MDSA: `clotho.metrics.sa.SA(mode="MDSA")`, PCA(10), passing references. Already in the harness.
-- GMMb: the paper's "GMM_base" (README: `run_baseline_OOD.py` "computes MDSA and GMM_base"), which is `SA(mode="MLSA")`: a 5-component GMM on passing references, PCA(10). Already in the harness as `MLSA`. Rename the label to `GMMb`.
-- SLL: mean input-token log-likelihood (`log_parsing_sll.py`, same as `run_baseline_SLL.py`). 11/13 systems were done when checked; the job was still running.
-
-**Post-generation (paper baselines; the repo implements all four, but the inputs are missing)**
-- Token probability (Tok-Prob, mean output-token log-prob) and token entropy (Tok-Ent, mean full-vocab entropy): `3-2_token_based_metrics.py`, sample 0 only (as in `RQ/analysis_utils.py`).
-- Semantic entropy: `3-3_semantic_entropy.py` (DeBERTa-v2-xlarge-mnli bidirectional entailment over the 10 raw outputs, weighted by their log-likelihoods).
-- LOHSvar: `3-1_repeated_outputs_variance.py`, the trace of the covariance of the 10 layer-23 hidden states at the inference-end (IE) token.
-- Keep the existing `entropy` (entropy of the 10 *parsed* templates) as an extra, task-specific column. It is not a paper baseline.
-
-**Missing inputs.** `gen_vllm` saved only the decoded strings (`vllm_generate.py`: `detokenize=False`, no `logprobs`, no hidden states). So none of the four post-generation baselines can be computed yet.
-**Rerun needed:** a teacher-forced HF forward pass of Llama-3.1-8B over the *existing* outputs (prompt + output + EOS), 13 systems x 500 inputs x 10 samples = 65,000 sequences. Do NOT regenerate: new samples would change the pass/fail labels, and vLLM cannot return full-vocab entropy or hidden states. One fused pass records, per sample: output-token log-probs, per-token entropy, and the layer-23 hidden state at the position that predicts EOS (= 2-1's IE state). Then LOHSvar is computed on the fly, so the 530 MB of states need not be stored.
-**Cost** (measured: SLL runs at ~20 forward passes/s on ~275-token prompts; outputs add a median of 42 tokens, p95 85):
-- Fused pass: ~1 h unbatched, ~15-25 min if the 10 samples of an input are batched. The repo scripts as written take ~3 h, because 3-2 does 2 passes per output and 3-3 a third. They also have broken paths (`./dataset`, `/root/workspace`, dotenv).
-- Semantic entropy: raw outputs are almost all distinct (9.96 per input), so there are up to 90 DeBERTa calls per input, ~585k in total. Batching all pairs of an input (same greedy clustering result): ~20-40 min; as written: ~2+ h. 1.8 GB model download.
-- GPU memory: ~16 GB (Llama, bf16) + ~2 GB (DeBERTa). Fits on the L40S; run after SLL finishes to avoid contention.
-- Total: **~1 h GPU** with a new fused, batched script (`experiments/log_parsing_postgen.py`, outputs under `data/results_llama/log_parsing/precalculated_metrics/rules_template/`, pushed to RESULTS_REPO). **Awaiting user approval before running.**
-- Caveat: teacher-forced bf16 log-probs differ slightly (numerically) from vLLM's incremental decoding. Semantic entropy with NLI on log templates is of doubtful meaning; report it as the paper did, on raw outputs.
-
-**Template lookup**
-- `Lookup (oracle)`: the current `template_lookup`, using Loghub ground-truth templates. Rename it; it is an upper bound, because a deployed parser does not have these.
-- `Lookup (Drain)`: same rule (the failure rate of reference inputs in the same group; unseen group -> overall reference failure rate), with groups = Drain cluster IDs. `drain3` (pip; not installed yet), default `TemplateMiner` config (sim_th 0.4, depth 4, max_children 100, no masking). One fresh miner per system, fed the 500 suite messages in file order (label-free, like PCA fitted on every input). Initial tests get unique pseudo-groups. Also report Drain grouping accuracy against the ground-truth templates per system, to show how far Drain is from the oracle. (Alternative if wanted: logparser's per-system Loghub-2.0 benchmark settings, with regexes and st/depth.)
-
-**Report: one table, all methods.** Rows = methods: Clotho, MDSA, GMMb, SLL, Tok-Prob, Tok-Ent, Sem-Ent, LOHSvar, Lookup (Drain), Lookup (oracle), parsed-output entropy, random. Columns = phase (pre/post), ROC-AUC, failures in top 50. Each cell = mean ± std over 5 seeds (0-4) of the per-seed macro mean over 13 systems, standard split, reference size 100. Post-generation scores and SLL do not depend on the seed; their std comes only from the seed-dependent test set. A per-system breakdown goes in the same report as an appendix table. The disjoint/randhalf/cross sections stay as they are.
-
-Order: (1) wait for SLL; (2) add GMMb/oracle renames, Drain lookup and the combined table (CPU only); (3) after approval, the post-generation pass; (4) `within --splits standard` (5 seeds), then `report --push`.
+## Phase 3 (2026-11-07): template confound, seeds, cross-system, baselines
+- Code: `experiments/log_parsing_phase3_lib.py` (harness), `experiments/log_parsing_phase3.py` (`within`, `cross`, `report`, `--push`), `experiments/log_parsing_sll.py` (SLL inputs, GPU forward pass, no generation).
+- The harness reuses `run_clotho_iterations`' functions (CV feature choice, component adaptation, GMM on passing references) but takes an explicit reference pool and test set. `check_core_equivalence()` gives ROC-AUC identical to `rci.simulate_iterations` at all 10 reference sizes tested (HDFS, same random stream).
+- Reproducibility: the core runner never seeds `np.random` (reference extension and sklearn's randomized PCA use it), so its reference sequences are not reproducible. Phase 3 seeds both. Phase 2 numbers came from one unseeded run.
+- Speed: with `OMP_NUM_THREADS=1` and 12 worker processes, all 195 within-system runs and 25 cross-system runs take ~10 min (multithreaded BLAS was ~100x slower on these small GMMs).
+- Splits. standard = Clotho's protocol. disjoint = templates shuffled per seed, assigned to the reference pool until it holds >= 50% of inputs, test = the rest. randhalf = random split of the same sizes (control). A split is skipped when the pool has < 15 passing, or the test set has < 15 passing or < 15 failing. **Skipped: HPC disjoint** (seed 4 test set had 11 passing; its other seeds scored 0.16 to 0.53). Mac seed 1 is the next closest (23 passing in the pool).
+- Cross-system pairs: HDFS->Spark, Spark->HDFS, Hadoop->Spark (requested). Hadoop->HDFS (same ecosystem, the most likely to share templates; it shares none). BGL->Thunderbird (both supercomputer logs; Thunderbird is the weakest within-system).
+- Baselines: template lookup; MDSA and MLSA (`run_baseline_OOD.py` logic); SLL (`run_baseline_SLL.py` logic: mean input-prompt token log-prob, higher = pass, sign not tuned); output entropy over the 10 parsed outputs (post-generation); random. All use the same reference and test sets.
+- Results in RESULTS_REPO `results_phase3/` and `reports/`. SLL pickles in `data/results_llama/log_parsing/precalculated_metrics/rules_template/`. The findings text lives in `experiments/reports/log_parsing_phase3_findings.md`, and the report includes it on regeneration.
 
 ## Decisions (2026-11-07: scorer, template, dropped systems)
 

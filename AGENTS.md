@@ -18,6 +18,7 @@ This repo is a fork of github.com/coinse/clotho. We add log parsing as a new Clo
 3. Persist every result (shards, merged data, reports, Clotho outputs) to RESULTS_REPO, a private HF dataset repo. Use `experiments/sharded/hub_sync.py push <path under experiments/>`.
 4. Prefer new files over editing core Clotho code. Keep edits to core files small and registration only.
 5. Update PROGRESS.md and push at every milestone and when the user says the session is ending.
+6. Run CPU-bound Clotho/sklearn work with `OMP_NUM_THREADS=1` and parallel processes (`log_parsing_phase3.py` sets this itself).
 
 ## Session start
 ```bash
@@ -43,6 +44,8 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `clotho/exp_config.py`, `clotho/dataset/__init__.py`, `experiments/utils.py`, `experiments/generate_initial_set_data.py` | Task registration for log_parsing |
 | `tests/test_log_parsing.py` | Unit tests for the log parsing parser and scoring |
 | `experiments/log_parsing_pilot_report.py`, `experiments/reports/` | Pilot report generator and reports |
+| `experiments/log_parsing_rescore.py` | Rescore generations under strict / normalized / lenient; `--samples` dumps failures for inspection |
+| `experiments/log_parsing_phase3_lib.py`, `experiments/log_parsing_phase3.py`, `experiments/log_parsing_sll.py` | Phase 3: Clotho with controlled splits, baselines, cross-system, report |
 | `AGENTS.md`, `CLAUDE.md`, `PROGRESS.md` | Agent memory |
 
 RESULTS_REPO layout: `shards/<model>/<task>/<dataset>/<template>/<stage>/size<N>/shard_XXXXX/`, merged files under `data/`, Clotho outputs under `results_clotho/`.

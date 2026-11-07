@@ -1,0 +1,9 @@
+## Findings
+
+1. **Template lookup matches Clotho.** Scoring an input by its template's failure rate in the reference set gives mean ROC-AUC 0.729, against 0.730 for Clotho (reference size 100). At size 200, lookup leads, 0.784 to 0.770. Lookup wins on 7 of 13 systems, all with repeated templates. Clotho wins where templates rarely repeat (Mac, Thunderbird, BGL, Linux, Spark, Hadoop).
+2. **Part of Clotho's signal survives without template overlap.** On 12 systems, Clotho drops from 0.722 (random half split) to 0.650 when reference and test share no template. It is lower on 11 of 12 systems, keeping 67% of its above-chance AUC. With disjoint templates, AUC stays flat as the reference set grows (0.627, 0.650, 0.649). So larger reference sets help mainly by covering more templates. HPC was skipped: its passes sit in a few templates, and its four valid disjoint runs scored 0.16 to 0.53.
+3. **Seeds.** Clotho's standard-split std over 5 seeds is 0.02 to 0.08. Disjoint std reaches 0.20, as the split changes per seed.
+4. **Cross-system transfer is weak.** A reference set from another system gives 0.50 to 0.66, against 0.54 to 0.83 within the target system. Lookup is at chance (no shared templates, except 8 for Hadoop to Spark). Transfer works best within the Hadoop family: Hadoop to Spark 0.659, Hadoop to HDFS 0.631. BGL to Thunderbird gives none (0.495).
+5. **Baselines.** MDSA, a simpler hidden-state method, ties Clotho (0.732). MLSA scores 0.640, SLL 0.521 (inverted on some systems), and random 0.505. Output entropy over the 10 samples reaches 0.939 and puts 50 failures in the top 50 on every system. But it needs the generations, so it is not pre-generation.
+
+Overall: much of Clotho's AUC on Loghub is knowing which templates fail. The template-free remainder (about 0.65) is real but modest.
