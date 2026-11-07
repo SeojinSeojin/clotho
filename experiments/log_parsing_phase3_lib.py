@@ -31,6 +31,7 @@ import run_clotho_iterations as rci  # noqa: E402
 from clotho.preprocessing.feature_reduction import PCAFeatureReducer  # noqa: E402
 from clotho.metrics.reference_based.density_estimation import GMMScorerConfig  # noqa: E402
 from clotho.metrics.sa import SA  # noqa: E402
+from clotho.al.sampling import extend_reference_set_diversity, extend_reference_set_uncertainty  # noqa: E402
 from clotho.dataset.log_parsing.output_parsers import score_output  # noqa: E402
 from log_parsing_initial_set import initial_dir  # noqa: E402
 
@@ -45,7 +46,7 @@ SUITES = EXP.parent / "clotho" / "dataset" / "log_parsing"
 
 # ---------------------------------------------------------------- data
 
-def load_system(ds, template=TEMPLATE):
+def load_system(ds, template=TEMPLATE, layer=LAYER):
     """Hidden states, test scores, templates, entropy of the 10 parsed outputs, for one suite."""
     utils.target_testsuites[TASK] = [ds]
     utils.prompt_templates[TASK] = template
@@ -53,7 +54,7 @@ def load_system(ds, template=TEMPLATE):
     import os
     os.chdir(EXP)
     try:
-        H = utils.load_input_hidden_states(TASK, LAYER, model=MODEL).numpy().astype(np.float32)
+        H = utils.load_input_hidden_states(TASK, layer, model=MODEL).numpy().astype(np.float32)
         res, labels, scores = utils.get_test_results(MODEL, TASK)
     finally:
         os.chdir(cwd)
@@ -70,9 +71,9 @@ def load_system(ds, template=TEMPLATE):
             "templates": [s["template"] for s in src], "entropy": np.array(ent)}
 
 
-def load_initial(template=TEMPLATE):
+def load_initial(template=TEMPLATE, layer=LAYER):
     d = EXP / initial_dir(MODEL, template)
-    H = torch.load(d / f"hidden_vectors_layer_{LAYER}.pt", weights_only=False).astype(np.float32)
+    H = torch.load(d / f"hidden_vectors_layer_{layer}.pt", weights_only=False).astype(np.float32)
     scores = np.array(json.load(open(d / "inference_results.json"))["test_scores"], dtype=float)
     return H, scores
 
@@ -95,9 +96,31 @@ def assemble(systems, init):
 
 # ---------------------------------------------------------------- Clotho
 
-def clotho_run(H, scores, init_idx, pool, test, seed, ref_sizes=REF_SIZES, num_add=10, global_rng=False):
+def _extend_balanced(scorer, Z, ref, pool, num_add):
+    """Core 'balanced' extension (simulate_iterations): num_add//2 by GMM entropy (uncertainty), the rest
+    by greedy max-min Euclidean distance (diversity); diversity only while no scorer is fitted.
+    Calls the core functions on the sub-space U = pool + ref (sorted global index); with pool = every
+    non-initial input, U is every row and this is exactly the core call."""
+    U = np.array(sorted(set(pool) | set(ref)))
+    pos = {g: k for k, g in enumerate(U)}
+    Zu, ref_l = Z[U], [pos[i] for i in ref]
+    if scorer is None:
+        new = extend_reference_set_diversity(ref_l, Zu, num_add=num_add, metric="euclidean")
+    else:
+        unc, _ = extend_reference_set_uncertainty(scorer, ref_l, Zu, num_add=num_add // 2)
+        div = extend_reference_set_diversity(ref_l + unc, Zu, num_add=num_add - num_add // 2, metric="euclidean")
+        new = unc + div
+    return [int(U[k]) for k in new]
+
+
+def clotho_run(H, scores, init_idx, pool, test, seed, ref_sizes=REF_SIZES, num_add=10, global_rng=False,
+               method="random"):
     """Returns {ref_size: {"ref": ref indices, "test": test indices, "clotho": scores on test or None}}.
-    test=None -> every input of `pool` not in the reference set (core protocol)."""
+    test=None -> every input of `pool` not in the reference set (core protocol).
+    method: 'random' (core extend_reference_set_random) or 'balanced' (core default and the paper's
+    method: half uncertainty, half diversity, with ensure_nonzero_entropy once > 10 passing refs)."""
+    assert method in ("random", "balanced")
+    nonzero_entropy_checked = False
     labels = scores
     max_n_components = max_n_features = 50
     rng = np.random if global_rng else np.random.RandomState(seed)  # global: equivalence check only
@@ -128,6 +151,11 @@ def clotho_run(H, scores, init_idx, pool, test, seed, ref_sizes=REF_SIZES, num_a
             elif perp < current_n_components - 1.5:
                 current_n_components = max(current_n_components - 1, 5)
                 scorer_config = replace(scorer_config, n_components=current_n_components)
+            if method == "balanced" and num_eff > 10 and not nonzero_entropy_checked:
+                U = np.array(sorted(set(pool) | set(ref)))   # core: every input (= U on the standard split)
+                rci.ensure_nonzero_entropy(LIH_rep[current_n_features][ref], ref_lab,
+                                           LIH_rep[current_n_features][U], scorer_config)  # mutates reg_covar
+                nonzero_entropy_checked = True
             scorer = rci.construct_scorer(scorer_config)
             scorer.fit(LIH_rep[current_n_features][ref], ref_lab)
         if len(ref) in ref_sizes:
@@ -140,7 +168,10 @@ def clotho_run(H, scores, init_idx, pool, test, seed, ref_sizes=REF_SIZES, num_a
         cand = [i for i in pool if i not in rs]
         if len(cand) < num_add:
             break
-        ref.extend(rng.choice(cand, size=num_add, replace=False).tolist())
+        if method == "balanced":
+            ref.extend(_extend_balanced(scorer, LIH_rep[current_n_features], ref, pool, num_add))
+        else:
+            ref.extend(rng.choice(cand, size=num_add, replace=False).tolist())
     return out
 
 
@@ -177,7 +208,7 @@ def metrics(y_pass, s, seed, k=50):
     return auc, int((y_pass[order[:k]] == 0).sum())
 
 
-def check_core_equivalence(ds="loghub_hdfs_500", seed=0, iters=10):
+def check_core_equivalence(ds="loghub_hdfs_500", seed=0, iters=10, method="random"):
     """Run rci.simulate_iterations (global np.random seeded) and clotho_run on the standard split;
     compare ROC-AUC at each reference size. Returns list of (ref, core_auc, harness_auc)."""
     import pandas as pd  # noqa: F401
@@ -186,12 +217,12 @@ def check_core_equivalence(ds="loghub_hdfs_500", seed=0, iters=10):
     np.random.seed(seed)
     n = len(s["H"])  # signature: (task, layer, LIH_init, LIH_target, labels_init, labels_target, ...)
     df, _ = rci.simulate_iterations(TASK, LAYER, H[n:], H[:n], sc[n:], sc[:n],
-                                    refset_extension_method="random", random_seed=seed,
+                                    refset_extension_method=method, random_seed=seed,
                                     n_iterations=iters, plot_intermediate_results=False,
                                     LIH_vis=np.zeros((len(H), 2)))  # skip t-SNE: it would consume the global RNG
     sizes = tuple(10 + 10 * i for i in range(iters))
     np.random.seed(seed)
-    mine = clotho_run(H, sc, init_idx, off[ds], None, seed, ref_sizes=sizes, global_rng=True)
+    mine = clotho_run(H, sc, init_idx, off[ds], None, seed, ref_sizes=sizes, global_rng=True, method=method)
     rows = []
     for it, g in df.groupby("iteration"):
         t = g[g.label == "test"]
