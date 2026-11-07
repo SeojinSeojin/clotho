@@ -16,7 +16,13 @@ The samples are drawn by a different RNG, so individual strings differ
 from an HF run; the sampling distribution is the same.
 """
 import json
+import os
 import subprocess
+
+# FlashInfer's sampler JIT-compiles CUDA code and needs nvcc (a CUDA toolkit), which
+# the GPU servers don't have. vLLM's PyTorch sampler samples from the same
+# softmax(logits / T) distribution (top-k/top-p are disabled here anyway).
+os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
 import sys
 from pathlib import Path
 

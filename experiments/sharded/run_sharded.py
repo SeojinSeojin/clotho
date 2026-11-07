@@ -100,7 +100,10 @@ def make_original_script_runner(job):
 
 
 def main():
-    args = shardlib.build_arg_parser().parse_args()
+    parser = shardlib.build_arg_parser()
+    args, extra = parser.parse_known_args()
+    if extra and args.stage != "gen_vllm":  # vLLM-only flags are parsed by vllm_generate.py
+        parser.error(f"unrecognized arguments: {' '.join(extra)}")
     if args.stage == "gen_vllm":
         if not VLLM_PYTHON.exists():
             raise SystemExit(f"{VLLM_PYTHON} not found: run `INSTALL_VLLM=1 bash setup.sh`")
