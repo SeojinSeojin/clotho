@@ -23,6 +23,7 @@ This repo is a fork of github.com/coinse/clotho. We add log parsing as a new Clo
 ```bash
 cd ~/clotho                         # or: git clone <fork> clotho && cd clotho
 set -a; source ~/.clotho_env; set +a
+gh auth login && gh auth setup-git   # git push credentials (wiped each session)
 bash setup.sh                       # uv, venvs, GPU check, model download, pulls data/ and results_clotho/
 source .venv/bin/activate
 tmux new -s run                     # long jobs survive SSH drops
