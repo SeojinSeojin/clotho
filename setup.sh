@@ -23,6 +23,9 @@ UV_VERSION="${UV_VERSION:-0.13.4}"
 HF_HUB_VERSION="0.26.2"          # same as requirements.txt
 export HF_HUB_ENABLE_HF_TRANSFER=1
 export UV_LINK_MODE=copy
+# Always use uv's standalone Pythons: they ship Python.h, which vLLM/Triton need to
+# compile kernels at runtime (system Pythons often lack the -dev headers).
+export UV_PYTHON_PREFERENCE=only-managed
 
 LOG_DIR="$REPO/logs/setup"; mkdir -p "$LOG_DIR"
 T_START=$(date +%s)
