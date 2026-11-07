@@ -12,11 +12,11 @@ Last updated: 2026-11-07
 - Phase 2 setup (user decisions 2026-11-07: both prompts, all 14 systems x 500, Clotho per system): 14 suites in `clotho/dataset/log_parsing/`, `rules_template`, parser fix for literal `*` runs, scripts `run_log_parsing_all.py`, `log_parsing_initial_set.py`, `run_clotho_log_parsing.py`, `log_parsing_phase2_report.py`.
 
 ## In progress
-- Nothing running.
+- Clotho on messages_template, 13 systems (comparison; log `logs/clotho_messages.log`). Resumable.
 
 ## Next
-- Optional: Clotho on messages_template for comparison (hidden + generations exist for all 14 systems): `cd experiments && python run_clotho_log_parsing.py -p messages_template`.
-- Thunderbird separation is weak (mean AUC 0.55). Worth a look at its failures before drawing conclusions.
+- When the messages_template Clotho run finishes: `cd experiments && python log_parsing_phase2_report.py` (both templates), commit, and add the comparison to PROGRESS.
+- Possible follow-up: separate "Clotho learns which templates are hard" from within-template signal (e.g. AUC computed within templates, or a split held out by template), since repeated templates seem to drive AUC.
 
 ## Decisions (2026-11-07: scorer, template, dropped systems)
 
@@ -66,6 +66,26 @@ Why this pass definition measures real model errors. With the rules prompt, the 
 Report: `experiments/reports/log_parsing_phase2.{md,json}` (random/pca, layer 21, seed 0). All 13 runs `ok` (~3 min each); Proxifier is listed as "not run" (dropped).
 - Macro ROC-AUC across 13 systems: 0.712 @ref50, 0.729 @ref100, 0.764 @ref200, mean over iterations 0.761.
 - Best: HDFS 0.873, HPC 0.836, HealthApp 0.829, OpenStack 0.811, Zookeeper 0.810 (mean AUC). Weakest: Thunderbird 0.552, BGL 0.705, Mac 0.710.
+
+Why Thunderbird is weak (checked 2026-11-07). Its strict failures are real model errors (constants replaced: `sysctl`, `RAM`, `job`; extra or garbage text), not convention issues, so the labels are fine. The cause is input diversity: Thunderbird and Mac each have more than 500 templates, so the sampler took 500 inputs from 500 distinct templates (every template appears once). Across the 13 systems, mean AUC falls as the number of distinct templates in the suite rises (Spearman -0.63):
+
+| system | templates in suite | mean AUC |
+|---|---|---|
+| Apache | 29 | 0.749 |
+| OpenSSH | 38 | 0.775 |
+| HDFS | 46 | 0.873 |
+| OpenStack | 48 | 0.811 |
+| HPC | 74 | 0.836 |
+| Zookeeper | 89 | 0.810 |
+| HealthApp | 156 | 0.829 |
+| Hadoop | 236 | 0.738 |
+| Spark | 236 | 0.753 |
+| BGL | 320 | 0.705 |
+| Linux | 338 | 0.758 |
+| Mac | 500 | 0.710 |
+| Thunderbird | 500 | 0.552 |
+
+Clotho's GMM models passing inputs. When every input is a different event type, the passing inputs do not cluster, so separation weakens. Read high AUC on low-diversity systems partly as "this template is easy or hard" signal.
 
 ## Known issues
 - A fully skipped `gen_vllm` run still runs the parity check and loads the vLLM engine (~45 s) before noticing nothing is pending.
