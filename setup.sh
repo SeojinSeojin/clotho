@@ -93,6 +93,9 @@ make_main_venv() {
   uv venv --python 3.10 --allow-existing .venv
   uv pip install --python .venv/bin/python -r requirements.txt "hf_transfer==0.1.9"
   uv pip install --python .venv/bin/python -e .
+  # Drain baselines (log_parsing_drain.py); --no-deps: logparser3 pins an old regex that transformers dislikes
+  uv pip install --python .venv/bin/python "drain3==0.9.11" "cachetools" "jsonpickle==1.5.1"
+  uv pip install --python .venv/bin/python --no-deps "logparser3==1.0.4"
 }
 bg venv_main make_main_venv
 
