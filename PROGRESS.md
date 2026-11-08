@@ -46,9 +46,14 @@ Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise lab
 
 ## Next
 - Decided: no scaling to 2,000 inputs per system. The cost estimate below is kept for reference only.
-- `cd experiments && python log_parsing_phase2_report.py` to add the finished messages_template Clotho runs (prompt comparison), then commit.
 - Optional, CPU only: test whether Clotho combined with LOHSvar or output entropy beats each alone; look per system at where MDSA beats Clotho on disjoint splits; within-template AUC to separate Clotho's signal from template identity.
 - Write-up: the table and findings above are the Phase 3 result.
+
+## Prompt comparison (2026-11-07): messages_template vs rules_template
+`experiments/reports/log_parsing_prompt_compare.md` (`log_parsing_prompt_compare.py`; 5 seeds, standard split, random sampling, layer 21, label > 5 of 10; the only layer with messages_template hidden states). The single-run Phase 2 report now covers both templates (`log_parsing_phase2.md`).
+- Clotho, macro over 12 systems (HDFS excluded: 13 passing inputs under messages_template, so Clotho never fits): messages 0.783 vs rules 0.722 @100, 0.824 vs 0.760 @200. Higher under messages on 9 of 12 systems; lower on Hadoop, Mac @100, Zookeeper, BGL @200.
+- Template lookup rises too, but by less: 0.760 vs 0.719 @100, 0.799 vs 0.773 @200. So part of the gain is that messages_template failures (largely convention misses such as `blk_<*>`) are more template-predictable, but Clotho gains about twice as much as lookup.
+- This does not make messages_template the better prompt: the two prompts produce different label sets, and messages_template fails HDFS almost entirely. It means failures under messages_template are easier to predict.
 
 ## Phase 3 (2026-11-07): template confound, seeds, cross-system, baselines
 - Code: `experiments/log_parsing_phase3_lib.py` (harness), `experiments/log_parsing_phase3.py` (`within`, `cross`, `report`, `--push`), `experiments/log_parsing_sll.py` (SLL inputs, GPU forward pass, no generation).
