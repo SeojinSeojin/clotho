@@ -146,6 +146,7 @@ def job(args):
     import logging
     import numpy as np
     import log_parsing_phase3_lib as L
+    import log_parsing_phase3_final as F
     system, seed = args
     ds = NAT[system]
     out = OUT / ds / f"seed{seed}.json"
