@@ -58,6 +58,11 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `experiments/log_parsing_followups.py` | Score combinations, per-system Clotho vs MDSA on disjoint splits, within-template AUC |
 | `experiments/log_parsing_prompt_compare.py` | messages_template vs rules_template with 5 seeds |
 | `experiments/log_parsing_extra_samples.py`, `experiments/log_parsing_label_noise.py` | 40 extra vLLM samples per input (seed 1, `.venv-vllm`) and the label-noise vs within-template-signal analysis |
+| `experiments/log_parsing_heldout.py`, `log_parsing_fairness.py`, `log_parsing_cross_fair.py`, `log_parsing_qualitative.py` | 2026-11-08: held-out table (10 non-tuning systems), baselines with random reference sets, cross-system under fair_leakfree, qualitative examples |
+| `experiments/log_parsing_timing.py` (`hf` in `.venv`, `vllm` in `.venv-vllm`), `log_parsing_cost_quality.py` | Wall-clock per input on the L40S; output entropy from k samples vs Clotho (table + plot) |
+| `experiments/log_parsing_natural.py` | Natural-distribution check: uniform raw-line samples (`loghub_<sys>_nat500`, deliberately not registered in `supported_datasets`), gen, eval |
+| `experiments/log_parsing_paper_numbers.py` | Builds `reports/paper_numbers.md`, the single source of numbers for the paper |
+| `experiments/sharded/git_backup.py` | Uploads a git bundle of `main` to RESULTS_REPO `git_bundles/` when `git push` has no credentials |
 | `AGENTS.md`, `CLAUDE.md`, `PROGRESS.md` | Agent memory |
 
 RESULTS_REPO layout: `shards/<model>/<task>/<dataset>/<template>/<stage>/size<N>/shard_XXXXX/`, merged files under `data/`, Clotho outputs under `results_clotho/` and `results_clotho_log_parsing/`, Phase 3 per-job JSON under `results_phase3/`, reports under `reports/`. Precalculated scores (SLL, post-generation, Drain groups) under `data/results_llama/log_parsing/precalculated_metrics/`; extra samples under `data/results_llama/log_parsing/extra_samples/`.

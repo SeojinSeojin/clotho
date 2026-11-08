@@ -2,32 +2,32 @@
  "device": "NVIDIA L40S",
  "systems": {
   "loghub_hdfs_500": {
-   "pipeline_bs1": 0.041398827233206245,
-   "batched_l16": 0.0181564325060026,
+   "pipeline_bs1": 0.04112401729992901,
+   "batched_l16": 0.017907700714000385,
    "batched_parity_min_cos": 0.9995872378349304,
    "prompt_tokens_mean": 280.68
   },
   "loghub_hadoop_500": {
-   "pipeline_bs1": 0.04155808316669815,
-   "batched_l16": 0.02106966070200724,
+   "pipeline_bs1": 0.04082642776678161,
+   "batched_l16": 0.0206692584699922,
    "batched_parity_min_cos": 0.9996493458747864,
    "prompt_tokens_mean": 276.99
   },
   "loghub_bgl_500": {
-   "pipeline_bs1": 0.040335816433313694,
-   "batched_l16": 0.021756356063997374,
+   "pipeline_bs1": 0.03949512703329674,
+   "batched_l16": 0.021236638571994263,
    "batched_parity_min_cos": 0.9995888471603394,
    "prompt_tokens_mean": 269.092
   },
   "loghub_openstack_500": {
-   "pipeline_bs1": 0.042538419800015013,
-   "batched_l16": 0.019319346188000054,
+   "pipeline_bs1": 0.04204971593329295,
+   "batched_l16": 0.018933069425998837,
    "batched_parity_min_cos": 0.9995797276496887,
    "prompt_tokens_mean": 290.136
   }
  },
- "gmm_bs1_nf10_nc5": 0.0003458757405998767,
- "gmm_bs1_nf50_nc10": 0.0005188874213999952,
- "mdsa_bs1": 0.00024177441200299655,
- "drain_lh2_per_input": 0.00010196504849955091
+ "gmm_bs1_nf10_nc5": 0.0003390345197003626,
+ "gmm_bs1_nf50_nc10": 0.0005346879194999929,
+ "mdsa_bs1": 0.0002731281040032627,
+ "drain_lh2_per_input": 8.741007400385569e-05
 }

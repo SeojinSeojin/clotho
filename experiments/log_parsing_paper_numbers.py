@@ -38,7 +38,7 @@ READ = {
     "cost": ("Reading: output entropy needs 4 samples to match Clotho at reference size 100 on the standard split "
              "(5 samples only tie it at 200; on the template-disjoint split 2 samples already tie it and 3 beat it by "
              "about +0.08). Generating 4 samples costs "
-             "2.3x Clotho's batched HF forward pass, 8.3x a vLLM prefill (the same engine), and 35x online (batch 1). "
+             "2.4x Clotho's batched HF forward pass, 8.3x a vLLM prefill (the same engine), and 36x online (batch 1). "
              "Clotho + output entropy (k=5) is the best score at about 4x Clotho's batched cost."),
     "cross": ("Reading: across systems Clotho (0.624 / 0.641, mean over pairs) and MDSA (0.634 / 0.618) are both "
               "well above chance but far below within-system (e.g. Spark -> HDFS 0.692 vs 0.873 within HDFS @200); "
