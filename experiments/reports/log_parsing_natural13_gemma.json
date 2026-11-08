@@ -1,0 +1,547 @@
+{
+ "model": "gemma",
+ "layer": 21,
+ "sample_stats": {
+  "HDFS": {
+   "candidate_lines": 11167159,
+   "templates": 12,
+   "top_template_share": 0.158,
+   "duplicate_messages": 0
+  },
+  "Hadoop": {
+   "candidate_lines": 143654,
+   "templates": 63,
+   "top_template_share": 0.286,
+   "duplicate_messages": 46
+  },
+  "OpenStack": {
+   "candidate_lines": 151875,
+   "templates": 27,
+   "top_template_share": 0.604,
+   "duplicate_messages": 0
+  },
+  "BGL": {
+   "candidate_lines": 3802527,
+   "templates": 31,
+   "top_template_share": 0.418,
+   "duplicate_messages": 86
+  },
+  "Apache": {
+   "candidate_lines": 36373,
+   "templates": 5,
+   "top_template_share": 0.564,
+   "duplicate_messages": 43
+  },
+  "HPC": {
+   "candidate_lines": 114333,
+   "templates": 19,
+   "top_template_share": 0.182,
+   "duplicate_messages": 181
+  },
+  "HealthApp": {
+   "candidate_lines": 168172,
+   "templates": 16,
+   "top_template_share": 0.184,
+   "duplicate_messages": 39
+  },
+  "Linux": {
+   "candidate_lines": 17523,
+   "templates": 14,
+   "top_template_share": 0.598,
+   "duplicate_messages": 46
+  },
+  "Mac": {
+   "candidate_lines": 71072,
+   "templates": 120,
+   "top_template_share": 0.108,
+   "duplicate_messages": 115
+  },
+  "OpenSSH": {
+   "candidate_lines": 526497,
+   "templates": 11,
+   "top_template_share": 0.282,
+   "duplicate_messages": 199
+  },
+  "Spark": {
+   "candidate_lines": 15601099,
+   "templates": 20,
+   "top_template_share": 0.186,
+   "duplicate_messages": 13
+  },
+  "Thunderbird": {
+   "candidate_lines": 14881503,
+   "templates": 111,
+   "top_template_share": 0.122,
+   "duplicate_messages": 267
+  },
+  "Zookeeper": {
+   "candidate_lines": 24409,
+   "templates": 13,
+   "top_template_share": 0.462,
+   "duplicate_messages": 5
+  }
+ },
+ "kept": [
+  "BGL",
+  "HDFS",
+  "HPC",
+  "Hadoop",
+  "HealthApp",
+  "Linux",
+  "Mac",
+  "OpenSSH",
+  "OpenStack",
+  "Spark",
+  "Thunderbird",
+  "Zookeeper"
+ ],
+ "kept_with_suite": [
+  "BGL",
+  "HDFS",
+  "HPC",
+  "Hadoop",
+  "HealthApp",
+  "Linux",
+  "Mac",
+  "OpenSSH",
+  "OpenStack",
+  "Spark",
+  "Thunderbird",
+  "Zookeeper"
+ ],
+ "drain_seen": {
+  "BGL": {
+   "@100": {
+    "suite": 0.19609756097560976,
+    "natural": 0.9970731707317073
+   },
+   "@200": {
+    "suite": 0.4341935483870968,
+    "natural": 1.0
+   }
+  },
+  "HDFS": {
+   "@100": {
+    "suite": 0.9482926829268292,
+    "natural": 1.0
+   },
+   "@200": {
+    "suite": 1.0,
+    "natural": 1.0
+   }
+  },
+  "HPC": {
+   "@100": {
+    "suite": 0.7014634146341463,
+    "natural": 0.931219512195122
+   },
+   "@200": {
+    "suite": 0.9819354838709677,
+    "natural": 1.0
+   }
+  },
+  "Hadoop": {
+   "@100": {
+    "suite": 0.2570731707317073,
+    "natural": 0.9482926829268292
+   },
+   "@200": {
+    "suite": 0.5838709677419355,
+    "natural": 0.9825806451612903
+   }
+  },
+  "HealthApp": {
+   "@100": {
+    "suite": 0.5214634146341464,
+    "natural": 0.8390243902439024
+   },
+   "@200": {
+    "suite": 0.7903225806451613,
+    "natural": 0.8554838709677419
+   }
+  },
+  "Linux": {
+   "@100": {
+    "suite": 0.14634146341463414,
+    "natural": 0.9990243902439024
+   },
+   "@200": {
+    "suite": 0.2974193548387097,
+    "natural": 1.0
+   }
+  },
+  "Mac": {
+   "@100": {
+    "suite": 0.002926829268292683,
+    "natural": 0.5917073170731707
+   },
+   "@200": {
+    "suite": 0.0064516129032258064,
+    "natural": 0.9109677419354839
+   }
+  },
+  "OpenSSH": {
+   "@100": {
+    "suite": 0.9868292682926829,
+    "natural": 1.0
+   },
+   "@200": {
+    "suite": 1.0,
+    "natural": 1.0
+   }
+  },
+  "OpenStack": {
+   "@100": {
+    "suite": 0.16048780487804878,
+    "natural": 0.7414634146341463
+   },
+   "@200": {
+    "suite": 0.1993548387096774,
+    "natural": 0.8025806451612904
+   }
+  },
+  "Spark": {
+   "@100": {
+    "suite": 0.2702439024390244,
+    "natural": 1.0
+   },
+   "@200": {
+    "suite": 0.6012903225806452,
+    "natural": 1.0
+   }
+  },
+  "Thunderbird": {
+   "@100": {
+    "suite": 0.0,
+    "natural": 0.775609756097561
+   },
+   "@200": {
+    "suite": 0.0,
+    "natural": 0.9916129032258064
+   }
+  },
+  "Zookeeper": {
+   "@100": {
+    "suite": 0.8853658536585366,
+    "natural": 1.0
+   },
+   "@200": {
+    "suite": 0.9883870967741936,
+    "natural": 1.0
+   }
+  }
+ },
+ "pass_rate": {
+  "BGL": {
+   "suite": 0.454,
+   "natural": 0.4
+  },
+  "HDFS": {
+   "suite": 0.402,
+   "natural": 0.446
+  },
+  "HPC": {
+   "suite": 0.54,
+   "natural": 0.636
+  },
+  "Hadoop": {
+   "suite": 0.434,
+   "natural": 0.492
+  },
+  "HealthApp": {
+   "suite": 0.524,
+   "natural": 0.466
+  },
+  "Linux": {
+   "suite": 0.404,
+   "natural": 0.332
+  },
+  "Mac": {
+   "suite": 0.29,
+   "natural": 0.266
+  },
+  "OpenSSH": {
+   "suite": 0.342,
+   "natural": 0.24
+  },
+  "OpenStack": {
+   "suite": 0.704,
+   "natural": 0.282
+  },
+  "Spark": {
+   "suite": 0.364,
+   "natural": 0.726
+  },
+  "Thunderbird": {
+   "suite": 0.376,
+   "natural": 0.23
+  },
+  "Zookeeper": {
+   "suite": 0.608,
+   "natural": 0.386
+  }
+ },
+ "skipped": {},
+ "auc@100": {
+  "clotho": {
+   "natural": "0.880 \u00b1 0.018",
+   "natural_same": "0.880 \u00b1 0.018",
+   "suite": "0.780 \u00b1 0.003",
+   "natural_seeds": [
+    0.8801286009547481,
+    0.885905813357812,
+    0.8914449892711311,
+    0.8933684821700544,
+    0.848443871445512
+   ]
+  },
+  "MDSA": {
+   "natural": "0.875 \u00b1 0.010",
+   "natural_same": "0.875 \u00b1 0.010",
+   "suite": "0.718 \u00b1 0.007",
+   "natural_seeds": [
+    0.8732770171532084,
+    0.8839804456043246,
+    0.878064712493278,
+    0.8829283614786785,
+    0.8581097714151611
+   ]
+  },
+  "GMMb": {
+   "natural": "0.789 \u00b1 0.021",
+   "natural_same": "0.789 \u00b1 0.021",
+   "suite": "0.679 \u00b1 0.038",
+   "natural_seeds": [
+    0.7883315087393226,
+    0.7544294127574868,
+    0.8068014670561635,
+    0.7974674496579872,
+    0.7991399565249173
+   ]
+  },
+  "lookup_drain": {
+   "natural": "0.916 \u00b1 0.003",
+   "natural_same": "0.916 \u00b1 0.003",
+   "suite": "0.706 \u00b1 0.009",
+   "natural_seeds": [
+    0.9169755853917977,
+    0.916494937275581,
+    0.9130325560029037,
+    0.9200045701175444,
+    0.9156000559688019
+   ]
+  },
+  "lookup_oracle": {
+   "natural": "0.919 \u00b1 0.002",
+   "natural_same": "0.919 \u00b1 0.002",
+   "suite": "0.730 \u00b1 0.007",
+   "natural_seeds": [
+    0.9212205847155407,
+    0.9181748556079333,
+    0.9161711765416227,
+    0.9219194838311893,
+    0.9183677433576869
+   ]
+  },
+  "out_entropy": {
+   "natural": "0.772 \u00b1 0.002",
+   "natural_same": "0.772 \u00b1 0.002",
+   "suite": "0.821 \u00b1 0.002",
+   "natural_seeds": [
+    0.7752230928357926,
+    0.7703989082598223,
+    0.7689761037961529,
+    0.7720609100049155,
+    0.7730405883050971
+   ]
+  },
+  "clotho_oe": {
+   "natural": "0.894 \u00b1 0.006",
+   "natural_same": "0.894 \u00b1 0.006",
+   "suite": "0.869 \u00b1 0.002 (12 systems)",
+   "natural_seeds": [
+    0.8989267302859938,
+    0.8927521975026885,
+    0.8961510154486056,
+    0.8972652090129752,
+    0.8832172677748413
+   ]
+  }
+ },
+ "paired@100": {
+  "clotho-lookup_drain": {
+   "mean": -0.03656318951147416,
+   "std": 0.017989705154422532,
+   "min": -0.0671561845232898,
+   "max": -0.02158756673177248,
+   "systems_ahead": 5
+  },
+  "clotho-MDSA": {
+   "mean": 0.004586289810921471,
+   "std": 0.009040720648164543,
+   "min": -0.009665899969648973,
+   "max": 0.013380276777853223,
+   "systems_ahead": 8
+  },
+  "clotho-out_entropy": {
+   "mean": 0.10791843079949547,
+   "std": 0.019460744527908545,
+   "min": 0.07540328314041497,
+   "max": 0.12246888547497829,
+   "systems_ahead": 9
+  },
+  "clotho_oe-out_entropy": {
+   "mean": 0.1217225633646648,
+   "std": 0.006698516431319606,
+   "min": 0.11017667946974417,
+   "max": 0.12717491165245276,
+   "systems_ahead": 12
+  },
+  "clotho_oe-lookup_drain": {
+   "mean": -0.022759056946304812,
+   "std": 0.006130159526333285,
+   "min": -0.03238278819396059,
+   "max": -0.016881540554297997,
+   "systems_ahead": 2
+  },
+  "suite_clotho-lookup_drain": {
+   "mean": 0.07415535236823492,
+   "std": 0.011008777090745001
+  },
+  "suite_clotho-MDSA": {
+   "mean": 0.0627559191769762,
+   "std": 0.009457708063390337
+  }
+ },
+ "auc@200": {
+  "clotho": {
+   "natural": "0.855 \u00b1 0.009",
+   "natural_same": "0.855 \u00b1 0.009",
+   "suite": "0.832 \u00b1 0.005",
+   "natural_seeds": [
+    0.8464490205211423,
+    0.8442841471007179,
+    0.8618017279460302,
+    0.8580255382291524,
+    0.8649269394934517
+   ]
+  },
+  "MDSA": {
+   "natural": "0.830 \u00b1 0.009",
+   "natural_same": "0.830 \u00b1 0.009",
+   "suite": "0.737 \u00b1 0.006",
+   "natural_seeds": [
+    0.8282448416907928,
+    0.8270309878583911,
+    0.8386525585615698,
+    0.8180257538123552,
+    0.8382043987607106
+   ]
+  },
+  "GMMb": {
+   "natural": "0.856 \u00b1 0.011",
+   "natural_same": "0.856 \u00b1 0.011",
+   "suite": "0.761 \u00b1 0.014",
+   "natural_seeds": [
+    0.8739453722173148,
+    0.8543919102980726,
+    0.8574647435705766,
+    0.850286078699758,
+    0.8453331078582629
+   ]
+  },
+  "lookup_drain": {
+   "natural": "0.912 \u00b1 0.002",
+   "natural_same": "0.912 \u00b1 0.002",
+   "suite": "0.774 \u00b1 0.008",
+   "natural_seeds": [
+    0.9107866506349982,
+    0.9118312318604812,
+    0.9159358173464782,
+    0.9095030290868106,
+    0.9107670609784608
+   ]
+  },
+  "lookup_oracle": {
+   "natural": "0.914 \u00b1 0.002",
+   "natural_same": "0.914 \u00b1 0.002",
+   "suite": "0.790 \u00b1 0.007",
+   "natural_seeds": [
+    0.9124050296113106,
+    0.9142204917495551,
+    0.9169058452326008,
+    0.9111165624322305,
+    0.9130634636511529
+   ]
+  },
+  "out_entropy": {
+   "natural": "0.762 \u00b1 0.004",
+   "natural_same": "0.762 \u00b1 0.004",
+   "suite": "0.818 \u00b1 0.003",
+   "natural_seeds": [
+    0.7674204604492539,
+    0.7589815038288478,
+    0.7596378613218652,
+    0.7657290966690518,
+    0.7572263344058402
+   ]
+  },
+  "clotho_oe": {
+   "natural": "0.872 \u00b1 0.004",
+   "natural_same": "0.872 \u00b1 0.004",
+   "suite": "0.890 \u00b1 0.005 (12 systems)",
+   "natural_seeds": [
+    0.8736098181119167,
+    0.8661804998233338,
+    0.8705314154971526,
+    0.8775098462233374,
+    0.8742868507913276
+   ]
+  }
+ },
+ "paired@200": {
+  "clotho-lookup_drain": {
+   "mean": -0.056667283323346945,
+   "std": 0.00905238573449023,
+   "min": -0.06754708475976336,
+   "max": -0.045840121485009176,
+   "systems_ahead": 5
+  },
+  "clotho-MDSA": {
+   "mean": 0.025065766521334933,
+   "std": 0.009186421419842154,
+   "min": 0.017253159242326743,
+   "max": 0.03999978441679721,
+   "systems_ahead": 6
+  },
+  "clotho-out_entropy": {
+   "mean": 0.0932984233231271,
+   "std": 0.011774807724457026,
+   "min": 0.07902856007188842,
+   "max": 0.10770060508761144,
+   "systems_ahead": 9
+  },
+  "clotho_oe-out_entropy": {
+   "mean": 0.11062463475444188,
+   "std": 0.004308020869515588,
+   "min": 0.10618935766266284,
+   "max": 0.11706051638548746,
+   "systems_ahead": 10
+  },
+  "clotho_oe-lookup_drain": {
+   "mean": -0.03934107189203216,
+   "std": 0.005988232548810998,
+   "min": -0.04565073203714742,
+   "max": -0.03199318286347321,
+   "systems_ahead": 1
+  },
+  "suite_clotho-lookup_drain": {
+   "mean": 0.058210690387361826,
+   "std": 0.0056697015594441074
+  },
+  "suite_clotho-MDSA": {
+   "mean": 0.09488665496515417,
+   "std": 0.0028407112719655097
+  }
+ }
+}
