@@ -1,0 +1,26 @@
+{
+ "HDFS": {
+  "candidate_lines": 11167159,
+  "templates": 12,
+  "top_template_share": 0.158,
+  "duplicate_messages": 0
+ },
+ "Hadoop": {
+  "candidate_lines": 143654,
+  "templates": 63,
+  "top_template_share": 0.286,
+  "duplicate_messages": 46
+ },
+ "OpenStack": {
+  "candidate_lines": 151875,
+  "templates": 27,
+  "top_template_share": 0.604,
+  "duplicate_messages": 0
+ },
+ "BGL": {
+  "candidate_lines": 3802527,
+  "templates": 31,
+  "top_template_share": 0.418,
+  "duplicate_messages": 86
+ }
+}

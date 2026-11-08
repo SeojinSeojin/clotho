@@ -1,0 +1,500 @@
+{"id": "bgl-4333074", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-3150626", "system": "BGL", "content": "139533418 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2862454", "system": "BGL", "content": "Node card VPD check: U01 node in processor card slot J13 do not match. VPD ecid 04C880875C2FFFFF03041B8092DC, found 07421035622FFFFF0E071BF048E8", "template": "Node card VPD check: <*> node in processor card slot <*> do not match. VPD ecid <*>, found <*>", "template_id": "E45"}
+{"id": "bgl-4164702", "system": "BGL", "content": "1 tree receiver 2 in re-synch state event(s) (dcr 0x019a) detected over 2748 seconds", "template": "<*> tree receiver <*> in re-synch state event(s) (dcr <*>) detected over <*> seconds", "template_id": "E59"}
+{"id": "bgl-2131967", "system": "BGL", "content": "generating core.15302", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1209935", "system": "BGL", "content": "generating core.7051", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1425689", "system": "BGL", "content": "generating core.7881", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2156763", "system": "BGL", "content": "generating core.7601", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1612189", "system": "BGL", "content": "generating core.34517", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4089134", "system": "BGL", "content": "rts: kernel terminated for reason 1004", "template": "rts: kernel terminated for reason <*>", "template_id": "E258"}
+{"id": "bgl-901209", "system": "BGL", "content": "257518548 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3646221", "system": "BGL", "content": "640764 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3430938", "system": "BGL", "content": "total of 1 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-1274347", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3001929", "system": "BGL", "content": "ciod: generated 64 core files for program /bgl/apps/swl-prep/ibm-swl/functional/sppm_chkpt/run/sppm", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-4341799", "system": "BGL", "content": "1972 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3954049", "system": "BGL", "content": "ciod: Error loading /bgl/apps/followup/RAPTOR/pre-study/raptor.newcomp.r1: invalid or missing program image, Permission denied", "template": "ciod: Error loading <*>: invalid or missing program image, Permission denied", "template_id": "E48"}
+{"id": "bgl-3167900", "system": "BGL", "content": "38531610 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4177864", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001f2", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-4294137", "system": "BGL", "content": "10668 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3180893", "system": "BGL", "content": "35379122 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4119047", "system": "BGL", "content": "CE sym 16, at 0x04ba6240, mask 0x10", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-403234", "system": "BGL", "content": "instruction address: 0x00004ed8", "template": "instruction address: <*>", "template_id": "E301"}
+{"id": "bgl-1454467", "system": "BGL", "content": "generating core.10900", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1242041", "system": "BGL", "content": "generating core.13616", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1917747", "system": "BGL", "content": "generating core.16908", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1915372", "system": "BGL", "content": "generating core.6361", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-868570", "system": "BGL", "content": "12364800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-782798", "system": "BGL", "content": "generating core.2738", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-65531", "system": "BGL", "content": "generating core.6433", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1588739", "system": "BGL", "content": "generating core.48849", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3468934", "system": "BGL", "content": "3 ddr errors(s) detected and corrected on rank 0, symbol 4, bit 2", "template": "<*> ddr errors(s) detected and corrected on rank <*>, symbol <*> bit <*>", "template_id": "E94"}
+{"id": "bgl-3107781", "system": "BGL", "content": "iar 003a9260 dear 00e28d98", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2128163", "system": "BGL", "content": "generating core.1057", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3673681", "system": "BGL", "content": "iar 00106210 dear 0244c23c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2934345", "system": "BGL", "content": "Node card VPD check: U11 node in processor card slot J05 do not match. VPD ecid 075B0D51512FFFFF07081A0112C0, found 04E18088412FFFFF0F0A1A8118CC", "template": "Node card VPD check: <*> node in processor card slot <*> do not match. VPD ecid <*>, found <*>", "template_id": "E45"}
+{"id": "bgl-4207657", "system": "BGL", "content": "ciod: LOGIN chdir(/g/g0/spelce1/Linpack_SWL) failed: No such file or directory", "template": "ciod: LOGIN chdir(<*>) failed: No such file or directory", "template_id": "E118"}
+{"id": "bgl-3950011", "system": "BGL", "content": "CE sym 20, at 0x060aa5a0, mask 0x01", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-1871244", "system": "BGL", "content": "generating core.27376", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2790743", "system": "BGL", "content": "generating core.4441", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4088389", "system": "BGL", "content": "CE sym 8, at 0x03cfd1a0, mask 0x01", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-2812207", "system": "BGL", "content": "generating core.13013", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1640504", "system": "BGL", "content": "generating core.19864", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2386447", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2744170", "system": "BGL", "content": "generating core.1947", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3671210", "system": "BGL", "content": "iar 00106210 dear 0244c23c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3850765", "system": "BGL", "content": "iar 0010685c dear 02f694ec", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1997606", "system": "BGL", "content": "114718848 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2826696", "system": "BGL", "content": "generating core.15753", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3168021", "system": "BGL", "content": "37449664 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2071334", "system": "BGL", "content": "generating core.6978", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2506225", "system": "BGL", "content": "15 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-782625", "system": "BGL", "content": "generating core.5672", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4399039", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-2352226", "system": "BGL", "content": "generating core.16467", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4123578", "system": "BGL", "content": "ciod: generated 128 core files for program /g/g90/glosli/src/ddcMD/ddcMD1.1.18a/bin/ddcMDbglV", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-978059", "system": "BGL", "content": "generating core.15270", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2594692", "system": "BGL", "content": "5 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3013275", "system": "BGL", "content": "CE sym 7, at 0x05ace2c0, mask 0x20", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-3145643", "system": "BGL", "content": "145271526 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-171370", "system": "BGL", "content": "generating core.2154", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1352669", "system": "BGL", "content": "generating core.31512", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3817081", "system": "BGL", "content": "iar 001061e4 dear 0245a09c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1742697", "system": "BGL", "content": "generating core.37887", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2821215", "system": "BGL", "content": "generating core.13400", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1911834", "system": "BGL", "content": "generating core.2165", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1253740", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1110973", "system": "BGL", "content": "344040 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2198859", "system": "BGL", "content": "generating core.58001", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1564113", "system": "BGL", "content": "generating core.7207", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2704538", "system": "BGL", "content": "generating core.55640", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2623564", "system": "BGL", "content": "1005 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2262489", "system": "BGL", "content": "generating core.12487", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2879185", "system": "BGL", "content": "New ido chip inserted into the database: FF:F2:9F:16:CE:40:00:0D:60:E9:31:BF ip=10.6.0.47 v=13 t=4", "template": "New ido chip inserted into the database: <*> ip=<*> v=<*> t=<*>", "template_id": "E146"}
+{"id": "bgl-1375033", "system": "BGL", "content": "generating core.12180", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1983075", "system": "BGL", "content": "112715424 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1281464", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3738169", "system": "BGL", "content": "iar 00106534 dear 02494c3c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-989306", "system": "BGL", "content": "generating core.14978", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2838816", "system": "BGL", "content": "generating core.2066", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1870800", "system": "BGL", "content": "generating core.18128", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3871965", "system": "BGL", "content": "iar 0010671c dear 0245b78c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3234462", "system": "BGL", "content": "NFS Mount failed on bglio1020, slept 27 seconds, retrying (1)", "template": "NFS Mount failed on <*>, slept <*> seconds, retrying (<*>)", "template_id": "E165"}
+{"id": "bgl-3208444", "system": "BGL", "content": "iar 00149f88 dear 00997618", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2488027", "system": "BGL", "content": "generating core.16383", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-931419", "system": "BGL", "content": "generating core.41405", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1448118", "system": "BGL", "content": "generating core.14831", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1984043", "system": "BGL", "content": "116171000 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2309669", "system": "BGL", "content": "generating core.25184", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1156772", "system": "BGL", "content": "generating core.2131", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1273127", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3069181", "system": "BGL", "content": "iar 003a9260 dear 00eff0b8", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2491402", "system": "BGL", "content": "generating core.13602", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1087260", "system": "BGL", "content": "generating core.28521", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2742203", "system": "BGL", "content": "generating core.8660", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1198659", "system": "BGL", "content": "generating core.31", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4121763", "system": "BGL", "content": "CE sym 21, at 0x1ebd2fa0, mask 0x10", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-2417521", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3199655", "system": "BGL", "content": "iar 00149fc0 dear 009862b8", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1895518", "system": "BGL", "content": "generating core.17487", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4557118", "system": "BGL", "content": "1 ddr error(s) detected and corrected on rank 0, symbol 18 over 26 seconds", "template": "<*> ddr error(s) detected and corrected on rank <*>, symbol <*> over <*> seconds", "template_id": "E68"}
+{"id": "bgl-2833253", "system": "BGL", "content": "generating core.2696", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2092440", "system": "BGL", "content": "generating core.27191", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3873779", "system": "BGL", "content": "iar 00106704 dear 0245b68c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3073408", "system": "BGL", "content": "iar 003a929c dear 00efc408", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2988102", "system": "BGL", "content": "rts: kernel terminated for reason 1001", "template": "rts: kernel terminated for reason <*>", "template_id": "E258"}
+{"id": "bgl-10934", "system": "BGL", "content": "generating core.1691", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3983501", "system": "BGL", "content": "iar 00106200 dear 0247019c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1969277", "system": "BGL", "content": "generating core.6930", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1303117", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3295895", "system": "BGL", "content": "ciod: Error reading message prefix after LOAD_MESSAGE on CioStream socket to 172.16.96.116:45819: Link has been severed", "template": "ciod: Error reading message prefix after LOAD_MESSAGE on CioStream socket to <*>: Link has been severed", "template_id": "E21"}
+{"id": "bgl-1986267", "system": "BGL", "content": "115270584 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3843657", "system": "BGL", "content": "iar 00106bd8 dear 0245cf1c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1113312", "system": "BGL", "content": "344040 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4267043", "system": "BGL", "content": "10726 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-1825338", "system": "BGL", "content": "1380657808 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2419304", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1536106", "system": "BGL", "content": "ciod: Error creating node map from file /p/gb2/pakin1/sweep3d-5x5x400-10mk-3mmi-1024pes-xyzt/xyzt.map: Permission denied", "template": "ciod: Error creating node map from file <*>: Permission denied", "template_id": "E88"}
+{"id": "bgl-2038251", "system": "BGL", "content": "generating core.6950", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1206605", "system": "BGL", "content": "generating core.19132", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2254152", "system": "BGL", "content": "generating core.48906", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2303749", "system": "BGL", "content": "generating core.21546", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2460567", "system": "BGL", "content": "generating core.11442", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1711589", "system": "BGL", "content": "generating core.951", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1565004", "system": "BGL", "content": "generating core.9406", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1641931", "system": "BGL", "content": "generating core.36145", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4222584", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-82868", "system": "BGL", "content": "generating core.7058", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-966353", "system": "BGL", "content": "generating core.63123", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2381629", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-916115", "system": "BGL", "content": "generating core.47019", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1234711", "system": "BGL", "content": "generating core.10889", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4255827", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-2250124", "system": "BGL", "content": "generating core.63247", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-738224", "system": "BGL", "content": "generating core.317", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2433742", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1791006", "system": "BGL", "content": "generating core.10599", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3966458", "system": "BGL", "content": "iar 00105e74 dear 02455fec", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1486885", "system": "BGL", "content": "generating core.1407", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1997428", "system": "BGL", "content": "113483816 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1866963", "system": "BGL", "content": "generating core.4942", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1681295", "system": "BGL", "content": "generating core.28397", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1139968", "system": "BGL", "content": "generating core.12324", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3770690", "system": "BGL", "content": "iar 00106568 dear 045e143c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4246215", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-1492026", "system": "BGL", "content": "641549232 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3142813", "system": "BGL", "content": "140349426 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2031333", "system": "BGL", "content": "generating core.13518", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2994420", "system": "BGL", "content": "total of 1 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-4587515", "system": "BGL", "content": "1 ddr error(s) detected and corrected on rank 0, symbol 17 over 10163 seconds", "template": "<*> ddr error(s) detected and corrected on rank <*>, symbol <*> over <*> seconds", "template_id": "E68"}
+{"id": "bgl-1503464", "system": "BGL", "content": "614546304 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-18819", "system": "BGL", "content": "generating core.4092", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2609800", "system": "BGL", "content": "685 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2706224", "system": "BGL", "content": "generating core.50329", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1445586", "system": "BGL", "content": "generating core.12920", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2205832", "system": "BGL", "content": "generating core.30105", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4323327", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-81012", "system": "BGL", "content": "generating core.7238", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3619449", "system": "BGL", "content": "ciod: Error loading /tmp/kubota/inferno: invalid or missing program image, No such file or directory", "template": "ciod: Error loading <*>: invalid or missing program image, No such file or directory", "template_id": "E35"}
+{"id": "bgl-4375312", "system": "BGL", "content": "10664 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-450526", "system": "BGL", "content": "instruction address: 0x00004ed8", "template": "instruction address: <*>", "template_id": "E301"}
+{"id": "bgl-3584583", "system": "BGL", "content": "rts: kernel terminated for reason 1004", "template": "rts: kernel terminated for reason <*>", "template_id": "E258"}
+{"id": "bgl-4055114", "system": "BGL", "content": "iar 00113880 dear 0fee9c1c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1604734", "system": "BGL", "content": "generating core.53421", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1502140", "system": "BGL", "content": "622853328 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2718294", "system": "BGL", "content": "generating core.22409", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3289659", "system": "BGL", "content": "ciod: Error loading /home/greeno/_dev2/_pasci2/_hyperclaw.mf.rich/run/_jag_work/raptor.dev.new3d.BGL.CXX_XL.MPI.ex: invalid or missing program image, No such file or directory", "template": "ciod: Error loading <*>: invalid or missing program image, No such file or directory", "template_id": "E35"}
+{"id": "bgl-2213901", "system": "BGL", "content": "generating core.57362", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-825104", "system": "BGL", "content": "generating core.5590", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3886389", "system": "BGL", "content": "iar 00106354 dear 0246a94c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-9130", "system": "BGL", "content": "201 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2203940", "system": "BGL", "content": "generating core.7379", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1518182", "system": "BGL", "content": "generating core.64491", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1326076", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1084150", "system": "BGL", "content": "generating core.1523", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2026009", "system": "BGL", "content": "CE sym 21, at 0x1fca2980, mask 0x40", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-957658", "system": "BGL", "content": "generating core.26320", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3847608", "system": "BGL", "content": "iar 00106bd8 dear 0245ce2c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4030720", "system": "BGL", "content": "iar 00106470 dear 0246db3c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1778318", "system": "BGL", "content": "generating core.15634", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4020675", "system": "BGL", "content": "iar 00106c0c dear 0246de4c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3115136", "system": "BGL", "content": "1524480 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1727494", "system": "BGL", "content": "generating core.46286", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2086751", "system": "BGL", "content": "generating core.16361", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3703794", "system": "BGL", "content": "iar 00106210 dear 0244c26c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2191647", "system": "BGL", "content": "generating core.2855", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3124048", "system": "BGL", "content": "iar 003a9260 dear 00f2abf8", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3511126", "system": "BGL", "content": "Lustre mount FAILED : bglio508 : block_id : location", "template": "Lustre mount FAILED : <*> : block_id : location", "template_id": "E211"}
+{"id": "bgl-4310402", "system": "BGL", "content": "10684 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-516780", "system": "BGL", "content": "instruction address: 0x00004ed8", "template": "instruction address: <*>", "template_id": "E301"}
+{"id": "bgl-2395423", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3949013", "system": "BGL", "content": "1 ddr errors(s) detected and corrected on rank 0, symbol 18, bit 0", "template": "<*> ddr errors(s) detected and corrected on rank <*>, symbol <*> bit <*>", "template_id": "E94"}
+{"id": "bgl-1415290", "system": "BGL", "content": "generating core.12926", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-77898", "system": "BGL", "content": "generating core.6177", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2049160", "system": "BGL", "content": "generating core.2752", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2581076", "system": "BGL", "content": "generating core.7941", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4374660", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-1083583", "system": "BGL", "content": "generating core.1655", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2104496", "system": "BGL", "content": "generating core.24158", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2206077", "system": "BGL", "content": "generating core.38072", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2468112", "system": "BGL", "content": "15 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2613418", "system": "BGL", "content": "685 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3150559", "system": "BGL", "content": "150625066 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-67910", "system": "BGL", "content": "generating core.1937", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1494912", "system": "BGL", "content": "642462144 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4586251", "system": "BGL", "content": "ciod: generated 128 core files for program /g/g24/germann2/SPaSM_mini/DSMC/r8", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-3452449", "system": "BGL", "content": "ciod: Error loading /home/spelce1/HPCC_IBM/Urgent/Gunnels/COP16/vnm.rts: invalid or missing program image, Permission denied", "template": "ciod: Error loading <*>: invalid or missing program image, Permission denied", "template_id": "E48"}
+{"id": "bgl-1392394", "system": "BGL", "content": "generating core.22730", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2729076", "system": "BGL", "content": "generating core.99", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4254805", "system": "BGL", "content": "10696 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3154712", "system": "BGL", "content": "143252750 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3656953", "system": "BGL", "content": "iar 00106228 dear 0244c1ec", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3763016", "system": "BGL", "content": "iar 00106534 dear 045e145c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2739359", "system": "BGL", "content": "generating core.2049", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2476321", "system": "BGL", "content": "generating core.8752", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2430615", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1919288", "system": "BGL", "content": "generating core.11329", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4037441", "system": "BGL", "content": "iar 00106278 dear 02f86bbc", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4054979", "system": "BGL", "content": "iar 00113880 dear 0fee9c1c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1210158", "system": "BGL", "content": "generating core.30929", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1390113", "system": "BGL", "content": "generating core.22298", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4189801", "system": "BGL", "content": "ciod: Error reading message prefix on CioStream socket to 172.16.96.116:40604, Link has been severed", "template": "ciod: Error reading message prefix on CioStream socket to <*>, Link has been severed", "template_id": "E36"}
+{"id": "bgl-830613", "system": "BGL", "content": "CE sym 18, at 0x1808d120, mask 0x80", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-68200", "system": "BGL", "content": "generating core.4049", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2345997", "system": "BGL", "content": "generating core.20211", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1387971", "system": "BGL", "content": "generating core.12075", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4197384", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001f2", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-4368390", "system": "BGL", "content": "10736 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-1426693", "system": "BGL", "content": "generating core.6658", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4115433", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001b0", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-1933161", "system": "BGL", "content": "generating core.11593", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4107924", "system": "BGL", "content": "1 torus receiver x- input pipe error(s) (dcr 0x02ed) detected and corrected over 43 seconds", "template": "<*> torus receiver <*> input pipe error(s) (dcr <*>) detected and corrected over <*> seconds", "template_id": "E40"}
+{"id": "bgl-521718", "system": "BGL", "content": "instruction address: 0x00004ed8", "template": "instruction address: <*>", "template_id": "E301"}
+{"id": "bgl-3563542", "system": "BGL", "content": "CE sym 11, at 0x014ee480, mask 0x08", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-3141973", "system": "BGL", "content": "138613104 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4563645", "system": "BGL", "content": "ciod: Error reading message prefix on CioStream socket to 172.16.96.116:55515, Link has been severed", "template": "ciod: Error reading message prefix on CioStream socket to <*>, Link has been severed", "template_id": "E36"}
+{"id": "bgl-3062379", "system": "BGL", "content": "iar 003a92a0 dear 00b36898", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1501999", "system": "BGL", "content": "645200736 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3824059", "system": "BGL", "content": "iar 00106b8c dear 0245ce1c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-152226", "system": "BGL", "content": "generating core.964", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2324839", "system": "BGL", "content": "generating core.2255", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3763187", "system": "BGL", "content": "iar 00106534 dear 045e146c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3200159", "system": "BGL", "content": "iar 00149f88 dear 00986f98", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3797744", "system": "BGL", "content": "62500 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3913473", "system": "BGL", "content": "iar 00100788 dear 065b4c4c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1826621", "system": "BGL", "content": "1359826960 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-810766", "system": "BGL", "content": "CE sym 23, at 0x081daea0, mask 0x80", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-1649784", "system": "BGL", "content": "generating core.60427", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2196410", "system": "BGL", "content": "total of 1 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-1259783", "system": "BGL", "content": "1311300 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1459245", "system": "BGL", "content": "generating core.434", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4055445", "system": "BGL", "content": "iar 00113888 dear 0fee9c2c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1372931", "system": "BGL", "content": "generating core.5751", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-75186", "system": "BGL", "content": "generating core.3834", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2139320", "system": "BGL", "content": "generating core.18053", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2477312", "system": "BGL", "content": "generating core.7843", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1460704", "system": "BGL", "content": "generating core.500", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2667266", "system": "BGL", "content": "generating core.48425", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1806712", "system": "BGL", "content": "generating core.2942", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3936664", "system": "BGL", "content": "iar 00106568 dear 0249554c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4037308", "system": "BGL", "content": "iar 00106278 dear 02f804cc", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1028864", "system": "BGL", "content": "generating core.5452", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2110712", "system": "BGL", "content": "generating core.18953", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3555197", "system": "BGL", "content": "CE sym 22, at 0x0aeec840, mask 0x80", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-177060", "system": "BGL", "content": "generating core.6525", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-969546", "system": "BGL", "content": "generating core.4271", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4371474", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-1825797", "system": "BGL", "content": "generating core.23576", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1637822", "system": "BGL", "content": "generating core.13234", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1868653", "system": "BGL", "content": "generating core.28970", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2527888", "system": "BGL", "content": "15 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-4409040", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-3793808", "system": "BGL", "content": "2354412 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1457498", "system": "BGL", "content": "generating core.3831", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-890913", "system": "BGL", "content": "736755248 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3409036", "system": "BGL", "content": "ciod: LOGIN chdir(/bgl/apps/SWL/performance/MINIBEN///2005.09.20-18.06.01) failed: No such file or directory", "template": "ciod: LOGIN chdir(<*>) failed: No such file or directory", "template_id": "E118"}
+{"id": "bgl-4343383", "system": "BGL", "content": "2550 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-4361054", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-3737169", "system": "BGL", "content": "iar 00106534 dear 02494c3c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3264460", "system": "BGL", "content": "Lustre mount FAILED : bglio641 : point /p/gb1", "template": "Lustre mount FAILED : <*> : point <*>", "template_id": "E276"}
+{"id": "bgl-4010053", "system": "BGL", "content": "640764 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1538586", "system": "BGL", "content": "generating core.8779", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1449658", "system": "BGL", "content": "generating core.2742", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1411690", "system": "BGL", "content": "generating core.11257", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4395472", "system": "BGL", "content": "10726 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-1863182", "system": "BGL", "content": "generating core.6359", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4060078", "system": "BGL", "content": "CE sym 14, at 0x00d9b540, mask 0x08", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-2651971", "system": "BGL", "content": "generating core.9786", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-784597", "system": "BGL", "content": "generating core.2105", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2008764", "system": "BGL", "content": "generating core.17009", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3664847", "system": "BGL", "content": "iar 001061dc dear 0244c22c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-50657", "system": "BGL", "content": "generating core.958", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-453279", "system": "BGL", "content": "instruction address: 0x00004ed8", "template": "instruction address: <*>", "template_id": "E301"}
+{"id": "bgl-1728764", "system": "BGL", "content": "generating core.17507", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1783535", "system": "BGL", "content": "generating core.14782", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3213661", "system": "BGL", "content": "iar 00149ee0 dear 00995588", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-694908", "system": "BGL", "content": "lr:00004ed0 cr:28244842 xer:20000002 ctr:00086000", "template": "lr:<*> cr:<*> xer:<*> ctr:<*>", "template_id": "E313"}
+{"id": "bgl-3255527", "system": "BGL", "content": "Node card VPD check: U11 node in processor card slot J03 do not match. VPD ecid 04D18088502FFFFF040B1B508ED7, found 074F04C0DF7BFFFF060C1BB086DF", "template": "Node card VPD check: <*> node in processor card slot <*> do not match. VPD ecid <*>, found <*>", "template_id": "E45"}
+{"id": "bgl-857348", "system": "BGL", "content": "2576000 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4515425", "system": "BGL", "content": "Kernel detected 5377106 integer alignment exceptions (5377099) iar 0x00544ea8, dear 0x01ef8480 (5377100) iar 0x00544eb8, dear 0x01ef84a0 (5377101) iar 0x00544ea8, dear 0x01ef84c0 (5377102) iar 0x00544eb8, dear 0x01ef84e0 (5377103) iar 0x00544ee0, dear 0x01ef8500 (5377104) iar 0x00544ef0, dear 0x01ef8520 (5377105) iar 0x00544ee0, dear 0x01ef8540 (5377106) iar 0x00544ef0, dear 0x01ef8560", "template": "Kernel detected <*> integer alignment exceptions (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*>", "template_id": "E12"}
+{"id": "bgl-2882798", "system": "BGL", "content": "Node card VPD check: U11 node in processor card slot J13 do not match. VPD ecid 075C04C8047BFFFF0F051B9110E1, found 04D08087812FFFFF080B1B109CD3", "template": "Node card VPD check: <*> node in processor card slot <*> do not match. VPD ecid <*>, found <*>", "template_id": "E45"}
+{"id": "bgl-1805138", "system": "BGL", "content": "generating core.2441", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2709706", "system": "BGL", "content": "generating core.41918", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-100582", "system": "BGL", "content": "generating core.7422", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3316844", "system": "BGL", "content": "total of 4 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-2696356", "system": "BGL", "content": "generating core.34367", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1847550", "system": "BGL", "content": "generating core.22489", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2576262", "system": "BGL", "content": "generating core.6614", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-954871", "system": "BGL", "content": "generating core.48657", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3755400", "system": "BGL", "content": "iar 00106580 dear 045e141c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3206240", "system": "BGL", "content": "iar 0014a150 dear 009943e8", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4011339", "system": "BGL", "content": "iar 00105e88 dear 02f7c77c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1982331", "system": "BGL", "content": "113970328 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2539161", "system": "BGL", "content": "15 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3606264", "system": "BGL", "content": "1 torus receiver x+ input pipe error(s) (dcr 0x02ec) detected and corrected", "template": "<*> torus receiver <*> input pipe error(s) (dcr <*>) detected and corrected", "template_id": "E70"}
+{"id": "bgl-2504735", "system": "BGL", "content": "15 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-13520", "system": "BGL", "content": "generating core.362", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4005510", "system": "BGL", "content": "iar 00105e78 dear 02f7c79c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4152306", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001f5", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-4082277", "system": "BGL", "content": "CE sym 28, at 0x161059a0, mask 0x40", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-4515838", "system": "BGL", "content": "Kernel detected 4440648 integer alignment exceptions (4440641) iar 0x00544ea8, dear 0x01fc8ea0 (4440642) iar 0x00544eb8, dear 0x01fc8ec0 (4440643) iar 0x00544ea8, dear 0x01fc8ee0 (4440644) iar 0x00544eb8, dear 0x01fc8f00 (4440645) iar 0x00544ee0, dear 0x01fc8f20 (4440646) iar 0x00544ef0, dear 0x01fc8f40 (4440647) iar 0x00544ee0, dear 0x01fc8f60 (4440648) iar 0x00544ef0, dear 0x01fc8f80", "template": "Kernel detected <*> integer alignment exceptions (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*>", "template_id": "E12"}
+{"id": "bgl-202582", "system": "BGL", "content": "generating core.4771", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1414535", "system": "BGL", "content": "generating core.19946", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2249802", "system": "BGL", "content": "generating core.62251", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2304592", "system": "BGL", "content": "generating core.53889", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3553400", "system": "BGL", "content": "ciod: generated 64 core files for program /home/rfisher/sodscaling/flash2", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-3877883", "system": "BGL", "content": "iar 00106380 dear 0245a08c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1683986", "system": "BGL", "content": "generating core.55341", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-916842", "system": "BGL", "content": "generating core.13525", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2390282", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2222404", "system": "BGL", "content": "generating core.41494", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3467998", "system": "BGL", "content": "total of 1 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-4264603", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-1076976", "system": "BGL", "content": "generating core.30900", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3233942", "system": "BGL", "content": "NFS Mount failed on bglio805, slept 18 seconds, retrying (1)", "template": "NFS Mount failed on <*>, slept <*> seconds, retrying (<*>)", "template_id": "E165"}
+{"id": "bgl-3724934", "system": "BGL", "content": "iar 00106568 dear 02494bec", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4506999", "system": "BGL", "content": "CE sym 30, at 0x042358a0, mask 0x20", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-1457104", "system": "BGL", "content": "generating core.14287", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4566088", "system": "BGL", "content": "ciod: Error reading message prefix on CioStream socket to 172.16.96.116:45804, Link has been severed", "template": "ciod: Error reading message prefix on CioStream socket to <*>, Link has been severed", "template_id": "E36"}
+{"id": "bgl-3859712", "system": "BGL", "content": "iar 0010639c dear 0245b71c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4372248", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-1336477", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4159233", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001f2", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-3837346", "system": "BGL", "content": "iar 001069b8 dear 0245cd0c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3583231", "system": "BGL", "content": "total of 2 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-2729254", "system": "BGL", "content": "generating core.29666", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1247046", "system": "BGL", "content": "2 torus receiver x+ input pipe error(s) (dcr 0x02ec) detected and corrected", "template": "<*> torus receiver <*> input pipe error(s) (dcr <*>) detected and corrected", "template_id": "E70"}
+{"id": "bgl-3172345", "system": "BGL", "content": "39007736 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4115108", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001b0", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-2634104", "system": "BGL", "content": "1005 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3010064", "system": "BGL", "content": "13 ddr errors(s) detected and corrected on rank 0, symbol 26, bit 7", "template": "<*> ddr errors(s) detected and corrected on rank <*>, symbol <*> bit <*>", "template_id": "E94"}
+{"id": "bgl-4252736", "system": "BGL", "content": "10706 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3786119", "system": "BGL", "content": "2354412 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1440446", "system": "BGL", "content": "generating core.10052", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2294639", "system": "BGL", "content": "generating core.16362", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1284298", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4265186", "system": "BGL", "content": "10706 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-934282", "system": "BGL", "content": "generating core.22616", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-896423", "system": "BGL", "content": "749007632 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2945096", "system": "BGL", "content": "total of 1 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-3563925", "system": "BGL", "content": "CE sym 23, at 0x0f3a8120, mask 0x10", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-3024416", "system": "BGL", "content": "ciod: generated 128 core files for program /home/germann2/BGL-demo/SPaSM_mpi", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-4332337", "system": "BGL", "content": "10782 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3471130", "system": "BGL", "content": "ciod: Error loading /home/spelce1/HPCC_IBM/Urgent/VNM/64K/vnm.rts: invalid or missing program image, Permission denied", "template": "ciod: Error loading <*>: invalid or missing program image, Permission denied", "template_id": "E48"}
+{"id": "bgl-2524945", "system": "BGL", "content": "15 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2235850", "system": "BGL", "content": "generating core.45371", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4029581", "system": "BGL", "content": "iar 00106c0c dear 0246deac", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-3438264", "system": "BGL", "content": "ciod: Error loading /bgl/apps/linpack2/xhpl_241_no_fold: invalid or missing program image, No such file or directory", "template": "ciod: Error loading <*>: invalid or missing program image, No such file or directory", "template_id": "E35"}
+{"id": "bgl-3702870", "system": "BGL", "content": "iar 00106210 dear 0244c26c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1418785", "system": "BGL", "content": "generating core.19278", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3593832", "system": "BGL", "content": "ciod: Error loading /home/spelce1/HPCC_IBM/Urgent/COP/64K/hpcc-1.0.0.102905_opt_essl_cpm: invalid or missing program image, Permission denied", "template": "ciod: Error loading <*>: invalid or missing program image, Permission denied", "template_id": "E48"}
+{"id": "bgl-1718738", "system": "BGL", "content": "generating core.48809", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4628792", "system": "BGL", "content": "ciod: generated 128 core files for program /g/g24/germann2/SPaSM_mini/DSMC/r15", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-956180", "system": "BGL", "content": "generating core.17302", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1516575", "system": "BGL", "content": "generating core.3677", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3877907", "system": "BGL", "content": "iar 00105fd4 dear 0245a09c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1530108", "system": "BGL", "content": "generating core.3503", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2624463", "system": "BGL", "content": "1005 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-4095049", "system": "BGL", "content": "ciod: generated 64 core files for program /bgl/apps/followup/RAPTOR/raptor.rel2", "template": "ciod: generated <*> core files for program <*>", "template_id": "E228"}
+{"id": "bgl-1742801", "system": "BGL", "content": "generating core.61471", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4427256", "system": "BGL", "content": "10764 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3780221", "system": "BGL", "content": "2354412 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3827716", "system": "BGL", "content": "iar 0010683c dear 02f692ec", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4369003", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-1270746", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1730563", "system": "BGL", "content": "generating core.34490", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2176101", "system": "BGL", "content": "generating core.4039", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4351499", "system": "BGL", "content": "10726 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-1912900", "system": "BGL", "content": "generating core.2533", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4299677", "system": "BGL", "content": "10670 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-3554984", "system": "BGL", "content": "CE sym 23, at 0x0b846f40, mask 0x40", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-3783372", "system": "BGL", "content": "2354412 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3852360", "system": "BGL", "content": "iar 00106848 dear 0245cf0c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-960912", "system": "BGL", "content": "generating core.19155", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1972609", "system": "BGL", "content": "generating core.3429", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-168353", "system": "BGL", "content": "generating core.3856", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2374480", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1962702", "system": "BGL", "content": "generating core.1121", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-37911", "system": "BGL", "content": "generating core.1301", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1029470", "system": "BGL", "content": "generating core.5822", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3061984", "system": "BGL", "content": "iar 003a929c dear 00b37258", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1232253", "system": "BGL", "content": "generating core.8403", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-39138", "system": "BGL", "content": "generating core.5696", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2152254", "system": "BGL", "content": "generating core.26394", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3795219", "system": "BGL", "content": "62500 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3085882", "system": "BGL", "content": "773760 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3142857", "system": "BGL", "content": "146970578 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2718557", "system": "BGL", "content": "generating core.41227", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3944653", "system": "BGL", "content": "iar 00106204 dear 02f75edc", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2628829", "system": "BGL", "content": "1005 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-897364", "system": "BGL", "content": "761660800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4113313", "system": "BGL", "content": "CE sym 4, at 0x0589f8e0, mask 0x10", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-3685535", "system": "BGL", "content": "iar 00106228 dear 0244c1ec", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2989753", "system": "BGL", "content": "rts: kernel terminated for reason 1001", "template": "rts: kernel terminated for reason <*>", "template_id": "E258"}
+{"id": "bgl-3495131", "system": "BGL", "content": "1 ddr errors(s) detected and corrected on rank 0, symbol 27, bit 3", "template": "<*> ddr errors(s) detected and corrected on rank <*>, symbol <*> bit <*>", "template_id": "E94"}
+{"id": "bgl-3163067", "system": "BGL", "content": "39668834 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-968753", "system": "BGL", "content": "generating core.12858", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1132948", "system": "BGL", "content": "generating core.17128", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3051361", "system": "BGL", "content": "iar 003a90fc dear 00b36e38", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2981249", "system": "BGL", "content": "ciod: Error loading /bgl/apps/scaletest/stability/MDCASK/WORK/65576/inferno: invalid or missing program image, No such file or directory", "template": "ciod: Error loading <*>: invalid or missing program image, No such file or directory", "template_id": "E35"}
+{"id": "bgl-987482", "system": "BGL", "content": "total of 3 ddr error(s) detected and corrected", "template": "total of <*> ddr error(s) detected and corrected", "template_id": "E191"}
+{"id": "bgl-848898", "system": "BGL", "content": "199680 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1713550", "system": "BGL", "content": "generating core.41774", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1981009", "system": "BGL", "content": "113917224 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2434190", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2576788", "system": "BGL", "content": "generating core.9952", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2805796", "system": "BGL", "content": "generating core.3007", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-176691", "system": "BGL", "content": "generating core.889", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-736485", "system": "BGL", "content": "1 ddr errors(s) detected and corrected on rank 0, symbol 18, bit 0", "template": "<*> ddr errors(s) detected and corrected on rank <*>, symbol <*> bit <*>", "template_id": "E94"}
+{"id": "bgl-115400", "system": "BGL", "content": "generating core.5695", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-84430", "system": "BGL", "content": "generating core.3524", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3558111", "system": "BGL", "content": "ciod: Error loading /bgl/apps/followup/bcastV1R1.rts: invalid or missing program image, Permission denied", "template": "ciod: Error loading <*>: invalid or missing program image, Permission denied", "template_id": "E48"}
+{"id": "bgl-1728705", "system": "BGL", "content": "generating core.61376", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-153445", "system": "BGL", "content": "generating core.2444", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1590006", "system": "BGL", "content": "generating core.1243", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3154609", "system": "BGL", "content": "113014852 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-1153385", "system": "BGL", "content": "generating core.1908", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2093398", "system": "BGL", "content": "generating core.23803", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3867653", "system": "BGL", "content": "iar 00106360 dear 02f67c2c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-4358769", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-2683888", "system": "BGL", "content": "generating core.459", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3993884", "system": "BGL", "content": "iar 00105e88 dear 02f7c79c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2412252", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3506257", "system": "BGL", "content": "CE sym 35, at 0x1931cdc0, mask 0x80", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-1323891", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-163310", "system": "BGL", "content": "generating core.5354", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3629110", "system": "BGL", "content": "640404 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1516521", "system": "BGL", "content": "generating core.63989", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2670875", "system": "BGL", "content": "generating core.25578", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2381377", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2906367", "system": "BGL", "content": "Ido chip status changed: FF:F2:9F:16:E4:93:00:0D:60:E9:1B:6C ip=10.1.0.108 v=13 t=4 status=M Thu Aug 04 08:35:25 PDT 2005", "template": "Ido chip status changed: <*> ip=<*> v=<*> t=<*> status=<*> <*>", "template_id": "E219"}
+{"id": "bgl-3591116", "system": "BGL", "content": "CE sym 29, at 0x1b719940, mask 0x02", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-4210203", "system": "BGL", "content": "ciod: LOGIN chdir(/g/g0/spelce1/Linpack_SWL) failed: No such file or directory", "template": "ciod: LOGIN chdir(<*>) failed: No such file or directory", "template_id": "E118"}
+{"id": "bgl-464264", "system": "BGL", "content": "instruction address: 0x00004ed8", "template": "instruction address: <*>", "template_id": "E301"}
+{"id": "bgl-3247043", "system": "BGL", "content": "ciod: LOGIN chdir(/bglscratch/bwallen/SWL/SYS-CALLS/testcases/kernel/syscalls/link) failed: No such file or directory", "template": "ciod: LOGIN chdir(<*>) failed: No such file or directory", "template_id": "E118"}
+{"id": "bgl-2602822", "system": "BGL", "content": "5 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-879717", "system": "BGL", "content": "3091200 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2341417", "system": "BGL", "content": "generating core.13212", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3028901", "system": "BGL", "content": "CE sym 6, at 0x01a60980, mask 0x80", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-4501086", "system": "BGL", "content": "CE sym 35, at 0x0d94da40, mask 0x02", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-215515", "system": "BGL", "content": "generating core.13570", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4108391", "system": "BGL", "content": "ciod: Received signal 15, code=0, errno=0, address=0x000001b0", "template": "ciod: Received signal <*>, code=<*>, errno=<*>, address=<*>", "template_id": "E147"}
+{"id": "bgl-2594887", "system": "BGL", "content": "5 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-773439", "system": "BGL", "content": "CE sym 2, at 0x0b85f6e0, mask 0x01", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-2543142", "system": "BGL", "content": "generating core.2746", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1083254", "system": "BGL", "content": "generating core.2680", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3085604", "system": "BGL", "content": "773760 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3469477", "system": "BGL", "content": "3 ddr errors(s) detected and corrected on rank 0, symbol 26, bit 4", "template": "<*> ddr errors(s) detected and corrected on rank <*>, symbol <*> bit <*>", "template_id": "E94"}
+{"id": "bgl-2062594", "system": "BGL", "content": "generating core.17347", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-4469162", "system": "BGL", "content": "10614 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-1296927", "system": "BGL", "content": "1146800 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-2392570", "system": "BGL", "content": "8 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-4380763", "system": "BGL", "content": "0 microseconds spent in the rbs signal handler during 0 calls. 0 microseconds was the maximum time for a single instance of a correctable ddr.", "template": "<*> microseconds spent in the rbs signal handler during <*> calls. <*> microseconds was the maximum time for a single instance of a correctable ddr.", "template_id": "E13"}
+{"id": "bgl-57659", "system": "BGL", "content": "generating core.1436", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3731545", "system": "BGL", "content": "iar 00106534 dear 02494c3c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-1744436", "system": "BGL", "content": "generating core.3546", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2586983", "system": "BGL", "content": "5 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-2849570", "system": "BGL", "content": "generating core.4444", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-1681631", "system": "BGL", "content": "generating core.30797", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3152471", "system": "BGL", "content": "149329124 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3111582", "system": "BGL", "content": "iar 003a9260 dear 00e27a58", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-2236945", "system": "BGL", "content": "generating core.12280", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3422619", "system": "BGL", "content": "CE sym 10, at 0x0a6c3ca0, mask 0x80", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-2631092", "system": "BGL", "content": "1005 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-3581250", "system": "BGL", "content": "CE sym 29, at 0x08e2a9a0, mask 0x10", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-2521977", "system": "BGL", "content": "5 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-4551341", "system": "BGL", "content": "ciod: Error loading /bgl/apps/SWL/stability/MDCASK/WORK/1329/inferno: invalid or missing program image, Permission denied", "template": "ciod: Error loading <*>: invalid or missing program image, Permission denied", "template_id": "E48"}
+{"id": "bgl-3809255", "system": "BGL", "content": "62500 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1952833", "system": "BGL", "content": "generating core.2932", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2757878", "system": "BGL", "content": "generating core.9644", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2605778", "system": "BGL", "content": "685 floating point alignment exceptions", "template": "<*> floating point alignment exceptions", "template_id": "E240"}
+{"id": "bgl-1905891", "system": "BGL", "content": "generating core.3273", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-2029397", "system": "BGL", "content": "generating core.13523", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3165275", "system": "BGL", "content": "37798834 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-3670406", "system": "BGL", "content": "iar 00106210 dear 0244c20c", "template": "iar <*> dear <*>", "template_id": "E317"}
+{"id": "bgl-14357", "system": "BGL", "content": "CE sym 2, at 0x0b85fc80, mask 0x08", "template": "CE sym <*>, at <*>, mask <*>", "template_id": "E314"}
+{"id": "bgl-3112866", "system": "BGL", "content": "1524480 double-hummer alignment exceptions", "template": "<*> double-hummer alignment exceptions", "template_id": "E237"}
+{"id": "bgl-4240311", "system": "BGL", "content": "10740 total interrupts. 0 critical input interrupts. 0 microseconds total spent on critical input interrupts, 0 microseconds max time in a critical input interrupt.", "template": "<*> total interrupts. <*> critical input interrupts. <*> microseconds total spent on critical input interrupts, <*> microseconds max time in a critical input interrupt.", "template_id": "E10"}
+{"id": "bgl-1720983", "system": "BGL", "content": "generating core.29700", "template": "generating core.<*>", "template_id": "E310"}
+{"id": "bgl-3095622", "system": "BGL", "content": "iar 003a92a0 dear 013618f8", "template": "iar <*> dear <*>", "template_id": "E317"}
