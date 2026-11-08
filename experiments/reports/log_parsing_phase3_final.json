@@ -33,44 +33,44 @@
    "fail_top50": "35.1 \u00b1 0.3"
   },
   "tok_prob@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.518 \u00b1 0.004",
+   "fail_top50": "33.6 \u00b1 0.3"
   },
   "tok_prob@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.516 \u00b1 0.006",
+   "fail_top50": "32.6 \u00b1 0.3"
   },
   "tok_ent@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.507 \u00b1 0.002",
+   "fail_top50": "34.4 \u00b1 0.3"
   },
   "tok_ent@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.506 \u00b1 0.004",
+   "fail_top50": "32.8 \u00b1 0.4"
   },
   "sem_ent@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.543 \u00b1 0.002",
+   "fail_top50": "36.7 \u00b1 0.2"
   },
   "sem_ent@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.535 \u00b1 0.004",
+   "fail_top50": "34.8 \u00b1 0.4"
   },
   "loh_var@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.647 \u00b1 0.002",
+   "fail_top50": "39.9 \u00b1 0.2"
   },
   "loh_var@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.644 \u00b1 0.008",
+   "fail_top50": "38.6 \u00b1 0.4"
   },
   "out_entropy@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.792 \u00b1 0.001",
+   "fail_top50": "45.6 \u00b1 0.3"
   },
   "out_entropy@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.794 \u00b1 0.005",
+   "fail_top50": "44.3 \u00b1 0.5"
   },
   "lookup_drain@100": {
    "auc": "0.680 \u00b1 0.006",
@@ -147,44 +147,44 @@
    "fail_top50": "36.0 \u00b1 0.1"
   },
   "tok_prob@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.551 \u00b1 0.002",
+   "fail_top50": "37.2 \u00b1 0.4"
   },
   "tok_prob@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.548 \u00b1 0.004",
+   "fail_top50": "35.7 \u00b1 0.2"
   },
   "tok_ent@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.533 \u00b1 0.002",
+   "fail_top50": "37.1 \u00b1 0.3"
   },
   "tok_ent@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.530 \u00b1 0.004",
+   "fail_top50": "35.6 \u00b1 0.3"
   },
   "sem_ent@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.606 \u00b1 0.003",
+   "fail_top50": "39.5 \u00b1 0.2"
   },
   "sem_ent@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.594 \u00b1 0.006",
+   "fail_top50": "38.4 \u00b1 0.7"
   },
   "loh_var@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.738 \u00b1 0.002",
+   "fail_top50": "47.1 \u00b1 0.1"
   },
   "loh_var@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.736 \u00b1 0.008",
+   "fail_top50": "46.0 \u00b1 0.5"
   },
   "out_entropy@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.940 \u00b1 0.001",
+   "fail_top50": "50.0 \u00b1 0.0"
   },
   "out_entropy@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.947 \u00b1 0.002",
+   "fail_top50": "50.0 \u00b1 0.0"
   },
   "lookup_drain@100": {
    "auc": "0.696 \u00b1 0.008",
@@ -261,44 +261,44 @@
    "fail_top50": "38.4 \u00b1 0.5"
   },
   "tok_prob@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.552 \u00b1 0.002",
+   "fail_top50": "38.0 \u00b1 0.4"
   },
   "tok_prob@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.554 \u00b1 0.007",
+   "fail_top50": "37.5 \u00b1 0.7"
   },
   "tok_ent@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.535 \u00b1 0.004",
+   "fail_top50": "38.0 \u00b1 0.3"
   },
   "tok_ent@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.539 \u00b1 0.007",
+   "fail_top50": "37.6 \u00b1 0.7"
   },
   "sem_ent@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.617 \u00b1 0.001",
+   "fail_top50": "40.2 \u00b1 0.3"
   },
   "sem_ent@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.619 \u00b1 0.003",
+   "fail_top50": "39.9 \u00b1 0.5"
   },
   "loh_var@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.738 \u00b1 0.003",
+   "fail_top50": "47.7 \u00b1 0.2"
   },
   "loh_var@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.737 \u00b1 0.008",
+   "fail_top50": "47.0 \u00b1 0.4"
   },
   "out_entropy@100": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.939 \u00b1 0.002",
+   "fail_top50": "50.0 \u00b1 0.0"
   },
   "out_entropy@200": {
-   "auc": "n/a",
-   "fail_top50": "n/a"
+   "auc": "0.939 \u00b1 0.003",
+   "fail_top50": "50.0 \u00b1 0.0"
   },
   "lookup_drain@100": {
    "auc": "0.712 \u00b1 0.006",
@@ -340,6 +340,10 @@
    "auc": "0.494 \u00b1 0.014",
    "fail_top50": "34.5 \u00b1 0.7"
   }
+ },
+ "leakage_baseline_shift": {
+  "100": 0.023518197799221388,
+  "200": 0.021435270945970676
  },
  "hybrid": {
   "standard@100": [
