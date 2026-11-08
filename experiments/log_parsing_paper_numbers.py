@@ -22,13 +22,41 @@ MAIN = ["clotho", "MDSA", "GMMb", "SLL", "tok_prob", "tok_ent", "sem_ent", "loh_
         "lookup_drain", "lookup_drain_default", "lookup_oracle", "hybrid", "random"]
 
 READ = {
-    "main": "",
-    "heldout": "",
-    "fairness": "",
-    "cost": "",
-    "cross": "",
-    "leakage": "",
-    "noise": "",
+    "main": ("Reading: on the standard split Clotho (0.749 / 0.794) beats every other pre-generation method and every "
+             "lookup; leakage-free output entropy ties or beats it (0.792 / 0.794), and the rank average of the two is "
+             "the best score (0.826 / 0.845). On the template-disjoint split every lookup is at chance, Clotho and MDSA "
+             "tie (0.645-0.657), and output entropy keeps 0.796."),
+    "heldout": ("Reading: dropping the three tuning systems lowers Clotho by about 0.01-0.02 (0.737 / 0.777 standard) "
+                "but changes no ranking or sign: Clotho still beats MDSA on every seed on the standard split "
+                "(+0.042, +0.057) and Lookup (Drain) on every seed on both splits; the disjoint Clotho vs MDSA "
+                "difference stays within seed noise."),
+    "fairness": ("Reading: a random reference set helps the baselines only slightly, mostly at @100 on the standard "
+                 "split (MDSA +0.013, Lookup (Drain) +0.017, both within about one seed std), and slightly hurts "
+                 "them on the disjoint split. Clotho stays ahead of MDSA and Lookup (Drain) on every seed on the "
+                 "standard split under both reference sets (smallest per-seed gap +0.014, vs MDSA with random "
+                 "references @100); on the disjoint split Clotho vs MDSA remains a tie and Lookup remains at chance."),
+    "cost": ("Reading: output entropy needs 4 samples to match Clotho at reference size 100 on the standard split "
+             "(5 samples only tie it at 200; on the template-disjoint split 2 samples already tie it and 3 beat it by "
+             "about +0.08). Generating 4 samples costs "
+             "2.3x Clotho's batched HF forward pass, 8.3x a vLLM prefill (the same engine), and 35x online (batch 1). "
+             "Clotho + output entropy (k=5) is the best score at about 4x Clotho's batched cost."),
+    "cross": ("Reading: across systems Clotho (0.624 / 0.641, mean over pairs) and MDSA (0.634 / 0.618) are both "
+              "well above chance but far below within-system (e.g. Spark -> HDFS 0.692 vs 0.873 within HDFS @200); "
+              "the Clotho vs MDSA sign flips between @100 and @200. Both lookups are at chance (the pairs share at "
+              "most 8 templates), so Clotho beats Lookup (Drain) by +0.12 / +0.14. Output entropy, which needs no "
+              "reference set, gives 0.832."),
+    "leakage": ("Reading: in the original protocol labels and post-generation metrics share one set of 10 generations. "
+                "In our setting this inflates output entropy by +0.125 / +0.132 AUC (net), LOHSvar by +0.067 / +0.070 "
+                "and Sem-Ent by +0.040 / +0.038; Tok-Prob/Tok-Ent move by at most +0.011 net."),
+    "noise": ("Reading: near-chance within-template AUC is mostly label noise on top of a small real signal. 95-99% of "
+              "the reliable variance of an input's pass rate lies between templates on 11 of 13 systems (Mac and "
+              "Thunderbird trivially, with one input per template; HPC 0.80, OpenSSH 0.86), and even "
+              "the 40-sample pass rate has a median within-template reliability of only 0.56, so a 5-sample "
+              "within-template label is mostly sampling noise. Against the clean 40-sample label, within-template "
+              "AUC rises on the same systems and test sets (Clotho 0.555 -> 0.609 @100, output entropy 0.529 -> "
+              "0.584; MDSA unchanged at 0.557), against a ceiling of 0.698 for perfect knowledge of the original "
+              "10-sample pass rate. So Clotho does carry some within-template signal, but it is small next to the "
+              "between-template signal (overall AUC 0.832 on the same systems)."),
     "natural": "",
 }
 
@@ -39,7 +67,7 @@ def section(name, heading, until="## ", keep_heading=False):
     i = next(k for k, l in enumerate(lines) if l.startswith(heading))
     stop = (lambda l: l.strip() == "") if until == "" else (lambda l: l.startswith(until))
     j = next((k for k in range(i + 1, len(lines)) if stop(lines[k])), len(lines))
-    return lines[i if keep_heading else i + 1:j]
+    return [("#" + l) if l.startswith("## ") else l for l in lines[i if keep_heading else i + 1:j]]
 
 
 def main_table():
