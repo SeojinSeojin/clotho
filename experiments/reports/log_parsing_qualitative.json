@@ -1,0 +1,114 @@
+{
+ "hdfs": [
+  {
+   "group": "missed (top 10%)",
+   "rank": 11,
+   "input_index": 491,
+   "in_ref": "yes (2/2)"
+  },
+  {
+   "group": "missed (top 10%)",
+   "rank": 36,
+   "input_index": 357,
+   "in_ref": "yes (1/2)"
+  },
+  {
+   "group": "missed (top 10%)",
+   "rank": 41,
+   "input_index": 415,
+   "in_ref": "yes (1/2)"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 297,
+   "input_index": 444,
+   "in_ref": "yes (0/1)"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 340,
+   "input_index": 159,
+   "in_ref": "yes (0/1)"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 386,
+   "input_index": 200,
+   "in_ref": "yes (0/3)"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 387,
+   "input_index": 277,
+   "in_ref": "yes (0/1)"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 389,
+   "input_index": 405,
+   "in_ref": "yes (0/1)"
+  }
+ ],
+ "hadoop": [
+  {
+   "group": "missed (top 10%)",
+   "rank": 1,
+   "input_index": 496,
+   "in_ref": "yes (2/2)"
+  },
+  {
+   "group": "missed (top 10%)",
+   "rank": 3,
+   "input_index": 304,
+   "in_ref": "yes (1/2)"
+  },
+  {
+   "group": "missed (top 10%)",
+   "rank": 18,
+   "input_index": 104,
+   "in_ref": "yes (1/1)"
+  },
+  {
+   "group": "missed (top 10%)",
+   "rank": 27,
+   "input_index": 171,
+   "in_ref": "no"
+  },
+  {
+   "group": "missed (top 10%)",
+   "rank": 39,
+   "input_index": 260,
+   "in_ref": "no"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 290,
+   "input_index": 313,
+   "in_ref": "no"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 298,
+   "input_index": 330,
+   "in_ref": "no"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 312,
+   "input_index": 82,
+   "in_ref": "yes (0/1)"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 378,
+   "input_index": 441,
+   "in_ref": "no"
+  },
+  {
+   "group": "caught (bottom 30%)",
+   "rank": 388,
+   "input_index": 367,
+   "in_ref": "no"
+  }
+ ]
+}
