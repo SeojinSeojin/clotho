@@ -1,0 +1,500 @@
+{"id": "spark-10030", "system": "Spark", "content": "Block broadcast_4_piece150 stored as bytes in memory (estimated size 4.0 MB, free 3.0 GB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-10519610", "system": "Spark", "content": "Running task 37.0 in stage 10808.0 (TID 432390)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2522853", "system": "Spark", "content": "Reading broadcast variable 55 took 6 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-16032587", "system": "Spark", "content": "Finished task 38.0 in stage 3869.0 (TID 155236). 2128 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-922411", "system": "Spark", "content": "Got assigned task 70643", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-10228102", "system": "Spark", "content": "Found block rdd_32658_10 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-12039776", "system": "Spark", "content": "Times: total = 51, boot = -66, init = 67, finish = 50", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6272387", "system": "Spark", "content": "Running task 11.0 in stage 538.0 (TID 21531)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14298950", "system": "Spark", "content": "Running task 5.0 in stage 274.0 (TID 10963)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-15835649", "system": "Spark", "content": "Times: total = 48, boot = 46, init = 2, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-2098926", "system": "Spark", "content": "Reading broadcast variable 0 took 91 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-9345831", "system": "Spark", "content": "Block rdd_25317_32 stored as bytes in memory (estimated size 16.0 B, free 2.7 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-2237126", "system": "Spark", "content": "Running task 9.0 in stage 312.0 (TID 12849)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-10921602", "system": "Spark", "content": "Block rdd_469_12 stored as bytes in memory (estimated size 435.0 B, free 1508.5 KB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-9110630", "system": "Spark", "content": "Got assigned task 304359", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-4090510", "system": "Spark", "content": "Times: total = 41, boot = 11, init = 30, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-2487198", "system": "Spark", "content": "Running task 38.0 in stage 236.0 (TID 10165)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-3471831", "system": "Spark", "content": "Times: total = 39, boot = 15, init = 24, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14796438", "system": "Spark", "content": "Times: total = 37, boot = -33, init = 70, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-15108878", "system": "Spark", "content": "Got assigned task 120018", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-3946200", "system": "Spark", "content": "Times: total = 40, boot = -54, init = 93, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14320790", "system": "Spark", "content": "Block broadcast_392_piece0 stored as bytes in memory (estimated size 6.0 KB, free 1121.1 KB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-1873649", "system": "Spark", "content": "Running task 30.0 in stage 663.0 (TID 26553)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-7126364", "system": "Spark", "content": "Block broadcast_14979 stored as values in memory (estimated size 10.4 KB, free 1838.1 KB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-810948", "system": "Spark", "content": "Found block rdd_924_24 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-8835544", "system": "Spark", "content": "Found block rdd_32901_6 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2300989", "system": "Spark", "content": "Found block rdd_785_0 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-13258879", "system": "Spark", "content": "Added broadcast_4_piece110 in memory on mesos-slave-07:56972 (size: 4.0 MB, free: 13.6 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-6819778", "system": "Spark", "content": "Found block rdd_5843_25 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-7978068", "system": "Spark", "content": "Finished task 8.0 in stage 20631.0 (TID 825289). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-11834212", "system": "Spark", "content": "Started 4 remote fetches in 1 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-2422844", "system": "Spark", "content": "Running task 11.0 in stage 25.0 (TID 1011)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-3391539", "system": "Spark", "content": "Got assigned task 18078", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-14147392", "system": "Spark", "content": "Times: total = 43, boot = 43, init = 0, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-7202634", "system": "Spark", "content": "Found block rdd_28755_18 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-14836068", "system": "Spark", "content": "Starting task 7.0 in stage 10.2 (TID 1100, mesos-slave-18, partition 10,NODE_LOCAL, 1883 bytes)", "template": "Starting task <*> in stage <*> (TID <*>, <*>, partition <*>,<*>, <*> bytes)", "template_id": "E87"}
+{"id": "spark-4804052", "system": "Spark", "content": "Block rdd_796_9 stored as bytes in memory (estimated size 16.0 B, free 2.1 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-8548609", "system": "Spark", "content": "Got assigned task 508758", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-6654071", "system": "Spark", "content": "Removing RDD 2647", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-13620209", "system": "Spark", "content": "Got assigned task 97460", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-10426435", "system": "Spark", "content": "Times: total = 38, boot = -16, init = 54, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-906605", "system": "Spark", "content": "Block broadcast_1624_piece0 stored as bytes in memory (estimated size 6.1 KB, free 7.1 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-3010964", "system": "Spark", "content": "Started reading broadcast variable 42", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-6877801", "system": "Spark", "content": "Partition rdd_10242_29 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-3336111", "system": "Spark", "content": "Got assigned task 9282", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-12473655", "system": "Spark", "content": "Running task 46.0 in stage 165.0 (TID 27115)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14072751", "system": "Spark", "content": "Times: total = 39, boot = 23, init = 16, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-10247659", "system": "Spark", "content": "Saved output of task 'attempt_201706082217_22396_m_000010_895897' to hdfs://10.10.34.11:9000/pjhe/test/422/_temporary/0/task_201706082217_22396_m_000010", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-3461300", "system": "Spark", "content": "Got assigned task 29070", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-9467915", "system": "Spark", "content": "Finished task 35.0 in stage 19700.0 (TID 788077). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-8962795", "system": "Spark", "content": "Finished task 37.0 in stage 2583.0 (TID 103398). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-15392488", "system": "Spark", "content": "Reading broadcast variable 13569 took 3 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-12645398", "system": "Spark", "content": "Times: total = 362, boot = -370, init = 372, finish = 360", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6683363", "system": "Spark", "content": "Found block rdd_2_14 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-3017658", "system": "Spark", "content": "Finished task 34.0 in stage 90.0 (TID 3837). 2184 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-8169695", "system": "Spark", "content": "Finished task 13.0 in stage 140.0 (TID 5615). 2163 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13128707", "system": "Spark", "content": "Updating epoch to 65 and clearing cache", "template": "Updating epoch to <*> and clearing cache", "template_id": "E138"}
+{"id": "spark-3468133", "system": "Spark", "content": "Times: total = 39, boot = -29, init = 68, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-4087958", "system": "Spark", "content": "Finished task 27.0 in stage 19.0 (TID 748). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-8937466", "system": "Spark", "content": "Partition rdd_2635_8 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-12210733", "system": "Spark", "content": "Finished task 616.0 in stage 203.0 (TID 32444). 2410 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13281321", "system": "Spark", "content": "Running task 2.0 in stage 92.0 (TID 3681)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2427421", "system": "Spark", "content": "Running task 32.0 in stage 44.0 (TID 1792)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-11883495", "system": "Spark", "content": "Running task 628.0 in stage 457.0 (TID 82224)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-12632237", "system": "Spark", "content": "Running task 506.0 in stage 316.0 (TID 55291)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-3594157", "system": "Spark", "content": "Running task 4.0 in stage 132.0 (TID 2644)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-8084138", "system": "Spark", "content": "Removing RDD 16977", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-14498040", "system": "Spark", "content": "Saved output of task 'attempt_201706080954_0417_m_000005_16685' to hdfs://10.10.34.11:9000/pjhe/test/64/_temporary/0/task_201706080954_0417_m_000005", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-13387505", "system": "Spark", "content": "Running task 3.0 in stage 20.0 (TID 802)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-10938828", "system": "Spark", "content": "Times: total = 40, boot = -160, init = 199, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-7198251", "system": "Spark", "content": "Found block rdd_27938_8 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-15596694", "system": "Spark", "content": "attempt_201706091156_5442_m_000025_218149: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-34520", "system": "Spark", "content": "Added broadcast_6_piece100 in memory on mesos-master-2:56213 (size: 4.0 MB, free: 12.9 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-6807264", "system": "Spark", "content": "Found block rdd_5843_25 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-12556727", "system": "Spark", "content": "Finished task 1471.0 in stage 95.0 (TID 16023). 1251 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-7228874", "system": "Spark", "content": "Block broadcast_18505 stored as values in memory (estimated size 10.7 KB, free 2.8 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-8668489", "system": "Spark", "content": "Got assigned task 669457", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-3491477", "system": "Spark", "content": "Running task 11.0 in stage 89.0 (TID 1791)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-4569063", "system": "Spark", "content": "Got assigned task 17963", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-2594227", "system": "Spark", "content": "Added broadcast_4_piece228 in memory on mesos-slave-27:52232 (size: 4.0 MB, free: 12.6 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-1107059", "system": "Spark", "content": "Block rdd_949_5 stored as bytes in memory (estimated size 16.0 B, free 2.3 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-10230925", "system": "Spark", "content": "Running task 10.0 in stage 21919.0 (TID 876812)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-6969757", "system": "Spark", "content": "Found block rdd_15325_0 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2937149", "system": "Spark", "content": "Got assigned task 4530", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-15667550", "system": "Spark", "content": "Block broadcast_8041 stored as values in memory (estimated size 10.5 KB, free 1685.2 KB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-1718897", "system": "Spark", "content": "Finished task 14.0 in stage 2558.0 (TID 102334). 2184 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-6139161", "system": "Spark", "content": "Block rdd_978_4 stored as bytes in memory (estimated size 16.0 B, free 1517.1 KB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-8370324", "system": "Spark", "content": "Block rdd_10382_4 stored as bytes in memory (estimated size 16.0 B, free 7.6 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-13664105", "system": "Spark", "content": "Running task 6.0 in stage 73.0 (TID 2926)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-10656314", "system": "Spark", "content": "Finished task 10.0 in stage 15412.0 (TID 616536). 2156 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-5356785", "system": "Spark", "content": "Got assigned task 138137", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-9180831", "system": "Spark", "content": "Got assigned task 400811", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-4276670", "system": "Spark", "content": "Block rdd_1044_31 stored as bytes in memory (estimated size 16.0 B, free 6.0 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-3649173", "system": "Spark", "content": "Found block rdd_2_7 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11795255", "system": "Spark", "content": "Getting 123 non-empty blocks out of 210 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-15146626", "system": "Spark", "content": "Found block rdd_6910_19 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-12094609", "system": "Spark", "content": "Running task 1456.0 in stage 615.0 (TID 113665)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14835958", "system": "Spark", "content": "Finished task 6.0 in stage 9.2 (TID 1044) in 11797 ms on mesos-slave-18 (9/35)", "template": "Finished task <*> in stage <*> (TID <*>) in <*> ms on <*> (<*>)", "template_id": "E130"}
+{"id": "spark-14483333", "system": "Spark", "content": "Finished task 30.0 in stage 371.0 (TID 14870). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-6513779", "system": "Spark", "content": "Times: total = 37, boot = 14, init = 23, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-15879254", "system": "Spark", "content": "Removing RDD 21897", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-12872770", "system": "Spark", "content": "Getting 123 non-empty blocks out of 210 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-997838", "system": "Spark", "content": "Got assigned task 1765", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-760300", "system": "Spark", "content": "Running task 39.0 in stage 76.0 (TID 3319)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-13194827", "system": "Spark", "content": "Got assigned task 117487", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-9416416", "system": "Spark", "content": "Finished task 15.0 in stage 18014.0 (TID 720610). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-14766435", "system": "Spark", "content": "Found block rdd_798_29 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-502728", "system": "Spark", "content": "Finished task 27.0 in stage 2165.0 (TID 86907). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-12490955", "system": "Spark", "content": "Got assigned task 33328", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-11135622", "system": "Spark", "content": "Found block rdd_407_24 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11897747", "system": "Spark", "content": "Got assigned task 91981", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-407306", "system": "Spark", "content": "Times: total = 39, boot = -3, init = 42, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-4827501", "system": "Spark", "content": "Found block rdd_1496_28 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-1339594", "system": "Spark", "content": "Times: total = 41, boot = -11, init = 52, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13296093", "system": "Spark", "content": "Saved output of task 'attempt_201706081152_0061_m_000005_2445' to hdfs://10.10.34.11:9000/pjhe/test/10/_temporary/0/task_201706081152_0061_m_000005", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-3584126", "system": "Spark", "content": "Got assigned task 503", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-12953506", "system": "Spark", "content": "Started 4 remote fetches in 1 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-8775436", "system": "Spark", "content": "Running task 16.0 in stage 20339.0 (TID 813615)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-13596713", "system": "Spark", "content": "Times: total = 40, boot = 7, init = 33, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3448924", "system": "Spark", "content": "Finished task 21.0 in stage 679.0 (TID 27181). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-12324021", "system": "Spark", "content": "Running task 235.0 in stage 345.0 (TID 59840)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-563604", "system": "Spark", "content": "Times: total = 39, boot = 14, init = 25, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3203002", "system": "Spark", "content": "Running task 33.0 in stage 12.0 (TID 516)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-10503089", "system": "Spark", "content": "Times: total = 63, boot = 28, init = 35, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-12558066", "system": "Spark", "content": "Getting 950 non-empty blocks out of 1890 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-698261", "system": "Spark", "content": "Block rdd_2826_8 stored as bytes in memory (estimated size 16.0 B, free 7.9 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-535322", "system": "Spark", "content": "Times: total = 38, boot = 14, init = 24, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14868817", "system": "Spark", "content": "Added broadcast_6_piece17 in memory on mesos-slave-19:55296 (size: 4.0 MB, free: 14.0 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-5634882", "system": "Spark", "content": "Times: total = 38, boot = 15, init = 23, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14610035", "system": "Spark", "content": "Times: total = 40, boot = 15, init = 25, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5163638", "system": "Spark", "content": "Times: total = 163, boot = -16, init = 179, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13349494", "system": "Spark", "content": "attempt_201706071710_0202_m_000021_8101: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-15184179", "system": "Spark", "content": "Finished task 24.0 in stage 5896.0 (TID 236307). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-14838533", "system": "Spark", "content": "Running task 22.0 in stage 8.2 (TID 692)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-1485326", "system": "Spark", "content": "attempt_201706081729_0720_m_000030_28830: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-1526212", "system": "Spark", "content": "Finished task 20.0 in stage 1044.0 (TID 41780). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13955059", "system": "Spark", "content": "Found block rdd_2091_10 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11099146", "system": "Spark", "content": "Got assigned task 7035", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-7212643", "system": "Spark", "content": "Times: total = 38, boot = -23, init = 61, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13426725", "system": "Spark", "content": "Added broadcast_5_piece304 in memory on mesos-slave-14:56178 (size: 4.0 MB, free: 10.8 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-1611801", "system": "Spark", "content": "Running task 31.0 in stage 1711.0 (TID 68471)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-1745620", "system": "Spark", "content": "Finished task 2.0 in stage 17.0 (TID 772). 1274 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-15239518", "system": "Spark", "content": "Times: total = 39, boot = -29, init = 68, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-15437079", "system": "Spark", "content": "Got assigned task 612843", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-6353434", "system": "Spark", "content": "Times: total = 37, boot = -13, init = 50, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-8993266", "system": "Spark", "content": "Times: total = 41, boot = -33, init = 74, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6294306", "system": "Spark", "content": "Found block rdd_2_19 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9876013", "system": "Spark", "content": "Got assigned task 392125", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-5361364", "system": "Spark", "content": "Found block rdd_4858_31 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-1946764", "system": "Spark", "content": "Running task 13.0 in stage 96.0 (TID 3850)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-12944838", "system": "Spark", "content": "Times: total = 353, boot = -9108, init = 9110, finish = 351", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6454235", "system": "Spark", "content": "Found block rdd_1191_27 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9516899", "system": "Spark", "content": "Block broadcast_21485_piece0 stored as bytes in memory (estimated size 5.8 KB, free 3.6 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-4989018", "system": "Spark", "content": "Finished task 21.0 in stage 1058.0 (TID 42460). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-4649563", "system": "Spark", "content": "Partition rdd_165_39 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-2175418", "system": "Spark", "content": "Started reading broadcast variable 85", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-12280060", "system": "Spark", "content": "Times: total = 86, boot = -104, init = 106, finish = 84", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13543922", "system": "Spark", "content": "Finished task 21.0 in stage 1848.0 (TID 73980). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-288431", "system": "Spark", "content": "Block broadcast_12 stored as values in memory (estimated size 9.7 KB, free 451.0 KB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-15970355", "system": "Spark", "content": "Times: total = 45, boot = 32, init = 13, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6847219", "system": "Spark", "content": "Started reading broadcast variable 5483", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-11752811", "system": "Spark", "content": "Finished task 4.0 in stage 2321.0 (TID 104405). 2087 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-14738049", "system": "Spark", "content": "Times: total = 37, boot = -225, init = 262, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-2027157", "system": "Spark", "content": "Block broadcast_6_piece62 stored as bytes in memory (estimated size 4.0 MB, free 3.3 GB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-13608359", "system": "Spark", "content": "Got assigned task 93994", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-10504273", "system": "Spark", "content": "Reading broadcast variable 10264 took 4 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-3933322", "system": "Spark", "content": "attempt_201706071513_0495_m_000028_19828: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-10412628", "system": "Spark", "content": "Running task 33.0 in stage 7112.0 (TID 284550)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-8404118", "system": "Spark", "content": "Running task 30.0 in stage 7761.0 (TID 310514)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-3467808", "system": "Spark", "content": "Block rdd_1215_25 stored as bytes in memory (estimated size 16.0 B, free 6.5 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-3516882", "system": "Spark", "content": "Started reading broadcast variable 7", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-8682027", "system": "Spark", "content": "Times: total = 37, boot = -25, init = 62, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-149742", "system": "Spark", "content": "Got assigned task 5115", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-10005338", "system": "Spark", "content": "Reading broadcast variable 14197 took 5 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-688475", "system": "Spark", "content": "Times: total = 38, boot = -16, init = 54, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-1694914", "system": "Spark", "content": "Times: total = 39, boot = 18, init = 20, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-9289194", "system": "Spark", "content": "Reading broadcast variable 13786 took 5 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-7693122", "system": "Spark", "content": "Block broadcast_11078 stored as values in memory (estimated size 10.2 KB, free 3.1 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-10298828", "system": "Spark", "content": "Saved output of task 'attempt_201706081923_3274_m_000005_131008' to hdfs://10.10.34.11:9000/pjhe/test/22/_temporary/0/task_201706081923_3274_m_000005", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-10490513", "system": "Spark", "content": "Found block rdd_15883_7 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9608871", "system": "Spark", "content": "Found block rdd_273_9 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-8191721", "system": "Spark", "content": "Times: total = 40, boot = -173, init = 213, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-7120047", "system": "Spark", "content": "Running task 38.0 in stage 14727.0 (TID 589151)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2112901", "system": "Spark", "content": "Added broadcast_4_piece62 in memory on mesos-slave-27:49090 (size: 4.0 MB, free: 13.1 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-5784601", "system": "Spark", "content": "Times: total = 38, boot = 17, init = 20, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6599948", "system": "Spark", "content": "Added broadcast_6_piece326 in memory on mesos-master-1:39648 (size: 4.0 MB, free: 13.8 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-920953", "system": "Spark", "content": "Found block rdd_2749_35 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-8565446", "system": "Spark", "content": "Running task 33.0 in stage 13337.0 (TID 533559)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-9640122", "system": "Spark", "content": "Finished task 31.0 in stage 1839.0 (TID 73624). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10410735", "system": "Spark", "content": "Saved output of task 'attempt_201706081953_7059_m_000013_282417' to hdfs://10.10.34.11:9000/pjhe/test/309/_temporary/0/task_201706081953_7059_m_000013", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-7861459", "system": "Spark", "content": "Got assigned task 667784", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-1975152", "system": "Spark", "content": "Found block rdd_893_27 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-7620479", "system": "Spark", "content": "Times: total = 42, boot = -35, init = 76, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6475007", "system": "Spark", "content": "Times: total = 193, boot = -123, init = 124, finish = 192", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3559787", "system": "Spark", "content": "Added broadcast_5_piece123 in memory on mesos-slave-05:38074 (size: 4.0 MB, free: 12.3 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-1836300", "system": "Spark", "content": "Block rdd_631_5 stored as bytes in memory (estimated size 16.0 B, free 1232.1 KB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-13407598", "system": "Spark", "content": "Times: total = 40, boot = 8, init = 32, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-463727", "system": "Spark", "content": "Found block rdd_2289_9 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-10205510", "system": "Spark", "content": "Times: total = 45, boot = 23, init = 22, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3002487", "system": "Spark", "content": "Running task 21.0 in stage 47.0 (TID 1983)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-6911891", "system": "Spark", "content": "Got assigned task 306556", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-8545779", "system": "Spark", "content": "Times: total = 39, boot = -9, init = 48, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-1737175", "system": "Spark", "content": "Block broadcast_26_piece74 stored as bytes in memory (estimated size 4.0 MB, free 928.7 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-10431891", "system": "Spark", "content": "Got assigned task 310420", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-8933997", "system": "Spark", "content": "Finished task 16.0 in stage 1697.0 (TID 67943). 2220 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-2464402", "system": "Spark", "content": "Saved output of task 'attempt_201706090915_0079_m_000012_3375' to hdfs://10.10.34.11:9000/pjhe/test/1/_temporary/0/task_201706090915_0079_m_000012", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-13008200", "system": "Spark", "content": "Started 4 remote fetches in 2 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-1571354", "system": "Spark", "content": "Finished task 23.0 in stage 1406.0 (TID 56267). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13815773", "system": "Spark", "content": "Got assigned task 26984", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-5979327", "system": "Spark", "content": "Found block rdd_1506_37 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2902993", "system": "Spark", "content": "Found block rdd_642_1 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-5195772", "system": "Spark", "content": "Times: total = 37, boot = -16, init = 53, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6510148", "system": "Spark", "content": "Times: total = 40, boot = 15, init = 25, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-10701228", "system": "Spark", "content": "Block broadcast_16896_piece0 stored as bytes in memory (estimated size 29.2 KB, free 9.3 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-565943", "system": "Spark", "content": "Finished task 33.0 in stage 436.0 (TID 17753). 2241 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-1386588", "system": "Spark", "content": "Times: total = 40, boot = 17, init = 23, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6490212", "system": "Spark", "content": "Running task 12.0 in stage 139.0 (TID 2783)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2015786", "system": "Spark", "content": "Added broadcast_6_piece77 in memory on mesos-slave-19:44471 (size: 4.0 MB, free: 10.4 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-8652921", "system": "Spark", "content": "Saved output of task 'attempt_201706082121_16302_m_000037_652156' to hdfs://10.10.34.11:9000/pjhe/test/15/_temporary/0/task_201706082121_16302_m_000037", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-3633012", "system": "Spark", "content": "Found block rdd_2_22 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-3032480", "system": "Spark", "content": "Block broadcast_247 stored as values in memory (estimated size 78.9 KB, free 3.0 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-3577920", "system": "Spark", "content": "Times: total = 39, boot = -187, init = 225, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-15926749", "system": "Spark", "content": "Got assigned task 10035", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-12832780", "system": "Spark", "content": "Got assigned task 48645", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-11322781", "system": "Spark", "content": "Finished task 11.0 in stage 1698.0 (TID 74173). 2202 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-5576302", "system": "Spark", "content": "Got assigned task 11409", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-3238916", "system": "Spark", "content": "Added broadcast_76_piece0 in memory on mesos-slave-08:42967 (size: 4.0 MB, free: 2.6 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-4038474", "system": "Spark", "content": "Got assigned task 4852", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-6699187", "system": "Spark", "content": "Running task 38.0 in stage 718.0 (TID 28752)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-486526", "system": "Spark", "content": "Found block rdd_3047_1 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-5437514", "system": "Spark", "content": "Finished task 8.0 in stage 1185.0 (TID 49606). 2087 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-6659285", "system": "Spark", "content": "Removing RDD 10150", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-4513889", "system": "Spark", "content": "Block broadcast_10 stored as values in memory (estimated size 9.6 KB, free 347.7 KB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-10814235", "system": "Spark", "content": "Block rdd_33987_35 stored as bytes in memory (estimated size 16.0 B, free 2.2 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-9237315", "system": "Spark", "content": "Found block rdd_19100_24 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11524500", "system": "Spark", "content": "Found block rdd_1305_39 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11638687", "system": "Spark", "content": "Found block rdd_2398_27 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2158246", "system": "Spark", "content": "Times: total = 38, boot = 17, init = 21, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-10160633", "system": "Spark", "content": "Got assigned task 778500", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-6016898", "system": "Spark", "content": "Finished task 30.0 in stage 1499.0 (TID 63270). 2184 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-2620804", "system": "Spark", "content": "Added broadcast_6_piece270 in memory on mesos-slave-11:48446 (size: 4.0 MB, free: 12.8 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-8484665", "system": "Spark", "content": "Found block rdd_15325_9 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-5997058", "system": "Spark", "content": "Running task 34.0 in stage 1322.0 (TID 55116)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-7562446", "system": "Spark", "content": "Running task 25.0 in stage 6611.0 (TID 264504)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-9980316", "system": "Spark", "content": "Started reading broadcast variable 13462", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-7004439", "system": "Spark", "content": "Times: total = 40, boot = -40, init = 80, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-2582300", "system": "Spark", "content": "Block broadcast_4_piece119 stored as bytes in memory (estimated size 4.0 MB, free 2.2 GB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-12208704", "system": "Spark", "content": "Times: total = 219, boot = -265, init = 266, finish = 218", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-978221", "system": "Spark", "content": "Running task 5.0 in stage 2344.0 (TID 94044)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-1027485", "system": "Spark", "content": "Got assigned task 2435", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-539327", "system": "Spark", "content": "Times: total = 40, boot = 14, init = 25, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5030732", "system": "Spark", "content": "Times: total = 40, boot = 2, init = 38, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-2905947", "system": "Spark", "content": "Finished task 10.0 in stage 419.0 (TID 17941). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-11260076", "system": "Spark", "content": "Running task 24.0 in stage 1291.0 (TID 54865)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2612245", "system": "Spark", "content": "Block broadcast_5_piece21 stored as bytes in memory (estimated size 4.0 MB, free 1490.9 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-7759938", "system": "Spark", "content": "Times: total = 41, boot = -32, init = 72, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-1181230", "system": "Spark", "content": "Saved output of task 'attempt_201706081735_1201_m_000025_48060' to hdfs://10.10.34.11:9000/pjhe/test/34/_temporary/0/task_201706081735_1201_m_000025", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-15725144", "system": "Spark", "content": "Removing RDD 12798", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-1954308", "system": "Spark", "content": "Times: total = 39, boot = -47, init = 85, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13753392", "system": "Spark", "content": "Got assigned task 17090", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-7358494", "system": "Spark", "content": "Removing RDD 23808", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-3714316", "system": "Spark", "content": "Running task 0.0 in stage 15.0 (TID 562)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2692733", "system": "Spark", "content": "Block broadcast_4_piece237 stored as bytes in memory (estimated size 4.0 MB, free 2.8 GB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-14391668", "system": "Spark", "content": "Added broadcast_6_piece340 in memory on mesos-slave-22:47284 (size: 4.0 MB, free: 12.1 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-1978879", "system": "Spark", "content": "Block broadcast_6_piece326 stored as bytes in memory (estimated size 4.0 MB, free 3.6 GB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-5855242", "system": "Spark", "content": "Times: total = 39, boot = 8, init = 31, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3301729", "system": "Spark", "content": "Started reading broadcast variable 108", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-8105526", "system": "Spark", "content": "Removing RDD 9467", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-2505675", "system": "Spark", "content": "Reading broadcast variable 392 took 4 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-11093412", "system": "Spark", "content": "Got assigned task 5756", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-1792169", "system": "Spark", "content": "Block broadcast_110 stored as values in memory (estimated size 9.5 KB, free 18.6 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-14854701", "system": "Spark", "content": "Finished task 39.0 in stage 3.0 (TID 201). 1344 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-5731001", "system": "Spark", "content": "Times: total = 39, boot = 3, init = 36, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-297597", "system": "Spark", "content": "Times: total = 38, boot = -35, init = 73, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-8940844", "system": "Spark", "content": "Got assigned task 75520", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-11456130", "system": "Spark", "content": "Times: total = 39, boot = 14, init = 24, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-9865903", "system": "Spark", "content": "Block broadcast_9457 stored as values in memory (estimated size 10.4 KB, free 7.7 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-3179743", "system": "Spark", "content": "Block broadcast_197_piece0 stored as bytes in memory (estimated size 2.2 KB, free 95.5 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-6457646", "system": "Spark", "content": "Running task 29.0 in stage 1334.0 (TID 53389)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2415163", "system": "Spark", "content": "Times: total = 39, boot = 5, init = 34, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-1732414", "system": "Spark", "content": "Got assigned task 106363", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-4349275", "system": "Spark", "content": "Found block rdd_1341_12 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-5076478", "system": "Spark", "content": "Got assigned task 142635", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-6906115", "system": "Spark", "content": "Partition rdd_12142_37 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-3699768", "system": "Spark", "content": "Saved output of task 'attempt_201706062132_0370_m_000001_14841' to hdfs://10.10.34.11:9000/pjhe/test/64/_temporary/0/task_201706062132_0370_m_000001", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-2187839", "system": "Spark", "content": "Found block rdd_187_29 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-15639485", "system": "Spark", "content": "Running task 1.0 in stage 6971.0 (TID 279284)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-9735350", "system": "Spark", "content": "Saved output of task 'attempt_201706081938_5004_m_000006_200204' to hdfs://10.10.34.11:9000/pjhe/test/233/_temporary/0/task_201706081938_5004_m_000006", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-7571647", "system": "Spark", "content": "Found block rdd_9341_35 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9195421", "system": "Spark", "content": "Times: total = 38, boot = -23, init = 61, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3990408", "system": "Spark", "content": "Times: total = 37, boot = -205, init = 242, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5223310", "system": "Spark", "content": "Got assigned task 148262", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-7074630", "system": "Spark", "content": "Running task 1.0 in stage 13288.0 (TID 531561)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-4620906", "system": "Spark", "content": "Saved output of task 'attempt_201706101533_0078_m_000002_1562' to hdfs://10.10.34.11:9000/pjhe/test/23/_temporary/0/task_201706101533_0078_m_000002", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-15726811", "system": "Spark", "content": "Running task 9.0 in stage 10605.0 (TID 424644)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-1389059", "system": "Spark", "content": "Got assigned task 3495", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-15696990", "system": "Spark", "content": "Got assigned task 371382", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-3751577", "system": "Spark", "content": "Block broadcast_4_piece260 stored as bytes in memory (estimated size 4.0 MB, free 496.0 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-402145", "system": "Spark", "content": "Got assigned task 26128", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-12480866", "system": "Spark", "content": "Getting 45 non-empty blocks out of 480 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-2792566", "system": "Spark", "content": "attempt_201706091906_0111_m_000056_4699: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-14961361", "system": "Spark", "content": "Running task 29.0 in stage 12.0 (TID 1741)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-3160938", "system": "Spark", "content": "Reading broadcast variable 70 took 166 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-14083343", "system": "Spark", "content": "Started reading broadcast variable 2381", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-4055338", "system": "Spark", "content": "Block broadcast_4_piece295 stored as bytes in memory (estimated size 4.0 MB, free 220.0 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-10988881", "system": "Spark", "content": "Running task 19.0 in stage 80.0 (TID 1619)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-53171", "system": "Spark", "content": "Block broadcast_5_piece136 stored as bytes in memory (estimated size 4.0 MB, free 686.7 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-9489246", "system": "Spark", "content": "Found block rdd_32658_1 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-15934505", "system": "Spark", "content": "Got assigned task 21241", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-7133381", "system": "Spark", "content": "Finished task 28.0 in stage 15208.0 (TID 608382). 2087 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-8937970", "system": "Spark", "content": "Finished task 8.0 in stage 1817.0 (TID 72735). 2433 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-15066847", "system": "Spark", "content": "Times: total = 40, boot = -40, init = 80, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14836314", "system": "Spark", "content": "Finished task 13.0 in stage 11.2 (TID 1175) in 3912 ms on mesos-slave-21 (14/118)", "template": "Finished task <*> in stage <*> (TID <*>) in <*> ms on <*> (<*>)", "template_id": "E130"}
+{"id": "spark-3134404", "system": "Spark", "content": "Times: total = 40, boot = -355, init = 395, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5386069", "system": "Spark", "content": "Got assigned task 7322", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-13483642", "system": "Spark", "content": "Got assigned task 54974", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-11408992", "system": "Spark", "content": "Got assigned task 100595", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-1213169", "system": "Spark", "content": "Running task 28.0 in stage 1450.0 (TID 58028)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-11994989", "system": "Spark", "content": "Finished task 758.0 in stage 470.0 (TID 83344). 2410 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-12326743", "system": "Spark", "content": "Times: total = 227, boot = -769, init = 770, finish = 226", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14474096", "system": "Spark", "content": "Finished task 39.0 in stage 339.0 (TID 13599). 2241 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-6346860", "system": "Spark", "content": "Found block rdd_2_5 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-14992301", "system": "Spark", "content": "Finished task 15.0 in stage 180.0 (TID 3615). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-4962788", "system": "Spark", "content": "Found block rdd_2_25 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11358690", "system": "Spark", "content": "Found block rdd_2919_35 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2083752", "system": "Spark", "content": "Block broadcast_4_piece24 stored as bytes in memory (estimated size 4.0 MB, free 1730.7 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-8275346", "system": "Spark", "content": "attempt_201706081923_3395_m_000033_135874: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-12218237", "system": "Spark", "content": "Getting 495 non-empty blocks out of 930 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-9740496", "system": "Spark", "content": "Times: total = 40, boot = -27, init = 67, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-15806020", "system": "Spark", "content": "Found block rdd_20910_18 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-6318320", "system": "Spark", "content": "Running task 23.0 in stage 760.0 (TID 30423)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14490", "system": "Spark", "content": "Added broadcast_6_piece80 in memory on mesos-slave-21:37942 (size: 4.0 MB, free: 13.6 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-5337108", "system": "Spark", "content": "Finished task 6.0 in stage 2694.0 (TID 113444). 2142 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10398259", "system": "Spark", "content": "Got assigned task 268090", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-14598724", "system": "Spark", "content": "Found block rdd_127_18 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-3741460", "system": "Spark", "content": "Added broadcast_6_piece64 in memory on mesos-slave-27:45601 (size: 4.0 MB, free: 13.1 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-6125743", "system": "Spark", "content": "Got assigned task 14686", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-12310213", "system": "Spark", "content": "Running task 945.0 in stage 330.0 (TID 57670)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-11236631", "system": "Spark", "content": "Finished task 290.0 in stage 1126.0 (TID 47470). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-6793473", "system": "Spark", "content": "Found block rdd_5843_25 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-10092602", "system": "Spark", "content": "Found block rdd_27938_14 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-6128631", "system": "Spark", "content": "Reading broadcast variable 464 took 4 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-46072", "system": "Spark", "content": "Added broadcast_6_piece77 in memory on mesos-slave-05:56732 (size: 4.0 MB, free: 13.0 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-8868526", "system": "Spark", "content": "Removing RDD 8736", "template": "Removing RDD <*>", "template_id": "E232"}
+{"id": "spark-12042723", "system": "Spark", "content": "Started 5 remote fetches in 1 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-9067366", "system": "Spark", "content": "Times: total = 39, boot = -25, init = 64, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-1717802", "system": "Spark", "content": "Running task 8.0 in stage 2549.0 (TID 101969)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-8966472", "system": "Spark", "content": "Times: total = 38, boot = -31, init = 68, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-7737625", "system": "Spark", "content": "Running task 7.0 in stage 12517.0 (TID 500728)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-11244543", "system": "Spark", "content": "Found block rdd_1805_20 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2807642", "system": "Spark", "content": "Started reading broadcast variable 272", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-12250683", "system": "Spark", "content": "Finished task 239.0 in stage 162.0 (TID 26229). 1472 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-5197467", "system": "Spark", "content": "Found block rdd_4139_13 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-12778344", "system": "Spark", "content": "Started 2 remote fetches in 0 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-8326195", "system": "Spark", "content": "Reading broadcast variable 5101 took 3 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-15563307", "system": "Spark", "content": "Got assigned task 173303", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-8961438", "system": "Spark", "content": "Times: total = 40, boot = -29, init = 68, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6602590", "system": "Spark", "content": "Added broadcast_4_piece14 in memory on mesos-master-1:39648 (size: 4.0 MB, free: 11.7 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-15073633", "system": "Spark", "content": "Got assigned task 74467", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-9466968", "system": "Spark", "content": "Times: total = 38, boot = -131, init = 169, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-9020748", "system": "Spark", "content": "Running task 0.0 in stage 4593.0 (TID 183760)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-1502216", "system": "Spark", "content": "Finished task 20.0 in stage 860.0 (TID 34423). 2184 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-15808205", "system": "Spark", "content": "Block broadcast_13648_piece0 stored as bytes in memory (estimated size 6.1 KB, free 1922.7 KB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-5848111", "system": "Spark", "content": "Partition rdd_402_21 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-8026685", "system": "Spark", "content": "Saved output of task 'attempt_201706082217_22303_m_000038_892190' to hdfs://10.10.34.11:9000/pjhe/test/329/_temporary/0/task_201706082217_22303_m_000038", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-8027846", "system": "Spark", "content": "Saved output of task 'attempt_201706082217_22335_m_000018_893453' to hdfs://10.10.34.11:9000/pjhe/test/361/_temporary/0/task_201706082217_22335_m_000018", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-2838890", "system": "Spark", "content": "Finished task 29.0 in stage 148.0 (TID 6273). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-11293955", "system": "Spark", "content": "Started reading broadcast variable 1533", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-5307189", "system": "Spark", "content": "Got assigned task 79450", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-109535", "system": "Spark", "content": "Added broadcast_6_piece270 in memory on mesos-master-3:52850 (size: 4.0 MB, free: 12.1 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-5070097", "system": "Spark", "content": "Found block rdd_4731_29 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-4461256", "system": "Spark", "content": "Found block rdd_617_25 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-3680525", "system": "Spark", "content": "Times: total = 37, boot = 4, init = 33, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5002756", "system": "Spark", "content": "Partition rdd_2302_35 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-7492217", "system": "Spark", "content": "Times: total = 40, boot = -26, init = 66, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6121099", "system": "Spark", "content": "Got assigned task 9088", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-15620905", "system": "Spark", "content": "Block broadcast_6328_piece0 stored as bytes in memory (estimated size 6.0 KB, free 6.8 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-11132178", "system": "Spark", "content": "Finished task 20.0 in stage 387.0 (TID 15500). 2667 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-4462848", "system": "Spark", "content": "Finished task 6.0 in stage 398.0 (TID 15927). 2149 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-2357864", "system": "Spark", "content": "Added broadcast_5_piece3 in memory on 10.10.34.17:60468 (size: 4.0 MB, free: 35.1 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-10185678", "system": "Spark", "content": "Times: total = 39, boot = -18, init = 57, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-12273485", "system": "Spark", "content": "Started 6 remote fetches in 1 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-8539393", "system": "Spark", "content": "Got assigned task 495350", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-2221856", "system": "Spark", "content": "Times: total = 38, boot = -24, init = 62, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-12326487", "system": "Spark", "content": "Running task 646.0 in stage 345.0 (TID 60251)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-10414829", "system": "Spark", "content": "Found block rdd_10176_23 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9877923", "system": "Spark", "content": "Block broadcast_9891 stored as values in memory (estimated size 10.6 KB, free 3.2 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-14787717", "system": "Spark", "content": "Finished task 24.0 in stage 615.0 (TID 24784). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-7085560", "system": "Spark", "content": "Block broadcast_13692 stored as values in memory (estimated size 78.1 KB, free 12.1 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-6961647", "system": "Spark", "content": "Times: total = 37, boot = -21, init = 58, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-10417048", "system": "Spark", "content": "Finished task 39.0 in stage 7218.0 (TID 288797). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-11068359", "system": "Spark", "content": "Got assigned task 180", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-4916000", "system": "Spark", "content": "Running task 7.0 in stage 3529.0 (TID 151686)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14061780", "system": "Spark", "content": "Found block rdd_3410_17 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-5245294", "system": "Spark", "content": "Times: total = 38, boot = -45, init = 83, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13342241", "system": "Spark", "content": "Times: total = 39, boot = 20, init = 19, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-7232219", "system": "Spark", "content": "Finished task 28.0 in stage 18602.0 (TID 744140). 2076 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-2685126", "system": "Spark", "content": "Added broadcast_6_piece344 in memory on mesos-slave-23:38572 (size: 4.0 MB, free: 12.9 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-468704", "system": "Spark", "content": "Finished task 9.0 in stage 1653.0 (TID 66409). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-12670063", "system": "Spark", "content": "Finished task 1002.0 in stage 490.0 (TID 91178). 3379 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10317333", "system": "Spark", "content": "Times: total = 39, boot = -24, init = 63, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-13093436", "system": "Spark", "content": "Getting 115 non-empty blocks out of 1920 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-1102950", "system": "Spark", "content": "Found block rdd_776_17 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9483240", "system": "Spark", "content": "Reading broadcast variable 20261 took 5 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-15653928", "system": "Spark", "content": "Found block rdd_11961_9 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-9444441", "system": "Spark", "content": "Running task 15.0 in stage 19039.0 (TID 761610)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-15876787", "system": "Spark", "content": "Running task 8.0 in stage 16568.0 (TID 663162)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-6468204", "system": "Spark", "content": "Running task 16.0 in stage 55.0 (TID 1107)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-15737481", "system": "Spark", "content": "Found block rdd_17927_12 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-10140183", "system": "Spark", "content": "Found block rdd_27938_24 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-7798039", "system": "Spark", "content": "Got assigned task 580429", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-11462851", "system": "Spark", "content": "Got assigned task 14985", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-6374493", "system": "Spark", "content": "Running task 33.0 in stage 1031.0 (TID 41273)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-5663006", "system": "Spark", "content": "Finished task 5.0 in stage 1060.0 (TID 43724). 2184 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10565457", "system": "Spark", "content": "Finished task 0.0 in stage 12318.0 (TID 492769). 2135 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10455463", "system": "Spark", "content": "Times: total = 40, boot = -16, init = 56, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5897566", "system": "Spark", "content": "Times: total = 39, boot = 14, init = 25, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-7294924", "system": "Spark", "content": "Times: total = 37, boot = -38, init = 75, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3224487", "system": "Spark", "content": "Removed TaskSet 10.0, whose tasks have all completed, from pool", "template": "Removed TaskSet <*>, whose tasks have all completed, from pool", "template_id": "E62"}
+{"id": "spark-2498653", "system": "Spark", "content": "Times: total = 38, boot = 19, init = 19, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-1632086", "system": "Spark", "content": "Partition rdd_2936_2 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-4393341", "system": "Spark", "content": "Times: total = 38, boot = 12, init = 26, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-14541918", "system": "Spark", "content": "Got assigned task 14089", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-465205", "system": "Spark", "content": "Block rdd_2497_28 stored as bytes in memory (estimated size 16.0 B, free 6.9 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-12647519", "system": "Spark", "content": "Times: total = 366, boot = -142, init = 143, finish = 365", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-12184135", "system": "Spark", "content": "Finished task 830.0 in stage 112.0 (TID 19192). 3378 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13737765", "system": "Spark", "content": "Found block rdd_531_27 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-13255383", "system": "Spark", "content": "Block broadcast_4_piece131 stored as bytes in memory (estimated size 4.0 MB, free 1319.0 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-12753523", "system": "Spark", "content": "Times: total = 187, boot = -37, init = 38, finish = 186", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-4404427", "system": "Spark", "content": "Got assigned task 48649", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-9708726", "system": "Spark", "content": "Found block rdd_6512_26 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-155683", "system": "Spark", "content": "Running task 2.0 in stage 316.0 (TID 6323)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14857326", "system": "Spark", "content": "Block broadcast_6_piece136 stored as bytes in memory (estimated size 4.0 MB, free 1082.7 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-12392488", "system": "Spark", "content": "Getting 61 non-empty blocks out of 960 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-1901868", "system": "Spark", "content": "Found block rdd_376_8 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-6605743", "system": "Spark", "content": "Block broadcast_4_piece209 stored as bytes in memory (estimated size 4.0 MB, free 1482.7 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-3723151", "system": "Spark", "content": "Block broadcast_5_piece209 stored as bytes in memory (estimated size 4.0 MB, free 2.2 GB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-14998717", "system": "Spark", "content": "Finished task 9.0 in stage 247.0 (TID 4949). 2220 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-12645957", "system": "Spark", "content": "Got assigned task 62144", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-12705579", "system": "Spark", "content": "Started 4 remote fetches in 0 ms", "template": "Started <*> remote fetches in <*> ms", "template_id": "E180"}
+{"id": "spark-9869101", "system": "Spark", "content": "Times: total = 37, boot = -4, init = 41, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-6172374", "system": "Spark", "content": "Times: total = 39, boot = 18, init = 21, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-11989373", "system": "Spark", "content": "Getting 495 non-empty blocks out of 930 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-8320188", "system": "Spark", "content": "Found block rdd_6244_23 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-6084559", "system": "Spark", "content": "Times: total = 37, boot = 16, init = 21, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-2142003", "system": "Spark", "content": "Saved output of task 'attempt_201706101514_0121_m_000012_2432' to hdfs://10.10.34.11:9000/pjhe/test/35/_temporary/0/task_201706101514_0121_m_000012", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-916176", "system": "Spark", "content": "Found block rdd_2668_22 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-11772431", "system": "Spark", "content": "Times: total = 39, boot = 10, init = 28, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-8411633", "system": "Spark", "content": "Times: total = 37, boot = -23, init = 60, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-8572233", "system": "Spark", "content": "Got assigned task 543375", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-1150792", "system": "Spark", "content": "Finished task 36.0 in stage 961.0 (TID 38471). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13073966", "system": "Spark", "content": "Running task 1273.0 in stage 599.0 (TID 111658)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-6325653", "system": "Spark", "content": "Times: total = 44, boot = 15, init = 29, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-10288278", "system": "Spark", "content": "Running task 35.0 in stage 2893.0 (TID 115791)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-12713502", "system": "Spark", "content": "Getting 938 non-empty blocks out of 1890 blocks", "template": "Getting <*> non-empty blocks out of <*> blocks", "template_id": "E125"}
+{"id": "spark-5944049", "system": "Spark", "content": "Finished task 31.0 in stage 907.0 (TID 37031). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-1392975", "system": "Spark", "content": "Finished task 31.0 in stage 106.0 (TID 4271). 2087 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-14741366", "system": "Spark", "content": "Found block rdd_690_30 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-2939972", "system": "Spark", "content": "Finished task 77.0 in stage 113.0 (TID 4877). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10670006", "system": "Spark", "content": "Block broadcast_15940 stored as values in memory (estimated size 10.6 KB, free 3.1 MB)", "template": "Block <*> stored as values in memory (estimated size <*>, free <*>)", "template_id": "E69"}
+{"id": "spark-901465", "system": "Spark", "content": "Got assigned task 62048", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-15832260", "system": "Spark", "content": "Found block rdd_22169_29 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-13489539", "system": "Spark", "content": "Running task 16.0 in stage 1409.0 (TID 56411)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-5574113", "system": "Spark", "content": "Running task 18.0 in stage 266.0 (TID 10658)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-5631099", "system": "Spark", "content": "Got assigned task 32508", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-3442873", "system": "Spark", "content": "Partition rdd_1063_4 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-11230179", "system": "Spark", "content": "Times: total = 38, boot = 13, init = 25, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-3737861", "system": "Spark", "content": "Added broadcast_6_piece338 in memory on mesos-slave-28:59246 (size: 4.0 MB, free: 13.9 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}
+{"id": "spark-11384667", "system": "Spark", "content": "Started reading broadcast variable 2106", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-2533251", "system": "Spark", "content": "attempt_201706090915_0114_m_000111_4949: Committed", "template": "<*>: Committed", "template_id": "E233"}
+{"id": "spark-11096703", "system": "Spark", "content": "Times: total = 39, boot = 14, init = 25, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-5088093", "system": "Spark", "content": "Partition rdd_5685_23 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-7786871", "system": "Spark", "content": "Finished task 37.0 in stage 14150.0 (TID 566071). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-63317", "system": "Spark", "content": "Block broadcast_5_piece254 stored as bytes in memory (estimated size 4.0 MB, free 1060.3 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-528802", "system": "Spark", "content": "Times: total = 42, boot = 5, init = 37, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-8034046", "system": "Spark", "content": "Running task 28.0 in stage 22508.0 (TID 900385)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-7568024", "system": "Spark", "content": "Saved output of task 'attempt_201706081952_6799_m_000035_272032' to hdfs://10.10.34.11:9000/pjhe/test/49/_temporary/0/task_201706081952_6799_m_000035", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-14107908", "system": "Spark", "content": "Times: total = 39, boot = 18, init = 20, finish = 1", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-11480517", "system": "Spark", "content": "Times: total = 39, boot = 13, init = 26, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-4175647", "system": "Spark", "content": "Finished task 541.0 in stage 324.0 (TID 14227). 2364 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-10656616", "system": "Spark", "content": "Found block rdd_25021_30 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-10399772", "system": "Spark", "content": "Running task 13.0 in stage 6755.0 (TID 270251)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-15998172", "system": "Spark", "content": "Found block rdd_3442_11 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-13125408", "system": "Spark", "content": "Running task 1831.0 in stage 113.0 (TID 22113)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-992832", "system": "Spark", "content": "Started reading broadcast variable 14", "template": "Started reading broadcast variable <*>", "template_id": "E136"}
+{"id": "spark-9398183", "system": "Spark", "content": "Running task 25.0 in stage 17355.0 (TID 694260)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-10464956", "system": "Spark", "content": "Saved output of task 'attempt_201706082013_8945_m_000039_357876' to hdfs://10.10.34.11:9000/pjhe/test/81/_temporary/0/task_201706082013_8945_m_000039", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-15075038", "system": "Spark", "content": "Reading broadcast variable 1905 took 2 ms", "template": "Reading broadcast variable <*> took <*> ms", "template_id": "E146"}
+{"id": "spark-14562424", "system": "Spark", "content": "Running task 21.0 in stage 85.0 (TID 3420)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-11140454", "system": "Spark", "content": "Saved output of task 'attempt_201706091543_0450_m_000006_18006' to hdfs://10.10.34.11:9000/pjhe/test/18/_temporary/0/task_201706091543_0450_m_000006", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-11060651", "system": "Spark", "content": "Running task 7.0 in stage 50.0 (TID 2006)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-14443752", "system": "Spark", "content": "Partition rdd_267_13 not found, computing it", "template": "Partition <*> not found, computing it", "template_id": "E153"}
+{"id": "spark-7676409", "system": "Spark", "content": "Found block rdd_15325_13 locally", "template": "Found block <*> locally", "template_id": "E219"}
+{"id": "spark-1211190", "system": "Spark", "content": "Saved output of task 'attempt_201706081738_1438_m_000018_57538' to hdfs://10.10.34.11:9000/pjhe/test/28/_temporary/0/task_201706081738_1438_m_000018", "template": "Saved output of task <*> to <*>", "template_id": "E197"}
+{"id": "spark-9984793", "system": "Spark", "content": "Block broadcast_13623_piece0 stored as bytes in memory (estimated size 6.7 KB, free 10.6 MB)", "template": "Block <*> stored as bytes in memory (estimated size <*>, free <*>)", "template_id": "E73"}
+{"id": "spark-7245440", "system": "Spark", "content": "Times: total = 38, boot = -127, init = 165, finish = 0", "template": "Times: total = <*>, boot = <*>, init = <*>, finish = <*>", "template_id": "E129"}
+{"id": "spark-477553", "system": "Spark", "content": "Finished task 6.0 in stage 1790.0 (TID 71887). 2170 bytes result sent to driver", "template": "Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver", "template_id": "E66"}
+{"id": "spark-13523215", "system": "Spark", "content": "Got assigned task 67012", "template": "Got assigned task <*>", "template_id": "E225"}
+{"id": "spark-15806713", "system": "Spark", "content": "Running task 18.0 in stage 13552.0 (TID 542536)", "template": "Running task <*> in stage <*> (TID <*>)", "template_id": "E186"}
+{"id": "spark-2646278", "system": "Spark", "content": "Added broadcast_4_piece217 in memory on mesos-slave-14:48730 (size: 4.0 MB, free: 11.2 GB)", "template": "Added <*> in memory on <*> (size: <*>, free: <*>)", "template_id": "E161"}

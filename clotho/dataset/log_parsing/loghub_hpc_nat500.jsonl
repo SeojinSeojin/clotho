@@ -1,0 +1,500 @@
+{"id": "hpc-148035", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-45431", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-33762", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1522", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-35494", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage211", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-74663", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root30_local is no longer served by node node-189", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-427772", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=41)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-283566", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-45165", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-16540", "system": "HPC", "content": "boot (command 3149)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-13459", "system": "HPC", "content": "boot (command 2896)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-26671", "system": "HPC", "content": "boot (command 4147)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-233791", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-155630", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-76022", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root1_local_backup is no longer served by node node-32", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-260349", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-411002", "system": "HPC", "content": "NIFF: node node-60 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-40679", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-11515", "system": "HPC", "content": "boot (command 2547)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-14613", "system": "HPC", "content": "wait (command 3030)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-404161", "system": "HPC", "content": "NIFF: node node-140 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-416748", "system": "HPC", "content": "NIFF: node node-30 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-414855", "system": "HPC", "content": "NIFF: node node-236 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-17621", "system": "HPC", "content": "boot (command 3217)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-194003", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-385216", "system": "HPC", "content": "boot (command 3226) Error: Unknown We failed to determine the state of this node", "template": "boot (command <*>) Error: Unknown We failed to determine the state of this node", "template_id": "E9"}
+{"id": "hpc-275718", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-9239", "system": "HPC", "content": "wait (command 2470)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-417924", "system": "HPC", "content": "NIFF: node node-249 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-230794", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-413442", "system": "HPC", "content": "NIFF: node node-248 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-9064", "system": "HPC", "content": "boot (command 2462)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-73665", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root12_domain is no longer served by node node-11", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-73552", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root22_domain is no longer served by node node-245", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-70690", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root3_tmp is no longer served by node node-34", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-282932", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-23195", "system": "HPC", "content": "wait (command 3849)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-70762", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage1012 is no longer served by node node-228", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-74617", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root26_domain is no longer served by node node-153", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-72319", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root11_local is no longer served by node node-42", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-153182", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-189", "system": "HPC", "content": "wait (command 1896)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-43295", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4470 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-428808", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4432)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-41698", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-420485", "system": "HPC", "content": "NIFF: node node-157 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-406785", "system": "HPC", "content": "NIFF: node node-23 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-55332", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-88696", "system": "HPC", "content": "inconsistent nodesets node-31 0x1fffffffe <ok> node-0 0x0000000e <ok> node-1 0x0000000e <ok> node-2 0x0000000e <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-69252", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root2_domain is no longer served by node node-129", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-41051", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-409160", "system": "HPC", "content": "NIFF: node node-206 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-415691", "system": "HPC", "content": "NIFF: node node-235 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-226720", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-129196", "system": "HPC", "content": "inconsistent nodesets node-2 0x0000000e <ok> node-0 0x00000002 <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-18075", "system": "HPC", "content": "boot (command 3309)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-22681", "system": "HPC", "content": "boot (command 3844)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-71167", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root25_domain is no longer served by node node-120", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-426113", "system": "HPC", "content": "NIFF: node node-169 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-74657", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root24_domain is no longer served by node node-247", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-9658", "system": "HPC", "content": "boot (command 2509)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-69163", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root8_domain is no longer served by node node-167", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-56352", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-265522", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-24126", "system": "HPC", "content": "boot (command 3965)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-59030", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-17236", "system": "HPC", "content": "wait (command 3198)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-407441", "system": "HPC", "content": "NIFF: node node-234 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-41374", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-10856", "system": "HPC", "content": "wait (command 2574)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-5475", "system": "HPC", "content": "boot (command 2300)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-74093", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root3_tmp is no longer served by node node-98", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-425741", "system": "HPC", "content": "NIFF: node node-138 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-427041", "system": "HPC", "content": "NIFF: node node-120 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-226652", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-410035", "system": "HPC", "content": "NIFF: node node-111 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-67385", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root11_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-16255", "system": "HPC", "content": "wait (command 3112)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-20696", "system": "HPC", "content": "wait (command 3568)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-56204", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-60748", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-416670", "system": "HPC", "content": "NIFF: node node-59 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-429258", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4407)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-16576", "system": "HPC", "content": "boot (command 3147)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-225753", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-49814", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-1508", "system": "HPC", "content": "wait (command 1939)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-69639", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root30_tmp is no longer served by node node-61", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-24476", "system": "HPC", "content": "boot (command 3975)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-10221", "system": "HPC", "content": "boot (command 2613)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-14058", "system": "HPC", "content": "wait (command 2950)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-75902", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root1_tmp_backup is no longer served by node node-160", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-11994", "system": "HPC", "content": "wait (command 2677)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-56918", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-7221", "system": "HPC", "content": "boot (command 2349)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-43453", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-127741", "system": "HPC", "content": "inconsistent nodesets node-192 0x000000fe <ok> node-196 0x0000003e <ok> node-195 0x000000fe <ok>", "template": "inconsistent nodesets <*> <*> <ok> <*> <*> <ok>", "template_id": "E36"}
+{"id": "hpc-11472", "system": "HPC", "content": "boot (command 2551)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-218914", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-428724", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=2538)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-11714", "system": "HPC", "content": "boot (command 2538)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-271353", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-275816", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-276247", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-65649", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:2:0", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-289945", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-30804", "system": "HPC", "content": "Targeting domains:node-D6 and nodes:node-207", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-43995", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-233318", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-61037", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-19671", "system": "HPC", "content": "wait (command 3523)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-40873", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-18319", "system": "HPC", "content": "boot (command 3325)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-4825", "system": "HPC", "content": "boot (command 2193)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-275689", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-26745", "system": "HPC", "content": "boot (command 4152)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-70648", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain cluster_usr_backup is no longer served by node node-96", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-70726", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root2_domain is no longer served by node node-161", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-7744", "system": "HPC", "content": "boot (command 2385)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-256934", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-65710", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:2:0", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-194583", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-286498", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-34747", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1512", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-53562", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-22756", "system": "HPC", "content": "boot (command 3843)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-49742", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-59641", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-416944", "system": "HPC", "content": "NIFF: node node-213 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-50782", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-18931", "system": "HPC", "content": "wait (command 3415)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-172449", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-274207", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-422021", "system": "HPC", "content": "NIFF: node node-88 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-422152", "system": "HPC", "content": "NIFF: node node-25 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-69797", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root9_local is no longer served by node node-8", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-59980", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-172922", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-414174", "system": "HPC", "content": "NIFF: node node-212 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-23281", "system": "HPC", "content": "boot (command 3861)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-187876", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-75519", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root31_tmp is no longer served by node node-126", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-266615", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-18344", "system": "HPC", "content": "wait (command 3334)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-167119", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-220460", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-256474", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-16365", "system": "HPC", "content": "wait (command 3147)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-425473", "system": "HPC", "content": "NIFF: node node-221 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-34890", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1244", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-409967", "system": "HPC", "content": "NIFF: node node-242 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-262339", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-417226", "system": "HPC", "content": "NIFF: node node-168 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-422031", "system": "HPC", "content": "NIFF: node node-250 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-68220", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain storage241 is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-420834", "system": "HPC", "content": "NIFF: node node-155 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-228726", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-49767", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4166 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-67310", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root32_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-44348", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-61092", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4017 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-429527", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4063)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-6187", "system": "HPC", "content": "boot (command 2268)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-22179", "system": "HPC", "content": "boot (command 3702)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-211033", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-4983", "system": "HPC", "content": "wait (command 2185)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-26372", "system": "HPC", "content": "wait (command 4153)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-40250", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-38397", "system": "HPC", "content": "NIFF: node node-183 detected a failed network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-75434", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain cluster_var_backup is no longer served by node node-224", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-10261", "system": "HPC", "content": "wait (command 2622)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-45568", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-7395", "system": "HPC", "content": "wait (command 2351)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-218716", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-286414", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-165153", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-274352", "system": "HPC", "content": "ambient=24", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-50963", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-410695", "system": "HPC", "content": "NIFF: node node-4 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-276402", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-37474", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage621", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-416192", "system": "HPC", "content": "NIFF: node node-99 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-51957", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4090 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-428643", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=3950)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-42152", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-424509", "system": "HPC", "content": "NIFF: node node-228 has detected an available network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-282183", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-35955", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage732", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-13437", "system": "HPC", "content": "boot (command 2902)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-20949", "system": "HPC", "content": "wait (command 3610)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-231782", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-40657", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4066 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-282702", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-196473", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-418610", "system": "HPC", "content": "NIFF: node node-9 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-22505", "system": "HPC", "content": "wait (command 3696)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-407174", "system": "HPC", "content": "NIFF: node node-49 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-36120", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage212", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-72746", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage1332 is no longer served by node node-242", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-228849", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-30755", "system": "HPC", "content": "Targeting domains:node-D0 and nodes:node-[8-31] child of command 3110", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-410017", "system": "HPC", "content": "NIFF: node node-141 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-50168", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-287411", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-413554", "system": "HPC", "content": "NIFF: node node-127 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-17639", "system": "HPC", "content": "boot (command 3218)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-56806", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-423362", "system": "HPC", "content": "NIFF: node node-222 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-1497", "system": "HPC", "content": "boot (command 1943)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-66035", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root15_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-268965", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-40934", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-420377", "system": "HPC", "content": "NIFF: node node-157 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-58376", "system": "HPC", "content": "Fan speeds ( 3552 3552 3391 **** 3515 3497 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-48223", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-279249", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-4693", "system": "HPC", "content": "wait (command 2197)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-57082", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-3310", "system": "HPC", "content": "wait (command 2154)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-14659", "system": "HPC", "content": "wait (command 3022)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-210738", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-48312", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-14640", "system": "HPC", "content": "boot (command 3024)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-74998", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root5_local is no longer served by node node-164", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-12491", "system": "HPC", "content": "boot (command 2761)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-406236", "system": "HPC", "content": "NIFF: node node-188 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-35401", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1513", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-406944", "system": "HPC", "content": "NIFF: node node-229 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-17595", "system": "HPC", "content": "boot (command 3217)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-30679", "system": "HPC", "content": "Targeting domains:node-D7 and nodes:node-[224-255] child of command 2978", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-414604", "system": "HPC", "content": "NIFF: node node-144 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-54177", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-73083", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root3_tmp is no longer served by node node-194", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-267948", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-38112", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage222", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-52548", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-175559", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-412663", "system": "HPC", "content": "NIFF: node node-4 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-425827", "system": "HPC", "content": "NIFF: node node-28 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-158302", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-30917", "system": "HPC", "content": "Targeting domains:node-D5 and nodes:node-[160-191] child of command 3298", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-53917", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-72781", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage1122 is no longer served by node node-233", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-428369", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=3040)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-72804", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root2_tmp is no longer served by node node-97", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-65113", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:2:0", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-58420", "system": "HPC", "content": "Fan speeds ( 3552 3552 3391 **** 3515 3497 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-40811", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-423995", "system": "HPC", "content": "NIFF: node node-101 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-406049", "system": "HPC", "content": "NIFF: node node-207 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-18587", "system": "HPC", "content": "boot (command 3418)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-31418", "system": "HPC", "content": "Targeting domains:node-D4 and nodes:node-[136-159] child of command 3947", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-38741", "system": "HPC", "content": "NIFF: node node-154 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-222263", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-39076", "system": "HPC", "content": "NIFF: node node-71 detected a failed network connection on network 0.0.0.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-42130", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4017 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-6718", "system": "HPC", "content": "boot (command 2316)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-44491", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-279840", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-42626", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-425725", "system": "HPC", "content": "NIFF: node node-218 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-33534", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage224", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-6484", "system": "HPC", "content": "wait (command 2323)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-35727", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage122", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-213471", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-22959", "system": "HPC", "content": "boot (command 3841)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-420945", "system": "HPC", "content": "NIFF: node node-118 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-409100", "system": "HPC", "content": "NIFF: node node-241 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-67212", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root5_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-288167", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-49264", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-56072", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-10169", "system": "HPC", "content": "wait (command 2607)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-24215", "system": "HPC", "content": "boot (command 3984)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-407947", "system": "HPC", "content": "NIFF: node node-57 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-9277", "system": "HPC", "content": "wait (command 2474)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-61020", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 4115 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-43748", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-43174", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-19074", "system": "HPC", "content": "wait (command 3431)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-419472", "system": "HPC", "content": "NIFF: node node-237 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-413189", "system": "HPC", "content": "NIFF: node node-10 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-7661", "system": "HPC", "content": "boot (command 2389)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-57422", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-406602", "system": "HPC", "content": "NIFF: node node-177 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-158165", "system": "HPC", "content": "ambient=36", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-69107", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root25_domain is no longer served by node node-24", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-41839", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-71062", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root31_domain is no longer served by node node-126", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-426715", "system": "HPC", "content": "NIFF: node node-44 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-25948", "system": "HPC", "content": "wait (command 4116)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-48965", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-283935", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-38873", "system": "HPC", "content": "NIFF: node node-102 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-55616", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-67249", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root21_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-8735", "system": "HPC", "content": "wait (command 2443)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-51210", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-56787", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-58730", "system": "HPC", "content": "Fan speeds ( 3552 3552 3391 **** 3515 3497 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-72029", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root24_domain is no longer served by node node-87", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-417265", "system": "HPC", "content": "NIFF: node node-49 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-6642", "system": "HPC", "content": "boot (command 2322)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-13148", "system": "HPC", "content": "boot (command 2832)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-49058", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-38217", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1621", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-40925", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-33768", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1324", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-65853", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:0:0", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-405837", "system": "HPC", "content": "NIFF: node node-243 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-46620", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-35500", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage212", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-46543", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4066 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-67611", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root11_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-41921", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-10912", "system": "HPC", "content": "wait (command 2578)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-36586", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage141", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-405233", "system": "HPC", "content": "NIFF: node node-251 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-19286", "system": "HPC", "content": "boot (command 3473)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-412173", "system": "HPC", "content": "NIFF: node node-29 has detected an available network connection on network 10.96.0.0 via interface scip0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-33881", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1132", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-409468", "system": "HPC", "content": "NIFF: node node-158 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-72871", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain storage632 is no longer served by node node-22", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-406", "system": "HPC", "content": "clusterAddMember (command 1904)", "template": "clusterAddMember (command <*>)", "template_id": "E38"}
+{"id": "hpc-3332", "system": "HPC", "content": "wait (command 2153)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-281508", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-53129", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4192 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-5995", "system": "HPC", "content": "wait (command 2272)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-56955", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-251212", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-422631", "system": "HPC", "content": "NIFF: node node-136 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-152472", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-46565", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-3288", "system": "HPC", "content": "boot (command 2092)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-428132", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4008)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-75828", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain cluster_usr_backup is no longer served by node node-96", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-411429", "system": "HPC", "content": "NIFF: node node-235 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-8634", "system": "HPC", "content": "boot (command 2451)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-38263", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1422", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-69034", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root20_domain is no longer served by node node-83", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-410179", "system": "HPC", "content": "NIFF: node node-51 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-428586", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4228)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-424814", "system": "HPC", "content": "NIFF: node node-222 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-1096", "system": "HPC", "content": "risBoot (command 1918)", "template": "risBoot (command <*>)", "template_id": "E49"}
+{"id": "hpc-41719", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-44127", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-5655", "system": "HPC", "content": "boot (command 2298)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-57156", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-44034", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-425244", "system": "HPC", "content": "NIFF: node node-159 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-243888", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-414218", "system": "HPC", "content": "NIFF: node node-123 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-25449", "system": "HPC", "content": "boot (command 4053)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-40024", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-15354", "system": "HPC", "content": "halt (command 2988)", "template": "halt (command <*>)", "template_id": "E56"}
+{"id": "hpc-36614", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1322", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-74644", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root3_local is no longer served by node node-98", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-19429", "system": "HPC", "content": "boot (command 3469)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-38775", "system": "HPC", "content": "NIFF: node node-190 detected a failed network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> detected a failed network connection on network <*> via interface <*>", "template_id": "E11"}
+{"id": "hpc-69248", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root3_tmp is no longer served by node node-226", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-4146", "system": "HPC", "content": "boot (command 2236)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-428486", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=3028)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-36465", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1442", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-411734", "system": "HPC", "content": "NIFF: node node-171 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-170073", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-30478", "system": "HPC", "content": "Targeting domains:node-D2 and nodes:node-[64-71] child of command 2815", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-221381", "system": "HPC", "content": "ambient=24", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-1623", "system": "HPC", "content": "wait (command 1945)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-46424", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-15710", "system": "HPC", "content": "boot (command 3081)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-247411", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-419192", "system": "HPC", "content": "NIFF: node node-25 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-411825", "system": "HPC", "content": "NIFF: node node-84 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-406986", "system": "HPC", "content": "NIFF: node node-110 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-245883", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-20182", "system": "HPC", "content": "wait (command 3486)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-216148", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-36838", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage711", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-7740", "system": "HPC", "content": "boot (command 2385)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-61230", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-15961", "system": "HPC", "content": "wait (command 3082)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-219066", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-169527", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-416102", "system": "HPC", "content": "NIFF: node node-253 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-187151", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-412062", "system": "HPC", "content": "NIFF: node node-62 has detected an available network connection on network 10.96.0.0 via interface scip0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-11264", "system": "HPC", "content": "boot (command 2559)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-6340", "system": "HPC", "content": "boot (command 2258)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-35584", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage723", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-213837", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-410915", "system": "HPC", "content": "NIFF: node node-213 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-257877", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-410142", "system": "HPC", "content": "NIFF: node node-82 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-69996", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root12_tmp is no longer served by node node-203", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-74589", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root30_local is no longer served by node node-157", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-216900", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-50793", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-286302", "system": "HPC", "content": "ambient=24", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-270712", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-73723", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root2_tmp is no longer served by node node-225", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-410768", "system": "HPC", "content": "NIFF: node node-42 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-20561", "system": "HPC", "content": "wait (command 3578)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-59515", "system": "HPC", "content": "Fan speeds ( 3534 3534 3375 **** 3497 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-1819", "system": "HPC", "content": "wait (command 1958)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-51548", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-70201", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root22_tmp is no longer served by node node-181", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-282483", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-8064", "system": "HPC", "content": "boot (command 2425)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-415739", "system": "HPC", "content": "NIFF: node node-105 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-22761", "system": "HPC", "content": "wait (command 3835)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-404620", "system": "HPC", "content": "NIFF: node node-108 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-225214", "system": "HPC", "content": "ambient=24", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-35010", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage711", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-421998", "system": "HPC", "content": "NIFF: node node-219 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-195015", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-52399", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-429676", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4228)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-22914", "system": "HPC", "content": "wait (command 3837)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-26922", "system": "HPC", "content": "wait (command 4181)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-288199", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-429180", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=2548)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-277325", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-168721", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-27669", "system": "HPC", "content": "boot (command 4215)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-428217", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4374)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-23423", "system": "HPC", "content": "wait (command 3958)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-26774", "system": "HPC", "content": "boot (command 4146)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-36410", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage821", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-12304", "system": "HPC", "content": "wait (command 2688)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-22629", "system": "HPC", "content": "boot (command 3815)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-13713", "system": "HPC", "content": "boot (command 2897)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-43715", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 4141 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-26999", "system": "HPC", "content": "wait (command 4172)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-41441", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-54134", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-413267", "system": "HPC", "content": "NIFF: node node-59 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-294315", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-30141", "system": "HPC", "content": "Targeting domains:node-D3 and nodes:node-[96-103] child of command 2432", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-38355", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage841", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-421769", "system": "HPC", "content": "NIFF: node node-249 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-31553", "system": "HPC", "content": "Targeting domains:node-D2 and nodes:node-[72-95] child of command 4048", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-44455", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-25487", "system": "HPC", "content": "wait (command 4055)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-297452", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-55246", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-40840", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-21515", "system": "HPC", "content": "boot (command 3637)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-408827", "system": "HPC", "content": "NIFF: node node-238 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-17396", "system": "HPC", "content": "boot (command 3190)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-66055", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root18_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-404767", "system": "HPC", "content": "NIFF: node node-105 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-20270", "system": "HPC", "content": "boot (command 3575)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-41682", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-426084", "system": "HPC", "content": "NIFF: node node-10 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-193101", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-35972", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage611", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-19451", "system": "HPC", "content": "wait (command 3484)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-2986", "system": "HPC", "content": "wait (command 1977)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-52685", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-22920", "system": "HPC", "content": "wait (command 3835)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-23886", "system": "HPC", "content": "wait (command 3938)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-201922", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-268910", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-1855", "system": "HPC", "content": "boot (command 1972)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-13303", "system": "HPC", "content": "boot (command 2850)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-13518", "system": "HPC", "content": "wait (command 2904)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-65459", "system": "HPC", "content": "Link error on broadcast tree Interconnect-1T00:00:2:0", "template": "Link error on broadcast tree <*>", "template_id": "E39"}
+{"id": "hpc-30712", "system": "HPC", "content": "Targeting domains:node-D7 and nodes:node-[224-231] child of command 3074", "template": "Targeting domains:<*> and nodes:<*>", "template_id": "E37"}
+{"id": "hpc-424973", "system": "HPC", "content": "NIFF: node node-33 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-428300", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4444)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-69937", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain cluster_root_backup is no longer served by node node-96", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-76675", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root1_domain_backup is no longer served by node node-192", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-418594", "system": "HPC", "content": "NIFF: node node-16 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-411369", "system": "HPC", "content": "NIFF: node node-51 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-18026", "system": "HPC", "content": "wait (command 3317)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-54791", "system": "HPC", "content": "Fan speeds ( 3552 3534 3391 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-426454", "system": "HPC", "content": "NIFF: node node-152 has detected an available network connection on network 5.5.224.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-38107", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage611", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-411967", "system": "HPC", "content": "NIFF: node node-126 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-39538", "system": "HPC", "content": "ServerFileSystem: An ServerFileSystem domain panic has occurred on storage842", "template": "ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>", "template_id": "E12"}
+{"id": "hpc-43635", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-16082", "system": "HPC", "content": "wait (command 3083)", "template": "wait (command <*>)", "template_id": "E58"}
+{"id": "hpc-71017", "system": "HPC", "content": "ClusterFileSystem: ServerFileSystem domain root30_tmp is no longer served by node node-93", "template": "ClusterFileSystem: ServerFileSystem domain <*> is no longer served by node <*>", "template_id": "E10"}
+{"id": "hpc-404535", "system": "HPC", "content": "NIFF: node node-250 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-47661", "system": "HPC", "content": "Fan speeds ( 3552 3534 3375 **** 3515 3479 )", "template": "Fan speeds ( <*> )", "template_id": "E60"}
+{"id": "hpc-404211", "system": "HPC", "content": "NIFF: node node-81 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-420791", "system": "HPC", "content": "NIFF: node node-86 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-426309", "system": "HPC", "content": "NIFF: node node-84 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-423809", "system": "HPC", "content": "NIFF: node node-75 has detected an available network connection on network 10.128.0.0 via interface ee0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-408337", "system": "HPC", "content": "NIFF: node node-186 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-270976", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-244279", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-6640", "system": "HPC", "content": "boot (command 2326)", "template": "boot (command <*>)", "template_id": "E57"}
+{"id": "hpc-38054", "system": "HPC", "content": "ClusterFileSystem: There is no server for ServerFileSystem domain storage1012", "template": "ClusterFileSystem: There is no server for ServerFileSystem domain <*>", "template_id": "E14"}
+{"id": "hpc-234378", "system": "HPC", "content": "ambient=31", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-286354", "system": "HPC", "content": "ambient=27", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-410478", "system": "HPC", "content": "NIFF: node node-81 has detected an available network connection on network 5.5.226.0 via interface alt0", "template": "NIFF: node <*> has detected an available network connection on network <*> via interface <*>", "template_id": "E6"}
+{"id": "hpc-67780", "system": "HPC", "content": "ServerFileSystem: ServerFileSystem domain root9_local is full", "template": "ServerFileSystem: ServerFileSystem domain <*> is full", "template_id": "E26"}
+{"id": "hpc-427937", "system": "HPC", "content": "Component State Change: Component \\042alt0\\042 is in the available state (HWID=4432)", "template": "Component State Change: Component <*> is in the available state (HWID=<*>)", "template_id": "E16"}
+{"id": "hpc-171973", "system": "HPC", "content": "ambient=29", "template": "ambient=<*>", "template_id": "E66"}
+{"id": "hpc-467", "system": "HPC", "content": "bootGenvmunix (command 1904)", "template": "bootGenvmunix (command <*>)", "template_id": "E41"}

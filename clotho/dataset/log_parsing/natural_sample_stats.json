@@ -22,5 +22,59 @@
   "templates": 31,
   "top_template_share": 0.418,
   "duplicate_messages": 86
+ },
+ "Apache": {
+  "candidate_lines": 36373,
+  "templates": 5,
+  "top_template_share": 0.564,
+  "duplicate_messages": 43
+ },
+ "HPC": {
+  "candidate_lines": 114333,
+  "templates": 19,
+  "top_template_share": 0.182,
+  "duplicate_messages": 181
+ },
+ "HealthApp": {
+  "candidate_lines": 168172,
+  "templates": 16,
+  "top_template_share": 0.184,
+  "duplicate_messages": 39
+ },
+ "Linux": {
+  "candidate_lines": 17523,
+  "templates": 14,
+  "top_template_share": 0.598,
+  "duplicate_messages": 46
+ },
+ "Mac": {
+  "candidate_lines": 71072,
+  "templates": 120,
+  "top_template_share": 0.108,
+  "duplicate_messages": 115
+ },
+ "OpenSSH": {
+  "candidate_lines": 526497,
+  "templates": 11,
+  "top_template_share": 0.282,
+  "duplicate_messages": 199
+ },
+ "Spark": {
+  "candidate_lines": 15601099,
+  "templates": 20,
+  "top_template_share": 0.186,
+  "duplicate_messages": 13
+ },
+ "Thunderbird": {
+  "candidate_lines": 14881503,
+  "templates": 111,
+  "top_template_share": 0.122,
+  "duplicate_messages": 267
+ },
+ "Zookeeper": {
+  "candidate_lines": 24409,
+  "templates": 13,
+  "top_template_share": 0.462,
+  "duplicate_messages": 5
  }
 }

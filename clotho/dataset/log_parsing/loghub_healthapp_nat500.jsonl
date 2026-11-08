@@ -1,0 +1,500 @@
+{"id": "healthapp-115283", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=131800", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-13125", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=90", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-189506", "system": "HealthApp", "content": "new date =20180102, type=40004,7171.0,old=6935.796000000002", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-12358", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=120454", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-135858", "system": "HealthApp", "content": "REPORT : 6834 4879 268036 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-104341", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514521740000##1824##1261622##83501##100712##293648980", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-206780", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=443532", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-11443", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-176870", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514847360000##655##159392##31610##19177##161478595", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-150380", "system": "HealthApp", "content": "onStandStepChanged 578", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-61568", "system": "HealthApp", "content": "onStandStepChanged 1902", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-46236", "system": "HealthApp", "content": "REPORT : 10820 7725 316623 420", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-175224", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-137564", "system": "HealthApp", "content": "writeDataToDB size 1155", "template": "writeDataToDB size <*>", "template_id": "E135"}
+{"id": "healthapp-117185", "system": "HealthApp", "content": "new date =20171230, type=40002,401.0,old=null", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-207556", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=446252", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-19044", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=181848", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-9761", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=77185", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-59119", "system": "HealthApp", "content": "onStandStepChanged 831", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-18743", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514117460000##11502##653384##8661##25953##16771918", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-175264", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514846220000##190##136166##31610##19177##160383632", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-52443", "system": "HealthApp", "content": "onStandStepChanged 25489", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-64353", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=87916", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-78603", "system": "HealthApp", "content": "REPORT : 4224 3015 116033 120", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-98490", "system": "HealthApp", "content": "onStandStepChanged 19411", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-22839", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514118600000##12750##710473##8661##33271##17952937", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-147847", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514685360000##2512##10722##0##1987##127250700", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-102676", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=43926", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-124607", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=116923", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-176885", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-168411", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514802060000##1768##95419##31610##18631##116209511", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-159713", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514722440000##10602##75395##31610##10363##36597636", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-138189", "system": "HealthApp", "content": "onStandStepChanged 7299", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-114917", "system": "HealthApp", "content": "onStandStepChanged 23609", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-93761", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514459460000##4355##1185861##81989##76569##231369228", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-185469", "system": "HealthApp", "content": "Alarm uploadStaticsToDB totalSteps=5543Calories:173130Floor:300Distance:3712", "template": "Alarm uploadStaticsToDB totalSteps=<*>", "template_id": "E56"}
+{"id": "healthapp-48690", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=365181", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-47449", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514208420000##11185##863557##45591##60995##107763785", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-210609", "system": "HealthApp", "content": "onStandStepChanged 9242", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-211579", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=29341", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-131021", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=330", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-192808", "system": "HealthApp", "content": "onStandStepChanged 26713", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-118126", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-132521", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=212063", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-15926", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=180", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-114195", "system": "HealthApp", "content": "onStandStepChanged 23265", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-109944", "system": "HealthApp", "content": "REPORT : 3055 2181 82153 90", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-55302", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514216400000##14181##915260##76964##61450##115755384", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-39491", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-144756", "system": "HealthApp", "content": "REPORT : 8793 6278 309987 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-194441", "system": "HealthApp", "content": "new date =20180102, type=40042,120.0,old=120.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-179352", "system": "HealthApp", "content": "onStandStepChanged 16449", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-150518", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=60356", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-190418", "system": "HealthApp", "content": "onStandStepChanged 24967", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-1633", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514045340000##0##549659##8661##16256##34054759", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-90636", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514437980000##3437##1171969##77229##73641##209888350", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-198628", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514890920000##14353##320862##32208##29341##205028793", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-98185", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514507700000##361##1198601##83501##91877##279568960", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-142836", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514644020000##8386##1568953##84671##106890##85944549", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-16591", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514113320000##10905##632154##8661##25953##12664531", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-40996", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-41164", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514200560000##7563##824731##45591##57350##99897217", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-134014", "system": "HealthApp", "content": "new date =20171230, type=40005,570.0,old=450.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-167037", "system": "HealthApp", "content": "onStandStepChanged 9084", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-147346", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514682180000##1082##10272##0##475##124070651", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-197785", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=438969", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-147929", "system": "HealthApp", "content": "onStandStepChanged 11565", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-5523", "system": "HealthApp", "content": "onStandStepChanged 5852", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-28838", "system": "HealthApp", "content": "REPORT : 15807 11286 342908 510", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-201170", "system": "HealthApp", "content": "onStandStepChanged 654", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-141798", "system": "HealthApp", "content": "REPORT : 8084 5771 294802 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-9257", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514108400000##7867##571755##8661##16256##7741608", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-127831", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=158633", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-99748", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=30", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-181144", "system": "HealthApp", "content": "REPORT : 2979 2127 106910 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-95912", "system": "HealthApp", "content": "onStandStepChanged 18846", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-10746", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514111160000##9189##576314##8661##16256##10492697", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-75810", "system": "HealthApp", "content": "writeDataToDB size 519", "template": "writeDataToDB size <*>", "template_id": "E135"}
+{"id": "healthapp-169750", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514805720000##4423##98644##31610##18631##119850537", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-49517", "system": "HealthApp", "content": "new date =20171225, type=40006,10980.0,old=10620.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-65249", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514275320000##3349##1006446##77229##62451##47228710", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-133612", "system": "HealthApp", "content": "REPORT : 5973 4264 249599 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-172962", "system": "HealthApp", "content": "REPORT : 5995 4280 133612 30", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-135366", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514633700000##6763##1470634##84671##106890##75639427", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-165231", "system": "HealthApp", "content": "REPORT : 231 164 4948 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-142051", "system": "HealthApp", "content": "onStandStepChanged 8130", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-183255", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514853360000##3511##225276##31610##27490##167494081", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-93116", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514458620000##4109##1181459##81989##76569##230534733", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-82771", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514377560000##6551##1118393##77229##72294##149480623", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-28733", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=342544", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-57829", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514249520000##647##924759##77229##62451##21394606", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-76933", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=30", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-76662", "system": "HealthApp", "content": "new date =20171227, type=40004,1290.9119999999994,old=1290.9119999999994", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-75731", "system": "HealthApp", "content": "REPORT : 442 315 9467 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-156912", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=450", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-85280", "system": "HealthApp", "content": "onStandStepChanged 12876", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-105587", "system": "HealthApp", "content": "onStandStepChanged 21310", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-62568", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514261820000##2095##983678##77229##62451##33716951", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-204422", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=211339", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-140384", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514643720000##7812##1529384##84671##106890##85639307", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-28207", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514125440000##15644##745777##31825##40486##24762551", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-31349", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514125980000##16690##766538##45591##54384##25302060", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-80658", "system": "HealthApp", "content": "new date =20171227, type=40004,4268.0,old=4202.603999999999", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-185175", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25247743,0,21,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-76385", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514339220000##1772##1080961##77229##71899##111101354", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-116078", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514563380000##0##1347947##84671##101048##5280847", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-22401", "system": "HealthApp", "content": "new date =20171224, type=40024,93600.0,old=57600.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-20889", "system": "HealthApp", "content": "REPORT : 12030 8589 257682 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-144499", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514644200000##8750##1598087##84671##106890##86131967", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-82765", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514377560000##6550##1118340##77229##72294##149480123", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-193251", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=630", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-87557", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514424180000##1057##1144927##77229##73641##196087459", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-70717", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=150764", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-186972", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25247876,0,3,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-11886", "system": "HealthApp", "content": "REPORT : 9602 6855 205674 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-44264", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=256022", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-46600", "system": "HealthApp", "content": "new date =20171225, type=40005,420.0,old=360.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-185452", "system": "HealthApp", "content": "onStandStepChanged 19857", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-192836", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514880000000##12055##280684##32208##29341##194138524", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-40509", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-144505", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514644200000##8751##1598211##84671##106890##86132466", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-160443", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=270550", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-97768", "system": "HealthApp", "content": "REPORT : 284 202 6083 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-196921", "system": "HealthApp", "content": "readHiHealthData() end time = 1514890501476, totalTime = 20", "template": "readHiHealthData() end time = <*> totalTime = <*>", "template_id": "E48"}
+{"id": "healthapp-122676", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514609160000##2176##1368615##84671##101811##51080766", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-53926", "system": "HealthApp", "content": "onStandStepChanged 25812", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-121497", "system": "HealthApp", "content": "onStandStepChanged 1967", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-40159", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=188661", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-143986", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=570", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-208920", "system": "HealthApp", "content": "onStandStepChanged 8934", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-7851", "system": "HealthApp", "content": "REPORT : 6338 4525 135759 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-200125", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25248228,0,12,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-103209", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514521620000##1646##1245091##83501##100712##293534974", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-109249", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514542980000##2939##1297459##83501##100712##314848339", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-140868", "system": "HealthApp", "content": "onStandStepChanged 7892", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-150437", "system": "HealthApp", "content": "onStandStepChanged 592", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-49981", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=377347", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-195758", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514888760000##13729##292722##32208##29341##202917251", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-115098", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514555100000##4641##1347119##83501##101048##327021459", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-200298", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=14992", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-181367", "system": "HealthApp", "content": "REPORT : 3128 2233 109993 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-82698", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514377560000##6538##1117704##77229##72294##149472128", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-6874", "system": "HealthApp", "content": "onStandStepChanged 46", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-52083", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=406643", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-181389", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=110079", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-173574", "system": "HealthApp", "content": "onStandStepChanged 14621", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-24517", "system": "HealthApp", "content": "onStandStepChanged 8444", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-38315", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514200140000##6990##793541##45591##57350##99477648", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-69317", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514296860000##4658##1029349##77229##64555##68748204", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-90285", "system": "HealthApp", "content": "onStandStepChanged 16200", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-99633", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514510940000##1048##1215437##83501##91877##282815344", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-53833", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=414223", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-71285", "system": "HealthApp", "content": "onStandStepChanged 4968", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-141085", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514643780000##7927##1540950##84671##106890##85700835", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-10850", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=90611", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-117697", "system": "HealthApp", "content": "onStandStepChanged 622", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-144845", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=570", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-53690", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=413410", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-172832", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=30", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-11405", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514111700000##9421##579303##8661##16256##11040038", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-4779", "system": "HealthApp", "content": "REPORT : 1706 1218 36542 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-65872", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514282160000##3659##1007551##77229##62451##54040431", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-147344", "system": "HealthApp", "content": "onStandStepChanged 10093", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-169866", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25246760,0,84,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-50078", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=378417", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-28066", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25235424,0,63,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-207045", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=444709", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-187081", "system": "HealthApp", "content": "new date =20180102, type=40005,420.0,old=420.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-196747", "system": "HealthApp", "content": "readHiHealthData() end time = 1514890382402, totalTime = 16", "template": "readHiHealthData() end time = <*> totalTime = <*>", "template_id": "E48"}
+{"id": "healthapp-138723", "system": "HealthApp", "content": "REPORT : 7424 5300 280668 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-19445", "system": "HealthApp", "content": "onStandStepChanged 6604", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-161435", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514724480000##10883##91637##31610##10363##38636152", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-206094", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=630", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-87613", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514424540000##1057##1144927##77229##73641##196457469", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-109183", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514542920000##2929##1297009##83501##100712##314841342", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-180627", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514851920000##2280##190148##31610##26503##166066999", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-109455", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=80418", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-17432", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514117220000##11116##633414##8661##25953##16577724", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-168316", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514801460000##1768##95419##31610##18631##115615244", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-121610", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514608800000##1998##1362380##84671##101811##50729752", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-167487", "system": "HealthApp", "content": "saveRealTimeHealthDatasStat() size = 1,totalTime = 7", "template": "saveRealTimeHealthDatasStat() size = <*>,totalTime = <*>", "template_id": "E21"}
+{"id": "healthapp-142813", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514644020000##8383##1568680##84671##106890##85943046", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-46521", "system": "HealthApp", "content": "REPORT : 10892 7776 318164 420", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-98634", "system": "HealthApp", "content": "onStandStepChanged 19436", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-89777", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=77268", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-19190", "system": "HealthApp", "content": "REPORT : 11590 8275 248257 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-145474", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=313734", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-63919", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=90", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-9053", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=59540", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-33671", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514174220000##1645##771869##45591##57350##73567324", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-43213", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514204280000##8827##834281##45591##60231##103636083", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-1183", "system": "HealthApp", "content": "onStandStepChanged 3772", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-95390", "system": "HealthApp", "content": "REPORT : 5639 4026 185428 300", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-3251", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-72409", "system": "HealthApp", "content": "new date =20171226, type=40042,60.0,old=60.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-48077", "system": "HealthApp", "content": "REPORT : 11984 8556 362225 510", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-206450", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=440276", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-43852", "system": "HealthApp", "content": "onStandStepChanged 20927", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-77991", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=112822", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-200516", "system": "HealthApp", "content": "onStandStepChanged 525", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-149050", "system": "HealthApp", "content": "REPORT : 3173 2265 139609 300", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-28391", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514125440000##15689##747730##31825##40486##24789055", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-206952", "system": "HealthApp", "content": "onStandStepChanged 8614", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-28398", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=320366", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-33257", "system": "HealthApp", "content": "insertHiHealthData() end totalTime = 59", "template": "insertHiHealthData() end totalTime = <*>", "template_id": "E55"}
+{"id": "healthapp-11229", "system": "HealthApp", "content": "REPORT : 9364 6685 200576 0", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-187418", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=278197", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-191113", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514878200000##11181##268228##32208##29189##192304274", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-175326", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-172368", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514808120000##5887##129978##31610##19177##122254593", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-60934", "system": "HealthApp", "content": "onStandStepChanged 1796", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-192667", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514879640000##11987##279942##32208##29341##193748155", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-101075", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=33600", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-182013", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514852640000##3254##208933##31610##27490##166764091", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-194494", "system": "HealthApp", "content": "onStandStepChanged 28178", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-141142", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=570", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-72802", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=240", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-190687", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25247965,0,112,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-130122", "system": "HealthApp", "content": "onStandStepChanged 4977", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-49720", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=375590", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-119326", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514606940000##1438##1350231##84671##101811##48849645", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-8236", "system": "HealthApp", "content": "new date =20171224, type=40024,7200.0,old=7200.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-146200", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-121846", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=55314", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-97369", "system": "HealthApp", "content": "onStandStepChanged 18999", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-141726", "system": "HealthApp", "content": "onStandStepChanged 8072", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-35002", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514195460000##5270##772933##45591##57350##94803095", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-36435", "system": "HealthApp", "content": "new date =20171225, type=40003,136689.66,old=136634.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-84285", "system": "HealthApp", "content": "onStandStepChanged 12732", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-16170", "system": "HealthApp", "content": "new date =20171224, type=40024,57600.0,old=43200.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-73829", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514303040000##5514##1074433##77229##71899##74934012", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-66293", "system": "HealthApp", "content": "onStandStepChanged 4114", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-146547", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514678820000##250##6820##0##0##120711126", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-29955", "system": "HealthApp", "content": "onStandStepChanged 11320", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-13069", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514112600000##9807##588530##8661##22394##11955853", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-48103", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514210460000##11994##869240##45591##61450##109797645", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-148570", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514685480000##2866##10722##3850##1987##127370631", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-85515", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=222571", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-204909", "system": "HealthApp", "content": "saveStatData() type =40004,time = 1514822400000,statClient = 2,who is 1", "template": "saveStatData() type =<*>,time = <*>,statClient = <*>,who is <*>", "template_id": "E29"}
+{"id": "healthapp-140716", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=570", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-123527", "system": "HealthApp", "content": "REPORT : 2930 2092 93512 150", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-145855", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=492", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-127923", "system": "HealthApp", "content": "REPORT : 4590 3277 158955 300", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-156792", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=450", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-37567", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-69171", "system": "HealthApp", "content": "REPORT : 4633 3307 145175 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-203141", "system": "HealthApp", "content": "new date =20180102, type=40002,15853.0,old=17533.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-6487", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25234950,0,32,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-133877", "system": "HealthApp", "content": "REPORT : 6016 4295 250519 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-164946", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=3616", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-146198", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514678760000##191##2774##0##0##120681617", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-125085", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=118444", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-110908", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=84980", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-198740", "system": "HealthApp", "content": "onStandStepChanged 29032", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-108015", "system": "HealthApp", "content": "onStandStepChanged 21769", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-138886", "system": "HealthApp", "content": "onStandStepChanged 7566", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-19872", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=187695", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-109197", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=90", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-73861", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514303160000##5514##1074433##77229##71899##75030011", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-133840", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=570", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-257", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=127739", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-202357", "system": "HealthApp", "content": "new date =20180102, type=40013,1307.0,old=1307.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-14603", "system": "HealthApp", "content": "onStandStepChanged 5310", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-180678", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25247535,0,110,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-145529", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514647260000##8968##1608622##84671##106890##89162299", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-126597", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514626980000##4336##1386313##84671##102904##68903689", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-199492", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514890980000##14542##333433##32208##29341##205141590", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-178518", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=35599", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-43341", "system": "HealthApp", "content": "onStandStepChanged 20772", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-205138", "system": "HealthApp", "content": "onStandStepChanged 5350", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-177025", "system": "HealthApp", "content": "onStandStepChanged 15342", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-95730", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514461740000##5704##1194513##83501##86535##233610426", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-81721", "system": "HealthApp", "content": "setWriteDBLastDataMinute=25239596", "template": "setWriteDBLastDataMinute=<*>", "template_id": "E91"}
+{"id": "healthapp-101208", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514521440000##1292##1225180##83501##91877##293316433", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-119456", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=44119", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-81027", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-153521", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514691060000##5151##37587##31610##8911##5216908", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-174021", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=138536", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-179051", "system": "HealthApp", "content": "onStandStepChanged 16386", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-18352", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=177930", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-36355", "system": "HealthApp", "content": "REPORT : 5528 3946 136549 90", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-129372", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514627700000##4841##1416387##84671##102904##69602640", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-209660", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514907720000##23706##363277##87715##57506##14688896", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-157560", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514714400000##9896##52172##31610##10363##28546065", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-46446", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514208060000##10875##858341##45591##60365##107383573", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-41190", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=192280", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-207663", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514903340000##23415##347048##87715##55834##10276054", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-20667", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514117700000##12007##687889##8661##25953##17021224", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-182772", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514852700000##3395##221118##31610##27490##166837600", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-5380", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514087580000##2052##564224##8661##16256##76296706", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-202301", "system": "HealthApp", "content": "onStandStepChanged 915", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-39355", "system": "HealthApp", "content": "onStandStepChanged 19108", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-180951", "system": "HealthApp", "content": "REPORT : 2832 2022 91910 150", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-168956", "system": "HealthApp", "content": "onStandStepChanged 10349", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-140219", "system": "HealthApp", "content": "REPORT : 7784 5557 288378 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-13663", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514112660000##9905##598076##8661##22394##12014851", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-153004", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=83035", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-24619", "system": "HealthApp", "content": "onStandStepChanged 8464", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-23561", "system": "HealthApp", "content": "onStandStepChanged 8275", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-124650", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=180", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-200451", "system": "HealthApp", "content": "REPORT : 15189 10844 325348 30", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-156691", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514713920000##9564##48620##31610##10265##28025156", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-71121", "system": "HealthApp", "content": "REPORT : 4961 3542 152199 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-77043", "system": "HealthApp", "content": "insertHiHealthData() size = 20,app = 1,One Data Type = 2,packageName = com.huawei.health,writeStatType = 0", "template": "insertHiHealthData() size = <*>,app = <*>,One Data Type = <*>,packageName = <*>,writeStatType = <*>", "template_id": "E8"}
+{"id": "healthapp-182762", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=115690", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-57105", "system": "HealthApp", "content": "new date =20171226, type=40041,420.0,old=360.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-83622", "system": "HealthApp", "content": "onStandStepChanged 12448", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-74215", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514304360000##0##1074433##77229##71899##76281042", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-7242", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25235030,0,26,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-197681", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514890800000##14212##306562##32208##29341##204944278", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-191184", "system": "HealthApp", "content": "REPORT : 11193 7991 343231 510", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-184625", "system": "HealthApp", "content": "REPORT : 4476 3195 157630 300", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-65891", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=104729", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-47465", "system": "HealthApp", "content": "REPORT : 11188 7988 336204 480", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-160354", "system": "HealthApp", "content": "new date =20171231, type=40006,9300.0,old=9060.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-121102", "system": "HealthApp", "content": "onStandStepChanged 1839", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-106711", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=65490", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-93448", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514459460000##4264##1185861##81989##76569##231334447", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-186621", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514872560000##7447##238265##32208##28849##186719223", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-191714", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514879400000##11755##269929##32208##29341##193558150", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-82725", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-128531", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514627400000##4682##1402761##84671##102904##69304638", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-15834", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-192926", "system": "HealthApp", "content": "onStandStepChanged 26722", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-175081", "system": "HealthApp", "content": "onStandStepChanged 14724", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-140985", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=291097", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-86317", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-161176", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514723820000##10826##91637##31610##10363##37932043", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-68058", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=180", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-141308", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514643840000##7965##1545159##84671##106890##85721324", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-78034", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=120", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-80614", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=159740", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-118517", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514602620000##1216##1349122##84671##101157##44508280", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-55926", "system": "HealthApp", "content": "onStandStepChanged 26191", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-14185", "system": "HealthApp", "content": "saveStatData() type =40003,time = 1514044800000,statClient = 2,who is 1", "template": "saveStatData() type =<*>,time = <*>,statClient = <*>,who is <*>", "template_id": "E29"}
+{"id": "healthapp-112409", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514545680000##3485##1336495##83501##100712##317555467", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-106028", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=62728", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-58918", "system": "HealthApp", "content": "REPORT : 833 594 25977 30", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-207372", "system": "HealthApp", "content": "onStandStepChanged 8685", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-40944", "system": "HealthApp", "content": "onStandStepChanged 19445", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-7668", "system": "HealthApp", "content": "new date =20171224, type=40013,106.0,old=106.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-168457", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514802240000##1768##95419##31610##18631##116370283", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-62611", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514261820000##2103##984406##77229##62451##33721956", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-44695", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514205300000##9529##846322##45591##60231##104651143", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-50118", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514211000000##12426##875332##65081##61450##110314795", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-119207", "system": "HealthApp", "content": "onStandStepChanged 1324", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-27808", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514125380000##15564##744958##31825##40486##24710050", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-77907", "system": "HealthApp", "content": "REPORT : 4074 2908 112822 120", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-83707", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514377800000##6984##1132531##77229##72294##149710634", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-189497", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25247935,0,97,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-158789", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=264531", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-96267", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514461920000##6007##1197280##83501##91877##233789477", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-97571", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514506020000##0##1197794##83501##91877##277923429", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-123708", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-106063", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514525400000##2394##1275681##83501##100712##297265799", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-200441", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514894520000##15186##337460##32208##29341##1474420", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-197495", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514890800000##14181##305260##32208##29341##204926279", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-136702", "system": "HealthApp", "content": "new date =20171230, type=40003,270926.0,old=267504.8400000001", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-78394", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514367300000##4085##1083944##77229##72294##139200932", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-81609", "system": "HealthApp", "content": "onStandStepChanged 11765", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-97814", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=6337", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-161737", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514724660000##11171##91977##31610##13413##38780503", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-113253", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=118394", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-97598", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-67683", "system": "HealthApp", "content": "onStandStepChanged 4365", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-13902", "system": "HealthApp", "content": "REPORT : 9946 7101 213043 90", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-185578", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=198520", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-144710", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514644260000##8785##1602175##84671##106890##86150967", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-155735", "system": "HealthApp", "content": "onStandStepChanged 5662", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-203276", "system": "HealthApp", "content": "setWriteDBLastDataMinute=25248350", "template": "setWriteDBLastDataMinute=<*>", "template_id": "E91"}
+{"id": "healthapp-3825", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514085840000##790##551123##8661##16256##74552033", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-165130", "system": "HealthApp", "content": "onStandStepChanged 8645", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-176505", "system": "HealthApp", "content": "onStandStepChanged 15072", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-23069", "system": "HealthApp", "content": "onStandStepChanged 7957", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-36122", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514195640000##5490##779562##45591##57350##94991119", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-148263", "system": "HealthApp", "content": "REPORT : 2649 1891 117162 300", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-57352", "system": "HealthApp", "content": "REPORT : 558 398 20088 30", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-40292", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-25357", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514123400000##14347##724172##31825##33271##22745097", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-150972", "system": "HealthApp", "content": "onStandStepChanged 776", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-160009", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=269007", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-174620", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514829360000##0##135535##31610##19177##143486389", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-81498", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=165887", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-92280", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=90", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-153964", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514694300000##6620##37871##31610##9476##8410952", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-98286", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514507700000##378##1200377##83501##91877##279577460", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-181733", "system": "HealthApp", "content": "REPORT : 3207 2289 111686 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-125414", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=138110", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-92151", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514458500000##3779##1176909##77229##76569##230378348", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-89370", "system": "HealthApp", "content": "REPORT : 3046 2174 75705 60", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-46583", "system": "HealthApp", "content": "upLoadOneMinuteDataToEngine time=25236789,0,103,0,20002", "template": "upLoadOneMinuteDataToEngine time=<*>", "template_id": "E59"}
+{"id": "healthapp-189916", "system": "HealthApp", "content": "onStandStepChanged 24881", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-44063", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514205180000##9346##838846##45591##60231##104519655", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-134647", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=263732", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-111977", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514543220000##3366##1334228##83501##100712##315111339", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-41462", "system": "HealthApp", "content": "REPORT : 7597 5424 192901 150", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-15552", "system": "HealthApp", "content": "REPORT : 10549 7531 225959 150", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-165203", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514772600000##223##93255##31610##18631##86710156", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-121961", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514609100000##2055##1362735##84671##101811##51008766", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-62000", "system": "HealthApp", "content": "REPORT : 2002 1429 63845 90", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-177976", "system": "HealthApp", "content": "onStandStepChanged 15595", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-68384", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=144104", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-57854", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514249520000##652##925484##77229##62451##21397111", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-162029", "system": "HealthApp", "content": "onStandStepChanged 7845", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-119294", "system": "HealthApp", "content": "REPORT : 1438 1026 42856 60", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-8234", "system": "HealthApp", "content": "new date =20171224, type=40013,106.0,old=106.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-187760", "system": "HealthApp", "content": "REPORT : 8677 6195 284022 480", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-149107", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514685600000##3186##10722##18035##1987##127481814", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-109226", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514542980000##2936##1297318##83501##100712##314846338", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-159131", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=265795", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-31311", "system": "HealthApp", "content": "REPORT : 16684 11912 388050 630", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-145639", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=314119", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-80802", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=160061", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-22047", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=233887", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-120442", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=47652", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-109602", "system": "HealthApp", "content": "onStandStepChanged 21998", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-23382", "system": "HealthApp", "content": "onStandStepChanged 8208", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-141223", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514643780000##7951##1543572##84671##106890##85713821", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-158570", "system": "HealthApp", "content": "new date =20171231, type=40034,898.9259999999998,old=898.9259999999998", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-56015", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=600", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-73916", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=174714", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-61124", "system": "HealthApp", "content": "onStandStepChanged 1829", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-199972", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514891820000##14639##337448##32208##29341##205957679", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-165513", "system": "HealthApp", "content": "onStandStepChanged 8683", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-21116", "system": "HealthApp", "content": "onStandStepChanged 7177", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-123450", "system": "HealthApp", "content": "onStandStepChanged 2892", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-95548", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514461680000##5667##1194513##83501##82894##233592419", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-106365", "system": "HealthApp", "content": "REPORT : 2461 1757 64269 60", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-139517", "system": "HealthApp", "content": "onStandStepChanged 7664", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-174306", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=30", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-658", "system": "HealthApp", "content": "new date =20171223, type=40003,214445.88000000006,old=210654.54000000004", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-137128", "system": "HealthApp", "content": "REPORT : 7093 5064 273580 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-162707", "system": "HealthApp", "content": "REPORT : 11668 8330 307220 570", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-210745", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=0", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-207644", "system": "HealthApp", "content": "onStandStepChanged 8717", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-100281", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514521260000##1116##1216526##83501##91877##293146433", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-30216", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=378177", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-191098", "system": "HealthApp", "content": "REPORT : 11178 7981 342910 510", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-3787", "system": "HealthApp", "content": "saveRealTimeHealthDatasStat() size = 1,totalTime = 7", "template": "saveRealTimeHealthDatasStat() size = <*>,totalTime = <*>", "template_id": "E21"}
+{"id": "healthapp-96241", "system": "HealthApp", "content": "REPORT : 6003 4286 203897 360", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-198977", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=442932", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-23588", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514118960000##13297##712051##18070##33271##18271534", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-74903", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=2355", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-62352", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514261820000##2060##980493##77229##62451##33693452", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-50462", "system": "HealthApp", "content": "REPORT : 12485 8914 381416 510", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-106257", "system": "HealthApp", "content": "REPORT : 2441 1742 63841 60", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-152961", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=82543", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-25699", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=282840", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-152418", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514688540000##4785##28232##31610##8911##2650577", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-72154", "system": "HealthApp", "content": "REPORT : 5227 3732 157895 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-58898", "system": "HealthApp", "content": "new date =20171226, type=40042,60.0,old=60.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-207347", "system": "HealthApp", "content": "REPORT : 23375 16689 500692 810", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-15856", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514113140000##10601##623714##8661##23262##12461870", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-28998", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=349702", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-47730", "system": "HealthApp", "content": "REPORT : 11293 8063 344346 510", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-108313", "system": "HealthApp", "content": "REPORT : 2770 1977 76051 90", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-104679", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=50842", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-47091", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=334491", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-137838", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=570", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-128182", "system": "HealthApp", "content": "new date =20171230, type=40041,4020.0,old=4020.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
+{"id": "healthapp-190637", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=326828", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-178075", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=33757", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-97431", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514474760000##6089##1197794##83501##91877##246671893", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-166988", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514787600000##651##93669##31610##18631##101716197", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-96698", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514463120000##6036##1197650##83501##91877##234990636", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-27330", "system": "HealthApp", "content": "saveStatData() type =40003,time = 1514044800000,statClient = 2,who is 1", "template": "saveStatData() type =<*>,time = <*>,statClient = <*>,who is <*>", "template_id": "E29"}
+{"id": "healthapp-31994", "system": "HealthApp", "content": "onStandStepChanged 11903", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-38423", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514200140000##7014##794333##45591##57350##99491641", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-39601", "system": "HealthApp", "content": "REPORT : 7245 5172 185363 150", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-43517", "system": "HealthApp", "content": "onStandStepChanged 20829", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-146318", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514678760000##204##3588##0##0##120689624", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-181418", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514852580000##3138##197295##31610##27490##166699090", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-42213", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514201400000##7847##833262##45591##59646##100722323", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-86394", "system": "HealthApp", "content": "saveStatData() type =40003,time = 1514390400000,statClient = 2,who is 1", "template": "saveStatData() type =<*>,time = <*>,statClient = <*>,who is <*>", "template_id": "E29"}
+{"id": "healthapp-96400", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=204218", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-40077", "system": "HealthApp", "content": "REPORT : 7384 5272 188340 150", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-186249", "system": "HealthApp", "content": "onStandStepChanged 21939", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-83104", "system": "HealthApp", "content": "onStandStepChanged 12114", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-50612", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514211840000##12497##875332##76964##61450##111158292", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-209147", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514904180000##23684##363255##87715##57506##11109572", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-119857", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=45917", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-80136", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=150", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-116777", "system": "HealthApp", "content": "onStandStepChanged 218", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-138472", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514643480000##7351##1497540##84671##106890##85390640", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-47156", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514208420000##11118##860973##45591##60995##107731460", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-159738", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=268023", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-202635", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514900520000##15811##345263##32367##29341##7467408", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-130106", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514628900000##4974##1417585##84671##102904##70785672", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-119502", "system": "HealthApp", "content": "calculateCaloriesWithCache totalCalories=44290", "template": "calculateCaloriesWithCache totalCalories=<*>", "template_id": "E36"}
+{"id": "healthapp-28201", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514125440000##15642##745714##31825##40486##24760552", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-19577", "system": "HealthApp", "content": "REPORT : 11643 8313 249393 210", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-115545", "system": "HealthApp", "content": "getTodayTotalDetailSteps = 1514556540000##4698##1347947##84671##101048##328457467", "template": "getTodayTotalDetailSteps = <*>", "template_id": "E90"}
+{"id": "healthapp-19790", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514117520000##11712##672048##8661##25953##16877290", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-111337", "system": "HealthApp", "content": "REPORT : 3258 2326 86500 90", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-74490", "system": "HealthApp", "content": "setTodayTotalDetailSteps=1514333940000##0##1074433##77229##71899##105842767", "template": "setTodayTotalDetailSteps=<*>", "template_id": "E93"}
+{"id": "healthapp-111630", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=90", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-202166", "system": "HealthApp", "content": "REPORT : 15455 11034 331046 30", "template": "REPORT : <*>", "template_id": "E156"}
+{"id": "healthapp-108466", "system": "HealthApp", "content": "onStandStepChanged 21769", "template": "onStandStepChanged <*>", "template_id": "E131"}
+{"id": "healthapp-160190", "system": "HealthApp", "content": "calculateAltitudeWithCache totalAltitude=480", "template": "calculateAltitudeWithCache totalAltitude=<*>", "template_id": "E35"}
+{"id": "healthapp-112722", "system": "HealthApp", "content": "new date =20171229, type=40002,3590.0,old=4063.0", "template": "new date =<*>, type=<*>,old=<*>", "template_id": "E124"}
