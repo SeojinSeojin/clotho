@@ -126,7 +126,7 @@ Cost ratios, output entropy(k) over Clotho: batched with Clotho on HF k=2: 1.3x,
 
 Smallest k with mean output-entropy AUC >= Clotho: standard @100: 4, standard @200: > 5, disjoint @100: 2, disjoint @200: 2.
 
-Reading: output entropy needs 4 samples to match Clotho at reference size 100 on the standard split (5 samples only tie it at 200; 2 suffice on the template-disjoint split). Generating 4 samples costs 2.3x Clotho's batched HF forward pass, 8.3x a vLLM prefill (the same engine), and 35x online (batch 1). Clotho + output entropy (k=5) is the best score at about 4x Clotho's batched cost.
+Reading: output entropy needs 4 samples to match Clotho at reference size 100 on the standard split (5 samples only tie it at 200; on the template-disjoint split 2 samples already tie it and 3 beat it by about +0.08). Generating 4 samples costs 2.3x Clotho's batched HF forward pass, 8.3x a vLLM prefill (the same engine), and 35x online (batch 1). Clotho + output entropy (k=5) is the best score at about 4x Clotho's batched cost.
 
 ## 5. Cross-system transfer (fair_leakfree; reference set from A, test = all of B)
 
@@ -218,6 +218,62 @@ Same systems, noisy vs clean label:
 | Output entropy | 0.529 ± 0.005 | 0.584 ± 0.010 | 0.514 ± 0.008 | 0.568 ± 0.012 |
 
 Reading: near-chance within-template AUC is mostly label noise on top of a small real signal. 95-99% of the reliable variance of an input's pass rate lies between templates on 11 of 13 systems (Mac and Thunderbird trivially, with one input per template; HPC 0.80, OpenSSH 0.86), and even the 40-sample pass rate has a median within-template reliability of only 0.56, so a 5-sample within-template label is mostly sampling noise. Against the clean 40-sample label, within-template AUC rises on the same systems and test sets (Clotho 0.555 -> 0.609 @100, output entropy 0.529 -> 0.584; MDSA unchanged at 0.557), against a ceiling of 0.698 for perfect knowledge of the original 10-sample pass rate. So Clotho does carry some within-template signal, but it is small next to the between-template signal (overall AUC 0.832 on the same systems).
+
+## 8. Natural-distribution check (4 systems, 500 uniform raw lines each)
+
+Script: `log_parsing_natural.py` -> `reports/log_parsing_natural.md`.
+
+
+| system | templates (suite / natural) | inputs per template (suite / natural) | most frequent template's share, natural | duplicate messages, natural | PASS rate (labels 5-9; suite / natural) | test inputs whose template is in the reference set @100 (suite / natural) |
+|---|---|---|---|---|---|---|
+| HDFS | 46 / 12 | 10.9 / 41.7 | 16% | 0 | 28.2% / 47.0% | 100% / 100% |
+| Hadoop | 236 / 63 | 2.1 / 7.9 | 29% | 46 | 30.2% / 22.8% | 19% / 95% |
+| OpenStack | 48 / 27 | 10.4 / 18.5 | 60% | 0 | 56.6% / 20.6% | 97% / 99% |
+| BGL | 320 / 31 | 1.6 / 16.1 | 42% | 86 | 24.4% / 16.6% | 12% / 100% |
+
+### ROC-AUC @100, macro over 4 systems (HDFS, Hadoop, OpenStack, BGL): suite / natural
+
+| method | suite | natural | natural minus suite (paired per seed) |
+|---|---|---|---|
+| Clotho | 0.770 ± 0.015 | 0.899 ± 0.005 | +0.129 ± 0.017 |
+| MDSA | 0.721 ± 0.008 | 0.864 ± 0.011 | +0.143 ± 0.010 |
+| GMMb | 0.692 ± 0.026 | 0.760 ± 0.061 | +0.068 ± 0.086 |
+| Lookup (Drain) | 0.669 ± 0.010 | 0.899 ± 0.024 | +0.230 ± 0.024 |
+| Lookup (oracle) | 0.704 ± 0.011 | 0.901 ± 0.026 | +0.196 ± 0.026 |
+| Output entropy* | 0.784 ± 0.004 | 0.812 ± 0.005 | +0.028 ± 0.006 |
+| LOHSvar* | 0.663 ± 0.002 | 0.711 ± 0.005 | +0.048 ± 0.006 |
+| Tok-Prob* | 0.484 ± 0.006 | 0.534 ± 0.002 | +0.049 ± 0.008 |
+
+Paired per seed, Clotho minus Lookup (Drain), suite: +0.101 ± 0.016 (min +0.089, max +0.128)
+
+Paired per seed, Clotho minus Lookup (Drain), natural: +0.000 ± 0.021 (min -0.016, max +0.037)
+
+Paired per seed, Clotho minus MDSA, suite: +0.049 ± 0.012 (min +0.029, max +0.060)
+
+Paired per seed, Clotho minus MDSA, natural: +0.035 ± 0.013 (min +0.015, max +0.047)
+
+### ROC-AUC @200, macro over 4 systems (HDFS, Hadoop, OpenStack, BGL): suite / natural
+
+| method | suite | natural | natural minus suite (paired per seed) |
+|---|---|---|---|
+| Clotho | 0.811 ± 0.011 | 0.910 ± 0.008 | +0.099 ± 0.010 |
+| MDSA | 0.724 ± 0.013 | 0.905 ± 0.006 | +0.182 ± 0.012 |
+| GMMb | 0.743 ± 0.023 | 0.834 ± 0.026 | +0.091 ± 0.039 |
+| Lookup (Drain) | 0.746 ± 0.009 | 0.922 ± 0.003 | +0.176 ± 0.011 |
+| Lookup (oracle) | 0.794 ± 0.008 | 0.928 ± 0.003 | +0.133 ± 0.010 |
+| Output entropy* | 0.790 ± 0.007 | 0.801 ± 0.008 | +0.011 ± 0.006 |
+| LOHSvar* | 0.661 ± 0.008 | 0.705 ± 0.016 | +0.043 ± 0.020 |
+| Tok-Prob* | 0.486 ± 0.008 | 0.523 ± 0.013 | +0.037 ± 0.017 |
+
+Paired per seed, Clotho minus Lookup (Drain), suite: +0.065 ± 0.013 (min +0.050, max +0.080)
+
+Paired per seed, Clotho minus Lookup (Drain), natural: -0.012 ± 0.008 (min -0.021, max +0.001)
+
+Paired per seed, Clotho minus MDSA, suite: +0.087 ± 0.014 (min +0.070, max +0.098)
+
+Paired per seed, Clotho minus MDSA, natural: +0.005 ± 0.009 (min -0.004, max +0.018)
+
+Reading: sampled at their natural frequency, 500 lines cover only 12-63 templates (the suites: 46-320) and 95-100% of test inputs have their template in the reference set. Every template-driven score rises: Clotho 0.770 -> 0.899 @100, MDSA +0.14 / +0.18, Lookup (Drain) 0.669 -> 0.899 @100 and 0.746 -> 0.922 @200. Clotho's lead over Lookup (Drain) on the same 4 systems (+0.101 / +0.065 on the suites) vanishes (+0.000 ± 0.021 @100, -0.012 ± 0.008 @200), and its lead over MDSA shrinks to +0.035 / +0.005. Output entropy, which ignores the reference set, barely moves (0.784 -> 0.812, 0.790 -> 0.801), so on natural samples Clotho beats output entropy by about 0.09-0.11, the reverse of the suites. So the template-capped suites are what make lookups weak: on the natural distribution of these 4 systems a Drain lookup over labelled reference lines matches Clotho at almost no cost.
 
 ## Other reports
 

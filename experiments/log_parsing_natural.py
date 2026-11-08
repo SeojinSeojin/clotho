@@ -239,6 +239,18 @@ def evaluate(push=False, workers=10):
             d = [y - x for x, y in zip(a, b)]
             L_.append(f"| {NAMES[m]} | {F.fmt(a)} | {F.fmt(b)} | {statistics.mean(d):+.3f} ± {statistics.stdev(d):.3f} |")
             J.setdefault(f"auc@{ref_n}", {})[m] = {"suite": F.fmt(a), "natural": F.fmt(b)}
+        for b in ("lookup_drain", "MDSA"):
+            for lab, RR, key in (("suite", None, None), ("natural", R, None)):
+                if RR is None:
+                    dd = [statistics.mean(F.val(FR[("fair_leakfree", "standard", SUITE[s])][k], "clotho", ref_n, "auc")
+                                          - F.val(FR[("fair_leakfree", "standard", SUITE[s])][k], b, ref_n, "auc")
+                                          for s in kept) for k in SEEDS]
+                else:
+                    dd = [statistics.mean(F.val(R[s][k], "clotho", ref_n, "auc") - F.val(R[s][k], b, ref_n, "auc")
+                                          for s in kept) for k in SEEDS]
+                L_.append(f"\nPaired per seed, Clotho minus {NAMES[b]}, {lab}: {statistics.mean(dd):+.3f} ± "
+                          f"{statistics.stdev(dd):.3f} (min {min(dd):+.3f}, max {max(dd):+.3f})")
+                J.setdefault(f"paired@{ref_n}", {})[f"{b}_{lab}"] = [statistics.mean(dd), statistics.stdev(dd)]
         L_ += [f"\nPer system @{ref_n} (natural, mean over seeds):\n",
                "| system | " + " | ".join(NAMES[m] for m in METHODS) + " |", "|---" * (1 + len(METHODS)) + "|"]
         for s in kept:
