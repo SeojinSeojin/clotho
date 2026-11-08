@@ -2,30 +2,35 @@
 
 Last updated: 2026-11-07
 
-**Summary (Phase 3 final, `experiments/reports/log_parsing_phase3_final.md`; rules_template, strict_match, 13 systems, 5 seeds, standard split).** Main setting: Clotho = paper method (balanced sampling), layer 16 for all hidden-state methods, leakage-free label (pass label on samples 5-9, PASS if >= 3 of 5; post-generation scores on samples 0-4). Mean ± std over seeds of the per-seed macro mean. Fail top50 = failing inputs among the 50 ranked least likely to pass (random expectation 33.1 @100, 32.3 @200).
+**Summary: Phase 3 final** (`experiments/reports/log_parsing_phase3_final.md`; fail-top-50 counts and per-system tables are there). Setting fair_leakfree: Clotho = paper method (balanced sampling), layer 16 for every hidden-state method, label from samples 5-9 (PASS if >= 3 of 5 strict matches), post-generation scores from samples 0-4. rules_template, strict_match, 13 systems, no disjoint split skipped. Cells: ROC-AUC, mean ± std over 5 seeds of the per-seed macro mean over systems; reference size includes the 10 initial tests.
 
-| method | phase | ROC-AUC @100 | fail top50 @100 | ROC-AUC @200 | fail top50 @200 |
-|---|---|---|---|---|---|
-| Clotho | pre | 0.749 ± 0.010 | 46.5 ± 1.0 | 0.794 ± 0.011 | 46.6 ± 0.8 |
-| MDSA | pre | 0.715 ± 0.008 | 46.6 ± 1.7 | 0.737 ± 0.006 | 44.9 ± 0.9 |
-| GMMb | pre | 0.629 ± 0.019 | 39.0 ± 1.6 | 0.720 ± 0.008 | 43.3 ± 1.4 |
-| SLL | pre | 0.506 ± 0.003 | 37.1 ± 0.3 | 0.499 ± 0.005 | 35.1 ± 0.3 |
-| Tok-Prob | post | 0.518 ± 0.004 | 33.6 ± 0.3 | 0.516 ± 0.006 | 32.6 ± 0.3 |
-| Tok-Ent | post | 0.507 ± 0.002 | 34.4 ± 0.3 | 0.506 ± 0.004 | 32.8 ± 0.4 |
-| Sem-Ent | post | 0.543 ± 0.002 | 36.7 ± 0.2 | 0.535 ± 0.004 | 34.8 ± 0.4 |
-| LOHSvar | post | 0.647 ± 0.002 | 39.9 ± 0.2 | 0.644 ± 0.008 | 38.6 ± 0.4 |
-| Parsed-output entropy (not a paper baseline) | post | 0.792 ± 0.001 | 45.6 ± 0.3 | 0.794 ± 0.005 | 44.3 ± 0.5 |
-| Lookup (Drain, Loghub-2.0 settings) | lookup | 0.680 ± 0.006 | 44.1 ± 2.0 | 0.733 ± 0.005 | 43.8 ± 0.6 |
-| Lookup (Drain, default) | lookup | 0.694 ± 0.003 | 44.0 ± 1.8 | 0.750 ± 0.004 | 44.5 ± 0.7 |
-| Lookup (oracle templates) | lookup | 0.691 ± 0.005 | 43.4 ± 1.7 | 0.749 ± 0.003 | 44.4 ± 0.5 |
-| Hybrid (Drain lookup if group seen, else Clotho) | lookup | 0.757 ± 0.009 | 45.0 ± 1.7 | 0.802 ± 0.009 | 45.4 ± 1.0 |
-| Random | - | 0.504 ± 0.004 | 33.3 ± 0.8 | 0.506 ± 0.010 | 32.5 ± 0.6 |
+| method | standard @100 | standard @200 | disjoint @100 | disjoint @200 |
+|---|---|---|---|---|
+| Clotho | 0.749 ± 0.010 | 0.794 ± 0.011 | 0.645 ± 0.022 | 0.657 ± 0.012 |
+| MDSA | 0.715 ± 0.008 | 0.737 ± 0.006 | 0.656 ± 0.025 | 0.657 ± 0.023 |
+| GMMb | 0.629 ± 0.019 | 0.720 ± 0.008 | 0.564 ± 0.022 | 0.590 ± 0.024 |
+| SLL | 0.506 ± 0.003 | 0.499 ± 0.005 | 0.510 ± 0.020 | 0.510 ± 0.020 |
+| Tok-Prob | 0.518 ± 0.004 | 0.516 ± 0.006 | 0.511 ± 0.022 | 0.511 ± 0.022 |
+| Tok-Ent | 0.507 ± 0.002 | 0.506 ± 0.004 | 0.502 ± 0.023 | 0.502 ± 0.023 |
+| Sem-Ent | 0.543 ± 0.002 | 0.535 ± 0.004 | 0.547 ± 0.015 | 0.547 ± 0.015 |
+| LOHSvar | 0.647 ± 0.002 | 0.644 ± 0.008 | 0.644 ± 0.006 | 0.644 ± 0.006 |
+| Output entropy (not a paper baseline) | 0.792 ± 0.001 | 0.794 ± 0.005 | 0.796 ± 0.014 | 0.796 ± 0.014 |
+| Lookup (Drain) | 0.680 ± 0.006 | 0.733 ± 0.005 | 0.505 ± 0.005 | 0.508 ± 0.003 |
+| Lookup (Drain, default) | 0.694 ± 0.003 | 0.750 ± 0.004 | 0.525 ± 0.004 | 0.531 ± 0.005 |
+| Lookup (oracle) | 0.691 ± 0.005 | 0.749 ± 0.003 | 0.500 ± 0.000 | 0.500 ± 0.000 |
+| Hybrid | 0.757 ± 0.009 | 0.802 ± 0.009 | 0.648 ± 0.022 | 0.661 ± 0.012 |
+| Random | 0.504 ± 0.004 | 0.506 ± 0.010 | 0.502 ± 0.013 | 0.511 ± 0.019 |
 
-1. With the fair config, Clotho is the best single pre-generation method: +0.03 over MDSA @100, +0.06 @200, and +0.04 to +0.07 over every template lookup. Under the old config (random sampling, layer 21; secondary table in the report) Clotho and MDSA tied (0.730 vs 0.732) and oracle lookup tied Clotho.
-2. Leakage: going from the leaky to the leakage-free label, methods that never see the generations drop by 0.024 @100 / 0.021 @200, because the 5-sample label is noisier. Beyond that shift, the post-generation scores lose more: parsed-output entropy loses 0.125 net (0.940 -> 0.792), LOHSvar 0.067, Sem-Ent 0.040, Tok-Prob/Tok-Ent ~0.01, Clotho 0.009. Without leakage, parsed-output entropy (10 samples needed at test time) ties Clotho @200 (0.794) and beats it @100. Every paper post-generation baseline stays well below Clotho.
-3. Realistic lookup: Drain groups match the oracle closely (drain3 default 0.694 vs oracle 0.691 @100). Loghub-2.0 settings score lower (0.680) mostly because of OpenStack, where the published `\d+` regex splits UUIDs into fragments (GA 0.234). Grouping accuracy mean: 0.849 (Loghub-2.0 settings), 0.850 (drain3 default).
-4. Hybrid adds +0.008 over Clotho on the standard split (45% / 58% of test inputs have a seen Drain group @100 / @200). On the template-disjoint split almost no group is seen (1-2%), so hybrid ≈ Clotho (0.648 vs 0.645 @100, 0.661 vs 0.657 @200) and lookup is at chance.
-5. Deviations: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise label agreement with fp32). Tok-Prob/Tok-Ent use the correct prompt length (the repo helper drops the first output token; `*_paper` columns reproduce that). The balanced sampler scores each method on the inputs it left out, as the paper does.
+Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): methods that never see generations shift +0.026 / +0.014 (noisier 5-sample label). Net of that, the post-generation methods lose output entropy +0.123 / +0.140, LOHSvar +0.065 / +0.078, Sem-Ent +0.037 / +0.046, Tok-Prob +0.006 / +0.019, Tok-Ent 0.000 / +0.010.
+
+Findings (paired per-seed differences, mean ± std over 5 seeds):
+1. Clotho beats Lookup (Drain) on every seed: by +0.069 ± 0.014 / +0.061 ± 0.011 on the standard split (@100 / @200), and by +0.140 / +0.149 on the template-disjoint split, where every lookup falls to chance.
+2. The hybrid is ahead on average, but its gain over Clotho (+0.009 ± 0.014 and +0.008 ± 0.011 standard; +0.003 and +0.004 disjoint, where only 1-2% of test inputs have a seen Drain group) is within seed noise, so it does not clearly beat both.
+3. Most of the post-generation advantage was leakage: output entropy falls from 0.941 to 0.792 (net leakage +0.12 to +0.14), yet leakage-free it still beats Clotho at @100 (+0.043 ± 0.010), ties it at @200, and leads every pre-generation method by about 0.14 on the disjoint split.
+4. Under the fair config, Clotho beats MDSA on the standard split on every seed (+0.034 ± 0.003 @100, +0.057 ± 0.009 @200), but not on the template-disjoint split (-0.011 ± 0.033, -0.001 ± 0.023).
+5. Seed variance is small enough for the headline claims: Clotho's macro std is 0.010 to 0.022, and the Clotho vs Lookup and standard-split Clotho vs MDSA gaps keep their sign on all 5 seeds; the hybrid gain and the disjoint Clotho vs MDSA difference do not.
+
+Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise label agreement with fp32). Tok-Prob/Tok-Ent use the correct prompt length (the repo helper drops the first output token; `*_paper` columns reproduce that). The balanced sampler scores every method on the inputs it left out, as the paper does.
 
 ## Done
 - Phase 1 code: `setup.sh`, sharded resumable runner with RESULTS_REPO sync, vLLM path with prompt parity check, README "Ephemeral GPU servers".
@@ -37,11 +42,13 @@ Last updated: 2026-11-07
 - Phase 2 setup (user decisions 2026-11-07: both prompts, all 14 systems x 500, Clotho per system): 14 suites in `clotho/dataset/log_parsing/`, `rules_template`, parser fix for literal `*` runs, scripts `run_log_parsing_all.py`, `log_parsing_initial_set.py`, `run_clotho_log_parsing.py`, `log_parsing_phase2_report.py`.
 
 ## In progress
-- Clotho on messages_template, 13 systems (comparison only; log `logs/clotho_messages.log`). Slow (5/13 after ~1 h) because it shared the CPU with Phase 3. Resumable: rerun the same command, finished systems are skipped.
+- Nothing running. Done: the post-generation pass for 13 systems, including semantic entropy; the 390 Phase 3 final jobs, with post-generation rows in the 388 non-skipped jobs; the final report (pushed to RESULTS_REPO); and the messages_template Clotho comparison (13/13).
 
 ## Next
-- When messages_template Clotho finishes: `cd experiments && python log_parsing_phase2_report.py` (both templates), commit.
-- Phase 3 final is complete (all 390 jobs plus post-generation and semantic entropy for 13 systems, pushed). Open questions: whether Clotho beats parsed-output entropy with a larger label sample; whether hybrid gains grow at 2,000 inputs (cost estimate below, not run); within-template AUC to separate Clotho's signal from template identity.
+- Decided: no scaling to 2,000 inputs per system. The cost estimate below is kept for reference only.
+- `cd experiments && python log_parsing_phase2_report.py` to add the finished messages_template Clotho runs (prompt comparison), then commit.
+- Optional, CPU only: test whether Clotho combined with LOHSvar or output entropy beats each alone; look per system at where MDSA beats Clotho on disjoint splits; within-template AUC to separate Clotho's signal from template identity.
+- Write-up: the table and findings above are the Phase 3 result.
 
 ## Phase 3 (2026-11-07): template confound, seeds, cross-system, baselines
 - Code: `experiments/log_parsing_phase3_lib.py` (harness), `experiments/log_parsing_phase3.py` (`within`, `cross`, `report`, `--push`), `experiments/log_parsing_sll.py` (SLL inputs, GPU forward pass, no generation).
