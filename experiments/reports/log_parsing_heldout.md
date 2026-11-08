@@ -22,7 +22,7 @@ Held-out systems: apache, bgl, hpc, hadoop, healthapp, mac, openssh, openstack, 
 | Random | 0.500 ± 0.004 / 0.504 ± 0.004 | 0.508 ± 0.016 / 0.506 ± 0.010 | 0.510 ± 0.012 / 0.502 ± 0.013 | 0.508 ± 0.018 / 0.511 ± 0.019 |
 | Clotho + output entropy* | 0.815 ± 0.005 / 0.826 ± 0.005 | 0.830 ± 0.009 / 0.845 ± 0.006 | 0.763 ± 0.014 / 0.775 ± 0.014 | 0.772 ± 0.016 / 0.784 ± 0.012 |
 
-Systems per split (held-out / all): standard 10 / 13, disjoint 10 / 13; no split is skipped under fair_leakfree).
+Systems per split (held-out / all): standard 10 / 13, disjoint 10 / 13 (no split is skipped under fair_leakfree).
 
 ## Paired per-seed differences, held-out systems (mean ± std over seeds)
 

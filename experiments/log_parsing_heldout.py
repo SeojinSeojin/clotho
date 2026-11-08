@@ -69,7 +69,7 @@ def main():
             J.setdefault("table", {}).setdefault(m, {})[f"{sp}@{r}"] = {"heldout": F.fmt(h), "all13": F.fmt(f)}
         L_.append(f"| {NAMES[m]} | " + " | ".join(cells) + " |")
     L_.append(f"\nSystems per split (held-out / all): standard {n['standard'][0]} / {n['standard'][1]}, "
-              f"disjoint {n['disjoint'][0]} / {n['disjoint'][1]}; no split is skipped under fair_leakfree).\n")
+              f"disjoint {n['disjoint'][0]} / {n['disjoint'][1]} (no split is skipped under fair_leakfree).\n")
     L_ += ["## Paired per-seed differences, held-out systems (mean ± std over seeds)\n",
            "| comparison | " + " | ".join(f"{sp} @{r}" for sp, r in cols) + " |", "|---" * (1 + len(cols)) + "|"]
     for b in ("MDSA", "lookup_drain", "out_entropy", "hybrid"):
