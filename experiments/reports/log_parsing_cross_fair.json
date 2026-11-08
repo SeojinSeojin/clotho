@@ -1,0 +1,126 @@
+{
+ "@100": {
+  "bgl->thunderbird": {
+   "clotho": "0.534 \u00b1 0.027",
+   "MDSA": "0.511 \u00b1 0.006",
+   "GMMb": "0.487 \u00b1 0.078",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.840 \u00b1 0.000",
+   "random": "0.534 \u00b1 0.040",
+   "within_B": "0.526 \u00b1 0.028"
+  },
+  "hadoop->hdfs": {
+   "clotho": "0.645 \u00b1 0.046",
+   "MDSA": "0.647 \u00b1 0.032",
+   "GMMb": "0.584 \u00b1 0.049",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.811 \u00b1 0.000",
+   "random": "0.498 \u00b1 0.025",
+   "within_B": "0.849 \u00b1 0.016"
+  },
+  "hadoop->spark": {
+   "clotho": "0.670 \u00b1 0.015",
+   "MDSA": "0.687 \u00b1 0.021",
+   "GMMb": "0.553 \u00b1 0.038",
+   "lookup_drain": "0.506 \u00b1 0.002",
+   "lookup_oracle": "0.513 \u00b1 0.003",
+   "out_entropy": "0.850 \u00b1 0.000",
+   "random": "0.497 \u00b1 0.041",
+   "within_B": "0.736 \u00b1 0.044"
+  },
+  "hdfs->spark": {
+   "clotho": "0.592 \u00b1 0.040",
+   "MDSA": "0.647 \u00b1 0.011",
+   "GMMb": "0.535 \u00b1 0.027",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.850 \u00b1 0.000",
+   "random": "0.497 \u00b1 0.041",
+   "within_B": "0.736 \u00b1 0.044"
+  },
+  "spark->hdfs": {
+   "clotho": "0.677 \u00b1 0.018",
+   "MDSA": "0.679 \u00b1 0.043",
+   "GMMb": "0.599 \u00b1 0.120",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.811 \u00b1 0.000",
+   "random": "0.498 \u00b1 0.025",
+   "within_B": "0.849 \u00b1 0.016"
+  }
+ },
+ "mean_over_pairs": {
+  "@100": {
+   "clotho": "0.624 \u00b1 0.012",
+   "MDSA": "0.634 \u00b1 0.009",
+   "GMMb": "0.552 \u00b1 0.039",
+   "lookup_drain": "0.501 \u00b1 0.000",
+   "lookup_oracle": "0.503 \u00b1 0.001",
+   "out_entropy": "0.832 \u00b1 0.000",
+   "random": "0.505 \u00b1 0.026"
+  },
+  "@200": {
+   "clotho": "0.641 \u00b1 0.014",
+   "MDSA": "0.618 \u00b1 0.004",
+   "GMMb": "0.573 \u00b1 0.006",
+   "lookup_drain": "0.501 \u00b1 0.000",
+   "lookup_oracle": "0.503 \u00b1 0.000",
+   "out_entropy": "0.832 \u00b1 0.000",
+   "random": "0.492 \u00b1 0.024"
+  }
+ },
+ "@200": {
+  "bgl->thunderbird": {
+   "clotho": "0.541 \u00b1 0.029",
+   "MDSA": "0.503 \u00b1 0.014",
+   "GMMb": "0.503 \u00b1 0.096",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.840 \u00b1 0.000",
+   "random": "0.513 \u00b1 0.037",
+   "within_B": "0.606 \u00b1 0.066"
+  },
+  "hadoop->hdfs": {
+   "clotho": "0.689 \u00b1 0.043",
+   "MDSA": "0.653 \u00b1 0.016",
+   "GMMb": "0.650 \u00b1 0.051",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.811 \u00b1 0.000",
+   "random": "0.485 \u00b1 0.019",
+   "within_B": "0.873 \u00b1 0.015"
+  },
+  "hadoop->spark": {
+   "clotho": "0.716 \u00b1 0.011",
+   "MDSA": "0.681 \u00b1 0.003",
+   "GMMb": "0.639 \u00b1 0.050",
+   "lookup_drain": "0.506 \u00b1 0.002",
+   "lookup_oracle": "0.516 \u00b1 0.002",
+   "out_entropy": "0.850 \u00b1 0.000",
+   "random": "0.490 \u00b1 0.035",
+   "within_B": "0.845 \u00b1 0.009"
+  },
+  "hdfs->spark": {
+   "clotho": "0.564 \u00b1 0.016",
+   "MDSA": "0.607 \u00b1 0.005",
+   "GMMb": "0.544 \u00b1 0.054",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.850 \u00b1 0.000",
+   "random": "0.490 \u00b1 0.035",
+   "within_B": "0.845 \u00b1 0.009"
+  },
+  "spark->hdfs": {
+   "clotho": "0.692 \u00b1 0.017",
+   "MDSA": "0.648 \u00b1 0.017",
+   "GMMb": "0.527 \u00b1 0.125",
+   "lookup_drain": "0.500 \u00b1 0.000",
+   "lookup_oracle": "0.500 \u00b1 0.000",
+   "out_entropy": "0.811 \u00b1 0.000",
+   "random": "0.485 \u00b1 0.019",
+   "within_B": "0.873 \u00b1 0.015"
+  }
+ }
+}
