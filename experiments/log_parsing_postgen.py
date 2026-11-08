@@ -20,6 +20,9 @@ prompt length is counted correctly; *_paper columns reproduce the repo's slice (
 The wrapper's added <pad> token (random lm_head row) is excluded from the softmax; the repo helpers include it,
 so the parity check shows a small difference from that alone.
 
+Gemma (CLOTHO_MODEL=gemma): system prompt inlined into the user turn as clotho/models/gemma.py does; the terminator
+is <end_of_turn> (where generation stopped; the repo helper appends <eos>); full vocabulary (no added pad row).
+
 Paper conventions (RQ/analysis_utils.py): Tok-Prob and Tok-Ent use sample 0 only.
 Outputs (data/results_llama/log_parsing/precalculated_metrics/<template>/):
   <ds>_postgen_samples.pkl  one row per (input, sample): avg log-prob / entropy (correct and paper), per-token arrays
@@ -45,22 +48,23 @@ from tqdm import tqdm
 EXP = Path(__file__).resolve().parent
 sys.path.insert(0, str(EXP / "sharded"))
 from clotho.exp_config import supported_datasets, task2input_key, task2template  # noqa: E402
+import model_cfg as MC  # noqa: E402
 
 TASK = "log_parsing"
-LOH_LAYER = 23          # RQ/analysis_utils.load_loh_variance_df: llama -> layer 23, token 'IE'
+LOH_LAYER = MC.CFG["loh_layer"]   # RQ/analysis_utils.load_loh_variance_df: llama 23, gemma 28, token 'IE'
 NLI = "microsoft/deberta-v2-xlarge-mnli"   # clotho.metrics.semantic_entropy.EntailmentDeberta
 
 
 def out_dir(template):
-    return EXP / f"data/results_llama/{TASK}/precalculated_metrics/{template}"
+    return EXP / f"data/results_{MC.MODEL}/{TASK}/precalculated_metrics/{template}"
 
 
 @torch.no_grad()
 def forward_input(llama, msgs, outputs):
     tok, model, dev = llama.tokenizer, llama.model, llama.device
-    chat = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+    chat = tok.apply_chat_template(MC.chat_messages(msgs), tokenize=False, add_generation_prompt=True)
     P = len(tok.encode(chat, add_special_tokens=False))          # correct prompt length
-    seqs = [tok.encode(chat + o, add_special_tokens=False) + [tok.eos_token_id] for o in outputs]
+    seqs = [tok.encode(chat + o, add_special_tokens=False) + [MC.stop_token_id(tok)] for o in outputs]   # gemma: <end_of_turn>
     L = max(len(s) for s in seqs)
     ids = torch.full((len(seqs), L), tok.pad_token_id, dtype=torch.long)
     att = torch.zeros((len(seqs), L), dtype=torch.long)
@@ -68,7 +72,7 @@ def forward_input(llama, msgs, outputs):
         ids[k, :len(s)] = torch.tensor(s)
         att[k, :len(s)] = 1
     ids, att = ids.to(dev), att.to(dev)
-    out = model(input_ids=ids, attention_mask=att, output_hidden_states=True)
+    out = model(input_ids=ids, attention_mask=att, output_hidden_states=True, use_cache=False)
     hs = out.hidden_states[LOH_LAYER]
     res = []
     for k, s in enumerate(seqs):
@@ -76,7 +80,7 @@ def forward_input(llama, msgs, outputs):
         assert s[:P] == seqs[0][:P], "prompt tokens changed when the output was appended"
         # predicts tokens P..n-1 (output + EOS). Drop the <pad> row that clotho.models.llama appends
         # (resize_token_embeddings, randomly initialised): vLLM sampled from the original vocabulary.
-        lg = out.logits[k, P - 1:n - 1, :tok.pad_token_id].float()
+        lg = out.logits[k, P - 1:n - 1, :MC.vocab_limit(tok)].float()
         lp = F.log_softmax(lg, dim=-1)
         tgt = ids[k, P:n]
         tok_lp = lp.gather(1, tgt[:, None]).squeeze(1)
@@ -144,7 +148,7 @@ def run_system(ds, template, llama, nli, push):
     from clotho.metrics.semantic_entropy import logsumexp_by_id, predictive_entropy_rao
     fn = task2template[TASK][template]
     data = [json.loads(l) for l in open(EXP.parent / f"clotho/dataset/{TASK}/{ds}.jsonl")]
-    gen = json.load(open(EXP / f"data/results_llama/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))
+    gen = json.load(open(EXP / f"data/results_{MC.MODEL}/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))
     assert len(data) == len(gen)
     srows, irows = [], []
     t0 = time.time()
@@ -201,7 +205,7 @@ def main():
     if a.se_only:            # DeBERTa only (no Llama), so it can run beside the main pass
         se_only(a.datasets, a.template, BatchedNLI("cuda"), a.push, wait=a.wait)
         return
-    import clotho.models.llama as llama
+    llama = MC.wrapper()   # clotho.models.<CLOTHO_MODEL>
     if a.limit_check:
         parity(llama, a.datasets[0], a.template, a.limit_check)
         return
@@ -225,7 +229,7 @@ def se_only(datasets, template, nli, push, wait=False):
             print(f"{ds}: semantic entropy present, skip")
             continue
         sm = pd.read_pickle(od / f"{ds}_postgen_samples.pkl").sort_values(["input_index", "inference_index"])
-        gen = json.load(open(EXP / f"data/results_llama/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))
+        gen = json.load(open(EXP / f"data/results_{MC.MODEL}/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))
         se, se5, nc, ids = [], [], [], []
         t0 = time.time()
         for i, g in enumerate(tqdm(gen, desc=f"SE {ds}")):
@@ -249,7 +253,7 @@ def parity(llama, ds, template, n):
     from clotho.metrics.logprobs import calc_average_entropy, calc_confidence_scores
     fn = task2template[TASK][template]
     data = [json.loads(l) for l in open(EXP.parent / f"clotho/dataset/{TASK}/{ds}.jsonl")][:n]
-    gen = json.load(open(EXP / f"data/results_llama/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))[:n]
+    gen = json.load(open(EXP / f"data/results_{MC.MODEL}/{TASK}/inference_results/{template}/{ds}_R10_T0.8.json"))[:n]
     dlp, dent = [], []
     for d, g in zip(data, gen):
         msgs = fn(d[task2input_key[TASK]])

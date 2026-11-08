@@ -41,13 +41,14 @@ def make_vllm_runner_factory(args):
         llm = LLM(model=pr.MODEL_IDS[job.model], dtype="bfloat16", seed=args.seed,
                   max_model_len=args.max_model_len,
                   gpu_memory_utilization=args.gpu_memory_utilization,
-                  generation_config="vllm")  # ignore the model's generation_config.json defaults
+                  generation_config="vllm",  # ignore the model's generation_config.json defaults
+                  **({"enforce_eager": args.enforce_eager} if args.enforce_eager else {}))
         sp = SamplingParams(
             n=pr.GEN_REPEAT, temperature=pr.GEN_TEMPERATURE, top_p=1.0,
             max_tokens=pr.GEN_MAX_NEW_TOKENS,
-            # HF loop stops only on tokenizer.eos_token_id (<|eot_id|>); ignore_eos
+            # HF loop stops only on one token (llama <|eot_id|>, gemma <end_of_turn>); ignore_eos
             # disables vLLM's extra generation_config eos ids, stop_token_ids restores eot.
-            ignore_eos=True, stop_token_ids=[tok.eos_token_id],
+            ignore_eos=True, stop_token_ids=[pr.stop_token_id(tok)],
             detokenize=False,  # we decode ourselves, exactly like llama.py
         )
         vocab = llm.llm_engine.model_config.get_vocab_size()
@@ -84,6 +85,7 @@ def main():
     p.add_argument("--max_model_len", type=int, default=8192)
     p.add_argument("--gpu_memory_utilization", type=float, default=0.90)
     p.add_argument("--skip_parity_check", action="store_true")
+    p.add_argument("--enforce_eager", action="store_true", help="no CUDA graphs (debugging engine start)")
     args = p.parse_args()
     args.stage = "gen_vllm"
 

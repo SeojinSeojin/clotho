@@ -15,15 +15,16 @@ from clotho.exp_config import supported_datasets, task2input_key, task2template
 from clotho.metrics.logprobs import calc_confidence_scores_input
 
 TASK = "log_parsing"
+import model_cfg as MC  # noqa: E402
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("-p", "--template", default="rules_template")
     ap.add_argument("-d", "--datasets", nargs="+", default=supported_datasets[TASK])
     a = ap.parse_args()
-    import clotho.models.llama as model_wrapper
+    model_wrapper = MC.wrapper()
     fn = task2template[TASK][a.template]
-    out_dir = f"./data/results_llama/{TASK}/precalculated_metrics/{a.template}"
+    out_dir = f"./data/results_{MC.MODEL}/{TASK}/precalculated_metrics/{a.template}"
     os.makedirs(out_dir, exist_ok=True)
     for ds in a.datasets:
         path = f"{out_dir}/{ds}_input_logprobs.pkl"

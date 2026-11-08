@@ -8,7 +8,7 @@ inference.from_input). One forward pass per prompt yields every layer.
 Writes (existing files are skipped):
   data/results_llama/log_parsing/input_hidden_states/<template>/<ds>/layer_<L>/hidden_vectors.pt
   initial_tests_llama/log_parsing@<template>/hidden_vectors_layer_<L>.pt
-Layer 21 is already stored by the original pipeline; if requested it is recomputed and compared
+CLOTHO_MODEL selects the model (model_cfg.py). Llama layer 21 is already stored by the original pipeline; if requested it is recomputed and compared
 (max abs diff printed) as a parity check, never overwritten.
 """
 import argparse
@@ -22,6 +22,7 @@ from tqdm import tqdm
 from clotho.exp_config import supported_datasets, task2input_key, task2template
 from generate_initial_set_data import initial_tests
 from log_parsing_initial_set import initial_dir
+import model_cfg as MC
 
 TASK = "log_parsing"
 
@@ -43,10 +44,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-p", "--template", default="rules_template")
     ap.add_argument("-d", "--datasets", nargs="+", default=[d for d in supported_datasets[TASK] if "proxifier" not in d])
-    ap.add_argument("--layers", type=int, nargs="+", default=[11, 16, 21, 24])
+    ap.add_argument("--layers", type=int, nargs="+", default=MC.CFG["candidate_layers"])
     ap.add_argument("--skip_initial", action="store_true")
     a = ap.parse_args()
-    import clotho.models.llama as llama
+    llama = MC.wrapper()   # clotho.models.<CLOTHO_MODEL>
     fn = task2template[TASK][a.template]
 
     def lasttok(text):
@@ -54,7 +55,7 @@ def main():
         return {l: hs[l][0, -1].cpu().to(torch.float32).numpy() for l in a.layers}
 
     if not a.skip_initial:
-        out = initial_dir("llama", a.template)
+        out = initial_dir(MC.MODEL, a.template)
         vecs = {l: [] for l in a.layers}
         for case in initial_tests[TASK]:
             for l, v in lasttok(case[task2input_key[TASK]]).items():
@@ -63,7 +64,7 @@ def main():
             save_or_check(vecs[l], f"{out}/hidden_vectors_layer_{l}.pt")
 
     for ds in a.datasets:
-        base = f"./data/results_llama/{TASK}/input_hidden_states/{a.template}/{ds}"
+        base = f"./data/results_{MC.MODEL}/{TASK}/input_hidden_states/{a.template}/{ds}"
         if all(os.path.exists(f"{base}/layer_{l}/hidden_vectors.pt") for l in a.layers):
             print(f"{ds}: all layers present, skip")
             continue

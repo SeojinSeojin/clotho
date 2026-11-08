@@ -47,7 +47,7 @@ def pick_samples(tasks, n, seed=0):
 
 
 # ------------------------------------------------------------------------ HF side
-def hf_side(samples, template):
+def hf_side(samples, template, model="llama"):
     import types
     import torch
     import transformers
@@ -56,7 +56,7 @@ def hf_side(samples, template):
     class StubModel(torch.nn.Module):
         def __init__(self):
             super().__init__()
-            self.config = types.SimpleNamespace(pad_token_id=None)
+            self.config = types.SimpleNamespace(pad_token_id=None, num_hidden_layers=42 if model == "gemma" else 32)
             self.calls, self.script, self.vocab = [], [], None
 
         def resize_token_embeddings(self, n, *a, **k):
@@ -68,16 +68,20 @@ def hf_side(samples, template):
             nxt = self.script[step] if step < len(self.script) else self.eos
             logits = torch.full((1, 1, self.vocab), float("-inf"), device=input_ids.device)
             logits[0, -1, nxt] = 0.0
-            hs = tuple(torch.zeros(1, 1, 4, device=input_ids.device) for _ in range(33))
+            hs = tuple(torch.zeros(1, 1, 4, device=input_ids.device) for _ in range(self.config.num_hidden_layers + 1))
             return types.SimpleNamespace(logits=logits, hidden_states=hs)
 
     stub = StubModel()
     transformers.AutoModelForCausalLM.from_pretrained = lambda *a, **k: stub
     huggingface_hub.login = lambda *a, **k: None
-    from clotho.models import llama  # the real module, model load stubbed
+    import importlib
+    llama = importlib.import_module(f"clotho.models.{model}")  # the real module, model load stubbed
+    if stub.vocab is None:                       # gemma.py does not resize the embeddings
+        stub.vocab = len(llama.tokenizer)
+    stop = llama.tokenizer.convert_tokens_to_ids("<end_of_turn>") if model == "gemma" else llama.tokenizer.eos_token_id
     from clotho.exp_config import task2template, task2input_key
 
-    stub.eos = llama.tokenizer.eos_token_id
+    stub.eos = stop
     rendered = []
     orig_act = llama.tokenizer.apply_chat_template
 
@@ -111,7 +115,7 @@ def hf_side(samples, template):
     consts = {"REPEAT": int(re.search(r"^REPEAT\s*=\s*(\d+)", src, re.M).group(1)),
               "TEMPERATURE": float(re.search(r"^TEMPERATURE\s*=\s*([\d.]+)", src, re.M).group(1)),
               "MAX_NEW_TOKENS": llama.MAX_NEW_TOKENS,
-              "eos_token_id": llama.tokenizer.eos_token_id}
+              "eos_token_id": stop}
     return {"transformers": transformers.__version__, "constants": consts, "samples": results}
 
 
@@ -121,7 +125,7 @@ def vllm_side(hf_dump, model):
     import prompt_render as pr
     tok = pr.load_tokenizer(model)
     consts = {"REPEAT": pr.GEN_REPEAT, "TEMPERATURE": pr.GEN_TEMPERATURE,
-              "MAX_NEW_TOKENS": pr.GEN_MAX_NEW_TOKENS, "eos_token_id": tok.eos_token_id}
+              "MAX_NEW_TOKENS": pr.GEN_MAX_NEW_TOKENS, "eos_token_id": pr.stop_token_id(tok)}
     problems = []
     for name, v in consts.items():
         if hf_dump["constants"][name] != v:
@@ -138,7 +142,7 @@ def vllm_side(hf_dump, model):
             problems.append(f"{tag}: token ids differ (len {len(s['ids'])} vs {len(ids)})")
         if out != s["output"]:
             problems.append(f"{tag}: post-processed outputs differ: {s['output']!r} vs {out!r}")
-        if max(ids) >= 128256:
+        if model == "llama" and max(ids) >= 128256:
             problems.append(f"{tag}: prompt contains the added <pad> token (id {max(ids)}), "
                             f"which the base vLLM model's vocab doesn't have")
     print(f"[parity] transformers: HF venv {hf_dump['transformers']} | vLLM venv {transformers.__version__}")
@@ -166,16 +170,14 @@ def main():
     if a.side == "hf":
         from clotho.exp_config import supported_datasets
         samples = pick_samples(a.tasks or list(supported_datasets), a.n)
-        d = hf_side(samples, a.template) | {"template": a.template}
+        d = hf_side(samples, a.template, a.model) | {"template": a.template}
         a.dump.write_text(json.dumps(d))
         return 0
     if a.side == "vllm":
         return vllm_side(json.loads(a.dump.read_text()), a.model)
 
     # orchestrate both sides
-    if a.model != "llama":
-        raise SystemExit("parity check only implemented for llama")
-    extra = (["--tasks", *a.tasks] if a.tasks else []) + ["--n", str(a.n), "-p", a.template]
+    extra = ["-m", a.model] + (["--tasks", *a.tasks] if a.tasks else []) + ["--n", str(a.n), "-p", a.template]
     with tempfile.TemporaryDirectory() as td:
         dump = Path(td) / "hf.json"
         subprocess.run([str(HF_PY), __file__, "--side", "hf", "--dump", str(dump), *extra], check=True)

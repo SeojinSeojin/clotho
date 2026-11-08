@@ -34,11 +34,12 @@ from clotho.metrics.sa import SA  # noqa: E402
 from clotho.al.sampling import extend_reference_set_diversity, extend_reference_set_uncertainty  # noqa: E402
 from clotho.dataset.log_parsing.output_parsers import score_output  # noqa: E402
 from log_parsing_initial_set import initial_dir  # noqa: E402
+import model_cfg as MC  # noqa: E402
 
 TASK = "log_parsing"
 TEMPLATE = "rules_template"
-LAYER = 21
-MODEL = "llama"
+LAYER = MC.CFG["paper_layer"]   # llama 21, gemma 28
+MODEL = MC.MODEL
 PASS_THRESH = 0.5
 REF_SIZES = (50, 100, 200)
 SUITES = EXP.parent / "clotho" / "dataset" / "log_parsing"

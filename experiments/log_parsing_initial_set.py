@@ -36,7 +36,7 @@ def initial_dir(model, template):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-p", "--template", required=True)
-    ap.add_argument("-m", "--model", default="llama")
+    ap.add_argument("-m", "--model", default=os.environ.get("CLOTHO_MODEL", "llama"))
     ap.add_argument("--layers", type=int, nargs="+", default=[21])
     ap.add_argument("--rescore", action="store_true", help="relabel saved raw outputs, no generation")
     a = ap.parse_args()
@@ -59,6 +59,10 @@ def main():
         outs, layer2hidden = inference.from_input(
             input_variables=case, task=TASK, prompt_template_name=a.template,
             num_inference_runs=10, target_layers=a.layers, produce_inference_results=True, model=a.model)
+        if a.model == "gemma":
+            # gemma.get_hidden_states (generate path) keeps a trailing <end_of_turn>: HF generate stops on it
+            # (generation_config eos [1, 107]) but the wrapper only strips '<end_of_turn><eos>'
+            outs = [o.removesuffix("<eos>").removesuffix("<end_of_turn>").strip() for o in outs]
         for l in layer2hidden:
             LIH[l].append(layer2hidden[l])
         s, lab = inference.evaluate(outs, case["label"], task=TASK, prompt_template_name=a.template)

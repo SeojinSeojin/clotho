@@ -29,6 +29,7 @@ def main():
     ap.add_argument("-d", "--datasets", nargs="+", default=supported_datasets["log_parsing"])
     ap.add_argument("--stages", nargs="+", default=STAGES, choices=STAGES)
     ap.add_argument("--status", action="store_true")
+    ap.add_argument("-m", "--model", default="llama")
     a = ap.parse_args()
     failed = []
     for stage in a.stages:          # all hidden jobs first: no vLLM engine start per job in between
@@ -36,7 +37,7 @@ def main():
             for ds in a.datasets:
                 size = EXISTING_SHARD_SIZE.get((t, ds), 500)
                 cmd = [sys.executable, str(RUNNER), "--stage", stage, "-t", "log_parsing", "-d", ds,
-                       "-p", t, "--shard_size", str(size)] + (["--status"] if a.status else [])
+                       "-p", t, "-m", a.model, "--shard_size", str(size)] + (["--status"] if a.status else [])
                 print(f"\n=== {stage} {t} {ds} (shard_size {size})", flush=True)
                 if subprocess.run(cmd).returncode != 0:
                     failed.append((stage, t, ds))
