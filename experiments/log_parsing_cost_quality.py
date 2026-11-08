@@ -104,6 +104,10 @@ def costs():
     gmm = hf["gmm_bs1_nf50_nc10"]
     c = {"clotho": fwd + gmm, "MDSA": fwd + hf["mdsa_bs1"], "lookup_drain": hf["drain_lh2_per_input"]}
     c1 = {"clotho": fwd1 + gmm, "MDSA": fwd1 + hf["mdsa_bs1"], "lookup_drain": hf["drain_lh2_per_input"]}
+    # lower bound: Clotho's forward pass at vLLM prefill speed (same engine as generation; vLLM exposes no
+    # hidden states, so this is not a runnable implementation). Same AUC as Clotho.
+    c["clotho_lb"] = mean(vl, "prefill") + gmm
+    c1["clotho_lb"] = float("nan")
     for k in KS:
         c[f"oe{k}"], c1[f"oe{k}"] = mean(vl, f"gen_{k}"), mean(vl, f"gen_{k}_bs1")
         c[f"c+oe{k}"], c1[f"c+oe{k}"] = c["clotho"] + c[f"oe{k}"], c1["clotho"] + c1[f"oe{k}"]
@@ -127,12 +131,17 @@ def plot(R, c, path):
             xs, ys, es = [c[f"{key}{k}"] for k in KS], [mu(f"{key}{k}") for k in KS], [sd(f"{key}{k}") for k in KS]
             ax.errorbar(xs, ys, yerr=es, color=col, lw=2, marker="o", ms=7, capsize=3, label=name, zorder=3)
             for k, x, y in zip(KS, xs, ys):
-                ax.annotate(f"k={k}", (x, y), textcoords="offset points", xytext=(0, 8), ha="center",
-                            fontsize=8, color="#52514e")
+                if key == "oe" or k in (2, 5):
+                    ax.annotate(f"k={k}", (x, y), textcoords="offset points",
+                                xytext=(8, -12) if key == "oe" else (-10, 8), ha="left" if key == "oe" else "right",
+                                fontsize=8, color="#52514e")
         for key in ("clotho", "MDSA", "lookup_drain"):
             name, col = SERIES[key]
             ax.errorbar([c[key]], [mu(key)], yerr=[sd(key)], color=col, marker="s", ms=9, capsize=3, ls="none",
-                        label=name, zorder=4, mec="#fcfcfb", mew=1.5)
+                        label=name + (" (HF forward pass)" if key == "clotho" else ""),
+                        zorder=5 if key == "clotho" else 4, mec="#fcfcfb", mew=1.5)
+        ax.plot([c["clotho_lb"]], [mu("clotho")], color=SERIES["clotho"][1], marker="s", ms=9, ls="none", mfc="none",
+                mew=2, zorder=4, label="Clotho (forward pass at vLLM prefill speed, lower bound)")
         ax.set_xscale("log")
         ax.set_title(f"{sp} split, reference size {r}", fontsize=11, color="#0b0b0b")
         ax.grid(True, color="#e6e5e0", lw=0.6)
@@ -141,11 +150,10 @@ def plot(R, c, path):
         ax.set_ylim(0.45, 0.9)
     for ax in axes[1]:
         ax.set_xlabel("cost per test input, seconds (log scale; L40S, batched)")
-    for ax in axes[:, 0]:
-        ax.set_ylabel("ROC-AUC (mean ± std over 5 seeds, macro over 13 systems)")
+    fig.supylabel("ROC-AUC (macro over 13 systems; mean ± std over 5 seeds)", fontsize=10)
     h, l_ = axes[0, 0].get_legend_handles_labels()
-    fig.legend(h, l_, loc="lower center", ncol=3, frameon=False, fontsize=9)
-    fig.tight_layout(rect=(0, 0.07, 1, 1))
+    fig.legend(h, l_, loc="lower center", ncol=2, frameon=False, fontsize=9)
+    fig.tight_layout(rect=(0, 0.11, 1, 1))
     fig.savefig(path, dpi=150, facecolor="#fcfcfb")
 
 
@@ -153,7 +161,7 @@ def report(push=False):
     R = load()
     c, c1, ex = costs()
     cols = [(sp, r) for sp in F.SPLITS for r in REFS]
-    rows = [("clotho", "Clotho"), ("MDSA", "MDSA"), ("lookup_drain", "Lookup (Drain)")] + \
+    rows = [("clotho", "Clotho"), ("clotho_lb", "Clotho, forward pass at vLLM prefill speed (lower bound)"), ("MDSA", "MDSA"), ("lookup_drain", "Lookup (Drain)")] + \
            [(f"oe{k}", f"Output entropy, k={k}") for k in KS] + [(f"c+oe{k}", f"Clotho + output entropy, k={k}") for k in KS]
     J = {"costs_batched": c, "costs_bs1": c1, "timing_extra": ex}
     L_ = ["# Cost vs quality: output entropy from k samples vs Clotho\n",
@@ -166,9 +174,10 @@ def report(push=False):
     for m, name in rows:
         cells = []
         for sp, r in cols:
-            V[(m, sp, r)] = per_seed(R, sp, m, r)
+            V[(m, sp, r)] = per_seed(R, sp, "clotho" if m == "clotho_lb" else m, r)
             cells.append(F.fmt(V[(m, sp, r)]))
-        L_.append(f"| {name} | {c[m]:.4f} | {c1[m]:.4f} | " + " | ".join(cells) + " |")
+        b1 = "n/a" if c1[m] != c1[m] else f"{c1[m]:.4f}"
+        L_.append(f"| {name} | {c[m]:.4f} | {b1} | " + " | ".join(cells) + " |")
         J.setdefault("auc", {})[m] = cells
     L_.append(f"\n(k = 1 gives AUC 0.5: one sample has entropy 0.) Mean generated tokens per sample: "
               + ", ".join(f"k={k}: {v:.0f}" for k, v in ex["out_tokens"].items()) + ".\n")
@@ -177,6 +186,14 @@ def report(push=False):
            f"{ex['hf_pipeline_bs1']:.4f}; vLLM prefill only (max_tokens=1, lower bound for a forward pass): "
            f"{ex['vllm_prefill']:.4f}; PCA+GMM scoring: {ex['gmm']:.5f}; PCA+MDSA: {ex['mdsa']:.5f}. Batched layer-16 "
            f"vectors match the stored ones (min cosine {ex['parity_min_cos']:.4f}).\n"]
+    L_.append("Cost ratios, output entropy(k) over Clotho: batched with Clotho on HF "
+              + ", ".join(f"k={k}: {c[f'oe{k}'] / c['clotho']:.1f}x" for k in KS)
+              + "; batched with Clotho at vLLM prefill speed (same engine) "
+              + ", ".join(f"k={k}: {c[f'oe{k}'] / c['clotho_lb']:.1f}x" for k in KS)
+              + "; batch 1 (online) " + ", ".join(f"k={k}: {c1[f'oe{k}'] / c1['clotho']:.0f}x" for k in KS) + ".\n")
+    J["ratios"] = {"batched_hf": {k: c[f"oe{k}"] / c["clotho"] for k in KS},
+                   "batched_same_engine": {k: c[f"oe{k}"] / c["clotho_lb"] for k in KS},
+                   "bs1": {k: c1[f"oe{k}"] / c1["clotho"] for k in KS}}
     # how many samples does OE need to match Clotho?
     L_ += ["## Paired per-seed differences: output entropy(k) minus Clotho\n",
            "| k | " + " | ".join(f"{sp} @{r}" for sp, r in cols) + " |", "|---" * (1 + len(cols)) + "|"]
