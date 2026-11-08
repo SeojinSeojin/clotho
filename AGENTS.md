@@ -19,6 +19,11 @@ This repo is a fork of github.com/coinse/clotho. We add log parsing as a new Clo
 4. Prefer new files over editing core Clotho code. Keep edits to core files small and registration only.
 5. Update PROGRESS.md and push at every milestone and when the user says the session is ending.
 6. Run CPU-bound Clotho/sklearn work with `OMP_NUM_THREADS=1` and parallel processes (`log_parsing_phase3.py` sets this itself).
+7. Wait on background jobs by PID (`while kill -0 <pid>; do sleep 20; done`), never with `pgrep -f <name>` inside a shell loop. The loop's own command line contains `<name>`, so it matches itself and never exits. The same goes for `pkill -f` / `pgrep -f ... | xargs kill`, which can kill the calling shell.
+8. Any new standalone vLLM script must set `os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")` before importing vLLM, as `sharded/vllm_generate.py` does. These servers have no CUDA toolkit (`nvcc`), and FlashInfer's JIT sampler otherwise crashes the engine at startup.
+9. Only one vLLM engine or HF model job on the GPU at a time. vLLM's `gpu_memory_utilization` counts memory held by other processes, so a second job fails or starves the first. Other CPU-heavy jobs on the machine also slow HF model loading (6+ min observed).
+10. More than one agent session may work in this checkout at once. Before editing PROGRESS.md or pushing, `git pull --rebase`. Never overwrite another session's commit, and never stop processes you did not start. Check `git log` and `ps` at session start.
+11. Seed everything: the core Clotho runner never seeds `np.random` (reference extension, randomized PCA). Use the `log_parsing_phase3_lib` harness, which seeds both, for any number you report.
 
 ## Session start
 ```bash
@@ -46,6 +51,13 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `experiments/log_parsing_pilot_report.py`, `experiments/reports/` | Pilot report generator and reports |
 | `experiments/log_parsing_rescore.py` | Rescore generations under strict / normalized / lenient; `--samples` dumps failures for inspection |
 | `experiments/log_parsing_phase3_lib.py`, `experiments/log_parsing_phase3.py`, `experiments/log_parsing_sll.py` | Phase 3: Clotho with controlled splits, baselines, cross-system, report |
+| `experiments/log_parsing_tuning.py`, `experiments/log_parsing_layers.py` | Phase 3a/3b: reference sampling (random vs balanced) and layer tuning; multi-layer hidden-state extraction |
+| `experiments/log_parsing_drain.py` | Drain grouping (Loghub-2.0 settings and drain3 default) for the realistic template lookup |
+| `experiments/log_parsing_postgen.py` | Post-generation baselines (Tok-Prob, Tok-Ent, LOHSvar, Sem-Ent) over existing generations; `--se_only --wait` runs semantic entropy beside the main pass |
+| `experiments/log_parsing_phase3_final.py` | Phase 3 final comparison: fair config, leakage-free label, Drain lookups, hybrid (`run`, `post`, `report --push`) |
+| `experiments/log_parsing_followups.py` | Score combinations, per-system Clotho vs MDSA on disjoint splits, within-template AUC |
+| `experiments/log_parsing_prompt_compare.py` | messages_template vs rules_template with 5 seeds |
+| `experiments/log_parsing_extra_samples.py`, `experiments/log_parsing_label_noise.py` | 40 extra vLLM samples per input (seed 1, `.venv-vllm`) and the label-noise vs within-template-signal analysis |
 | `AGENTS.md`, `CLAUDE.md`, `PROGRESS.md` | Agent memory |
 
-RESULTS_REPO layout: `shards/<model>/<task>/<dataset>/<template>/<stage>/size<N>/shard_XXXXX/`, merged files under `data/`, Clotho outputs under `results_clotho/`.
+RESULTS_REPO layout: `shards/<model>/<task>/<dataset>/<template>/<stage>/size<N>/shard_XXXXX/`, merged files under `data/`, Clotho outputs under `results_clotho/` and `results_clotho_log_parsing/`, Phase 3 per-job JSON under `results_phase3/`, reports under `reports/`. Precalculated scores (SLL, post-generation, Drain groups) under `data/results_llama/log_parsing/precalculated_metrics/`; extra samples under `data/results_llama/log_parsing/extra_samples/`.

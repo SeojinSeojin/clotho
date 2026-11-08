@@ -42,11 +42,12 @@ Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise lab
 - Phase 2 setup (user decisions 2026-11-07: both prompts, all 14 systems x 500, Clotho per system): 14 suites in `clotho/dataset/log_parsing/`, `rules_template`, parser fix for literal `*` runs, scripts `run_log_parsing_all.py`, `log_parsing_initial_set.py`, `run_clotho_log_parsing.py`, `log_parsing_phase2_report.py`.
 
 ## In progress
-- Nothing running. Done: the post-generation pass for 13 systems, including semantic entropy; the 390 Phase 3 final jobs, with post-generation rows in the 388 non-skipped jobs; the final report (pushed to RESULTS_REPO); and the messages_template Clotho comparison (13/13).
+- Label-noise experiment (started 2026-11-07 20:42): 40 extra samples per input, all 13 systems (`.venv-vllm/bin/python experiments/log_parsing_extra_samples.py --push`, log `logs/extra_samples.log`, ~2.5 min per system). It is resumable per system, and finished systems are uploaded to RESULTS_REPO `data/results_llama/log_parsing/extra_samples/`. When it finishes, run `cd experiments && python log_parsing_label_noise.py --push` and record the result.
+- Early evidence from the existing 10 samples: split-half (0-4 vs 5-9) agreement of per-input pass counts is r = 0.50 to 0.85 overall but about 0.0 to 0.2 within a template (HPC 0.45, OpenSSH 0.30). Most within-template label variation is sampling noise at 5 samples.
 
 ## Next
 - Decided: no scaling to 2,000 inputs per system. The cost estimate below is kept for reference only.
-- The CPU follow-ups are done (section "Phase 3 follow-ups" below). Remaining open question: same-template pass/fail differences are near chance for every method. Is that because there is no within-template signal, or because same-template label differences are mostly noise? A larger label sample per input (more generations) would tell, but needs the GPU.
+- The CPU follow-ups are done (section "Phase 3 follow-ups" below). Open question being answered by the label-noise experiment (In progress): is the near-chance within-template AUC a missing signal or label noise?
 - Write-up: the table and findings above are the Phase 3 result.
 
 ## Phase 3 follow-ups (2026-11-07): combinations, Clotho vs MDSA on disjoint, within-template AUC
