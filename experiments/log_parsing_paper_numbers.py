@@ -57,16 +57,19 @@ READ = {
               "0.584; MDSA unchanged at 0.557), against a ceiling of 0.698 for perfect knowledge of the original "
               "10-sample pass rate. So Clotho does carry some within-template signal, but it is small next to the "
               "between-template signal (overall AUC 0.832 on the same systems)."),
-    "natural": ("Reading: sampled at their natural frequency, 500 lines cover only 12-63 templates (the suites: 46-320) "
-                "and 95-100% of test inputs have their template in the reference set. Every template-driven score "
-                "rises: Clotho 0.770 -> 0.899 @100, MDSA +0.14 / +0.18, Lookup (Drain) 0.669 -> 0.899 @100 and "
-                "0.746 -> 0.922 @200. Clotho's lead over Lookup (Drain) on the same 4 systems (+0.101 / +0.065 on the "
-                "suites) vanishes (+0.000 ± 0.021 @100, -0.012 ± 0.008 @200), and its lead over MDSA shrinks to "
-                "+0.035 / +0.005. Output entropy, which ignores the reference set, barely moves (0.784 -> 0.812, "
-                "0.790 -> 0.801), so on natural samples Clotho beats output entropy by about 0.09-0.11, the reverse of "
-                "the suites. So the template-capped suites are what make lookups weak: on the natural "
-                "distribution of these 4 systems a Drain lookup over labelled reference lines matches Clotho at almost "
-                "no cost."),
+    "natural": ("Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: "
+                "29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs "
+                "in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 "
+                "@200, MDSA +0.10, Lookup (Drain) most (0.680 -> 0.838, 0.733 -> 0.861). Clotho's lead over Lookup "
+                "(Drain) on the suites (+0.069 / +0.061) vanishes: -0.006 ± 0.014 @100 and -0.016 ± 0.014 @200 (Clotho "
+                "ahead on 6 and 4 of 13 systems). Its lead over MDSA shrinks to +0.016 / +0.007. Output entropy ignores "
+                "the reference set and stays at 0.789 / 0.784, so Clotho now beats it on every seed (+0.042 / +0.061; "
+                "smallest per-seed gap +0.023), the reverse of the suites at @100. Clotho + output entropy is the best "
+                "score at @100 (0.854, +0.016 ± 0.011 over Lookup (Drain), positive on every seed) and ties the lookup "
+                "at @200 (-0.005 ± 0.007). Stage 8's 4-system result (`reports/log_parsing_natural.md`) holds on all 13 "
+                "systems: on the natural distribution, a Drain lookup over labelled reference lines matches Clotho, "
+                "and Clotho's value over cheap lookups lies in templates the reference set has not seen (the "
+                "template-capped suites and the disjoint split)."),
 }
 
 
@@ -141,14 +144,15 @@ def build():
     L_ += [l for l in section("log_parsing_label_noise.md", "Median within-template", until="## ", keep_heading=True) if l]
     L_ += [""] + section("log_parsing_label_noise.md", "## 2.")[1:] + ["Same systems, noisy vs clean label:\n"]
     L_ += section("log_parsing_label_noise.md", "## 3.")[3:] + [READ["noise"], ""]
-    nat = REP / "log_parsing_natural.md"
+    nat = REP / "log_parsing_natural13.md"
     if nat.exists():
-        L_ += ["## 8. Natural-distribution check (4 systems, 500 uniform raw lines each)\n",
-               "Script: `log_parsing_natural.py` -> `reports/log_parsing_natural.md`.\n"]
-        L_ += section("log_parsing_natural.md", "## Template repetition")
+        L_ += ["## 8. Natural-distribution check (13 systems, 500 uniform raw lines each)\n",
+               "Script: `log_parsing_natural.py` -> `reports/log_parsing_natural13.md` (per-system tables there). "
+               "The 4-system version of 2026-11-08 Stage 8 is kept in `reports/log_parsing_natural.md`.\n"]
+        L_ += section("log_parsing_natural13.md", "## Samples")
         L_ += [l for l in nat.read_text().splitlines() if l.startswith("Skipped")]
-        L_ += section("log_parsing_natural.md", "## ROC-AUC @100", keep_heading=True, until="Per system")
-        L_ += section("log_parsing_natural.md", "## ROC-AUC @200", keep_heading=True, until="Per system")
+        L_ += section("log_parsing_natural13.md", "## ROC-AUC @100", keep_heading=True, until="Per system")
+        L_ += section("log_parsing_natural13.md", "## ROC-AUC @200", keep_heading=True, until="Per system")
         L_ += [READ["natural"], ""]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",

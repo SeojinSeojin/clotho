@@ -219,61 +219,72 @@ Same systems, noisy vs clean label:
 
 Reading: near-chance within-template AUC is mostly label noise on top of a small real signal. 95-99% of the reliable variance of an input's pass rate lies between templates on 11 of 13 systems (Mac and Thunderbird trivially, with one input per template; HPC 0.80, OpenSSH 0.86), and even the 40-sample pass rate has a median within-template reliability of only 0.56, so a 5-sample within-template label is mostly sampling noise. Against the clean 40-sample label, within-template AUC rises on the same systems and test sets (Clotho 0.555 -> 0.609 @100, output entropy 0.529 -> 0.584; MDSA unchanged at 0.557), against a ceiling of 0.698 for perfect knowledge of the original 10-sample pass rate. So Clotho does carry some within-template signal, but it is small next to the between-template signal (overall AUC 0.832 on the same systems).
 
-## 8. Natural-distribution check (4 systems, 500 uniform raw lines each)
+## 8. Natural-distribution check (13 systems, 500 uniform raw lines each)
 
-Script: `log_parsing_natural.py` -> `reports/log_parsing_natural.md`.
+Script: `log_parsing_natural.py` -> `reports/log_parsing_natural13.md` (per-system tables there). The 4-system version of 2026-11-08 Stage 8 is kept in `reports/log_parsing_natural.md`.
 
 
-| system | templates (suite / natural) | inputs per template (suite / natural) | most frequent template's share, natural | duplicate messages, natural | PASS rate (labels 5-9; suite / natural) | test inputs whose template is in the reference set @100 (suite / natural) |
-|---|---|---|---|---|---|---|
-| HDFS | 46 / 12 | 10.9 / 41.7 | 16% | 0 | 28.2% / 47.0% | 100% / 100% |
-| Hadoop | 236 / 63 | 2.1 / 7.9 | 29% | 46 | 30.2% / 22.8% | 19% / 95% |
-| OpenStack | 48 / 27 | 10.4 / 18.5 | 60% | 0 | 56.6% / 20.6% | 97% / 99% |
-| BGL | 320 / 31 | 1.6 / 16.1 | 42% | 86 | 24.4% / 16.6% | 12% / 100% |
+| system | templates (suite / natural) | most frequent template's share, natural | duplicate messages, natural | PASS rate, labels 5-9 (suite / natural) | Drain seen @100 (suite / natural) | Drain seen @200 (suite / natural) | template seen @100, natural |
+|---|---|---|---|---|---|---|---|
+| Apache | 29 / 5 | 56% | 43 | 60.0% / 81.8% | 100% / 100% | 100% / 100% | 100% |
+| BGL | 320 / 31 | 42% | 86 | 24.4% / 16.6% | 15% / 100% | 38% / 100% | 100% |
+| HDFS | 46 / 12 | 16% | 0 | 28.2% / 47.0% | 100% / 100% | 100% / 100% | 100% |
+| HPC | 74 / 19 | 18% | 181 | 21.4% / 38.4% | 71% / 95% | 98% / 100% | 100% |
+| Hadoop | 236 / 63 | 29% | 46 | 30.2% / 22.8% | 17% / 94% | 45% / 99% | 95% |
+| HealthApp | 156 / 16 | 18% | 39 | 33.6% / 32.8% | 45% / 84% | 72% / 83% | 100% |
+| Linux | 338 / 14 | 60% | 46 | 25.0% / 8.8% | 16% / 100% | 28% / 100% | 100% |
+| Mac | 500 / 120 | 11% | 115 | 15.0% / 19.0% | 0% / 59% | 0% / 95% | 64% |
+| OpenSSH | 38 / 11 | 28% | 199 | 40.6% / 27.8% | 99% / 100% | 100% / 100% | 100% |
+| OpenStack | 48 / 27 | 60% | 0 | 56.6% / 20.6% | 17% / 75% | 16% / 86% | 99% |
+| Spark | 236 / 20 | 19% | 13 | 24.4% / 40.0% | 22% / 100% | 51% / 100% | 100% |
+| Thunderbird | 500 / 111 | 12% | 267 | 22.0% / 21.4% | 0% / 75% | 0% / 100% | 73% |
+| Zookeeper | 89 / 13 | 46% | 5 | 47.8% / 78.8% | 86% / 100% | 99% / 100% | 100% |
 
-### ROC-AUC @100, macro over 4 systems (HDFS, Hadoop, OpenStack, BGL): suite / natural
+### ROC-AUC @100
 
-| method | suite | natural | natural minus suite (paired per seed) |
-|---|---|---|---|
-| Clotho | 0.770 ± 0.015 | 0.899 ± 0.005 | +0.129 ± 0.017 |
-| MDSA | 0.721 ± 0.008 | 0.864 ± 0.011 | +0.143 ± 0.010 |
-| GMMb | 0.692 ± 0.026 | 0.760 ± 0.061 | +0.068 ± 0.086 |
-| Lookup (Drain) | 0.669 ± 0.010 | 0.899 ± 0.024 | +0.230 ± 0.024 |
-| Lookup (oracle) | 0.704 ± 0.011 | 0.901 ± 0.026 | +0.196 ± 0.026 |
-| Output entropy* | 0.784 ± 0.004 | 0.812 ± 0.005 | +0.028 ± 0.006 |
-| LOHSvar* | 0.663 ± 0.002 | 0.711 ± 0.005 | +0.048 ± 0.006 |
-| Tok-Prob* | 0.484 ± 0.006 | 0.534 ± 0.002 | +0.049 ± 0.008 |
+Natural: macro over the 13 kept systems. Suite (same systems): macro over the 13 systems that are kept on both. Clotho + output entropy on the suites is the 13-system value from `log_parsing_followups.md` (not paired).
 
-Paired per seed, Clotho minus Lookup (Drain), suite: +0.101 ± 0.016 (min +0.089, max +0.128)
+| method | natural (all kept) | natural (same systems) | suite (same systems) | natural minus suite (paired per seed) |
+|---|---|---|---|---|
+| Clotho | 0.831 ± 0.013 | 0.831 ± 0.013 | 0.749 ± 0.010 | +0.082 ± 0.015 |
+| MDSA | 0.815 ± 0.006 | 0.815 ± 0.006 | 0.715 ± 0.008 | +0.100 ± 0.008 |
+| GMMb | 0.772 ± 0.018 | 0.772 ± 0.018 | 0.629 ± 0.019 | +0.143 ± 0.036 |
+| Lookup (Drain) | 0.838 ± 0.013 | 0.838 ± 0.013 | 0.680 ± 0.006 | +0.158 ± 0.014 |
+| Lookup (oracle) | 0.836 ± 0.014 | 0.836 ± 0.014 | 0.691 ± 0.005 | +0.145 ± 0.016 |
+| Output entropy (k=5)* | 0.789 ± 0.003 | 0.789 ± 0.003 | 0.792 ± 0.001 | -0.003 ± 0.003 |
+| Clotho + output entropy* | 0.854 ± 0.008 | 0.854 ± 0.008 | 0.826 ± 0.005 (13 systems) | n/a |
 
-Paired per seed, Clotho minus Lookup (Drain), natural: +0.000 ± 0.021 (min -0.016, max +0.037)
+Paired per seed, natural, Clotho minus Lookup (Drain): -0.006 ± 0.014 (min -0.027, max +0.008); ahead on 6 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus MDSA: +0.016 ± 0.008 (min +0.003, max +0.023); ahead on 6 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.042 ± 0.012 (min +0.023, max +0.056); ahead on 8 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.065 ± 0.007 (min +0.054, max +0.072); ahead on 11 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): +0.016 ± 0.011 (min +0.005, max +0.029); ahead on 8 of 13 systems (mean over seeds)  
+Paired per seed, suite (same 13 systems), Clotho minus Lookup (Drain): +0.069 ± 0.014  
+Paired per seed, suite (same 13 systems), Clotho minus MDSA: +0.034 ± 0.003  
 
-Paired per seed, Clotho minus MDSA, suite: +0.049 ± 0.012 (min +0.029, max +0.060)
+### ROC-AUC @200
 
-Paired per seed, Clotho minus MDSA, natural: +0.035 ± 0.013 (min +0.015, max +0.047)
+Natural: macro over the 13 kept systems. Suite (same systems): macro over the 13 systems that are kept on both. Clotho + output entropy on the suites is the 13-system value from `log_parsing_followups.md` (not paired).
 
-### ROC-AUC @200, macro over 4 systems (HDFS, Hadoop, OpenStack, BGL): suite / natural
+| method | natural (all kept) | natural (same systems) | suite (same systems) | natural minus suite (paired per seed) |
+|---|---|---|---|---|
+| Clotho | 0.845 ± 0.015 | 0.845 ± 0.015 | 0.794 ± 0.011 | +0.051 ± 0.022 |
+| MDSA | 0.838 ± 0.012 | 0.838 ± 0.012 | 0.737 ± 0.006 | +0.101 ± 0.012 |
+| GMMb | 0.798 ± 0.009 | 0.798 ± 0.009 | 0.720 ± 0.008 | +0.077 ± 0.013 |
+| Lookup (Drain) | 0.861 ± 0.006 | 0.861 ± 0.006 | 0.733 ± 0.005 | +0.128 ± 0.007 |
+| Lookup (oracle) | 0.863 ± 0.006 | 0.863 ± 0.006 | 0.749 ± 0.003 | +0.115 ± 0.005 |
+| Output entropy (k=5)* | 0.784 ± 0.004 | 0.784 ± 0.004 | 0.794 ± 0.005 | -0.010 ± 0.005 |
+| Clotho + output entropy* | 0.856 ± 0.010 | 0.856 ± 0.010 | 0.845 ± 0.006 (13 systems) | n/a |
 
-| method | suite | natural | natural minus suite (paired per seed) |
-|---|---|---|---|
-| Clotho | 0.811 ± 0.011 | 0.910 ± 0.008 | +0.099 ± 0.010 |
-| MDSA | 0.724 ± 0.013 | 0.905 ± 0.006 | +0.182 ± 0.012 |
-| GMMb | 0.743 ± 0.023 | 0.834 ± 0.026 | +0.091 ± 0.039 |
-| Lookup (Drain) | 0.746 ± 0.009 | 0.922 ± 0.003 | +0.176 ± 0.011 |
-| Lookup (oracle) | 0.794 ± 0.008 | 0.928 ± 0.003 | +0.133 ± 0.010 |
-| Output entropy* | 0.790 ± 0.007 | 0.801 ± 0.008 | +0.011 ± 0.006 |
-| LOHSvar* | 0.661 ± 0.008 | 0.705 ± 0.016 | +0.043 ± 0.020 |
-| Tok-Prob* | 0.486 ± 0.008 | 0.523 ± 0.013 | +0.037 ± 0.017 |
+Paired per seed, natural, Clotho minus Lookup (Drain): -0.016 ± 0.014 (min -0.031, max +0.003); ahead on 4 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus MDSA: +0.007 ± 0.015 (min -0.012, max +0.030); ahead on 7 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.061 ± 0.017 (min +0.044, max +0.080); ahead on 10 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.072 ± 0.011 (min +0.062, max +0.088); ahead on 12 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.005 ± 0.007 (min -0.014, max +0.005); ahead on 5 of 13 systems (mean over seeds)  
+Paired per seed, suite (same 13 systems), Clotho minus Lookup (Drain): +0.061 ± 0.011  
+Paired per seed, suite (same 13 systems), Clotho minus MDSA: +0.057 ± 0.009  
 
-Paired per seed, Clotho minus Lookup (Drain), suite: +0.065 ± 0.013 (min +0.050, max +0.080)
-
-Paired per seed, Clotho minus Lookup (Drain), natural: -0.012 ± 0.008 (min -0.021, max +0.001)
-
-Paired per seed, Clotho minus MDSA, suite: +0.087 ± 0.014 (min +0.070, max +0.098)
-
-Paired per seed, Clotho minus MDSA, natural: +0.005 ± 0.009 (min -0.004, max +0.018)
-
-Reading: sampled at their natural frequency, 500 lines cover only 12-63 templates (the suites: 46-320) and 95-100% of test inputs have their template in the reference set. Every template-driven score rises: Clotho 0.770 -> 0.899 @100, MDSA +0.14 / +0.18, Lookup (Drain) 0.669 -> 0.899 @100 and 0.746 -> 0.922 @200. Clotho's lead over Lookup (Drain) on the same 4 systems (+0.101 / +0.065 on the suites) vanishes (+0.000 ± 0.021 @100, -0.012 ± 0.008 @200), and its lead over MDSA shrinks to +0.035 / +0.005. Output entropy, which ignores the reference set, barely moves (0.784 -> 0.812, 0.790 -> 0.801), so on natural samples Clotho beats output entropy by about 0.09-0.11, the reverse of the suites. So the template-capped suites are what make lookups weak: on the natural distribution of these 4 systems a Drain lookup over labelled reference lines matches Clotho at almost no cost.
+Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: 29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 @200, MDSA +0.10, Lookup (Drain) most (0.680 -> 0.838, 0.733 -> 0.861). Clotho's lead over Lookup (Drain) on the suites (+0.069 / +0.061) vanishes: -0.006 ± 0.014 @100 and -0.016 ± 0.014 @200 (Clotho ahead on 6 and 4 of 13 systems). Its lead over MDSA shrinks to +0.016 / +0.007. Output entropy ignores the reference set and stays at 0.789 / 0.784, so Clotho now beats it on every seed (+0.042 / +0.061; smallest per-seed gap +0.023), the reverse of the suites at @100. Clotho + output entropy is the best score at @100 (0.854, +0.016 ± 0.011 over Lookup (Drain), positive on every seed) and ties the lookup at @200 (-0.005 ± 0.007). Stage 8's 4-system result (`reports/log_parsing_natural.md`) holds on all 13 systems: on the natural distribution, a Drain lookup over labelled reference lines matches Clotho, and Clotho's value over cheap lookups lies in templates the reference set has not seen (the template-capped suites and the disjoint split).
 
 ## Other reports
 

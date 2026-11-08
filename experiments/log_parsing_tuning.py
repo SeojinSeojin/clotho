@@ -45,7 +45,7 @@ from clotho.exp_config import supported_datasets  # noqa: E402
 
 OUT = EXP / f"results_phase3{MC.SUFFIX}" / "tuning"
 SEEDS = [0, 1, 2, 3, 4]
-SYSTEMS = [d for d in supported_datasets["log_parsing"] if "proxifier" not in d]
+SYSTEMS = [d for d in supported_datasets["log_parsing"] if d not in MC.dropped()]
 TUNING = ["loghub_hdfs_500", "loghub_spark_500", "loghub_linux_500"]
 HELDOUT = [d for d in SYSTEMS if d not in TUNING]
 LAYERS = MC.CFG["candidate_layers"]   # llama 11/16/21/24, gemma 14/21/28/35

@@ -19,6 +19,7 @@ CFG = {
         "fair_layer": 16,      # chosen by layer tuning on HDFS, Spark, Linux (Phase 3b)
         "paper_layer": 21,     # run_clotho_iterations.target_layer_map
         "loh_layer": 23,       # RQ/analysis_utils.load_loh_variance_df
+        "dropped": ["loghub_proxifier_500"],   # outside 10-90% PASS (> 5 of 10 strict), 2026-11-07
     },
     "gemma": {
         "hf_id": "google/gemma-2-9b-it",
@@ -29,8 +30,14 @@ CFG = {
         "fair_layer": None,    # set after layer tuning (log_parsing_tuning.py layers) -- see PROGRESS.md
         "paper_layer": 28,
         "loh_layer": 28,
+        "dropped": None,       # filled after gen_vllm by the same 10-90% rule -- see PROGRESS.md
     },
 }[MODEL]
+
+def dropped():
+    """Systems excluded for this model (Proxifier for llama; Gemma: same rule, its own list)."""
+    return set(CFG["dropped"] or ["loghub_proxifier_500"])
+
 
 SUFFIX = "" if MODEL == "llama" else f"_{MODEL}"
 
