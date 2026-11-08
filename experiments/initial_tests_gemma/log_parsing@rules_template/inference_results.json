@@ -1,0 +1,291 @@
+{
+  "test_scores": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.5,
+    1.0,
+    0.4
+  ],
+  "test_labels": [
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+    ]
+  ],
+  "scorer": "strict_match",
+  "raw_outputs": [
+    [
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: The IP address and port number are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port number are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed",
+      "Reasoning: IP address and port are variables.\nTemplate: Connection from <*> closed"
+    ],
+    [
+      "Reasoning: Worker number, job ID, and duration are variables.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: \"Worker\", \"job_20231104_0032\", and \"532 ms\" are variables.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker ID and job ID are variables as they change between jobs.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker ID and job ID are variable tokens.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker id, job id, and duration are variables. \nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker ID, job ID, and duration are variables.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker IDs, job IDs, and durations are variables.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: \"Worker\", \"job_20231104_0032\", \"532\" and \"ms\" are variables. \nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker number, job ID, and duration are variables.\nTemplate: Worker <*> finished job <*> in <*> ms",
+      "Reasoning: Worker ID and job ID are variables.\nTemplate: Worker <*> finished job <*> in <*> ms"
+    ],
+    [
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User, IP address are variables\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variable tokens.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables.\nTemplate: User <*> logged in from <*>",
+      "Reasoning: User name and IP address are variables\nTemplate: User <*> logged in from <*>"
+    ],
+    [
+      "Reasoning: The file path is a variable. \nTemplate: Deleted file <*>",
+      "Reasoning: File path and session ID are variables.\nTemplate: Deleted file <*>",
+      "Reasoning: File path and session ID are variables.\nTemplate: Deleted file <*>",
+      "Reasoning:  File path is variable. \nTemplate: Deleted file <*>",
+      "Reasoning: File path is a variable.\nTemplate: Deleted file <*>",
+      "Reasoning: The file path within the log message is variable. \nTemplate: Deleted file <*>",
+      "Reasoning:  File path and session ID are variables.\nTemplate: Deleted file <*>",
+      "Reasoning: File path and session ID are variables.\nTemplate: Deleted file <*>",
+      "Reasoning: /var/tmp/cache/session_ and .tmp are variable file paths.\nTemplate: Deleted file <*>",
+      "Reasoning: session ID is a variable.\nTemplate: Deleted file <*>"
+    ],
+    [
+      "Reasoning: Cache hit ratio and number of requests are variables.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: '12000' and '0.87' are variable parts.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: Cache hit ratio and number of requests are variables.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: The variable parts are '0.87' and '12000'\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: Cache hit ratio and request count are variables. \nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: '12000' and '0.87' are variable numbers representing requests and the cache hit ratio. \nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: Cache hit ratio and the number of requests are variables.\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: Tokens \"0.87\" and \"12000\" are variable. \nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning: cache hit ratio and number of requests are variables\nTemplate: Cache hit ratio is <*> after <*> requests",
+      "Reasoning:  Cache hit ratio, number of requests are variables.\nTemplate: Cache hit ratio is <*> after <*> requests"
+    ],
+    [
+      "Reasoning: No tokens in the message change their value.\nTemplate: Server started successfully",
+      "Reasoning: There are no variable tokens in the log message.\nTemplate: Server started successfully",
+      "Reasoning: No variable tokens in the message.\nTemplate: Server started successfully",
+      "Reasoning: There are no variables in this log message. \nTemplate: Server started successfully",
+      "Reasoning: There are no variable tokens in this message.\nTemplate: Server started successfully",
+      "Reasoning: There are no variable tokens in the log message. \nTemplate: Server started successfully",
+      "Reasoning: Nothing in the log message is a variable token.\nTemplate: Server started successfully",
+      "Reasoning: None of the tokens are variables.\nTemplate: Server started successfully",
+      "Reasoning: There are no variable tokens in this message. \nTemplate: Server started successfully",
+      "Reasoning: There are no variable tokens in this message. \nTemplate: Server started successfully"
+    ],
+    [
+      "Reasoning: \"port\" and \"Address\" are variables \nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The variable parts are port number and the address. \nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: \"port\" and \"8080\" are variables.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: `8080` is a variable.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: \"port\" and \"8080\" are variable.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: Port number is a variable. \nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: \"port\", \"8080\" are variables.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: Port number is a variable.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: The port number and the address in the socket error are variables.\nTemplate: Failed to open socket on port <*>: Address already in use",
+      "Reasoning: \"8080\" is a variable port number.\nTemplate: Failed to open socket on port <*>: Address already in use"
+    ],
+    [
+      "Reasoning: The request ID and attempt number are variables.\nTemplate: Retrying request <*> (attempt <*> of <*>)",
+      "Reasoning: The request ID and attempt number are variable.\nTemplate: Retrying request <*> (attempt <*> of <*> )",
+      "Reasoning: The request ID and attempt number are variables.\nTemplate: Retrying request <*> (attempt <*> of <*>)",
+      "Reasoning: The request ID and attempt number are variables.\nTemplate: Retrying request <*> (attempt <*> of <*>)",
+      "Reasoning: The request ID and attempt number are variables. \nTemplate: Retrying request <*> (attempt <*> of <*>)",
+      "Reasoning: The request ID and attempt number are variables. \nTemplate: Retrying request <*> (attempt <*> of <*>).",
+      "Reasoning: The request ID and attempt number are variables.\nTemplate: Retrying request <*> (attempt <*> of <*>)",
+      "Reasoning:  \"5a3f9c2e\" and \"3\" are variable tokens. \nTemplate: Retrying request <*> (attempt <*> of 5)",
+      "Reasoning:  \"5a3f9c2e\" and \"3\" are variable tokens.\nTemplate: Retrying request <*> (attempt <*> of 5)",
+      "Reasoning: The request ID and attempt number are variables.\nTemplate: Retrying request <*> (attempt <*> of <*>)."
+    ],
+    [
+      "Reasoning: /dev/sda1 and 91 percent are variables.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variable tokens. \nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variables.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: Disk usage on /dev/sda1 reached PERCENTAGE percent  \nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variables.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variables.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: Disk usage on /dev/sda1 reached <*> percent.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variable tokens.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variables.\nTemplate: Disk usage on <*> reached <*> percent",
+      "Reasoning: /dev/sda1 and 91 percent are variables.\nTemplate: Disk usage on <*> reached <*> percent"
+    ],
+    [
+      "Reasoning: \"node-14\" and \"3021 ms\" are variables.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: 'node-14' and '3021 ms' are variable tokens.\nTemplate: Received heartbeat from <*> after <*>",
+      "Reasoning: 'node-14' and '3021 ms' are variable tokens. \nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: 'node-14' and '3021 ms' are variables.\nTemplate: Received heartbeat from <*> after <*>",
+      "Reasoning: 'node-14' and '3021 ms' are variables.\nTemplate: Received heartbeat from <*> after <*>",
+      "Reasoning: 'node-14' and '3021 ms' are variables. \nTemplate: Received heartbeat from <*> after <*>",
+      "Reasoning: \"node-14\" and \"3021 ms\" are variables.\nTemplate: Received heartbeat from <*> after <*> ms",
+      "Reasoning: 'node-14' and '3021 ms' are variables.\nTemplate: Received heartbeat from <*> after <*>",
+      "Reasoning: 'node-14' and '3021 ms' are variables.\nTemplate: Received heartbeat from <*> after <*>",
+      "Reasoning: 'node-14' and '3021 ms' are variable tokens.\nTemplate: Received heartbeat from <*> after <*> ms"
+    ]
+  ],
+  "ground_truths": [
+    [
+      "Connection from <*> closed"
+    ],
+    [
+      "Worker <*> finished job <*> in <*> ms"
+    ],
+    [
+      "User <*> logged in from <*>"
+    ],
+    [
+      "Deleted file <*>"
+    ],
+    [
+      "Cache hit ratio is <*> after <*> requests"
+    ],
+    [
+      "Server started successfully"
+    ],
+    [
+      "Failed to open socket on port <*>: Address already in use"
+    ],
+    [
+      "Retrying request <*> (attempt <*> of <*>)"
+    ],
+    [
+      "Disk usage on <*> reached <*> percent"
+    ],
+    [
+      "Received heartbeat from <*> after <*> ms"
+    ]
+  ]
+}
