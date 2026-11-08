@@ -46,8 +46,14 @@ Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise lab
 
 ## Next
 - Decided: no scaling to 2,000 inputs per system. The cost estimate below is kept for reference only.
-- Optional, CPU only: test whether Clotho combined with LOHSvar or output entropy beats each alone; look per system at where MDSA beats Clotho on disjoint splits; within-template AUC to separate Clotho's signal from template identity.
+- The CPU follow-ups are done (section "Phase 3 follow-ups" below). Remaining open question: same-template pass/fail differences are near chance for every method. Is that because there is no within-template signal, or because same-template label differences are mostly noise? A larger label sample per input (more generations) would tell, but needs the GPU.
 - Write-up: the table and findings above are the Phase 3 result.
+
+## Phase 3 follow-ups (2026-11-07): combinations, Clotho vs MDSA on disjoint, within-template AUC
+`experiments/reports/log_parsing_followups.md` (`log_parsing_followups.py`; main setting fair_leakfree, 5 seeds, CPU only, ~1.5 min). Clotho was recomputed exactly (max |diff| 0); MDSA within 4.3e-4 of the stored jobs.
+- **Combinations** (rank-average of two scores). Clotho + output entropy is the best score overall: 0.826 / 0.845 standard, 0.775 / 0.784 disjoint (@100 / @200). It beats output entropy alone on the standard split on every seed (+0.035, +0.052) but not on the disjoint split (-0.021, -0.012), and it needs the generations. Clotho + LOHSvar helps only on the disjoint split (+0.05 over Clotho, every seed). Clotho + MDSA adds nothing (within ±0.015).
+- **Clotho vs MDSA, disjoint split, per system:** Clotho wins on 5 of 13 at @200, with a large win only on Zookeeper (+0.11). MDSA is clearly better on HealthApp, Spark, Mac and HPC (-0.03 to -0.06). On the standard split the same systems show Clotho well ahead (BGL +0.15, Hadoop +0.16, HPC +0.10), so Clotho's edge over MDSA comes from reference sets that contain the test templates. There is no clear driver: Spearman of the gap with template count -0.32 (p=0.29), with PASS rate +0.53 (p=0.07).
+- **Within-template AUC** (only same-template PASS/FAIL pairs; lookup = 0.5 by construction; 10 systems @100, 8 @200): Clotho 0.539 / 0.527, MDSA 0.537 / 0.549, LOHSvar 0.539 / 0.529, output entropy 0.502 / 0.499. Every method, including output entropy, is near chance within a template. So on Loghub almost all of the measurable signal separates templates, not inputs within a template. BGL, Linux and Spark have fewer than 20 same-template pairs; Mac and Thunderbird have none.
 
 ## Prompt comparison (2026-11-07): messages_template vs rules_template
 `experiments/reports/log_parsing_prompt_compare.md` (`log_parsing_prompt_compare.py`; 5 seeds, standard split, random sampling, layer 21, label > 5 of 10; the only layer with messages_template hidden states). The single-run Phase 2 report now covers both templates (`log_parsing_phase2.md`).
