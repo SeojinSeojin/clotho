@@ -48,6 +48,8 @@ import model_cfg as MC  # noqa: E402
 SYSTEMS = {"Apache": "apache", "BGL": "bgl", "HDFS": "hdfs", "HPC": "hpc", "Hadoop": "hadoop", "HealthApp": "healthapp",
            "Linux": "linux", "Mac": "mac", "OpenSSH": "openssh", "OpenStack": "openstack", "Spark": "spark",
            "Thunderbird": "thunderbird", "Zookeeper": "zookeeper"}
+# systems dropped for the model on the suites (10-90% PASS rule) are dropped here too (gemma: Apache)
+SYSTEMS = {k: v for k, v in SYSTEMS.items() if f"loghub_{v}_500" not in MC.dropped()}
 NAT = {k: f"loghub_{v}_nat500" for k, v in SYSTEMS.items()}
 SUITE = {k: f"loghub_{v}_500" for k, v in SYSTEMS.items()}
 TEMPLATE = "rules_template"

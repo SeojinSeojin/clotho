@@ -27,10 +27,12 @@ CFG = {
         # same relative depths as Llama's 11/16/21/24 of 32 (0.34/0.5/0.66/0.75), with 35 for the deep end;
         # 28 is the paper's Gemma layer for both Clotho and LOHSvar
         "candidate_layers": [14, 21, 28, 35],
-        "fair_layer": None,    # set after layer tuning (log_parsing_tuning.py layers) -- see PROGRESS.md
+        "fair_layer": 21,      # layer tuning 2026-11-08 (HDFS, Spark, Linux; balanced): 14 .758, 21 .773, 28 .765, 35 .769
         "paper_layer": 28,
         "loh_layer": 28,
-        "dropped": None,       # filled after gen_vllm by the same 10-90% rule -- see PROGRESS.md
+        # same 10-90% rule (> 5 of 10 strict): Apache 94.4% PASS (reports/log_parsing_pass_rates_gemma.md);
+        # Proxifier was not generated (excluded up front, as in the Llama study)
+        "dropped": ["loghub_apache_500", "loghub_proxifier_500"],
     },
 }[MODEL]
 
