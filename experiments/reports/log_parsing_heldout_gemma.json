@@ -1,0 +1,311 @@
+{
+ "heldout_systems": [
+  "bgl",
+  "hpc",
+  "hadoop",
+  "healthapp",
+  "mac",
+  "openssh",
+  "openstack",
+  "thunderbird",
+  "zookeeper"
+ ],
+ "table": {
+  "clotho": {
+   "standard@100": {
+    "heldout": "0.785 \u00b1 0.005",
+    "all13": "0.780 \u00b1 0.003"
+   },
+   "standard@200": {
+    "heldout": "0.827 \u00b1 0.009",
+    "all13": "0.832 \u00b1 0.005"
+   },
+   "disjoint@100": {
+    "heldout": "0.658 \u00b1 0.033",
+    "all13": "0.659 \u00b1 0.025"
+   },
+   "disjoint@200": {
+    "heldout": "0.678 \u00b1 0.024",
+    "all13": "0.671 \u00b1 0.019"
+   }
+  },
+  "MDSA": {
+   "standard@100": {
+    "heldout": "0.717 \u00b1 0.011",
+    "all13": "0.718 \u00b1 0.007"
+   },
+   "standard@200": {
+    "heldout": "0.741 \u00b1 0.006",
+    "all13": "0.737 \u00b1 0.006"
+   },
+   "disjoint@100": {
+    "heldout": "0.648 \u00b1 0.026",
+    "all13": "0.655 \u00b1 0.017"
+   },
+   "disjoint@200": {
+    "heldout": "0.659 \u00b1 0.025",
+    "all13": "0.661 \u00b1 0.017"
+   }
+  },
+  "GMMb": {
+   "standard@100": {
+    "heldout": "0.689 \u00b1 0.037",
+    "all13": "0.679 \u00b1 0.038"
+   },
+   "standard@200": {
+    "heldout": "0.760 \u00b1 0.018",
+    "all13": "0.761 \u00b1 0.014"
+   },
+   "disjoint@100": {
+    "heldout": "0.605 \u00b1 0.043",
+    "all13": "0.609 \u00b1 0.031"
+   },
+   "disjoint@200": {
+    "heldout": "0.643 \u00b1 0.014",
+    "all13": "0.649 \u00b1 0.013"
+   }
+  },
+  "SLL": {
+   "standard@100": {
+    "heldout": "0.455 \u00b1 0.002",
+    "all13": "0.457 \u00b1 0.002"
+   },
+   "standard@200": {
+    "heldout": "0.452 \u00b1 0.004",
+    "all13": "0.453 \u00b1 0.003"
+   },
+   "disjoint@100": {
+    "heldout": "0.478 \u00b1 0.019",
+    "all13": "0.473 \u00b1 0.014"
+   },
+   "disjoint@200": {
+    "heldout": "0.478 \u00b1 0.019",
+    "all13": "0.473 \u00b1 0.014"
+   }
+  },
+  "tok_prob": {
+   "standard@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "standard@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   }
+  },
+  "tok_ent": {
+   "standard@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "standard@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   }
+  },
+  "sem_ent": {
+   "standard@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "standard@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   }
+  },
+  "loh_var": {
+   "standard@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "standard@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@100": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   },
+   "disjoint@200": {
+    "heldout": "n/a",
+    "all13": "n/a"
+   }
+  },
+  "out_entropy": {
+   "standard@100": {
+    "heldout": "0.824 \u00b1 0.002",
+    "all13": "0.821 \u00b1 0.002"
+   },
+   "standard@200": {
+    "heldout": "0.826 \u00b1 0.003",
+    "all13": "0.818 \u00b1 0.003"
+   },
+   "disjoint@100": {
+    "heldout": "0.823 \u00b1 0.011",
+    "all13": "0.824 \u00b1 0.012"
+   },
+   "disjoint@200": {
+    "heldout": "0.823 \u00b1 0.011",
+    "all13": "0.824 \u00b1 0.012"
+   }
+  },
+  "lookup_drain": {
+   "standard@100": {
+    "heldout": "0.707 \u00b1 0.010",
+    "all13": "0.706 \u00b1 0.009"
+   },
+   "standard@200": {
+    "heldout": "0.768 \u00b1 0.006",
+    "all13": "0.774 \u00b1 0.008"
+   },
+   "disjoint@100": {
+    "heldout": "0.509 \u00b1 0.002",
+    "all13": "0.508 \u00b1 0.002"
+   },
+   "disjoint@200": {
+    "heldout": "0.513 \u00b1 0.001",
+    "all13": "0.512 \u00b1 0.001"
+   }
+  },
+  "lookup_drain_default": {
+   "standard@100": {
+    "heldout": "0.733 \u00b1 0.008",
+    "all13": "0.728 \u00b1 0.007"
+   },
+   "standard@200": {
+    "heldout": "0.785 \u00b1 0.007",
+    "all13": "0.789 \u00b1 0.009"
+   },
+   "disjoint@100": {
+    "heldout": "0.542 \u00b1 0.007",
+    "all13": "0.536 \u00b1 0.006"
+   },
+   "disjoint@200": {
+    "heldout": "0.548 \u00b1 0.008",
+    "all13": "0.542 \u00b1 0.006"
+   }
+  },
+  "lookup_oracle": {
+   "standard@100": {
+    "heldout": "0.733 \u00b1 0.008",
+    "all13": "0.730 \u00b1 0.007"
+   },
+   "standard@200": {
+    "heldout": "0.784 \u00b1 0.005",
+    "all13": "0.790 \u00b1 0.007"
+   },
+   "disjoint@100": {
+    "heldout": "0.500 \u00b1 0.000",
+    "all13": "0.500 \u00b1 0.000"
+   },
+   "disjoint@200": {
+    "heldout": "0.500 \u00b1 0.000",
+    "all13": "0.500 \u00b1 0.000"
+   }
+  },
+  "hybrid": {
+   "standard@100": {
+    "heldout": "0.794 \u00b1 0.006",
+    "all13": "0.789 \u00b1 0.006"
+   },
+   "standard@200": {
+    "heldout": "0.842 \u00b1 0.006",
+    "all13": "0.843 \u00b1 0.006"
+   },
+   "disjoint@100": {
+    "heldout": "0.662 \u00b1 0.031",
+    "all13": "0.663 \u00b1 0.023"
+   },
+   "disjoint@200": {
+    "heldout": "0.686 \u00b1 0.023",
+    "all13": "0.678 \u00b1 0.018"
+   }
+  },
+  "random": {
+   "standard@100": {
+    "heldout": "0.504 \u00b1 0.007",
+    "all13": "0.503 \u00b1 0.008"
+   },
+   "standard@200": {
+    "heldout": "0.503 \u00b1 0.007",
+    "all13": "0.503 \u00b1 0.013"
+   },
+   "disjoint@100": {
+    "heldout": "0.508 \u00b1 0.015",
+    "all13": "0.507 \u00b1 0.012"
+   },
+   "disjoint@200": {
+    "heldout": "0.500 \u00b1 0.013",
+    "all13": "0.504 \u00b1 0.009"
+   }
+  },
+  "clotho+out_entropy": {
+   "standard@100": {
+    "heldout": "0.875 \u00b1 0.002",
+    "all13": "0.869 \u00b1 0.002"
+   },
+   "standard@200": {
+    "heldout": "0.894 \u00b1 0.004",
+    "all13": "0.890 \u00b1 0.005"
+   },
+   "disjoint@100": {
+    "heldout": "0.808 \u00b1 0.013",
+    "all13": "0.808 \u00b1 0.010"
+   },
+   "disjoint@200": {
+    "heldout": "0.821 \u00b1 0.020",
+    "all13": "0.818 \u00b1 0.016"
+   }
+  }
+ },
+ "paired_heldout": {
+  "MDSA": [
+   "+0.068 \u00b1 0.013 (min +0.049, max +0.084)",
+   "+0.086 \u00b1 0.006 (min +0.080, max +0.095)",
+   "+0.010 \u00b1 0.027 (min -0.007, max +0.056)",
+   "+0.019 \u00b1 0.025 (min -0.008, max +0.054)"
+  ],
+  "lookup_drain": [
+   "+0.078 \u00b1 0.014 (min +0.070, max +0.103)",
+   "+0.059 \u00b1 0.012 (min +0.048, max +0.076)",
+   "+0.149 \u00b1 0.034 (min +0.101, max +0.183)",
+   "+0.166 \u00b1 0.025 (min +0.141, max +0.193)"
+  ],
+  "out_entropy": [
+   "-0.039 \u00b1 0.005 (min -0.043, max -0.031)",
+   "+0.001 \u00b1 0.011 (min -0.015, max +0.016)",
+   "-0.165 \u00b1 0.039 (min -0.217, max -0.125)",
+   "-0.145 \u00b1 0.027 (min -0.178, max -0.110)"
+  ],
+  "hybrid": [
+   "-0.009 \u00b1 0.009 (min -0.017, max +0.007)",
+   "-0.015 \u00b1 0.010 (min -0.028, max -0.007)",
+   "-0.004 \u00b1 0.003 (min -0.007, max -0.000)",
+   "-0.008 \u00b1 0.004 (min -0.012, max -0.001)"
+  ]
+ }
+}

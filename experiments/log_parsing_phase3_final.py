@@ -236,16 +236,17 @@ def run_job(args):
 def post_scores(ds, label):
     """Per-input post-generation scores (higher = PASS). leakfree: samples 0-4; leaky: all 10."""
     p = PM / f"{ds}_postgen.pkl"
-    if not p.exists():
-        return None
-    df = pd.read_pickle(p).sort_values("input_index")
     s = system_data(ds)
     lf = label == "leakfree"
+    oe = -np.array([_entropy(x[:5] if lf else x) for x in s["parsed"]])
+    if not p.exists():          # output entropy needs only the generations
+        return {"out_entropy": oe}
+    df = pd.read_pickle(p).sort_values("input_index")
     se = "sem_ent_s04" if lf else "sem_ent"
     return {"tok_prob": df["tok_prob"].to_numpy(), "tok_ent": -df["tok_ent"].to_numpy(),
             **({"sem_ent": -df[se].to_numpy()} if se in df.columns else {}),
             "loh_var": -df["loh_var_s04" if lf else "loh_var"].to_numpy(),
-            "out_entropy": -np.array([_entropy(x[:5] if lf else x) for x in s["parsed"]])}
+            "out_entropy": oe}
 
 
 def add_post():
