@@ -155,6 +155,21 @@ def report(push=False):
         J.setdefault("auc_clean", {})[m] = cells
     L_.append(f"\nSystems: {len(elig[100])} @100 ({', '.join(F.SHORT(d) for d in elig[100])}), "
               f"{len(elig[200])} @200.\n")
+    # same systems, same test sets, noisy label (samples 5-9) from log_parsing_followups.py
+    import log_parsing_followups as FU
+    RU = FU.load()
+    L_ += ["## 3. Noisy (samples 5-9) vs clean (40 new samples) label, same systems and test sets\n",
+           "Noisy-label values from `log_parsing_followups.py` (results_phase3/followups/), restricted to the systems "
+           "of section 2.\n",
+           "| method | within @100 noisy | within @100 clean | within @200 noisy | within @200 clean |",
+           "|---|---|---|---|---|"]
+    for m in ["clotho", "MDSA", "loh_var", "out_entropy"]:
+        cells = []
+        for r in REFS:
+            cells += [F.fmt(FU.macro_seed(RU, "standard", m, r, "within_auc", elig[r])), ms(m, r, "within_auc")]
+        L_.append(f"| {NAMES[m]} | " + " | ".join(cells) + " |")
+        J.setdefault("noisy_vs_clean_within", {})[m] = cells
+    L_.append("")
     out = EXP / "reports" / "log_parsing_label_noise.md"
     out.write_text("\n".join(L_) + "\n")
     out.with_suffix(".json").write_text(json.dumps(J, indent=1, default=float))
