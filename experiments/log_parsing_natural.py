@@ -5,7 +5,8 @@
   ../.venv-vllm/bin/python log_parsing_natural.py gen          # 10 samples, vLLM, same settings as gen_vllm (seed 0)
   python log_parsing_layers.py -d <nat datasets> --layers 16 --skip_initial
   python log_parsing_postgen.py -d <nat datasets> --no_se
-  python log_parsing_natural.py eval [--push]                  # -> reports/log_parsing_natural.{md,json}
+  python log_parsing_natural.py eval [--push]                  # -> reports/log_parsing_natural13.{md,json}
+  python log_parsing_natural.py post [--push]                  # after postgen: add Tok-Prob / LOHSvar rows, then eval
 
 Systems: all 13 kept Loghub-2.0 systems (Stage 8 of 2026-11-08 used HDFS, Hadoop, OpenStack, BGL; their samples are
 kept byte-identical: `sample` skips files that exist, and each system has its own random.Random(4242)). Sampling: every line of <System>_full.log_structured.csv (Loghub-2.0) whose
@@ -20,8 +21,11 @@ Eval: main setting fair_leakfree on the standard split (balanced sampling, fair 
 5-9, post-generation scores from samples 0-4), 5 seeds, ref 100/200; Clotho, MDSA, GMMb, Lookup (Drain, Loghub-2.0
 settings, run on the 500 sampled messages), Lookup (oracle), output entropy (k=5: samples 0-4), Clotho + output
 entropy (rank average over the test set, as log_parsing_followups.py). Per system: share of test inputs whose
-Drain group / Loghub template occurs among the non-initial reference inputs. LOHSvar and Tok-Prob (Stage 8) are
-dropped: they need the post-generation pass, which was run for the first 4 systems only.
+Drain group / Loghub template occurs among the non-initial reference inputs. LOHSvar and Tok-Prob were added on
+2026-11-09 by `post` (after `log_parsing_postgen.py --no_se` on the natural suites): it re-runs each stored job's
+seeded reference selection, checks that every stored row reproduces exactly (so the earlier natural numbers are
+unchanged), and appends the two rows (Tok-Prob = mean token log-prob of sample 0; LOHSvar = samples 0-4,
+negated; the same columns as phase3_final post under fair_leakfree).
 CLOTHO_MODEL selects the model (model_cfg.py); outputs of a non-llama model get a suffix. Compared with
 the same four systems' suite results (stored fair_leakfree jobs). A system is skipped if it has < 15 PASS or
 < 15 FAIL inputs.
@@ -57,10 +61,65 @@ OUT = EXP / f"results_phase3{MC.SUFFIX}" / "natural13"
 REFS = (100, 200)
 SEEDS = [0, 1, 2, 3, 4]
 METHODS = ["clotho", "MDSA", "GMMb", "lookup_drain", "lookup_oracle", "out_entropy", "clotho_oe"]
-SUITE_METHODS = ["clotho", "MDSA", "GMMb", "lookup_drain", "lookup_oracle", "out_entropy"]   # stored suite jobs
+POST_METHODS = ["tok_prob", "loh_var"]                 # added by `post` (2026-11-09); report rows only if present
+SUITE_METHODS = ["clotho", "MDSA", "GMMb", "lookup_drain", "lookup_oracle", "out_entropy", "tok_prob", "loh_var"]   # stored suite jobs
 NAMES = {"clotho": "Clotho", "MDSA": "MDSA", "GMMb": "GMMb", "lookup_drain": "Lookup (Drain)",
          "lookup_oracle": "Lookup (oracle)", "out_entropy": "Output entropy (k=5)*",
-         "clotho_oe": "Clotho + output entropy*"}
+         "clotho_oe": "Clotho + output entropy*", "tok_prob": "Tok-Prob*", "loh_var": "LOHSvar*"}
+
+
+def post_scores(ds):
+    """Tok-Prob (sample 0) and LOHSvar (samples 0-4), higher = PASS, as phase3_final.post_scores (leakfree)."""
+    import pandas as pd
+    p = EXP / f"data/results_{MC.MODEL}/log_parsing/precalculated_metrics/{TEMPLATE}/{ds}_postgen.pkl"
+    if not p.exists():
+        return None
+    df = pd.read_pickle(p).sort_values("input_index")
+    assert len(df) == 500
+    return {"tok_prob": df["tok_prob"].to_numpy(), "loh_var": -df["loh_var_s04"].to_numpy()}
+
+
+def post_job(path):
+    """Append Tok-Prob / LOHSvar rows to one stored job; existing rows must reproduce exactly."""
+    import logging
+    import numpy as np
+    import log_parsing_phase3_lib as L
+    path = Path(path)
+    d = json.loads(path.read_text())
+    if "rows" not in d or all(any(r["method"] == m for r in d["rows"]) for m in POST_METHODS):
+        return str(path), "has rows" if "rows" in d else "skipped job"
+    ps = post_scores(NAT[d["system"]])
+    if ps is None:
+        return str(path), "no postgen file"
+    logging.disable(logging.WARNING)
+    B = build(NAT[d["system"]], d["system"])
+    H, sc, init_idx, idx = B["H"], B["sc"], B["init_idx"], np.arange(B["n"])
+    seed = d["seed"]
+    np.random.seed(seed)
+    runs = L.clotho_run(H, sc, init_idx, idx, None, seed, method="balanced")
+    old = {(r["ref"], r["method"]): r["auc"] for r in d["rows"]}
+    for ref_n in REFS:
+        r = runs[ref_n]
+        t, ref = r["test"], r["ref"]
+        y = sc[t] > L.PASS_THRESH
+        assert len(t) == d["runs"][str(ref_n)]["n_test"] and int(y.sum()) == d["runs"][str(ref_n)]["n_test_pass"]
+        chk = {"clotho": r["clotho"], "lookup_drain": L.template_lookup(ref, t, sc, B["drain"], init_idx),
+               "lookup_oracle": L.template_lookup(ref, t, sc, B["templates"], init_idx)}
+        for m, v in chk.items():
+            a = L.metrics(y, v, seed)[0]
+            assert abs(a - old[(ref_n, m)]) < 1e-12, (path, ref_n, m, a, old[(ref_n, m)])
+        for m in POST_METHODS:
+            d["rows"].append({"ref": ref_n, "method": m, "auc": float(L.metrics(y, ps[m][t], seed)[0])})
+        d["runs"][str(ref_n)]["test"] = [int(i) for i in t]
+    path.write_text(json.dumps(d))
+    return str(path), "added"
+
+
+def add_post(workers=10):
+    from multiprocessing import Pool
+    with Pool(workers) as p:
+        for path, status in p.imap_unordered(post_job, sorted(str(f) for f in OUT.glob("*/seed*.json"))):
+            print(f"{status:>14}  {Path(path).relative_to(EXP)}", flush=True)
 
 
 def sample():
@@ -202,6 +261,8 @@ def evaluate(push=False, workers=10):
     FR = F.load_all()
     st = json.loads((SUITES / "natural_sample_stats.json").read_text())
     kept = [s for s in NAT if s in R and len(R[s]) == len(SEEDS) and all("skipped" not in d for d in R[s].values())]
+    have = lambda m: all(F.val(R[s][k], m, r, "auc") is not None for s in kept for k in SEEDS for r in REFS)  # noqa: E731
+    RM = METHODS + [m for m in POST_METHODS if have(m)]    # report methods
     suite_ok = lambda s: all(("fair_leakfree", "standard", SUITE[s]) in FR and k in FR[("fair_leakfree", "standard", SUITE[s])]  # noqa: E731
                              and "runs" in FR[("fair_leakfree", "standard", SUITE[s])][k] for k in SEEDS)
     both = [s for s in kept if suite_ok(s)]
@@ -250,7 +311,7 @@ def evaluate(push=False, workers=10):
                f"`log_parsing_followups{MC.SUFFIX}.md` (not paired).\n",
                "| method | natural (all kept) | natural (same systems) | suite (same systems) | natural minus suite (paired per seed) |",
                "|---|---|---|---|---|"]
-        for m in METHODS:
+        for m in RM:
             n_all = [mean(F.val(R[s][k], m, ref_n, "auc") for s in kept) for k in SEEDS]
             n_b = [mean(F.val(R[s][k], m, ref_n, "auc") for s in both) for k in SEEDS]
             if m in SUITE_METHODS:
@@ -265,7 +326,8 @@ def evaluate(push=False, workers=10):
                                                    "natural_seeds": n_all}
         L_.append("")
         for x, y in (("clotho", "lookup_drain"), ("clotho", "MDSA"), ("clotho", "out_entropy"),
-                     ("clotho_oe", "out_entropy"), ("clotho_oe", "lookup_drain")):
+                     ("clotho_oe", "out_entropy"), ("clotho_oe", "lookup_drain"))
+                     + tuple(("clotho", m) for m in POST_METHODS if m in RM):
             dd = [mean(F.val(R[s][k], x, ref_n, "auc") - F.val(R[s][k], y, ref_n, "auc") for s in kept) for k in SEEDS]
             wins = sum(mean(F.val(R[s][k], x, ref_n, "auc") - F.val(R[s][k], y, ref_n, "auc") for k in SEEDS) > 0 for s in kept)
             L_.append(f"Paired per seed, natural, {NAMES[x]} minus {NAMES[y]}: {mean(dd):+.3f} ± {statistics.stdev(dd):.3f} "
@@ -279,13 +341,13 @@ def evaluate(push=False, workers=10):
                       f"{statistics.stdev(dd):.3f}  ")
             J.setdefault(f"paired@{ref_n}", {})[f"suite_clotho-{y}"] = {"mean": mean(dd), "std": statistics.stdev(dd)}
         L_ += [f"\nPer system @{ref_n} (natural, mean over seeds):\n",
-               "| system | PASS rate | Drain seen | " + " | ".join(NAMES[m] for m in METHODS) + " |",
-               "|---" * (3 + len(METHODS)) + "|"]
+               "| system | PASS rate | Drain seen | " + " | ".join(NAMES[m] for m in RM) + " |",
+               "|---" * (3 + len(RM)) + "|"]
         for s in kept:
             ds_ = mean(d["runs"][str(ref_n)]["drain_seen_frac"] for d in R[s].values())
             pr_n = mean(d["n_pass"] for d in R[s].values()) / 500
             L_.append(f"| {s} | {pr_n:.1%} | {ds_:.0%} | " +
-                      " | ".join(f"{mean(F.val(R[s][k], m, ref_n, 'auc') for k in SEEDS):.3f}" for m in METHODS) + " |")
+                      " | ".join(f"{mean(F.val(R[s][k], m, ref_n, 'auc') for k in SEEDS):.3f}" for m in RM) + " |")
     out = EXP / "reports" / f"log_parsing_natural13{MC.SUFFIX}.md"
     out.write_text("\n".join(L_) + "\n")
     out.with_suffix(".json").write_text(json.dumps(J, indent=1, default=float))
@@ -296,8 +358,9 @@ def evaluate(push=False, workers=10):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["sample", "gen", "eval"])
+    ap.add_argument("cmd", choices=["sample", "gen", "eval", "post"])
     ap.add_argument("--push", action="store_true")
     ap.add_argument("--workers", type=int, default=10)
     a = ap.parse_args()
-    {"sample": sample, "gen": gen, "eval": lambda: evaluate(a.push, a.workers)}[a.cmd]()
+    {"sample": sample, "gen": gen, "eval": lambda: evaluate(a.push, a.workers),
+     "post": lambda: (add_post(a.workers), evaluate(a.push, a.workers))}[a.cmd]()

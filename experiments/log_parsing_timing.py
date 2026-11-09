@@ -4,6 +4,10 @@
   python log_parsing_timing.py hf                    # .venv: HF forward pass (+ GMM, MDSA, Drain on CPU)
   ../.venv-vllm/bin/python log_parsing_timing.py vllm # .venv-vllm: k samples with vLLM, k = 1..5, and prefill only
   -> results_phase3/timing/{hf,vllm}.json
+  CLOTHO_MODEL=gemma ... -> results_phase3_gemma/timing/ (model, layer and stop token from model_cfg)
+
+LAYER below is the model's tuned Clotho layer (model_cfg.fair_layer(): Llama 16, Gemma 21). The JSON keys keep
+the names of the first (Llama) run ("batched_l16" = batched forward pass through layers 1..LAYER).
 
 Systems: HDFS, Hadoop, BGL, OpenStack (500 suite inputs each), rules_template prompts.
 hf:
@@ -35,12 +39,15 @@ sys.path.insert(0, str(EXP))
 sys.path.insert(0, str(EXP / "sharded"))
 import prompt_render as pr  # noqa: E402
 
-TASK, TEMPLATE, MODEL = "log_parsing", "rules_template", "llama"
+import model_cfg as MC  # noqa: E402
+
+TASK, TEMPLATE, MODEL = "log_parsing", "rules_template", MC.MODEL
 SYSTEMS = ["loghub_hdfs_500", "loghub_hadoop_500", "loghub_bgl_500", "loghub_openstack_500"]
-OUT = EXP / "results_phase3" / "timing"
+assert not set(SYSTEMS) & MC.dropped()
+OUT = EXP / f"results_phase3{MC.SUFFIX}" / "timing"
 N_BS1 = 30
 KS = [1, 2, 3, 4, 5]
-LAYER = 16
+LAYER = MC.fair_layer()
 
 
 def suite(ds):
@@ -50,11 +57,12 @@ def suite(ds):
 def run_hf():
     import numpy as np
     import torch
-    import clotho.models.llama as llama
+    llama = MC.wrapper()      # the model's HF wrapper module (name kept from the Llama-only version)
     from clotho.exp_config import task2template, task2input_key
     fn = task2template[TASK][TEMPLATE]
     model, tok = llama.model, llama.tokenizer
-    res = {"device": torch.cuda.get_device_name(0), "systems": {}}
+    tok.clotho_model = MODEL   # prompt_render.render branches on it
+    res = {"device": torch.cuda.get_device_name(0), "model": MODEL, "layer": LAYER, "systems": {}}
     sync = torch.cuda.synchronize
     for ds in SYSTEMS:
         rows = suite(ds)
@@ -87,7 +95,7 @@ def run_hf():
         sync(); r["batched_l16"] = (time.perf_counter() - t0) / len(prompts)
         model.model.layers = layers
         V = torch.cat(vecs).numpy()
-        stored = np.asarray(torch.load(EXP / f"data/results_llama/{TASK}/input_hidden_states/{TEMPLATE}/{ds}/layer_{LAYER}/hidden_vectors.pt",
+        stored = np.asarray(torch.load(EXP / f"data/results_{MODEL}/{TASK}/input_hidden_states/{TEMPLATE}/{ds}/layer_{LAYER}/hidden_vectors.pt",
                                        weights_only=False), dtype=np.float32)
         cos = (V * stored).sum(1) / (np.linalg.norm(V, axis=1) * np.linalg.norm(stored, axis=1))
         r["batched_parity_min_cos"] = float(cos.min())
@@ -98,7 +106,7 @@ def run_hf():
     import log_parsing_phase3_lib as L
     from sklearn.mixture import GaussianMixture
     import log_parsing_drain as D
-    H = np.asarray(torch.load(EXP / f"data/results_llama/{TASK}/input_hidden_states/{TEMPLATE}/{SYSTEMS[0]}/layer_{LAYER}/hidden_vectors.pt",
+    H = np.asarray(torch.load(EXP / f"data/results_{MODEL}/{TASK}/input_hidden_states/{TEMPLATE}/{SYSTEMS[0]}/layer_{LAYER}/hidden_vectors.pt",
                               weights_only=False), dtype=np.float32)
     for nf, nc in ((10, 5), (50, 10)):
         dr = L.PCAFeatureReducer(n_features=nf); dr.fit(H)
@@ -137,8 +145,8 @@ def run_vllm():
 
     def sp(n, max_tokens=pr.GEN_MAX_NEW_TOKENS):
         return SamplingParams(n=n, temperature=pr.GEN_TEMPERATURE, top_p=1.0, max_tokens=max_tokens,
-                              ignore_eos=True, stop_token_ids=[tok.eos_token_id], detokenize=False)
-    res = {"systems": {}}
+                              ignore_eos=True, stop_token_ids=[pr.stop_token_id(tok)], detokenize=False)
+    res = {"model": MODEL, "systems": {}}
     for ds in SYSTEMS:
         ids = [{"prompt_token_ids": pr.render(TASK, TEMPLATE, r, tok)[1]} for r in suite(ds)]
         llm.generate(ids[:32], sp(2), use_tqdm=False)                   # warm-up

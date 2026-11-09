@@ -47,3 +47,4 @@ experiments/data/.cache/
 # per-(template, system) Clotho runs for log_parsing: persisted in RESULTS_REPO, not git
 experiments/results_clotho_log_parsing/
 experiments/results_phase3/
+experiments/results_phase3_gemma/
