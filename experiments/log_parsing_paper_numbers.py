@@ -57,6 +57,16 @@ READ = {
               "0.584; MDSA unchanged at 0.557), against a ceiling of 0.698 for perfect knowledge of the original "
               "10-sample pass rate. So Clotho does carry some within-template signal, but it is small next to the "
               "between-template signal (overall AUC 0.832 on the same systems)."),
+    "gemma": ("Reading: every Llama finding about the pre-generation methods and lookups holds for Gemma-2-9B on 12 "
+              "systems. On the standard split Clotho (0.780 / 0.832) beats MDSA (+0.063 / +0.095) and Lookup (Drain) "
+              "(+0.074 / +0.058) on every seed, also on the 9 held-out systems and with random reference sets for "
+              "the baselines; on the template-disjoint split the lookups fall to chance and Clotho ties MDSA (+0.004 / "
+              "+0.010). Leakage-free output entropy (0.821 / 0.818) beats Clotho at @100 (-0.040) but Clotho is "
+              "ahead at @200 on every seed (+0.014, smallest +0.006); output entropy again needs 4 samples to match "
+              "Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho "
+              "and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup "
+              "beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, "
+              "and Clotho beats output entropy by about 0.1 (+0.108 / +0.093)."),
     "natural": ("Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: "
                 "29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs "
                 "in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 "
@@ -107,7 +117,8 @@ def build():
           "exact matches), post-generation scores from samples 0-4 only. Unless a section says otherwise, every number "
           "is ROC-AUC (PASS = positive class), **mean ± std over 5 seeds of the per-seed macro mean over systems**. "
           "Reference size counts the 10 initial tests. Splits: standard = Clotho's protocol; disjoint = no Loghub "
-          "template shared between the reference pool and the test set. * = needs the generations (post-generation).\n",
+          "template shared between the reference pool and the test set. * = needs the generations (post-generation). "
+          "Sections 1-8 are Llama; section 9 repeats the core comparison and the natural check for Gemma-2-9B-it.\n",
           "## 1. Main table (13 systems)\n",
           "Script: `log_parsing_phase3_final.py run/post` (jobs in RESULTS_REPO `results_phase3/final/fair_leakfree/`); "
           "Clotho + output entropy from `log_parsing_followups.py`. Report: `reports/log_parsing_phase3_final.md`.\n"]
@@ -154,6 +165,7 @@ def build():
         L_ += section("log_parsing_natural13.md", "## ROC-AUC @100", keep_heading=True, until="Per system")
         L_ += section("log_parsing_natural13.md", "## ROC-AUC @200", keep_heading=True, until="Per system")
         L_ += [READ["natural"], ""]
+    L_ += gemma_section()
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",
            "- Per-system tables, Drain grouping accuracy, hybrid coverage: `reports/log_parsing_phase3_final.md`.",
@@ -161,10 +173,72 @@ def build():
     return L_
 
 
+def paired_lines():
+    """Paired per-seed differences, Clotho minus baseline, macro over all systems of the current model."""
+    import statistics
+    R = F.load_all()
+    cols = [(sp, r) for sp in F.SPLITS for r in (100, 200)]
+    out = ["| comparison | " + " | ".join(f"{sp} @{r}" for sp, r in cols) + " |", "|---" * (1 + len(cols)) + "|"]
+    for b in ("MDSA", "lookup_drain", "out_entropy", "hybrid"):
+        cells = []
+        for sp, r in cols:
+            d = [statistics.mean(F.val(R[(SETTING, sp, ds)][s], "clotho", r, "auc") - F.val(R[(SETTING, sp, ds)][s], b, r, "auc")
+                                 for ds in F.SYSTEMS if "rows" in R[(SETTING, sp, ds)][s]) for s in F.SEEDS]
+            cells.append(f"{statistics.mean(d):+.3f} ± {statistics.stdev(d):.3f} (min {min(d):+.3f}, max {max(d):+.3f})")
+        out.append(f"| Clotho minus {F.NAMES[b]} | " + " | ".join(cells) + " |")
+    return out
+
+
+def gemma_block():
+    import os
+    import subprocess
+    env = {**os.environ, "CLOTHO_MODEL": "gemma"}
+    r = subprocess.run([sys.executable, __file__, "--tables_only"], env=env, capture_output=True, text=True, cwd=EXP)
+    if r.returncode != 0:
+        return ["(Gemma tables failed: " + r.stderr.strip().splitlines()[-1] + ")"]
+    return r.stdout.rstrip("\n").splitlines()
+
+
+def gemma_section():
+    if not (REP / "log_parsing_phase3_final_gemma.md").exists():
+        return []
+    L_ = ["## 9. Second model: Gemma-2-9B-it (same protocol)\n",
+          "Same rules_template prompt, strict scorer, label rule and layer-tuning procedure as for Llama; nothing was "
+          "re-tuned. Generation with vLLM (prompt/token parity with `clotho/models/gemma.py` checked before every run). "
+          "PASS rates and drops: `reports/log_parsing_pass_rates_gemma.md` (Apache dropped at 94.4% PASS under the "
+          "> 5 of 10 rule; Proxifier not generated, as for Llama), so **12 systems**. Layer tuning on HDFS, Spark, Linux "
+          "(jobs in RESULTS_REPO `results_phase3_gemma/tuning/`; mean AUC under balanced: layer 14 0.758, **21 0.773**, 28 0.765, "
+          "35 0.769) chose **layer 21** of 42 (half depth, as Llama's 16 of 32). Reports: `*_gemma.md`.\n",
+          "### 9.1 Main table (fair_leakfree, 12 systems)\n"]
+    blk = gemma_block()
+    k = blk.index("@@PAIRED@@") if "@@PAIRED@@" in blk else len(blk)
+    L_ += blk[:k] + ["", "Paired per-seed differences (12 systems):\n"] + blk[k + 1:] + [""]
+    L_ += ["### 9.2 Held-out (9 systems not used for layer tuning)\n"]
+    L_ += section("log_parsing_heldout_gemma.md", "## Paired")[1:] + [""]
+    L_ += ["### 9.3 Baseline fairness (random reference sets)\n"] + section("log_parsing_fairness_gemma.md", "## Paired")[1:]
+    L_ += ["### 9.4 Quality vs number of samples (no Gemma timings)\n"]
+    L_ += section("log_parsing_cost_quality_gemma.md", "| method |", until="", keep_heading=True) + [""]
+    L_ += [l for l in (REP / "log_parsing_cost_quality_gemma.md").read_text().splitlines() if l.startswith("Smallest")] + [""]
+    L_ += ["### 9.5 Cross-system transfer\n"]
+    L_ += [l for l in (REP / "log_parsing_cross_fair_gemma.md").read_text().splitlines()
+           if l.startswith("| **mean over") or l.startswith("Paired per-seed, mean")]
+    L_ += ["(rows: @100, then @200; columns as in section 5)", ""]
+    if (REP / "log_parsing_natural13_gemma.md").exists():
+        L_ += ["### 9.6 Natural-distribution check (12 systems)\n"]
+        L_ += section("log_parsing_natural13_gemma.md", "## ROC-AUC @100", keep_heading=True, until="Per system")
+        L_ += section("log_parsing_natural13_gemma.md", "## ROC-AUC @200", keep_heading=True, until="Per system")
+    L_ += [READ.get("gemma", ""), ""]
+    return L_
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--push", action="store_true")
+    ap.add_argument("--tables_only", action="store_true", help="print main table + paired lines for CLOTHO_MODEL")
     a = ap.parse_args()
+    if a.tables_only:
+        print("\n".join(main_table() + ["@@PAIRED@@"] + paired_lines()))
+        return
     out = REP / "paper_numbers.md"
     out.write_text("\n".join(build()) + "\n")
     print(out.read_text())
