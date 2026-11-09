@@ -217,9 +217,10 @@ def gemma_section():
     L_ += ["### 9.2 Held-out (9 systems not used for layer tuning)\n"]
     L_ += section("log_parsing_heldout_gemma.md", "## Paired")[1:] + [""]
     L_ += ["### 9.3 Baseline fairness (random reference sets)\n"] + section("log_parsing_fairness_gemma.md", "## Paired")[1:]
-    L_ += ["### 9.4 Quality vs number of samples (no Gemma timings)\n"]
+    L_ += ["### 9.4 Cost vs quality (Gemma timings, same L40S and definitions as section 4)\n"]
     L_ += section("log_parsing_cost_quality_gemma.md", "| method |", until="", keep_heading=True) + [""]
-    L_ += [l for l in (REP / "log_parsing_cost_quality_gemma.md").read_text().splitlines() if l.startswith("Smallest")] + [""]
+    L_ += [l for l in (REP / "log_parsing_cost_quality_gemma.md").read_text().splitlines()
+           if l.startswith(("Timing components", "Cost ratios", "Smallest"))] + [""]
     L_ += ["### 9.5 Cross-system transfer\n"]
     L_ += [l for l in (REP / "log_parsing_cross_fair_gemma.md").read_text().splitlines()
            if l.startswith("| **mean over") or l.startswith("Paired per-seed, mean")]

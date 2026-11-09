@@ -356,7 +356,7 @@ def evaluate(push=False, workers=10):
     out.with_suffix(".json").write_text(json.dumps(J, indent=1, default=float))
     print("\n".join(L_))
     if push:
-        F._push([OUT, out, out.with_suffix(".json"), SUITES / "natural_sample_stats.json"])
+        F._push([OUT, out, out.with_suffix(".json")])   # natural_sample_stats.json is in git (outside experiments/)
 
 
 if __name__ == "__main__":
