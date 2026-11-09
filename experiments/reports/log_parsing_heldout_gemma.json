@@ -85,38 +85,38 @@
   },
   "tok_prob": {
    "standard@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.468 \u00b1 0.002",
+    "all13": "0.486 \u00b1 0.003"
    },
    "standard@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.458 \u00b1 0.006",
+    "all13": "0.480 \u00b1 0.005"
    },
    "disjoint@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.475 \u00b1 0.031",
+    "all13": "0.493 \u00b1 0.024"
    },
    "disjoint@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.475 \u00b1 0.031",
+    "all13": "0.493 \u00b1 0.024"
    }
   },
   "tok_ent": {
    "standard@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.567 \u00b1 0.004",
+    "all13": "0.578 \u00b1 0.003"
    },
    "standard@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.563 \u00b1 0.005",
+    "all13": "0.575 \u00b1 0.005"
    },
    "disjoint@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.564 \u00b1 0.025",
+    "all13": "0.575 \u00b1 0.022"
    },
    "disjoint@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.564 \u00b1 0.025",
+    "all13": "0.575 \u00b1 0.022"
    }
   },
   "sem_ent": {
@@ -139,20 +139,20 @@
   },
   "loh_var": {
    "standard@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.677 \u00b1 0.003",
+    "all13": "0.677 \u00b1 0.002"
    },
    "standard@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.676 \u00b1 0.005",
+    "all13": "0.672 \u00b1 0.005"
    },
    "disjoint@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.681 \u00b1 0.016",
+    "all13": "0.678 \u00b1 0.018"
    },
    "disjoint@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.681 \u00b1 0.016",
+    "all13": "0.678 \u00b1 0.018"
    }
   },
   "out_entropy": {

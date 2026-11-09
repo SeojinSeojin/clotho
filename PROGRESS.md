@@ -64,10 +64,10 @@ Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise lab
 - 2026-11-08 session (all stages of the paper-numbers plan): label-noise experiment finished; original-protocol leakage answered from code; baseline fairness (random reference sets); held-out table; cost vs quality with L40S timings; cross-system under fair_leakfree; qualitative examples; natural-distribution check (4 systems); paper_numbers.md. New scripts: `log_parsing_heldout.py`, `log_parsing_fairness.py`, `log_parsing_timing.py`, `log_parsing_cost_quality.py`, `log_parsing_cross_fair.py`, `log_parsing_qualitative.py`, `log_parsing_natural.py`, `log_parsing_paper_numbers.py`, `sharded/git_backup.py`.
 
 ## In progress
-- See Next for the Gemma post-generation state at session end.
+- Nothing running.
 
 ## Next
-- **Gemma post-generation baselines (Tok-Prob, Tok-Ent, LOHSvar).** `log_parsing_postgen.py --no_se --push` was started for the 12 Gemma systems at the end of this session (~4.5 min per system); every finished system is in RESULTS_REPO `data/results_gemma/log_parsing/precalculated_metrics/rules_template/`. Missing systems: rerun `CLOTHO_MODEL=gemma python log_parsing_postgen.py -p rules_template -d <missing> --no_se --push`. Sem-Ent for Gemma was not run (`--se_only` afterwards). Then `CLOTHO_MODEL=gemma python log_parsing_phase3_final.py post && ... report`, delete `results_phase3_gemma/followups` and rerun `log_parsing_followups.py` (its jobs were computed without LOHSvar), then `log_parsing_heldout.py` and `log_parsing_paper_numbers.py`.
+- Gemma post-generation (Tok-Prob, Tok-Ent, LOHSvar) finished for all 12 systems (`--no_se`), and the post rows, follow-ups (recomputed with LOHSvar), held-out and paper_numbers are regenerated. **Gemma Sem-Ent is not run**: `CLOTHO_MODEL=gemma python log_parsing_postgen.py -p rules_template --se_only --push`, then `phase3_final.py post` / `report`, `log_parsing_heldout.py` and `log_parsing_paper_numbers.py`.
 - Gemma timings (`log_parsing_timing.py hf/vllm`) were not measured, so the Gemma cost-quality report has no cost axis (quality vs k only). `log_parsing_timing.py` is still Llama-only.
 - Not done for Gemma: label-noise run (skipped on purpose), messages_template, qualitative examples.
 - Pushed (2026-11-08, second session): all local commits of the first 2026-11-08 session are on origin/main (`gh` installed by the user). The RESULTS_REPO bundle is no longer needed for restore.

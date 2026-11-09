@@ -298,10 +298,10 @@ Same rules_template prompt, strict scorer, label rule and layer-tuning procedure
 | MDSA | 0.718 ± 0.007 | 0.737 ± 0.006 | 0.655 ± 0.017 | 0.661 ± 0.017 |
 | GMMb | 0.679 ± 0.038 | 0.761 ± 0.014 | 0.609 ± 0.031 | 0.649 ± 0.013 |
 | SLL | 0.457 ± 0.002 | 0.453 ± 0.003 | 0.473 ± 0.014 | 0.473 ± 0.014 |
-| Tok-Prob | n/a | n/a | n/a | n/a |
-| Tok-Ent | n/a | n/a | n/a | n/a |
+| Tok-Prob | 0.486 ± 0.003 | 0.480 ± 0.005 | 0.493 ± 0.024 | 0.493 ± 0.024 |
+| Tok-Ent | 0.578 ± 0.003 | 0.575 ± 0.005 | 0.575 ± 0.022 | 0.575 ± 0.022 |
 | Sem-Ent | n/a | n/a | n/a | n/a |
-| LOHSvar | n/a | n/a | n/a | n/a |
+| LOHSvar | 0.677 ± 0.002 | 0.672 ± 0.005 | 0.678 ± 0.018 | 0.678 ± 0.018 |
 | Output entropy* | 0.821 ± 0.002 | 0.818 ± 0.003 | 0.824 ± 0.012 | 0.824 ± 0.012 |
 | Lookup (Drain) | 0.706 ± 0.009 | 0.774 ± 0.008 | 0.508 ± 0.002 | 0.512 ± 0.001 |
 | Lookup (Drain, default) | 0.728 ± 0.007 | 0.789 ± 0.009 | 0.536 ± 0.006 | 0.542 ± 0.006 |
@@ -414,7 +414,7 @@ Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.039 
 Paired per seed, suite (same 12 systems), Clotho minus Lookup (Drain): +0.058 ± 0.006  
 Paired per seed, suite (same 12 systems), Clotho minus MDSA: +0.095 ± 0.003  
 
-Reading: every Llama finding about the pre-generation methods and lookups holds for Gemma-2-9B on 12 systems. On the standard split Clotho (0.780 / 0.832) beats MDSA (+0.063 / +0.095) and Lookup (Drain) (+0.074 / +0.058) on every seed, also on the 9 held-out systems and with random reference sets for the baselines; on the template-disjoint split the lookups fall to chance and Clotho ties MDSA (+0.004 / +0.010). Leakage-free output entropy (0.821 / 0.818) beats Clotho at @100 (-0.040) but Clotho is ahead at @200 on every seed (+0.014, smallest +0.006); output entropy again needs 4 samples to match Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, and Clotho beats output entropy by about 0.1 (+0.108 / +0.093).
+Reading: every Llama finding about the pre-generation methods and lookups holds for Gemma-2-9B on 12 systems. On the standard split Clotho (0.780 / 0.832) beats MDSA (+0.063 / +0.095) and Lookup (Drain) (+0.074 / +0.058) on every seed, also on the 9 held-out systems and with random reference sets for the baselines; on the template-disjoint split the lookups fall to chance and Clotho ties MDSA (+0.004 / +0.010). Leakage-free output entropy (0.821 / 0.818) beats Clotho at @100 (-0.040) but Clotho is ahead at @200 on every seed (+0.014, smallest +0.006); output entropy again needs 4 samples to match Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, and Clotho beats output entropy by about 0.1 (+0.108 / +0.093). The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / 0.672, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480; Sem-Ent not run for Gemma).
 
 ## Other reports
 

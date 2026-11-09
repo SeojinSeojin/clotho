@@ -10,9 +10,9 @@ Rank-average of two scores. Any combination with LOHSvar or output entropy needs
 |---|---|---|---|---|
 | Clotho | 0.780 ± 0.003 | 0.832 ± 0.005 | 0.659 ± 0.025 | 0.671 ± 0.019 |
 | MDSA | 0.718 ± 0.007 | 0.737 ± 0.006 | 0.655 ± 0.017 | 0.661 ± 0.017 |
-| LOHSvar | n/a | n/a | n/a | n/a |
+| LOHSvar | 0.677 ± 0.002 | 0.672 ± 0.005 | 0.678 ± 0.018 | 0.678 ± 0.018 |
 | Output entropy | 0.821 ± 0.002 | 0.818 ± 0.003 | 0.824 ± 0.012 | 0.824 ± 0.012 |
-| Clotho + LOHSvar | n/a | n/a | n/a | n/a |
+| Clotho + LOHSvar | 0.800 ± 0.003 | 0.826 ± 0.005 | 0.728 ± 0.016 | 0.736 ± 0.020 |
 | Clotho + output entropy | 0.869 ± 0.002 | 0.890 ± 0.005 | 0.808 ± 0.010 | 0.818 ± 0.016 |
 | Clotho + MDSA | 0.767 ± 0.005 | 0.812 ± 0.005 | 0.665 ± 0.016 | 0.674 ± 0.014 |
 
@@ -20,8 +20,8 @@ Paired per-seed differences (mean ± std, min over seeds):
 
 | comparison | standard @100 | standard @200 | disjoint @100 | disjoint @200 |
 |---|---|---|---|---|
-| Clotho + LOHSvar minus Clotho | n/a | n/a | n/a | n/a |
-| Clotho + LOHSvar minus LOHSvar | n/a | n/a | n/a | n/a |
+| Clotho + LOHSvar minus Clotho | +0.019 ± 0.004 (min +0.014) | -0.007 ± 0.004 (min -0.013) | +0.068 ± 0.020 (min +0.038) | +0.065 ± 0.015 (min +0.044) |
+| Clotho + LOHSvar minus LOHSvar | +0.123 ± 0.002 (min +0.120) | +0.154 ± 0.006 (min +0.145) | +0.050 ± 0.017 (min +0.035) | +0.058 ± 0.011 (min +0.044) |
 | Clotho + output entropy minus Clotho | +0.089 ± 0.003 (min +0.083) | +0.058 ± 0.003 (min +0.053) | +0.149 ± 0.019 (min +0.127) | +0.146 ± 0.012 (min +0.132) |
 | Clotho + output entropy minus Output entropy | +0.049 ± 0.002 (min +0.047) | +0.072 ± 0.003 (min +0.068) | -0.015 ± 0.015 (min -0.031) | -0.006 ± 0.013 (min -0.013) |
 | Clotho + MDSA minus Clotho | -0.013 ± 0.006 (min -0.020) | -0.021 ± 0.002 (min -0.023) | +0.005 ± 0.012 (min -0.013) | +0.003 ± 0.012 (min -0.015) |
@@ -56,9 +56,9 @@ Template lookup is 0.5 by construction. Cells: mean ± std over seeds of the mac
 |---|---|---|---|---|
 | Clotho | 0.547 ± 0.017 | 0.819 ± 0.004 | 0.547 ± 0.016 | 0.882 ± 0.007 |
 | MDSA | 0.530 ± 0.010 | 0.747 ± 0.007 | 0.517 ± 0.022 | 0.798 ± 0.011 |
-| LOHSvar | n/a | n/a | n/a | n/a |
+| LOHSvar | 0.536 ± 0.013 | 0.675 ± 0.003 | 0.536 ± 0.003 | 0.654 ± 0.007 |
 | Output entropy | 0.562 ± 0.011 | 0.815 ± 0.003 | 0.549 ± 0.010 | 0.795 ± 0.006 |
-| Clotho + LOHSvar | n/a | n/a | n/a | n/a |
+| Clotho + LOHSvar | 0.551 ± 0.008 | 0.822 ± 0.006 | 0.568 ± 0.014 | 0.841 ± 0.004 |
 | Clotho + output entropy | 0.572 ± 0.012 | 0.887 ± 0.004 | 0.582 ± 0.021 | 0.906 ± 0.005 |
 | Clotho + MDSA | 0.543 ± 0.013 | 0.803 ± 0.007 | 0.540 ± 0.025 | 0.866 ± 0.009 |
 | Lookup (oracle) | 0.500 ± 0.000 | see main table | 0.500 ± 0.000 | see main table |

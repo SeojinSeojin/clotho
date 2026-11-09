@@ -66,7 +66,8 @@ READ = {
               "Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho "
               "and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup "
               "beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, "
-              "and Clotho beats output entropy by about 0.1 (+0.108 / +0.093)."),
+              "and Clotho beats output entropy by about 0.1 (+0.108 / +0.093). The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / "
+              "0.672, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480; Sem-Ent not run for Gemma)."),
     "natural": ("Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: "
                 "29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs "
                 "in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 "
