@@ -61,11 +61,12 @@ OUT = EXP / f"results_phase3{MC.SUFFIX}" / "natural13"
 REFS = (100, 200)
 SEEDS = [0, 1, 2, 3, 4]
 METHODS = ["clotho", "MDSA", "GMMb", "lookup_drain", "lookup_oracle", "out_entropy", "clotho_oe"]
-POST_METHODS = ["tok_prob", "loh_var"]                 # added by `post` (2026-11-09); report rows only if present
-SUITE_METHODS = ["clotho", "MDSA", "GMMb", "lookup_drain", "lookup_oracle", "out_entropy", "tok_prob", "loh_var"]   # stored suite jobs
+POST_METHODS = ["tok_prob", "loh_var", "random"]       # added by `post` (2026-11-09); report rows only if present
+# random = RandomState(seed + 104729 + ref).rand, the same draw as phase3_final's Random row
+SUITE_METHODS = ["clotho", "MDSA", "GMMb", "lookup_drain", "lookup_oracle", "out_entropy", "tok_prob", "loh_var", "random"]   # stored suite jobs
 NAMES = {"clotho": "Clotho", "MDSA": "MDSA", "GMMb": "GMMb", "lookup_drain": "Lookup (Drain)",
          "lookup_oracle": "Lookup (oracle)", "out_entropy": "Output entropy (k=5)*",
-         "clotho_oe": "Clotho + output entropy*", "tok_prob": "Tok-Prob*", "loh_var": "LOHSvar*"}
+         "clotho_oe": "Clotho + output entropy*", "tok_prob": "Tok-Prob*", "loh_var": "LOHSvar*", "random": "Random"}
 
 
 def post_scores(ds):
@@ -108,8 +109,10 @@ def post_job(path):
         for m, v in chk.items():
             a = L.metrics(y, v, seed)[0]
             assert abs(a - old[(ref_n, m)]) < 1e-12, (path, ref_n, m, a, old[(ref_n, m)])
+        ps["random"] = None
         for m in POST_METHODS:
-            d["rows"].append({"ref": ref_n, "method": m, "auc": float(L.metrics(y, ps[m][t], seed)[0])})
+            v = np.random.RandomState(seed + 104729 + ref_n).rand(len(t)) if m == "random" else ps[m][t]
+            d["rows"].append({"ref": ref_n, "method": m, "auc": float(L.metrics(y, v, seed)[0])})
         d["runs"][str(ref_n)]["test"] = [int(i) for i in t]
     path.write_text(json.dumps(d))
     return str(path), "added"
@@ -325,9 +328,9 @@ def evaluate(push=False, workers=10):
             J.setdefault(f"auc@{ref_n}", {})[m] = {"natural": F.fmt(n_all), "natural_same": F.fmt(n_b), "suite": sc,
                                                    "natural_seeds": n_all}
         L_.append("")
-        for x, y in (("clotho", "lookup_drain"), ("clotho", "MDSA"), ("clotho", "out_entropy"),
-                     ("clotho_oe", "out_entropy"), ("clotho_oe", "lookup_drain"))
-                     + tuple(("clotho", m) for m in POST_METHODS if m in RM):
+        for x, y in ((("clotho", "lookup_drain"), ("clotho", "MDSA"), ("clotho", "out_entropy"),
+                      ("clotho_oe", "out_entropy"), ("clotho_oe", "lookup_drain"))
+                     + tuple(("clotho", m) for m in ("tok_prob", "loh_var") if m in RM)):
             dd = [mean(F.val(R[s][k], x, ref_n, "auc") - F.val(R[s][k], y, ref_n, "auc") for s in kept) for k in SEEDS]
             wins = sum(mean(F.val(R[s][k], x, ref_n, "auc") - F.val(R[s][k], y, ref_n, "auc") for k in SEEDS) > 0 for s in kept)
             L_.append(f"Paired per seed, natural, {NAMES[x]} minus {NAMES[y]}: {mean(dd):+.3f} ± {statistics.stdev(dd):.3f} "
