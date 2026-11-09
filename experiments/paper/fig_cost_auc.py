@@ -64,8 +64,8 @@ def main():
                 ax.errorbar([c[key]], [mu(key)], yerr=[sd(key)], color=C.COL[key], marker="s", ms=7, capsize=2,
                             ls="none", label=name, zorder=5, mec="white", mew=1)
             ax.set_xscale("log")
-            ax.set_title(f"{C.LABEL[model]} ({n} systems), reference size {ref}", color=C.INK)
-    fig.supxlabel("cost per test input, seconds (log scale; one L40S, offline batch)", fontsize=9, y=0.07)
+            ax.set_title(f"{C.LABEL[model]} ({n} systems), @{ref}", color=C.INK)
+    fig.supxlabel("cost per test input, seconds (log scale; one L40S, offline batch)", fontsize=9, y=0.10)
     fig.supylabel("ROC-AUC, standard split (mean ± std over 5 seeds)", fontsize=9)
     h, l_ = axes[0, 0].get_legend_handles_labels()
     fig.legend(h, l_, loc="lower center", ncol=3, frameon=False)

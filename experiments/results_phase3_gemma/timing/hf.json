@@ -1,0 +1,35 @@
+{
+ "device": "NVIDIA L40S",
+ "model": "gemma",
+ "layer": 21,
+ "systems": {
+  "loghub_hdfs_500": {
+   "pipeline_bs1": 0.05849994173331652,
+   "batched_l16": 0.031496259685998666,
+   "batched_parity_min_cos": 0.9996880292892456,
+   "prompt_tokens_mean": 302.892
+  },
+  "loghub_hadoop_500": {
+   "pipeline_bs1": 0.058256946466766144,
+   "batched_l16": 0.03927897275800933,
+   "batched_parity_min_cos": 0.9997170567512512,
+   "prompt_tokens_mean": 289.202
+  },
+  "loghub_bgl_500": {
+   "pipeline_bs1": 0.055742644466469454,
+   "batched_l16": 0.03620143174799159,
+   "batched_parity_min_cos": 0.9996616244316101,
+   "prompt_tokens_mean": 273.088
+  },
+  "loghub_openstack_500": {
+   "pipeline_bs1": 0.05967610963343759,
+   "batched_l16": 0.03152560048599844,
+   "batched_parity_min_cos": 0.9997690916061401,
+   "prompt_tokens_mean": 302.956
+  }
+ },
+ "gmm_bs1_nf10_nc5": 0.0003251426636998076,
+ "gmm_bs1_nf50_nc10": 0.000484586720399966,
+ "mdsa_bs1": 0.00022203638798964676,
+ "drain_lh2_per_input": 8.555059749778593e-05
+}
