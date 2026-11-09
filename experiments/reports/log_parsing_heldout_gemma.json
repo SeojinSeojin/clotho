@@ -121,20 +121,20 @@
   },
   "sem_ent": {
    "standard@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.614 \u00b1 0.003",
+    "all13": "0.617 \u00b1 0.001"
    },
    "standard@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.608 \u00b1 0.007",
+    "all13": "0.612 \u00b1 0.005"
    },
    "disjoint@100": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.611 \u00b1 0.022",
+    "all13": "0.617 \u00b1 0.012"
    },
    "disjoint@200": {
-    "heldout": "n/a",
-    "all13": "n/a"
+    "heldout": "0.611 \u00b1 0.022",
+    "all13": "0.617 \u00b1 0.012"
    }
   },
   "loh_var": {
