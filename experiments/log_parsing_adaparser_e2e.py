@@ -50,11 +50,11 @@ SYSTEMS = [s for s in ST.SYSTEMS if s not in DROP]
 PORT = 8011
 SERVED = f"local-{MODEL}"
 GEMMA_TEMPLATE = (
-    "{{ bos_token }}{% set sys = '' %}{% for m in messages %}{% if m['role'] == 'system' %}{% set sys = m['content'] %}"
-    "{% endif %}{% endfor %}{% set first = true %}{% for m in messages %}{% if m['role'] != 'system' %}"
+    "{{ bos_token }}{% set ns = namespace(sys='', first=true) %}{% for m in messages %}{% if m['role'] == 'system' %}"
+    "{% set ns.sys = m['content'] %}{% endif %}{% endfor %}{% for m in messages %}{% if m['role'] != 'system' %}"
     "{% set role = 'model' if m['role'] == 'assistant' else 'user' %}<start_of_turn>{{ role }}\n"
-    "{% if first and role == 'user' and sys %}{{ sys | trim }}\n\n{% endif %}{{ m['content'] | trim }}<end_of_turn>\n"
-    "{% set first = false %}{% endif %}{% endfor %}{% if add_generation_prompt %}<start_of_turn>model\n{% endif %}")
+    "{% if ns.first and role == 'user' and ns.sys %}{{ ns.sys | trim }}\n\n{% endif %}{{ m['content'] | trim }}<end_of_turn>\n"
+    "{% set ns.first = false %}{% endif %}{% endfor %}{% if add_generation_prompt %}<start_of_turn>model\n{% endif %}")
 
 
 def prep():
