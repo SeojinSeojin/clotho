@@ -22,6 +22,16 @@ MAIN = ["clotho", "MDSA", "GMMb", "SLL", "tok_prob", "tok_ent", "sem_ent", "loh_
         "lookup_drain", "lookup_drain_default", "lookup_oracle", "hybrid", "random"]
 
 READ = {
+    "stats": ("Reading: Scott-Knott ESD over (system, seed) observations puts Clotho in the top group on the capped "
+              "suites in 3 of 4 model x reference-size cells (with output entropy and the hybrid; Llama @100: output entropy "
+              "alone on top), above MDSA and every lookup (A12 vs Drain lookup 0.60-0.69, vs MDSA 0.62-0.77). On the natural "
+              "suites Clotho shares the top group with the lookups and MDSA for Llama, but for Gemma the lookups form the "
+              "top group alone (A12 Clotho vs Drain lookup 0.39-0.49). Clotho vs LLMLog: A12 0.62-0.95. Transfer probe vs "
+              "pooled Clotho at the fair layer: 0.64-0.89, except Gemma natural (0.53, negligible)."),
+    "transfer_paired": ("Reading: on the same target inputs, the protocol-chosen source model refit with k target labels beats "
+                        "within-system Clotho @100 on every seed from k = 25 (Llama capped) or k = 50 (Llama natural, Gemma "
+                        "natural); Gemma capped only ties at k = 50 (2/5 seeds). It beats within-system Clotho with the same k "
+                        "on every seed at every k."),
     "transfer": ("Reading (held-out targets): pooled-source Clotho stays at 0.44-0.66; per-system normalisation and CORAL "
                  "do not help; a logistic probe on source labels reaches 0.67-0.71 without target labels; refitting the "
                  "best source model with 25-50 target labels matches within-system Clotho @100 (not paired). Generic "

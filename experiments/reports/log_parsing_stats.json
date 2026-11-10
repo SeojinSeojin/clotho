@@ -1323,19 +1323,19 @@
    ]
   },
   "llama D capped k=25 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
-   "a12": 0.5325443786982249,
-   "magnitude": "negligible",
+   "a12": 0.5664,
+   "magnitude": "small",
    "n": [
-    26,
-    26
+    50,
+    50
    ]
   },
   "llama D capped k=50 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
-   "a12": 0.6050295857988166,
+   "a12": 0.6376,
    "magnitude": "small",
    "n": [
-    26,
-    26
+    50,
+    50
    ]
   },
   "llama A natural @100 Clotho vs LLMLog": {
@@ -1626,6 +1626,22 @@
     45
    ]
   },
+  "gemma D capped k=25 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.4291358024691358,
+   "magnitude": "small",
+   "n": [
+    45,
+    45
+   ]
+  },
+  "gemma D capped k=50 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.5116049382716049,
+   "magnitude": "negligible",
+   "n": [
+    45,
+    45
+   ]
+  },
   "gemma A natural @100 Clotho vs LLMLog": {
    "a12": 0.9519444444444445,
    "magnitude": "large",
@@ -1709,6 +1725,22 @@
   "gemma D natural logistic probe vs pooled Clotho (clotho_pool)": {
    "a12": 0.8691358024691358,
    "magnitude": "large",
+   "n": [
+    45,
+    45
+   ]
+  },
+  "gemma D natural k=25 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.5214814814814814,
+   "magnitude": "negligible",
+   "n": [
+    45,
+    45
+   ]
+  },
+  "gemma D natural k=50 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.6088888888888889,
+   "magnitude": "small",
    "n": [
     45,
     45
