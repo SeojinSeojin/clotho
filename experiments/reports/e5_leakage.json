@@ -25,6 +25,10 @@
     "mdsa": {
      "spearman": 0.17132423919355977,
      "auc": 0.659290868033086
+    },
+    "lohsvar": {
+     "spearman": 0.16163597594403403,
+     "auc": 0.692935210228408
     }
    },
    "leakfree": [
@@ -52,6 +56,10 @@
      "mdsa": {
       "spearman": 0.19063039332575954,
       "auc": 0.6431402053419655
+     },
+     "lohsvar": {
+      "spearman": 0.18291446722269072,
+      "auc": 0.6557575803907245
      }
     },
     {
@@ -78,6 +86,10 @@
      "mdsa": {
       "spearman": 0.18834851389572987,
       "auc": 0.6438652706325281
+     },
+     "lohsvar": {
+      "spearman": 0.1856785439546548,
+      "auc": 0.6591286404464777
      }
     },
     {
@@ -104,6 +116,10 @@
      "mdsa": {
       "spearman": 0.18859264118388847,
       "auc": 0.644728158183358
+     },
+     "lohsvar": {
+      "spearman": 0.18063223283064642,
+      "auc": 0.6566029447109826
      }
     },
     {
@@ -130,6 +146,10 @@
      "mdsa": {
       "spearman": 0.18880388468816384,
       "auc": 0.6425082479189413
+     },
+     "lohsvar": {
+      "spearman": 0.18093720291000584,
+      "auc": 0.6564765008443687
      }
     },
     {
@@ -156,6 +176,10 @@
      "mdsa": {
       "spearman": 0.18931362011194186,
       "auc": 0.6429773011341704
+     },
+     "lohsvar": {
+      "spearman": 0.18680534557099016,
+      "auc": 0.6605979527768019
      }
     }
    ],
@@ -193,6 +217,10 @@
     "mdsa": {
      "spearman": 0.46702627062574265,
      "auc": 0.7884093982873411
+    },
+    "lohsvar": {
+     "spearman": 0.7223952116809214,
+     "auc": 0.8973527108551281
     }
    },
    "leakfree": [
@@ -220,6 +248,10 @@
      "mdsa": {
       "spearman": 0.4468232112511817,
       "auc": 0.784242113171627
+     },
+     "lohsvar": {
+      "spearman": 0.6041507944132593,
+      "auc": 0.8680076166851313
      }
     },
     {
@@ -246,6 +278,10 @@
      "mdsa": {
       "spearman": 0.4512105977538536,
       "auc": 0.7865901635057294
+     },
+     "lohsvar": {
+      "spearman": 0.6102914942488383,
+      "auc": 0.8707388757099093
      }
     },
     {
@@ -272,6 +308,10 @@
      "mdsa": {
       "spearman": 0.4443326814214249,
       "auc": 0.7865794131781529
+     },
+     "lohsvar": {
+      "spearman": 0.5951317936653641,
+      "auc": 0.8659778409402782
      }
     },
     {
@@ -298,6 +338,10 @@
      "mdsa": {
       "spearman": 0.45090448027048485,
       "auc": 0.7826548938323536
+     },
+     "lohsvar": {
+      "spearman": 0.6024847842210026,
+      "auc": 0.8635305730317661
      }
     },
     {
@@ -324,6 +368,10 @@
      "mdsa": {
       "spearman": 0.44687985690016935,
       "auc": 0.7861407439683386
+     },
+     "lohsvar": {
+      "spearman": 0.606754900784519,
+      "auc": 0.870651781136766
      }
     }
    ],
@@ -361,6 +409,10 @@
     "mdsa": {
      "spearman": 0.3680769046790462,
      "auc": 0.6930183315516099
+    },
+    "lohsvar": {
+     "spearman": 0.7996958535950485,
+     "auc": 0.9298919270318473
     }
    },
    "leakfree": [
@@ -388,6 +440,10 @@
      "mdsa": {
       "spearman": 0.35731328596596246,
       "auc": 0.6919102093321366
+     },
+     "lohsvar": {
+      "spearman": 0.69838911467144,
+      "auc": 0.8824374219858884
      }
     },
     {
@@ -414,6 +470,10 @@
      "mdsa": {
       "spearman": 0.3577517866310674,
       "auc": 0.692141667233178
+     },
+     "lohsvar": {
+      "spearman": 0.6979771356703669,
+      "auc": 0.881537321273389
      }
     },
     {
@@ -440,6 +500,10 @@
      "mdsa": {
       "spearman": 0.36065643421207366,
       "auc": 0.6919796461401262
+     },
+     "lohsvar": {
+      "spearman": 0.6893492433015966,
+      "auc": 0.8751871953798811
      }
     },
     {
@@ -466,6 +530,10 @@
      "mdsa": {
       "spearman": 0.35856865671554045,
       "auc": 0.6914773263776085
+     },
+     "lohsvar": {
+      "spearman": 0.6961445003181042,
+      "auc": 0.8801230378922715
      }
     },
     {
@@ -492,6 +560,10 @@
      "mdsa": {
       "spearman": 0.3574671276514475,
       "auc": 0.690664282462498
+     },
+     "lohsvar": {
+      "spearman": 0.7010476260547692,
+      "auc": 0.8804563806421835
      }
     }
    ],
@@ -529,6 +601,10 @@
     "mdsa": {
      "spearman": 0.42217518695234596,
      "auc": 0.690853118925338
+    },
+    "lohsvar": {
+     "spearman": 0.6879735332462766,
+     "auc": 0.7982994985272889
     }
    },
    "leakfree": [
@@ -556,6 +632,10 @@
      "mdsa": {
       "spearman": 0.3850885189564948,
       "auc": 0.6922249567844785
+     },
+     "lohsvar": {
+      "spearman": 0.4647643209700901,
+      "auc": 0.7219407439525676
      }
     },
     {
@@ -582,6 +662,10 @@
      "mdsa": {
       "spearman": 0.37706519618387757,
       "auc": 0.6890688937146557
+     },
+     "lohsvar": {
+      "spearman": 0.4739883574079003,
+      "auc": 0.7346355002877335
      }
     },
     {
@@ -608,6 +692,10 @@
      "mdsa": {
       "spearman": 0.38740833354896653,
       "auc": 0.6851619322353809
+     },
+     "lohsvar": {
+      "spearman": 0.4778841012427237,
+      "auc": 0.7251815871725935
      }
     },
     {
@@ -634,6 +722,10 @@
      "mdsa": {
       "spearman": 0.38522462338523394,
       "auc": 0.680703253647021
+     },
+     "lohsvar": {
+      "spearman": 0.464958689897875,
+      "auc": 0.7203813393973582
      }
     },
     {
@@ -660,6 +752,10 @@
      "mdsa": {
       "spearman": 0.37949713139294855,
       "auc": 0.6920689092600677
+     },
+     "lohsvar": {
+      "spearman": 0.45408500216457853,
+      "auc": 0.7181837182002868
      }
     }
    ],
@@ -697,6 +793,10 @@
     "mdsa": {
      "spearman": 0.16106718545763954,
      "auc": 0.5815611018001149
+    },
+    "lohsvar": {
+     "spearman": 0.7264542161179804,
+     "auc": 0.8326880062387654
     }
    },
    "leakfree": [
@@ -724,6 +824,10 @@
      "mdsa": {
       "spearman": 0.15476231850167724,
       "auc": 0.5832426538108356
+     },
+     "lohsvar": {
+      "spearman": 0.5410259031697152,
+      "auc": 0.7763708831434963
      }
     },
     {
@@ -750,6 +854,10 @@
      "mdsa": {
       "spearman": 0.15091335015679178,
       "auc": 0.5768334105089037
+     },
+     "lohsvar": {
+      "spearman": 0.5406027381287983,
+      "auc": 0.779165629096154
      }
     },
     {
@@ -776,6 +884,10 @@
      "mdsa": {
       "spearman": 0.14796856665765304,
       "auc": 0.5800879158601355
+     },
+     "lohsvar": {
+      "spearman": 0.5414787068331476,
+      "auc": 0.7796394915795299
      }
     },
     {
@@ -802,6 +914,10 @@
      "mdsa": {
       "spearman": 0.1472654521989324,
       "auc": 0.5800467231794647
+     },
+     "lohsvar": {
+      "spearman": 0.5350879339112965,
+      "auc": 0.7749787042809319
      }
     },
     {
@@ -828,6 +944,10 @@
      "mdsa": {
       "spearman": 0.15947973524318246,
       "auc": 0.5842168979639134
+     },
+     "lohsvar": {
+      "spearman": 0.5374423215892636,
+      "auc": 0.7751695475283739
      }
     }
    ],
@@ -865,6 +985,10 @@
     "mdsa": {
      "spearman": 0.22327542262928815,
      "auc": 0.6189026476885611
+    },
+    "lohsvar": {
+     "spearman": 0.5565095098531039,
+     "auc": 0.7937051563305497
     }
    },
    "leakfree": [
@@ -892,6 +1016,10 @@
      "mdsa": {
       "spearman": 0.20859213176132121,
       "auc": 0.6122742399542024
+     },
+     "lohsvar": {
+      "spearman": 0.47056201875444004,
+      "auc": 0.7615682658453526
      }
     },
     {
@@ -918,6 +1046,10 @@
      "mdsa": {
       "spearman": 0.20733270123046169,
       "auc": 0.617032290094461
+     },
+     "lohsvar": {
+      "spearman": 0.4761502543383526,
+      "auc": 0.7625330212974978
      }
     },
     {
@@ -944,6 +1076,10 @@
      "mdsa": {
       "spearman": 0.21437373941130303,
       "auc": 0.6168636310306662
+     },
+     "lohsvar": {
+      "spearman": 0.4714645731770708,
+      "auc": 0.7648358322095354
      }
     },
     {
@@ -970,6 +1106,10 @@
      "mdsa": {
       "spearman": 0.21054715507537955,
       "auc": 0.6132252863480515
+     },
+     "lohsvar": {
+      "spearman": 0.46882569908657235,
+      "auc": 0.7587690432515832
      }
     },
     {
@@ -996,6 +1136,10 @@
      "mdsa": {
       "spearman": 0.20786944059664114,
       "auc": 0.6157115370476409
+     },
+     "lohsvar": {
+      "spearman": 0.46999785130632377,
+      "auc": 0.7612251816335923
      }
     }
    ],
@@ -1033,6 +1177,10 @@
     "mdsa": {
      "spearman": 0.3689835266054929,
      "auc": 0.6683702837663681
+    },
+    "lohsvar": {
+     "spearman": 0.5189448423334302,
+     "auc": 0.7138439291242273
     }
    },
    "leakfree": [
@@ -1060,6 +1208,10 @@
      "mdsa": {
       "spearman": 0.3539848007530486,
       "auc": 0.6678239604022705
+     },
+     "lohsvar": {
+      "spearman": 0.45078493640466466,
+      "auc": 0.7097818600620325
      }
     },
     {
@@ -1086,6 +1238,10 @@
      "mdsa": {
       "spearman": 0.35270111557190803,
       "auc": 0.6644144025864654
+     },
+     "lohsvar": {
+      "spearman": 0.44734448977976454,
+      "auc": 0.7028711104257864
      }
     },
     {
@@ -1112,6 +1268,10 @@
      "mdsa": {
       "spearman": 0.352098573875644,
       "auc": 0.6689204087976615
+     },
+     "lohsvar": {
+      "spearman": 0.43837024879416747,
+      "auc": 0.7016319775782799
      }
     },
     {
@@ -1138,6 +1298,10 @@
      "mdsa": {
       "spearman": 0.3555387717971577,
       "auc": 0.6663429791034228
+     },
+     "lohsvar": {
+      "spearman": 0.4494163047950266,
+      "auc": 0.7048057049983227
      }
     },
     {
@@ -1164,6 +1328,10 @@
      "mdsa": {
       "spearman": 0.3522285992162143,
       "auc": 0.6679987457739265
+     },
+     "lohsvar": {
+      "spearman": 0.45897538544435235,
+      "auc": 0.7126316119381721
      }
     }
    ],
@@ -1201,6 +1369,10 @@
     "mdsa": {
      "spearman": 0.024210023905141678,
      "auc": 0.5216910755970943
+    },
+    "lohsvar": {
+     "spearman": 0.649798244108036,
+     "auc": 0.8565452458595139
     }
    },
    "leakfree": [
@@ -1228,6 +1400,10 @@
      "mdsa": {
       "spearman": 0.026823060528245225,
       "auc": 0.5192639861941067
+     },
+     "lohsvar": {
+      "spearman": 0.5815837477692901,
+      "auc": 0.8095422572032038
      }
     },
     {
@@ -1254,6 +1430,10 @@
      "mdsa": {
       "spearman": 0.02507476131429451,
       "auc": 0.5144306238256118
+     },
+     "lohsvar": {
+      "spearman": 0.5792437404056092,
+      "auc": 0.8117155848489904
      }
     },
     {
@@ -1280,6 +1460,10 @@
      "mdsa": {
       "spearman": 0.025102428264147082,
       "auc": 0.5242335555129005
+     },
+     "lohsvar": {
+      "spearman": 0.5847161219660203,
+      "auc": 0.8147580207464753
      }
     },
     {
@@ -1306,6 +1490,10 @@
      "mdsa": {
       "spearman": 0.023319871396046056,
       "auc": 0.5183208267268045
+     },
+     "lohsvar": {
+      "spearman": 0.5825195146951327,
+      "auc": 0.8130708915675846
      }
     },
     {
@@ -1332,6 +1520,10 @@
      "mdsa": {
       "spearman": 0.0230269177119005,
       "auc": 0.5158774362430023
+     },
+     "lohsvar": {
+      "spearman": 0.5764822749570776,
+      "auc": 0.8104457108965816
      }
     }
    ],
@@ -1361,6 +1553,25 @@
    "list": [
     "SYN-BUG: Tok-Prob vs Output entropy (5/5 seeds)",
     "SYN-BUG: Output entropy vs MDSA (pre-gen. control) (5/5 seeds)",
+    "MODEL-EX: Tok-Prob vs Output entropy (5/5 seeds)",
+    "MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds)"
+   ]
+  },
+  "g/spearman": {
+   "n_flip": 2,
+   "n_pairs": 48,
+   "n_top_change": 1,
+   "list": [
+    "TOPIC-CLS: Output entropy vs LOHSvar (5/5 seeds)",
+    "MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds)"
+   ]
+  },
+  "g/auc": {
+   "n_flip": 3,
+   "n_pairs": 48,
+   "n_top_change": 0,
+   "list": [
+    "SYN-BUG: Tok-Prob vs Output entropy (5/5 seeds)",
     "MODEL-EX: Tok-Prob vs Output entropy (5/5 seeds)",
     "MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds)"
    ]
@@ -1594,6 +1805,234 @@
      "mdsa"
     ]
    ]
+  },
+  "g/spearman": {
+   "syntactic_bug_detection": [
+    [
+     "tokent",
+     "tokprob",
+     "lohsvar",
+     "ansent"
+    ],
+    [
+     "tokent",
+     "tokprob",
+     "lohsvar",
+     "ansent"
+    ]
+   ],
+   "spell_check": [
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "github_typo_check": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "json_repair": [
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "pos_detection": [
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "topic_classification": [
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "adding_odd_numbers": [
+    [
+     "ansent",
+     "tokprob",
+     "lohsvar",
+     "tokent"
+    ],
+    [
+     "ansent",
+     "tokprob",
+     "lohsvar",
+     "tokent"
+    ]
+   ],
+   "model_name_extraction": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "tokent",
+     "ansent",
+     "tokprob"
+    ]
+   ]
+  },
+  "g/auc": {
+   "syntactic_bug_detection": [
+    [
+     "tokent",
+     "lohsvar",
+     "ansent",
+     "tokprob"
+    ],
+    [
+     "tokent",
+     "lohsvar",
+     "tokprob",
+     "ansent"
+    ]
+   ],
+   "spell_check": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "github_typo_check": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "json_repair": [
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "ansent",
+     "lohsvar",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "pos_detection": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "topic_classification": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ]
+   ],
+   "adding_odd_numbers": [
+    [
+     "ansent",
+     "tokprob",
+     "lohsvar",
+     "tokent"
+    ],
+    [
+     "ansent",
+     "tokprob",
+     "lohsvar",
+     "tokent"
+    ]
+   ],
+   "model_name_extraction": [
+    [
+     "lohsvar",
+     "ansent",
+     "tokent",
+     "tokprob"
+    ],
+    [
+     "lohsvar",
+     "tokent",
+     "tokprob",
+     "ansent"
+    ]
+   ]
   }
  },
  "drops": {
@@ -1625,6 +2064,13 @@
     -0.01070067018414451,
     -0.010745733065164754,
     -0.011297041402976394
+   ],
+   "lohsvar": [
+    -0.1036540104379051,
+    -0.10151632911806824,
+    -0.10554754563351176,
+    -0.1053790946304769,
+    -0.1039770848758696
    ],
    "tokprob_mean5": [
     -0.07079473999431854,
@@ -1670,6 +2116,13 @@
     -0.005852161064480665,
     -0.003305121474494438
    ],
+   "lohsvar": [
+    -0.04123188186591645,
+    -0.039117000101223806,
+    -0.04143084923477158,
+    -0.042890736116442715,
+    -0.04073747493037132
+   ],
    "tokprob_mean5": [
     -0.0349902500762853,
     -0.03455503986383021,
@@ -1683,6 +2136,76 @@
     -0.030310826057049364,
     -0.030142171192690054,
     -0.028931923174205343
+   ]
+  }
+ },
+ "loh_rank": {
+  "spearman": {
+   "syntactic_bug_detection": [
+    3,
+    3
+   ],
+   "spell_check": [
+    2,
+    2
+   ],
+   "github_typo_check": [
+    1,
+    1
+   ],
+   "json_repair": [
+    2,
+    2
+   ],
+   "pos_detection": [
+    2,
+    2
+   ],
+   "topic_classification": [
+    2,
+    1
+   ],
+   "adding_odd_numbers": [
+    3,
+    3
+   ],
+   "model_name_extraction": [
+    1,
+    1
+   ]
+  },
+  "auc": {
+   "syntactic_bug_detection": [
+    2,
+    2
+   ],
+   "spell_check": [
+    1,
+    1
+   ],
+   "github_typo_check": [
+    1,
+    1
+   ],
+   "json_repair": [
+    2,
+    2
+   ],
+   "pos_detection": [
+    1,
+    1
+   ],
+   "topic_classification": [
+    1,
+    1
+   ],
+   "adding_odd_numbers": [
+    3,
+    3
+   ],
+   "model_name_extraction": [
+    1,
+    1
    ]
   }
  }
