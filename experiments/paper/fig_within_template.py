@@ -5,7 +5,7 @@ Within-template AUC uses only PASS/FAIL pairs of test inputs with the same Loghu
 samples 5-9 (log_parsing_followups.py jobs); clean label = > 20 of 40 extra samples (engine seed 1;
 log_parsing_label_noise.py jobs). Same systems (>= 20 same-template pairs on every seed) and test sets
 (fair_leakfree, standard split). Ceiling = a perfect predictor of the original 10-sample pass rate, scored
-against the clean label. Gemma has no 40-sample run.
+against the clean label. Gemma: same, from its own 40-sample run (2026-11-09).
 """
 import json
 import statistics
@@ -74,13 +74,13 @@ def _finish(fig, AX, plt):
     out = C.PAPER / "figures" / "within_template.pdf"
     fig.savefig(out)
     fig.savefig(out.with_suffix(".png"), dpi=130)
-    C.caption("within_template", "fig_within_template.py", "Within-template ROC-AUC (only PASS/FAIL pairs of test inputs with the same Loghub template), "
-              "Llama-3.1-8B, against the noisy label used everywhere else (samples 5--9, PASS if $\\geq$3 of 5) and a "
-              "clean label (more than 20 of 40 extra samples, vLLM engine seed 1, never seen by any method). Same "
-              "systems (at least 20 same-template pairs on every seed: 7 at @100, 6 at @200) and same test sets "
-              "(fair\\_leakfree, standard split, balanced sampling, layer 16). Bars: mean $\\pm$ std over 5 seeds of "
-              "the macro mean. Dashed: a perfect predictor of the original 10-sample pass rate, scored against the clean "
-              "label. Template lookup is 0.5 by construction. No 40-sample run exists for Gemma.")
+    C.caption("within_template", "fig_within_template.py", "Within-template ROC-AUC (only PASS/FAIL pairs of test inputs with the same Loghub template) "
+              "against the noisy label used everywhere else (samples 5--9, PASS if $\\geq$3 of 5) and a clean label (more than "
+              "20 of 40 extra samples, vLLM engine seed 1, never seen by any method). Top: Llama-3.1-8B (7 systems at @100, "
+              "6 at @200); bottom: Gemma-2-9B (6 and 6): systems with at least 20 same-template pairs on every seed. Same test "
+              "sets as the main table (fair\\_leakfree, standard split, balanced sampling, fair layer). Bars: mean $\\pm$ std "
+              "over 5 seeds of the macro mean. Dashed: a perfect predictor of the original 10-sample pass rate, scored "
+              "against the clean label. Template lookup is 0.5 by construction.")
     print("wrote", out)
 
 

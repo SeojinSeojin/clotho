@@ -2,9 +2,9 @@
 
 ROC-AUC, fair_leakfree (label from samples 5-9, post-generation scores from samples 0-4), mean over 5 seeds of the macro mean; pairs are @100 / @200; "every seed" = paired difference of one sign on all 5. Llama-3.1-8B: 13 systems; Gemma-2-9B: 12.
 
-**1. Failures are template-level.** 95 to 99% of the reliable pass-rate variance lies between Loghub templates (Llama, 40 extra samples). Within a template every predictor is near chance against the 5-sample label. Against a clean 40-sample label Clotho rises from 0.555 to 0.609 (ceiling 0.698), so a small within-template signal exists (Figure within_template). On template-disjoint splits every lookup is at chance and Clotho ties MDSA.
+**1. Failures are template-level.** With 40 extra samples per input, more than 92% of the reliable pass-rate variance lies between Loghub templates on 21 of 25 model x system pairs. Within a template every predictor is near chance against the 5-sample label. Against a clean 40-sample label Clotho rises from 0.555 to 0.609 (Llama; ceiling 0.698) and from 0.558 to 0.594 (Gemma; 0.727), so a small within-template signal exists (Figure within_template).
 
-**2. Template-capped suites: Clotho beats lookups.** Clotho reaches 0.749 / 0.794 (Llama) and 0.780 / 0.832 (Gemma), ahead of MDSA and Lookup (Drain) on every seed (Table main; A12 0.60 to 0.77).
+**2. Template-capped suites: Clotho beats lookups.** Clotho reaches 0.749 / 0.794 (Llama) and 0.780 / 0.832 (Gemma), ahead of MDSA and Lookup (Drain) on every seed (Table main).
 
 **3. Natural logs: Drain lookup ties Clotho on AUC, but Clotho finds more failures per check at small budgets.** On uniform raw-line samples, Lookup (Drain) ties Clotho for Llama (-0.006 / -0.016) and beats it for Gemma (-0.037 / -0.057, every seed). With B labels plus B checks, Clotho finds more failures than a Drain-first strategy on every seed (Figure budget). The gain comes from active sampling: Clotho's labelled inputs hold more failures. Its ranking adds nothing beyond a Drain lookup on these suites. At B = 200, Drain-lookup ranking beats Clotho (+43 Llama, +111 Gemma failures). On capped suites both sampling and ranking contribute.
 

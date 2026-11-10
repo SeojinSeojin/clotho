@@ -290,6 +290,10 @@ def gemma_section():
         L_ += ["### 9.6 Natural-distribution check (12 systems)\n"]
         L_ += section("log_parsing_natural13_gemma.md", "## ROC-AUC @100", keep_heading=True, until="Per system")
         L_ += section("log_parsing_natural13_gemma.md", "## ROC-AUC @200", keep_heading=True, until="Per system")
+    if (REP / "log_parsing_label_noise_gemma.md").exists():
+        L_ += ["### 9.7 Label noise (40 extra samples, engine seed 1; `log_parsing_label_noise.py`, 2026-11-09 night)\n"]
+        L_ += [l for l in (REP / "log_parsing_label_noise_gemma.md").read_text().splitlines() if l.startswith("Median")]
+        L_ += section("log_parsing_label_noise_gemma.md", "## 3.")[3:] + [""]
     L_ += [READ.get("gemma", ""), ""]
     return L_
 

@@ -437,6 +437,17 @@ Paired per seed, natural, Clotho minus LOHSvar*: +0.193 ± 0.015 (min +0.174, ma
 Paired per seed, suite (same 12 systems), Clotho minus Lookup (Drain): +0.058 ± 0.006  
 Paired per seed, suite (same 12 systems), Clotho minus MDSA: +0.095 ± 0.003  
 
+### 9.7 Label noise (40 extra samples, engine seed 1; `log_parsing_label_noise.py`, 2026-11-09 night)
+
+Median within-template reliability of the 40-sample pass rate: 0.76 (overall: 0.99).
+| method | within @100 noisy | within @100 clean | within @200 noisy | within @200 clean |
+|---|---|---|---|---|
+| Clotho | 0.558 ± 0.014 | 0.594 ± 0.017 | 0.547 ± 0.016 | 0.588 ± 0.008 |
+| MDSA | 0.515 ± 0.009 | 0.523 ± 0.025 | 0.517 ± 0.022 | 0.516 ± 0.038 |
+| LOHSvar | 0.526 ± 0.009 | 0.568 ± 0.010 | 0.536 ± 0.003 | 0.587 ± 0.019 |
+| Output entropy | 0.554 ± 0.010 | 0.588 ± 0.008 | 0.549 ± 0.010 | 0.605 ± 0.013 |
+
+
 Reading: every Llama finding about the pre-generation methods and lookups holds for Gemma-2-9B on 12 systems. On the standard split Clotho (0.780 / 0.832) beats MDSA (+0.063 / +0.095) and Lookup (Drain) (+0.074 / +0.058) on every seed, also on the 9 held-out systems and with random reference sets for the baselines; on the template-disjoint split the lookups fall to chance and Clotho ties MDSA (+0.004 / +0.010). Leakage-free output entropy (0.821 / 0.818) beats Clotho at @100 (-0.040) but Clotho is ahead at @200 on every seed (+0.014, smallest +0.006); output entropy again needs 4 samples to match Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, and Clotho beats output entropy by about 0.1 (+0.108 / +0.093); LOHSvar (0.669 / 0.662) and Tok-Prob (0.478 / 0.473) stay far below Clotho there too. The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / 0.672, Sem-Ent 0.617 / 0.612, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480). Leakage again inflates the post-generation scores (net output entropy +0.064 / +0.066, Sem-Ent +0.025 / +0.029, LOHSvar +0.022 / +0.020), less than for Llama. With Gemma timings on the same L40S, the 4 samples output entropy needs to match Clotho at @100 cost 1.5x Clotho's batched HF forward pass (layers 1-21), 6.9x a vLLM prefill and 22x online (batch 1).
 
 ## 10. Paper artefacts
