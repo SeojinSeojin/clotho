@@ -54,6 +54,12 @@ def main():
     out = C.PAPER / "figures" / "clotho_vs_lookup.pdf"
     fig.savefig(out)
     fig.savefig(out.with_suffix(".png"), dpi=130)
+    C.caption("clotho_vs_lookup", "fig_clotho_vs_lookup.py", "Clotho minus Lookup (Drain), per system, against the share of test inputs whose Drain group already "
+              "occurs among the non-initial reference inputs; template-capped suites (circles) vs natural samples "
+              "(squares), both models, standard split, reference sizes 100 and 200. Small markers: one system, mean over "
+              "5 seeds; large hollow markers: mean over systems; grey lines join a system's two points. Drain with the "
+              "Loghub-2.0 benchmark settings, run on each suite's 500 messages. Systems: Llama 13 capped / 13 natural, "
+              "Gemma 12 / 12. " + C.SETTING_TEXT)
     print("wrote", out)
 
 

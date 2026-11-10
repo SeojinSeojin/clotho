@@ -61,6 +61,13 @@ def main():
     out = C.PAPER / "figures" / "within_template.pdf"
     fig.savefig(out)
     fig.savefig(out.with_suffix(".png"), dpi=130)
+    C.caption("within_template", "fig_within_template.py", "Within-template ROC-AUC (only PASS/FAIL pairs of test inputs with the same Loghub template), "
+              "Llama-3.1-8B, against the noisy label used everywhere else (samples 5--9, PASS if $\\geq$3 of 5) and a "
+              "clean label (more than 20 of 40 extra samples, vLLM engine seed 1, never seen by any method). Same "
+              "systems (at least 20 same-template pairs on every seed: 7 at @100, 6 at @200) and same test sets "
+              "(fair\\_leakfree, standard split, balanced sampling, layer 16). Bars: mean $\\pm$ std over 5 seeds of "
+              "the macro mean. Dashed: a perfect predictor of the original 10-sample pass rate, scored against the clean "
+              "label. Template lookup is 0.5 by construction. No 40-sample run exists for Gemma.")
     print("wrote", out)
 
 

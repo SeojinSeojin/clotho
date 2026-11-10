@@ -73,6 +73,12 @@ def main():
     out = C.PAPER / "figures" / "cost_auc.pdf"
     fig.savefig(out)
     fig.savefig(out.with_suffix(".png"), dpi=130)
+    C.caption("cost_auc", "fig_cost_auc.py", "Cost per test input vs ROC-AUC, standard split, reference sizes 100 and 200. Cost: seconds per input on one "
+              "NVIDIA L40S, offline batch, mean over HDFS, Hadoop, BGL and OpenStack. Clotho and MDSA: batched HF forward "
+              "pass (batch 32) through layers 1--16 (Llama) / 1--21 (Gemma) plus PCA/GMM or PCA/Mahalanobis scoring; "
+              "Lookup (Drain): Drain parse; output entropy: vLLM generation of $k$ samples for all 500 prompts at once "
+              "(entropy over the parsed templates of samples $0..k-1$); Clotho + output entropy: rank average, cost = "
+              "sum. " + C.SETTING_TEXT)
     print("wrote", out)
 
 
