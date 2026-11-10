@@ -1,6 +1,6 @@
 # PROGRESS
 
-Last updated: 2026-11-09 (night). Trimmed on 2026-11-09: superseded results (Phase 2 random/layer-21 runs, old Phase 3 setup), finished estimates (Gemma, 2,000-input scaling) and resolved issues were removed; they are in git history (`git log -p PROGRESS.md`) and in the reports.
+Last updated: 2026-11-09 (night, all tasks done). Trimmed on 2026-11-09: superseded results (Phase 2 random/layer-21 runs, old Phase 3 setup), finished estimates (Gemma, 2,000-input scaling) and resolved issues were removed; they are in git history (`git log -p PROGRESS.md`) and in the reports.
 
 Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_parsing_paper_numbers.py`). Paper files: `experiments/paper/` (one script per table/figure, `results_outline.md`). Main setting **fair_leakfree** everywhere: balanced reference sampling (the paper's method), fair layer (Llama 16, Gemma 21), label from samples 5-9 (PASS if >= 3 of 5 strict template matches), post-generation scores from samples 0-4; rules_template prompt, strict match. Every number is mean ± std over 5 seeds of the per-seed macro mean over systems (Llama 13 systems, Gemma 12).
 
@@ -17,9 +17,14 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 6. A, LLMLog's selection score as a failure ranking: 0.620-0.720 @100, below Clotho on every seed in all four model x suite cells; almost entirely its confidence part.
 7. B, AdaParser's corrector on label samples 5-9 fixes 5.9-15.6% of failing inputs and breaks 97-219 passing ones; against the corrected label Clotho keeps or raises its AUC, and failures in its top 10% are the least fixable (2.1-4.9% fixed vs 6.0-15.3% base).
 8. C, fixed budget (B labels + B checks): Clotho alone finds the most failures on natural suites (every budget, both models, every seed); on capped suites Drain-propagate + Clotho ties it.
-9. D, leave-one-system-out: pooled-source Clotho 0.44-0.66; normalisation/CORAL do not help; a probe on source labels 0.67-0.71 without target labels; refit with target labels catches up with within-system Clotho @100 (paired results: see the night summary).
+9. D, leave-one-system-out: pooled-source Clotho 0.44-0.66; normalisation/CORAL do not help; a probe on source labels 0.67-0.71 without target labels; refit with target labels catches up with within-system Clotho @100 (paired: item 10).
 
-**2026-11-09 night (in progress):** D paired, C decomposition, statistics (SK-ESD, A12), paper artefacts for A-D, outline update, Gemma label-noise run. Summary added at the end of the session.
+**2026-11-09 night (reports `log_parsing_transfer_paired.md`, `log_parsing_strategy_explained.md`, `log_parsing_stats.md`; `paper_numbers.md` sections 9.7, 12, 14, 15).**
+10. D paired (identical target inputs, excluding the k labels and within-system Clotho's 90 labels): the protocol-chosen source model refit with k target labels beats within-system Clotho @100 on every seed from k = 25 (Llama capped) or k = 50 (Llama natural, Gemma natural); Gemma capped only ties at k = 50 (2/5 seeds). It beats within-system Clotho with the same k on every seed at every k. The logistic probe (not protocol-chosen) is similar (smallest k: 25, 50, none, none).
+11. C explained: Clotho's budget advantage comes from active sampling (what it labels holds more failures: +36 to +96 failures with Clotho's ranking fixed, 11 of 12 cells on 5/5 seeds). Its ranking beats a Drain-lookup ranking only on capped suites (+41 to +111); on natural suites Drain-lookup ranking ties it at B = 50/100 and beats it at B = 200 (random labels + lookup: +43 Llama, +111 Gemma).
+12. Statistics: Scott-Knott ESD (Python reimplementation) and A12 over (system, seed). Capped: Clotho in the top group in 3 of 4 cells, above MDSA and every lookup; natural: Gemma's lookups form the top group alone. A12 pools systems, so it can call an every-seed paired gap small.
+13. Paper artefacts: `table_literature.py`, `fig_budget.py`, `fig_transfer.py`; figure 3 now has a Gemma row. `results_outline.md` rewritten (492 words, six claims).
+14. Gemma label noise (40 extra samples): replicates Llama. More than 92% of the reliable variance lies between templates on 10 of 12 systems; within-template Clotho 0.558 -> 0.594 against the clean label (ceiling 0.727), MDSA flat.
 
 ## Main table (Llama, fair_leakfree, 13 systems)
 
@@ -45,7 +50,7 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation methods shift +0.024 / +0.021 (noisier 5-sample label); net of that, output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
 
 ## In progress
-- See the night summary line above.
+- Nothing running.
 
 ## Next
 - Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.
