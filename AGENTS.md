@@ -59,8 +59,9 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `experiments/log_parsing_prompt_compare.py` | messages_template vs rules_template with 5 seeds |
 | `experiments/log_parsing_extra_samples.py`, `experiments/log_parsing_label_noise.py` | 40 extra vLLM samples per input (seed 1, `.venv-vllm`) and the label-noise vs within-template-signal analysis |
 | `experiments/log_parsing_heldout.py`, `log_parsing_fairness.py`, `log_parsing_cross_fair.py`, `log_parsing_qualitative.py` | 2026-11-08: held-out table (10 non-tuning systems), baselines with random reference sets, cross-system under fair_leakfree, qualitative examples |
-| `experiments/log_parsing_timing.py` (`hf` in `.venv`, `vllm` in `.venv-vllm`), `log_parsing_cost_quality.py` | Wall-clock per input on the L40S; output entropy from k samples vs Clotho (table + plot) |
-| `experiments/log_parsing_natural.py` | Natural-distribution check, all 13 systems: uniform raw-line samples (`loghub_<sys>_nat500`, deliberately not registered in `supported_datasets`), gen, eval -> `reports/log_parsing_natural13.md` |
+| `experiments/log_parsing_timing.py` (`hf` in `.venv`, `vllm` in `.venv-vllm`), `log_parsing_cost_quality.py` | Wall-clock per input on the L40S; output entropy from k samples vs Clotho (table + plot); both follow `CLOTHO_MODEL` |
+| `experiments/paper/` | Paper artefacts: `table_*.py` -> `tables/*.tex`, `fig_*.py` -> `figures/*.pdf` + caption `figures/*.tex`, shared loaders in `common.py`; `results_outline.md` |
+| `experiments/log_parsing_natural.py` | Natural-distribution check, all 13 systems: uniform raw-line samples (`loghub_<sys>_nat500`, deliberately not registered in `supported_datasets`), gen, eval, post (Tok-Prob/LOHSvar/Random rows) -> `reports/log_parsing_natural13.md` |
 | `experiments/model_cfg.py` | Model switch for the log_parsing scripts: `CLOTHO_MODEL=llama|gemma` (HF id, layers, dropped systems); non-Llama outputs in `results_phase3_<model>/`, `reports/*_<model>.md` |
 | `experiments/log_parsing_pass_rates.py` | PASS rates per system for the current model and the 10-90% drop rule |
 | `experiments/log_parsing_paper_numbers.py` | Builds `reports/paper_numbers.md`, the single source of numbers for the paper |

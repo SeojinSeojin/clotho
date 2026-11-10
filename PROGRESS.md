@@ -1,8 +1,17 @@
 # PROGRESS
 
-Last updated: 2026-11-08
+Last updated: 2026-11-09
 
-**Summary (2026-11-08, second session): natural distribution on 13 systems, Gemma-2-9B core.** Numbers: `experiments/reports/paper_numbers.md` sections 8 (Llama natural, 13 systems) and 9 (Gemma). Git push works again (gh installed by the user).
+**Summary (2026-11-09): Gemma finished, natural post-generation rows, paper artefacts.** Numbers: `experiments/reports/paper_numbers.md` (regenerated; new section 10). Paper files: `experiments/paper/` (`tables/*.tex`, `figures/*.pdf` + caption `figures/*.tex`, `results_outline.md`; one script per artefact).
+
+What changed this session:
+1. Gemma semantic entropy (12 systems) is in: Sem-Ent 0.617 / 0.612 leak-free (0.658 / 0.658 leaky; net leakage +0.025 / +0.029). `phase3_final_gemma.md` and `heldout_gemma.md` regenerated.
+2. `log_parsing_timing.py` is model-aware (`CLOTHO_MODEL`); Gemma timings measured (`results_phase3_gemma/timing/`, parity min cosine 0.9997). Gemma cost-quality now has a cost axis: Clotho 0.035 s/input batched (forward pass through layer 21); output entropy needs 4 samples to match Clotho @100, which costs 1.5x Clotho's batched HF pass, 6.9x a same-engine vLLM prefill, 22x online (Llama: 2.4x / 8.3x / 36x).
+3. Post-generation pass (no SE) on the natural suites for both models; `log_parsing_natural.py post` added Tok-Prob, LOHSvar and Random rows after checking every stored row reproduces exactly (existing natural numbers unchanged; per-system values match the Stage 8 report). Natural: LOHSvar 0.685 / 0.696 (Llama), 0.669 / 0.662 (Gemma); Tok-Prob at chance (0.47-0.50); Clotho ahead of LOHSvar on every seed (+0.146 / +0.149, +0.210 / +0.193).
+4. Paper artefacts: tables (a) main (both models, capped vs natural, @100/@200), (b) disjoint, (c) leakage, (d) cross-system; figures (1) cost vs AUC, (2) Clotho minus Lookup (Drain) vs Drain-seen share, (3) within-template AUC noisy vs clean label (Llama only). Bold only where the best beats the runner-up on every seed.
+5. Fixes: `log_parsing_natural.py eval --push` crashed on the sample-stats file outside `experiments/` (now not pushed; it is in git). `log_parsing_cost_quality.py` report text/paths are model-aware (Llama report regenerates byte-identical).
+
+**Earlier summary (2026-11-08, second session): natural distribution on 13 systems, Gemma-2-9B core.** Numbers: `experiments/reports/paper_numbers.md` sections 8 (Llama natural, 13 systems) and 9 (Gemma). Git push works again (gh installed by the user).
 
 Findings this session:
 1. Natural distribution, Llama, all 13 systems (`reports/log_parsing_natural13.md`): the 4-system Stage 8 result holds. Lookup (Drain) matches or beats Clotho (Clotho minus Lookup -0.006 ± 0.014 @100, -0.016 ± 0.014 @200; Clotho ahead on 6 and 4 of 13 systems), Clotho vs MDSA +0.016 / +0.007, and Clotho beats output entropy (k=5) on every seed (+0.042 / +0.061). Clotho + output entropy is the best score @100 (0.854, +0.016 ± 0.011 over the lookup, every seed) and ties the lookup @200. At @100 the Drain group of 59-100% of test inputs (100% on 7 of 13) is already in the reference set.
@@ -67,8 +76,10 @@ Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise lab
 - Nothing running.
 
 ## Next
-- Gemma post-generation (Tok-Prob, Tok-Ent, LOHSvar) finished for all 12 systems (`--no_se`), and the post rows, follow-ups (recomputed with LOHSvar), held-out and paper_numbers are regenerated. **Gemma Sem-Ent is not run**: `CLOTHO_MODEL=gemma python log_parsing_postgen.py -p rules_template --se_only --push`, then `phase3_final.py post` / `report`, `log_parsing_heldout.py` and `log_parsing_paper_numbers.py`.
-- Gemma timings (`log_parsing_timing.py hf/vllm`) were not measured, so the Gemma cost-quality report has no cost axis (quality vs k only). `log_parsing_timing.py` is still Llama-only.
+- Done 2026-11-09: Gemma Sem-Ent, Gemma timings and cost axis, natural post-generation rows (both models), paper tables/figures/outline. Nothing is pending from the earlier Next list except the optional items below.
+- Fresh machine: after `setup.sh`, also pull the Phase 3 job JSON (setup pulls only `data/` and `results_clotho*/`): `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"` in `experiments/sharded/`. Do not pull `reports/**` over the git copies (the RESULTS_REPO copies of 4 reports are older). `setup.sh` downloads only Llama; Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). setup's results pull failed once on a transient Hub error; rerunning `hub_sync.py pull-results` fixed it.
+- Paper: regenerate everything after any rerun with `python log_parsing_paper_numbers.py` and the 7 scripts in `experiments/paper/` (`table_*.py`, `fig_*.py`; matplotlib in `.venv`). No LaTeX on the server, so the `.tex` files were not compiled; they use booktabs and `\includegraphics` only.
+- Optional, not done: Gemma label-noise (40 extra samples; would give a Gemma panel for figure 3), Gemma messages_template, Gemma qualitative examples; disjoint-split version of figure 1 for Gemma.
 - Not done for Gemma: label-noise run (skipped on purpose), messages_template, qualitative examples.
 - Pushed (2026-11-08, second session): all local commits of the first 2026-11-08 session are on origin/main (`gh` installed by the user). The RESULTS_REPO bundle is no longer needed for restore.
 - Write-up: `experiments/reports/paper_numbers.md` is the single source of numbers. Regenerate it with `python log_parsing_paper_numbers.py` after any rerun.
