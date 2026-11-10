@@ -198,6 +198,68 @@ def job(args):
     return str(out), "ok"
 
 
+VARIANTS = {"randlab_clotho": "Random labels, Clotho ranking", "randlab_lookup": "Random labels, Drain lookup ranking",
+            "clotholab_lookup": "Clotho's labels, Drain lookup ranking", "clotholab_random": "Clotho's labels, random ranking"}
+
+
+def variants_job(path):
+    """2026-11-09 night: the missing cells of {random, Clotho} labelled set x {random, Drain lookup, Clotho} ranking.
+    Re-derives the random and Clotho labelled sets exactly as `job` does (asserts their stored counts reproduce)."""
+    import logging
+    import log_parsing_phase3_lib as L
+    import log_parsing_literature as T
+    path = Path(path)
+    d = json.loads(path.read_text())
+    if "rows" not in d or any(r["strategy"] in VARIANTS for r in d["rows"]):
+        return str(path), "skip"
+    logging.disable(logging.WARNING)
+    seed = d["seed"]
+    B = T.data(d["suite"], d["dataset"], d["system"])
+    H, sc, init_idx, n = B["H"], B["sc"], B["init_idx"], B["n"]
+    y = sc[:n] > L.PASS_THRESH
+    fail = ~y
+    groups = B["drain"][:n]
+    idx = np.arange(n)
+    np.random.seed(seed)
+    cr = L.clotho_run(H, sc, init_idx, idx, None, seed, ref_sizes=tuple(b + 10 for b in BUDGETS), method="balanced")
+    old = {(r["strategy"], r["budget"]): r for r in d["rows"]}
+    for b in BUDGETS:
+        rng = np.random.RandomState(seed + 9001 + b)
+        rlab = rng.choice(n, size=b, replace=False)
+        rperm = rng.permutation(n - b)
+        rest_r = np.array([i for i in idx if i not in set(rlab.tolist())])
+        assert int(fail[rlab].sum() + fail[rest_r[rperm[:b]]].sum()) == old[("random", b)]["found"]
+        clab = np.array([i for i in cr[b + 10]["ref"] if i < n])
+        rest_c = np.array([i for i in idx if i not in set(clab.tolist())])
+        assert int(fail[clab].sum()) == old[("clotho", b)]["found_labelled"]
+        tie_r = np.random.RandomState(seed + 7919 + b).rand(len(rest_r))
+        tie_c = np.random.RandomState(seed + 7919 + b).rand(len(rest_c))
+
+        def add(name, lab, rest, s, tie):
+            top = rest[np.lexsort((tie, s))[:b]]
+            seen = {groups[i] for i in lab}
+            d["rows"].append({"strategy": name, "budget": b, "found": int(fail[lab].sum() + fail[top].sum()),
+                              "found_labelled": int(fail[lab].sum()), "found_top": int(fail[top].sum()),
+                              "covered": float(np.mean([groups[i] in seen for i in np.where(fail)[0]]))})
+        scorer, Z = clotho_given_order(H, sc, init_idx, list(rlab), seed, b)
+        add("randlab_clotho", rlab, rest_r, scorer.score(Z[rest_r]) if scorer is not None else tie_r, tie_r)
+        add("randlab_lookup", rlab, rest_r, L.template_lookup(np.concatenate([init_idx, rlab]), rest_r, sc, B["drain"], init_idx), tie_r)
+        add("clotholab_lookup", clab, rest_c, L.template_lookup(cr[b + 10]["ref"], rest_c, sc, B["drain"], init_idx), tie_c)
+        add("clotholab_random", clab, rest_c, tie_c, tie_c)
+    path.write_text(json.dumps(d))
+    return str(path), "added"
+
+
+def add_variants(push=False, workers=10):
+    from multiprocessing import Pool
+    import log_parsing_literature as T
+    with Pool(workers) as p:
+        for path, st in p.imap_unordered(variants_job, sorted(str(f) for f in OUT.glob("*/*/seed*.json"))):
+            print(f"{st:>6}  {Path(path).relative_to(EXP)}", flush=True)
+    if push:
+        T._push([str(OUT.relative_to(EXP))], f"strategy variants {MC.MODEL}")
+
+
 def evaluate(push=False, workers=10, suites=("natural", "capped")):
     from multiprocessing import Pool
     import log_parsing_literature as T
@@ -266,6 +328,40 @@ def report(push=False):
                     d = [x - y for x, y in zip(f1, f2)]
                     J[key].setdefault("diff", {})[f"{a}-{c}@{b}"] = {"mean": statistics.mean(d), "std": statistics.stdev(d),
                                                                      "every_seed": all(x > 0 for x in d) or all(x < 0 for x in d)}
+            have_var = all(any(r["strategy"] == "randlab_clotho" for r in R[s][k]["rows"]) for s in kept for k in SEEDS)
+            if have_var:
+                cell = {("random", "random"): "random", ("random", "lookup"): "randlab_lookup", ("random", "clotho"): "randlab_clotho",
+                        ("clotho", "random"): "clotholab_random", ("clotho", "lookup"): "clotholab_lookup", ("clotho", "clotho"): "clotho"}
+                L_ += ["\nDecomposition (labelled set x ranking of the rest): failures found = in labelled + in top K. "
+                       "Rows: which B inputs get labelled (random, or Clotho's active sampling); columns: how the rest is ranked "
+                       "(random, Drain lookup on those labels, Clotho fitted on those labels).\n",
+                       "| B | labelled set | in labelled | top K: random | top K: Drain lookup | top K: Clotho | total: random | total: Drain lookup | total: Clotho |",
+                       "|---|---|---|---|---|---|---|---|---|"]
+                for b in BUDGETS:
+                    for lab in ("random", "clotho"):
+                        vals = {}
+                        for rk in ("random", "lookup", "clotho"):
+                            st = cell[(lab, rk)]
+                            for f in ("found_labelled", "found_top", "found"):
+                                vals[(rk, f)] = [sum(next(r[f] for r in R[s][k]["rows"] if r["strategy"] == st and r["budget"] == b)
+                                                     for s in kept) for k in SEEDS]
+                            J[key].setdefault("decomp", {}).setdefault(str(b), {})[f"{lab}|{rk}"] = {
+                                f: statistics.mean(vals[(rk, f)]) for f in ("found_labelled", "found_top", "found")} | {
+                                "found_seeds": vals[(rk, "found")]}
+                        L_.append(f"| {b} | {'Clotho (active)' if lab == 'clotho' else 'random'} | {fmt(vals[('random', 'found_labelled')])} | "
+                                  + " | ".join(fmt(vals[(rk, 'found_top')]) for rk in ("random", "lookup", "clotho")) + " | "
+                                  + " | ".join(fmt(vals[(rk, 'found')]) for rk in ("random", "lookup", "clotho")) + " |")
+                for b in BUDGETS:
+                    dd = J[key]["decomp"][str(b)]
+                    for nm, a, c in (("sampling (Clotho ranking)", "clotho|clotho", "random|clotho"),
+                                     ("sampling (lookup ranking)", "clotho|lookup", "random|lookup"),
+                                     ("Clotho vs lookup ranking (Clotho labels)", "clotho|clotho", "clotho|lookup"),
+                                     ("Clotho vs lookup ranking (random labels)", "random|clotho", "random|lookup")):
+                        d_ = [x - y for x, y in zip(dd[a]["found_seeds"], dd[c]["found_seeds"])]
+                        J[key].setdefault("decomp_diff", {})[f"{nm}@{b}"] = {"mean": statistics.mean(d_), "std": statistics.stdev(d_),
+                                                                             "pos": sum(x > 0 for x in d_)}
+                L_.append("\nDecomposition, paired differences in failures found (mean ± std; seeds with a > b): " + "; ".join(
+                    f"{k_} {v['mean']:+.1f} ± {v['std']:.1f} ({v['pos']}/5)" for k_, v in J[key]["decomp_diff"].items()) + "\n")
             L_.append("\nPaired differences in failures found (mean ± std over seeds): " + "; ".join(
                 f"{k} {v['mean']:+.1f} ± {v['std']:.1f}{' (every seed)' if v['every_seed'] else ''}" for k, v in J[key]["diff"].items()) + "\n")
     path = EXP / "reports" / "log_parsing_strategy_details.md"
@@ -278,12 +374,13 @@ def report(push=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["eval", "report"])
+    ap.add_argument("cmd", choices=["eval", "variants", "report"])
     ap.add_argument("--suite", nargs="*", default=["natural", "capped"])
     ap.add_argument("--workers", type=int, default=10)
     ap.add_argument("--push", action="store_true")
     a = ap.parse_args()
-    evaluate(a.push, a.workers, a.suite) if a.cmd == "eval" else report(a.push)
+    {"eval": lambda: evaluate(a.push, a.workers, a.suite), "variants": lambda: add_variants(a.push, a.workers),
+     "report": lambda: report(a.push)}[a.cmd]()
 
 
 if __name__ == "__main__":
