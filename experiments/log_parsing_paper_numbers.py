@@ -66,8 +66,13 @@ READ = {
               "Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho "
               "and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup "
               "beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, "
-              "and Clotho beats output entropy by about 0.1 (+0.108 / +0.093). The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / "
-              "0.672, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480; Sem-Ent not run for Gemma)."),
+              "and Clotho beats output entropy by about 0.1 (+0.108 / +0.093); LOHSvar (0.669 / 0.662) and Tok-Prob (0.478 / "
+              "0.473) stay far below Clotho there too. The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / "
+              "0.672, Sem-Ent 0.617 / 0.612, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480). Leakage again inflates the "
+              "post-generation scores (net output entropy +0.064 / +0.066, Sem-Ent +0.025 / +0.029, LOHSvar +0.022 / "
+              "+0.020), less than for Llama. With Gemma timings on the same L40S, the 4 samples output entropy needs "
+              "to match Clotho at @100 cost 1.5x Clotho's batched HF forward pass (layers 1-21), 6.9x a vLLM prefill "
+              "and 22x online (batch 1)."),
     "natural": ("Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: "
                 "29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs "
                 "in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 "
@@ -80,7 +85,9 @@ READ = {
                 "at @200 (-0.005 ± 0.007). Stage 8's 4-system result (`reports/log_parsing_natural.md`) holds on all 13 "
                 "systems: on the natural distribution, a Drain lookup over labelled reference lines matches Clotho, "
                 "and Clotho's value over cheap lookups lies in templates the reference set has not seen (the "
-                "template-capped suites and the disjoint split)."),
+                "template-capped suites and the disjoint split). The post-generation baselines added on 2026-11-09 stay well "
+                "below Clotho on the natural samples: LOHSvar 0.685 / 0.696 (Clotho ahead by +0.146 / +0.149 on every "
+                "seed) and Tok-Prob 0.504 / 0.492 (at chance)."),
 }
 
 
@@ -167,6 +174,13 @@ def build():
         L_ += section("log_parsing_natural13.md", "## ROC-AUC @200", keep_heading=True, until="Per system")
         L_ += [READ["natural"], ""]
     L_ += gemma_section()
+    L_ += ["## 10. Paper artefacts\n",
+           "`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), "
+           "all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` "
+           "(both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, "
+           "`table_cross.py`. Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`. "
+           "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
+           "`paper/results_outline.md`.\n"]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",
            "- Per-system tables, Drain grouping accuracy, hybrid coverage: `reports/log_parsing_phase3_final.md`.",

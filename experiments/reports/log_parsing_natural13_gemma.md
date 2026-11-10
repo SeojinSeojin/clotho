@@ -32,31 +32,36 @@ Natural: macro over the 12 kept systems. Suite (same systems): macro over the 12
 | Lookup (oracle) | 0.919 ± 0.002 | 0.919 ± 0.002 | 0.730 ± 0.007 | +0.189 ± 0.007 |
 | Output entropy (k=5)* | 0.772 ± 0.002 | 0.772 ± 0.002 | 0.821 ± 0.002 | -0.049 ± 0.002 |
 | Clotho + output entropy* | 0.894 ± 0.006 | 0.894 ± 0.006 | 0.869 ± 0.002 (12 systems) | n/a |
+| Tok-Prob* | 0.478 ± 0.004 | 0.478 ± 0.004 | 0.486 ± 0.003 | -0.009 ± 0.002 |
+| LOHSvar* | 0.669 ± 0.001 | 0.669 ± 0.001 | 0.677 ± 0.002 | -0.007 ± 0.002 |
+| Random | 0.502 ± 0.012 | 0.502 ± 0.012 | 0.503 ± 0.008 | -0.001 ± 0.017 |
 
 Paired per seed, natural, Clotho minus Lookup (Drain): -0.037 ± 0.018 (min -0.067, max -0.022); ahead on 5 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus MDSA: +0.005 ± 0.009 (min -0.010, max +0.013); ahead on 8 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.108 ± 0.019 (min +0.075, max +0.122); ahead on 9 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.122 ± 0.007 (min +0.110, max +0.127); ahead on 12 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.023 ± 0.006 (min -0.032, max -0.017); ahead on 2 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Tok-Prob*: +0.402 ± 0.022 (min +0.364, max +0.419); ahead on 12 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus LOHSvar*: +0.210 ± 0.019 (min +0.177, max +0.225); ahead on 12 of 12 systems (mean over seeds)  
 Paired per seed, suite (same 12 systems), Clotho minus Lookup (Drain): +0.074 ± 0.011  
 Paired per seed, suite (same 12 systems), Clotho minus MDSA: +0.063 ± 0.009  
 
 Per system @100 (natural, mean over seeds):
 
-| system | PASS rate | Drain seen | Clotho | MDSA | GMMb | Lookup (Drain) | Lookup (oracle) | Output entropy (k=5)* | Clotho + output entropy* |
-|---|---|---|---|---|---|---|---|---|---|
-| BGL | 40.0% | 100% | 0.784 | 0.783 | 0.551 | 0.837 | 0.837 | 0.792 | 0.826 |
-| HDFS | 44.6% | 100% | 0.918 | 0.944 | 0.863 | 0.956 | 0.956 | 0.727 | 0.880 |
-| HPC | 63.6% | 93% | 0.848 | 0.838 | 0.816 | 0.893 | 0.904 | 0.685 | 0.848 |
-| Hadoop | 49.2% | 95% | 0.967 | 0.916 | 0.767 | 0.979 | 0.973 | 0.819 | 0.971 |
-| HealthApp | 46.6% | 84% | 0.998 | 1.000 | 0.997 | 0.997 | 0.998 | 0.698 | 0.976 |
-| Linux | 33.2% | 100% | 0.740 | 0.720 | 0.759 | 0.730 | 0.730 | 0.601 | 0.698 |
-| Mac | 26.6% | 59% | 0.907 | 0.893 | 0.878 | 0.898 | 0.915 | 0.851 | 0.945 |
-| OpenSSH | 24.0% | 100% | 0.855 | 0.833 | 0.843 | 0.956 | 0.956 | 0.852 | 0.936 |
-| OpenStack | 28.2% | 74% | 0.980 | 0.985 | 0.914 | 0.974 | 0.984 | 0.710 | 0.950 |
-| Spark | 72.6% | 100% | 0.901 | 0.892 | 0.721 | 0.955 | 0.955 | 0.919 | 0.953 |
-| Thunderbird | 23.0% | 78% | 0.923 | 0.882 | 0.843 | 0.922 | 0.922 | 0.833 | 0.930 |
-| Zookeeper | 38.6% | 100% | 0.738 | 0.818 | 0.520 | 0.899 | 0.899 | 0.777 | 0.810 |
+| system | PASS rate | Drain seen | Clotho | MDSA | GMMb | Lookup (Drain) | Lookup (oracle) | Output entropy (k=5)* | Clotho + output entropy* | Tok-Prob* | LOHSvar* | Random |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| BGL | 40.0% | 100% | 0.784 | 0.783 | 0.551 | 0.837 | 0.837 | 0.792 | 0.826 | 0.619 | 0.746 | 0.516 |
+| HDFS | 44.6% | 100% | 0.918 | 0.944 | 0.863 | 0.956 | 0.956 | 0.727 | 0.880 | 0.462 | 0.597 | 0.489 |
+| HPC | 63.6% | 93% | 0.848 | 0.838 | 0.816 | 0.893 | 0.904 | 0.685 | 0.848 | 0.611 | 0.538 | 0.489 |
+| Hadoop | 49.2% | 95% | 0.967 | 0.916 | 0.767 | 0.979 | 0.973 | 0.819 | 0.971 | 0.558 | 0.719 | 0.503 |
+| HealthApp | 46.6% | 84% | 0.998 | 1.000 | 0.997 | 0.997 | 0.998 | 0.698 | 0.976 | 0.306 | 0.635 | 0.512 |
+| Linux | 33.2% | 100% | 0.740 | 0.720 | 0.759 | 0.730 | 0.730 | 0.601 | 0.698 | 0.443 | 0.537 | 0.502 |
+| Mac | 26.6% | 59% | 0.907 | 0.893 | 0.878 | 0.898 | 0.915 | 0.851 | 0.945 | 0.459 | 0.716 | 0.508 |
+| OpenSSH | 24.0% | 100% | 0.855 | 0.833 | 0.843 | 0.956 | 0.956 | 0.852 | 0.936 | 0.517 | 0.753 | 0.512 |
+| OpenStack | 28.2% | 74% | 0.980 | 0.985 | 0.914 | 0.974 | 0.984 | 0.710 | 0.950 | 0.140 | 0.565 | 0.478 |
+| Spark | 72.6% | 100% | 0.901 | 0.892 | 0.721 | 0.955 | 0.955 | 0.919 | 0.953 | 0.467 | 0.845 | 0.515 |
+| Thunderbird | 23.0% | 78% | 0.923 | 0.882 | 0.843 | 0.922 | 0.922 | 0.833 | 0.930 | 0.444 | 0.660 | 0.509 |
+| Zookeeper | 38.6% | 100% | 0.738 | 0.818 | 0.520 | 0.899 | 0.899 | 0.777 | 0.810 | 0.707 | 0.724 | 0.495 |
 
 ## ROC-AUC @200
 
@@ -71,28 +76,33 @@ Natural: macro over the 12 kept systems. Suite (same systems): macro over the 12
 | Lookup (oracle) | 0.914 ± 0.002 | 0.914 ± 0.002 | 0.790 ± 0.007 | +0.124 ± 0.006 |
 | Output entropy (k=5)* | 0.762 ± 0.004 | 0.762 ± 0.004 | 0.818 ± 0.003 | -0.056 ± 0.005 |
 | Clotho + output entropy* | 0.872 ± 0.004 | 0.872 ± 0.004 | 0.890 ± 0.005 (12 systems) | n/a |
+| Tok-Prob* | 0.473 ± 0.005 | 0.473 ± 0.005 | 0.480 ± 0.005 | -0.007 ± 0.005 |
+| LOHSvar* | 0.662 ± 0.006 | 0.662 ± 0.006 | 0.672 ± 0.005 | -0.009 ± 0.009 |
+| Random | 0.502 ± 0.020 | 0.502 ± 0.020 | 0.503 ± 0.013 | -0.001 ± 0.021 |
 
 Paired per seed, natural, Clotho minus Lookup (Drain): -0.057 ± 0.009 (min -0.068, max -0.046); ahead on 5 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus MDSA: +0.025 ± 0.009 (min +0.017, max +0.040); ahead on 6 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.093 ± 0.012 (min +0.079, max +0.108); ahead on 9 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.111 ± 0.004 (min +0.106, max +0.117); ahead on 10 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.039 ± 0.006 (min -0.046, max -0.032); ahead on 1 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Tok-Prob*: +0.383 ± 0.014 (min +0.367, max +0.398); ahead on 10 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus LOHSvar*: +0.193 ± 0.015 (min +0.174, max +0.209); ahead on 10 of 12 systems (mean over seeds)  
 Paired per seed, suite (same 12 systems), Clotho minus Lookup (Drain): +0.058 ± 0.006  
 Paired per seed, suite (same 12 systems), Clotho minus MDSA: +0.095 ± 0.003  
 
 Per system @200 (natural, mean over seeds):
 
-| system | PASS rate | Drain seen | Clotho | MDSA | GMMb | Lookup (Drain) | Lookup (oracle) | Output entropy (k=5)* | Clotho + output entropy* |
-|---|---|---|---|---|---|---|---|---|---|
-| BGL | 40.0% | 100% | 0.593 | 0.643 | 0.720 | 0.794 | 0.794 | 0.755 | 0.715 |
-| HDFS | 44.6% | 100% | 0.910 | 0.940 | 0.858 | 0.944 | 0.944 | 0.701 | 0.867 |
-| HPC | 63.6% | 100% | 0.841 | 0.718 | 0.826 | 0.931 | 0.931 | 0.719 | 0.846 |
-| Hadoop | 49.2% | 98% | 0.983 | 0.977 | 0.950 | 0.976 | 0.977 | 0.794 | 0.969 |
-| HealthApp | 46.6% | 86% | 0.999 | 0.999 | 0.997 | 0.997 | 0.997 | 0.701 | 0.973 |
-| Linux | 33.2% | 100% | 0.641 | 0.648 | 0.634 | 0.630 | 0.630 | 0.562 | 0.610 |
-| Mac | 26.6% | 91% | 0.956 | 0.879 | 0.851 | 0.960 | 0.965 | 0.833 | 0.956 |
-| OpenSSH | 24.0% | 100% | 0.877 | 0.848 | 0.959 | 0.971 | 0.971 | 0.874 | 0.951 |
-| OpenStack | 28.2% | 80% | 0.988 | 0.993 | 0.974 | 0.978 | 0.998 | 0.683 | 0.932 |
-| Spark | 72.6% | 100% | 0.882 | 0.866 | 0.859 | 0.946 | 0.946 | 0.925 | 0.949 |
-| Thunderbird | 23.0% | 99% | 0.979 | 0.771 | 0.937 | 0.973 | 0.969 | 0.862 | 0.969 |
-| Zookeeper | 38.6% | 100% | 0.613 | 0.677 | 0.708 | 0.843 | 0.843 | 0.733 | 0.732 |
+| system | PASS rate | Drain seen | Clotho | MDSA | GMMb | Lookup (Drain) | Lookup (oracle) | Output entropy (k=5)* | Clotho + output entropy* | Tok-Prob* | LOHSvar* | Random |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| BGL | 40.0% | 100% | 0.593 | 0.643 | 0.720 | 0.794 | 0.794 | 0.755 | 0.715 | 0.647 | 0.755 | 0.492 |
+| HDFS | 44.6% | 100% | 0.910 | 0.940 | 0.858 | 0.944 | 0.944 | 0.701 | 0.867 | 0.440 | 0.595 | 0.498 |
+| HPC | 63.6% | 100% | 0.841 | 0.718 | 0.826 | 0.931 | 0.931 | 0.719 | 0.846 | 0.607 | 0.601 | 0.506 |
+| Hadoop | 49.2% | 98% | 0.983 | 0.977 | 0.950 | 0.976 | 0.977 | 0.794 | 0.969 | 0.530 | 0.709 | 0.494 |
+| HealthApp | 46.6% | 86% | 0.999 | 0.999 | 0.997 | 0.997 | 0.997 | 0.701 | 0.973 | 0.304 | 0.639 | 0.507 |
+| Linux | 33.2% | 100% | 0.641 | 0.648 | 0.634 | 0.630 | 0.630 | 0.562 | 0.610 | 0.457 | 0.455 | 0.473 |
+| Mac | 26.6% | 91% | 0.956 | 0.879 | 0.851 | 0.960 | 0.965 | 0.833 | 0.956 | 0.432 | 0.700 | 0.496 |
+| OpenSSH | 24.0% | 100% | 0.877 | 0.848 | 0.959 | 0.971 | 0.971 | 0.874 | 0.951 | 0.529 | 0.759 | 0.519 |
+| OpenStack | 28.2% | 80% | 0.988 | 0.993 | 0.974 | 0.978 | 0.998 | 0.683 | 0.932 | 0.138 | 0.548 | 0.498 |
+| Spark | 72.6% | 100% | 0.882 | 0.866 | 0.859 | 0.946 | 0.946 | 0.925 | 0.949 | 0.479 | 0.819 | 0.516 |
+| Thunderbird | 23.0% | 99% | 0.979 | 0.771 | 0.937 | 0.973 | 0.969 | 0.862 | 0.969 | 0.433 | 0.670 | 0.502 |
+| Zookeeper | 38.6% | 100% | 0.613 | 0.677 | 0.708 | 0.843 | 0.843 | 0.733 | 0.732 | 0.674 | 0.699 | 0.518 |

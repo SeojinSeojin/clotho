@@ -253,12 +253,17 @@ Natural: macro over the 13 kept systems. Suite (same systems): macro over the 13
 | Lookup (oracle) | 0.836 ± 0.014 | 0.836 ± 0.014 | 0.691 ± 0.005 | +0.145 ± 0.016 |
 | Output entropy (k=5)* | 0.789 ± 0.003 | 0.789 ± 0.003 | 0.792 ± 0.001 | -0.003 ± 0.003 |
 | Clotho + output entropy* | 0.854 ± 0.008 | 0.854 ± 0.008 | 0.826 ± 0.005 (13 systems) | n/a |
+| Tok-Prob* | 0.504 ± 0.003 | 0.504 ± 0.003 | 0.518 ± 0.004 | -0.014 ± 0.002 |
+| LOHSvar* | 0.685 ± 0.005 | 0.685 ± 0.005 | 0.647 ± 0.002 | +0.038 ± 0.006 |
+| Random | 0.505 ± 0.010 | 0.505 ± 0.010 | 0.504 ± 0.004 | +0.002 ± 0.010 |
 
 Paired per seed, natural, Clotho minus Lookup (Drain): -0.006 ± 0.014 (min -0.027, max +0.008); ahead on 6 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus MDSA: +0.016 ± 0.008 (min +0.003, max +0.023); ahead on 6 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.042 ± 0.012 (min +0.023, max +0.056); ahead on 8 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.065 ± 0.007 (min +0.054, max +0.072); ahead on 11 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): +0.016 ± 0.011 (min +0.005, max +0.029); ahead on 8 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Tok-Prob*: +0.327 ± 0.014 (min +0.304, max +0.341); ahead on 13 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus LOHSvar*: +0.146 ± 0.013 (min +0.123, max +0.156); ahead on 10 of 13 systems (mean over seeds)  
 Paired per seed, suite (same 13 systems), Clotho minus Lookup (Drain): +0.069 ± 0.014  
 Paired per seed, suite (same 13 systems), Clotho minus MDSA: +0.034 ± 0.003  
 
@@ -275,16 +280,21 @@ Natural: macro over the 13 kept systems. Suite (same systems): macro over the 13
 | Lookup (oracle) | 0.863 ± 0.006 | 0.863 ± 0.006 | 0.749 ± 0.003 | +0.115 ± 0.005 |
 | Output entropy (k=5)* | 0.784 ± 0.004 | 0.784 ± 0.004 | 0.794 ± 0.005 | -0.010 ± 0.005 |
 | Clotho + output entropy* | 0.856 ± 0.010 | 0.856 ± 0.010 | 0.845 ± 0.006 (13 systems) | n/a |
+| Tok-Prob* | 0.492 ± 0.006 | 0.492 ± 0.006 | 0.516 ± 0.006 | -0.024 ± 0.006 |
+| LOHSvar* | 0.696 ± 0.002 | 0.696 ± 0.002 | 0.644 ± 0.008 | +0.052 ± 0.010 |
+| Random | 0.499 ± 0.010 | 0.499 ± 0.010 | 0.506 ± 0.010 | -0.008 ± 0.017 |
 
 Paired per seed, natural, Clotho minus Lookup (Drain): -0.016 ± 0.014 (min -0.031, max +0.003); ahead on 4 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus MDSA: +0.007 ± 0.015 (min -0.012, max +0.030); ahead on 7 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.061 ± 0.017 (min +0.044, max +0.080); ahead on 10 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.072 ± 0.011 (min +0.062, max +0.088); ahead on 12 of 13 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.005 ± 0.007 (min -0.014, max +0.005); ahead on 5 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Tok-Prob*: +0.353 ± 0.016 (min +0.331, max +0.374); ahead on 13 of 13 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus LOHSvar*: +0.149 ± 0.017 (min +0.131, max +0.171); ahead on 11 of 13 systems (mean over seeds)  
 Paired per seed, suite (same 13 systems), Clotho minus Lookup (Drain): +0.061 ± 0.011  
 Paired per seed, suite (same 13 systems), Clotho minus MDSA: +0.057 ± 0.009  
 
-Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: 29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 @200, MDSA +0.10, Lookup (Drain) most (0.680 -> 0.838, 0.733 -> 0.861). Clotho's lead over Lookup (Drain) on the suites (+0.069 / +0.061) vanishes: -0.006 ± 0.014 @100 and -0.016 ± 0.014 @200 (Clotho ahead on 6 and 4 of 13 systems). Its lead over MDSA shrinks to +0.016 / +0.007. Output entropy ignores the reference set and stays at 0.789 / 0.784, so Clotho now beats it on every seed (+0.042 / +0.061; smallest per-seed gap +0.023), the reverse of the suites at @100. Clotho + output entropy is the best score at @100 (0.854, +0.016 ± 0.011 over Lookup (Drain), positive on every seed) and ties the lookup at @200 (-0.005 ± 0.007). Stage 8's 4-system result (`reports/log_parsing_natural.md`) holds on all 13 systems: on the natural distribution, a Drain lookup over labelled reference lines matches Clotho, and Clotho's value over cheap lookups lies in templates the reference set has not seen (the template-capped suites and the disjoint split).
+Reading: sampled at their natural frequency, 500 lines cover 5-120 templates per system (the suites: 29-500), and at @100 the Drain group of 59-100% of test inputs (100% on 7 of 13 systems) already occurs in the reference set. Every reference-based score rises: Clotho 0.749 -> 0.831 @100 and 0.794 -> 0.845 @200, MDSA +0.10, Lookup (Drain) most (0.680 -> 0.838, 0.733 -> 0.861). Clotho's lead over Lookup (Drain) on the suites (+0.069 / +0.061) vanishes: -0.006 ± 0.014 @100 and -0.016 ± 0.014 @200 (Clotho ahead on 6 and 4 of 13 systems). Its lead over MDSA shrinks to +0.016 / +0.007. Output entropy ignores the reference set and stays at 0.789 / 0.784, so Clotho now beats it on every seed (+0.042 / +0.061; smallest per-seed gap +0.023), the reverse of the suites at @100. Clotho + output entropy is the best score at @100 (0.854, +0.016 ± 0.011 over Lookup (Drain), positive on every seed) and ties the lookup at @200 (-0.005 ± 0.007). Stage 8's 4-system result (`reports/log_parsing_natural.md`) holds on all 13 systems: on the natural distribution, a Drain lookup over labelled reference lines matches Clotho, and Clotho's value over cheap lookups lies in templates the reference set has not seen (the template-capped suites and the disjoint split). The post-generation baselines added on 2026-11-09 stay well below Clotho on the natural samples: LOHSvar 0.685 / 0.696 (Clotho ahead by +0.146 / +0.149 on every seed) and Tok-Prob 0.504 / 0.492 (at chance).
 
 ## 9. Second model: Gemma-2-9B-it (same protocol)
 
@@ -300,7 +310,7 @@ Same rules_template prompt, strict scorer, label rule and layer-tuning procedure
 | SLL | 0.457 ± 0.002 | 0.453 ± 0.003 | 0.473 ± 0.014 | 0.473 ± 0.014 |
 | Tok-Prob | 0.486 ± 0.003 | 0.480 ± 0.005 | 0.493 ± 0.024 | 0.493 ± 0.024 |
 | Tok-Ent | 0.578 ± 0.003 | 0.575 ± 0.005 | 0.575 ± 0.022 | 0.575 ± 0.022 |
-| Sem-Ent | n/a | n/a | n/a | n/a |
+| Sem-Ent | 0.617 ± 0.001 | 0.612 ± 0.005 | 0.617 ± 0.012 | 0.617 ± 0.012 |
 | LOHSvar | 0.677 ± 0.002 | 0.672 ± 0.005 | 0.678 ± 0.018 | 0.678 ± 0.018 |
 | Output entropy* | 0.821 ± 0.002 | 0.818 ± 0.003 | 0.824 ± 0.012 | 0.824 ± 0.012 |
 | Lookup (Drain) | 0.706 ± 0.009 | 0.774 ± 0.008 | 0.508 ± 0.002 | 0.512 ± 0.001 |
@@ -342,22 +352,25 @@ Paired per-seed differences (12 systems):
 | Clotho minus Lookup (oracle) (balanced ref) | +0.051 ± 0.010 (min +0.042) | +0.042 ± 0.007 (min +0.034) | +0.159 ± 0.025 (min +0.126) | +0.171 ± 0.019 (min +0.157) |
 | Clotho minus Lookup (oracle) (random ref) | +0.036 ± 0.003 (min +0.032) | +0.035 ± 0.008 (min +0.023) | +0.159 ± 0.025 (min +0.126) | +0.171 ± 0.019 (min +0.157) |
 
-### 9.4 Quality vs number of samples (no Gemma timings)
+### 9.4 Cost vs quality (Gemma timings, same L40S and definitions as section 4)
 
-| method | standard @100 | standard @200 | disjoint @100 | disjoint @200 |
-|---|---|---|---|---|
-| Clotho | 0.780 ± 0.003 | 0.832 ± 0.005 | 0.659 ± 0.025 | 0.671 ± 0.019 |
-| MDSA | 0.718 ± 0.007 | 0.737 ± 0.006 | 0.655 ± 0.017 | 0.661 ± 0.017 |
-| Lookup (Drain) | 0.706 ± 0.009 | 0.774 ± 0.008 | 0.508 ± 0.002 | 0.512 ± 0.001 |
-| Output entropy, k=2 | 0.707 ± 0.003 | 0.705 ± 0.005 | 0.717 ± 0.011 | 0.717 ± 0.011 |
-| Output entropy, k=3 | 0.770 ± 0.003 | 0.766 ± 0.004 | 0.777 ± 0.012 | 0.777 ± 0.012 |
-| Output entropy, k=4 | 0.800 ± 0.002 | 0.797 ± 0.003 | 0.804 ± 0.012 | 0.804 ± 0.012 |
-| Output entropy, k=5 | 0.821 ± 0.002 | 0.818 ± 0.003 | 0.824 ± 0.012 | 0.824 ± 0.012 |
-| Clotho + output entropy, k=2 | 0.834 ± 0.002 | 0.861 ± 0.006 | 0.762 ± 0.013 | 0.773 ± 0.014 |
-| Clotho + output entropy, k=3 | 0.852 ± 0.002 | 0.876 ± 0.005 | 0.788 ± 0.013 | 0.798 ± 0.017 |
-| Clotho + output entropy, k=4 | 0.862 ± 0.002 | 0.884 ± 0.005 | 0.800 ± 0.011 | 0.809 ± 0.016 |
-| Clotho + output entropy, k=5 | 0.869 ± 0.002 | 0.890 ± 0.005 | 0.808 ± 0.010 | 0.818 ± 0.016 |
+| method | s / input (batched) | s / input (batch 1) | standard @100 | standard @200 | disjoint @100 | disjoint @200 |
+|---|---|---|---|---|---|---|
+| Clotho | 0.0351 | 0.0585 | 0.780 ± 0.003 | 0.832 ± 0.005 | 0.659 ± 0.025 | 0.671 ± 0.019 |
+| Clotho, forward pass at vLLM prefill speed (lower bound) | 0.0077 | n/a | 0.780 ± 0.003 | 0.832 ± 0.005 | 0.659 ± 0.025 | 0.671 ± 0.019 |
+| MDSA | 0.0348 | 0.0583 | 0.718 ± 0.007 | 0.737 ± 0.006 | 0.655 ± 0.017 | 0.661 ± 0.017 |
+| Lookup (Drain) | 0.0001 | 0.0001 | 0.706 ± 0.009 | 0.774 ± 0.008 | 0.508 ± 0.002 | 0.512 ± 0.001 |
+| Output entropy, k=2 | 0.0274 | 1.1955 | 0.707 ± 0.003 | 0.705 ± 0.005 | 0.717 ± 0.011 | 0.717 ± 0.011 |
+| Output entropy, k=3 | 0.0415 | 1.2147 | 0.770 ± 0.003 | 0.766 ± 0.004 | 0.777 ± 0.012 | 0.777 ± 0.012 |
+| Output entropy, k=4 | 0.0532 | 1.2923 | 0.800 ± 0.002 | 0.797 ± 0.003 | 0.804 ± 0.012 | 0.804 ± 0.012 |
+| Output entropy, k=5 | 0.0648 | 1.2776 | 0.821 ± 0.002 | 0.818 ± 0.003 | 0.824 ± 0.012 | 0.824 ± 0.012 |
+| Clotho + output entropy, k=2 | 0.0625 | 1.2540 | 0.834 ± 0.002 | 0.861 ± 0.006 | 0.762 ± 0.013 | 0.773 ± 0.014 |
+| Clotho + output entropy, k=3 | 0.0766 | 1.2732 | 0.852 ± 0.002 | 0.876 ± 0.005 | 0.788 ± 0.013 | 0.798 ± 0.017 |
+| Clotho + output entropy, k=4 | 0.0883 | 1.3508 | 0.862 ± 0.002 | 0.884 ± 0.005 | 0.800 ± 0.011 | 0.809 ± 0.016 |
+| Clotho + output entropy, k=5 | 0.1000 | 1.3361 | 0.869 ± 0.002 | 0.890 ± 0.005 | 0.808 ± 0.010 | 0.818 ± 0.016 |
 
+Timing components (s / input, mean over HDFS, Hadoop, BGL, OpenStack): HF forward pass, layers 1-21, batch 32: 0.0346; the extraction pipeline used for the results (all layers, batch 1): 0.0580; vLLM prefill only (max_tokens=1, lower bound for a forward pass): 0.0073; PCA+GMM scoring: 0.00048; PCA+MDSA: 0.00022. Batched layer-21 vectors match the stored ones (min cosine 0.9997).
+Cost ratios, output entropy(k) over Clotho: batched with Clotho on HF k=2: 0.8x, k=3: 1.2x, k=4: 1.5x, k=5: 1.8x; batched with Clotho at vLLM prefill speed (same engine) k=2: 3.5x, k=3: 5.4x, k=4: 6.9x, k=5: 8.4x; batch 1 (online) k=2: 20x, k=3: 21x, k=4: 22x, k=5: 22x.
 Smallest k with mean output-entropy AUC >= Clotho: standard @100: 4, standard @200: > 5, disjoint @100: 2, disjoint @200: 2.
 
 ### 9.5 Cross-system transfer
@@ -383,12 +396,17 @@ Natural: macro over the 12 kept systems. Suite (same systems): macro over the 12
 | Lookup (oracle) | 0.919 ± 0.002 | 0.919 ± 0.002 | 0.730 ± 0.007 | +0.189 ± 0.007 |
 | Output entropy (k=5)* | 0.772 ± 0.002 | 0.772 ± 0.002 | 0.821 ± 0.002 | -0.049 ± 0.002 |
 | Clotho + output entropy* | 0.894 ± 0.006 | 0.894 ± 0.006 | 0.869 ± 0.002 (12 systems) | n/a |
+| Tok-Prob* | 0.478 ± 0.004 | 0.478 ± 0.004 | 0.486 ± 0.003 | -0.009 ± 0.002 |
+| LOHSvar* | 0.669 ± 0.001 | 0.669 ± 0.001 | 0.677 ± 0.002 | -0.007 ± 0.002 |
+| Random | 0.502 ± 0.012 | 0.502 ± 0.012 | 0.503 ± 0.008 | -0.001 ± 0.017 |
 
 Paired per seed, natural, Clotho minus Lookup (Drain): -0.037 ± 0.018 (min -0.067, max -0.022); ahead on 5 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus MDSA: +0.005 ± 0.009 (min -0.010, max +0.013); ahead on 8 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.108 ± 0.019 (min +0.075, max +0.122); ahead on 9 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.122 ± 0.007 (min +0.110, max +0.127); ahead on 12 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.023 ± 0.006 (min -0.032, max -0.017); ahead on 2 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Tok-Prob*: +0.402 ± 0.022 (min +0.364, max +0.419); ahead on 12 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus LOHSvar*: +0.210 ± 0.019 (min +0.177, max +0.225); ahead on 12 of 12 systems (mean over seeds)  
 Paired per seed, suite (same 12 systems), Clotho minus Lookup (Drain): +0.074 ± 0.011  
 Paired per seed, suite (same 12 systems), Clotho minus MDSA: +0.063 ± 0.009  
 
@@ -405,16 +423,25 @@ Natural: macro over the 12 kept systems. Suite (same systems): macro over the 12
 | Lookup (oracle) | 0.914 ± 0.002 | 0.914 ± 0.002 | 0.790 ± 0.007 | +0.124 ± 0.006 |
 | Output entropy (k=5)* | 0.762 ± 0.004 | 0.762 ± 0.004 | 0.818 ± 0.003 | -0.056 ± 0.005 |
 | Clotho + output entropy* | 0.872 ± 0.004 | 0.872 ± 0.004 | 0.890 ± 0.005 (12 systems) | n/a |
+| Tok-Prob* | 0.473 ± 0.005 | 0.473 ± 0.005 | 0.480 ± 0.005 | -0.007 ± 0.005 |
+| LOHSvar* | 0.662 ± 0.006 | 0.662 ± 0.006 | 0.672 ± 0.005 | -0.009 ± 0.009 |
+| Random | 0.502 ± 0.020 | 0.502 ± 0.020 | 0.503 ± 0.013 | -0.001 ± 0.021 |
 
 Paired per seed, natural, Clotho minus Lookup (Drain): -0.057 ± 0.009 (min -0.068, max -0.046); ahead on 5 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus MDSA: +0.025 ± 0.009 (min +0.017, max +0.040); ahead on 6 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho minus Output entropy (k=5)*: +0.093 ± 0.012 (min +0.079, max +0.108); ahead on 9 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Output entropy (k=5)*: +0.111 ± 0.004 (min +0.106, max +0.117); ahead on 10 of 12 systems (mean over seeds)  
 Paired per seed, natural, Clotho + output entropy* minus Lookup (Drain): -0.039 ± 0.006 (min -0.046, max -0.032); ahead on 1 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus Tok-Prob*: +0.383 ± 0.014 (min +0.367, max +0.398); ahead on 10 of 12 systems (mean over seeds)  
+Paired per seed, natural, Clotho minus LOHSvar*: +0.193 ± 0.015 (min +0.174, max +0.209); ahead on 10 of 12 systems (mean over seeds)  
 Paired per seed, suite (same 12 systems), Clotho minus Lookup (Drain): +0.058 ± 0.006  
 Paired per seed, suite (same 12 systems), Clotho minus MDSA: +0.095 ± 0.003  
 
-Reading: every Llama finding about the pre-generation methods and lookups holds for Gemma-2-9B on 12 systems. On the standard split Clotho (0.780 / 0.832) beats MDSA (+0.063 / +0.095) and Lookup (Drain) (+0.074 / +0.058) on every seed, also on the 9 held-out systems and with random reference sets for the baselines; on the template-disjoint split the lookups fall to chance and Clotho ties MDSA (+0.004 / +0.010). Leakage-free output entropy (0.821 / 0.818) beats Clotho at @100 (-0.040) but Clotho is ahead at @200 on every seed (+0.014, smallest +0.006); output entropy again needs 4 samples to match Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, and Clotho beats output entropy by about 0.1 (+0.108 / +0.093). The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / 0.672, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480; Sem-Ent not run for Gemma).
+Reading: every Llama finding about the pre-generation methods and lookups holds for Gemma-2-9B on 12 systems. On the standard split Clotho (0.780 / 0.832) beats MDSA (+0.063 / +0.095) and Lookup (Drain) (+0.074 / +0.058) on every seed, also on the 9 held-out systems and with random reference sets for the baselines; on the template-disjoint split the lookups fall to chance and Clotho ties MDSA (+0.004 / +0.010). Leakage-free output entropy (0.821 / 0.818) beats Clotho at @100 (-0.040) but Clotho is ahead at @200 on every seed (+0.014, smallest +0.006); output entropy again needs 4 samples to match Clotho at @100, and Clotho + output entropy is the best score (0.869 / 0.890). Across systems Clotho and MDSA are again close (Clotho minus MDSA -0.025 / +0.003). On the natural samples the Drain lookup beats Clotho on every seed (-0.037 ± 0.018 @100, -0.057 ± 0.009 @200), a larger gap than for Llama, and Clotho beats output entropy by about 0.1 (+0.108 / +0.093); LOHSvar (0.669 / 0.662) and Tok-Prob (0.478 / 0.473) stay far below Clotho there too. The other post-generation baselines stay well below Clotho on the standard split (LOHSvar 0.677 / 0.672, Sem-Ent 0.617 / 0.612, Tok-Ent 0.578 / 0.575, Tok-Prob 0.486 / 0.480). Leakage again inflates the post-generation scores (net output entropy +0.064 / +0.066, Sem-Ent +0.025 / +0.029, LOHSvar +0.022 / +0.020), less than for Llama. With Gemma timings on the same L40S, the 4 samples output entropy needs to match Clotho at @100 cost 1.5x Clotho's batched HF forward pass (layers 1-21), 6.9x a vLLM prefill and 22x online (batch 1).
+
+## 10. Paper artefacts
+
+`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`. Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`. Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
 
 ## Other reports
 
