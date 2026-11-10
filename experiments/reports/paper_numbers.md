@@ -441,7 +441,7 @@ Reading: every Llama finding about the pre-generation methods and lookups holds 
 
 ## 10. Paper artefacts
 
-`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`. Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`. Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
+`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired). Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
 
 ## 11. Literature baselines: LLMLog selection score (A), AdaParser corrector (B)
 
@@ -724,6 +724,20 @@ Copied from `reports/log_parsing_strategy_details.md` (`log_parsing_strategy.py 
 | Drain-propagate + Clotho | 200 | 3719.8 ± 11.8 | 0.715 ± 0.002 | 1693.0 ± 8.9 | 2026.8 ± 3.7 | 100.0 ± 0.0% | 8.5 ± 0.3% |
 | Drain-propagate, no Clotho | 200 | 3690.0 ± 14.1 | 0.710 ± 0.003 | 1693.0 ± 8.9 | 1997.0 ± 12.2 | 100.0 ± 0.0% | 8.5 ± 0.3% |
 
+Decomposition (labelled set x ranking of the rest): failures found = in labelled + in top K. Rows: which B inputs get labelled (random, or Clotho's active sampling); columns: how the rest is ranked (random, Drain lookup on those labels, Clotho fitted on those labels).
+
+| B | labelled set | in labelled | top K: random | top K: Drain lookup | top K: Clotho | total: random | total: Drain lookup | total: Clotho |
+|---|---|---|---|---|---|---|---|---|
+| 50 | random | 420.0 ± 9.3 | 421.2 ± 4.3 | 585.2 ± 8.6 | 559.6 ± 15.9 | 841.2 ± 6.7 | 1005.2 ± 8.8 | 979.6 ± 21.4 |
+| 50 | Clotho (active) | 455.2 ± 3.3 | 419.8 ± 13.4 | 584.8 ± 9.0 | 598.2 ± 6.5 | 875.0 ± 13.1 | 1040.0 ± 8.5 | 1053.4 ± 7.3 |
+| 100 | random | 847.6 ± 7.5 | 842.4 ± 10.2 | 1162.8 ± 6.3 | 1130.6 ± 19.5 | 1690.0 ± 14.7 | 2010.4 ± 11.1 | 1978.2 ± 20.3 |
+| 100 | Clotho (active) | 927.8 ± 7.0 | 830.6 ± 14.2 | 1109.6 ± 11.3 | 1119.4 ± 15.0 | 1758.4 ± 19.8 | 2037.4 ± 8.4 | 2047.2 ± 12.5 |
+| 200 | random | 1692.0 ± 16.8 | 1693.6 ± 13.5 | 2131.8 ± 12.2 | 2053.0 ± 21.4 | 3385.6 ± 11.5 | 3823.8 ± 15.2 | 3745.0 ± 17.4 |
+| 200 | Clotho (active) | 1823.0 ± 15.4 | 1607.2 ± 11.3 | 2001.6 ± 13.3 | 1957.6 ± 20.1 | 3430.2 ± 8.6 | 3824.6 ± 12.2 | 3780.6 ± 12.7 |
+
+Decomposition, paired differences in failures found (mean ± std; seeds with a > b): sampling (Clotho ranking)@50 +73.8 ± 22.8 (5/5); sampling (lookup ranking)@50 +34.8 ± 5.0 (5/5); Clotho vs lookup ranking (Clotho labels)@50 +13.4 ± 13.6 (4/5); Clotho vs lookup ranking (random labels)@50 -25.6 ± 13.1 (0/5); Clotho vs random labels + lookup ranking@50 +48.2 ± 11.2 (5/5); Clotho vs Clotho labels + lookup ranking@50 +13.4 ± 13.6 (4/5); sampling (Clotho ranking)@100 +69.0 ± 20.9 (5/5); sampling (lookup ranking)@100 +27.0 ± 9.6 (5/5); Clotho vs lookup ranking (Clotho labels)@100 +9.8 ± 14.0 (4/5); Clotho vs lookup ranking (random labels)@100 -32.2 ± 15.8 (0/5); Clotho vs random labels + lookup ranking@100 +36.8 ± 13.6 (5/5); Clotho vs Clotho labels + lookup ranking@100 +9.8 ± 14.0 (4/5); sampling (Clotho ranking)@200 +35.6 ± 23.4 (5/5); sampling (lookup ranking)@200 +0.8 ± 27.1 (3/5); Clotho vs lookup ranking (Clotho labels)@200 -44.0 ± 12.1 (0/5); Clotho vs lookup ranking (random labels)@200 -78.8 ± 12.1 (0/5); Clotho vs random labels + lookup ranking@200 -43.2 ± 24.4 (0/5); Clotho vs Clotho labels + lookup ranking@200 -44.0 ± 12.1 (0/5)
+
+
 Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 -46.8 ± 3.3 (every seed); drain_clotho-drain_random@50 +17.4 ± 12.3 (every seed); clotho-random@50 +212.2 ± 12.8 (every seed); drain_clotho-clotho@100 -63.8 ± 22.6 (every seed); drain_clotho-drain_random@100 +47.0 ± 26.4 (every seed); clotho-random@100 +357.2 ± 17.2 (every seed); drain_clotho-clotho@200 -60.8 ± 21.9 (every seed); drain_clotho-drain_random@200 +29.8 ± 11.2 (every seed); clotho-random@200 +395.0 ± 21.2 (every seed)
 
 
@@ -743,6 +757,20 @@ Paired differences in failures found (mean ± std over seeds): drain_clotho-clot
 | Clotho | 200 | 3836.4 ± 17.3 | 0.738 ± 0.003 | 1844.6 ± 12.9 | 1991.8 ± 27.1 | 76.2 ± 0.2% | n/a |
 | Drain-propagate + Clotho | 200 | 3842.2 ± 20.1 | 0.739 ± 0.004 | 1734.2 ± 10.7 | 2108.0 ± 20.2 | 82.8 ± 0.2% | 14.2 ± 0.8% |
 | Drain-propagate, no Clotho | 200 | 3776.0 ± 10.7 | 0.726 ± 0.002 | 1734.2 ± 10.7 | 2041.8 ± 15.3 | 82.8 ± 0.2% | 14.2 ± 0.8% |
+
+Decomposition (labelled set x ranking of the rest): failures found = in labelled + in top K. Rows: which B inputs get labelled (random, or Clotho's active sampling); columns: how the rest is ranked (random, Drain lookup on those labels, Clotho fitted on those labels).
+
+| B | labelled set | in labelled | top K: random | top K: Drain lookup | top K: Clotho | total: random | total: Drain lookup | total: Clotho |
+|---|---|---|---|---|---|---|---|---|
+| 50 | random | 436.6 ± 8.7 | 430.6 ± 14.3 | 567.8 ± 8.0 | 562.2 ± 13.2 | 867.2 ± 13.4 | 1004.4 ± 15.6 | 998.8 ± 7.7 |
+| 50 | Clotho (active) | 461.2 ± 7.0 | 432.4 ± 8.1 | 553.8 ± 11.0 | 595.2 ± 9.3 | 893.6 ± 8.3 | 1015.0 ± 7.9 | 1056.4 ± 10.5 |
+| 100 | random | 858.4 ± 18.9 | 879.4 ± 23.5 | 1127.0 ± 12.4 | 1154.8 ± 9.6 | 1737.8 ± 18.1 | 1985.4 ± 17.6 | 2013.2 ± 26.1 |
+| 100 | Clotho (active) | 924.8 ± 21.2 | 851.8 ± 9.8 | 1071.8 ± 28.4 | 1173.8 ± 18.9 | 1776.6 ± 16.3 | 1996.6 ± 23.1 | 2098.6 ± 19.4 |
+| 200 | random | 1757.6 ± 17.7 | 1732.2 ± 10.6 | 2013.0 ± 17.4 | 2024.2 ± 25.1 | 3489.8 ± 11.6 | 3770.6 ± 6.5 | 3781.8 ± 9.5 |
+| 200 | Clotho (active) | 1844.6 ± 12.9 | 1665.6 ± 15.9 | 1939.8 ± 9.5 | 1991.8 ± 27.1 | 3510.2 ± 12.9 | 3784.4 ± 5.6 | 3836.4 ± 17.3 |
+
+Decomposition, paired differences in failures found (mean ± std; seeds with a > b): sampling (Clotho ranking)@50 +57.6 ± 15.8 (5/5); sampling (lookup ranking)@50 +10.6 ± 20.5 (3/5); Clotho vs lookup ranking (Clotho labels)@50 +41.4 ± 15.1 (5/5); Clotho vs lookup ranking (random labels)@50 -5.6 ± 19.8 (2/5); Clotho vs random labels + lookup ranking@50 +52.0 ± 20.8 (5/5); Clotho vs Clotho labels + lookup ranking@50 +41.4 ± 15.1 (5/5); sampling (Clotho ranking)@100 +85.4 ± 35.3 (5/5); sampling (lookup ranking)@100 +11.2 ± 12.8 (4/5); Clotho vs lookup ranking (Clotho labels)@100 +102.0 ± 38.0 (5/5); Clotho vs lookup ranking (random labels)@100 +27.8 ± 15.4 (5/5); Clotho vs random labels + lookup ranking@100 +113.2 ± 30.5 (5/5); Clotho vs Clotho labels + lookup ranking@100 +102.0 ± 38.0 (5/5); sampling (Clotho ranking)@200 +54.6 ± 16.9 (5/5); sampling (lookup ranking)@200 +13.8 ± 11.5 (4/5); Clotho vs lookup ranking (Clotho labels)@200 +52.0 ± 18.5 (5/5); Clotho vs lookup ranking (random labels)@200 +11.2 ± 8.1 (5/5); Clotho vs random labels + lookup ranking@200 +65.8 ± 21.5 (5/5); Clotho vs Clotho labels + lookup ranking@200 +52.0 ± 18.5 (5/5)
+
 
 Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 -1.8 ± 4.3; drain_clotho-drain_random@50 +53.8 ± 8.6 (every seed); clotho-random@50 +189.2 ± 22.7 (every seed); drain_clotho-clotho@100 -50.0 ± 17.4 (every seed); drain_clotho-drain_random@100 +105.4 ± 14.9 (every seed); clotho-random@100 +360.8 ± 32.6 (every seed); drain_clotho-clotho@200 +5.8 ± 32.7; drain_clotho-drain_random@200 +66.2 ± 15.0 (every seed); clotho-random@200 +346.6 ± 24.8 (every seed)
 
@@ -764,6 +792,20 @@ Paired differences in failures found (mean ± std over seeds): drain_clotho-clot
 | Drain-propagate + Clotho | 200 | 3186.2 ± 5.8 | 0.664 ± 0.001 | 1425.4 ± 7.1 | 1760.8 ± 2.4 | 100.0 ± 0.0% | 9.9 ± 0.2% |
 | Drain-propagate, no Clotho | 200 | 3163.0 ± 7.5 | 0.659 ± 0.002 | 1425.4 ± 7.1 | 1737.6 ± 8.6 | 100.0 ± 0.0% | 9.9 ± 0.2% |
 
+Decomposition (labelled set x ranking of the rest): failures found = in labelled + in top K. Rows: which B inputs get labelled (random, or Clotho's active sampling); columns: how the rest is ranked (random, Drain lookup on those labels, Clotho fitted on those labels).
+
+| B | labelled set | in labelled | top K: random | top K: Drain lookup | top K: Clotho | total: random | total: Drain lookup | total: Clotho |
+|---|---|---|---|---|---|---|---|---|
+| 50 | random | 356.6 ± 14.2 | 351.6 ± 7.0 | 591.8 ± 7.0 | 542.4 ± 18.0 | 708.2 ± 16.8 | 948.4 ± 15.2 | 899.0 ± 20.9 |
+| 50 | Clotho (active) | 379.8 ± 5.0 | 363.0 ± 5.2 | 579.2 ± 5.9 | 586.2 ± 6.4 | 742.8 ± 5.6 | 959.0 ± 9.0 | 966.0 ± 7.2 |
+| 100 | random | 709.6 ± 20.1 | 705.2 ± 5.9 | 1171.4 ± 3.1 | 1146.8 ± 11.6 | 1414.8 ± 25.4 | 1881.0 ± 22.3 | 1856.4 ± 17.8 |
+| 100 | Clotho (active) | 775.6 ± 7.0 | 695.4 ± 12.7 | 1131.6 ± 13.8 | 1131.8 ± 8.0 | 1471.0 ± 15.9 | 1907.2 ± 18.4 | 1907.4 ± 8.4 |
+| 200 | random | 1426.6 ± 16.1 | 1413.6 ± 14.6 | 1904.6 ± 17.9 | 1793.0 ± 20.7 | 2840.2 ± 17.6 | 3331.2 ± 9.2 | 3219.6 ± 11.9 |
+| 200 | Clotho (active) | 1556.2 ± 35.7 | 1321.8 ± 13.3 | 1732.8 ± 25.7 | 1664.4 ± 38.0 | 2878.0 ± 23.5 | 3289.0 ± 12.8 | 3220.6 ± 17.5 |
+
+Decomposition, paired differences in failures found (mean ± std; seeds with a > b): sampling (Clotho ranking)@50 +67.0 ± 27.9 (5/5); sampling (lookup ranking)@50 +10.6 ± 18.8 (3/5); Clotho vs lookup ranking (Clotho labels)@50 +7.0 ± 7.9 (4/5); Clotho vs lookup ranking (random labels)@50 -49.4 ± 17.2 (0/5); Clotho vs random labels + lookup ranking@50 +17.6 ± 20.9 (4/5); Clotho vs Clotho labels + lookup ranking@50 +7.0 ± 7.9 (4/5); sampling (Clotho ranking)@100 +51.0 ± 19.1 (5/5); sampling (lookup ranking)@100 +26.2 ± 22.6 (4/5); Clotho vs lookup ranking (Clotho labels)@100 +0.2 ± 11.2 (3/5); Clotho vs lookup ranking (random labels)@100 -24.6 ± 11.2 (0/5); Clotho vs random labels + lookup ranking@100 +26.4 ± 20.0 (5/5); Clotho vs Clotho labels + lookup ranking@100 +0.2 ± 11.2 (3/5); sampling (Clotho ranking)@200 +1.0 ± 19.4 (3/5); sampling (lookup ranking)@200 -42.2 ± 14.0 (0/5); Clotho vs lookup ranking (Clotho labels)@200 -68.4 ± 14.6 (0/5); Clotho vs lookup ranking (random labels)@200 -111.6 ± 6.9 (0/5); Clotho vs random labels + lookup ranking@200 -110.6 ± 18.2 (0/5); Clotho vs Clotho labels + lookup ranking@200 -68.4 ± 14.6 (0/5)
+
+
 Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 -25.6 ± 8.8 (every seed); drain_clotho-drain_random@50 +36.0 ± 9.4 (every seed); clotho-random@50 +257.8 ± 23.3 (every seed); drain_clotho-clotho@100 -49.8 ± 19.3 (every seed); drain_clotho-drain_random@100 +44.0 ± 21.6 (every seed); clotho-random@100 +492.6 ± 23.2 (every seed); drain_clotho-clotho@200 -34.4 ± 21.8 (every seed); drain_clotho-drain_random@200 +23.2 ± 9.0 (every seed); clotho-random@200 +380.4 ± 12.6 (every seed)
 
 
@@ -783,6 +825,20 @@ Paired differences in failures found (mean ± std over seeds): drain_clotho-clot
 | Clotho | 200 | 2996.8 ± 13.4 | 0.624 ± 0.003 | 1373.0 ± 13.2 | 1623.8 ± 22.5 | 77.1 ± 0.6% | n/a |
 | Drain-propagate + Clotho | 200 | 3028.8 ± 10.9 | 0.631 ± 0.002 | 1312.0 ± 10.4 | 1716.8 ± 10.5 | 82.3 ± 0.1% | 10.9 ± 0.3% |
 | Drain-propagate, no Clotho | 200 | 2982.8 ± 12.2 | 0.621 ± 0.003 | 1312.0 ± 10.4 | 1670.8 ± 6.1 | 82.3 ± 0.1% | 10.9 ± 0.3% |
+
+Decomposition (labelled set x ranking of the rest): failures found = in labelled + in top K. Rows: which B inputs get labelled (random, or Clotho's active sampling); columns: how the rest is ranked (random, Drain lookup on those labels, Clotho fitted on those labels).
+
+| B | labelled set | in labelled | top K: random | top K: Drain lookup | top K: Clotho | total: random | total: Drain lookup | total: Clotho |
+|---|---|---|---|---|---|---|---|---|
+| 50 | random | 332.6 ± 5.8 | 336.0 ± 12.4 | 492.6 ± 17.8 | 496.8 ± 5.4 | 668.6 ± 7.1 | 825.2 ± 22.6 | 829.4 ± 7.9 |
+| 50 | Clotho (active) | 354.2 ± 1.8 | 330.4 ± 7.0 | 489.8 ± 6.8 | 536.2 ± 11.3 | 684.6 ± 8.1 | 844.0 ± 6.3 | 890.4 ± 12.1 |
+| 100 | random | 645.6 ± 14.4 | 651.0 ± 7.2 | 963.4 ± 12.3 | 993.2 ± 15.4 | 1296.6 ± 12.3 | 1609.0 ± 23.6 | 1638.8 ± 12.5 |
+| 100 | Clotho (active) | 691.2 ± 13.3 | 646.6 ± 13.9 | 932.8 ± 20.2 | 1044.0 ± 14.8 | 1337.8 ± 13.2 | 1624.0 ± 13.9 | 1735.2 ± 19.5 |
+| 200 | random | 1319.2 ± 5.8 | 1307.4 ± 7.5 | 1612.8 ± 11.6 | 1619.0 ± 16.0 | 2626.6 ± 5.0 | 2932.0 ± 12.0 | 2938.2 ± 20.1 |
+| 200 | Clotho (active) | 1373.0 ± 13.2 | 1273.4 ± 11.9 | 1574.0 ± 17.2 | 1623.8 ± 22.5 | 2646.4 ± 12.8 | 2947.0 ± 18.9 | 2996.8 ± 13.4 |
+
+Decomposition, paired differences in failures found (mean ± std; seeds with a > b): sampling (Clotho ranking)@50 +61.0 ± 14.6 (5/5); sampling (lookup ranking)@50 +18.8 ± 19.0 (4/5); Clotho vs lookup ranking (Clotho labels)@50 +46.4 ± 14.7 (5/5); Clotho vs lookup ranking (random labels)@50 +4.2 ± 15.3 (3/5); Clotho vs random labels + lookup ranking@50 +65.2 ± 24.1 (5/5); Clotho vs Clotho labels + lookup ranking@50 +46.4 ± 14.7 (5/5); sampling (Clotho ranking)@100 +96.4 ± 11.0 (5/5); sampling (lookup ranking)@100 +15.0 ± 19.6 (4/5); Clotho vs lookup ranking (Clotho labels)@100 +111.2 ± 25.2 (5/5); Clotho vs lookup ranking (random labels)@100 +29.8 ± 24.2 (4/5); Clotho vs random labels + lookup ranking@100 +126.2 ± 19.2 (5/5); Clotho vs Clotho labels + lookup ranking@100 +111.2 ± 25.2 (5/5); sampling (Clotho ranking)@200 +58.6 ± 21.8 (5/5); sampling (lookup ranking)@200 +15.0 ± 30.5 (4/5); Clotho vs lookup ranking (Clotho labels)@200 +49.8 ± 19.7 (5/5); Clotho vs lookup ranking (random labels)@200 +6.2 ± 15.2 (3/5); Clotho vs random labels + lookup ranking@200 +64.8 ± 22.5 (5/5); Clotho vs Clotho labels + lookup ranking@200 +49.8 ± 19.7 (5/5)
+
 
 Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 +10.0 ± 16.5; drain_clotho-drain_random@50 +54.8 ± 10.9 (every seed); clotho-random@50 +221.8 ± 18.0 (every seed); drain_clotho-clotho@100 +13.0 ± 19.2; drain_clotho-drain_random@100 +107.8 ± 5.0 (every seed); clotho-random@100 +438.6 ± 18.4 (every seed); drain_clotho-clotho@200 +32.0 ± 16.0 (every seed); drain_clotho-drain_random@200 +46.0 ± 9.4 (every seed); clotho-random@200 +370.2 ± 15.9 (every seed)
 
@@ -961,7 +1017,221 @@ Within-system Clotho with k labels could fit (>= 10 passing references, incl. in
 
 Within-system Clotho with k labels could fit (>= 10 passing references, incl. initial tests) on all seeds for 100% of targets at k = 10, 100% of targets at k = 25, 100% of targets at k = 50; otherwise random.
 
-Reading (held-out targets): pooled-source Clotho stays at 0.44-0.66; per-system normalisation and CORAL do not help; a logistic probe on source labels reaches 0.67-0.71 without target labels; refitting the best source model with 25-50 target labels matches within-system Clotho @100 (not paired). Generic log features alone reach 0.62-0.68.
+Reading (held-out targets): pooled-source Clotho stays at 0.44-0.66; per-system normalisation and CORAL do not help; a logistic probe on source labels reaches 0.67-0.71 without target labels; refitting the best source model with 25-50 target labels matches within-system Clotho @100 (not paired). Generic log features alone reach 0.62-0.68. The within-system Clotho rows of this section received the 0/1 label and unpaired test sets; section 14 supersedes them (continuous label score, as every other Clotho run, and identical target inputs).
+
+## 14. Cross-system transfer, paired comparison with within-system Clotho (D)
+
+Copied from `reports/log_parsing_transfer_paired.md` (`log_parsing_transfer_paired.py report`; protocol in the script docstring). Setting fair_leakfree, standard split, 5 seeds.
+
+### Llama-3.1-8B-Instruct, capped (10 targets; protocol-chosen source model: mlp)
+
+| method | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model | 0.680 ± 0.006 | 0.720 ± 0.021 | 0.768 ± 0.004 | 0.790 ± 0.011 |
+| Refit, logistic probe (not protocol-chosen) | 0.701 ± 0.003 | 0.720 ± 0.026 | 0.759 ± 0.004 | 0.778 ± 0.007 |
+| Within-system Clotho, k labels |  | 0.597 ± 0.034 | 0.678 ± 0.018 | 0.714 ± 0.009 |
+| Within-system Clotho @100 | 0.737 ± 0.010 | 0.737 ± 0.011 | 0.737 ± 0.010 | 0.736 ± 0.011 |
+
+| paired difference | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model minus Within-system Clotho @100 | -0.056 ± 0.013 (0/5) | -0.017 ± 0.031 (2/5) | +0.031 ± 0.013 (5/5) | +0.054 ± 0.019 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Within-system Clotho @100 | -0.035 ± 0.010 (0/5) | -0.017 ± 0.034 (2/5) | +0.023 ± 0.011 (5/5) | +0.042 ± 0.015 (5/5) |
+| Refit, protocol-chosen source model minus Within-system Clotho, k labels |  | +0.123 ± 0.022 (5/5) | +0.089 ± 0.016 (5/5) | +0.076 ± 0.014 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Refit, protocol-chosen source model | +0.021 ± 0.008 (5/5) | +0.000 ± 0.010 (2/5) | -0.008 ± 0.004 (0/5) | -0.012 ± 0.015 (1/5) |
+
+Smallest k at which the refit beats within-system Clotho @100 on every seed: protocol-chosen 25; logistic probe (not protocol-chosen) 25.
+
+
+### Llama-3.1-8B-Instruct, natural (10 targets; protocol-chosen source model: mlp)
+
+| method | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model | 0.628 ± 0.037 | 0.821 ± 0.010 | 0.845 ± 0.014 | 0.888 ± 0.006 |
+| Refit, logistic probe (not protocol-chosen) | 0.688 ± 0.004 | 0.823 ± 0.013 | 0.849 ± 0.009 | 0.879 ± 0.007 |
+| Within-system Clotho, k labels |  | 0.695 ± 0.035 | 0.783 ± 0.024 | 0.844 ± 0.010 |
+| Within-system Clotho @100 | 0.849 ± 0.015 | 0.849 ± 0.015 | 0.849 ± 0.014 | 0.847 ± 0.017 |
+
+| paired difference | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model minus Within-system Clotho @100 | -0.221 ± 0.049 (0/5) | -0.028 ± 0.014 (0/5) | -0.004 ± 0.024 (3/5) | +0.041 ± 0.016 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Within-system Clotho @100 | -0.161 ± 0.016 (0/5) | -0.026 ± 0.018 (0/5) | +0.000 ± 0.018 (3/5) | +0.031 ± 0.017 (5/5) |
+| Refit, protocol-chosen source model minus Within-system Clotho, k labels |  | +0.126 ± 0.043 (5/5) | +0.063 ± 0.016 (5/5) | +0.044 ± 0.006 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Refit, protocol-chosen source model | +0.060 ± 0.038 (4/5) | +0.002 ± 0.007 (4/5) | +0.004 ± 0.008 (3/5) | -0.009 ± 0.006 (0/5) |
+
+Smallest k at which the refit beats within-system Clotho @100 on every seed: protocol-chosen 50; logistic probe (not protocol-chosen) 50.
+
+
+### Gemma-2-9B-it, capped (9 targets; protocol-chosen source model: probe_feats)
+
+| method | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model | 0.659 ± 0.001 | 0.707 ± 0.018 | 0.746 ± 0.013 | 0.783 ± 0.011 |
+| Refit, logistic probe (not protocol-chosen) | 0.669 ± 0.001 | 0.712 ± 0.019 | 0.749 ± 0.011 | 0.783 ± 0.014 |
+| Within-system Clotho, k labels |  | 0.661 ± 0.014 | 0.708 ± 0.009 | 0.741 ± 0.009 |
+| Within-system Clotho @100 | 0.785 ± 0.005 | 0.785 ± 0.005 | 0.785 ± 0.004 | 0.783 ± 0.004 |
+
+| paired difference | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model minus Within-system Clotho @100 | -0.126 ± 0.005 (0/5) | -0.078 ± 0.018 (0/5) | -0.039 ± 0.015 (0/5) | +0.000 ± 0.012 (2/5) |
+| Refit, logistic probe (not protocol-chosen) minus Within-system Clotho @100 | -0.116 ± 0.005 (0/5) | -0.073 ± 0.018 (0/5) | -0.036 ± 0.013 (0/5) | +0.001 ± 0.014 (2/5) |
+| Refit, protocol-chosen source model minus Within-system Clotho, k labels |  | +0.046 ± 0.014 (5/5) | +0.038 ± 0.015 (5/5) | +0.042 ± 0.008 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Refit, protocol-chosen source model | +0.010 ± 0.001 (5/5) | +0.005 ± 0.003 (5/5) | +0.002 ± 0.004 (4/5) | +0.000 ± 0.003 (3/5) |
+
+Smallest k at which the refit beats within-system Clotho @100 on every seed: protocol-chosen none of 0-50; logistic probe (not protocol-chosen) none of 0-50.
+
+
+### Gemma-2-9B-it, natural (9 targets; protocol-chosen source model: probe_feats)
+
+| method | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model | 0.742 ± 0.004 | 0.865 ± 0.026 | 0.906 ± 0.011 | 0.933 ± 0.005 |
+| Refit, logistic probe (not protocol-chosen) | 0.708 ± 0.005 | 0.813 ± 0.022 | 0.893 ± 0.013 | 0.924 ± 0.012 |
+| Within-system Clotho, k labels |  | 0.726 ± 0.052 | 0.807 ± 0.019 | 0.854 ± 0.012 |
+| Within-system Clotho @100 | 0.889 ± 0.026 | 0.888 ± 0.026 | 0.889 ± 0.025 | 0.889 ± 0.026 |
+
+| paired difference | k = 0 | k = 10 | k = 25 | k = 50 |
+|---|---|---|---|---|
+| Refit, protocol-chosen source model minus Within-system Clotho @100 | -0.147 ± 0.023 (0/5) | -0.023 ± 0.028 (1/5) | +0.017 ± 0.028 (4/5) | +0.044 ± 0.029 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Within-system Clotho @100 | -0.180 ± 0.024 (0/5) | -0.076 ± 0.039 (0/5) | +0.004 ± 0.030 (3/5) | +0.035 ± 0.034 (4/5) |
+| Refit, protocol-chosen source model minus Within-system Clotho, k labels |  | +0.139 ± 0.035 (5/5) | +0.100 ± 0.015 (5/5) | +0.079 ± 0.011 (5/5) |
+| Refit, logistic probe (not protocol-chosen) minus Refit, protocol-chosen source model | -0.034 ± 0.003 (0/5) | -0.052 ± 0.022 (0/5) | -0.013 ± 0.004 (0/5) | -0.009 ± 0.007 (0/5) |
+
+Smallest k at which the refit beats within-system Clotho @100 on every seed: protocol-chosen 50; logistic probe (not protocol-chosen) none of 0-50.
+
+Reading: on the same target inputs, the protocol-chosen source model refit with k target labels beats within-system Clotho @100 on every seed from k = 25 (Llama capped) or k = 50 (Llama natural, Gemma natural); Gemma capped only ties at k = 50 (2/5 seeds). It beats within-system Clotho with the same k on every seed at every k.
+
+## 15. Statistics: Scott-Knott ESD ranks and Vargha-Delaney A12
+
+Copied from `reports/log_parsing_stats.md` (`log_parsing_stats.py report`; protocol in the script docstring). Setting fair_leakfree, standard split, 5 seeds.
+
+### Llama-3.1-8B-Instruct
+
+**llama main table (capped, standard) @100** (65 observations per method): 1. Output entropy 0.792; 2. Hybrid 0.757; 2. Clotho 0.749; 3. MDSA 0.715; 3. Lookup (Drain, default) 0.694; 3. Lookup (oracle) 0.691; 3. Lookup (Drain) 0.680; 4. LOHSvar 0.647; 4. GMMb 0.629; 5. Sem-Ent 0.543; 6. Tok-Prob 0.518; 6. Tok-Ent 0.507; 6. SLL 0.506; 6. Random 0.504
+**llama natural table @100** (65 observations per method): 1. Clotho + output entropy 0.854; 1. Lookup (Drain) 0.838; 1. Lookup (oracle) 0.836; 1. Clotho 0.831; 1. MDSA 0.815; 2. Output entropy 0.789; 2. GMMb 0.772; 3. LOHSvar 0.685; 4. Random 0.505; 4. Tok-Prob 0.504
+**llama main table (capped, standard) @200** (65 observations per method): 1. Hybrid 0.802; 1. Clotho 0.794; 1. Output entropy 0.794; 2. Lookup (Drain, default) 0.750; 2. Lookup (oracle) 0.749; 2. MDSA 0.737; 2. Lookup (Drain) 0.733; 2. GMMb 0.720; 3. LOHSvar 0.644; 4. Sem-Ent 0.535; 4. Tok-Prob 0.516; 4. Random 0.506; 4. Tok-Ent 0.506; 4. SLL 0.499
+**llama natural table @200** (65 observations per method): 1. Lookup (oracle) 0.863; 1. Lookup (Drain) 0.861; 1. Clotho + output entropy 0.856; 1. Clotho 0.845; 1. MDSA 0.838; 2. GMMb 0.798; 2. Output entropy 0.784; 3. LOHSvar 0.696; 4. Random 0.499; 4. Tok-Prob 0.492
+**llama A, LLMLog (capped) @100** (65 observations per method): 1. Output entropy 0.792; 2. Clotho 0.749; 3. LLMLog confidence 0.721; 3. LLMLog 0.720; 4. Lookup (Drain) 0.680; 5. Random 0.504; 5. LLMLog representativeness 0.499
+**llama B, corrected label (capped) @100** (65 observations per method): 1. Clotho 0.766; 1. Output entropy 0.753; 2. Lookup (Drain) 0.704; 3. Random 0.512
+**llama A, LLMLog (capped) @200** (65 observations per method): 1. Clotho 0.794; 1. Output entropy 0.794; 2. Lookup (Drain) 0.733; 2. LLMLog confidence 0.717; 2. LLMLog 0.717; 3. Random 0.506; 3. LLMLog representativeness 0.503
+**llama B, corrected label (capped) @200** (65 observations per method): 1. Clotho 0.813; 2. Output entropy 0.757; 2. Lookup (Drain) 0.749; 3. Random 0.495
+**llama C, failures found (capped) B=50** (65 observations per method): 1. Clotho 81.262; 1. Drain-propagate + Clotho 81.123; 2. Drain-propagate, no Clotho 76.985; 3. Random 66.708
+**llama C, failures found (capped) B=100** (65 observations per method): 1. Clotho 161.431; 1. Drain-propagate + Clotho 157.585; 2. Drain-propagate, no Clotho 149.477; 3. Random 133.677
+**llama C, failures found (capped) B=200** (65 observations per method): 1. Drain-propagate + Clotho 295.554; 1. Clotho 295.108; 1. Drain-propagate, no Clotho 290.462; 2. Random 268.446
+**llama D, transfer k=0 (capped, held-out targets)** (50 observations per method): 1. Logistic probe 0.714; 1. Probe + features 0.711; 1. MLP probe 0.697; 2. Log features 0.652; 2. Pooled Clotho (tuned layer) 0.632; 3. + z-score + CORAL 0.593; 3. + z-score 0.591; 3. Pooled Clotho (fair layer) 0.588
+**llama A, LLMLog (natural) @100** (65 observations per method): 1. Lookup (Drain) 0.838; 1. Clotho 0.831; 2. Output entropy 0.789; 3. LLMLog confidence 0.676; 3. LLMLog 0.675; 4. Random 0.505; 4. LLMLog representativeness 0.505
+**llama B, corrected label (natural) @100** (65 observations per method): 1. Lookup (Drain) 0.850; 1. Clotho 0.843; 2. Output entropy 0.730; 3. Random 0.507
+**llama A, LLMLog (natural) @200** (65 observations per method): 1. Lookup (Drain) 0.861; 1. Clotho 0.845; 2. Output entropy 0.784; 3. LLMLog 0.675; 3. LLMLog confidence 0.675; 4. LLMLog representativeness 0.500; 4. Random 0.499
+**llama B, corrected label (natural) @200** (65 observations per method): 1. Lookup (Drain) 0.852; 1. Clotho 0.850; 2. Output entropy 0.724; 3. Random 0.490
+**llama C, failures found (natural) B=50** (65 observations per method): 1. Clotho 81.031; 1. Drain-propagate + Clotho 77.431; 1. Drain-propagate, no Clotho 76.092; 2. Random 64.708
+**llama C, failures found (natural) B=100** (65 observations per method): 1. Clotho 157.477; 1. Drain-propagate + Clotho 152.569; 1. Drain-propagate, no Clotho 148.954; 2. Random 130
+**llama C, failures found (natural) B=200** (65 observations per method): 1. Clotho 290.815; 1. Drain-propagate + Clotho 286.138; 1. Drain-propagate, no Clotho 283.846; 1. Random 260.431
+**llama D, transfer k=0 (natural, held-out targets)** (50 observations per method): 1. Logistic probe 0.686; 1. Log features 0.680; 1. Probe + features 0.667; 1. MLP probe 0.640; 2. Pooled Clotho (tuned layer) 0.573; 2. + z-score + CORAL 0.534; 3. Pooled Clotho (fair layer) 0.499; 3. + z-score 0.449
+
+A12 for the key pairwise claims:
+
+- llama capped @100 Clotho vs lookup_drain: A12 = 0.69 (medium)
+- llama capped @100 Clotho vs MDSA: A12 = 0.62 (small)
+- llama capped @100 Clotho vs out_entropy: A12 = 0.38 (small)
+- llama natural @100 Clotho vs lookup_drain: A12 = 0.49 (negligible)
+- llama natural @100 Clotho vs MDSA: A12 = 0.50 (negligible)
+- llama natural @100 Clotho vs out_entropy: A12 = 0.68 (medium)
+- llama capped @200 Clotho vs lookup_drain: A12 = 0.65 (medium)
+- llama capped @200 Clotho vs MDSA: A12 = 0.71 (large)
+- llama capped @200 Clotho vs out_entropy: A12 = 0.54 (negligible)
+- llama natural @200 Clotho vs lookup_drain: A12 = 0.46 (negligible)
+- llama natural @200 Clotho vs MDSA: A12 = 0.54 (negligible)
+- llama natural @200 Clotho vs out_entropy: A12 = 0.68 (medium)
+- llama A capped @100 Clotho vs LLMLog: A12 = 0.62 (small)
+- llama B capped @100 Clotho vs lookup_drain (corrected label): A12 = 0.63 (small)
+- llama B capped @100 Clotho vs out_entropy (corrected label): A12 = 0.54 (negligible)
+- llama A capped @200 Clotho vs LLMLog: A12 = 0.77 (large)
+- llama B capped @200 Clotho vs lookup_drain (corrected label): A12 = 0.63 (small)
+- llama B capped @200 Clotho vs out_entropy (corrected label): A12 = 0.69 (medium)
+- llama C capped B=50 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.49 (negligible)
+- llama C capped B=100 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.56 (negligible)
+- llama C capped B=200 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.50 (negligible)
+- llama D capped logistic probe vs pooled Clotho (clotho_pool_fair): A12 = 0.89 (large)
+- llama D capped logistic probe vs pooled Clotho (clotho_pool): A12 = 0.78 (large)
+- llama D capped k=25 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.57 (small)
+- llama D capped k=50 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.64 (small)
+- llama A natural @100 Clotho vs LLMLog: A12 = 0.81 (large)
+- llama B natural @100 Clotho vs lookup_drain (corrected label): A12 = 0.46 (negligible)
+- llama B natural @100 Clotho vs out_entropy (corrected label): A12 = 0.74 (large)
+- llama A natural @200 Clotho vs LLMLog: A12 = 0.81 (large)
+- llama B natural @200 Clotho vs lookup_drain (corrected label): A12 = 0.46 (negligible)
+- llama B natural @200 Clotho vs out_entropy (corrected label): A12 = 0.78 (large)
+- llama C natural B=50 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.60 (small)
+- llama C natural B=100 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.58 (small)
+- llama C natural B=200 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.56 (negligible)
+- llama D natural logistic probe vs pooled Clotho (clotho_pool_fair): A12 = 0.77 (large)
+- llama D natural logistic probe vs pooled Clotho (clotho_pool): A12 = 0.70 (medium)
+- llama D natural k=25 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.48 (negligible)
+- llama D natural k=50 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.59 (small)
+
+### Gemma-2-9B-it
+
+**gemma main table (capped, standard) @100** (60 observations per method): 1. Output entropy 0.821; 1. Hybrid 0.789; 1. Clotho 0.780; 2. Lookup (oracle) 0.730; 2. Lookup (Drain, default) 0.728; 2. MDSA 0.718; 2. Lookup (Drain) 0.706; 3. GMMb 0.679; 3. LOHSvar 0.677; 4. Sem-Ent 0.617; 5. Tok-Ent 0.578; 6. Random 0.503; 6. Tok-Prob 0.486; 7. SLL 0.457
+**gemma natural table @100** (60 observations per method): 1. Lookup (oracle) 0.919; 1. Lookup (Drain) 0.916; 2. Clotho + output entropy 0.894; 2. Clotho 0.880; 2. MDSA 0.875; 3. GMMb 0.789; 3. Output entropy 0.772; 4. LOHSvar 0.669; 5. Random 0.502; 5. Tok-Prob 0.478
+**gemma main table (capped, standard) @200** (60 observations per method): 1. Hybrid 0.843; 1. Clotho 0.832; 1. Output entropy 0.818; 2. Lookup (oracle) 0.790; 2. Lookup (Drain, default) 0.789; 2. Lookup (Drain) 0.774; 2. GMMb 0.761; 3. MDSA 0.737; 4. LOHSvar 0.672; 5. Sem-Ent 0.612; 5. Tok-Ent 0.575; 6. Random 0.503; 6. Tok-Prob 0.480; 7. SLL 0.453
+**gemma natural table @200** (60 observations per method): 1. Lookup (oracle) 0.914; 1. Lookup (Drain) 0.912; 2. Clotho + output entropy 0.872; 2. GMMb 0.856; 2. Clotho 0.855; 2. MDSA 0.830; 3. Output entropy 0.762; 4. LOHSvar 0.662; 5. Random 0.502; 5. Tok-Prob 0.473
+**gemma A, LLMLog (capped) @100** (60 observations per method): 1. Output entropy 0.821; 2. Clotho 0.780; 3. Lookup (Drain) 0.706; 3. LLMLog confidence 0.688; 3. LLMLog 0.686; 4. Random 0.503; 4. LLMLog representativeness 0.481
+**gemma B, corrected label (capped) @100** (60 observations per method): 1. Clotho 0.801; 1. Output entropy 0.788; 2. Lookup (Drain) 0.723; 3. Random 0.500
+**gemma A, LLMLog (capped) @200** (60 observations per method): 1. Clotho 0.832; 1. Output entropy 0.818; 2. Lookup (Drain) 0.774; 3. LLMLog confidence 0.683; 3. LLMLog 0.683; 4. Random 0.503; 4. LLMLog representativeness 0.490
+**gemma B, corrected label (capped) @200** (60 observations per method): 1. Clotho 0.839; 2. Output entropy 0.790; 2. Lookup (Drain) 0.783; 3. Random 0.492
+**gemma C, failures found (capped) B=50** (60 observations per method): 1. Drain-propagate + Clotho 75.033; 1. Clotho 74.200; 2. Drain-propagate, no Clotho 70.467; 3. Random 55.717
+**gemma C, failures found (capped) B=100** (60 observations per method): 1. Drain-propagate + Clotho 145.683; 1. Clotho 144.600; 2. Drain-propagate, no Clotho 136.700; 3. Random 108.050
+**gemma C, failures found (capped) B=200** (60 observations per method): 1. Drain-propagate + Clotho 252.400; 1. Clotho 249.733; 1. Drain-propagate, no Clotho 248.567; 2. Random 218.883
+**gemma D, transfer k=0 (capped, held-out targets)** (45 observations per method): 1. Logistic probe 0.672; 1. MLP probe 0.668; 1. Log features 0.668; 1. Probe + features 0.661; 2. Pooled Clotho (fair layer) 0.619; 3. Pooled Clotho (tuned layer) 0.572; 3. + z-score 0.567; 3. + z-score + CORAL 0.550
+**gemma A, LLMLog (natural) @100** (60 observations per method): 1. Lookup (Drain) 0.916; 2. Clotho 0.880; 3. Output entropy 0.772; 4. LLMLog 0.620; 4. LLMLog confidence 0.620; 5. Random 0.502; 5. LLMLog representativeness 0.493
+**gemma B, corrected label (natural) @100** (55 observations per method): 1. Lookup (Drain) 0.915; 1. Clotho 0.901; 2. Output entropy 0.769; 3. Random 0.500
+**gemma A, LLMLog (natural) @200** (60 observations per method): 1. Lookup (Drain) 0.912; 2. Clotho 0.855; 3. Output entropy 0.762; 4. LLMLog 0.611; 4. LLMLog confidence 0.611; 5. Random 0.502; 5. LLMLog representativeness 0.495
+**gemma B, corrected label (natural) @200** (55 observations per method): 1. Lookup (Drain) 0.924; 2. Clotho 0.875; 3. Output entropy 0.767; 4. Random 0.489
+**gemma C, failures found (natural) B=50** (60 observations per method): 1. Clotho 80.500; 1. Drain-propagate + Clotho 78.367; 2. Drain-propagate, no Clotho 75.367; 3. Random 59.017
+**gemma C, failures found (natural) B=100** (60 observations per method): 1. Clotho 158.950; 1. Drain-propagate + Clotho 154.800; 1. Drain-propagate, no Clotho 151.133; 2. Random 117.900
+**gemma C, failures found (natural) B=200** (60 observations per method): 1. Clotho 268.383; 1. Drain-propagate + Clotho 265.517; 1. Drain-propagate, no Clotho 263.583; 2. Random 236.683
+**gemma D, transfer k=0 (natural, held-out targets)** (45 observations per method): 1. Probe + features 0.727; 1. Logistic probe 0.691; 1. Pooled Clotho (fair layer) 0.664; 1. MLP probe 0.659; 1. Log features 0.622; 2. + z-score + CORAL 0.459; 2. Pooled Clotho (tuned layer) 0.444; 2. + z-score 0.429
+
+A12 for the key pairwise claims:
+
+- gemma capped @100 Clotho vs lookup_drain: A12 = 0.66 (medium)
+- gemma capped @100 Clotho vs MDSA: A12 = 0.68 (medium)
+- gemma capped @100 Clotho vs out_entropy: A12 = 0.38 (small)
+- gemma natural @100 Clotho vs lookup_drain: A12 = 0.39 (small)
+- gemma natural @100 Clotho vs MDSA: A12 = 0.54 (negligible)
+- gemma natural @100 Clotho vs out_entropy: A12 = 0.82 (large)
+- gemma capped @200 Clotho vs lookup_drain: A12 = 0.60 (small)
+- gemma capped @200 Clotho vs MDSA: A12 = 0.77 (large)
+- gemma capped @200 Clotho vs out_entropy: A12 = 0.58 (small)
+- gemma natural @200 Clotho vs lookup_drain: A12 = 0.44 (small)
+- gemma natural @200 Clotho vs MDSA: A12 = 0.56 (negligible)
+- gemma natural @200 Clotho vs out_entropy: A12 = 0.72 (large)
+- gemma A capped @100 Clotho vs LLMLog: A12 = 0.72 (large)
+- gemma B capped @100 Clotho vs lookup_drain (corrected label): A12 = 0.66 (medium)
+- gemma B capped @100 Clotho vs out_entropy (corrected label): A12 = 0.52 (negligible)
+- gemma A capped @200 Clotho vs LLMLog: A12 = 0.86 (large)
+- gemma B capped @200 Clotho vs lookup_drain (corrected label): A12 = 0.59 (small)
+- gemma B capped @200 Clotho vs out_entropy (corrected label): A12 = 0.68 (medium)
+- gemma C capped B=50 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.49 (negligible)
+- gemma C capped B=100 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.46 (negligible)
+- gemma C capped B=200 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.48 (negligible)
+- gemma D capped logistic probe vs pooled Clotho (clotho_pool_fair): A12 = 0.64 (small)
+- gemma D capped logistic probe vs pooled Clotho (clotho_pool): A12 = 0.77 (large)
+- gemma D capped k=25 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.43 (small)
+- gemma D capped k=50 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.51 (negligible)
+- gemma A natural @100 Clotho vs LLMLog: A12 = 0.95 (large)
+- gemma B natural @100 Clotho vs lookup_drain (corrected label): A12 = 0.46 (negligible)
+- gemma B natural @100 Clotho vs out_entropy (corrected label): A12 = 0.83 (large)
+- gemma A natural @200 Clotho vs LLMLog: A12 = 0.86 (large)
+- gemma B natural @200 Clotho vs lookup_drain (corrected label): A12 = 0.45 (negligible)
+- gemma B natural @200 Clotho vs out_entropy (corrected label): A12 = 0.77 (large)
+- gemma C natural B=50 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.55 (negligible)
+- gemma C natural B=100 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.55 (negligible)
+- gemma C natural B=200 Clotho vs Drain-propagate + Clotho (failures found): A12 = 0.51 (negligible)
+- gemma D natural logistic probe vs pooled Clotho (clotho_pool_fair): A12 = 0.53 (negligible)
+- gemma D natural logistic probe vs pooled Clotho (clotho_pool): A12 = 0.87 (large)
+- gemma D natural k=25 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.52 (negligible)
+- gemma D natural k=50 refit (protocol) vs within-system Clotho @100 (paired inputs): A12 = 0.61 (small)
+Reading: Scott-Knott ESD over (system, seed) observations puts Clotho in the top group on the capped suites in 3 of 4 model x reference-size cells (with output entropy and the hybrid; Llama @100: output entropy alone on top), above MDSA and every lookup (A12 vs Drain lookup 0.60-0.69, vs MDSA 0.62-0.77). On the natural suites Clotho shares the top group with the lookups and MDSA for Llama, but for Gemma the lookups form the top group alone (A12 Clotho vs Drain lookup 0.39-0.49). Clotho vs LLMLog: A12 0.62-0.95. Transfer probe vs pooled Clotho at the fair layer: 0.64-0.89, except Gemma natural (0.53, negligible).
 
 ## Other reports
 

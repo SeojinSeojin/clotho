@@ -35,7 +35,9 @@ READ = {
     "transfer": ("Reading (held-out targets): pooled-source Clotho stays at 0.44-0.66; per-system normalisation and CORAL "
                  "do not help; a logistic probe on source labels reaches 0.67-0.71 without target labels; refitting the "
                  "best source model with 25-50 target labels matches within-system Clotho @100 (not paired). Generic "
-                 "log features alone reach 0.62-0.68."),
+                 "log features alone reach 0.62-0.68. The within-system Clotho rows of this section received the 0/1 label "
+                 "and unpaired test sets; section 14 supersedes them (continuous label score, as every other Clotho run, and "
+                 "identical target inputs)."),
     "literature": ("Reading: LLMLog's selection score ranks failures below Clotho on every seed for both models and suites "
                    "(0.620-0.720 vs 0.749-0.880 @100), almost entirely through its confidence part; its representativeness "
                    "part is at chance. AdaParser's corrector fixes 5.9-15.6% of failing inputs and breaks 97-219 passing "
@@ -201,7 +203,8 @@ def build():
            "`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), "
            "all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` "
            "(both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, "
-           "`table_cross.py`. Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`. "
+           "`table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, "
+           "`fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired). "
            "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
            "`paper/results_outline.md`.\n"]
     for n, key, title, name, script, until in (
