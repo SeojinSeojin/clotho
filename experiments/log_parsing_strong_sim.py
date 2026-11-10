@@ -177,8 +177,7 @@ def report(push=False):
         for c in ("C1", "C2"):
             others = [p.stem for p in (gdir / c).glob("*.json")] if (gdir / c).exists() else []
             if c != chj["chosen"] and others:
-                L.append(f"\nAlso run, {c}: " + ", ".join(f"{s} PA_0 {SG.pa0_of(s, c)[0]:.3f}" for s in sorted(others)
-                                                           if model == SG.MODEL) + ".")
+                L.append(f"\nAlso run, {c}: " + ", ".join(f"{s} PA_0 {SG.pa0_of(s, c, model)[0]:.3f}" for s in sorted(others)) + ".")
         mp = statistics.mean(r["pa0"] for r in Rs.values())
         mw = statistics.mean(r["wrong_groups"] for r in Rs.values())
         jm["pa0"], jm["wrong"] = mp, mw

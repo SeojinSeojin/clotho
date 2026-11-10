@@ -221,9 +221,10 @@ def cmd_gen(a):
 
 # ---------------------------------------------------------------- PA_0 and the C1/C2 rule
 
-def pa0_of(system, config):
+def pa0_of(system, config, model=None):
     d = ST.load(system)
-    cache = json.loads((GEN / config / f"{system}.json").read_text())["final"]
+    gen = GEN if model is None else EXP / "data" / "stream_gen_strong" / model
+    cache = json.loads((gen / config / f"{system}.json").read_text())["final"]
     gts = [d["templates"][t] for t in d["gt"]]
     pa = sum(cache[g] == t for g, t in zip(d["group"], gts)) / len(gts)
     wrong = sum(cache[g] != d["templates"][d["gt"][i]] for g, i in enumerate(d["first"])) / len(d["first"])

@@ -26,6 +26,8 @@ import zipfile
 from pathlib import Path
 
 import numpy as np
+import warnings
+warnings.filterwarnings("ignore")
 
 EXP = Path(__file__).resolve().parent
 sys.path.insert(0, str(EXP))
@@ -142,7 +144,7 @@ def run(push=False):
                         for N in NS:
                             rv = set(seq[:N])
                             gt_of = {g: tmpl[d["major"][g]] for g in rv}
-                            ev = [gt_of.get(int(g), cache[int(g)]) for g in grp]
+                            ev = [gt_of.get(int(g), cache[int(g)] or "") for g in grp]   # parse failure = empty template
                             h = hashlib.md5("\x00".join(ev).encode()).hexdigest()
                             if h not in memo:
                                 memo[h] = detect(ev, wins, y)

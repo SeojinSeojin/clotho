@@ -72,7 +72,7 @@ def ie_states(tok, m, prompt_ids, gens):
             return last_prompt.expand(len(gens), -1).cpu().numpy()
         cache.batch_repeat_interleave(len(gens))
         P = len(prompt_ids)
-        ids = torch.full((len(gens), L), tok.pad_token_id or 0, dtype=torch.long, device="cuda")
+        ids = torch.zeros((len(gens), L), dtype=torch.long, device="cuda")   # masked; the tokenizer pad id (128256) is outside the raw embedding table
         att = torch.zeros((len(gens), P + L), dtype=torch.long, device="cuda")
         att[:, :P] = 1
         for k, f in enumerate(feed):

@@ -1,0 +1,92 @@
+{
+ "HDFS": {
+  "drain_groups": 14,
+  "gt_templates": 13,
+  "ari_drain_vs_gt": 0.9999999927726397,
+  "llama/base/N0": {
+   "events": 14,
+   "ari_vs_drain": 1.0,
+   "ari_vs_gt": 0.9999999927726397
+  },
+  "llama/base/N50": {
+   "events": 13,
+   "ari_vs_drain": 0.9999999927726397,
+   "ari_vs_gt": 1.0
+  },
+  "llama/strong/N0": {
+   "events": 13,
+   "ari_vs_drain": 0.9999999927726397,
+   "ari_vs_gt": 1.0
+  },
+  "llama/strong/N50": {
+   "events": 13,
+   "ari_vs_drain": 0.9999999927726397,
+   "ari_vs_gt": 1.0
+  },
+  "gemma/base/N0": {
+   "events": 14,
+   "ari_vs_drain": 1.0,
+   "ari_vs_gt": 0.9999999927726397
+  },
+  "gemma/base/N50": {
+   "events": 13,
+   "ari_vs_drain": 0.9999999927726397,
+   "ari_vs_gt": 1.0
+  },
+  "gemma/strong/N0": {
+   "events": 13,
+   "ari_vs_drain": 0.9999999927726397,
+   "ari_vs_gt": 1.0
+  },
+  "gemma/strong/N50": {
+   "events": 13,
+   "ari_vs_drain": 0.9999999927726397,
+   "ari_vs_gt": 1.0
+  }
+ },
+ "BGL": {
+  "drain_groups": 51,
+  "gt_templates": 54,
+  "ari_drain_vs_gt": 0.9999996278688358,
+  "llama/base/N0": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "llama/base/N50": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "llama/strong/N0": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "llama/strong/N50": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "gemma/base/N0": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "gemma/base/N50": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "gemma/strong/N0": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  },
+  "gemma/strong/N50": {
+   "events": 50,
+   "ari_vs_drain": 0.999999978499087,
+   "ari_vs_gt": 0.9999996493697462
+  }
+ }
+}
