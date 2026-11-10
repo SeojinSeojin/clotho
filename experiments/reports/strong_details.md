@@ -71,3 +71,70 @@ A12 D x size vs: Random 0.77 (large); Most frequent 0.49 (negligible); LLMLog co
 | Zookeeper | 0.455 | +0.000 | 0.247 | +0.001 |
 
 Spearman(wrong share, gap) over 26 (system, parser) points: -0.27 (p = 0.184). Mean gap base -0.010, strong -0.020; gap rises on 4/13 systems (mean change -0.011, mean change in wrong share -0.171). Systems with < 25% wrong groups (strong): 6, mean gap -0.034.
+
+## gemma: configuration C2 (mean PA_0 on HDFS, Spark, Linux: C1 0.111, C2 0.376)
+
+| system | groups | PA_0 base | wrong groups base | PA_0 strong | wrong groups strong | ICL before corrector correct groups | ms / template |
+|---|---|---|---|---|---|---|---|
+| BGL | 51 | 0.105 | 0.471 | 0.988 | 0.196 | 0.610 | 263 |
+| HDFS | 14 | 0.447 | 0.714 | 1.000 | 0.071 | 0.750 | 380 |
+| HPC | 68 | 0.745 | 0.250 | 0.745 | 0.397 | 0.534 | 91 |
+| Hadoop | 261 | 0.546 | 0.536 | 0.591 | 0.425 | 0.522 | 225 |
+| HealthApp | 6695 | 0.539 | 0.971 | 0.778 | 0.971 | 0.028 | 56 |
+| Linux | 430 | 0.587 | 0.637 | 0.094 | 0.598 | 0.388 | 145 |
+| Mac | 1952 | 0.361 | 0.559 | 0.464 | 0.545 | 0.440 | 212 |
+| OpenSSH | 26 | 0.386 | 0.654 | 0.995 | 0.423 | 0.375 | 537 |
+| OpenStack | 2616 | 0.149 | 0.112 | 0.822 | 0.080 | 0.919 | 83 |
+| Spark | 139 | 0.025 | 0.597 | 0.034 | 0.511 | 0.326 | 254 |
+| Thunderbird | 630 | 0.269 | 0.610 | 0.427 | 0.594 | 0.358 | 358 |
+| Zookeeper | 77 | 0.211 | 0.338 | 0.620 | 0.234 | 0.612 | 214 |
+
+Also run, C1: HDFS PA_0 0.220, Linux PA_0 0.088, Spark PA_0 0.026.
+
+Macro PA_0 0.630 (base 0.364); macro share of wrong groups 0.420 (base 0.537).
+
+
+### F2 gemma, all systems
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.132 ± 0.024 | 0.182 ± 0.027 | 0.265 ± 0.015 | 0.413 ± 0.038 | 123 | 124 | 85 | 74 | +0.506 (5/5) |
+| Most frequent | 0.616 ± 0.000 | 0.693 ± 0.000 | 0.778 ± 0.000 | 0.824 ± 0.000 | 2049 | 1140 | 633 | 272 | -0.007 (5/5) |
+| D x size | 0.603 ± 0.000 | 0.678 ± 0.000 | 0.772 ± 0.000 | 0.819 ± 0.000 | 2045 | 1126 | 628 | 271 | |
+| LLMLog confidence x size | 0.578 ± 0.000 | 0.659 ± 0.000 | 0.756 ± 0.000 | 0.802 ± 0.000 | 1899 | 1054 | 604 | 260 | +0.015 (5/5) |
+| Output entropy x size | 0.591 ± 0.000 | 0.653 ± 0.000 | 0.698 ± 0.000 | 0.802 ± 0.000 | 1983 | 1089 | 582 | 266 | +0.074 (5/5) |
+| Oracle | 0.688 ± 0.000 | 0.776 ± 0.000 | 0.811 ± 0.000 | 0.848 ± 0.000 | 2258 | 1246 | 663 | 285 | -0.039 (5/5) |
+
+SK-ESD @20 over (system, seed): 1. Most frequent 0.778; 1. D x size 0.772; 1. LLMLog confidence x size 0.756; 1. Output entropy x size 0.698; 2. Random 0.265
+
+A12 D x size vs: Random 0.82 (large); Most frequent 0.49 (negligible); LLMLog confidence x size 0.52 (negligible); Output entropy x size 0.56 (small)
+
+### F2 gemma, held-out systems
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.055 ± 0.032 | 0.110 ± 0.021 | 0.219 ± 0.037 | 0.401 ± 0.045 | 63 | 66 | 59 | 64 | +0.489 (5/5) |
+| Most frequent | 0.512 ± 0.000 | 0.607 ± 0.000 | 0.717 ± 0.000 | 0.774 ± 0.000 | 1299 | 785 | 471 | 212 | -0.009 (5/5) |
+| D x size | 0.497 ± 0.000 | 0.586 ± 0.000 | 0.708 ± 0.000 | 0.768 ± 0.000 | 1299 | 764 | 464 | 210 | |
+| LLMLog confidence x size | 0.467 ± 0.000 | 0.573 ± 0.000 | 0.690 ± 0.000 | 0.745 ± 0.000 | 1124 | 695 | 437 | 195 | +0.018 (5/5) |
+| Output entropy x size | 0.480 ± 0.000 | 0.554 ± 0.000 | 0.612 ± 0.000 | 0.747 ± 0.000 | 1217 | 718 | 405 | 205 | +0.096 (5/5) |
+| Oracle | 0.607 ± 0.000 | 0.716 ± 0.000 | 0.759 ± 0.000 | 0.805 ± 0.000 | 1571 | 921 | 508 | 227 | -0.050 (5/5) |
+
+### F3 gemma: gap (D x size minus Most frequent, share @20, seed mean) vs share of wrong groups
+
+| system | wrong base | gap base | wrong strong | gap strong |
+|---|---|---|---|---|
+| BGL | 0.471 | +0.000 | 0.196 | -0.021 |
+| HDFS | 0.714 | +0.000 | 0.071 | +0.000 |
+| HPC | 0.250 | +0.002 | 0.397 | +0.000 |
+| Hadoop | 0.536 | +0.003 | 0.425 | -0.015 |
+| HealthApp | 0.971 | -0.272 | 0.971 | +0.000 |
+| Linux | 0.637 | -0.001 | 0.598 | -0.000 |
+| Mac | 0.559 | +0.052 | 0.545 | -0.025 |
+| OpenSSH | 0.654 | +0.000 | 0.423 | +0.000 |
+| OpenStack | 0.112 | -0.028 | 0.080 | -0.013 |
+| Spark | 0.597 | +0.002 | 0.511 | +0.001 |
+| Thunderbird | 0.610 | +0.009 | 0.594 | -0.004 |
+| Zookeeper | 0.338 | +0.000 | 0.234 | +0.000 |
+
+Spearman(wrong share, gap) over 24 (system, parser) points: +0.17 (p = 0.420). Mean gap base -0.019, strong -0.007; gap rises on 3/12 systems (mean change +0.013, mean change in wrong share -0.117). Systems with < 25% wrong groups (strong): 4, mean gap -0.009.

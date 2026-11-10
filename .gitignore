@@ -51,3 +51,9 @@ experiments/results_phase3_gemma/
 experiments/data/stream/
 experiments/data/stream_gen/
 experiments/data/stream_hidden/
+experiments/data/stream_gen_strong/
+experiments/data/template_difficulty/
+experiments/data/g_recompute/
+experiments/data/adaparser_e2e/
+experiments/data/skesd_check/
+experiments/results_phase3_cross/
