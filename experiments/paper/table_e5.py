@@ -19,7 +19,10 @@ ALIAS = {"syntactic_bug_detection": "SYN-BUG", "spell_check": "SPELL-CHK", "gith
 
 
 def main():
+    global M
     J = json.loads((C.EXP / "reports" / "e5_leakage.json").read_text())
+    r0 = next(iter(J["tasks"].values()))["leaky"]
+    M = M[:3] + [(m, n) for m, n in (("lohsvar", "LOHSvar$^*$"), ("sement", "Sem-Ent$^*$")) if m in r0] + M[3:]
     body = []
     for t, r in J["tasks"].items():
         cells = []
@@ -42,7 +45,10 @@ def main():
             "Leak-free: test score from 5 samples, score from the other 5 (5 seeded splits, mean $\\pm$ std). MDSA is "
             "pre-generation, so its change is label noise only. "
             f"Pairwise method comparisons that change sign: {f['spearman']['n_flip']} of {f['spearman']['n_pairs']} "
-            f"(Spearman), {f['auc']['n_flip']} of {f['auc']['n_pairs']} (ROC-AUC). $^*$ needs the generated outputs.",
+            f"(Spearman), {f['auc']['n_flip']} of {f['auc']['n_pairs']} (ROC-AUC)"
+            + (f"; with LOHSvar and Sem-Ent in the comparison set (MDSA excluded): {f['g/spearman']['n_flip']} of "
+               f"{f['g/spearman']['n_pairs']} (Spearman), {f['g/auc']['n_flip']} of {f['g/auc']['n_pairs']} (ROC-AUC)"
+               if "g/spearman" in f else "") + ". $^*$ needs the generated outputs.",
             "tab:e5-leakage", "l" + "rr" * len(M), header, body)
 
 

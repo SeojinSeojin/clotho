@@ -205,7 +205,7 @@ def build():
            "(both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, "
            "`table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, "
            "`fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); "
-           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5). "
+           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3). "
            "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
            "`paper/results_outline.md`.\n"]
     for n, key, title, name, script, until in (
@@ -221,8 +221,22 @@ def build():
              "log_parsing_stats.md", "log_parsing_stats.py", None),
             (16, "triage", "TRIAGE in a cached-parser simulation (E1-E4; 2026-11-10)",
              "triage_details.md", "log_parsing_triage.py", None),
-            (17, "e5", "E5: leakage of the post-generation baselines on the original Clotho tasks (Llama; 2026-11-10)",
-             "e5_leakage.md", "log_parsing_e5_leakage.py", None)):
+            (17, "e5", "E5 and G: leakage of the post-generation baselines on the original Clotho tasks (Llama; 2026-11-10)",
+             "e5_leakage.md", "log_parsing_e5_leakage.py", None),
+            (18, "strong", "F: strong-parser rerun of the cached-parser simulation (2026-11-10)",
+             "strong_details.md", "log_parsing_strong.py", None),
+            (19, "downstream", "H: downstream anomaly detection after N reviews (2026-11-10)",
+             "downstream_details.md", "log_parsing_downstream.py", None),
+            (20, "skesd", "M: Python Scott-Knott ESD vs the R package (2026-11-10)",
+             "skesd_check.md", "log_parsing_skesd_check.py", None),
+            (21, "difficulty", "L: what makes a template hard (2026-11-10)",
+             "template_difficulty.md", "log_parsing_template_difficulty.py", None),
+            (22, "stopping", "K: stopping rule from D's risk (2026-11-10)",
+             "stopping_details.md", "log_parsing_stopping.py", None),
+            (23, "adaparser_e2e", "I: AdaParser's official pipeline as the parser under review (2026-11-10)",
+             "adaparser_e2e_details.md", "log_parsing_adaparser_e2e.py", None),
+            (24, "crossmodel", "J: cross-model failure prediction (2026-11-10)",
+             "crossmodel_details.md", "log_parsing_crossmodel.py", None)):
         p = REP / name
         if not p.exists():
             continue
@@ -232,7 +246,8 @@ def build():
         L_ += [f"## {n}. {title}\n", f"Copied from `reports/{name}` (`{script} report`; protocol in the script "
                "docstring" + ("; deviations from the original methods are listed at the end of that report" if until else "")
                + (("). Setting fair_leakfree, standard split, 5 seeds.\n") if n < 16 else
-                  ("). Protocol in PROGRESS.md Decisions (E; TRIAGE and E1-E5), 5 seeds.\n"))]
+                  ("). Protocol in PROGRESS.md Decisions (E; TRIAGE and E1-E5), 5 seeds.\n") if n < 18 else
+                  ("). Protocol in PROGRESS.md Decisions (F; G; H-M).\n"))]
         L_ += [("#" + l) if l.startswith("#") else l for l in lines[i:j]] + [READ.get(key, ""), ""]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",
