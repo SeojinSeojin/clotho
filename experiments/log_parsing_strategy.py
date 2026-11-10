@@ -356,7 +356,9 @@ def report(push=False):
                     for nm, a, c in (("sampling (Clotho ranking)", "clotho|clotho", "random|clotho"),
                                      ("sampling (lookup ranking)", "clotho|lookup", "random|lookup"),
                                      ("Clotho vs lookup ranking (Clotho labels)", "clotho|clotho", "clotho|lookup"),
-                                     ("Clotho vs lookup ranking (random labels)", "random|clotho", "random|lookup")):
+                                     ("Clotho vs lookup ranking (random labels)", "random|clotho", "random|lookup"),
+                                     ("Clotho vs random labels + lookup ranking", "clotho|clotho", "random|lookup"),
+                                     ("Clotho vs Clotho labels + lookup ranking", "clotho|clotho", "clotho|lookup")):
                         d_ = [x - y for x, y in zip(dd[a]["found_seeds"], dd[c]["found_seeds"])]
                         J[key].setdefault("decomp_diff", {})[f"{nm}@{b}"] = {"mean": statistics.mean(d_), "std": statistics.stdev(d_),
                                                                              "pos": sum(x > 0 for x in d_)}

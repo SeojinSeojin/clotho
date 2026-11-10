@@ -220,6 +220,322 @@
     "std": 21.15419580130618,
     "every_seed": true
    }
+  },
+  "decomp": {
+   "50": {
+    "random|random": {
+     "found_labelled": 420,
+     "found_top": 421.2,
+     "found": 841.2,
+     "found_seeds": [
+      845,
+      834,
+      848,
+      845,
+      834
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 420,
+     "found_top": 585.2,
+     "found": 1005.2,
+     "found_seeds": [
+      1018,
+      1002,
+      1010,
+      996,
+      1000
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 420,
+     "found_top": 559.6,
+     "found": 979.6,
+     "found_seeds": [
+      1008,
+      964,
+      997,
+      961,
+      968
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 455.2,
+     "found_top": 419.8,
+     "found": 875,
+     "found_seeds": [
+      897,
+      875,
+      872,
+      868,
+      863
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 455.2,
+     "found_top": 584.8,
+     "found": 1040,
+     "found_seeds": [
+      1051,
+      1033,
+      1046,
+      1039,
+      1031
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 455.2,
+     "found_top": 598.2,
+     "found": 1053.4,
+     "found_seeds": [
+      1051,
+      1056,
+      1054,
+      1043,
+      1063
+     ]
+    }
+   },
+   "100": {
+    "random|random": {
+     "found_labelled": 847.6,
+     "found_top": 842.4,
+     "found": 1690,
+     "found_seeds": [
+      1706,
+      1667,
+      1698,
+      1687,
+      1692
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 847.6,
+     "found_top": 1162.8,
+     "found": 2010.4,
+     "found_seeds": [
+      2014,
+      1993,
+      2008,
+      2014,
+      2023
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 847.6,
+     "found_top": 1130.6,
+     "found": 1978.2,
+     "found_seeds": [
+      1964,
+      1970,
+      1962,
+      1984,
+      2011
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 927.8,
+     "found_top": 830.6,
+     "found": 1758.4,
+     "found_seeds": [
+      1756,
+      1751,
+      1787,
+      1733,
+      1765
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 927.8,
+     "found_top": 1109.6,
+     "found": 2037.4,
+     "found_seeds": [
+      2047,
+      2025,
+      2042,
+      2039,
+      2034
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 927.8,
+     "found_top": 1119.4,
+     "found": 2047.2,
+     "found_seeds": [
+      2063,
+      2046,
+      2029,
+      2045,
+      2053
+     ]
+    }
+   },
+   "200": {
+    "random|random": {
+     "found_labelled": 1692,
+     "found_top": 1693.6,
+     "found": 3385.6,
+     "found_seeds": [
+      3393,
+      3377,
+      3397,
+      3370,
+      3391
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 1692,
+     "found_top": 2131.8,
+     "found": 3823.8,
+     "found_seeds": [
+      3831,
+      3813,
+      3846,
+      3808,
+      3821
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 1692,
+     "found_top": 2053,
+     "found": 3745,
+     "found_seeds": [
+      3745,
+      3749,
+      3762,
+      3716,
+      3753
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 1823,
+     "found_top": 1607.2,
+     "found": 3430.2,
+     "found_seeds": [
+      3439,
+      3431,
+      3416,
+      3434,
+      3431
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 1823,
+     "found_top": 2001.6,
+     "found": 3824.6,
+     "found_seeds": [
+      3823,
+      3832,
+      3804,
+      3834,
+      3830
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 1823,
+     "found_top": 1957.6,
+     "found": 3780.6,
+     "found_seeds": [
+      3785,
+      3800,
+      3768,
+      3779,
+      3771
+     ]
+    }
+   }
+  },
+  "decomp_diff": {
+   "sampling (Clotho ranking)@50": {
+    "mean": 73.8,
+    "std": 22.796929617823537,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@50": {
+    "mean": 34.8,
+    "std": 5.019960159204453,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (Clotho labels)@50": {
+    "mean": 13.4,
+    "std": 13.557285864065861,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (random labels)@50": {
+    "mean": -25.6,
+    "std": 13.08816259067712,
+    "pos": 0
+   },
+   "Clotho vs random labels + lookup ranking@50": {
+    "mean": 48.2,
+    "std": 11.211601134539169,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@50": {
+    "mean": 13.4,
+    "std": 13.557285864065861,
+    "pos": 4
+   },
+   "sampling (Clotho ranking)@100": {
+    "mean": 69,
+    "std": 20.89258241577618,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@100": {
+    "mean": 27,
+    "std": 9.617692030835672,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (Clotho labels)@100": {
+    "mean": 9.8,
+    "std": 13.989281611290838,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (random labels)@100": {
+    "mean": -32.2,
+    "std": 15.84929020492716,
+    "pos": 0
+   },
+   "Clotho vs random labels + lookup ranking@100": {
+    "mean": 36.8,
+    "std": 13.6088206689632,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@100": {
+    "mean": 9.8,
+    "std": 13.989281611290838,
+    "pos": 4
+   },
+   "sampling (Clotho ranking)@200": {
+    "mean": 35.6,
+    "std": 23.41580662714825,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@200": {
+    "mean": 0.8,
+    "std": 27.12379029560581,
+    "pos": 3
+   },
+   "Clotho vs lookup ranking (Clotho labels)@200": {
+    "mean": -44,
+    "std": 12.144957801491119,
+    "pos": 0
+   },
+   "Clotho vs lookup ranking (random labels)@200": {
+    "mean": -78.8,
+    "std": 12.13260071048248,
+    "pos": 0
+   },
+   "Clotho vs random labels + lookup ranking@200": {
+    "mean": -43.2,
+    "std": 24.38647165950827,
+    "pos": 0
+   },
+   "Clotho vs Clotho labels + lookup ranking@200": {
+    "mean": -44,
+    "std": 12.144957801491119,
+    "pos": 0
+   }
   }
  },
  "llama/capped": {
@@ -443,6 +759,322 @@
     "std": 24.825390228554312,
     "every_seed": true
    }
+  },
+  "decomp": {
+   "50": {
+    "random|random": {
+     "found_labelled": 436.6,
+     "found_top": 430.6,
+     "found": 867.2,
+     "found_seeds": [
+      885,
+      855,
+      853,
+      874,
+      869
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 436.6,
+     "found_top": 567.8,
+     "found": 1004.4,
+     "found_seeds": [
+      1000,
+      979,
+      1012,
+      1016,
+      1015
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 436.6,
+     "found_top": 562.2,
+     "found": 998.8,
+     "found_seeds": [
+      1008,
+      1001,
+      989,
+      1003,
+      993
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 461.2,
+     "found_top": 432.4,
+     "found": 893.6,
+     "found_seeds": [
+      883,
+      906,
+      895,
+      893,
+      891
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 461.2,
+     "found_top": 553.8,
+     "found": 1015,
+     "found_seeds": [
+      1012,
+      1023,
+      1008,
+      1008,
+      1024
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 461.2,
+     "found_top": 595.2,
+     "found": 1056.4,
+     "found_seeds": [
+      1050,
+      1062,
+      1072,
+      1052,
+      1046
+     ]
+    }
+   },
+   "100": {
+    "random|random": {
+     "found_labelled": 858.4,
+     "found_top": 879.4,
+     "found": 1737.8,
+     "found_seeds": [
+      1755,
+      1746,
+      1726,
+      1750,
+      1712
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 858.4,
+     "found_top": 1127,
+     "found": 1985.4,
+     "found_seeds": [
+      1971,
+      1990,
+      1968,
+      2012,
+      1986
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 858.4,
+     "found_top": 1154.8,
+     "found": 2013.2,
+     "found_seeds": [
+      1990,
+      2039,
+      1999,
+      2044,
+      1994
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 924.8,
+     "found_top": 851.8,
+     "found": 1776.6,
+     "found_seeds": [
+      1764,
+      1756,
+      1796,
+      1785,
+      1782
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 924.8,
+     "found_top": 1071.8,
+     "found": 1996.6,
+     "found_seeds": [
+      2000,
+      1991,
+      1968,
+      2032,
+      1992
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 924.8,
+     "found_top": 1173.8,
+     "found": 2098.6,
+     "found_seeds": [
+      2082,
+      2089,
+      2132,
+      2095,
+      2095
+     ]
+    }
+   },
+   "200": {
+    "random|random": {
+     "found_labelled": 1757.6,
+     "found_top": 1732.2,
+     "found": 3489.8,
+     "found_seeds": [
+      3503,
+      3475,
+      3500,
+      3487,
+      3484
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 1757.6,
+     "found_top": 2013,
+     "found": 3770.6,
+     "found_seeds": [
+      3780,
+      3768,
+      3762,
+      3772,
+      3771
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 1757.6,
+     "found_top": 2024.2,
+     "found": 3781.8,
+     "found_seeds": [
+      3786,
+      3789,
+      3768,
+      3776,
+      3790
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 1844.6,
+     "found_top": 1665.6,
+     "found": 3510.2,
+     "found_seeds": [
+      3520,
+      3512,
+      3498,
+      3525,
+      3496
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 1844.6,
+     "found_top": 1939.8,
+     "found": 3784.4,
+     "found_seeds": [
+      3780,
+      3784,
+      3793,
+      3786,
+      3779
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 1844.6,
+     "found_top": 1991.8,
+     "found": 3836.4,
+     "found_seeds": [
+      3820,
+      3846,
+      3842,
+      3817,
+      3857
+     ]
+    }
+   }
+  },
+  "decomp_diff": {
+   "sampling (Clotho ranking)@50": {
+    "mean": 57.6,
+    "std": 15.773395322504284,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@50": {
+    "mean": 10.6,
+    "std": 20.489021450523204,
+    "pos": 3
+   },
+   "Clotho vs lookup ranking (Clotho labels)@50": {
+    "mean": 41.4,
+    "std": 15.093044755780724,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (random labels)@50": {
+    "mean": -5.6,
+    "std": 19.83179265724609,
+    "pos": 2
+   },
+   "Clotho vs random labels + lookup ranking@50": {
+    "mean": 52,
+    "std": 20.77257807784099,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@50": {
+    "mean": 41.4,
+    "std": 15.093044755780724,
+    "pos": 5
+   },
+   "sampling (Clotho ranking)@100": {
+    "mean": 85.4,
+    "std": 35.31713465161068,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@100": {
+    "mean": 11.2,
+    "std": 12.755391017134675,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (Clotho labels)@100": {
+    "mean": 102,
+    "std": 38.019731719200756,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (random labels)@100": {
+    "mean": 27.8,
+    "std": 15.385057685949702,
+    "pos": 5
+   },
+   "Clotho vs random labels + lookup ranking@100": {
+    "mean": 113.2,
+    "std": 30.48278202526797,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@100": {
+    "mean": 102,
+    "std": 38.019731719200756,
+    "pos": 5
+   },
+   "sampling (Clotho ranking)@200": {
+    "mean": 54.6,
+    "std": 16.92040188648012,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@200": {
+    "mean": 13.8,
+    "std": 11.454256850621082,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (Clotho labels)@200": {
+    "mean": 52,
+    "std": 18.506755523321747,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (random labels)@200": {
+    "mean": 11.2,
+    "std": 8.105553651663778,
+    "pos": 5
+   },
+   "Clotho vs random labels + lookup ranking@200": {
+    "mean": 65.8,
+    "std": 21.54530111184339,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@200": {
+    "mean": 52,
+    "std": 18.506755523321747,
+    "pos": 5
+   }
   }
  },
  "gemma/natural": {
@@ -665,6 +1297,322 @@
     "std": 12.601587201618692,
     "every_seed": true
    }
+  },
+  "decomp": {
+   "50": {
+    "random|random": {
+     "found_labelled": 356.6,
+     "found_top": 351.6,
+     "found": 708.2,
+     "found_seeds": [
+      735,
+      691,
+      712,
+      703,
+      700
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 356.6,
+     "found_top": 591.8,
+     "found": 948.4,
+     "found_seeds": [
+      969,
+      933,
+      956,
+      950,
+      934
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 356.6,
+     "found_top": 542.4,
+     "found": 899,
+     "found_seeds": [
+      930,
+      893,
+      903,
+      872,
+      897
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 379.8,
+     "found_top": 363,
+     "found": 742.8,
+     "found_seeds": [
+      745,
+      742,
+      740,
+      736,
+      751
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 379.8,
+     "found_top": 579.2,
+     "found": 959,
+     "found_seeds": [
+      954,
+      949,
+      955,
+      970,
+      967
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 379.8,
+     "found_top": 586.2,
+     "found": 966,
+     "found_seeds": [
+      954,
+      968,
+      966,
+      973,
+      969
+     ]
+    }
+   },
+   "100": {
+    "random|random": {
+     "found_labelled": 709.6,
+     "found_top": 705.2,
+     "found": 1414.8,
+     "found_seeds": [
+      1417,
+      1435,
+      1371,
+      1423,
+      1428
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 709.6,
+     "found_top": 1171.4,
+     "found": 1881,
+     "found_seeds": [
+      1881,
+      1899,
+      1843,
+      1894,
+      1888
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 709.6,
+     "found_top": 1146.8,
+     "found": 1856.4,
+     "found_seeds": [
+      1841,
+      1871,
+      1834,
+      1873,
+      1863
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 775.6,
+     "found_top": 695.4,
+     "found": 1471,
+     "found_seeds": [
+      1485,
+      1472,
+      1452,
+      1488,
+      1458
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 775.6,
+     "found_top": 1131.6,
+     "found": 1907.2,
+     "found_seeds": [
+      1924,
+      1898,
+      1891,
+      1930,
+      1893
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 775.6,
+     "found_top": 1131.8,
+     "found": 1907.4,
+     "found_seeds": [
+      1919,
+      1904,
+      1898,
+      1913,
+      1903
+     ]
+    }
+   },
+   "200": {
+    "random|random": {
+     "found_labelled": 1426.6,
+     "found_top": 1413.6,
+     "found": 2840.2,
+     "found_seeds": [
+      2827,
+      2832,
+      2827,
+      2847,
+      2868
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 1426.6,
+     "found_top": 1904.6,
+     "found": 3331.2,
+     "found_seeds": [
+      3323,
+      3320,
+      3341,
+      3335,
+      3337
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 1426.6,
+     "found_top": 1793,
+     "found": 3219.6,
+     "found_seeds": [
+      3213,
+      3208,
+      3233,
+      3212,
+      3232
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 1556.2,
+     "found_top": 1321.8,
+     "found": 2878,
+     "found_seeds": [
+      2891,
+      2864,
+      2865,
+      2913,
+      2857
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 1556.2,
+     "found_top": 1732.8,
+     "found": 3289,
+     "found_seeds": [
+      3297,
+      3273,
+      3283,
+      3306,
+      3286
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 1556.2,
+     "found_top": 1664.4,
+     "found": 3220.6,
+     "found_seeds": [
+      3229,
+      3202,
+      3203,
+      3227,
+      3242
+     ]
+    }
+   }
+  },
+  "decomp_diff": {
+   "sampling (Clotho ranking)@50": {
+    "mean": 67,
+    "std": 27.883686987197372,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@50": {
+    "mean": 10.6,
+    "std": 18.76965636339675,
+    "pos": 3
+   },
+   "Clotho vs lookup ranking (Clotho labels)@50": {
+    "mean": 7,
+    "std": 7.905694150420948,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (random labels)@50": {
+    "mean": -49.4,
+    "std": 17.18429515575195,
+    "pos": 0
+   },
+   "Clotho vs random labels + lookup ranking@50": {
+    "mean": 17.6,
+    "std": 20.94755355644186,
+    "pos": 4
+   },
+   "Clotho vs Clotho labels + lookup ranking@50": {
+    "mean": 7,
+    "std": 7.905694150420948,
+    "pos": 4
+   },
+   "sampling (Clotho ranking)@100": {
+    "mean": 51,
+    "std": 19.131126469708992,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@100": {
+    "mean": 26.2,
+    "std": 22.598672527385318,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (Clotho labels)@100": {
+    "mean": 0.2,
+    "std": 11.166915420114902,
+    "pos": 3
+   },
+   "Clotho vs lookup ranking (random labels)@100": {
+    "mean": -24.6,
+    "std": 11.23832727766904,
+    "pos": 0
+   },
+   "Clotho vs random labels + lookup ranking@100": {
+    "mean": 26.4,
+    "std": 19.969977466186585,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@100": {
+    "mean": 0.2,
+    "std": 11.166915420114902,
+    "pos": 3
+   },
+   "sampling (Clotho ranking)@200": {
+    "mean": 1,
+    "std": 19.44222209522358,
+    "pos": 3
+   },
+   "sampling (lookup ranking)@200": {
+    "mean": -42.2,
+    "std": 14.024977718342372,
+    "pos": 0
+   },
+   "Clotho vs lookup ranking (Clotho labels)@200": {
+    "mean": -68.4,
+    "std": 14.570518178843194,
+    "pos": 0
+   },
+   "Clotho vs lookup ranking (random labels)@200": {
+    "mean": -111.6,
+    "std": 6.877499545619759,
+    "pos": 0
+   },
+   "Clotho vs random labels + lookup ranking@200": {
+    "mean": -110.6,
+    "std": 18.24280680158621,
+    "pos": 0
+   },
+   "Clotho vs Clotho labels + lookup ranking@200": {
+    "mean": -68.4,
+    "std": 14.570518178843194,
+    "pos": 0
+   }
   }
  },
  "gemma/capped": {
@@ -886,6 +1834,322 @@
     "mean": 370.2,
     "std": 15.927962832703999,
     "every_seed": true
+   }
+  },
+  "decomp": {
+   "50": {
+    "random|random": {
+     "found_labelled": 332.6,
+     "found_top": 336,
+     "found": 668.6,
+     "found_seeds": [
+      678,
+      672,
+      666,
+      668,
+      659
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 332.6,
+     "found_top": 492.6,
+     "found": 825.2,
+     "found_seeds": [
+      826,
+      793,
+      836,
+      817,
+      854
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 332.6,
+     "found_top": 496.8,
+     "found": 829.4,
+     "found_seeds": [
+      831,
+      819,
+      829,
+      827,
+      841
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 354.2,
+     "found_top": 330.4,
+     "found": 684.6,
+     "found_seeds": [
+      671,
+      687,
+      690,
+      691,
+      684
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 354.2,
+     "found_top": 489.8,
+     "found": 844,
+     "found_seeds": [
+      846,
+      838,
+      838,
+      845,
+      853
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 354.2,
+     "found_top": 536.2,
+     "found": 890.4,
+     "found_seeds": [
+      870,
+      890,
+      901,
+      897,
+      894
+     ]
+    }
+   },
+   "100": {
+    "random|random": {
+     "found_labelled": 645.6,
+     "found_top": 651,
+     "found": 1296.6,
+     "found_seeds": [
+      1285,
+      1284,
+      1296,
+      1310,
+      1308
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 645.6,
+     "found_top": 963.4,
+     "found": 1609,
+     "found_seeds": [
+      1580,
+      1597,
+      1607,
+      1643,
+      1618
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 645.6,
+     "found_top": 993.2,
+     "found": 1638.8,
+     "found_seeds": [
+      1625,
+      1639,
+      1659,
+      1637,
+      1634
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 691.2,
+     "found_top": 646.6,
+     "found": 1337.8,
+     "found_seeds": [
+      1332,
+      1353,
+      1327,
+      1326,
+      1351
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 691.2,
+     "found_top": 932.8,
+     "found": 1624,
+     "found_seeds": [
+      1622,
+      1605,
+      1619,
+      1632,
+      1642
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 691.2,
+     "found_top": 1044,
+     "found": 1735.2,
+     "found_seeds": [
+      1704,
+      1740,
+      1755,
+      1746,
+      1731
+     ]
+    }
+   },
+   "200": {
+    "random|random": {
+     "found_labelled": 1319.2,
+     "found_top": 1307.4,
+     "found": 2626.6,
+     "found_seeds": [
+      2620,
+      2630,
+      2625,
+      2625,
+      2633
+     ]
+    },
+    "random|lookup": {
+     "found_labelled": 1319.2,
+     "found_top": 1612.8,
+     "found": 2932,
+     "found_seeds": [
+      2928,
+      2922,
+      2923,
+      2936,
+      2951
+     ]
+    },
+    "random|clotho": {
+     "found_labelled": 1319.2,
+     "found_top": 1619,
+     "found": 2938.2,
+     "found_seeds": [
+      2946,
+      2910,
+      2944,
+      2928,
+      2963
+     ]
+    },
+    "clotho|random": {
+     "found_labelled": 1373,
+     "found_top": 1273.4,
+     "found": 2646.4,
+     "found_seeds": [
+      2635,
+      2668,
+      2641,
+      2647,
+      2641
+     ]
+    },
+    "clotho|lookup": {
+     "found_labelled": 1373,
+     "found_top": 1574,
+     "found": 2947,
+     "found_seeds": [
+      2946,
+      2966,
+      2957,
+      2950,
+      2916
+     ]
+    },
+    "clotho|clotho": {
+     "found_labelled": 1373,
+     "found_top": 1623.8,
+     "found": 2996.8,
+     "found_seeds": [
+      3004,
+      2995,
+      3015,
+      2980,
+      2990
+     ]
+    }
+   }
+  },
+  "decomp_diff": {
+   "sampling (Clotho ranking)@50": {
+    "mean": 61,
+    "std": 14.577379737113251,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@50": {
+    "mean": 18.8,
+    "std": 19.018412131405714,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (Clotho labels)@50": {
+    "mean": 46.4,
+    "std": 14.741099009232657,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (random labels)@50": {
+    "mean": 4.2,
+    "std": 15.254507530562892,
+    "pos": 3
+   },
+   "Clotho vs random labels + lookup ranking@50": {
+    "mean": 65.2,
+    "std": 24.056184236075346,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@50": {
+    "mean": 46.4,
+    "std": 14.741099009232657,
+    "pos": 5
+   },
+   "sampling (Clotho ranking)@100": {
+    "mean": 96.4,
+    "std": 10.99090533122727,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@100": {
+    "mean": 15,
+    "std": 19.6468827043885,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (Clotho labels)@100": {
+    "mean": 111.2,
+    "std": 25.17339865810733,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (random labels)@100": {
+    "mean": 29.8,
+    "std": 24.21156748333325,
+    "pos": 4
+   },
+   "Clotho vs random labels + lookup ranking@100": {
+    "mean": 126.2,
+    "std": 19.201562436426887,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@100": {
+    "mean": 111.2,
+    "std": 25.17339865810733,
+    "pos": 5
+   },
+   "sampling (Clotho ranking)@200": {
+    "mean": 58.6,
+    "std": 21.755459085020476,
+    "pos": 5
+   },
+   "sampling (lookup ranking)@200": {
+    "mean": 15,
+    "std": 30.463092423455635,
+    "pos": 4
+   },
+   "Clotho vs lookup ranking (Clotho labels)@200": {
+    "mean": 49.8,
+    "std": 19.651971911235776,
+    "pos": 5
+   },
+   "Clotho vs lookup ranking (random labels)@200": {
+    "mean": 6.2,
+    "std": 15.20526224699857,
+    "pos": 3
+   },
+   "Clotho vs random labels + lookup ranking@200": {
+    "mean": 64.8,
+    "std": 22.53219918250325,
+    "pos": 5
+   },
+   "Clotho vs Clotho labels + lookup ranking@200": {
+    "mean": 49.8,
+    "std": 19.651971911235776,
+    "pos": 5
    }
   }
  }

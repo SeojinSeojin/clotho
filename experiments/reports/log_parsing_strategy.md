@@ -10,4 +10,4 @@ Source: `log_parsing_strategy.py`; tables in `log_parsing_strategy_details.md` a
 
 **Propagation noise.** An inherited group label is wrong for 8 to 10% of inputs (natural) and 11 to 16% (capped).
 
-**Answer.** Per human check, a Drain-first strategy does not beat Clotho on naturally distributed logs. On template-capped suites it matches Clotho, with a gain of about 1% only for Gemma at B = 200.
+**Answer.** Among these four, a Drain-first strategy does not beat Clotho on natural logs and matches it on capped suites. Later variants (`log_parsing_strategy_explained.md`) show Drain-lookup ranking beats Clotho on natural logs at B = 200.
