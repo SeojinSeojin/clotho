@@ -1,0 +1,383 @@
+{
+ "n": 12500,
+ "unmatched": 2,
+ "fail_rate": 0.61064,
+ "pooled": {
+  "n_var": {
+   "or": 1.3246665395882742,
+   "lo": 1.1096609822447536,
+   "hi": 1.5813311175049825,
+   "p": 0.0018614309384603627
+  },
+  "len10": {
+   "or": 1.3396826237250252,
+   "lo": 0.8491462224583989,
+   "hi": 2.1135930241963656,
+   "p": 0.2087376196482711
+  },
+  "share_var": {
+   "or": 0.6396428779847151,
+   "lo": 0.2653627476850501,
+   "hi": 1.541825350113449,
+   "p": 0.31952214936719003
+  },
+  "attached": {
+   "or": 2.0941938565973777,
+   "lo": 1.524337265374453,
+   "hi": 2.8770850182770182,
+   "p": 5.081174090559007e-06
+  },
+  "ip": {
+   "or": 1.2897106450670601,
+   "lo": 0.7547922364861798,
+   "hi": 2.203723710438228,
+   "p": 0.3519649317306329
+  },
+  "path": {
+   "or": 1.7786109718696976,
+   "lo": 1.0846174799148465,
+   "hi": 2.9166568378592177,
+   "p": 0.022498653473079753
+  },
+  "hex": {
+   "or": 1.1735916501575048,
+   "lo": 0.7357457250227979,
+   "hi": 1.8720018540056587,
+   "p": 0.5016576218358857
+  },
+  "number": {
+   "or": 0.8209986750547175,
+   "lo": 0.5616515969429516,
+   "hi": 1.2001013227957853,
+   "p": 0.3085555167773687
+  },
+  "other_var": {
+   "or": 2.0792058326795244,
+   "lo": 1.4216329452232634,
+   "hi": 3.040937472062892,
+   "p": 0.000160875445072054
+  },
+  "gemma": {
+   "or": 0.47678574302520166,
+   "lo": 0.4166105896695792,
+   "hi": 0.5456525839450904,
+   "p": 5.302637940662869e-27
+  }
+ },
+ "llama": {
+  "n_var": {
+   "or": 1.2027793731602312,
+   "lo": 0.9522012278694868,
+   "hi": 1.5192988395284943,
+   "p": 0.12137138928949322
+  },
+  "len10": {
+   "or": 2.374125449652498,
+   "lo": 1.320045924708777,
+   "hi": 4.26990572462937,
+   "p": 0.0038876386021082527
+  },
+  "share_var": {
+   "or": 0.5939215018862988,
+   "lo": 0.2032467629665408,
+   "hi": 1.735539327929895,
+   "p": 0.340953945215028
+  },
+  "attached": {
+   "or": 2.4286630414415917,
+   "lo": 1.6421716202624097,
+   "hi": 3.5918317525922108,
+   "p": 8.81716020414277e-06
+  },
+  "ip": {
+   "or": 0.8949195718925886,
+   "lo": 0.47145267942240643,
+   "hi": 1.698751698977726,
+   "p": 0.7342244947945924
+  },
+  "path": {
+   "or": 1.8679328765515648,
+   "lo": 1.0265328109975802,
+   "hi": 3.3989885115425,
+   "p": 0.04078590507436085
+  },
+  "hex": {
+   "or": 1.0548152627874505,
+   "lo": 0.5926652052928216,
+   "hi": 1.8773419270659428,
+   "p": 0.8560274414789543
+  },
+  "number": {
+   "or": 0.9519406067288,
+   "lo": 0.6048699029580002,
+   "hi": 1.498158387956886,
+   "p": 0.8314298539801905
+  },
+  "other_var": {
+   "or": 2.1670989307773616,
+   "lo": 1.388387815460122,
+   "hi": 3.3825691377304334,
+   "p": 0.0006629902852811582
+  }
+ },
+ "gemma": {
+  "n_var": {
+   "or": 1.4391545446092702,
+   "lo": 1.1935804328287494,
+   "hi": 1.7352544883472294,
+   "p": 0.00013690267314113517
+  },
+  "len10": {
+   "or": 0.8762594803499902,
+   "lo": 0.5231023674281171,
+   "hi": 1.4678401871479725,
+   "p": 0.6157721707089456
+  },
+  "share_var": {
+   "or": 0.6289402273256814,
+   "lo": 0.2539166118360783,
+   "hi": 1.557857151165228,
+   "p": 0.3163285372212834
+  },
+  "attached": {
+   "or": 1.9951989019476755,
+   "lo": 1.4103260828961097,
+   "hi": 2.822622871838677,
+   "p": 9.524209873419971e-05
+  },
+  "ip": {
+   "or": 1.9336723421072877,
+   "lo": 1.0352076898717153,
+   "hi": 3.6119213209226038,
+   "p": 0.03859250976234592
+  },
+  "path": {
+   "or": 1.9626267065787528,
+   "lo": 1.1300423582649197,
+   "hi": 3.4086364649997893,
+   "p": 0.016664487332320364
+  },
+  "hex": {
+   "or": 1.2999597422378597,
+   "lo": 0.7567406790447033,
+   "hi": 2.233123417618329,
+   "p": 0.34197209536697804
+  },
+  "number": {
+   "or": 0.6949465747217003,
+   "lo": 0.4566361549270682,
+   "hi": 1.0576270330468212,
+   "p": 0.0894184085964757
+  },
+  "other_var": {
+   "or": 2.0752206558909707,
+   "lo": 1.375299568889351,
+   "hi": 3.131347430083453,
+   "p": 0.0005048447731940384
+  }
+ },
+ "prevalence": {
+  "n_var": 0.92296,
+  "len10": 1.0,
+  "share_var": 0.92296,
+  "attached": 0.49248,
+  "ip": 0.20152,
+  "path": 0.10408,
+  "hex": 0.10688,
+  "number": 0.48328,
+  "other_var": 0.52728
+ },
+ "top": [
+  "attached",
+  "other_var",
+  "path"
+ ],
+ "examples": {
+  "attached": [
+   {
+    "system": "OpenSSH",
+    "template": "PAM <*> more authentication failures; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>",
+    "fail": 1.0,
+    "n": 56
+   },
+   {
+    "system": "OpenSSH",
+    "template": "pam_unix(sshd:auth): authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>",
+    "fail": 1.0,
+    "n": 56
+   },
+   {
+    "system": "Apache",
+    "template": "[client <*>] request failed: URI too long (longer than <*>)",
+    "fail": 1.0,
+    "n": 37
+   },
+   {
+    "system": "OpenStack",
+    "template": "<*> \"DELETE <*> <*>\" status: <*> len: <*> time: <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "OpenStack",
+    "template": "<*> \"GET <*> <*>\" status: <*> len: <*> time: <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "Zookeeper",
+    "template": "Got user-level KeeperException when processing sessionid:<*> type:<*> cxid:<*> zxid:<*> txntype:<*> reqpath:<*> Error Path:<*> Error:KeeperErrorCode = <*> for <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "Zookeeper",
+    "template": "New election. My id = <*>, proposed <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "HPC",
+    "template": "Targeting domains:<*> and nodes:<*>",
+    "fail": 1.0,
+    "n": 32
+   },
+   {
+    "system": "OpenStack",
+    "template": "<*> \"POST <*> <*>\" status: <*> len: <*> time: <*>",
+    "fail": 1.0,
+    "n": 32
+   },
+   {
+    "system": "OpenStack",
+    "template": "[instance: <*>] memory limit: <*> MB, free: <*> MB",
+    "fail": 1.0,
+    "n": 32
+   }
+  ],
+  "other_var": [
+   {
+    "system": "OpenSSH",
+    "template": "PAM <*> more authentication failures; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>",
+    "fail": 1.0,
+    "n": 56
+   },
+   {
+    "system": "OpenSSH",
+    "template": "message repeated <*> times: [ Failed password for <*> from <*> port <*> ssh2]",
+    "fail": 1.0,
+    "n": 56
+   },
+   {
+    "system": "OpenSSH",
+    "template": "pam_unix(sshd:auth): authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>",
+    "fail": 1.0,
+    "n": 56
+   },
+   {
+    "system": "OpenSSH",
+    "template": "Bad protocol version identification <*> from <*> port <*>",
+    "fail": 1.0,
+    "n": 44
+   },
+   {
+    "system": "Zookeeper",
+    "template": "Got user-level KeeperException when processing sessionid:<*> type:<*> cxid:<*> zxid:<*> txntype:<*> reqpath:<*> Error Path:<*> Error:KeeperErrorCode = <*> for <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "Zookeeper",
+    "template": "Notification: <*> (n.leader), <*> (n.zxid), <*> (n.round), <*> (n.state), <*> (n.sid), <*> (n.peerEPoch), <*> (my state)",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "HPC",
+    "template": "Targeting domains:<*> and nodes:<*>",
+    "fail": 1.0,
+    "n": 32
+   },
+   {
+    "system": "OpenStack",
+    "template": "[instance: <*>] memory limit: <*> MB, free: <*> MB",
+    "fail": 1.0,
+    "n": 32
+   },
+   {
+    "system": "Zookeeper",
+    "template": "Expiring session <*> timeout of <*> exceeded",
+    "fail": 1.0,
+    "n": 32
+   },
+   {
+    "system": "HPC",
+    "template": "Fan speeds ( <*> )",
+    "fail": 1.0,
+    "n": 30
+   }
+  ],
+  "path": [
+   {
+    "system": "OpenSSH",
+    "template": "Bad protocol version identification <*> from <*> port <*>",
+    "fail": 1.0,
+    "n": 44
+   },
+   {
+    "system": "OpenStack",
+    "template": "<*> \"DELETE <*> <*>\" status: <*> len: <*> time: <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "OpenStack",
+    "template": "<*> \"GET <*> <*>\" status: <*> len: <*> time: <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "Zookeeper",
+    "template": "Got user-level KeeperException when processing sessionid:<*> type:<*> cxid:<*> zxid:<*> txntype:<*> reqpath:<*> Error Path:<*> Error:KeeperErrorCode = <*> for <*>",
+    "fail": 1.0,
+    "n": 34
+   },
+   {
+    "system": "OpenStack",
+    "template": "<*> \"POST <*> <*>\" status: <*> len: <*> time: <*>",
+    "fail": 1.0,
+    "n": 32
+   },
+   {
+    "system": "HDFS",
+    "template": "BLOCK* NameSystem.allocateBlock: <*> <*>",
+    "fail": 1.0,
+    "n": 28
+   },
+   {
+    "system": "Linux",
+    "template": "<*> Privoxy(<*>) Info: loading configuration file <*>",
+    "fail": 1.0,
+    "n": 12
+   },
+   {
+    "system": "Linux",
+    "template": "audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>",
+    "fail": 1.0,
+    "n": 12
+   },
+   {
+    "system": "Linux",
+    "template": "audit(<*>): item=<*> name=<*> inode=<*> dev=<*>",
+    "fail": 1.0,
+    "n": 12
+   },
+   {
+    "system": "BGL",
+    "template": "power module status fault detected on node card. status registers are: <*>",
+    "fail": 1.0,
+    "n": 6
+   }
+  ]
+ }
+}
