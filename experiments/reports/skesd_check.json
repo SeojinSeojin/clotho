@@ -1,0 +1,510 @@
+{
+ "llama_main_capped_100": {
+  "py": {
+   "out_entropy": 1,
+   "hybrid": 2,
+   "clotho": 2,
+   "MDSA": 3,
+   "lookup_drain_default": 3,
+   "lookup_oracle": 3,
+   "lookup_drain": 3,
+   "loh_var": 4,
+   "GMMb": 4,
+   "sem_ent": 5,
+   "tok_prob": 6,
+   "tok_ent": 6,
+   "SLL": 6,
+   "random": 6
+  },
+  "r_p": {
+   "out_entropy": 1,
+   "hybrid": 2,
+   "clotho": 2,
+   "MDSA": 3,
+   "lookup_drain_default": 4,
+   "lookup_oracle": 4,
+   "lookup_drain": 4,
+   "loh_var": 5,
+   "GMMb": 5,
+   "sem_ent": 6,
+   "tok_prob": 7,
+   "tok_ent": 8,
+   "SLL": 8,
+   "random": 8
+  },
+  "r_np": {
+   "out_entropy": 1,
+   "hybrid": 2,
+   "clotho": 2,
+   "MDSA": 3,
+   "lookup_drain_default": 4,
+   "lookup_oracle": 4,
+   "lookup_drain": 4,
+   "loh_var": 5,
+   "GMMb": 5,
+   "sem_ent": 6,
+   "tok_prob": 7,
+   "tok_ent": 8,
+   "SLL": 8,
+   "random": 8
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "llama_main_natural_100": {
+  "py": {
+   "clotho_oe": 1,
+   "lookup_drain": 1,
+   "lookup_oracle": 1,
+   "clotho": 1,
+   "MDSA": 1,
+   "out_entropy": 2,
+   "GMMb": 2,
+   "loh_var": 3,
+   "random": 4,
+   "tok_prob": 4
+  },
+  "r_p": {
+   "clotho_oe": 1,
+   "lookup_drain": 1,
+   "lookup_oracle": 1,
+   "clotho": 1,
+   "MDSA": 2,
+   "out_entropy": 3,
+   "GMMb": 3,
+   "loh_var": 4,
+   "random": 5,
+   "tok_prob": 5
+  },
+  "r_np": {
+   "clotho_oe": 1,
+   "lookup_drain": 1,
+   "lookup_oracle": 1,
+   "clotho": 1,
+   "MDSA": 2,
+   "out_entropy": 3,
+   "GMMb": 3,
+   "loh_var": 4,
+   "random": 5,
+   "tok_prob": 5
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "llama_main_capped_200": {
+  "py": {
+   "hybrid": 1,
+   "clotho": 1,
+   "out_entropy": 1,
+   "lookup_drain_default": 2,
+   "lookup_oracle": 2,
+   "MDSA": 2,
+   "lookup_drain": 2,
+   "GMMb": 2,
+   "loh_var": 3,
+   "sem_ent": 4,
+   "tok_prob": 4,
+   "random": 4,
+   "tok_ent": 4,
+   "SLL": 4
+  },
+  "r_p": {
+   "hybrid": 1,
+   "clotho": 1,
+   "out_entropy": 1,
+   "lookup_drain_default": 2,
+   "lookup_oracle": 2,
+   "MDSA": 3,
+   "lookup_drain": 3,
+   "GMMb": 3,
+   "loh_var": 4,
+   "sem_ent": 5,
+   "tok_prob": 6,
+   "random": 6,
+   "tok_ent": 6,
+   "SLL": 6
+  },
+  "r_np": {
+   "hybrid": 1,
+   "clotho": 1,
+   "out_entropy": 1,
+   "lookup_drain_default": 2,
+   "lookup_oracle": 2,
+   "MDSA": 3,
+   "lookup_drain": 3,
+   "GMMb": 3,
+   "loh_var": 4,
+   "sem_ent": 5,
+   "tok_prob": 6,
+   "random": 6,
+   "tok_ent": 6,
+   "SLL": 6
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "llama_main_natural_200": {
+  "py": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 1,
+   "clotho": 1,
+   "MDSA": 1,
+   "GMMb": 2,
+   "out_entropy": 2,
+   "loh_var": 3,
+   "random": 4,
+   "tok_prob": 4
+  },
+  "r_p": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 1,
+   "clotho": 1,
+   "MDSA": 1,
+   "GMMb": 2,
+   "out_entropy": 2,
+   "loh_var": 3,
+   "random": 4,
+   "tok_prob": 4
+  },
+  "r_np": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 1,
+   "clotho": 1,
+   "MDSA": 1,
+   "GMMb": 2,
+   "out_entropy": 2,
+   "loh_var": 3,
+   "random": 4,
+   "tok_prob": 4
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "gemma_main_capped_100": {
+  "py": {
+   "out_entropy": 1,
+   "hybrid": 1,
+   "clotho": 1,
+   "lookup_oracle": 2,
+   "lookup_drain_default": 2,
+   "MDSA": 2,
+   "lookup_drain": 2,
+   "GMMb": 3,
+   "loh_var": 3,
+   "sem_ent": 4,
+   "tok_ent": 5,
+   "random": 6,
+   "tok_prob": 6,
+   "SLL": 7
+  },
+  "r_p": {
+   "out_entropy": 1,
+   "hybrid": 2,
+   "clotho": 2,
+   "lookup_oracle": 3,
+   "lookup_drain_default": 3,
+   "MDSA": 3,
+   "lookup_drain": 3,
+   "GMMb": 4,
+   "loh_var": 4,
+   "sem_ent": 5,
+   "tok_ent": 6,
+   "random": 7,
+   "tok_prob": 8,
+   "SLL": 9
+  },
+  "r_np": {
+   "out_entropy": 1,
+   "hybrid": 2,
+   "clotho": 2,
+   "lookup_oracle": 3,
+   "lookup_drain_default": 3,
+   "MDSA": 3,
+   "lookup_drain": 3,
+   "GMMb": 4,
+   "loh_var": 4,
+   "sem_ent": 5,
+   "tok_ent": 6,
+   "random": 7,
+   "tok_prob": 8,
+   "SLL": 9
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "gemma_main_natural_100": {
+  "py": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 2,
+   "clotho": 2,
+   "MDSA": 2,
+   "GMMb": 3,
+   "out_entropy": 3,
+   "loh_var": 4,
+   "random": 5,
+   "tok_prob": 5
+  },
+  "r_p": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 2,
+   "clotho": 3,
+   "MDSA": 3,
+   "GMMb": 4,
+   "out_entropy": 4,
+   "loh_var": 5,
+   "random": 6,
+   "tok_prob": 7
+  },
+  "r_np": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 2,
+   "clotho": 3,
+   "MDSA": 3,
+   "GMMb": 4,
+   "out_entropy": 4,
+   "loh_var": 5,
+   "random": 6,
+   "tok_prob": 7
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "gemma_main_capped_200": {
+  "py": {
+   "hybrid": 1,
+   "clotho": 1,
+   "out_entropy": 1,
+   "lookup_oracle": 2,
+   "lookup_drain_default": 2,
+   "lookup_drain": 2,
+   "GMMb": 2,
+   "MDSA": 3,
+   "loh_var": 4,
+   "sem_ent": 5,
+   "tok_ent": 5,
+   "random": 6,
+   "tok_prob": 6,
+   "SLL": 7
+  },
+  "r_p": {
+   "hybrid": 1,
+   "clotho": 1,
+   "out_entropy": 2,
+   "lookup_oracle": 3,
+   "lookup_drain_default": 3,
+   "lookup_drain": 4,
+   "GMMb": 4,
+   "MDSA": 5,
+   "loh_var": 6,
+   "sem_ent": 7,
+   "tok_ent": 8,
+   "random": 9,
+   "tok_prob": 10,
+   "SLL": 11
+  },
+  "r_np": {
+   "hybrid": 1,
+   "clotho": 1,
+   "out_entropy": 2,
+   "lookup_oracle": 3,
+   "lookup_drain_default": 3,
+   "lookup_drain": 4,
+   "GMMb": 4,
+   "MDSA": 5,
+   "loh_var": 6,
+   "sem_ent": 7,
+   "tok_ent": 8,
+   "random": 9,
+   "tok_prob": 10,
+   "SLL": 11
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "gemma_main_natural_200": {
+  "py": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 2,
+   "GMMb": 2,
+   "clotho": 2,
+   "MDSA": 2,
+   "out_entropy": 3,
+   "loh_var": 4,
+   "random": 5,
+   "tok_prob": 5
+  },
+  "r_p": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 2,
+   "GMMb": 2,
+   "clotho": 2,
+   "MDSA": 3,
+   "out_entropy": 4,
+   "loh_var": 5,
+   "random": 6,
+   "tok_prob": 7
+  },
+  "r_np": {
+   "lookup_oracle": 1,
+   "lookup_drain": 1,
+   "clotho_oe": 2,
+   "GMMb": 2,
+   "clotho": 2,
+   "MDSA": 3,
+   "out_entropy": 4,
+   "loh_var": 5,
+   "random": 6,
+   "tok_prob": 7
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "llama_triage_e1_20": {
+  "py": {
+   "frequent": 1,
+   "dsize": 1,
+   "active_lookup": 1,
+   "llmlog": 1,
+   "entropy": 1,
+   "triage": 2,
+   "clotho": 3,
+   "random": 3,
+   "newest": 3
+  },
+  "r_p": {
+   "frequent": 1,
+   "dsize": 1,
+   "active_lookup": 1,
+   "llmlog": 1,
+   "entropy": 1,
+   "triage": 2,
+   "clotho": 3,
+   "random": 3,
+   "newest": 4
+  },
+  "r_np": {
+   "frequent": 1,
+   "dsize": 1,
+   "active_lookup": 1,
+   "llmlog": 1,
+   "entropy": 1,
+   "triage": 2,
+   "clotho": 3,
+   "random": 3,
+   "newest": 4
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "llama_strong_f2_20": {
+  "py": {
+   "frequent": 1,
+   "entropy": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "random": 2
+  },
+  "r_p": {
+   "frequent": 1,
+   "entropy": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "random": 2
+  },
+  "r_np": {
+   "frequent": 1,
+   "entropy": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "random": 2
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "gemma_triage_e1_20": {
+  "py": {
+   "frequent": 1,
+   "active_lookup": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "triage": 2,
+   "entropy": 2,
+   "clotho": 3,
+   "random": 3,
+   "newest": 3
+  },
+  "r_p": {
+   "frequent": 1,
+   "active_lookup": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "triage": 2,
+   "entropy": 2,
+   "clotho": 3,
+   "random": 3,
+   "newest": 3
+  },
+  "r_np": {
+   "frequent": 1,
+   "active_lookup": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "triage": 2,
+   "entropy": 2,
+   "clotho": 3,
+   "random": 3,
+   "newest": 3
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "gemma_strong_f2_20": {
+  "py": {
+   "frequent": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "entropy": 1,
+   "random": 2
+  },
+  "r_p": {
+   "frequent": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "entropy": 2,
+   "random": 3
+  },
+  "r_np": {
+   "frequent": 1,
+   "dsize": 1,
+   "llmlog": 1,
+   "entropy": 2,
+   "random": 3
+  },
+  "dropped": [],
+  "version": "2.0.3"
+ },
+ "pairs": {
+  "same relation": 593,
+  "R separates, Python merges": 43,
+  "Python separates, R merges": 0,
+  "inverted": 0
+ },
+ "total": {
+  "p": [
+   59,
+   124
+  ],
+  "np": [
+   59,
+   124
+  ]
+ }
+}

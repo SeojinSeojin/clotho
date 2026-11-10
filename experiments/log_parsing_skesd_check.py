@@ -70,6 +70,7 @@ def compare(push=False):
          "|---|---|---|---|---|---|"]
     J = {}
     tot = {"p": [0, 0], "np": [0, 0]}
+    pairs = {"same relation": 0, "R separates, Python merges": 0, "Python separates, R merges": 0, "inverted": 0}
     for name, m in meta.items():
         r = json.loads((D / f"{name}.r.json").read_text())
         py = m["py"]
@@ -78,11 +79,20 @@ def compare(push=False):
         for v in ("p", "np"):
             tot[v][0] += same[v]
             tot[v][1] += len(py)
+        ms_ = list(py)
+        for i, a in enumerate(ms_):
+            for b in ms_[i + 1:]:
+                dp, dr = np.sign(py[a] - py[b]), np.sign(r["p"][a] - r["p"][b])
+                k = ("same relation" if dp == dr else "R separates, Python merges" if dp == 0 else
+                     "Python separates, R merges" if dr == 0 else "inverted")
+                pairs[k] += 1
         J[name] = {"py": py, "r_p": r["p"], "r_np": r["np"], "dropped": m["dropped"], "version": r["version"]}
         L.append(f"| {name} | {m['n']} | {len(py)} | {same['p']}/{len(py)} | {same['np']}/{len(py)} | "
                  + "; ".join(f"{k} {py[k]}/{r['p'].get(k)}/{r['np'].get(k)}" for k in diff) + " |")
         if m["dropped"]:
             L.append(f"| (dropped from {name}: unequal counts) | | {', '.join(m['dropped'])} | | | |")
+    L.append("\nPairwise (method pairs within a matrix, Python vs R 'p'): " + ", ".join(f"{k} {v}" for k, v in pairs.items()) + ".")
+    J["pairs"] = pairs
     L.append(f"\nOverall: {tot['p'][0]}/{tot['p'][1]} method ranks identical to R 'p', {tot['np'][0]}/{tot['np'][1]} to R 'np' "
              f"(ScottKnottESD {r['version']}).")
     J["total"] = tot
