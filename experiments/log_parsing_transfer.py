@@ -106,6 +106,13 @@ def labels(ds):
 
 
 @lru_cache(maxsize=None)
+def label_scores(ds):
+    """Continuous label score (share of samples 5-9 that pass; PASS iff > 0.5), as Clotho's fit receives it."""
+    import log_parsing_literature as T
+    return T.gens(ds)[0][:, 5:].mean(1)
+
+
+@lru_cache(maxsize=None)
 def hidden(ds, layer):
     import log_parsing_phase3_final as F
     return np.asarray(F._hidden(ds, layer), dtype=np.float32)
@@ -261,9 +268,9 @@ def within_k(tds, lab_idx, seed):
     import log_parsing_strategy as S
     H = np.asarray(F._hidden(tds, F.FAIR_LAYER), dtype=np.float32)
     Hi, Pi = F.initial_data(F.FAIR_LAYER)
-    y = labels(tds)
     Hall = np.vstack([H, Hi])
-    sc = np.concatenate([y.astype(float), Pi[:, 5:].mean(1)])
+    sc = np.concatenate([label_scores(tds), Pi[:, 5:].mean(1)])   # continuous, as in every within-system run
+    # (until 2026-11-09 22:45 this passed the 0/1 label; the transfer_details within_k rows were computed that way)
     init_idx = np.arange(len(H), len(Hall))
     scorer, Z = S.clotho_given_order(Hall, sc, init_idx, list(lab_idx), seed, len(lab_idx))
     if scorer is None:
