@@ -48,3 +48,6 @@ experiments/data/.cache/
 experiments/results_clotho_log_parsing/
 experiments/results_phase3/
 experiments/results_phase3_gemma/
+experiments/data/stream/
+experiments/data/stream_gen/
+experiments/data/stream_hidden/
