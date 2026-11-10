@@ -200,7 +200,11 @@ def build():
             (12, "strategy", "Testing strategies at a fixed labelling budget (C)",
              "log_parsing_strategy_details.md", "log_parsing_strategy.py", None),
             (13, "transfer", "Cross-system transfer, leave-one-system-out (D)",
-             "log_parsing_transfer_details.md", "log_parsing_transfer.py", None)):
+             "log_parsing_transfer_details.md", "log_parsing_transfer.py", None),
+            (14, "transfer_paired", "Cross-system transfer, paired comparison with within-system Clotho (D)",
+             "log_parsing_transfer_paired.md", "log_parsing_transfer_paired.py", None),
+            (15, "stats", "Statistics: Scott-Knott ESD ranks and Vargha-Delaney A12",
+             "log_parsing_stats.md", "log_parsing_stats.py", None)):
         p = REP / name
         if not p.exists():
             continue
