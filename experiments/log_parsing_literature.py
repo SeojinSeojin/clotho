@@ -315,6 +315,16 @@ def report(push=False):
             L_.append(f"\nThe corrector fixes {tot['fixed']} of {fail_before} failing inputs ({tot['fixed'] / max(fail_before, 1):.1%}) and breaks "
                       f"{tot['broken']} of {tot['pass_before']} passing ones. Wall-clock is batched vLLM on the L40S (all outputs of a system "
                       "submitted per correction round, prefix caching on, engine start excluded).\n")
+            tj = EXP / f"results_phase3{suf}" / "timing" / "hf.json"
+            if tj.exists():
+                hf = json.loads(tj.read_text())
+                fwd = statistics.mean(v["batched_l16"] for v in hf["systems"].values()) + hf["gmm_bs1_nf50_nc10"]
+                J[key]["clotho_s_per_input"] = fwd
+                L_.append(f"Cost: the corrector makes {calls / outs:.2f} LLM calls per output ({calls / n_in:.2f} per input for the 5 label "
+                          f"samples) and takes {wall / outs:.4f} s per output, {wall / n_in:.3f} s per input. Clotho's batched HF forward "
+                          f"pass to layer {hf.get('layer', 16)} plus GMM scoring takes {fwd:.4f} s per input "
+                          f"(`results_phase3{suf}/timing/hf.json`), one call and no generation: the corrector costs "
+                          f"{wall / outs / fwd:.1f}x Clotho per corrected output. Neither includes generating the output itself.\n")
             kb = [s for s in kept if all("B" in d for d in R[s].values())]
             skipped_b = {s: R[s][0].get("B_skipped") for s in kept if s not in kb}
             if kb:

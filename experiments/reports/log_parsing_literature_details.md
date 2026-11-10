@@ -44,6 +44,8 @@ Input PASS = >= 3 of 5 samples strictly correct. Fixed = FAIL -> PASS, broken = 
 
 The corrector fixes 339 of 4221 failing inputs (8.0%) and breaks 97 of 2279 passing ones. Wall-clock is batched vLLM on the L40S (all outputs of a system submitted per correction round, prefix caching on, engine start excluded).
 
+Cost: the corrector makes 0.39 LLM calls per output (1.95 per input for the 5 label samples) and takes 0.0122 s per output, 0.061 s per input. Clotho's batched HF forward pass to layer 16 plus GMM scoring takes 0.0202 s per input (`results_phase3/timing/hf.json`), one call and no generation: the corrector costs 0.6x Clotho per corrected output. Neither includes generating the output itself.
+
 Predictors against the corrected label (13 systems). Same systems under the original label for comparison.
 
 | method | original label @100 | corrected @100 | original label @200 | corrected @200 |
@@ -64,6 +66,196 @@ Of the test failures (original label) each predictor ranks in its top 10% least 
 | Output entropy (k=5)* | 0.047 ± 0.011 | 0.046 ± 0.011 |
 | Random | 0.076 ± 0.012 | 0.057 ± 0.014 |
 | All test failures | 0.072 ± 0.002 | 0.062 ± 0.004 |
+
+## Llama-3.1-8B-Instruct, capped (13 systems)
+
+### Experiment A: LLMLog score as a failure ranking
+
+| method | ROC-AUC @100 | ROC-AUC @200 | failures in top 50 @100 | failures in top 50 @200 |
+|---|---|---|---|---|
+| Clotho | 0.749 ± 0.010 | 0.794 ± 0.011 | 46.5 ± 1.0 | 46.6 ± 0.8 |
+| Lookup (Drain) | 0.680 ± 0.006 | 0.733 ± 0.005 | 44.1 ± 2.0 | 43.8 ± 0.6 |
+| Output entropy (k=5)* | 0.792 ± 0.001 | 0.794 ± 0.005 | 45.6 ± 0.3 | 44.3 ± 0.5 |
+| LLMLog score* | 0.720 ± 0.003 | 0.717 ± 0.003 | 43.4 ± 0.6 | 41.6 ± 0.5 |
+| LLMLog confidence only* | 0.721 ± 0.002 | 0.717 ± 0.003 | 43.3 ± 0.5 | 41.6 ± 0.4 |
+| LLMLog representativeness only | 0.499 ± 0.005 | 0.503 ± 0.007 | 32.1 ± 0.6 | 31.4 ± 0.3 |
+| LLMLog score, all words* | 0.719 ± 0.002 | 0.715 ± 0.003 | 43.4 ± 0.4 | 41.4 ± 0.5 |
+| LLMLog representativeness only, all words | 0.502 ± 0.004 | 0.507 ± 0.008 | 32.7 ± 0.3 | 32.2 ± 0.6 |
+| Random | 0.504 ± 0.004 | 0.506 ± 0.010 | 33.3 ± 0.8 | 32.5 ± 0.6 |
+
+Paired differences (mean ± std over seeds; `every seed` = same sign on all 5): clotho-llmlog@100 +0.029 ± 0.010 (every seed); clotho-llmlog@200 +0.077 ± 0.013 (every seed); lookup_drain-llmlog@100 -0.040 ± 0.005 (every seed); lookup_drain-llmlog@200 +0.016 ± 0.007 (every seed); llmlog-random@100 +0.216 ± 0.005 (every seed); llmlog-random@200 +0.211 ± 0.011 (every seed)
+
+### Experiment B: AdaParser corrector on the label samples 5-9
+
+Input PASS = >= 3 of 5 samples strictly correct. Fixed = FAIL -> PASS, broken = PASS -> FAIL.
+
+| system | input PASS before | after | fixed | broken | sample PASS before | after | samples fixed | samples broken | LLM calls / output | s / input (5 outputs) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| apache | 60.0% | 75.2% | 76 | 0 | 54.6% | 66.9% | 307 | 0 | 0.37 | 0.043 |
+| bgl | 24.4% | 39.2% | 78 | 4 | 27.4% | 39.4% | 324 | 22 | 0.68 | 0.112 |
+| hadoop | 30.2% | 36.8% | 37 | 4 | 30.9% | 37.7% | 182 | 12 | 0.52 | 0.095 |
+| hdfs | 28.2% | 41.0% | 64 | 0 | 29.5% | 38.9% | 235 | 0 | 0.40 | 0.083 |
+| healthapp | 33.6% | 39.0% | 31 | 4 | 35.0% | 40.1% | 148 | 21 | 0.46 | 0.078 |
+| hpc | 21.4% | 32.6% | 56 | 0 | 27.7% | 38.0% | 259 | 0 | 0.57 | 0.083 |
+| linux | 25.0% | 32.0% | 42 | 7 | 27.1% | 32.7% | 185 | 45 | 0.56 | 0.133 |
+| mac | 15.0% | 22.8% | 40 | 1 | 17.0% | 23.8% | 181 | 12 | 0.68 | 0.146 |
+| openssh | 40.6% | 26.6% | 27 | 97 | 41.2% | 28.4% | 119 | 440 | 0.59 | 0.084 |
+| openstack | 56.6% | 67.4% | 54 | 0 | 51.9% | 63.4% | 288 | 0 | 0.28 | 0.047 |
+| spark | 24.4% | 33.4% | 46 | 1 | 26.9% | 34.9% | 212 | 11 | 0.55 | 0.095 |
+| thunderbird | 22.0% | 32.0% | 54 | 4 | 24.5% | 32.0% | 217 | 28 | 0.61 | 0.130 |
+| zookeeper | 47.8% | 62.4% | 73 | 0 | 45.4% | 56.4% | 276 | 0 | 0.41 | 0.059 |
+| all | 33.0% | 41.6% | 678 | 122 | | | 2933 | 591 | 0.51 | 0.091 |
+
+The corrector fixes 678 of 4354 failing inputs (15.6%) and breaks 122 of 2146 passing ones. Wall-clock is batched vLLM on the L40S (all outputs of a system submitted per correction round, prefix caching on, engine start excluded).
+
+Cost: the corrector makes 0.51 LLM calls per output (2.57 per input for the 5 label samples) and takes 0.0183 s per output, 0.091 s per input. Clotho's batched HF forward pass to layer 16 plus GMM scoring takes 0.0202 s per input (`results_phase3/timing/hf.json`), one call and no generation: the corrector costs 0.9x Clotho per corrected output. Neither includes generating the output itself.
+
+Predictors against the corrected label (13 systems). Same systems under the original label for comparison.
+
+| method | original label @100 | corrected @100 | original label @200 | corrected @200 |
+|---|---|---|---|---|
+| Clotho | 0.749 ± 0.010 | 0.766 ± 0.015 | 0.794 ± 0.011 | 0.813 ± 0.008 |
+| Lookup (Drain) | 0.680 ± 0.006 | 0.704 ± 0.006 | 0.733 ± 0.005 | 0.749 ± 0.003 |
+| Output entropy (k=5)* | 0.792 ± 0.001 | 0.753 ± 0.002 | 0.794 ± 0.005 | 0.757 ± 0.003 |
+| Random | 0.504 ± 0.004 | 0.512 ± 0.008 | 0.506 ± 0.010 | 0.495 ± 0.007 |
+
+Corrected label, paired differences: clotho-lookup_drain@100 +0.062 ± 0.012 (every seed); clotho-lookup_drain@200 +0.064 ± 0.010 (every seed); clotho-out_entropy@100 +0.013 ± 0.016; clotho-out_entropy@200 +0.055 ± 0.008 (every seed); clotho-random@100 +0.254 ± 0.012 (every seed); clotho-random@200 +0.318 ± 0.011 (every seed)
+
+Of the test failures (original label) each predictor ranks in its top 10% least pass-like, the share the corrector fixes (pooled over systems per seed; mean ± std over seeds). `All test failures` is the base rate.
+
+| predictor | fixed share @100 | fixed share @200 |
+|---|---|---|
+| Clotho | 0.048 ± 0.010 | 0.049 ± 0.021 |
+| Lookup (Drain) | 0.101 ± 0.009 | 0.110 ± 0.024 |
+| Output entropy (k=5)* | 0.087 ± 0.007 | 0.088 ± 0.003 |
+| Random | 0.150 ± 0.018 | 0.138 ± 0.023 |
+| All test failures | 0.153 ± 0.004 | 0.151 ± 0.005 |
+
+## Gemma-2-9B-it, natural (12 systems)
+
+### Experiment A: LLMLog score as a failure ranking
+
+| method | ROC-AUC @100 | ROC-AUC @200 | failures in top 50 @100 | failures in top 50 @200 |
+|---|---|---|---|---|
+| Clotho | 0.880 ± 0.018 | 0.855 ± 0.009 | 49.6 ± 0.2 | 46.4 ± 0.5 |
+| Lookup (Drain) | 0.916 ± 0.003 | 0.912 ± 0.002 | 49.2 ± 0.5 | 46.9 ± 0.6 |
+| Output entropy (k=5)* | 0.772 ± 0.002 | 0.762 ± 0.004 | 44.7 ± 0.3 | 42.5 ± 0.2 |
+| LLMLog score* | 0.620 ± 0.003 | 0.611 ± 0.006 | 39.5 ± 0.3 | 37.6 ± 0.6 |
+| LLMLog confidence only* | 0.620 ± 0.003 | 0.611 ± 0.006 | 39.5 ± 0.3 | 37.6 ± 0.6 |
+| LLMLog representativeness only | 0.493 ± 0.013 | 0.495 ± 0.010 | 28.6 ± 1.0 | 28.2 ± 0.4 |
+| LLMLog score, all words* | 0.618 ± 0.003 | 0.608 ± 0.006 | 39.1 ± 0.2 | 37.2 ± 0.6 |
+| LLMLog representativeness only, all words | 0.470 ± 0.009 | 0.492 ± 0.019 | 25.4 ± 0.8 | 27.1 ± 1.2 |
+| Random | 0.502 ± 0.012 | 0.502 ± 0.020 | 29.3 ± 1.1 | 27.8 ± 1.3 |
+
+Paired differences (mean ± std over seeds; `every seed` = same sign on all 5): clotho-llmlog@100 +0.260 ± 0.021 (every seed); clotho-llmlog@200 +0.244 ± 0.014 (every seed); lookup_drain-llmlog@100 +0.296 ± 0.004 (every seed); lookup_drain-llmlog@200 +0.301 ± 0.006 (every seed); llmlog-random@100 +0.118 ± 0.013 (every seed); llmlog-random@200 +0.110 ± 0.021 (every seed)
+
+### Experiment B: AdaParser corrector on the label samples 5-9
+
+Input PASS = >= 3 of 5 samples strictly correct. Fixed = FAIL -> PASS, broken = PASS -> FAIL.
+
+| system | input PASS before | after | fixed | broken | sample PASS before | after | samples fixed | samples broken | LLM calls / output | s / input (5 outputs) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BGL | 40.0% | 64.6% | 123 | 0 | 44.1% | 60.8% | 417 | 0 | 0.37 | 0.054 |
+| Hadoop | 49.2% | 50.2% | 5 | 0 | 48.4% | 49.8% | 35 | 0 | 0.24 | 0.051 |
+| HDFS | 44.6% | 44.6% | 0 | 0 | 41.3% | 41.5% | 6 | 0 | 0.31 | 0.048 |
+| HealthApp | 46.6% | 47.0% | 2 | 0 | 46.2% | 46.6% | 10 | 0 | 0.11 | 0.026 |
+| HPC | 63.6% | 69.4% | 29 | 0 | 58.4% | 62.7% | 107 | 0 | 0.18 | 0.026 |
+| Linux | 33.2% | 2.0% | 0 | 156 | 34.5% | 2.9% | 1 | 791 | 0.80 | 0.075 |
+| Mac | 26.6% | 30.4% | 19 | 0 | 27.2% | 30.4% | 86 | 7 | 0.35 | 0.074 |
+| OpenSSH | 24.0% | 12.8% | 2 | 58 | 28.8% | 15.0% | 23 | 366 | 0.47 | 0.054 |
+| OpenStack | 28.2% | 29.4% | 6 | 0 | 27.6% | 28.5% | 23 | 0 | 0.13 | 0.029 |
+| Spark | 72.6% | 75.0% | 12 | 0 | 69.5% | 71.5% | 49 | 0 | 0.23 | 0.035 |
+| Thunderbird | 23.0% | 24.4% | 12 | 5 | 24.5% | 24.6% | 56 | 54 | 0.42 | 0.053 |
+| Zookeeper | 38.6% | 38.6% | 0 | 0 | 42.6% | 43.0% | 10 | 0 | 0.41 | 0.039 |
+| all | 40.8% | 40.7% | 210 | 219 | | | 823 | 1218 | 0.34 | 0.047 |
+
+The corrector fixes 210 of 3549 failing inputs (5.9%) and breaks 219 of 2451 passing ones. Wall-clock is batched vLLM on the L40S (all outputs of a system submitted per correction round, prefix caching on, engine start excluded).
+
+Cost: the corrector makes 0.34 LLM calls per output (1.68 per input for the 5 label samples) and takes 0.0094 s per output, 0.047 s per input. Clotho's batched HF forward pass to layer 21 plus GMM scoring takes 0.0351 s per input (`results_phase3_gemma/timing/hf.json`), one call and no generation: the corrector costs 0.3x Clotho per corrected output. Neither includes generating the output itself.
+
+Predictors against the corrected label (11 systems; skipped: Linux (10 PASS / 490 FAIL under the corrected label)). Same systems under the original label for comparison.
+
+| method | original label @100 | corrected @100 | original label @200 | corrected @200 |
+|---|---|---|---|---|
+| Clotho | 0.893 ± 0.020 | 0.901 ± 0.007 | 0.875 ± 0.011 | 0.875 ± 0.013 |
+| Lookup (Drain) | 0.933 ± 0.003 | 0.915 ± 0.005 | 0.937 ± 0.002 | 0.924 ± 0.006 |
+| Output entropy (k=5)* | 0.788 ± 0.003 | 0.769 ± 0.003 | 0.780 ± 0.005 | 0.767 ± 0.005 |
+| Random | 0.502 ± 0.012 | 0.500 ± 0.008 | 0.504 ± 0.020 | 0.489 ± 0.011 |
+
+Corrected label, paired differences: clotho-lookup_drain@100 -0.014 ± 0.009; clotho-lookup_drain@200 -0.048 ± 0.010 (every seed); clotho-out_entropy@100 +0.132 ± 0.008 (every seed); clotho-out_entropy@200 +0.109 ± 0.011 (every seed); clotho-random@100 +0.400 ± 0.013 (every seed); clotho-random@200 +0.386 ± 0.016 (every seed)
+
+Of the test failures (original label) each predictor ranks in its top 10% least pass-like, the share the corrector fixes (pooled over systems per seed; mean ± std over seeds). `All test failures` is the base rate.
+
+| predictor | fixed share @100 | fixed share @200 |
+|---|---|---|
+| Clotho | 0.034 ± 0.010 | 0.036 ± 0.017 |
+| Lookup (Drain) | 0.047 ± 0.014 | 0.042 ± 0.015 |
+| Output entropy (k=5)* | 0.068 ± 0.003 | 0.073 ± 0.004 |
+| Random | 0.071 ± 0.016 | 0.065 ± 0.006 |
+| All test failures | 0.062 ± 0.001 | 0.060 ± 0.002 |
+
+## Gemma-2-9B-it, capped (12 systems)
+
+### Experiment A: LLMLog score as a failure ranking
+
+| method | ROC-AUC @100 | ROC-AUC @200 | failures in top 50 @100 | failures in top 50 @200 |
+|---|---|---|---|---|
+| Clotho | 0.780 ± 0.003 | 0.832 ± 0.005 | 47.1 ± 0.4 | 47.5 ± 0.6 |
+| Lookup (Drain) | 0.706 ± 0.009 | 0.774 ± 0.008 | 42.8 ± 0.9 | 42.9 ± 0.8 |
+| Output entropy (k=5)* | 0.821 ± 0.002 | 0.818 ± 0.003 | 45.7 ± 0.2 | 44.6 ± 0.2 |
+| LLMLog score* | 0.686 ± 0.003 | 0.683 ± 0.006 | 39.2 ± 0.2 | 38.4 ± 0.4 |
+| LLMLog confidence only* | 0.688 ± 0.003 | 0.683 ± 0.006 | 39.1 ± 0.2 | 38.4 ± 0.4 |
+| LLMLog representativeness only | 0.481 ± 0.007 | 0.490 ± 0.003 | 26.1 ± 0.6 | 25.7 ± 0.4 |
+| LLMLog score, all words* | 0.686 ± 0.003 | 0.681 ± 0.006 | 38.8 ± 0.2 | 38.0 ± 0.4 |
+| LLMLog representativeness only, all words | 0.471 ± 0.006 | 0.473 ± 0.007 | 27.5 ± 0.3 | 26.1 ± 0.8 |
+| Random | 0.503 ± 0.008 | 0.503 ± 0.013 | 26.5 ± 0.8 | 26.7 ± 0.9 |
+
+Paired differences (mean ± std over seeds; `every seed` = same sign on all 5): clotho-llmlog@100 +0.094 ± 0.003 (every seed); clotho-llmlog@200 +0.150 ± 0.010 (every seed); lookup_drain-llmlog@100 +0.020 ± 0.009 (every seed); lookup_drain-llmlog@200 +0.091 ± 0.012 (every seed); llmlog-random@100 +0.183 ± 0.009 (every seed); llmlog-random@200 +0.180 ± 0.010 (every seed)
+
+### Experiment B: AdaParser corrector on the label samples 5-9
+
+Input PASS = >= 3 of 5 samples strictly correct. Fixed = FAIL -> PASS, broken = PASS -> FAIL.
+
+| system | input PASS before | after | fixed | broken | sample PASS before | after | samples fixed | samples broken | LLM calls / output | s / input (5 outputs) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| bgl | 45.4% | 51.8% | 37 | 5 | 44.4% | 50.5% | 178 | 25 | 0.41 | 0.091 |
+| hadoop | 43.4% | 46.6% | 16 | 0 | 43.3% | 46.3% | 78 | 3 | 0.35 | 0.070 |
+| hdfs | 40.2% | 49.0% | 44 | 0 | 41.2% | 48.1% | 172 | 0 | 0.36 | 0.061 |
+| healthapp | 52.4% | 55.6% | 21 | 5 | 52.2% | 54.4% | 81 | 25 | 0.29 | 0.044 |
+| hpc | 54.0% | 58.8% | 24 | 0 | 52.7% | 56.8% | 103 | 0 | 0.32 | 0.067 |
+| linux | 40.4% | 40.2% | 20 | 21 | 38.4% | 38.5% | 97 | 94 | 0.34 | 0.050 |
+| mac | 29.0% | 34.0% | 27 | 2 | 29.6% | 33.6% | 117 | 18 | 0.45 | 0.105 |
+| openssh | 34.2% | 17.8% | 15 | 97 | 34.9% | 18.6% | 51 | 459 | 0.57 | 0.065 |
+| openstack | 70.4% | 71.0% | 3 | 0 | 69.0% | 70.2% | 30 | 0 | 0.10 | 0.023 |
+| spark | 36.4% | 41.6% | 31 | 5 | 36.8% | 41.9% | 157 | 28 | 0.43 | 0.064 |
+| thunderbird | 37.6% | 42.4% | 30 | 6 | 37.8% | 40.8% | 111 | 35 | 0.38 | 0.070 |
+| zookeeper | 60.8% | 66.4% | 28 | 0 | 59.8% | 64.9% | 128 | 0 | 0.20 | 0.034 |
+| all | 45.4% | 47.9% | 296 | 141 | | | 1303 | 687 | 0.35 | 0.062 |
+
+The corrector fixes 296 of 3279 failing inputs (9.0%) and breaks 141 of 2721 passing ones. Wall-clock is batched vLLM on the L40S (all outputs of a system submitted per correction round, prefix caching on, engine start excluded).
+
+Cost: the corrector makes 0.35 LLM calls per output (1.76 per input for the 5 label samples) and takes 0.0124 s per output, 0.062 s per input. Clotho's batched HF forward pass to layer 21 plus GMM scoring takes 0.0351 s per input (`results_phase3_gemma/timing/hf.json`), one call and no generation: the corrector costs 0.4x Clotho per corrected output. Neither includes generating the output itself.
+
+Predictors against the corrected label (12 systems). Same systems under the original label for comparison.
+
+| method | original label @100 | corrected @100 | original label @200 | corrected @200 |
+|---|---|---|---|---|
+| Clotho | 0.780 ± 0.003 | 0.801 ± 0.005 | 0.832 ± 0.005 | 0.839 ± 0.006 |
+| Lookup (Drain) | 0.706 ± 0.009 | 0.723 ± 0.007 | 0.774 ± 0.008 | 0.783 ± 0.004 |
+| Output entropy (k=5)* | 0.821 ± 0.002 | 0.788 ± 0.002 | 0.818 ± 0.003 | 0.790 ± 0.003 |
+| Random | 0.503 ± 0.008 | 0.500 ± 0.010 | 0.503 ± 0.013 | 0.492 ± 0.013 |
+
+Corrected label, paired differences: clotho-lookup_drain@100 +0.078 ± 0.009 (every seed); clotho-lookup_drain@200 +0.056 ± 0.006 (every seed); clotho-out_entropy@100 +0.013 ± 0.006 (every seed); clotho-out_entropy@200 +0.049 ± 0.008 (every seed); clotho-random@100 +0.301 ± 0.010 (every seed); clotho-random@200 +0.346 ± 0.019 (every seed)
+
+Of the test failures (original label) each predictor ranks in its top 10% least pass-like, the share the corrector fixes (pooled over systems per seed; mean ± std over seeds). `All test failures` is the base rate.
+
+| predictor | fixed share @100 | fixed share @200 |
+|---|---|---|
+| Clotho | 0.035 ± 0.005 | 0.043 ± 0.006 |
+| Lookup (Drain) | 0.053 ± 0.013 | 0.041 ± 0.012 |
+| Output entropy (k=5)* | 0.040 ± 0.009 | 0.035 ± 0.003 |
+| Random | 0.085 ± 0.018 | 0.088 ± 0.025 |
+| All test failures | 0.085 ± 0.002 | 0.084 ± 0.004 |
 
 ## Deviations
 
