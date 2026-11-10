@@ -1,0 +1,1718 @@
+{
+ "sk": {
+  "llama main table (capped, standard) @100": {
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.7915224196921039
+   },
+   "hybrid": {
+    "rank": 2,
+    "mean": 0.757393436620385
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.7488400738226935
+   },
+   "MDSA": {
+    "rank": 3,
+    "mean": 0.7145463964270841
+   },
+   "lookup_drain_default": {
+    "rank": 3,
+    "mean": 0.6943724057528236
+   },
+   "lookup_oracle": {
+    "rank": 3,
+    "mean": 0.6907316640163971
+   },
+   "lookup_drain": {
+    "rank": 3,
+    "mean": 0.6800288084141088
+   },
+   "loh_var": {
+    "rank": 4,
+    "mean": 0.6471349236238686
+   },
+   "GMMb": {
+    "rank": 4,
+    "mean": 0.6289552168885694
+   },
+   "sem_ent": {
+    "rank": 5,
+    "mean": 0.5425852416652986
+   },
+   "tok_prob": {
+    "rank": 6,
+    "mean": 0.5184543262774344
+   },
+   "tok_ent": {
+    "rank": 6,
+    "mean": 0.5067221288499578
+   },
+   "SLL": {
+    "rank": 6,
+    "mean": 0.5063340405257246
+   },
+   "random": {
+    "rank": 6,
+    "mean": 0.5035557022838344
+   }
+  },
+  "llama natural table @100": {
+   "clotho_oe": {
+    "rank": 1,
+    "mean": 0.8538257308436953
+   },
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.837592980434645
+   },
+   "lookup_oracle": {
+    "rank": 1,
+    "mean": 0.8356812137580314
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8311038222792991
+   },
+   "MDSA": {
+    "rank": 1,
+    "mean": 0.8147700877885626
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7889982661182147
+   },
+   "GMMb": {
+    "rank": 2,
+    "mean": 0.7718786120345245
+   },
+   "loh_var": {
+    "rank": 3,
+    "mean": 0.684872148627057
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.5054254051211476
+   },
+   "tok_prob": {
+    "rank": 4,
+    "mean": 0.5041133511904796
+   }
+  },
+  "llama main table (capped, standard) @200": {
+   "hybrid": {
+    "rank": 1,
+    "mean": 0.8016256800629559
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.7941238071953577
+   },
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.7935359232776583
+   },
+   "lookup_drain_default": {
+    "rank": 2,
+    "mean": 0.7495107614720696
+   },
+   "lookup_oracle": {
+    "rank": 2,
+    "mean": 0.748651632900567
+   },
+   "MDSA": {
+    "rank": 2,
+    "mean": 0.737096485698514
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7328486761258799
+   },
+   "GMMb": {
+    "rank": 2,
+    "mean": 0.7204466447528118
+   },
+   "loh_var": {
+    "rank": 3,
+    "mean": 0.6442877447978814
+   },
+   "sem_ent": {
+    "rank": 4,
+    "mean": 0.5350871407743347
+   },
+   "tok_prob": {
+    "rank": 4,
+    "mean": 0.5158790435353672
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.5062583399413032
+   },
+   "tok_ent": {
+    "rank": 4,
+    "mean": 0.5058572106162236
+   },
+   "SLL": {
+    "rank": 4,
+    "mean": 0.49890008187900736
+   }
+  },
+  "llama natural table @200": {
+   "lookup_oracle": {
+    "rank": 1,
+    "mean": 0.8632854937309845
+   },
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.8608679639745195
+   },
+   "clotho_oe": {
+    "rank": 1,
+    "mean": 0.8563178391485514
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8449665287727922
+   },
+   "MDSA": {
+    "rank": 1,
+    "mean": 0.8380793015810458
+   },
+   "GMMb": {
+    "rank": 2,
+    "mean": 0.7975888200024704
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7839115861911071
+   },
+   "loh_var": {
+    "rank": 3,
+    "mean": 0.6960708267643786
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.4985352797721941
+   },
+   "tok_prob": {
+    "rank": 4,
+    "mean": 0.4919470158877835
+   }
+  },
+  "llama A, LLMLog (capped) @100": {
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.7915224196921039
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.7488400738226935
+   },
+   "llmlog_conf": {
+    "rank": 3,
+    "mean": 0.7207135203778909
+   },
+   "llmlog": {
+    "rank": 3,
+    "mean": 0.7198409835917443
+   },
+   "lookup_drain": {
+    "rank": 4,
+    "mean": 0.6800288084141088
+   },
+   "random": {
+    "rank": 5,
+    "mean": 0.5035557022838344
+   },
+   "llmlog_rep": {
+    "rank": 5,
+    "mean": 0.49921347795470983
+   }
+  },
+  "llama B, corrected label (capped) @100": {
+   "clotho": {
+    "rank": 1,
+    "mean": 0.76576855402331
+   },
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.752821778204432
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7042286433003505
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.511824930857554
+   }
+  },
+  "llama A, LLMLog (capped) @200": {
+   "clotho": {
+    "rank": 1,
+    "mean": 0.7941238071953577
+   },
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.7935359232776583
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7328486761258799
+   },
+   "llmlog_conf": {
+    "rank": 2,
+    "mean": 0.7174578857508936
+   },
+   "llmlog": {
+    "rank": 2,
+    "mean": 0.7167922909525161
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.5062583399413032
+   },
+   "llmlog_rep": {
+    "rank": 3,
+    "mean": 0.5027310598082465
+   }
+  },
+  "llama B, corrected label (capped) @200": {
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8127905938212917
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7574565702791971
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7485776621834486
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.49467847405155574
+   }
+  },
+  "llama C, failures found (capped) B=50": {
+   "clotho": {
+    "rank": 1,
+    "mean": 81.26153846153846
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 81.12307692307692
+   },
+   "drain_random": {
+    "rank": 2,
+    "mean": 76.98461538461538
+   },
+   "random": {
+    "rank": 3,
+    "mean": 66.70769230769231
+   }
+  },
+  "llama C, failures found (capped) B=100": {
+   "clotho": {
+    "rank": 1,
+    "mean": 161.43076923076924
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 157.58461538461538
+   },
+   "drain_random": {
+    "rank": 2,
+    "mean": 149.47692307692307
+   },
+   "random": {
+    "rank": 3,
+    "mean": 133.6769230769231
+   }
+  },
+  "llama C, failures found (capped) B=200": {
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 295.55384615384617
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 295.10769230769233
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 290.46153846153845
+   },
+   "random": {
+    "rank": 2,
+    "mean": 268.44615384615383
+   }
+  },
+  "llama D, transfer k=0 (capped, held-out targets)": {
+   "probe": {
+    "rank": 1,
+    "mean": 0.714096049436655
+   },
+   "probe_feats": {
+    "rank": 1,
+    "mean": 0.7105384570958455
+   },
+   "mlp": {
+    "rank": 1,
+    "mean": 0.6965943823270285
+   },
+   "feats": {
+    "rank": 2,
+    "mean": 0.6520215026832932
+   },
+   "clotho_pool": {
+    "rank": 2,
+    "mean": 0.6324373895333527
+   },
+   "clotho_pool_coral": {
+    "rank": 3,
+    "mean": 0.5928102315204742
+   },
+   "clotho_pool_z": {
+    "rank": 3,
+    "mean": 0.5914186520645942
+   },
+   "clotho_pool_fair": {
+    "rank": 3,
+    "mean": 0.5879794851380553
+   }
+  },
+  "llama A, LLMLog (natural) @100": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.837592980434645
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8311038222792991
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7889982661182147
+   },
+   "llmlog_conf": {
+    "rank": 3,
+    "mean": 0.6755211651777622
+   },
+   "llmlog": {
+    "rank": 3,
+    "mean": 0.6754719377318453
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.5054254051211476
+   },
+   "llmlog_rep": {
+    "rank": 4,
+    "mean": 0.5047303440251224
+   }
+  },
+  "llama B, corrected label (natural) @100": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.8496153092746627
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.842986362912379
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7303180089459894
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.5070534503758216
+   }
+  },
+  "llama A, LLMLog (natural) @200": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.8608679639745195
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8449665287727922
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7839115861911071
+   },
+   "llmlog": {
+    "rank": 3,
+    "mean": 0.6753364150820839
+   },
+   "llmlog_conf": {
+    "rank": 3,
+    "mean": 0.6752544332060239
+   },
+   "llmlog_rep": {
+    "rank": 4,
+    "mean": 0.500384855978547
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.4985352797721941
+   }
+  },
+  "llama B, corrected label (natural) @200": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.8521128806940687
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8501010952631307
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7241911063055695
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.4900835138993144
+   }
+  },
+  "llama C, failures found (natural) B=50": {
+   "clotho": {
+    "rank": 1,
+    "mean": 81.03076923076924
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 77.43076923076923
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 76.0923076923077
+   },
+   "random": {
+    "rank": 2,
+    "mean": 64.70769230769231
+   }
+  },
+  "llama C, failures found (natural) B=100": {
+   "clotho": {
+    "rank": 1,
+    "mean": 157.47692307692307
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 152.56923076923076
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 148.95384615384614
+   },
+   "random": {
+    "rank": 2,
+    "mean": 130.0
+   }
+  },
+  "llama C, failures found (natural) B=200": {
+   "clotho": {
+    "rank": 1,
+    "mean": 290.81538461538463
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 286.1384615384615
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 283.84615384615387
+   },
+   "random": {
+    "rank": 1,
+    "mean": 260.4307692307692
+   }
+  },
+  "llama D, transfer k=0 (natural, held-out targets)": {
+   "probe": {
+    "rank": 1,
+    "mean": 0.6859671586525409
+   },
+   "feats": {
+    "rank": 1,
+    "mean": 0.6802255138149124
+   },
+   "probe_feats": {
+    "rank": 1,
+    "mean": 0.6674290740051313
+   },
+   "mlp": {
+    "rank": 1,
+    "mean": 0.6404566644035167
+   },
+   "clotho_pool": {
+    "rank": 2,
+    "mean": 0.5732447172099737
+   },
+   "clotho_pool_coral": {
+    "rank": 2,
+    "mean": 0.5336408275458335
+   },
+   "clotho_pool_fair": {
+    "rank": 3,
+    "mean": 0.4993465780564649
+   },
+   "clotho_pool_z": {
+    "rank": 3,
+    "mean": 0.4485763904710909
+   }
+  },
+  "gemma main table (capped, standard) @100": {
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.8205776251745139
+   },
+   "hybrid": {
+    "rank": 1,
+    "mean": 0.7893186962877968
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.7804830510041771
+   },
+   "lookup_oracle": {
+    "rank": 2,
+    "mean": 0.7303306791788746
+   },
+   "lookup_drain_default": {
+    "rank": 2,
+    "mean": 0.7281315299920678
+   },
+   "MDSA": {
+    "rank": 2,
+    "mean": 0.7177271318272008
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7063276986359422
+   },
+   "GMMb": {
+    "rank": 3,
+    "mean": 0.6790457796338122
+   },
+   "loh_var": {
+    "rank": 3,
+    "mean": 0.676594157958146
+   },
+   "sem_ent": {
+    "rank": 4,
+    "mean": 0.6167878500941072
+   },
+   "tok_ent": {
+    "rank": 5,
+    "mean": 0.5781104076025009
+   },
+   "random": {
+    "rank": 6,
+    "mean": 0.5030095574605018
+   },
+   "tok_prob": {
+    "rank": 6,
+    "mean": 0.4863146768228557
+   },
+   "SLL": {
+    "rank": 7,
+    "mean": 0.45714259208122476
+   }
+  },
+  "gemma natural table @100": {
+   "lookup_oracle": {
+    "rank": 1,
+    "mean": 0.9191707688107946
+   },
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.9164215409513259
+   },
+   "clotho_oe": {
+    "rank": 2,
+    "mean": 0.893662484005021
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.8798583514398515
+   },
+   "MDSA": {
+    "rank": 2,
+    "mean": 0.87527206162893
+   },
+   "GMMb": {
+    "rank": 3,
+    "mean": 0.7892339589471755
+   },
+   "out_entropy": {
+    "rank": 3,
+    "mean": 0.7719399206403562
+   },
+   "loh_var": {
+    "rank": 4,
+    "mean": 0.6694792584334245
+   },
+   "random": {
+    "rank": 5,
+    "mean": 0.5023261655634234
+   },
+   "tok_prob": {
+    "rank": 5,
+    "mean": 0.4777409565868001
+   }
+  },
+  "gemma main table (capped, standard) @200": {
+   "hybrid": {
+    "rank": 1,
+    "mean": 0.8431644236711584
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8323111887990576
+   },
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.818274527447107
+   },
+   "lookup_oracle": {
+    "rank": 2,
+    "mean": 0.7898948528722273
+   },
+   "lookup_drain_default": {
+    "rank": 2,
+    "mean": 0.7891752371384531
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.774100498411696
+   },
+   "GMMb": {
+    "rank": 2,
+    "mean": 0.7611894105368923
+   },
+   "MDSA": {
+    "rank": 3,
+    "mean": 0.7374245338339036
+   },
+   "loh_var": {
+    "rank": 4,
+    "mean": 0.6715242124327312
+   },
+   "sem_ent": {
+    "rank": 5,
+    "mean": 0.6116620976693424
+   },
+   "tok_ent": {
+    "rank": 5,
+    "mean": 0.5746705852238618
+   },
+   "random": {
+    "rank": 6,
+    "mean": 0.5029293966086421
+   },
+   "tok_prob": {
+    "rank": 6,
+    "mean": 0.4795820120231059
+   },
+   "SLL": {
+    "rank": 7,
+    "mean": 0.453044210895219
+   }
+  },
+  "gemma natural table @200": {
+   "lookup_oracle": {
+    "rank": 1,
+    "mean": 0.91354227853537
+   },
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.9117647579814457
+   },
+   "clotho_oe": {
+    "rank": 2,
+    "mean": 0.8724236860894137
+   },
+   "GMMb": {
+    "rank": 2,
+    "mean": 0.8562842425287971
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.8550974746580988
+   },
+   "MDSA": {
+    "rank": 2,
+    "mean": 0.830031708136764
+   },
+   "out_entropy": {
+    "rank": 3,
+    "mean": 0.7617990513349717
+   },
+   "loh_var": {
+    "rank": 4,
+    "mean": 0.6624832830947746
+   },
+   "random": {
+    "rank": 5,
+    "mean": 0.5016755841969757
+   },
+   "tok_prob": {
+    "rank": 5,
+    "mean": 0.47258626145036736
+   }
+  },
+  "gemma A, LLMLog (capped) @100": {
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.8205776251745139
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.7804830510041771
+   },
+   "lookup_drain": {
+    "rank": 3,
+    "mean": 0.7063276986359422
+   },
+   "llmlog_conf": {
+    "rank": 3,
+    "mean": 0.687973280569646
+   },
+   "llmlog": {
+    "rank": 3,
+    "mean": 0.6863900931452075
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.5030095574605018
+   },
+   "llmlog_rep": {
+    "rank": 4,
+    "mean": 0.48139933388027595
+   }
+  },
+  "gemma B, corrected label (capped) @100": {
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8009851658679612
+   },
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.788448991608718
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7233321547517266
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.4999470364540716
+   }
+  },
+  "gemma A, LLMLog (capped) @200": {
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8323111887990576
+   },
+   "out_entropy": {
+    "rank": 1,
+    "mean": 0.818274527447107
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.774100498411696
+   },
+   "llmlog_conf": {
+    "rank": 3,
+    "mean": 0.6834813479325971
+   },
+   "llmlog": {
+    "rank": 3,
+    "mean": 0.6826418072171768
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.5029293966086421
+   },
+   "llmlog_rep": {
+    "rank": 4,
+    "mean": 0.4904901929163155
+   }
+  },
+  "gemma B, corrected label (capped) @200": {
+   "clotho": {
+    "rank": 1,
+    "mean": 0.8389176476131804
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7899552863265652
+   },
+   "lookup_drain": {
+    "rank": 2,
+    "mean": 0.7827082357578404
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.4924760266407192
+   }
+  },
+  "gemma C, failures found (capped) B=50": {
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 75.03333333333333
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 74.2
+   },
+   "drain_random": {
+    "rank": 2,
+    "mean": 70.46666666666667
+   },
+   "random": {
+    "rank": 3,
+    "mean": 55.71666666666667
+   }
+  },
+  "gemma C, failures found (capped) B=100": {
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 145.68333333333334
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 144.6
+   },
+   "drain_random": {
+    "rank": 2,
+    "mean": 136.7
+   },
+   "random": {
+    "rank": 3,
+    "mean": 108.05
+   }
+  },
+  "gemma C, failures found (capped) B=200": {
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 252.4
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 249.73333333333332
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 248.56666666666666
+   },
+   "random": {
+    "rank": 2,
+    "mean": 218.88333333333333
+   }
+  },
+  "gemma D, transfer k=0 (capped, held-out targets)": {
+   "probe": {
+    "rank": 1,
+    "mean": 0.6715082238220274
+   },
+   "mlp": {
+    "rank": 1,
+    "mean": 0.6677257335194956
+   },
+   "feats": {
+    "rank": 1,
+    "mean": 0.66771973635249
+   },
+   "probe_feats": {
+    "rank": 1,
+    "mean": 0.6614033800646246
+   },
+   "clotho_pool_fair": {
+    "rank": 2,
+    "mean": 0.6193120954516402
+   },
+   "clotho_pool": {
+    "rank": 3,
+    "mean": 0.5720516664019191
+   },
+   "clotho_pool_z": {
+    "rank": 3,
+    "mean": 0.5673192709279127
+   },
+   "clotho_pool_coral": {
+    "rank": 3,
+    "mean": 0.5501189784930741
+   }
+  },
+  "gemma A, LLMLog (natural) @100": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.9164215409513259
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.8798583514398515
+   },
+   "out_entropy": {
+    "rank": 3,
+    "mean": 0.7719399206403562
+   },
+   "llmlog": {
+    "rank": 4,
+    "mean": 0.6203257924758757
+   },
+   "llmlog_conf": {
+    "rank": 4,
+    "mean": 0.6201056441504245
+   },
+   "random": {
+    "rank": 5,
+    "mean": 0.5023261655634234
+   },
+   "llmlog_rep": {
+    "rank": 5,
+    "mean": 0.49283109724144225
+   }
+  },
+  "gemma B, corrected label (natural) @100": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.915143715264155
+   },
+   "clotho": {
+    "rank": 1,
+    "mean": 0.9008039264527027
+   },
+   "out_entropy": {
+    "rank": 2,
+    "mean": 0.7685534384664413
+   },
+   "random": {
+    "rank": 3,
+    "mean": 0.5003378408111324
+   }
+  },
+  "gemma A, LLMLog (natural) @200": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.9117647579814457
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.8550974746580988
+   },
+   "out_entropy": {
+    "rank": 3,
+    "mean": 0.7617990513349717
+   },
+   "llmlog": {
+    "rank": 4,
+    "mean": 0.6112501157857417
+   },
+   "llmlog_conf": {
+    "rank": 4,
+    "mean": 0.6108184961689488
+   },
+   "random": {
+    "rank": 5,
+    "mean": 0.5016755841969757
+   },
+   "llmlog_rep": {
+    "rank": 5,
+    "mean": 0.49524761352434093
+   }
+  },
+  "gemma B, corrected label (natural) @200": {
+   "lookup_drain": {
+    "rank": 1,
+    "mean": 0.9237625938037038
+   },
+   "clotho": {
+    "rank": 2,
+    "mean": 0.875264533449047
+   },
+   "out_entropy": {
+    "rank": 3,
+    "mean": 0.7665275879087656
+   },
+   "random": {
+    "rank": 4,
+    "mean": 0.48882671863517924
+   }
+  },
+  "gemma C, failures found (natural) B=50": {
+   "clotho": {
+    "rank": 1,
+    "mean": 80.5
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 78.36666666666666
+   },
+   "drain_random": {
+    "rank": 2,
+    "mean": 75.36666666666666
+   },
+   "random": {
+    "rank": 3,
+    "mean": 59.016666666666666
+   }
+  },
+  "gemma C, failures found (natural) B=100": {
+   "clotho": {
+    "rank": 1,
+    "mean": 158.95
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 154.8
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 151.13333333333333
+   },
+   "random": {
+    "rank": 2,
+    "mean": 117.9
+   }
+  },
+  "gemma C, failures found (natural) B=200": {
+   "clotho": {
+    "rank": 1,
+    "mean": 268.3833333333333
+   },
+   "drain_clotho": {
+    "rank": 1,
+    "mean": 265.51666666666665
+   },
+   "drain_random": {
+    "rank": 1,
+    "mean": 263.5833333333333
+   },
+   "random": {
+    "rank": 2,
+    "mean": 236.68333333333334
+   }
+  },
+  "gemma D, transfer k=0 (natural, held-out targets)": {
+   "probe_feats": {
+    "rank": 1,
+    "mean": 0.7272634768623573
+   },
+   "probe": {
+    "rank": 1,
+    "mean": 0.6913513185966759
+   },
+   "clotho_pool_fair": {
+    "rank": 1,
+    "mean": 0.6640809325168693
+   },
+   "mlp": {
+    "rank": 1,
+    "mean": 0.6586576209147255
+   },
+   "feats": {
+    "rank": 1,
+    "mean": 0.6219014236061672
+   },
+   "clotho_pool_coral": {
+    "rank": 2,
+    "mean": 0.45919858378933515
+   },
+   "clotho_pool": {
+    "rank": 2,
+    "mean": 0.44400116705551107
+   },
+   "clotho_pool_z": {
+    "rank": 2,
+    "mean": 0.4285770236284084
+   }
+  }
+ },
+ "a12": {
+  "llama capped @100 Clotho vs lookup_drain": {
+   "a12": 0.6873372781065089,
+   "magnitude": "medium",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama capped @100 Clotho vs MDSA": {
+   "a12": 0.6208284023668639,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama capped @100 Clotho vs out_entropy": {
+   "a12": 0.37893491124260353,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama natural @100 Clotho vs lookup_drain": {
+   "a12": 0.48923076923076925,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama natural @100 Clotho vs MDSA": {
+   "a12": 0.49775147928994085,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama natural @100 Clotho vs out_entropy": {
+   "a12": 0.6759763313609467,
+   "magnitude": "medium",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama capped @200 Clotho vs lookup_drain": {
+   "a12": 0.6513609467455621,
+   "magnitude": "medium",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama capped @200 Clotho vs MDSA": {
+   "a12": 0.7114792899408284,
+   "magnitude": "large",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama capped @200 Clotho vs out_entropy": {
+   "a12": 0.5422485207100591,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama natural @200 Clotho vs lookup_drain": {
+   "a12": 0.4631952662721894,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama natural @200 Clotho vs MDSA": {
+   "a12": 0.5379881656804734,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama natural @200 Clotho vs out_entropy": {
+   "a12": 0.6785798816568047,
+   "magnitude": "medium",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama A capped @100 Clotho vs LLMLog": {
+   "a12": 0.6234319526627219,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B capped @100 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.6331360946745562,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B capped @100 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.5429585798816569,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama A capped @200 Clotho vs LLMLog": {
+   "a12": 0.7723076923076924,
+   "magnitude": "large",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B capped @200 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.6255621301775148,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B capped @200 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.6911242603550296,
+   "magnitude": "medium",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama C capped B=50 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.4884023668639053,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama C capped B=100 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5589349112426035,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama C capped B=200 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5028402366863906,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama D capped logistic probe vs pooled Clotho (clotho_pool_fair)": {
+   "a12": 0.89,
+   "magnitude": "large",
+   "n": [
+    50,
+    50
+   ]
+  },
+  "llama D capped logistic probe vs pooled Clotho (clotho_pool)": {
+   "a12": 0.784,
+   "magnitude": "large",
+   "n": [
+    50,
+    50
+   ]
+  },
+  "llama D capped k=25 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.5325443786982249,
+   "magnitude": "negligible",
+   "n": [
+    26,
+    26
+   ]
+  },
+  "llama D capped k=50 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.6050295857988166,
+   "magnitude": "small",
+   "n": [
+    26,
+    26
+   ]
+  },
+  "llama A natural @100 Clotho vs LLMLog": {
+   "a12": 0.8063905325443786,
+   "magnitude": "large",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B natural @100 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.45964497041420116,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B natural @100 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.7431952662721893,
+   "magnitude": "large",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama A natural @200 Clotho vs LLMLog": {
+   "a12": 0.8068639053254438,
+   "magnitude": "large",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B natural @200 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.4594082840236686,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama B natural @200 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.7770414201183432,
+   "magnitude": "large",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama C natural B=50 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5992899408284024,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama C natural B=100 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5768047337278106,
+   "magnitude": "small",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama C natural B=200 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5590532544378698,
+   "magnitude": "negligible",
+   "n": [
+    65,
+    65
+   ]
+  },
+  "llama D natural logistic probe vs pooled Clotho (clotho_pool_fair)": {
+   "a12": 0.772,
+   "magnitude": "large",
+   "n": [
+    50,
+    50
+   ]
+  },
+  "llama D natural logistic probe vs pooled Clotho (clotho_pool)": {
+   "a12": 0.696,
+   "magnitude": "medium",
+   "n": [
+    50,
+    50
+   ]
+  },
+  "llama D natural k=25 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.4808,
+   "magnitude": "negligible",
+   "n": [
+    50,
+    50
+   ]
+  },
+  "llama D natural k=50 refit (protocol) vs within-system Clotho @100 (paired inputs)": {
+   "a12": 0.5892,
+   "magnitude": "small",
+   "n": [
+    50,
+    50
+   ]
+  },
+  "gemma capped @100 Clotho vs lookup_drain": {
+   "a12": 0.6616666666666666,
+   "magnitude": "medium",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma capped @100 Clotho vs MDSA": {
+   "a12": 0.6844444444444444,
+   "magnitude": "medium",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma capped @100 Clotho vs out_entropy": {
+   "a12": 0.3788888888888889,
+   "magnitude": "small",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma natural @100 Clotho vs lookup_drain": {
+   "a12": 0.3947222222222222,
+   "magnitude": "small",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma natural @100 Clotho vs MDSA": {
+   "a12": 0.5383333333333333,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma natural @100 Clotho vs out_entropy": {
+   "a12": 0.8202777777777778,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma capped @200 Clotho vs lookup_drain": {
+   "a12": 0.5988888888888889,
+   "magnitude": "small",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma capped @200 Clotho vs MDSA": {
+   "a12": 0.7661111111111111,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma capped @200 Clotho vs out_entropy": {
+   "a12": 0.5816666666666667,
+   "magnitude": "small",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma natural @200 Clotho vs lookup_drain": {
+   "a12": 0.4363888888888889,
+   "magnitude": "small",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma natural @200 Clotho vs MDSA": {
+   "a12": 0.5556944444444445,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma natural @200 Clotho vs out_entropy": {
+   "a12": 0.7205555555555555,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma A capped @100 Clotho vs LLMLog": {
+   "a12": 0.7191666666666666,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma B capped @100 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.6588888888888889,
+   "magnitude": "medium",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma B capped @100 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.5238888888888888,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma A capped @200 Clotho vs LLMLog": {
+   "a12": 0.8583333333333333,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma B capped @200 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.5905555555555555,
+   "magnitude": "small",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma B capped @200 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.6844444444444444,
+   "magnitude": "medium",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma C capped B=50 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.49041666666666667,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma C capped B=100 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.46041666666666664,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma C capped B=200 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.4752777777777778,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma D capped logistic probe vs pooled Clotho (clotho_pool_fair)": {
+   "a12": 0.6370370370370371,
+   "magnitude": "small",
+   "n": [
+    45,
+    45
+   ]
+  },
+  "gemma D capped logistic probe vs pooled Clotho (clotho_pool)": {
+   "a12": 0.7728395061728395,
+   "magnitude": "large",
+   "n": [
+    45,
+    45
+   ]
+  },
+  "gemma A natural @100 Clotho vs LLMLog": {
+   "a12": 0.9519444444444445,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma B natural @100 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.4624793388429752,
+   "magnitude": "negligible",
+   "n": [
+    55,
+    55
+   ]
+  },
+  "gemma B natural @100 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.8348760330578512,
+   "magnitude": "large",
+   "n": [
+    55,
+    55
+   ]
+  },
+  "gemma A natural @200 Clotho vs LLMLog": {
+   "a12": 0.8552777777777778,
+   "magnitude": "large",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma B natural @200 Clotho vs lookup_drain (corrected label)": {
+   "a12": 0.45355371900826447,
+   "magnitude": "negligible",
+   "n": [
+    55,
+    55
+   ]
+  },
+  "gemma B natural @200 Clotho vs out_entropy (corrected label)": {
+   "a12": 0.7732231404958678,
+   "magnitude": "large",
+   "n": [
+    55,
+    55
+   ]
+  },
+  "gemma C natural B=50 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5518055555555555,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma C natural B=100 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5545833333333333,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma C natural B=200 Clotho vs Drain-propagate + Clotho (failures found)": {
+   "a12": 0.5108333333333334,
+   "magnitude": "negligible",
+   "n": [
+    60,
+    60
+   ]
+  },
+  "gemma D natural logistic probe vs pooled Clotho (clotho_pool_fair)": {
+   "a12": 0.528395061728395,
+   "magnitude": "negligible",
+   "n": [
+    45,
+    45
+   ]
+  },
+  "gemma D natural logistic probe vs pooled Clotho (clotho_pool)": {
+   "a12": 0.8691358024691358,
+   "magnitude": "large",
+   "n": [
+    45,
+    45
+   ]
+  }
+ }
+}
