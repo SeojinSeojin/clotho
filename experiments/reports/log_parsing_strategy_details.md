@@ -42,3 +42,43 @@ Paired differences in failures found (mean ± std over seeds): drain_clotho-clot
 
 Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 -1.8 ± 4.3; drain_clotho-drain_random@50 +53.8 ± 8.6 (every seed); clotho-random@50 +189.2 ± 22.7 (every seed); drain_clotho-clotho@100 -50.0 ± 17.4 (every seed); drain_clotho-drain_random@100 +105.4 ± 14.9 (every seed); clotho-random@100 +360.8 ± 32.6 (every seed); drain_clotho-clotho@200 +5.8 ± 32.7; drain_clotho-drain_random@200 +66.2 ± 15.0 (every seed); clotho-random@200 +346.6 ± 24.8 (every seed)
 
+
+## Gemma-2-9B-it, natural (12 systems, 3549 failing inputs of 6000)
+
+| strategy | B | failures found (of 3549) | found / 2B | in labelled | in top K | failures in observed groups | inherited label wrong |
+|---|---|---|---|---|---|---|---|
+| Random | 50 | 708.2 ± 16.8 | 0.590 ± 0.014 | 356.6 ± 14.2 | 351.6 ± 7.0 | 83.6 ± 1.8% | n/a |
+| Clotho | 50 | 966.0 ± 7.2 | 0.805 ± 0.006 | 379.8 ± 5.0 | 586.2 ± 6.4 | 86.9 ± 0.8% | n/a |
+| Drain-propagate + Clotho | 50 | 940.4 ± 10.8 | 0.784 ± 0.009 | 353.8 ± 5.4 | 586.6 ± 8.9 | 95.0 ± 0.1% | 9.2 ± 0.4% |
+| Drain-propagate, no Clotho | 50 | 904.4 ± 6.4 | 0.754 ± 0.005 | 353.8 ± 5.4 | 550.6 ± 5.3 | 95.0 ± 0.1% | 9.2 ± 0.4% |
+| Random | 100 | 1414.8 ± 25.4 | 0.590 ± 0.011 | 709.6 ± 20.1 | 705.2 ± 5.9 | 89.7 ± 1.2% | n/a |
+| Clotho | 100 | 1907.4 ± 8.4 | 0.795 ± 0.004 | 775.6 ± 7.0 | 1131.8 ± 8.0 | 92.3 ± 1.4% | n/a |
+| Drain-propagate + Clotho | 100 | 1857.6 ± 15.4 | 0.774 ± 0.006 | 711.4 ± 5.8 | 1146.2 ± 13.1 | 98.8 ± 0.1% | 9.8 ± 1.0% |
+| Drain-propagate, no Clotho | 100 | 1813.6 ± 13.4 | 0.756 ± 0.006 | 711.4 ± 5.8 | 1102.2 ± 16.6 | 98.8 ± 0.1% | 9.8 ± 1.0% |
+| Random | 200 | 2840.2 ± 17.6 | 0.592 ± 0.004 | 1426.6 ± 16.1 | 1413.6 ± 14.6 | 94.6 ± 0.4% | n/a |
+| Clotho | 200 | 3220.6 ± 17.5 | 0.671 ± 0.004 | 1556.2 ± 35.7 | 1664.4 ± 38.0 | 97.9 ± 0.2% | n/a |
+| Drain-propagate + Clotho | 200 | 3186.2 ± 5.8 | 0.664 ± 0.001 | 1425.4 ± 7.1 | 1760.8 ± 2.4 | 100.0 ± 0.0% | 9.9 ± 0.2% |
+| Drain-propagate, no Clotho | 200 | 3163.0 ± 7.5 | 0.659 ± 0.002 | 1425.4 ± 7.1 | 1737.6 ± 8.6 | 100.0 ± 0.0% | 9.9 ± 0.2% |
+
+Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 -25.6 ± 8.8 (every seed); drain_clotho-drain_random@50 +36.0 ± 9.4 (every seed); clotho-random@50 +257.8 ± 23.3 (every seed); drain_clotho-clotho@100 -49.8 ± 19.3 (every seed); drain_clotho-drain_random@100 +44.0 ± 21.6 (every seed); clotho-random@100 +492.6 ± 23.2 (every seed); drain_clotho-clotho@200 -34.4 ± 21.8 (every seed); drain_clotho-drain_random@200 +23.2 ± 9.0 (every seed); clotho-random@200 +380.4 ± 12.6 (every seed)
+
+
+## Gemma-2-9B-it, capped (12 systems, 3279 failing inputs of 6000)
+
+| strategy | B | failures found (of 3279) | found / 2B | in labelled | in top K | failures in observed groups | inherited label wrong |
+|---|---|---|---|---|---|---|---|
+| Random | 50 | 668.6 ± 7.1 | 0.557 ± 0.006 | 332.6 ± 5.8 | 336.0 ± 12.4 | 39.9 ± 1.1% | n/a |
+| Clotho | 50 | 890.4 ± 12.1 | 0.742 ± 0.010 | 354.2 ± 1.8 | 536.2 ± 11.3 | 40.2 ± 0.7% | n/a |
+| Drain-propagate + Clotho | 50 | 900.4 ± 5.0 | 0.750 ± 0.004 | 338.0 ± 4.2 | 562.4 ± 7.2 | 55.6 ± 0.2% | 11.7 ± 0.6% |
+| Drain-propagate, no Clotho | 50 | 845.6 ± 8.1 | 0.705 ± 0.007 | 338.0 ± 4.2 | 507.6 ± 10.9 | 55.6 ± 0.2% | 11.7 ± 0.6% |
+| Random | 100 | 1296.6 ± 12.3 | 0.540 ± 0.005 | 645.6 ± 14.4 | 651.0 ± 7.2 | 55.2 ± 0.6% | n/a |
+| Clotho | 100 | 1735.2 ± 19.5 | 0.723 ± 0.008 | 691.2 ± 13.3 | 1044.0 ± 14.8 | 57.7 ± 0.8% | n/a |
+| Drain-propagate + Clotho | 100 | 1748.2 ± 8.7 | 0.728 ± 0.004 | 672.0 ± 13.1 | 1076.2 ± 9.0 | 67.6 ± 0.4% | 11.9 ± 0.3% |
+| Drain-propagate, no Clotho | 100 | 1640.4 ± 12.0 | 0.683 ± 0.005 | 672.0 ± 13.1 | 968.4 ± 7.2 | 67.6 ± 0.4% | 11.9 ± 0.3% |
+| Random | 200 | 2626.6 ± 5.0 | 0.547 ± 0.001 | 1319.2 ± 5.8 | 1307.4 ± 7.5 | 72.9 ± 0.3% | n/a |
+| Clotho | 200 | 2996.8 ± 13.4 | 0.624 ± 0.003 | 1373.0 ± 13.2 | 1623.8 ± 22.5 | 77.1 ± 0.6% | n/a |
+| Drain-propagate + Clotho | 200 | 3028.8 ± 10.9 | 0.631 ± 0.002 | 1312.0 ± 10.4 | 1716.8 ± 10.5 | 82.3 ± 0.1% | 10.9 ± 0.3% |
+| Drain-propagate, no Clotho | 200 | 2982.8 ± 12.2 | 0.621 ± 0.003 | 1312.0 ± 10.4 | 1670.8 ± 6.1 | 82.3 ± 0.1% | 10.9 ± 0.3% |
+
+Paired differences in failures found (mean ± std over seeds): drain_clotho-clotho@50 +10.0 ± 16.5; drain_clotho-drain_random@50 +54.8 ± 10.9 (every seed); clotho-random@50 +221.8 ± 18.0 (every seed); drain_clotho-clotho@100 +13.0 ± 19.2; drain_clotho-drain_random@100 +107.8 ± 5.0 (every seed); clotho-random@100 +438.6 ± 18.4 (every seed); drain_clotho-clotho@200 +32.0 ± 16.0 (every seed); drain_clotho-drain_random@200 +46.0 ± 9.4 (every seed); clotho-random@200 +370.2 ± 15.9 (every seed)
+
