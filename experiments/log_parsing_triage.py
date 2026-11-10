@@ -244,11 +244,14 @@ class ClothoPolicy:
             if g in self.loc:
                 self.lab[self.loc[g]] = float(v)
         np.random.seed(self.seed)
-        scorer, Z = S.clotho_given_order(self.H, self.lab, self.init, rev, self.seed, len(rev))
+        try:
+            scorer, Z = S.clotho_given_order(self.H, self.lab, self.init, rev, self.seed, len(rev))
+        except ValueError:          # too few visible inputs for Clotho's PCA sizes: no scorer (diversity only)
+            scorer, Z = None, None
         if scorer is None:
             if self.Z0 is None:
                 from log_parsing_phase3_lib import PCAFeatureReducer
-                self.Z0 = PCAFeatureReducer(n_features=10).fit_transform(self.H)
+                self.Z0 = PCAFeatureReducer(n_features=min(10, len(self.H) - 1)).fit_transform(self.H)
             Z = self.Z0
         pool = [k for k in range(len(self.vis)) if k not in set(rev)]
         if not pool:

@@ -106,6 +106,8 @@ def report(push=False):
                         v = per_seed(R, nm, lambda x, r, N=N: share_at(x["pa"], N, r["pa0"]), systems)
                         cells.append(ms(v))
                         jm.setdefault(f"e1/{tag}/{subset}", {}).setdefault(nm, {})[N] = v
+                    jm.setdefault(f"e1/{tag}/{subset}/pa", {})[nm] = {N: per_seed(R, nm, lambda x, r, N=N: x["pa"][min(N, len(x["pa"]) - 1)], systems)
+                                                                       for N in (0,) + NS}
                     v20 = per_seed(R, nm, lambda x, r: share_at(x["pa"], 20, r["pa0"]), systems)
                     lpr = per_seed(R, nm, lambda x, r: (x["pa"][min(20, len(x["pa"]) - 1)] - r["pa0"]) * r["n_lines"] / 20, systems)
                     frac = [a / b for a, b in zip(v20, orc20)]
@@ -124,7 +126,7 @@ def report(push=False):
                     jm[f"e1/{tag}/a12"] = a
             if tag == "base":
                 # E3 cold start
-                L.append("\n### E3 cold start (greedy cache): lines fixed after N reviews (macro mean over systems) and share fixed\n")
+                L.append("\n### E3 cold start (greedy cache): share of mis-parsed lines fixed after N reviews (mean over seeds of the macro mean)\n")
                 L.append("| ordering | " + " | ".join(f"N={n}" for n in range(1, 11)) + " |")
                 L.append("|---|" + "---|" * 10)
                 for nm in ("prior_only", "dsize", "frequent", "triage", "random", "oracle"):

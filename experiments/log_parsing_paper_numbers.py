@@ -204,7 +204,8 @@ def build():
            "all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` "
            "(both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, "
            "`table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, "
-           "`fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired). "
+           "`fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); "
+           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5). "
            "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
            "`paper/results_outline.md`.\n"]
     for n, key, title, name, script, until in (
@@ -217,7 +218,11 @@ def build():
             (14, "transfer_paired", "Cross-system transfer, paired comparison with within-system Clotho (D)",
              "log_parsing_transfer_paired.md", "log_parsing_transfer_paired.py", None),
             (15, "stats", "Statistics: Scott-Knott ESD ranks and Vargha-Delaney A12",
-             "log_parsing_stats.md", "log_parsing_stats.py", None)):
+             "log_parsing_stats.md", "log_parsing_stats.py", None),
+            (16, "triage", "TRIAGE in a cached-parser simulation (E1-E4; 2026-11-10)",
+             "triage_details.md", "log_parsing_triage.py", None),
+            (17, "e5", "E5: leakage of the post-generation baselines on the original Clotho tasks (Llama; 2026-11-10)",
+             "e5_leakage.md", "log_parsing_e5_leakage.py", None)):
         p = REP / name
         if not p.exists():
             continue
@@ -226,7 +231,8 @@ def build():
         j = next((k for k, l in enumerate(lines) if until and l.startswith(until)), len(lines))
         L_ += [f"## {n}. {title}\n", f"Copied from `reports/{name}` (`{script} report`; protocol in the script "
                "docstring" + ("; deviations from the original methods are listed at the end of that report" if until else "")
-               + "). Setting fair_leakfree, standard split, 5 seeds.\n"]
+               + (("). Setting fair_leakfree, standard split, 5 seeds.\n") if n < 16 else
+                  ("). Protocol in PROGRESS.md Decisions (E; TRIAGE and E1-E5), 5 seeds.\n"))]
         L_ += [("#" + l) if l.startswith("#") else l for l in lines[i:j]] + [READ.get(key, ""), ""]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",
