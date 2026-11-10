@@ -121,11 +121,13 @@ def source_data():
     return {s: (T.hidden(ds, DCFG["layer"]), T.labels(ds), T.log_features(T.contents(ds))) for s, ds in dss.items()}
 
 
+_SHARED = {}
+
+
 def make_prior(system, seed, src):
-    import log_parsing_transfer as T  # noqa: F401
     S = [s for s in SYSTEMS if s != system]
     return TransferPrior([src[s][0] for s in S], [src[s][1] for s in S], DCFG["kind"], DCFG["hp"], DCFG["w"],
-                         source_feats=[src[s][2] for s in S], seed=seed)
+                         source_feats=[src[s][2] for s in S], seed=seed, shared=_SHARED.setdefault(system, {}))
 
 
 @lru_cache(maxsize=None)
@@ -332,7 +334,6 @@ def job(args):
     for name, facs in policies(system, variant, src, M, which).items():
         for seed, fac in facs:
             t0 = time.perf_counter()
-            pol = fac()
             if what == "e4":
                 avail1 = d["first"] < half
                 size1 = np.bincount(d["grp"][:half], minlength=d["G"]).astype(float)
@@ -346,7 +347,7 @@ def job(args):
                             "seq": seq}
                 res["runs"].setdefault(name, {})[seed] = r
             else:
-                seq = run_policy(system, variant, pol, [(full[0], full[1], NMAX)], ver)
+                seq = run_policy(system, variant, fac(), [(full[0], full[1], NMAX)], ver)
                 prop = name != "no_prop"
                 res["runs"].setdefault(name, {})[seed] = {"seq": seq, "pa": [c / d["n"] for c in curve(d, cache, seq, prop)],
                                                           "wall_s": time.perf_counter() - t0}

@@ -31,8 +31,12 @@ class TransferPrior:
     ("mlp") or a logistic regression on PCA + generic log features ("probe_feats") or PCA only ("probe"),
     trained on the source systems' labels. Target verdicts are added to training repeated w times."""
 
-    def __init__(self, source_states, source_labels, kind, hp, w, source_feats=None, seed=0):
-        self.Zs = [zscore(np.asarray(H, dtype=np.float32)) for H in source_states]
+    def __init__(self, source_states, source_labels, kind, hp, w, source_feats=None, seed=0, shared=None):
+        """shared: optional dict reused across instances on the same sources (z-scored sources, target transforms)."""
+        self.shared = {} if shared is None else shared
+        if "Zs" not in self.shared:
+            self.shared["Zs"] = [zscore(np.asarray(H, dtype=np.float32)) for H in source_states]
+        self.Zs = self.shared["Zs"]
         self.ys = np.concatenate([np.asarray(y, dtype=bool) for y in source_labels])
         self.kind, self.hp, self.w, self.seed = kind, hp, w, seed
         self.Fs = None if source_feats is None else np.vstack(source_feats)
@@ -41,10 +45,14 @@ class TransferPrior:
 
     def set_target(self, H, feats=None):
         """Label-free target transform over the groups seen so far (z-score and PCA refit)."""
-        Zt = zscore(np.asarray(H, dtype=np.float32))
-        pca = _pca(np.vstack(self.Zs + [Zt]), self.hp["p"])
-        self.Xs = np.vstack([pca.transform(Z) for Z in self.Zs])
-        self.Xt = pca.transform(Zt)
+        H = np.asarray(H, dtype=np.float32)
+        key = ("T", H.shape, hash(H.tobytes()))
+        if key not in self.shared:
+            Zt = zscore(H)
+            pca = _pca(np.vstack(self.Zs + [Zt]), self.hp["p"])
+            self.shared[key] = (np.vstack([pca.transform(Z) for Z in self.Zs]), pca.transform(Zt))
+        self.Xs, self.Xt = self.shared[key]
+        self._tkey = key
         if self.kind == "probe_feats":
             self.Xs, self.Xt = np.hstack([self.Xs, self.Fs]), np.hstack([self.Xt, feats])
         self._cache = {}
@@ -54,7 +62,8 @@ class TransferPrior:
 
     def predict(self, lab_idx=(), lab_y=(), seed=None):
         seed = self.seed if seed is None else seed
-        key = (tuple(lab_idx), tuple(bool(v) for v in lab_y), seed)
+        key = ("P", self._tkey, tuple(lab_idx), tuple(bool(v) for v in lab_y), seed)
+        self._cache = self.shared
         if key not in self._cache:
             X, y = self.Xs, self.ys
             if len(lab_idx):
