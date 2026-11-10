@@ -1,43 +1,29 @@
 # PROGRESS
 
-Last updated: 2026-11-09
+Last updated: 2026-11-09 (night). Trimmed on 2026-11-09: superseded results (Phase 2 random/layer-21 runs, old Phase 3 setup), finished estimates (Gemma, 2,000-input scaling) and resolved issues were removed; they are in git history (`git log -p PROGRESS.md`) and in the reports.
 
-**Summary (2026-11-09, evening): literature baselines (A, B), testing strategies (C), cross-system transfer (D).** Short reports (each under the word limit): `experiments/reports/log_parsing_literature_baselines.md`, `log_parsing_strategy.md`, `log_parsing_transfer.md`; full tables in the `*_details.md` reports and `paper_numbers.md` sections 11-13 (earlier sections regenerate unchanged). Both models, capped and natural suites, fair_leakfree, 5 seeds.
-1. A, LLMLog selection score (official code @648553d) as a failure ranking: 0.620-0.720 @100, below Clotho on every seed in all four model x suite cells; it is almost entirely its confidence part (representativeness alone at chance). Drain lookup beats it on natural suites.
-2. B, AdaParser corrector (official prompts/heuristics @232951a) on label samples 5-9: fixes 5.9-15.6% of failing inputs, breaks 97-219 passing ones (OpenSSH, Linux, Thunderbird: process names flagged as constants). Against the corrected label Clotho keeps or raises its AUC; failures in Clotho's top 10% are the least fixable (2.1-4.9% fixed vs 6.0-15.3% base). Cost 0.34-0.51 LLM calls and 0.009-0.018 s per output (batched vLLM), after generation.
-3. C, fixed budget (B labels + B checks): Clotho alone finds the most failures on natural suites (every budget, both models, every seed); on capped suites Drain-propagate + Clotho ties it (only Gemma B = 200 +32, every seed). Clotho adds 17-108 failures to Drain-propagate; inherited group labels wrong for 8-16% of inputs.
-4. D, leave-one-system-out (protocol fixed first; tuned on HDFS/Spark/Linux; layers Llama 24, Gemma 35): pooled-source Clotho 0.44-0.66 on held-out targets; z-score/CORAL do not help; a logistic probe on source labels 0.67-0.71 with no target labels (closes 12-78% of the gap); refit with 25-50 target labels matches within-system Clotho @100 (not paired). Generic log features alone 0.62-0.68.
+Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_parsing_paper_numbers.py`). Paper files: `experiments/paper/` (one script per table/figure, `results_outline.md`). Main setting **fair_leakfree** everywhere: balanced reference sampling (the paper's method), fair layer (Llama 16, Gemma 21), label from samples 5-9 (PASS if >= 3 of 5 strict template matches), post-generation scores from samples 0-4; rules_template prompt, strict match. Every number is mean ± std over 5 seeds of the per-seed macro mean over systems (Llama 13 systems, Gemma 12).
 
-**Earlier summary (2026-11-09): Gemma finished, natural post-generation rows, paper artefacts.** Numbers: `experiments/reports/paper_numbers.md` (regenerated; new section 10). Paper files: `experiments/paper/` (`tables/*.tex`, `figures/*.pdf` + caption `figures/*.tex`, `results_outline.md`; one script per artefact).
+## Summary of findings
 
-What changed this session:
-1. Gemma semantic entropy (12 systems) is in: Sem-Ent 0.617 / 0.612 leak-free (0.658 / 0.658 leaky; net leakage +0.025 / +0.029). `phase3_final_gemma.md` and `heldout_gemma.md` regenerated.
-2. `log_parsing_timing.py` is model-aware (`CLOTHO_MODEL`); Gemma timings measured (`results_phase3_gemma/timing/`, parity min cosine 0.9997). Gemma cost-quality now has a cost axis: Clotho 0.035 s/input batched (forward pass through layer 21); output entropy needs 4 samples to match Clotho @100, which costs 1.5x Clotho's batched HF pass, 6.9x a same-engine vLLM prefill, 22x online (Llama: 2.4x / 8.3x / 36x).
-3. Post-generation pass (no SE) on the natural suites for both models; `log_parsing_natural.py post` added Tok-Prob, LOHSvar and Random rows after checking every stored row reproduces exactly (existing natural numbers unchanged; per-system values match the Stage 8 report). Natural: LOHSvar 0.685 / 0.696 (Llama), 0.669 / 0.662 (Gemma); Tok-Prob at chance (0.47-0.50); Clotho ahead of LOHSvar on every seed (+0.146 / +0.149, +0.210 / +0.193).
-4. Paper artefacts: tables (a) main (both models, capped vs natural, @100/@200), (b) disjoint, (c) leakage, (d) cross-system; figures (1) cost vs AUC, (2) Clotho minus Lookup (Drain) vs Drain-seen share, (3) within-template AUC noisy vs clean label (Llama only). Bold only where the best beats the runner-up on every seed.
-5. Fixes: `log_parsing_natural.py eval --push` crashed on the sample-stats file outside `experiments/` (now not pushed; it is in git). `log_parsing_cost_quality.py` report text/paths are model-aware (Llama report regenerates byte-identical).
+**Core (2026-11-07/08; Gemma replicates every pre-generation finding).**
+1. Standard split: Clotho beats MDSA and Lookup (Drain) on every seed (Llama 0.749 / 0.794 @100 / @200; Gemma 0.780 / 0.832), also on held-out systems and against baselines with random reference sets. Template-disjoint split: Clotho ties MDSA, every lookup is at chance.
+2. Leakage: the original Clotho protocol computes labels and post-generation scores from the same 10 generations; net leakage +0.125 / +0.132 AUC for output entropy, +0.067 / +0.070 LOHSvar. Leak-free output entropy still beats Clotho @100 and ties @200; it needs 4 samples to match Clotho @100 (2.4x Clotho's batched HF cost, 8.3x a vLLM prefill, 36x online; Gemma 1.5x / 6.9x / 22x).
+3. Failures are template-level: 95-99% of the reliable pass-rate variance lies between templates; within-template AUC is near chance against the 5-sample label but rises for Clotho from 0.555 to 0.609 against a clean 40-sample label (ceiling 0.698).
+4. Natural distribution (uniform raw lines): Lookup (Drain) ties Clotho (Llama -0.006 / -0.016) or beats it (Gemma -0.037 / -0.057, every seed); Clotho beats output entropy by about 0.04-0.11.
+5. Cross-system (one source system): Clotho 0.62-0.64, level with MDSA, lookups at chance.
 
-**Earlier summary (2026-11-08, second session): natural distribution on 13 systems, Gemma-2-9B core.** Numbers: `experiments/reports/paper_numbers.md` sections 8 (Llama natural, 13 systems) and 9 (Gemma). Git push works again (gh installed by the user).
+**2026-11-09 evening (A-D; reports `log_parsing_literature_baselines.md`, `log_parsing_strategy.md`, `log_parsing_transfer.md`).**
+6. A, LLMLog's selection score as a failure ranking: 0.620-0.720 @100, below Clotho on every seed in all four model x suite cells; almost entirely its confidence part.
+7. B, AdaParser's corrector on label samples 5-9 fixes 5.9-15.6% of failing inputs and breaks 97-219 passing ones; against the corrected label Clotho keeps or raises its AUC, and failures in its top 10% are the least fixable (2.1-4.9% fixed vs 6.0-15.3% base).
+8. C, fixed budget (B labels + B checks): Clotho alone finds the most failures on natural suites (every budget, both models, every seed); on capped suites Drain-propagate + Clotho ties it.
+9. D, leave-one-system-out: pooled-source Clotho 0.44-0.66; normalisation/CORAL do not help; a probe on source labels 0.67-0.71 without target labels; refit with target labels catches up with within-system Clotho @100 (paired results: see the night summary).
 
-Findings this session:
-1. Natural distribution, Llama, all 13 systems (`reports/log_parsing_natural13.md`): the 4-system Stage 8 result holds. Lookup (Drain) matches or beats Clotho (Clotho minus Lookup -0.006 ± 0.014 @100, -0.016 ± 0.014 @200; Clotho ahead on 6 and 4 of 13 systems), Clotho vs MDSA +0.016 / +0.007, and Clotho beats output entropy (k=5) on every seed (+0.042 / +0.061). Clotho + output entropy is the best score @100 (0.854, +0.016 ± 0.011 over the lookup, every seed) and ties the lookup @200. At @100 the Drain group of 59-100% of test inputs (100% on 7 of 13) is already in the reference set.
-2. Gemma-2-9B-it, same protocol (12 systems, Apache dropped at 94.4% PASS; layer tuning chose 21 of 42): every Llama finding on pre-generation methods and lookups replicates. Standard split: Clotho 0.780 / 0.832 beats MDSA (+0.063 / +0.095) and Lookup (Drain) (+0.074 / +0.058) on every seed, also held-out (9 systems) and with random baseline reference sets. Disjoint: Clotho ties MDSA, lookups at chance. Output entropy 0.821 / 0.818 beats Clotho @100 (-0.040) but Clotho leads @200 on every seed (+0.014); OE needs 4 samples to match Clotho @100; Clotho + OE best (0.869 / 0.890).
-3. Gemma natural (12 systems): the Drain lookup beats Clotho on every seed (-0.037 / -0.057), a larger gap than Llama's; Clotho beats output entropy by +0.108 / +0.093.
+**2026-11-09 night (in progress):** D paired, C decomposition, statistics (SK-ESD, A12), paper artefacts for A-D, outline update, Gemma label-noise run. Summary added at the end of the session.
 
-**Earlier summary (2026-11-08, first session): numbers for the paper.** Single source: `experiments/reports/paper_numbers.md`, generated by `experiments/log_parsing_paper_numbers.py` (main table, held-out table, fairness check, cost-quality table and plot, cross-system, leakage, label noise, natural distribution, each with its script). Main setting fair_leakfree. Every number is mean ± std over 5 seeds of the per-seed macro mean over systems. Commits were pushed in a later session (see Next).
+## Main table (Llama, fair_leakfree, 13 systems)
 
-Five findings that changed or were confirmed this session:
-1. Cost is Clotho's real advantage over output entropy, and it is modest offline: output entropy needs 4 samples to match Clotho on the standard split @100 (5 only tie it @200, and on the disjoint split 2 already tie it). 4 samples cost 2.4x Clotho's batched HF forward pass, 8.3x a same-engine vLLM prefill, and 36x online (batch 1) on the L40S.
-2. Changed: on naturally distributed log lines (uniform samples, 4 systems) Clotho's lead over a Drain lookup vanishes (+0.000 ± 0.021 @100, -0.012 ± 0.008 @200, vs +0.101 / +0.065 on the template-capped suites), while Clotho now beats output entropy by about 0.1 (0.899 / 0.910 vs 0.812 / 0.801).
-3. Confirmed: Clotho beats MDSA and Lookup (Drain) on the standard split on every seed, both on the 10 systems not used for layer tuning (+0.042 / +0.057 and +0.061 / +0.063) and when the baselines get random instead of Clotho-chosen reference sets (smallest per-seed gap +0.014); on the disjoint split Clotho and MDSA still tie.
-4. New: near-chance within-template AUC is mostly label noise on a small real signal. 95-99% of the reliable pass-rate variance lies between templates, and against a clean 40-sample label Clotho's within-template AUC rises from 0.555 to 0.609 @100 (ceiling 0.698), while MDSA stays at 0.557.
-5. Confirmed in code: the original Clotho protocol computes pass labels and all four post-generation metrics from the same 10 generations (`2-1_...py:170-219`, `RQ/analysis_utils.py:110-133`, `:441-521`); in our setting that leakage is worth +0.125 / +0.132 AUC for output entropy and +0.067 / +0.070 for LOHSvar.
-
-Also this session: cross-system transfer under fair_leakfree puts Clotho (0.624 / 0.641, mean over 5 pairs) level with MDSA (0.634 / 0.618; sign flips between @100 and @200), far below within-system, with both lookups at chance (`reports/log_parsing_cross_fair.md`). Qualitative examples: `reports/log_parsing_qualitative.md` (most of Clotho's top-10% misses are borderline inputs with 2 of 5 label samples correct).
-
-## Phase 3 final summary (2026-11-07)
-
-**Summary: Phase 3 final** (`experiments/reports/log_parsing_phase3_final.md`; fail-top-50 counts and per-system tables are there). Setting fair_leakfree: Clotho = paper method (balanced sampling), layer 16 for every hidden-state method, label from samples 5-9 (PASS if >= 3 of 5 strict matches), post-generation scores from samples 0-4. rules_template, strict_match, 13 systems, no disjoint split skipped. Cells: ROC-AUC, mean ± std over 5 seeds of the per-seed macro mean over systems; reference size includes the 10 initial tests.
+`experiments/reports/log_parsing_phase3_final.md` (`log_parsing_phase3_final.py`). Reference size includes the 10 initial tests.
 
 | method | standard @100 | standard @200 | disjoint @100 | disjoint @200 |
 |---|---|---|---|---|
@@ -56,263 +42,41 @@ Also this session: cross-system transfer under fair_leakfree puts Clotho (0.624 
 | Hybrid | 0.757 ± 0.009 | 0.802 ± 0.009 | 0.648 ± 0.022 | 0.661 ± 0.012 |
 | Random | 0.504 ± 0.004 | 0.506 ± 0.010 | 0.502 ± 0.013 | 0.511 ± 0.019 |
 
-Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200; corrected 2026-11-08 from the regenerated `log_parsing_phase3_final.md`, which the earlier line here did not match): methods that never see generations shift +0.024 / +0.021 (noisier 5-sample label). Net of that, the post-generation methods lose output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
-
-Findings (paired per-seed differences, mean ± std over 5 seeds):
-1. Clotho beats Lookup (Drain) on every seed: by +0.069 ± 0.014 / +0.061 ± 0.011 on the standard split (@100 / @200), and by +0.140 / +0.149 on the template-disjoint split, where every lookup falls to chance.
-2. The hybrid is ahead on average, but its gain over Clotho (+0.009 ± 0.014 and +0.008 ± 0.011 standard; +0.003 and +0.004 disjoint, where only 1-2% of test inputs have a seen Drain group) is within seed noise, so it does not clearly beat both.
-3. Most of the post-generation advantage was leakage: output entropy falls from 0.941 to 0.792 (net leakage +0.12 to +0.14), yet leakage-free it still beats Clotho at @100 (+0.043 ± 0.010), ties it at @200, and leads every pre-generation method by about 0.14 on the disjoint split.
-4. Under the fair config, Clotho beats MDSA on the standard split on every seed (+0.034 ± 0.003 @100, +0.057 ± 0.009 @200), but not on the template-disjoint split (-0.011 ± 0.033, -0.001 ± 0.023).
-5. Seed variance is small enough for the headline claims: Clotho's macro std is 0.010 to 0.022, and the Clotho vs Lookup and standard-split Clotho vs MDSA gaps keep their sign on all 5 seeds; the hybrid gain and the disjoint Clotho vs MDSA difference do not.
-
-Deviations from the paper: Sem-Ent NLI runs in bf16 autocast (99.5% pairwise label agreement with fp32). Tok-Prob/Tok-Ent use the correct prompt length (the repo helper drops the first output token; `*_paper` columns reproduce that). The balanced sampler scores every method on the inputs it left out, as the paper does.
-
-## Done
-- Phase 1 code: `setup.sh`, sharded resumable runner with RESULTS_REPO sync, vLLM path with prompt parity check, README "Ephemeral GPU servers".
-- spell_check `misspell_injected_wordnet`: shards 0 and 1 (size 500) of `hidden` and `gen_vllm` are in RESULTS_REPO (previous session).
-- Ahead of plan (Phase 2 groundwork): `log_parsing` task, Loghub-2.0 sampling script, HDFS and Spark 500-message suites, HDFS pilot (hidden + gen_vllm + Clotho random_pca, layer 21). Report: `experiments/reports/log_parsing_pilot_loghub_hdfs_500.md`.
-
-- Phase 1 verification PASSED (2026-11-07, fresh machine): setup.sh in 1m23s; fresh 2-shard spell_check run at size 200 (`hidden` ~30 s/shard, `gen_vllm` ~26 s/shard, parity OK, uploads OK); after `rm -rf experiments/sharded_work`, reruns at size 200 and 500 skipped all shards and rebuilt merges from RESULTS_REPO.
-
-- Phase 2 setup (user decisions 2026-11-07: both prompts, all 14 systems x 500, Clotho per system): 14 suites in `clotho/dataset/log_parsing/`, `rules_template`, parser fix for literal `*` runs, scripts `run_log_parsing_all.py`, `log_parsing_initial_set.py`, `run_clotho_log_parsing.py`, `log_parsing_phase2_report.py`.
-
-- 2026-11-08 session (all stages of the paper-numbers plan): label-noise experiment finished; original-protocol leakage answered from code; baseline fairness (random reference sets); held-out table; cost vs quality with L40S timings; cross-system under fair_leakfree; qualitative examples; natural-distribution check (4 systems); paper_numbers.md. New scripts: `log_parsing_heldout.py`, `log_parsing_fairness.py`, `log_parsing_timing.py`, `log_parsing_cost_quality.py`, `log_parsing_cross_fair.py`, `log_parsing_qualitative.py`, `log_parsing_natural.py`, `log_parsing_paper_numbers.py`, `sharded/git_backup.py`.
+Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation methods shift +0.024 / +0.021 (noisier 5-sample label); net of that, output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
 
 ## In progress
-- Nothing running.
+- See the night summary line above.
 
 ## Next
-- Done 2026-11-09 evening: experiments A-D (scripts `log_parsing_llmlog.py`, `log_parsing_adaparser.py` (`.venv-vllm`), `log_parsing_literature.py`, `log_parsing_strategy.py`, `log_parsing_transfer.py`). Job JSON in RESULTS_REPO `results_phase3{,_gemma}/{literature,strategy,transfer}/`, corrector outputs `data/results_<model>/log_parsing/adaparser/`, Llama natural layer-24 hidden states under `input_hidden_states/.../loghub_<sys>_nat500/layer_24/`. Fresh machine: `uv pip install --python .venv-vllm/bin/python python-dateutil` before rerunning the corrector; pull `results_phase3*/**` as below.
-- Not done / possible follow-ups: paper tables or figures for A-D (only markdown tables exist); D's "best source model" was chosen by tuning AUC (Llama: MLP), although the logistic probe is better on held-out targets; LLMLog with template-word-only token probabilities.
-- Done 2026-11-09: Gemma Sem-Ent, Gemma timings and cost axis, natural post-generation rows (both models), paper tables/figures/outline. Nothing is pending from the earlier Next list except the optional items below.
-- Fresh machine: after `setup.sh`, also pull the Phase 3 job JSON (setup pulls only `data/` and `results_clotho*/`): `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"` in `experiments/sharded/`. Do not pull `reports/**` over the git copies (the RESULTS_REPO copies of 4 reports are older). `setup.sh` downloads only Llama; Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). setup's results pull failed once on a transient Hub error; rerunning `hub_sync.py pull-results` fixed it.
-- Paper: regenerate everything after any rerun with `python log_parsing_paper_numbers.py` and the 7 scripts in `experiments/paper/` (`table_*.py`, `fig_*.py`; matplotlib in `.venv`). No LaTeX on the server, so the `.tex` files were not compiled; they use booktabs and `\includegraphics` only.
-- Optional, not done: Gemma label-noise (40 extra samples; would give a Gemma panel for figure 3), Gemma messages_template, Gemma qualitative examples; disjoint-split version of figure 1 for Gemma.
-- Not done for Gemma: label-noise run (skipped on purpose), messages_template, qualitative examples.
-- Pushed (2026-11-08, second session): all local commits of the first 2026-11-08 session are on origin/main (`gh` installed by the user). The RESULTS_REPO bundle is no longer needed for restore.
-- Write-up: `experiments/reports/paper_numbers.md` is the single source of numbers. Regenerate it with `python log_parsing_paper_numbers.py` after any rerun.
-- **Second model estimate (Stage 9, not run): google/gemma-2-9b-it, as in the Clotho paper.** Scaled from rates measured on this L40S for Llama-3.1-8B. Gemma-2-9B has 9.2 B parameters and 42 layers (vs 32); its 256 k vocabulary makes the full-vocab entropy and lm_head in post-gen about 2x heavier. Assume about 1.3x Llama time for forward/generation and 1.5-2x for post-gen.
+- Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.
+- Paper: after any rerun, regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` (matplotlib in `.venv`). No LaTeX on the server, so the `.tex` files are not compiled (booktabs and `\includegraphics` only).
+- Optional, not done: Gemma messages_template and qualitative examples; disjoint-split version of figure 1 for Gemma; LLMLog with template-word-only token probabilities.
 
-| step | Llama rate measured | Gemma estimate (13 systems x 500 + initial set) |
-|---|---|---|
-| Engineering: Gemma path in `prompt_render.py` (system prompt inlined into the user turn as `clotho/models/gemma.py:inline_system_as_user` does; `<start_of_turn>model` post-processing), HF/vLLM parity check, model switch in `log_parsing_phase3_lib`/`_final` (MODEL, initial-set dir, layer list), check vLLM Gemma-2 support (logit soft-capping) under the no-nvcc constraint | n/a | 1.5-2.5 h agent time, no GPU |
-| Model download (18.5 GB) | 16 GB in 14 s | ~1 min |
-| Initial set (10 inputs: hidden + 10 samples) | minutes | ~5 min |
-| Hidden states, 4 candidate layers (e.g. 14/21/28/35) in one pass | ~20 inputs/s (batch 1) | ~8 min |
-| gen_vllm, 10 samples | 50-75 s per 500 inputs + 45 s engine start | ~25 min |
-| Rescore + recheck the scorer/template decision (PASS rates must stay in 10-90%, Gemma may need its own system drops) | CPU | ~10 min + decision |
-| SLL | ~20 inputs/s | ~7 min (or fuse into the hidden pass) |
-| Layer tuning (HDFS, Spark, Linux; CPU) | ~10 min | ~10 min |
-| Phase 3 final jobs (fair_leakfree + fair_leaky, 260 jobs; CPU) | 390 jobs in 11 min | ~10 min |
-| Post-gen without SE | 2.1 inputs/s | ~1.3-1.7 h |
-| Semantic entropy (DeBERTa, beside post-gen) | 1.64 inputs/s beside | runs within the post-gen window (+~15 min) |
-| Follow-ups, fairness, held-out, cross, cost-quality jobs (CPU) + timing (GPU) | ~25 min + 25 min this session | ~50 min |
-| Optional: label noise, 40 extra samples | 3.7 min per system | ~1.1 h |
-| Optional: natural-distribution check (4 systems) | ~35 min this session | ~45 min |
+## Decisions (still in force)
 
-- Total: about 3.5-4 GPU-hours plus 2 h engineering for the core comparison (main table, held-out, fairness, cost-quality, cross-system). Add ~2 h for both optional parts. One 10 h session fits the core plus one optional part, including setup (3 min) and pushes. The risky item is vLLM's Gemma-2 support without FlashInfer: if it fails, generate with HF (`gen_hf`, about 10x slower: ~4 h for 10 samples), which would need a second session.
-- Decided earlier: no scaling to 2,000 inputs per system (the cost estimate is kept below for reference).
+**Task, scorer, systems (2026-11-07).** Scorer `strict_match` (text after the last `Template:` line equals the Loghub-2.0 `EventTemplate` exactly; parse failure = fail), template `rules_template` (states the Loghub convention: one `<*>` per whole variable token), no lenient extensions, no few-shot. Chosen as the least lenient scorer with input PASS in 20-80% on most systems; in 40 inspected failures most were real model errors. Systems outside 10-90% PASS are dropped: Proxifier (0%) for both models, Apache (94.4%) for Gemma. Mac (12%) and HPC (18%) are kept.
 
-## Phase 3 follow-ups (2026-11-07): combinations, Clotho vs MDSA on disjoint, within-template AUC
-`experiments/reports/log_parsing_followups.md` (`log_parsing_followups.py`; main setting fair_leakfree, 5 seeds, CPU only, ~1.5 min). Clotho was recomputed exactly (max |diff| 0); MDSA within 4.3e-4 of the stored jobs.
-- **Combinations** (rank-average of two scores). Clotho + output entropy is the best score overall: 0.826 / 0.845 standard, 0.775 / 0.784 disjoint (@100 / @200). It beats output entropy alone on the standard split on every seed (+0.035, +0.052) but not on the disjoint split (-0.021, -0.012), and it needs the generations. Clotho + LOHSvar helps only on the disjoint split (+0.05 over Clotho, every seed). Clotho + MDSA adds nothing (within ±0.015).
-- **Clotho vs MDSA, disjoint split, per system:** Clotho wins on 5 of 13 at @200, with a large win only on Zookeeper (+0.11). MDSA is clearly better on HealthApp, Spark, Mac and HPC (-0.03 to -0.06). On the standard split the same systems show Clotho well ahead (BGL +0.15, Hadoop +0.16, HPC +0.10), so Clotho's edge over MDSA comes from reference sets that contain the test templates. There is no clear driver: Spearman of the gap with template count -0.32 (p=0.29), with PASS rate +0.53 (p=0.07).
-- **Within-template AUC** (only same-template PASS/FAIL pairs; lookup = 0.5 by construction; 10 systems @100, 8 @200): Clotho 0.539 / 0.527, MDSA 0.537 / 0.549, LOHSvar 0.539 / 0.529, output entropy 0.502 / 0.499. Every method, including output entropy, is near chance within a template. So on Loghub almost all of the measurable signal separates templates, not inputs within a template. BGL, Linux and Spark have fewer than 20 same-template pairs; Mac and Thunderbird have none.
+**Clotho harness (2026-11-07).** `log_parsing_phase3_lib` seeds both `np.random` and the reference extension (the core runner does not); `clotho_run(method="balanced")` reproduces `rci.simulate_iterations` exactly on the standard split. Layer tuning (HDFS, Spark, Linux; fixed before results): Llama 16, Gemma 21. GMMb = the paper's GMM_base (`SA(mode="MLSA")`). Drain lookup = logparser3 Drain with the Loghub-2.0 benchmark settings; Lookup (Drain, default) = drain3 defaults; hybrid = Drain lookup if the test input's Drain group is in the reference set, else Clotho. Splits: standard (Clotho's protocol) and template-disjoint (HPC disjoint skipped under the old label). Post-generation pass (`log_parsing_postgen.py`): Tok-Prob/Tok-Ent use the correct prompt length (`*_paper` columns reproduce the repo helper's off-by-one), LOHSvar layer 23 (Gemma 28), Sem-Ent with DeBERTa in bf16.
 
-## Prompt comparison (2026-11-07): messages_template vs rules_template
-`experiments/reports/log_parsing_prompt_compare.md` (`log_parsing_prompt_compare.py`; 5 seeds, standard split, random sampling, layer 21, label > 5 of 10; the only layer with messages_template hidden states). The single-run Phase 2 report now covers both templates (`log_parsing_phase2.md`).
-- Clotho, macro over 12 systems (HDFS excluded: 13 passing inputs under messages_template, so Clotho never fits): messages 0.783 vs rules 0.722 @100, 0.824 vs 0.760 @200. Higher under messages on 9 of 12 systems; lower on Hadoop, Mac @100, Zookeeper, BGL @200.
-- Template lookup rises too, but by less: 0.760 vs 0.719 @100, 0.799 vs 0.773 @200. So part of the gain is that messages_template failures (largely convention misses such as `blk_<*>`) are more template-predictable, but Clotho gains about twice as much as lookup.
-- This does not make messages_template the better prompt: the two prompts produce different label sets, and messages_template fails HDFS almost entirely. It means failures under messages_template are easier to predict.
+**Protocol choices (2026-11-08).** The original-protocol leakage is answered from upstream code (`coinse/clotho` @e8aed3d). Baseline fairness: baselines also scored with random reference sets on T' = Clotho's test set minus those references. Cost = offline batch cost per test input (Clotho = batched HF forward pass to the fair layer + CPU scoring; output entropy = vLLM with all prompts at once); this understates Clotho's advantage. Cross-system Drain lookup uses each system's own Drain run. Natural suites: 500 lines drawn uniformly from all Loghub-2.0 lines of the system not in its suite (no dedup, seed 4242), not registered in `supported_datasets`; systems with < 15 PASS or FAIL are skipped. Qualitative examples fixed before looking (seed 0, @100).
 
-## Phase 3 (2026-11-07): template confound, seeds, cross-system, baselines
-- Code: `experiments/log_parsing_phase3_lib.py` (harness), `experiments/log_parsing_phase3.py` (`within`, `cross`, `report`, `--push`), `experiments/log_parsing_sll.py` (SLL inputs, GPU forward pass, no generation).
-- The harness reuses `run_clotho_iterations`' functions (CV feature choice, component adaptation, GMM on passing references) but takes an explicit reference pool and test set. `check_core_equivalence()` gives ROC-AUC identical to `rci.simulate_iterations` at all 10 reference sizes tested (HDFS, same random stream).
-- Reproducibility: the core runner never seeds `np.random` (reference extension and sklearn's randomized PCA use it), so its reference sequences are not reproducible. Phase 3 seeds both. Phase 2 numbers came from one unseeded run.
-- Speed: with `OMP_NUM_THREADS=1` and 12 worker processes, all 195 within-system runs and 25 cross-system runs take ~10 min (multithreaded BLAS was ~100x slower on these small GMMs).
-- Splits. standard = Clotho's protocol. disjoint = templates shuffled per seed, assigned to the reference pool until it holds >= 50% of inputs, test = the rest. randhalf = random split of the same sizes (control). A split is skipped when the pool has < 15 passing, or the test set has < 15 passing or < 15 failing. **Skipped: HPC disjoint** (seed 4 test set had 11 passing; its other seeds scored 0.16 to 0.53). Mac seed 1 is the next closest (23 passing in the pool).
-- Cross-system pairs: HDFS->Spark, Spark->HDFS, Hadoop->Spark (requested). Hadoop->HDFS (same ecosystem, the most likely to share templates; it shares none). BGL->Thunderbird (both supercomputer logs; Thunderbird is the weakest within-system).
-- Baselines: template lookup; MDSA and MLSA (`run_baseline_OOD.py` logic); SLL (`run_baseline_SLL.py` logic: mean input-prompt token log-prob, higher = pass, sign not tuned); output entropy over the 10 parsed outputs (post-generation); random. All use the same reference and test sets.
-- Results in RESULTS_REPO `results_phase3/` and `reports/`. SLL pickles in `data/results_llama/log_parsing/precalculated_metrics/rules_template/`. The findings text lives in `experiments/reports/log_parsing_phase3_findings.md`, and the report includes it on regeneration.
+**Model switch and Gemma (2026-11-08).** `CLOTHO_MODEL=llama|gemma` (`experiments/model_cfg.py`); non-Llama outputs in `results_phase3_<model>/`, `reports/*_<model>.md`. Gemma prompt: system prompt inlined into the user turn, single BOS, stop `<end_of_turn>`; HF/vLLM parity checked before every generation; vLLM runs Gemma-2 without FlashInfer. Timing scripts are model-aware.
 
-## Phase 3a/3b (2026-11-07): reference sampling and layer tuning
-Report: `experiments/reports/log_parsing_tuning.{md,json}` (also in RESULTS_REPO `reports/`; per-run JSON under `results_phase3/tuning/`). Driver: `experiments/log_parsing_tuning.py` (protocol in its docstring). Standard split, 5 seeds, rules_template, strict_match.
-- **3a. Sampling.** Confirmed: Phase 2 and Phase 3 used `random` extension (`random_pca` = core `extend_reference_set_random` + PCA). The paper's method (`balanced` in core, also the default of `simulate_iterations`: 5 inputs by GMM entropy + 5 by max-min distance per iteration, diversity only before the GMM can be fitted, `ensure_nonzero_entropy`, adaptive n_features/n_components) is now in the harness (`clotho_run(method="balanced")`). It gives the same ROC-AUC as `rci.simulate_iterations(refset_extension_method="balanced")` at all 20 reference sizes tested on HDFS.
-  - Macro ROC-AUC over 13 systems at layer 21: random 0.684 / 0.730 / 0.770, balanced **0.714 / 0.764 / 0.813** at ref 50 / 100 / 200. Balanced wins on 11 of 13 at ref 200. Exceptions: Apache (0.746 -> 0.619, high variance) and OpenStack at ref 50.
-  - Caveat: under balanced the test set is whatever the active sampler left out (it removes the uncertain inputs), so the two methods are scored on different test sets. The paper evaluates the same way.
-- **3b. Layers.** New hidden states: layers 11, 16, 24 for all 13 suites + initial tests (`experiments/log_parsing_layers.py`; recomputed layer 21 is bit-identical to the stored vectors on all 13 systems + initial set). In RESULTS_REPO under `data/.../input_hidden_states/rules_template/<ds>/layer_<L>/`.
-  - Tuning (HDFS, Spark, Linux; selection = mean balanced AUC over 3 systems x 5 seeds x refs 50/100/200, fixed before any result was seen): layer 11 0.799, **16 0.820 (chosen)**, 21 0.785, 24 0.794.
-  - Held-out (10 other systems, layer 16 unchanged), macro AUC balanced: **0.770 @100, 0.808 @200**, vs layer 21: 0.759, 0.798. Random: 0.740 / 0.779 vs 0.728 / 0.764. So the gain carries over but is small (~+0.01). It is not uniform: BGL +0.09, HPC +0.05, Mac +0.07 @200, but OpenStack -0.08, Hadoop -0.02, OpenSSH -0.02.
-  - Tuning-system macro (in-sample, optimistic): balanced L16 0.820 @100 / 0.862 @200 vs L21 0.779 / 0.865.
-- Recommended config for the baseline comparison: balanced, layer 16. Phase 3 baselines (`log_parsing_phase3.py`) still use random + layer 21; rerunning them needs `method`/`layer` passed through `evaluate`.
+**Paper artefacts (2026-11-09).** One script per table/figure reading stored job JSON via `paper/common.py`. Bold = best in its column and ahead of the runner-up on every seed (paired). Leakage table shows gross Δ (leaky minus leak-free). Figure 1 standard split only. `results_phase3_gemma/` is gitignored like `results_phase3/` (job JSON lives in RESULTS_REPO).
 
-## Phase 3 final (2026-11-07): fair config, leakage-free label, realistic lookup, hybrid
-Report: `experiments/reports/log_parsing_phase3_final.{md,json}`. Driver: `experiments/log_parsing_phase3_final.py` (`run`, `post`, `report --push`; protocol in its docstring). Per-job JSON in RESULTS_REPO `results_phase3/final/<setting>/<split>/<system>/seed<k>.json` (390 jobs, 11 min on 8 workers).
-- Settings: **fair_leakfree** (main): balanced sampling, layer 16 for Clotho/MDSA/GMMb, label on samples 5-9 (PASS if >= 3 of 5 strict matches), post-generation scores on samples 0-4 only. **fair_leaky**: same config, original label (> 5 of 10) and post-generation scores on all 10 samples. **old_leaky**: Phase 3 setup (random, layer 21, original label), secondary table. Splits: standard and template-disjoint. 5 seeds, reference sizes 50/100/200.
-- Initial tests are relabelled the same way (their raw outputs are stored; the relabel reproduces the stored test_scores exactly).
-- GMMb = the paper's "GMM_base" = `SA(mode="MLSA")` (README: `run_baseline_OOD.py` "computes MDSA and GMM_base").
-- Leakage caveat: the leakage-free label uses 5 samples instead of 10, so it is noisier and every method drops, including pre-generation methods, which cannot leak. Read the post-generation drop beyond the pre-generation drop as the leakage.
-- On disjoint splits, balanced picks come only from the reference pool, and `ensure_nonzero_entropy` runs on pool + reference rather than on every input. The bit-identical check against core covers the standard split only.
+**Natural post-generation rows (2026-11-09).** `log_parsing_natural.py post` re-runs each stored job, asserts the stored Clotho and lookup AUCs reproduce to 1e-12, and only then appends Tok-Prob, LOHSvar and Random rows.
 
-**Drain** (`experiments/log_parsing_drain.py`, report `experiments/reports/log_parsing_drain.md`, groups in RESULTS_REPO `data/.../precalculated_metrics/drain_groups.json`): per system, on the 500 suite messages, label-free.
-- `Lookup (Drain)`: logparser3 Drain with the Loghub-2.0 benchmark settings (regex, st, depth) from logpai/loghub-2.0 `benchmark/old_benchmark/Drain_benchmark.py` @ac4aad2, which Loghub-2.0's `Drain_eval.py` uses. These are the same as logparser3's own loghub_2k settings except Spark, which has no regex in Loghub-2.0. Grouping accuracy: mean 0.849. OpenStack is 0.234 because its `\d+` regex breaks instance UUIDs into digit fragments, giving 407 groups for 48 templates. That is how the published setting behaves.
-- `Lookup (Drain, default)`: drain3 `TemplateMiner()` defaults. GA mean 0.850 (OpenStack 0.498).
-- `Lookup (oracle)`: Loghub ground-truth templates (the earlier `template_lookup`).
-- Hybrid: for each test input, use the Drain-lookup score if its Drain (Loghub-2.0) group occurs among the non-initial reference inputs, else the Clotho score; both rank-normalised to [0,1] over the test set.
+**A, LLMLog (2026-11-09).** Official code (github.com/XinTT/LLMLog @648553d), README run settings: greedy pick order of lambda * C + (1 - lambda) * newly covered / |U|, lambda 0.5, delta 0.5, exact word match, a = 0.3 (code's weighting). Ranking = pick order; U = test set; labelled logs = non-initial reference inputs (text only); C = mean over samples 0-4. `_nokw` variants (SED over all words) added because LLMLog's s^r is empty for most logs once 90+ inputs are labelled. Deviations in `log_parsing_llmlog.py`.
 
-**Post-generation pass** (`experiments/log_parsing_postgen.py`, user-approved). Teacher-forced HF forward pass over the existing gen_vllm outputs; no regeneration. Outputs go to `data/.../precalculated_metrics/rules_template/<ds>_postgen{,_samples}.pkl`, pushed per system.
-- Tok-Prob/Tok-Ent use sample 0 (paper convention), LOHSvar uses layer 23 at the inference-end token, and Sem-Ent uses DeBERTa-v2-xlarge-mnli strict bidirectional entailment. `*_s04` columns are the samples 0-4 variants.
-- Parity vs the repo helpers (3 inputs x 10 samples): max |diff| 0.015 (mean log-prob) and 0.006 (mean entropy).
-- Fixes found on the way:
-  - The repo helper's `prompt_len` is one token too long (a double `<|begin_of_text|>`), so 3-2/3-3 drop the first output token. `*_paper` columns reproduce this.
-  - The llama wrapper's added `<pad>` row (random lm_head weights) is excluded from the softmax.
-  - The DeBERTa fast tokenizer fails with a protobuf version clash, so the slow tokenizer is used.
-  - `from_pretrained` on DeBERTa hung >10 min in the safetensors auto-conversion lookup; fixed with `use_safetensors=False`.
-- Speed: measured 2.1 inputs/s without semantic entropy (~4 min/system), with the CPU shared. That is slower than my earlier 15-25 min estimate for the whole pass. Semantic entropy runs as a separate DeBERTa-only process (`--se_only --wait`) beside the main pass.
+**B, AdaParser (2026-11-09).** Official code (github.com/wuyifan18/AdaParser @232951a, MIT): corrector prompts, regex match and `get_constants` ported verbatim (`{variables}` -> `<*>`); history = our prompt + our raw output; greedy; no tree, demonstrations, regeneration loop or `post_process_template`. Samples 5-9 of every suite input and of the 10 initial tests are corrected.
 
-**Cost to scale each kept system to 2,000 inputs (estimate only, not run).** All 13 systems have enough unique messages: from 9,560 (HPC) to 1.2 M (Thunderbird). HDFS and Spark logs are not on this machine; their raw logs are large. Rates measured on this L40S this session:
+**C, strategies (2026-11-09).** Every strategy labels B suite inputs; Clotho runs at reference size B + 10 (it also uses its 10 synthetic initial tests). Drain-propagate: one random input per Drain group, largest first; group label = majority of labelled inputs (tie -> FAIL); unlabelled inputs ranked in tiers (inherited FAIL, never-labelled groups, inherited PASS), within a tier by Clotho fitted along the labelling order, or randomly. Night addition: the missing cells of {random, Clotho} labelled set x {random, Drain lookup, Clotho} ranking (`log_parsing_strategy.py variants`; existing rows asserted to reproduce).
 
-| step | rate measured | 13 systems x 2,000 (fresh sample) | 13 x 1,500 extra (keep current 500) |
-|---|---|---|---|
-| Loghub download + sampling (CPU) | 394 MB of zips for 10 systems (HDFS, Spark, Thunderbird extra) | ~15-30 min | same |
-| `hidden`, layers 11/16/21/24 in one pass | ~20 inputs/s | ~22 min | ~16 min |
-| `gen_vllm`, 10 samples | 50-75 s per 500 inputs + ~45 s engine start | ~55 min | ~40 min |
-| SLL (could be fused into the hidden pass) | ~20 inputs/s | ~22 min | ~16 min |
-| post-generation pass, no SE | 2.1 inputs/s (CPU contended) | ~3.4 h | ~2.6 h |
-| semantic entropy (DeBERTa, bf16, separate process) | 1.64 inputs/s beside the main pass (main pass then 1.25 inputs/s); 13 x 500 took ~1 h 15 min for both | ~4.4 h alone, or ~5.8 h for both passes run together | ~3.3 h / ~4.3 h |
-| Phase 3 final CPU jobs (390) | 11 min at 500 inputs | ~40-60 min (est. 4-5x: PCA, scoring and balanced max-min distances scale with N) | same |
-| storage | hidden 33 MB per layer-system | ~1.7 GB hidden (4 layers) + ~4x generations | ~1.3 GB |
+**D, transfer (2026-11-09; protocol fixed before results).** Leave-one-system-out per model and suite. All hyperparameters tuned per model at k = 0 on targets HDFS, Spark, Linux only (layer on the capped suite: Llama 24, Gemma 35, so Llama natural layer-24 states were extracted); then probe, features, MLP, probe + features, best source model (Llama MLP, Gemma probe + features) and refit weight (k = 25). k target labels at random (RandomState(seed + 555 + k)). Pooled Clotho: reference size 200 from the source pool. Night: paired comparison (`log_parsing_transfer_paired.py`) excludes the k labels and the 90 inputs within-system Clotho @100 labels, so all methods share test inputs; within-system Clotho now receives the continuous label score as every other Clotho run does (the evening `within_k` rows used the 0/1 label). The logistic probe is reported beside the protocol choice, labelled as not protocol-chosen.
 
-- Total ≈ 7.5-8.5 GPU-hours with the current post-gen script (post-gen + SE together ~5.8 h dominates), which is more than one 10 h session once setup and pushes are included. Plan for 2 sessions; all stages are resumable by shard or system.
-- Cheap savings:
-  - Batch several inputs per forward pass in post-gen, or share the prompt KV across the 10 samples (likely 3-5x).
-  - Fuse SLL into the hidden pass.
-  - Run the DeBERTa tokenizer fast path once protobuf is fixed.
-- "Keep current 500" means a 1,500-message extension disjoint from the current suite. The stratified sampler does not nest (a 2,000 sample would not contain today's 500), so the extension follows a different template mix. A fresh 2,000 sample is cleaner but regenerates everything.
-- Mac (626 templates) and Thunderbird (1,241) would get every template at 2,000, with ~3 and ~1.6 inputs per template. Templates would repeat in the reference set, which raises the AUC of template-based signals (see "Why Thunderbird is weak").
-
-## Decisions (2026-11-09 evening session: literature baselines A-B, strategy C, transfer D)
-- **A, LLMLog** (arXiv 2508.09594): official code found (github.com/XinTT/LLMLog @648553d); scoring follows its `max_selection` / `annotation` and the README run (`--selection max_influence --prompt adaptive --lambda 0.5`): greedy pick order of lambda * C + (1 - lambda) * newly covered / |U|, lambda = 0.5, delta = 0.5, word match = exact (the adaptive-prompt run loads no word-similarity table), a = 0.3 (code's 0.3 / 0.7 weighting; paper gives none). Ranking = greedy pick order (picked first = flagged first). U = the test set; labelled logs = the non-initial reference inputs (text only). C = mean over samples 0-4. Representativeness alone = lambda 0; confidence alone = lambda 1. Deviations listed in `log_parsing_llmlog.py` and the details report. Added `_nokw` variants (SED over all words): with 90-190 labelled references, LLMLog's s^r is empty for most test logs, so every log represents every other and the coverage term vanishes; the faithful rows are kept as the main rows.
-- **B, AdaParser** (arXiv 2406.03376): official code found (github.com/wuyifan18/AdaParser @232951a, MIT); the corrector's prompts, regex match and `get_constants` heuristics are ported verbatim (placeholder `{variables}` -> `<*>`). History = our rules_template prompt + our raw output; greedy decoding (its first-round temperature 0); no tree, no demonstrations, no regeneration loop, no `post_process_template`. Corrected: samples 5-9 of every suite input and of the 10 initial tests (their labels enter Clotho's reference set). `python-dateutil` installed into `.venv-vllm` (needed by `get_constants`; not in setup.sh). Top-10% fixed share: failures under the original label in each predictor's top 10% least pass-like (original-label run), share whose corrected label is PASS.
-- **C, strategies**: every strategy labels B suite inputs; Clotho runs at reference size B + 10 (it also uses its 10 synthetic initial tests, not counted as checks). Drain-propagate: one random input per Drain group, largest first, extra rounds if budget remains; group label = majority of its labelled inputs (tie -> FAIL); ranking of unlabelled inputs in tiers (inherited FAIL, never-labelled groups, inherited PASS), within a tier by Clotho (Clotho's adaptive fit run along the labelling order, 10 at a time, + initial tests) or randomly (strategy 4). Systems with < 15 PASS or FAIL skipped (none were).
-- **D, transfer protocol (fixed before any result)**: leave-one-system-out per model and suite (sources = the other kept systems of the same suite). Tuning per model at k = 0 on targets HDFS, Spark, Linux only (mean AUC over the three targets and both suites); layer tuned on the capped suite with the default probe (z-score, PCA 128, C 0.1) since Llama natural states exist at layer 16 only; then probe (norm z / CORAL, p 32/128/512, C 0.001-1), features C, MLP (hidden 32/128, alpha 1e-4/1e-2/1) and probe + features C, in that order; best source model by tuning AUC; refit weight w (1/10/100) at k = 25. Frozen afterwards; report held-out targets (Llama 10, Gemma 9) and in-sample targets separately. k = 0/10/25/50 target labels at random (RandomState(seed + 555 + k)), 5 seeds; all methods scored on the same target inputs (500 minus the k labelled). Pooled Clotho uses reference size 200 from the source pool (balanced). CORAL in a 256-dim label-free PCA space after z-score. Within-system Clotho with k labels = Clotho's adaptive fit on the k random labels + initial tests (random if < 10 passing references); within-system Clotho @100 quoted from the stored jobs (not paired).
-
-## Decisions (2026-11-09 session: finish Gemma, natural post-generation, paper artefacts)
-- Timing for Gemma: `log_parsing_timing.py` takes model, layer (fair layer: 21), stop token and output dir from `model_cfg` (`results_phase3_gemma/timing/`). The Clotho forward pass runs through layers 1-21 (Gemma's tuned layer), as Llama's runs through 1-16. JSON keys keep the Llama names (`batched_l16` = batched forward pass to the fair layer); `model` and `layer` fields record which. Same 4 systems (HDFS, Hadoop, BGL, OpenStack), none dropped for Gemma.
-- Natural post-generation rows: `log_parsing_natural.py post` re-runs each stored job's seeded reference selection, asserts that the stored Clotho and both lookup AUCs reproduce to 1e-12 (and test size / PASS count), and only then appends Tok-Prob, LOHSvar (samples 0-4) and Random rows (the same random draw as phase3_final). Existing natural numbers are therefore unchanged; the report only gains rows/columns. Random was added because the paper's main table needs it on both suites.
-- `results_phase3_gemma/` added to `.gitignore` (as `results_phase3/`); job JSON lives in RESULTS_REPO. A fresh machine must pull `results_phase3/**`, `results_phase3_gemma/**` from RESULTS_REPO (setup.sh pulls only `data/` and `results_clotho*/`); reports in git are authoritative over the RESULTS_REPO copies.
-- Paper artefacts (`experiments/paper/`): one script per table/figure, all reading the stored per-job JSON through `paper/common.py`. Main table "capped" = the template-capped 500-message suites, "natural" = uniform raw-line samples; Clotho + output entropy on capped from `log_parsing_followups.py` jobs. Bold rule: best mean in a column, only if it beats the second-best mean on all 5 seeds (paired). In the leakage table the Δ columns are not marked; in the cross-system table (methods are columns) the rule is applied per row among Clotho, MDSA and Lookup (Drain) within each reference size. Output entropy and within-system Clotho are reference columns there.
-- Leakage table shows gross Δ (leaky minus leak-free) for every row, with Clotho and MDSA as rows that cannot leak, rather than the net figure of `phase3_final.md`; the caption says how to read it.
-- Figure 3 (within-template AUC, noisy vs clean label) is Llama only: there is no 40-sample run for Gemma (skipped on purpose in the previous session).
-- Figure 1 uses the standard split only (both models, @100 and @200); the disjoint-split version stays in `reports/log_parsing_cost_quality.png` (Llama).
-
-## Decisions (2026-11-08, second session: natural 13 systems, Gemma)
-- User priorities: (1) Llama natural check on all 13 systems, (2) Gemma core with a fixed protocol (same prompt, scorer, label rule, tuning procedure; drop systems outside 10-90% PASS; HF only if vLLM fails), (3) Gemma natural if time remains; no Gemma label-noise run.
-- Natural samples: the 4 Stage 8 samples are kept byte-identical (`sample` skips existing files; each system has its own `random.Random(4242)`). New report `reports/log_parsing_natural13.md` (results in `results_phase3/natural13/`); the 4-system report stays. LOHSvar/Tok-Prob were dropped from the natural check (no post-generation pass for the 9 new systems). Clotho + output entropy = rank average over the test set, as in `log_parsing_followups.py`. "Drain seen" = share of test inputs whose Drain group occurs among the non-initial reference inputs.
-- Model switch: environment variable `CLOTHO_MODEL` (`experiments/model_cfg.py`: HF id, candidate layers, tuned layer, paper layer, LOHSvar layer, dropped systems). Non-Llama outputs go to `results_phase3_<model>/` and `reports/*_<model>.md`; data keeps the original layout (`data/results_gemma/`, `initial_tests_gemma/`). Llama reports regenerate byte-identical apart from a "Model: llama" / "(llama)" label in two headers.
-- Gemma prompt path: `inline_system_as_user` (system prompt merged into the user turn, as `clotho/models/gemma.py`), single BOS, stop token `<end_of_turn>`, output post-processing mirrors `gemma.py:_decode_clean`. Parity check (HF wrapper vs vLLM rendering) passed before every gen_vllm job. vLLM 0.32 runs Gemma-2 on the FLASH_ATTN backend without FlashInfer; no HF fallback was needed.
-- Gemma drop rule: the 2026-11-07 rule (10-90% PASS under > 5 of 10 strict). Apache 94.4% -> dropped; Proxifier was not generated (excluded up front, as for Llama). 12 systems; the natural check also drops Apache for Gemma.
-- Gemma layer tuning: same protocol (HDFS, Spark, Linux; balanced; 5 seeds; refs 50/100/200; tie -> paper layer 28). Candidates 14/21/28/35 (Llama's relative depths, plus 35). Scores 0.758 / **0.773** / 0.765 / 0.769 -> layer 21. old_leaky uses the paper's Gemma layer 28; LOHSvar uses layer 28 (RQ/analysis_utils).
-- Gemma initial set: HF generation via `clotho/models/gemma.py` keeps a trailing `<end_of_turn>` (HF stops on it but the wrapper strips only `<end_of_turn><eos>`); `log_parsing_initial_set.py` strips it for Gemma before scoring.
-- Gemma post-generation: terminator `<end_of_turn>` appended (where generation stopped; the repo helper appends `<eos>`), full vocabulary (no added pad row).
-- Output entropy in `phase3_final post` no longer needs the post-generation file (it only uses the generations), so it is filled before the other post rows.
-- Gemma cost-quality: quality vs k only; Llama timings were not scaled to Gemma.
-
-## Decisions (2026-11-08 session: paper-numbers stages 1-9)
-- **Git push unavailable.** No GitHub credentials on this machine (no gh, SSH key or credential helper), and installing gh was blocked. Commits stay local, and after each step the whole history goes to RESULTS_REPO as a bundle (`experiments/sharded/git_backup.py` -> `git_bundles/clotho_main.bundle`). Restore: download it, then `git fetch clotho_main.bundle main:bundle_main` and fast-forward `main`. Every result file also went to RESULTS_REPO by `--push`.
-- Stage 2: the answer is from upstream `coinse/clotho` at commit `e8aed3d` (added as remote `upstream`). The RQ notebooks/analysis_utils are counted as the protocol, since they produce the paper's tables.
-- Stage 3: on the standard split a random reference set overlaps Clotho's test set. So every method in the fairness report is scored on T' = Clotho's test set minus the random reference inputs (Clotho restricted to T'), and the balanced-reference baselines are re-scored on T' too. Random reference = 10 initial tests + uniform draw from the same pool, `RandomState(seed + 7777 + ref)`. GMMb and Lookup (oracle) are included as well as MDSA and Lookup (Drain).
-- Stage 4: "main table" = the 14 fair_leakfree methods + Clotho + output entropy; no system is skipped under fair_leakfree (HPC disjoint runs under this label).
-- Stage 5: cost = offline batch cost per test input, the cheapest practical implementation of each method. Clotho/MDSA = HF forward pass through layers 1-16 only (batch 32, left padded; cosine >= 0.9995 to the stored vectors) + CPU scoring; output entropy = vLLM, all 500 prompts at once, n = k. This uses the optimised engine for generation but plain HF for Clotho, so it understates Clotho's cost advantage. Batch-1 latencies are reported beside it. Timings: mean over HDFS, Hadoop, BGL, OpenStack. One-off costs (reference labels, fitting) excluded. k = 1 left out (entropy of one sample is 0). Clotho + output entropy is shown at every k. "Matches Clotho" = smallest k whose mean AUC >= Clotho's.
-- Stage 6: Lookup (Drain) across systems uses each system's own Drain run. logparser's EventId is the md5 of the template text, so a group matches only on identical template text.
-- Stage 7: fixed before looking: seed 0, standard split, ref 100. Missed = the 5 highest-ranked failures within the top 10%. Caught = 5 drawn at random from the failures in the bottom 30%. HDFS has only 3 failures in its top 10%, so 3 are shown.
-- Stage 8: "uniformly at random from the raw logs" = uniform over log lines of `<System>_full.log_structured.csv`, excluding lines whose Content is in the current suite, with no dedup (natural repetition kept), seed 4242. Systems are skipped if < 15 PASS or < 15 FAIL. The natural suites are not registered in `supported_datasets` (Phase 3 scripts derive their system list from it).
-- Stage 1 paragraph: the noisy-label comparison is on the same systems and test sets (added as section 3 of the label-noise report).
-- The Phase 3 leakage line in this file did not match `log_parsing_phase3_final.md`, which regenerates byte-identical from the stored jobs. The line now quotes the report.
-- Timing: `log_parsing_timing.py hf` was run twice. The first run overlapped the label-noise CPU jobs and is kept as `results_phase3/timing/hf_run1_contended.json`; the reported numbers come from the second run, on an otherwise idle machine.
-
-## Label noise (2026-11-08): is near-chance within-template AUC missing signal or label noise?
-`experiments/reports/log_parsing_label_noise.md` (`log_parsing_extra_samples.py`: 40 new vLLM samples per input, engine seed 1; `log_parsing_label_noise.py`).
-Mostly label noise, on top of a small real signal. An input's pass rate is very reliable overall (40-sample reliability median 0.97), but 95-99% of that reliable variance lies between templates on 11 of 13 systems (Mac and Thunderbird trivially; HPC 0.80, OpenSSH 0.86). Within a template, even the 40-sample rate has median reliability 0.56, so the 5-sample label used for within-template AUC is mostly sampling noise. Against the clean 40-sample label, on the same 7 systems and test sets, within-template AUC rises: Clotho 0.555 -> 0.609 @100 (0.524 -> 0.571 @200), output entropy 0.529 -> 0.584, LOHSvar 0.545 -> 0.562, while MDSA stays at 0.557. A perfect predictor of the original 10-sample pass rate reaches only 0.698 within template. So Clotho does carry some within-template signal, but it is small next to the between-template signal it shares with template lookup (overall AUC 0.832 against the clean label on the same systems).
-
-## Decisions (2026-11-07: scorer, template, dropped systems)
-
-Inputs: all 28 generations (2 templates x 14 systems x 500 inputs x 10 samples), rescored without regeneration by `experiments/log_parsing_rescore.py` (report: `experiments/reports/log_parsing_rescore.md`, also in RESULTS_REPO `reports/`).
-
-**Chosen: scorer `strict_match`, template `rules_template`, 13 systems (Proxifier dropped).** No lenient extensions were added, and no few-shot examples.
-
-Exact scoring rule. The parser takes the text after the last `Template:` line (markdown decoration and surrounding whitespace stripped, `parse_result_messages_template`). An output passes if that string equals the Loghub-2.0 `EventTemplate` character for character. An input PASSes if more than 5 of 10 samples pass (Clotho's test score > 0.5). A parse failure is a failure. Set in `clotho/dataset/log_parsing/output_parsers.py: PASS_SCORER`. The other scorers, kept for analysis:
-- `normalized_match`: strip, collapse whitespace runs, merge adjacent `<*>` (`<*> <*>`, `<*><*>` -> `<*>`), on both sides.
-- `lenient_match`: normalize, then every whitespace token containing `<*>` becomes exactly `<*>` (`blk_<*>`, `/<*>:<*>`, `<*>,` -> `<*>`), then normalize again so adjacent `<*>` merge. Applied to both sides.
-
-How the rules were applied:
-1. Least lenient scorer with input PASS in 20 to 80% on most systems: strict qualifies under both templates (10/14 messages, 11/14 rules), so it wins over normalized (11, 12) and lenient (13, 13).
-2. Template with more systems in range under the chosen scorer: rules_template (11 vs 10). It also fixes the HDFS problem that started this: 2.6% -> 27.2% strict.
-3. Lenient extensions: not added. In the 40 inspected lenient failures, 21 were real model errors and 19 convention issues (below), so failures are not "mostly convention". The largest convention pattern was malformed wildcard syntax (`<>`, bare `*`, `<*block_id*>`, `<*.*:*>`; 10 of 40). Under the chosen strict scorer it does not matter.
-4. Few-shot: not triggered (strict already >= 15% on 11/14 systems under rules_template).
-5. Dropped (outside 10 to 90% under strict + rules_template): **Proxifier, 0.0%** (0/500 inputs). The model keeps host fragments and ports (`dmp.<*>:443`, `proxy.<*>:5070`) where Loghub has one `<*>`, systematically, even with the rules prompt. With no passing inputs Clotho has no GMM to fit. Mac (12.0%) and HPC (18.4%) are inside 10 to 90% and are kept, with fewer positives than the rest.
-
-Input PASS rate (more than 5 of 10 samples match), all 14 systems. Parse failure is per output, and at most 0.9% everywhere.
-
-| system | messages strict | messages normalized | messages lenient | rules strict | rules normalized | rules lenient | parse fail (msg / rules) |
-|---|---|---|---|---|---|---|---|
-| Apache | 43.8% | 44.0% | 82.6% | 57.0% | 57.0% | 80.6% | 0.0% / 0.0% |
-| BGL | 33.0% | 33.4% | 58.6% | 20.0% | 20.2% | 42.2% | 0.9% / 0.6% |
-| Hadoop | 21.2% | 21.4% | 71.4% | 28.6% | 28.6% | 58.6% | 0.3% / 0.2% |
-| HDFS | 2.6% | 2.6% | 44.0% | 27.2% | 27.2% | 43.2% | 0.0% / 0.0% |
-| HealthApp | 44.0% | 46.6% | 73.8% | 29.6% | 31.6% | 63.0% | 0.1% / 0.0% |
-| HPC | 18.0% | 21.0% | 46.2% | 18.4% | 21.2% | 40.4% | 0.2% / 0.0% |
-| Linux | 27.8% | 27.8% | 56.6% | 22.8% | 22.8% | 38.2% | 0.4% / 0.9% |
-| Mac | 18.6% | 18.8% | 35.0% | 12.0% | 12.0% | 24.2% | 0.5% / 0.4% |
-| OpenSSH | 35.6% | 35.8% | 55.6% | 35.4% | 36.0% | 46.8% | 0.0% / 0.0% |
-| OpenStack | 55.6% | 55.6% | 79.4% | 54.2% | 54.2% | 69.8% | 0.0% / 0.0% |
-| Proxifier | 0.0% | 0.0% | 40.4% | 0.0% | 0.0% | 31.4% | 0.0% / 0.0% |
-| Spark | 22.4% | 22.4% | 59.0% | 22.0% | 22.2% | 49.2% | 0.4% / 0.2% |
-| Thunderbird | 30.0% | 30.4% | 53.2% | 20.4% | 20.6% | 38.4% | 0.6% / 0.4% |
-| Zookeeper | 32.0% | 32.0% | 68.0% | 44.6% | 44.8% | 60.2% | 0.3% / 0.3% |
-| **systems in 20-80%** | **10** | **11** | **13** | **11** | **12** | **13** | |
-
-Lenient-failure inspection (messages_template, lenient scorer, random parsed failing outputs, seed 0, `log_parsing_rescore.py --samples <ds> -n 20`). Real = the output breaks the task as instructed. Convention = Loghub labelling or placeholder form the model could not infer from one message.
-- HDFS (11 real / 9 convention). Real: constant dropped (`Block <*>` -> `<*>`); exception class or `peer` replaced by `<*>` (3); hallucinated text (`blk_heartbeat`, `:5000:`, `blk_-*`) (2); input copied without replacing (1); variable `1` left in (2); `BLOCK*` turned into `BLOCK <*>` (2). Convention: malformed wildcards `<>`, `<*block_id*>`, `<*.*:*>` (7); Loghub labels `write.` as a variable (1); `<*> <*> <*>` plus `<>` (1).
-- Hadoop (10 real / 10 convention). Real: constants replaced (`webapp guice`, `maps`, `input`, exception text) (3); duplicated or inserted text (3); number `0` not replaced (1); URL not replaced (1); degenerate `<<<<` output (1); `attempt_<*>` split into `attempt <*>` (1). Convention: Loghub labels state names, `true`, `null`, `kind: ContainerToken` and exception text as variables (5); bare `*` wildcards or `<>` (4); one whitespace difference (`release= <*>`) (1).
-- Total 21 real / 19 convention. Caveat found here: the lenient rule is looser than "prefix conventions": a whitespace token holding `<*>` swallows constant text attached to it (`local=<*> remote=<*>].` -> `<*>`, `<*>:Got` -> `<*>`). That is one more reason not to use it as the label.
-- Strict failures under the chosen setup (rules_template, strict_match; added 2026-11-07, `log_parsing_rescore.py --samples <ds> --template rules_template --scorer strict_match -n 10 --seed 1`). Same definitions; "convention" includes the placeholder or prefix form, even though the rules prompt now states it.
-  - HDFS (6 real / 4 convention). Real: IP not replaced (2: `10.251.67.225:50010:Got`, `10.251.215.192:50010 Served`); the `2` count not replaced (2); exception class replaced (`java.nio.channels.<*>`); trailing `.` added. Convention: `<*>: <*>` for one `ip:port` token; malformed `<* >`; `/<*>. blk_<*>` prefixes kept; Loghub labels `read.` as a variable.
-  - Hadoop (8 real / 2 convention). Real: `1 of 1` not replaced; `#` dropped from `fetcher#`; a number left in, with a `.` added; spaces added inside `( <*> )`; constants replaced (`NM`, `container`) with `<>`; words dropped (`token for`); garbled merge `attempt_<*>_Thread`; `SUCCESS`/`ERROR` kept plus a dropped comma. Convention: prefix form `attempt_<*>_m_<*>_0` with `<*)`; Loghub folds `Token { ... }` into one `<*>`.
-  - Total 14 real / 6 convention (70% real). Under the chosen label, most failures are real model errors.
-
-Why this pass definition measures real model errors. With the rules prompt, the model is told the Loghub-2.0 convention explicitly (one `<*>` per whole variable token, prefixes, slashes and ports included) and given generic examples. So a strict mismatch is a failure to follow an instruction it actually received, not a hidden convention. The 40 inspected failures show that strict and lenient differences are mostly the model not applying that stated rule (`blk_<*>`, `/<*>:<*>`, `<>`), along with plain errors: dropped or altered constants, hallucinated tokens, missed variables. Strict and normalized differ by at most 3 points everywhere, so whitespace and adjacent-wildcard quirks are not driving the labels. Choosing the least lenient scorer that still gives 20 to 80% PASS on 11 of 14 systems keeps the label as close as possible to "the model produced the correct Loghub template", which is what a log parser user needs. It also leaves enough passing inputs (60 to 285 of 500 per kept system; Mac 60, HPC 92) for Clotho's GMM. The remaining caveat: some strict failures are Loghub labelling choices that one message cannot reveal (state names or booleans labelled as variables, about 5 of 40 inspected). These add label noise that no scorer change can remove.
-
-## Phase 2 Clotho results (rules_template, strict_match, 13 systems; 2026-11-07)
-Report: `experiments/reports/log_parsing_phase2.{md,json}` (random/pca, layer 21, seed 0). All 13 runs `ok` (~3 min each); Proxifier is listed as "not run" (dropped).
-- Macro ROC-AUC across 13 systems: 0.712 @ref50, 0.729 @ref100, 0.764 @ref200, mean over iterations 0.761.
-- Best: HDFS 0.873, HPC 0.836, HealthApp 0.829, OpenStack 0.811, Zookeeper 0.810 (mean AUC). Weakest: Thunderbird 0.552, BGL 0.705, Mac 0.710.
-
-Why Thunderbird is weak (checked 2026-11-07). Its strict failures are real model errors (constants replaced: `sysctl`, `RAM`, `job`; extra or garbage text), not convention issues, so the labels are fine. The cause is input diversity: Thunderbird and Mac each have more than 500 templates, so the sampler took 500 inputs from 500 distinct templates (every template appears once). Across the 13 systems, mean AUC falls as the number of distinct templates in the suite rises (Spearman -0.63):
-
-| system | templates in suite | mean AUC |
-|---|---|---|
-| Apache | 29 | 0.749 |
-| OpenSSH | 38 | 0.775 |
-| HDFS | 46 | 0.873 |
-| OpenStack | 48 | 0.811 |
-| HPC | 74 | 0.836 |
-| Zookeeper | 89 | 0.810 |
-| HealthApp | 156 | 0.829 |
-| Hadoop | 236 | 0.738 |
-| Spark | 236 | 0.753 |
-| BGL | 320 | 0.705 |
-| Linux | 338 | 0.758 |
-| Mac | 500 | 0.710 |
-| Thunderbird | 500 | 0.552 |
-
-Clotho's GMM models passing inputs. When every input is a different event type, the passing inputs do not cluster, so separation weakens. Read high AUC on low-diversity systems partly as "this template is easy or hard" signal.
+**Night additions (2026-11-09).** Statistics: Scott-Knott ESD is a Python reimplementation (the R package is not installed): Calinski-Corsten test for the Scott-Knott split, adjacent groups merged when Cohen's d < 0.2; observations per (system, seed); Vargha-Delaney A12 unpaired with the usual thresholds. Gemma label-noise: `log_parsing_extra_samples.py` and `log_parsing_label_noise.py` made model-aware (Llama unchanged); 40 samples, engine seed 1.
 
 ## Known issues
-- 2026-11-08 machine had no GitHub credentials and no `gh`, and installing `gh` from GitHub releases was blocked by the agent's permission classifier. The user has to run `gh auth login` (or provide credentials) before an agent session can push.
-- A fully skipped `gen_vllm` run still runs the parity check and loads the vLLM engine (~45 s) before noticing nothing is pending.
-- RESULTS_REPO has extra verification shards under `.../size200/` (spell_check, shards 0 and 1). Harmless.
-- New machine needs `gh auth login` then `gh auth setup-git` before git push works.
-- RESULTS_REPO has results for a `log_parsing_rules` task whose code was never committed (lost at the wipe). Superseded by `rules_template`; those old results are not reproducible.
-- HDFS pilot pass rate was very low (2.6%) under messages_template. Resolved by the Decisions below (rules_template: 27.2%).
-- The initial sets were regenerated on 2026-11-07 under strict_match. They now keep raw outputs, so `log_parsing_initial_set.py -p <t> --rescore` relabels them without the GPU.
+- A new machine needs `gh auth login` and `gh auth setup-git` before `git push` works.
+- A fully skipped `gen_vllm` run still loads the vLLM engine (~45 s) before noticing nothing is pending.
+- RESULTS_REPO holds harmless extras: spell_check verification shards under `.../size200/`, and results of an abandoned `log_parsing_rules` task (superseded by `rules_template`, not reproducible).

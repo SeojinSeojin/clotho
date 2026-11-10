@@ -19,9 +19,9 @@ METHODS = [("clotho", "Clotho"), ("MDSA", "MDSA"), ("loh_var", "LOHSvar"), ("out
 MIN_PAIRS = 20
 
 
-def load(sub):
+def load(sub, model="llama"):
     R = {}
-    for f in (C.rp("llama") / sub).glob("**/seed*.json"):
+    for f in (C.rp(model) / sub).glob("**/seed*.json"):
         d = json.loads(f.read_text())
         if sub == "followups" and d["split"] != "standard":
             continue
@@ -30,9 +30,18 @@ def load(sub):
 
 
 def main():
-    clean, noisy = load("label_noise"), load("followups")
+    models = [m for m in C.MODELS if any((C.rp(m) / "label_noise").glob("*/seed*.json"))]
     plt = C.style()
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.1), sharey=True)
+    fig, AX = plt.subplots(len(models), 2, figsize=(7.2, 3.1 * len(models)), sharey=True, squeeze=False)
+    w = 0.38
+    for row, model in enumerate(models):
+        clean, noisy = load("label_noise", model), load("followups", model)
+        panel(AX[row], clean, noisy, model if len(models) > 1 else None)
+    axes = AX[0]
+    _finish(fig, AX, plt)
+
+
+def panel(axes, clean, noisy, model):
     w = 0.38
     for ax, ref in zip(axes, REFS):
         elig = [s for s in clean if len(clean[s]) == 5 and
@@ -52,11 +61,15 @@ def main():
         ax.text(len(METHODS) - 0.5, ceil + 0.004, f"ceiling {ceil:.3f}", ha="right", va="bottom", fontsize=7, color=C.INK2)
         ax.axhline(0.5, color=C.INK2, lw=0.8)
         ax.set_xticks(range(len(METHODS)), [n for _, n in METHODS])
-        ax.set_title(f"reference size {ref} ({len(elig)} systems)", color=C.INK)
+        ax.set_title((f"{C.LABEL[model]}, " if model else "") + f"reference size {ref} ({len(elig)} systems)", color=C.INK)
         ax.set_ylim(0.45, 0.75)
         ax.grid(axis="x", visible=False)
-    axes[0].set_ylabel("within-template ROC-AUC")
-    axes[0].legend(loc="upper left", frameon=False)
+
+
+def _finish(fig, AX, plt):
+    for row in AX:
+        row[0].set_ylabel("within-template ROC-AUC")
+    AX[0][0].legend(loc="upper left", frameon=False)
     fig.tight_layout()
     out = C.PAPER / "figures" / "within_template.pdf"
     fig.savefig(out)

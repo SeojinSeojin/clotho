@@ -20,11 +20,14 @@ from pathlib import Path
 EXP = Path(__file__).resolve().parent
 sys.path.insert(0, str(EXP / "sharded"))
 import prompt_render as pr  # noqa: E402
+sys.path.insert(0, str(EXP))
+import model_cfg as MC  # noqa: E402
 
-TASK, TEMPLATE, MODEL = "log_parsing", "rules_template", "llama"
+TASK, TEMPLATE, MODEL = "log_parsing", "rules_template", MC.MODEL      # CLOTHO_MODEL=gemma (2026-11-09 night)
 SYSTEMS = ["loghub_apache_500", "loghub_bgl_500", "loghub_hdfs_500", "loghub_hpc_500", "loghub_hadoop_500",
            "loghub_healthapp_500", "loghub_linux_500", "loghub_mac_500", "loghub_openssh_500",
            "loghub_openstack_500", "loghub_spark_500", "loghub_thunderbird_500", "loghub_zookeeper_500"]
+SYSTEMS = [d for d in SYSTEMS if d not in MC.dropped()]
 OUT = EXP / f"data/results_{MODEL}/{TASK}/extra_samples/{TEMPLATE}"
 
 
@@ -47,7 +50,7 @@ def main():
     llm = LLM(model=pr.MODEL_IDS[MODEL], dtype="bfloat16", seed=a.seed, max_model_len=8192,
               gpu_memory_utilization=a.gpu_memory_utilization, generation_config="vllm")
     sp = SamplingParams(n=a.n, temperature=pr.GEN_TEMPERATURE, top_p=1.0, max_tokens=pr.GEN_MAX_NEW_TOKENS,
-                        ignore_eos=True, stop_token_ids=[tok.eos_token_id], detokenize=False)
+                        ignore_eos=True, stop_token_ids=[pr.stop_token_id(tok)], detokenize=False)   # llama: eos_token_id (unchanged)
     keys = task2answer_key_list[TASK]
     OUT.mkdir(parents=True, exist_ok=True)
     for ds in todo:
