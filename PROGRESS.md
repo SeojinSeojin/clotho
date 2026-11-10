@@ -63,9 +63,9 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation methods shift +0.024 / +0.021 (noisier 5-sample label); net of that, output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
 
 ## In progress
-- GPU chain `experiments/logs/gpu_chain.sh` (PID in logs/chain.pid): Gemma F generation (C2 chosen: tuning mean PA_0 C1 0.111, C2 0.376) -> G `check` -> `loh` -> `se` (each pushes per dataset). Check `logs/g_check.log` parity before trusting `loh`.
-- Done: F Llama (sim, report, F3 figure), J (crossmodel_details), L (template_difficulty), K partial (all but Gemma strong Mac/OpenStack/HealthApp). Pending: F Gemma sim + report; H; M; K report; I (`log_parsing_adaparser_e2e.py prep` done; `run`, `hidden`, `sim`, `report` after G frees the GPU); reports triage.md / e5_leakage.md / paper_numbers.md.
-- Disk: uv cache cleaned (14 GB); `uv pip install` will re-download.
+- GPU queue `experiments/logs/gpu_chain5.sh`: I Llama `run` (vLLM server, per-system push) -> I Llama `hidden` -> G Sem-Ent subset (`log_parsing_g_recompute.py se`) -> I Gemma `run` -> `hidden`. Then CPU: `log_parsing_adaparser_e2e.py sim` per model, `report`; `log_parsing_e5_leakage.py --data ~/.cache/clotho_zenodo/x/data`, `paper/table_e5.py`; final reports and paper_numbers.
+- Done: F (both models), G LOHSvar (all inputs), H, J, K, L, M.
+- I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
 - Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.
