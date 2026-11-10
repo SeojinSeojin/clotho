@@ -191,50 +191,65 @@ def cmd_loh(a):
                 push([p], f"G LOHSvar {task} {ds}")
 
 
-def cmd_se(a):
+def cmd_se(a, chunk=256):
+    """Upstream greedy clustering for every subset (all 10, and E5's score halves), stepped in lock-step over
+    `chunk` inputs at a time: each round every unfinished (input, subset) takes its next representative and all
+    pair verdicts still missing across the chunk are classified in one batch. Same verdicts and clusters as running
+    get_semantic_ids per input (pairs are deterministic per string pair; memo per input)."""
     import torch
     from log_parsing_postgen import BatchedNLI
     nli = BatchedNLI("cuda")
     root = a.data / "results_llama"
+    subsets = [list(range(10))] + [sorted(np.random.RandomState(s).permutation(10)[:5].tolist()) for s in E5.SEEDS]
     for task, dss in E5.TASKS.items():
         for ds in dss:
             p = OUT / task / f"{ds}_se.npz"
             if p.exists():
                 continue
             res = json.load(open(root / task / "inference_results" / "messages_template" / f"{ds}_R10_T0.8.json"))
-            subsets = [list(range(10))] + [sorted(np.random.RandomState(s).permutation(10)[:5].tolist()) for s in E5.SEEDS]
             V = np.full((len(res), 10, 10), -1, np.int8)
             t0 = time.time()
-            for i, r in enumerate(res):
-                outs = r["inferences"]
-                memo = {}
-                # greedy clustering per subset; classify lazily in rounds (one batch per representative step)
-                for S in subsets:
-                    ids = {j: -1 for j in S}
-                    nxt = 0
-                    for ii in S:
-                        if ids[ii] != -1:
+            n_pairs = 0
+            for c0 in range(0, len(res), chunk):
+                idx = list(range(c0, min(len(res), c0 + chunk)))
+                outs = {i: res[i]["inferences"] for i in idx}
+                memo = {i: {} for i in idx}
+                state = [(i, S, {j: -1 for j in S}, [0]) for i in idx for S in subsets]   # (input, subset, ids, [next id])
+                while True:
+                    reqs, steps = {}, []
+                    for st in state:
+                        i, S, ids, nxt = st
+                        ii = next((x for x in S if ids[x] == -1), None)
+                        if ii is None:
                             continue
-                        ids[ii] = nxt
                         js = [j for j in S if j > ii and ids[j] == -1]
-                        pairs = [(outs[ii], outs[j]) for j in js] + [(outs[j], outs[ii]) for j in js]
-                        todo = list({q for q in pairs if q not in memo})
-                        if todo:
-                            strings = [s for q in todo for s in q]
-                            pred = nli._classify([(2 * t, 2 * t + 1) for t in range(len(todo))], strings)
-                            for t, q in enumerate(todo):
-                                memo[q] = pred[(2 * t, 2 * t + 1)]
+                        steps.append((st, ii, js))
                         for j in js:
-                            V[i, ii, j] = memo[(outs[ii], outs[j])]
-                            V[i, j, ii] = memo[(outs[j], outs[ii])]
+                            for q in ((outs[i][ii], outs[i][j]), (outs[i][j], outs[i][ii])):
+                                if q not in memo[i]:
+                                    reqs[(i, q)] = None
+                    if not steps:
+                        break
+                    if reqs:
+                        keys = list(reqs)
+                        strings = [x for _, q in keys for x in q]
+                        pred = nli._classify([(2 * t, 2 * t + 1) for t in range(len(keys))], strings, bs=128)
+                        for t, (i, q) in enumerate(keys):
+                            memo[i][q] = pred[(2 * t, 2 * t + 1)]
+                        n_pairs += len(keys)
+                    for (i, S, ids, nxt), ii, js in steps:
+                        ids[ii] = nxt[0]
+                        for j in js:
+                            V[i, ii, j] = memo[i][(outs[i][ii], outs[i][j])]
+                            V[i, j, ii] = memo[i][(outs[i][j], outs[i][ii])]
                             if V[i, ii, j] == 2 and V[i, j, ii] == 2:
-                                ids[j] = nxt
-                        nxt += 1
-                if i % 2000 == 0:
-                    print(f"  {task}/{ds} {i}/{len(res)} {time.time() - t0:.0f}s", flush=True)
+                                ids[j] = nxt[0]
+                        nxt[0] += 1
+                if c0 % (chunk * 20) == 0:
+                    print(f"  {task}/{ds} {c0}/{len(res)} {time.time() - t0:.0f}s, {n_pairs} pairs", flush=True)
             p.parent.mkdir(parents=True, exist_ok=True)
-            np.savez_compressed(p, V=V, wall_s=time.time() - t0)
-            print(f"{task}/{ds}: {len(res)} inputs, {time.time() - t0:.0f}s", flush=True)
+            np.savez_compressed(p, V=V, wall_s=time.time() - t0, n_pairs=n_pairs)
+            print(f"{task}/{ds}: {len(res)} inputs, {n_pairs} pairs, {time.time() - t0:.0f}s", flush=True)
             if a.push:
                 push([p], f"G Sem-Ent verdicts {task} {ds}")
             torch.cuda.empty_cache()
