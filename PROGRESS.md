@@ -55,7 +55,10 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation methods shift +0.024 / +0.021 (noisier 5-sample label); net of that, output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
 
 ## In progress
-- F step 1 (strong parser generation, Llama).
+- F step 1: C2 chosen for Llama (tuning mean PA_0 0.426 vs C1 0.249; target 0.75 not reached). `log_parsing_strong.py gen --config C2 --push` running on all Llama systems (each system pushed to RESULTS_REPO when done; HealthApp/OpenStack/Mac/Thunderbird last). Then: Gemma C1 on HDFS/Spark/Linux -> `choose` -> gen; `sim` and `report` (log_parsing_strong_sim.py) for F2/F3; F3 figure not yet written.
+- G: `log_parsing_g_recompute.py` written, not run (`check` first for parity vs the stored LOHSvar, then `loh`, `se`; E5 report still needs LOHSvar/Sem-Ent rows via `var_from_D` / `semantic_entropy`).
+- H: `log_parsing_downstream.py` and `loglizer_vendor/` written, not run (needs F sim results). L: `log_parsing_template_difficulty.py` written, not run. M: R install started via apt (check `logs/r_install.log`). K, I, J: protocols only.
+- Background jobs need `set -a; . ~/.clotho_env; set +a` for hub pushes; analysis python = `../.venv/bin/python`.
 
 ## Next
 - Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.

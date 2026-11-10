@@ -1,0 +1,188 @@
+"""H (2026-11-10): downstream anomaly detection on the cached parser's output after N reviews. Protocol: PROGRESS.md
+Decisions (H-M).
+
+  cd experiments && ../.venv/bin/python log_parsing_downstream.py [--push]
+  -> reports/downstream_details.{md,json}
+
+Systems: HDFS (block sessions, Loghub v1 anomaly_label.csv at ~/.cache/loghub1_hdfs) and BGL (fixed windows of 20
+lines, alert = first field of the raw line is not "-"). Event of a line = its group's template after N reviews.
+Detectors: loglizer PCA (tf-idf + zero-mean) and InvariantsMiner (defaults), vendored in loglizer_vendor/.
+Fit on the first half of sessions in time order, F1 on the second half.
+"""
+import os
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_v] = "1"
+
+import argparse
+import contextlib
+import csv
+import hashlib
+import io
+import json
+import re
+import statistics
+import sys
+import zipfile
+from pathlib import Path
+
+import numpy as np
+
+EXP = Path(__file__).resolve().parent
+sys.path.insert(0, str(EXP))
+sys.path.insert(0, str(EXP / "sharded"))
+import log_parsing_stream as ST  # noqa: E402
+
+SYSTEMS = ("HDFS", "BGL")
+MODELS = {"llama": "", "gemma": "_gemma"}
+NS = (0, 5, 10, 20, 50)
+ORD = ("frequent", "dsize", "oracle")
+NAMES = {"frequent": "Most frequent", "dsize": "D x size", "oracle": "Oracle"}
+WIN = 20
+HDFS_LABELS = Path.home() / ".cache" / "loghub1_hdfs" / "anomaly_label.csv"
+_BLK = re.compile(r"blk_-?\d+")
+
+
+def stream(system):
+    import log_parsing_triage as T
+    return T.stream(system)
+
+
+def sessions(system):
+    """-> (list of line-index lists in time order, labels array)."""
+    rows = ST.read_stretch(system)
+    if system == "HDFS":
+        lab = {r["BlockId"]: r["Label"] == "Anomaly" for r in csv.DictReader(open(HDFS_LABELS))}
+        order, members = [], {}
+        for i, (_, content, _) in enumerate(rows):
+            for b in dict.fromkeys(_BLK.findall(content)):
+                if b not in members:
+                    members[b] = []
+                    order.append(b)
+                members[b].append(i)
+        return [members[b] for b in order], np.array([lab[b] for b in order], int)
+    # BGL: raw lines aligned by LineId
+    alert = []
+    with zipfile.ZipFile(ST.RAW / "BGL.zip") as z, z.open("BGL/BGL_full.log") as f:
+        for k, (raw, (lid, content, _)) in enumerate(zip(io.TextIOWrapper(f, encoding="utf-8", errors="replace"), rows)):
+            assert lid == k + 1 and raw.rstrip("\n").rstrip().endswith(content.strip()), (k, raw, content)
+            alert.append(raw.split(" ", 1)[0] != "-")
+    alert = np.array(alert)
+    wins = [list(range(s, min(s + WIN, len(rows)))) for s in range(0, len(rows), WIN)]
+    return wins, np.array([int(alert[w].any()) for w in wins])
+
+
+def detect(events, wins, y):
+    """events: per-line event ids -> {"PCA": f1, "IM": f1, ...}."""
+    from loglizer_vendor.preprocessing import FeatureExtractor
+    from loglizer_vendor.PCA import PCA
+    from loglizer_vendor.InvariantsMiner import InvariantsMiner
+    from loglizer_vendor.utils import metrics
+    X = np.empty(len(wins), dtype=object)
+    for k, w in enumerate(wins):
+        X[k] = [events[i] for i in w]
+    h = len(wins) // 2
+    out = {}
+    with contextlib.redirect_stdout(io.StringIO()):
+        fe = FeatureExtractor()
+        Xtr = fe.fit_transform(X[:h], term_weighting="tf-idf", normalization="zero-mean")
+        m = PCA()
+        m.fit(Xtr)
+        p, r, f = metrics(m.predict(fe.transform(X[h:])), y[h:])
+        out["PCA"] = {"p": float(p), "r": float(r), "f1": float(f)}
+        fe = FeatureExtractor()
+        Xtr = fe.fit_transform(X[:h])
+        m = InvariantsMiner(epsilon=0.5)
+        m.fit(Xtr)
+        p, r, f = metrics(m.predict(fe.transform(X[h:])), y[h:])
+        out["IM"] = {"p": float(p), "r": float(r), "f1": float(f)}
+    return out
+
+
+def caches(model, system):
+    """parser -> (cached template per group, {ordering: [seq per seed]})."""
+    sfx = MODELS[model]
+    res = {}
+    gb = EXP / "data" / "stream_gen" / model / f"{system}.json"
+    jb = EXP / f"results_phase3{sfx}" / "triage" / "e1" / "base" / f"{system}.json"
+    if gb.exists() and jb.exists():
+        r = json.loads(jb.read_text())
+        res["base"] = (json.loads(gb.read_text())["greedy"], {o: [r["runs"][o][k]["seq"] for k in sorted(r["runs"][o])] for o in ORD})
+    gdir = EXP / "data" / "stream_gen_strong" / model
+    js = EXP / f"results_phase3{sfx}" / "strong" / f"{system}.json"
+    if (gdir / "chosen.json").exists() and js.exists():
+        ch = json.loads((gdir / "chosen.json").read_text())["chosen"]
+        r = json.loads(js.read_text())
+        res["strong"] = (json.loads((gdir / ch / f"{system}.json").read_text())["final"],
+                         {o: [r["runs"][o][k]["seq"] for k in sorted(r["runs"][o])] for o in ORD})
+    return res
+
+
+def run(push=False):
+    J, L = {}, ["# H: downstream anomaly detection after N reviews (details)\n",
+                "Generated by `log_parsing_downstream.py`. Protocol: PROGRESS.md Decisions (H-M). F1 on the second half of "
+                "sessions (anomaly = positive), detectors fit unsupervised on the first half. D x size: mean ± std over seeds "
+                "0-4. GT = ground-truth templates (perfect parsing).\n"]
+    memo = {}
+    for system in SYSTEMS:
+        d = stream(system)
+        wins, y = sessions(system)
+        tmpl = d["templates"]
+        gt_ev = [int(t) for t in d["gtl"]]
+        ref = detect(gt_ev, wins, y)
+        J[system] = {"n_sessions": len(wins), "n_anom": int(y.sum()), "test_anom": int(y[len(wins) // 2:].sum()), "gt": ref, "runs": {}}
+        L.append(f"\n## {system}: {len(wins)} sessions, {int(y.sum())} anomalous ({J[system]['test_anom']} in the test half). "
+                 f"GT templates: PCA F1 {ref['PCA']['f1']:.3f}, IM F1 {ref['IM']['f1']:.3f}\n")
+        for model in MODELS:
+            for parser, (cache, seqs) in caches(model, system).items():
+                grp = d["grp"]
+                key = f"{model}/{parser}"
+                J[system]["runs"][key] = jr = {}
+                for o in ORD:
+                    for k, seq in enumerate(seqs[o]):
+                        for N in NS:
+                            rv = set(seq[:N])
+                            gt_of = {g: tmpl[d["major"][g]] for g in rv}
+                            ev = [gt_of.get(int(g), cache[int(g)]) for g in grp]
+                            h = hashlib.md5("\x00".join(ev).encode()).hexdigest()
+                            if h not in memo:
+                                memo[h] = detect(ev, wins, y)
+                            jr.setdefault(o, {}).setdefault(N, []).append(memo[h])
+                L.append(f"\n### {system}, {model}, {parser} parser\n")
+                L.append("| ordering | detector | " + " | ".join(f"F1 N={n}" for n in NS) + " |")
+                L.append("|---|---|" + "---|" * len(NS))
+                for det in ("PCA", "IM"):
+                    for o in ORD:
+                        cells = []
+                        for N in NS:
+                            v = [x[det]["f1"] for x in jr[o][N]]
+                            cells.append(f"{statistics.mean(v):.3f}" + (f" ± {statistics.stdev(v):.3f}" if len(v) > 1 else ""))
+                        L.append(f"| {NAMES[o]} | {det} | " + " | ".join(cells) + " |")
+                    L.append(f"| GT templates | {det} | " + " | ".join(f"{ref[det]['f1']:.3f}" for _ in NS) + " |")
+    # summary: range across orderings and gap to GT
+    L.append("\n## Summary\n")
+    L.append("| system | model / parser | detector | F1 N=0 | F1 N=50 (Oracle) | max |F1 Most frequent - D x size| over N | F1 GT |")
+    L.append("|---|---|---|---|---|---|---|")
+    for system, js in J.items():
+        for key, jr in js["runs"].items():
+            for det in ("PCA", "IM"):
+                f0 = jr["oracle"][0][0][det]["f1"]
+                f50 = jr["oracle"][50][0][det]["f1"]
+                dm = max(abs(jr["frequent"][N][0][det]["f1"] - statistics.mean(x[det]["f1"] for x in jr["dsize"][N])) for N in NS)
+                L.append(f"| {system} | {key} | {det} | {f0:.3f} | {f50:.3f} | {dm:.3f} | {js['gt'][det]['f1']:.3f} |")
+    (EXP / "reports" / "downstream_details.md").write_text("\n".join(L) + "\n")
+    (EXP / "reports" / "downstream_details.json").write_text(json.dumps(J, default=float))
+    print("\n".join(L))
+    if push:
+        import hub_sync as hs
+        hs.commit_files(hs.get_results_repo(), {f"reports/downstream_details.{e}": EXP / "reports" / f"downstream_details.{e}"
+                                                for e in ("md", "json")}, "H downstream anomaly detection")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--push", action="store_true")
+    run(ap.parse_args().push)
+
+
+if __name__ == "__main__":
+    main()
