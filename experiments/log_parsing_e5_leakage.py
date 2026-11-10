@@ -52,6 +52,7 @@ def load_task(root, task):
     P, ans, lp, te, mdsa = [], [], [], [], []
     stored_ae = []
     cfg = None
+    sizes = []
     for ds in TASKS[task]:
         res = json.load(open(root / task / "inference_results" / "messages_template" / f"{ds}_R10_T0.8.json"))
         for r in res:
@@ -63,6 +64,7 @@ def load_task(root, task):
             P.append(row_p)
             ans.append(row_a)
         n = len(res)
+        sizes.append(n)
         pm = root / task / "precalculated_metrics" / "messages_template"
         d = pd.read_pickle(pm / f"{ds}_R10_T0.8_log_probs.pkl").pivot(index="input_index", columns="inference_index", values="average_log_probs")
         assert d.shape == (n, 10), d.shape
@@ -86,11 +88,16 @@ def load_task(root, task):
         v = np.full(n, np.nan)
         v[m.index.to_numpy()] = m.to_numpy()
         mdsa.append(v)
-    G = {"Dloh": [], "V": []}
-    for ds in TASKS[task]:
-        for k, f, key in (("Dloh", "loh", "D"), ("V", "se", "V")):
-            q = G_DIR / task / f"{ds}_{f}.npz"
-            G[k].append(np.load(q)[key] if q.exists() else None)
+    G = {"Dloh": [], "V": [], "se_idx": []}
+    off = 0
+    for ds, n_ds in zip(TASKS[task], sizes):
+        q = G_DIR / task / f"{ds}_loh.npz"
+        G["Dloh"].append(np.load(q)["D"] if q.exists() else None)
+        q = G_DIR / task / f"{ds}_se.npz"
+        z = np.load(q) if q.exists() else None
+        G["V"].append(None if z is None else z["V"])
+        G["se_idx"].append(None if z is None else z["idx"] + off)
+        off += n_ds
     G = {k: (np.concatenate(v) if all(x is not None for x in v) else None) for k, v in G.items()}
     return {**G, "P": np.array(P), "ans": ans, "lp": np.vstack(lp), "te": np.vstack(te), "stored_ae": np.concatenate(stored_ae),
             "mdsa": np.concatenate(mdsa), "mdsa_cfg": cfg}
@@ -130,7 +137,9 @@ def scores(D, lab_idx, sc_idx):
     if D.get("V") is not None:
         import log_parsing_g_recompute as GR
         sub = sorted(int(k) for k in sc_idx)
-        S["sement"] = -np.array([GR.semantic_entropy(v, sub, ll) for v, ll in zip(D["V"], D["lp"])])
+        se = np.full(len(P), np.nan)
+        se[D["se_idx"]] = [-GR.semantic_entropy(v, sub, D["lp"][i]) for v, i in zip(D["V"], D["se_idx"])]
+        S["sement"] = se
     return S, ts, y
 
 
@@ -160,7 +169,9 @@ def report(R, push=False):
          "RQ3 protocol (score and test score from the same 10 samples; Tok-Prob, Tok-Ent from sample 0). Leak-free = label "
          "from 5 samples, score from the other 5 (5 seeded splits, mean ± std). Scores oriented so higher = PASS (Spearman "
          "with the test score, AUC with PASS = pass rate > 0.5). MDSA = pre-generation control (no output leakage): its "
-         "change is label noise only.\n"]
+         "change is label noise only. G (2026-11-10): LOHSvar recomputed on all inputs (parity with the stored values: "
+         "Spearman >= 0.999 per task, `data/g_recompute/parity.json`); Sem-Ent on a seeded subset of 1,500 inputs per task, "
+         "so its columns are subset values.\n"]
     for metric in ("spearman", "auc"):
         L.append(f"\n## {metric}\n")
         L.append("| task | " + " | ".join(f"{NAMES[m]} leaky | leak-free" for m in COLS) + " |")
@@ -176,11 +187,17 @@ def report(R, push=False):
     sets = [("", METHODS, "paper-style comparison set: Tok-Prob, Tok-Ent, output entropy, MDSA control")]
     if G_M:
         sets.append(("g/", PG, "G: post-generation baselines, " + ", ".join(NAMES[m] for m in PG)))
+    if "sement" in G_M:
+        sets[-1] = ("g/", PG, "G: post-generation baselines on the Sem-Ent subset (1,500 inputs per task, every method on "
+                              "the same inputs), " + ", ".join(NAMES[m] for m in PG))
+        sets.append(("gfull/", [m for m in PG if m != "sement"], "G on all inputs without Sem-Ent, "
+                     + ", ".join(NAMES[m] for m in PG if m != "sement")))
     for pre, MS, title in sets:
       L.append(f"\n## What changes ({title})\n")
       for metric in ("spearman", "auc"):
           n_top, n_pairs, n_flip, flips = 0, 0, 0, []
-          for t, r in R.items():
+          for t, r0_ in R.items():
+              r = r0_["sub"] if pre == "g/" and "sement" in MS else r0_
               lk = order(r["leaky"], metric, MS)
               lf_mean = {m: {metric: statistics.mean(x[m][metric] for x in r["leakfree"])} for m in MS}
               lf = order(lf_mean, metric, MS)
@@ -209,11 +226,13 @@ def report(R, push=False):
             parts.append(f"{NAMES[m]} {mu:+.3f} ± {statistics.stdev(per):.3f} ({sum((p < 0) == (mu < 0) for p in per)}/5)")
         L.append(f"- {metric}: " + "; ".join(parts))
     if "lohsvar" in G_M:
-        L.append("\n## G: LOHSvar's rank among the post-generation baselines (1 = best; leaky -> leak-free seed mean)\n")
+        L.append("\n## G: LOHSvar's rank among the post-generation baselines (1 = best; leaky -> leak-free seed mean"
+                 + ("; Sem-Ent subset, every method on the same inputs" if "sement" in PG else "") + ")\n")
         L.append("| task | Spearman rank | AUC rank |")
         L.append("|---|---|---|")
         J["loh_rank"] = {}
-        for t, r in R.items():
+        for t, r0_ in R.items():
+            r = r0_["sub"] if "sement" in PG else r0_
             cells = []
             for metric in ("spearman", "auc"):
                 lk = order(r["leaky"], metric, PG)
@@ -224,6 +243,18 @@ def report(R, push=False):
             L.append(f"| {ALIAS[t]} | " + " | ".join(cells) + " |")
         ch = {m: sum(v[0] != v[1] for v in J["loh_rank"][m].values()) for m in ("spearman", "auc")}
         L.append(f"\nLOHSvar's rank changes on {ch['spearman']} of {len(R)} tasks (Spearman) and {ch['auc']} (AUC).")
+        if "sement" in PG:
+            PGf = [m for m in PG if m != "sement"]
+            J["loh_rank_full"] = {}
+            for t, r in R.items():
+                for metric in ("spearman", "auc"):
+                    lk = order(r["leaky"], metric, PGf)
+                    lfm = {m: {metric: statistics.mean(x[m][metric] for x in r["leakfree"])} for m in PGf}
+                    J["loh_rank_full"].setdefault(metric, {})[t] = [lk.index("lohsvar") + 1, order(lfm, metric, PGf).index("lohsvar") + 1]
+            chf = {m: sum(v[0] != v[1] for v in J["loh_rank_full"][m].values()) for m in ("spearman", "auc")}
+            L.append(f"On all inputs without Sem-Ent ({', '.join(NAMES[m] for m in PGf)}), LOHSvar's rank changes on "
+                     f"{chf['spearman']} of {len(R)} tasks (Spearman) and {chf['auc']} (AUC): " + "; ".join(
+                         f"{ALIAS[t]} {v[0]}->{v[1]}" for t, v in J["loh_rank_full"]["spearman"].items() if v[0] != v[1]) + ".")
     L.append("\nOutput entropy = entropy of the parsed answers (task labeler) over the samples; it is not the stored "
              "`answer_level_entropy` (present for some tasks only; Spearman with ours: "
              + ", ".join(f"{ALIAS[t]} {r['ae_check']:.2f}" for t, r in R.items() if not math.isnan(r['ae_check']))
@@ -246,6 +277,13 @@ def main():
     for t in TASKS:
         D = load_task(root, t)
         r = evaluate(D)
+        if D.get("V") is not None:          # G: every method on the Sem-Ent subset (same inputs)
+            k = D["se_idx"]
+            Ds = {"P": D["P"][k], "ans": [D["ans"][i] for i in k], "lp": D["lp"][k], "te": D["te"][k],
+                  "stored_ae": D["stored_ae"][k], "mdsa": D["mdsa"][k], "Dloh": None if D["Dloh"] is None else D["Dloh"][k],
+                  "V": D["V"], "se_idx": np.arange(len(k)), "mdsa_cfg": D["mdsa_cfg"]}
+            r["sub"] = evaluate(Ds)
+            r["sub"]["n"] = int(len(k))
         ae = np.array([entropy(x) for x in D["ans"]])
         r["ae_check"] = spearman(D["stored_ae"], ae) if not np.isnan(D["stored_ae"]).all() else float("nan")
         r["n"] = int(len(D["P"]))

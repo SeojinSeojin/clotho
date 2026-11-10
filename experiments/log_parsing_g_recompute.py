@@ -191,6 +191,22 @@ def cmd_loh(a):
                 push([p], f"G LOHSvar {task} {ds}")
 
 
+SE_PER_TASK, SE_SEED = 1500, 7
+
+
+def se_subset(task):
+    """Seeded Sem-Ent subset: SE_PER_TASK inputs per task, split over its suites in proportion to size."""
+    sizes = {ds: len(json.load(open(Path.home() / ".cache/clotho_zenodo/x/data/results_llama" / task / "inference_results"
+                                   / "messages_template" / f"{ds}_R10_T0.8.json"))) for ds in E5.TASKS[task]}
+    tot = sum(sizes.values())
+    out, left = {}, SE_PER_TASK
+    for k, (ds, n) in enumerate(sizes.items()):
+        m = left if k == len(sizes) - 1 else round(SE_PER_TASK * n / tot)
+        left -= m
+        out[ds] = np.sort(np.random.RandomState(SE_SEED).choice(n, size=min(m, n), replace=False))
+    return out
+
+
 def cmd_se(a, chunk=256):
     """Upstream greedy clustering for every subset (all 10, and E5's score halves), stepped in lock-step over
     `chunk` inputs at a time: each round every unfinished (input, subset) takes its next representative and all
@@ -207,11 +223,13 @@ def cmd_se(a, chunk=256):
             if p.exists():
                 continue
             res = json.load(open(root / task / "inference_results" / "messages_template" / f"{ds}_R10_T0.8.json"))
-            V = np.full((len(res), 10, 10), -1, np.int8)
+            sub = se_subset(task)[ds]
+            V = np.full((len(sub), 10, 10), -1, np.int8)
+            row = {int(i): k for k, i in enumerate(sub)}
             t0 = time.time()
             n_pairs = 0
-            for c0 in range(0, len(res), chunk):
-                idx = list(range(c0, min(len(res), c0 + chunk)))
+            for c0 in range(0, len(sub), chunk):
+                idx = [int(i) for i in sub[c0:c0 + chunk]]
                 outs = {i: res[i]["inferences"] for i in idx}
                 memo = {i: {} for i in idx}
                 state = [(i, S, {j: -1 for j in S}, [0]) for i in idx for S in subsets]   # (input, subset, ids, [next id])
@@ -231,7 +249,7 @@ def cmd_se(a, chunk=256):
                     if not steps:
                         break
                     if reqs:
-                        keys = list(reqs)
+                        keys = sorted(reqs, key=lambda k: len(k[1][0]) + len(k[1][1]))     # length-sorted batches
                         strings = [x for _, q in keys for x in q]
                         pred = nli._classify([(2 * t, 2 * t + 1) for t in range(len(keys))], strings, bs=128)
                         for t, (i, q) in enumerate(keys):
@@ -240,16 +258,16 @@ def cmd_se(a, chunk=256):
                     for (i, S, ids, nxt), ii, js in steps:
                         ids[ii] = nxt[0]
                         for j in js:
-                            V[i, ii, j] = memo[i][(outs[i][ii], outs[i][j])]
-                            V[i, j, ii] = memo[i][(outs[i][j], outs[i][ii])]
-                            if V[i, ii, j] == 2 and V[i, j, ii] == 2:
+                            V[row[i], ii, j] = memo[i][(outs[i][ii], outs[i][j])]
+                            V[row[i], j, ii] = memo[i][(outs[i][j], outs[i][ii])]
+                            if V[row[i], ii, j] == 2 and V[row[i], j, ii] == 2:
                                 ids[j] = nxt[0]
                         nxt[0] += 1
-                if c0 % (chunk * 20) == 0:
-                    print(f"  {task}/{ds} {c0}/{len(res)} {time.time() - t0:.0f}s, {n_pairs} pairs", flush=True)
+                if c0 % (chunk * 2) == 0:
+                    print(f"  {task}/{ds} {c0}/{len(sub)} {time.time() - t0:.0f}s, {n_pairs} pairs", flush=True)
             p.parent.mkdir(parents=True, exist_ok=True)
-            np.savez_compressed(p, V=V, wall_s=time.time() - t0, n_pairs=n_pairs)
-            print(f"{task}/{ds}: {len(res)} inputs, {n_pairs} pairs, {time.time() - t0:.0f}s", flush=True)
+            np.savez_compressed(p, V=V, idx=sub, wall_s=time.time() - t0, n_pairs=n_pairs)
+            print(f"{task}/{ds}: {len(sub)} of {len(res)} inputs, {n_pairs} pairs, {time.time() - t0:.0f}s", flush=True)
             if a.push:
                 push([p], f"G Sem-Ent verdicts {task} {ds}")
             torch.cuda.empty_cache()
