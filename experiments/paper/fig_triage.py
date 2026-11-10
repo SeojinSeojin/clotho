@@ -13,6 +13,7 @@ import common as C  # noqa: E402
 
 NS = (0, 5, 10, 20, 50, 100)
 ORD = [("triage", "TRIAGE", C.COL["clotho"], "-", "o"),
+       ("dsize", "TRIAGE without active selection", C.COL["c+oe"], (0, (3, 1, 1, 1)), "P"),
        ("frequent", "Most frequent", C.COL["MDSA"], "--", "s"),
        ("llmlog", "LLMLog confidence x size", C.COL["lookup_drain"], "-.", "^"),
        ("clotho", "Clotho alone", C.COL["oe"], ":", "D"),
@@ -41,7 +42,7 @@ def main():
         a.set_xlabel("human reviews (one cached template each)")
     ax[0, 0].set_ylabel("parsing accuracy (all lines)")
     h, lab = ax[0, 0].get_legend_handles_labels()
-    fig.legend(h, lab, loc="upper center", ncol=6, frameon=False, bbox_to_anchor=(0.5, 1.08))
+    fig.legend(h, lab, loc="upper center", ncol=4, frameon=False, bbox_to_anchor=(0.5, 1.15))
     fig.tight_layout()
     out = C.PAPER / "figures" / "triage_reviews.pdf"
     fig.savefig(out)
@@ -52,7 +53,7 @@ def main():
               "line of each new group (rules\\_template, greedy) and the template is cached for the group. A review "
               "replaces one cached template with the group's correct template. Macro mean over systems, mean over 5 "
               "seeds (band: $\\pm$ std over seeds). TRIAGE: cross-system prior refit with verdicts, Clotho-style "
-              "uncertainty and diversity selection among the top-$M$ by risk $\\times$ lines; Oracle: wrong templates by "
+              "uncertainty and diversity selection among the top-$M$ by risk $\\times$ lines; without active selection: top risk $\\times$ lines; Oracle: wrong templates by "
               "lines they break.")
     print(out)
 

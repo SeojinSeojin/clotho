@@ -1,6 +1,6 @@
 # PROGRESS
 
-Last updated: 2026-11-09 (night, all tasks done). Trimmed on 2026-11-09: superseded results (Phase 2 random/layer-21 runs, old Phase 3 setup), finished estimates (Gemma, 2,000-input scaling) and resolved issues were removed; they are in git history (`git log -p PROGRESS.md`) and in the reports.
+Last updated: 2026-11-10 (TRIAGE E1-E5 done). Trimmed on 2026-11-09: superseded results (Phase 2 random/layer-21 runs, old Phase 3 setup), finished estimates (Gemma, 2,000-input scaling) and resolved issues were removed; they are in git history (`git log -p PROGRESS.md`) and in the reports.
 
 Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_parsing_paper_numbers.py`). Paper files: `experiments/paper/` (one script per table/figure, `results_outline.md`). Main setting **fair_leakfree** everywhere: balanced reference sampling (the paper's method), fair layer (Llama 16, Gemma 21), label from samples 5-9 (PASS if >= 3 of 5 strict template matches), post-generation scores from samples 0-4; rules_template prompt, strict match. Every number is mean ± std over 5 seeds of the per-seed macro mean over systems (Llama 13 systems, Gemma 12).
 
@@ -26,6 +26,11 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 13. Paper artefacts: `table_literature.py`, `fig_budget.py`, `fig_transfer.py`; figure 3 now has a Gemma row. `results_outline.md` rewritten (492 words, six claims).
 14. Gemma label noise (40 extra samples): replicates Llama. More than 92% of the reliable variance lies between templates on 10 of 12 systems; within-template Clotho 0.558 -> 0.594 against the clean label (ceiling 0.727), MDSA flat.
 
+**2026-11-10 (TRIAGE, cached-parser simulation; reports `triage.md`, `triage_details.md`, `e5_leakage.md`; paper_numbers sections 16-17).**
+15. Cached parser (first 50,000 lines, Drain LH2, LLM on each group's first line): PA_0 0.321 Llama / 0.364 Gemma; on average 59% / 54% of groups wrong. Share of mis-parsed lines fixed after 20 reviews: Oracle 0.878 / 0.863, Most frequent 0.861 / 0.833, prior x size (TRIAGE without active selection) 0.851 / 0.814, LLMLog x size 0.845 / 0.796, TRIAGE 0.707 / 0.719 (0.80 / 0.83 of oracle; below Most frequent on 5/5 seeds), Clotho alone 0.36 / 0.31, Random 0.32 / 0.25. AdaParser auto-correction: PA_0 +0.022 / +0.045 only.
+16. Ablation: propagation and frequency weighting carry the method (-0.58 / -0.61, -0.39 / -0.44); removing active selection (+0.144 / +0.095) or the prior (+0.129 / +0.059) helps. Cold start: prior x size wins only review 1. Drift: no consistent advantage. Active + lookup = prior x size (coarse families rarely share groups).
+17. E5 (Llama, 8 Clotho tasks, Zenodo data): Spearman leak-free minus leaky Tok-Prob -0.024, Tok-Ent -0.021 (paper uses one sample), output entropy -0.151, MDSA control -0.011; best method changes on 1 of 8 tasks, 1/48 (Spearman) and 4/48 (AUC) comparisons flip. LOHSvar / Sem-Ent not rescorable without recomputation (LOHSvar ~3.5-5 GPU h).
+
 ## Main table (Llama, fair_leakfree, 13 systems)
 
 `experiments/reports/log_parsing_phase3_final.md` (`log_parsing_phase3_final.py`). Reference size includes the 10 initial tests.
@@ -50,12 +55,13 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation methods shift +0.024 / +0.021 (noisier 5-sample label); net of that, output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
 
 ## In progress
-- TRIAGE / E1-E5 (2026-11-10): protocol in Decisions; running.
+- Nothing running.
 
 ## Next
 - Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.
 - Paper: after any rerun, regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` (matplotlib in `.venv`). No LaTeX on the server, so the `.tex` files are not compiled (booktabs and `\includegraphics` only).
-- Optional, not done: Gemma messages_template and qualitative examples; disjoint-split version of figure 1 for Gemma; LLMLog with template-word-only token probabilities.
+- TRIAGE data: `data/stream/`, `data/stream_gen/<model>/`, `data/stream_hidden/<model>/` are in RESULTS_REPO (gitignored); raw Loghub zips are re-downloaded to `~/.cache/loghub2` by `log_parsing_stream.py prep` only if `data/stream/` is missing (the zips are needed for `prep` and the `_same.json` cache). Clotho Zenodo data for E5: download `data.tar.gz` (record 19693236, 1.3 GB) to its own directory, extract `data/results_llama`, pass `--data`. Disk is tight (~6 GB free with both models cached).
+- Optional, not done: E5 for Gemma; leak-free LOHSvar / Sem-Ent on the Clotho tasks (GPU); Gemma messages_template and qualitative examples; disjoint-split version of figure 1 for Gemma; LLMLog with template-word-only token probabilities.
 
 ## Decisions (still in force)
 

@@ -65,6 +65,8 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `experiments/log_parsing_llmlog.py`, `log_parsing_adaparser.py`, `log_parsing_literature.py` | 2026-11-09: LLMLog selection score and AdaParser corrector (official code, ported) and their evaluation (`eval`, `report`); corrector runs in `.venv-vllm` |
 | `experiments/log_parsing_transfer_paired.py`, `log_parsing_stats.py` | 2026-11-09 night: transfer on identical target inputs vs within-system Clotho; Scott-Knott ESD (Python) and A12 over the stored jobs |
 | `experiments/log_parsing_strategy.py`, `log_parsing_transfer.py` | 2026-11-09: fixed-budget testing strategies (Drain-propagate vs Clotho); leave-one-system-out transfer (`tune`, `eval`, `report`) |
+| `experiments/triage/`, `log_parsing_stream.py`, `log_parsing_stream_gen.py`, `log_parsing_stream_hidden.py`, `log_parsing_triage.py`, `log_parsing_triage_report.py` | 2026-11-10: TRIAGE module (prior, review queue) and the cached-parser simulation: stream prep (Drain with short-message fix), LLM calls per first line (vLLM, greedy + 10 samples + AdaParser), hidden states, E1-E4 (`tune`, `run`, `report`) |
+| `experiments/log_parsing_e5_leakage.py` | E5: leak-free rescoring of the paper's post-generation baselines on the original Clotho tasks (Zenodo data, `--data`) |
 | `experiments/model_cfg.py` | Model switch for the log_parsing scripts: `CLOTHO_MODEL=llama|gemma` (HF id, layers, dropped systems); non-Llama outputs in `results_phase3_<model>/`, `reports/*_<model>.md` |
 | `experiments/log_parsing_pass_rates.py` | PASS rates per system for the current model and the 10-90% drop rule |
 | `experiments/log_parsing_paper_numbers.py` | Builds `reports/paper_numbers.md`, the single source of numbers for the paper |
