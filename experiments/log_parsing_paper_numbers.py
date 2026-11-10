@@ -22,6 +22,10 @@ MAIN = ["clotho", "MDSA", "GMMb", "SLL", "tok_prob", "tok_ent", "sem_ent", "loh_
         "lookup_drain", "lookup_drain_default", "lookup_oracle", "hybrid", "random"]
 
 READ = {
+    "transfer": ("Reading (held-out targets): pooled-source Clotho stays at 0.44-0.66; per-system normalisation and CORAL "
+                 "do not help; a logistic probe on source labels reaches 0.67-0.71 without target labels; refitting the "
+                 "best source model with 25-50 target labels matches within-system Clotho @100 (not paired). Generic "
+                 "log features alone reach 0.62-0.68."),
     "literature": ("Reading: LLMLog's selection score ranks failures below Clotho on every seed for both models and suites "
                    "(0.620-0.720 vs 0.749-0.880 @100), almost entirely through its confidence part; its representativeness "
                    "part is at chance. AdaParser's corrector fixes 5.9-15.6% of failing inputs and breaks 97-219 passing "
