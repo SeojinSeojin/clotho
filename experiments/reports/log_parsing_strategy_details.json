@@ -1,0 +1,448 @@
+{
+ "llama/natural": {
+  "systems": [
+   "Apache",
+   "BGL",
+   "Hadoop",
+   "HDFS",
+   "HealthApp",
+   "HPC",
+   "Linux",
+   "Mac",
+   "OpenSSH",
+   "OpenStack",
+   "Spark",
+   "Thunderbird",
+   "Zookeeper"
+  ],
+  "skipped": {},
+  "total_failures": 4221,
+  "found": {
+   "50": {
+    "random": {
+     "mean": 841.2,
+     "seeds": [
+      845,
+      834,
+      848,
+      845,
+      834
+     ],
+     "per_check": 0.6470769230769231,
+     "covered": 0.8475254301391446
+    },
+    "clotho": {
+     "mean": 1053.4,
+     "seeds": [
+      1051,
+      1056,
+      1054,
+      1043,
+      1063
+     ],
+     "per_check": 0.8103076923076923,
+     "covered": 0.8733074043466528
+    },
+    "drain_clotho": {
+     "mean": 1006.6,
+     "seeds": [
+      1003,
+      1012,
+      1002,
+      998,
+      1018
+     ],
+     "per_check": 0.7743076923076923,
+     "covered": 0.9516456739193039
+    },
+    "drain_random": {
+     "mean": 989.2,
+     "seeds": [
+      980,
+      998,
+      989,
+      996,
+      983
+     ],
+     "per_check": 0.7609230769230769,
+     "covered": 0.9516456739193039
+    }
+   },
+   "100": {
+    "random": {
+     "mean": 1690,
+     "seeds": [
+      1706,
+      1667,
+      1698,
+      1687,
+      1692
+     ],
+     "per_check": 0.65,
+     "covered": 0.910233727494878
+    },
+    "clotho": {
+     "mean": 2047.2,
+     "seeds": [
+      2063,
+      2046,
+      2029,
+      2045,
+      2053
+     ],
+     "per_check": 0.7873846153846153,
+     "covered": 0.9370369481191693
+    },
+    "drain_clotho": {
+     "mean": 1983.4,
+     "seeds": [
+      2000,
+      1953,
+      1999,
+      1974,
+      1991
+     ],
+     "per_check": 0.7628461538461538,
+     "covered": 0.9866130286245527
+    },
+    "drain_random": {
+     "mean": 1936.4,
+     "seeds": [
+      1926,
+      1949,
+      1940,
+      1930,
+      1937
+     ],
+     "per_check": 0.7447692307692307,
+     "covered": 0.9866130286245527
+    }
+   },
+   "200": {
+    "random": {
+     "mean": 3385.6,
+     "seeds": [
+      3393,
+      3377,
+      3397,
+      3370,
+      3391
+     ],
+     "per_check": 0.6510769230769231,
+     "covered": 0.9500594154692735
+    },
+    "clotho": {
+     "mean": 3780.6,
+     "seeds": [
+      3785,
+      3800,
+      3768,
+      3779,
+      3771
+     ],
+     "per_check": 0.7270384615384615,
+     "covered": 0.9841447626292295
+    },
+    "drain_clotho": {
+     "mean": 3719.8,
+     "seeds": [
+      3710,
+      3716,
+      3740,
+      3714,
+      3719
+     ],
+     "per_check": 0.7153461538461539,
+     "covered": 1.0
+    },
+    "drain_random": {
+     "mean": 3690,
+     "seeds": [
+      3696,
+      3673,
+      3710,
+      3689,
+      3682
+     ],
+     "per_check": 0.7096153846153846,
+     "covered": 1.0
+    }
+   }
+  },
+  "inherit_wrong": {
+   "50": 0.08828356767531569,
+   "100": 0.08273525729810356,
+   "200": 0.08548717948717949
+  },
+  "diff": {
+   "drain_clotho-clotho@50": {
+    "mean": -46.8,
+    "std": 3.271085446759225,
+    "every_seed": true
+   },
+   "drain_clotho-drain_random@50": {
+    "mean": 17.4,
+    "std": 12.340988615179905,
+    "every_seed": true
+   },
+   "clotho-random@50": {
+    "mean": 212.2,
+    "std": 12.814054783713077,
+    "every_seed": true
+   },
+   "drain_clotho-clotho@100": {
+    "mean": -63.8,
+    "std": 22.64287967551831,
+    "every_seed": true
+   },
+   "drain_clotho-drain_random@100": {
+    "mean": 47,
+    "std": 26.362852652928137,
+    "every_seed": true
+   },
+   "clotho-random@100": {
+    "mean": 357.2,
+    "std": 17.15225932639779,
+    "every_seed": true
+   },
+   "drain_clotho-clotho@200": {
+    "mean": -60.8,
+    "std": 21.85634919193963,
+    "every_seed": true
+   },
+   "drain_clotho-drain_random@200": {
+    "mean": 29.8,
+    "std": 11.166915420114902,
+    "every_seed": true
+   },
+   "clotho-random@200": {
+    "mean": 395,
+    "std": 21.15419580130618,
+    "every_seed": true
+   }
+  }
+ },
+ "llama/capped": {
+  "systems": [
+   "apache",
+   "bgl",
+   "hadoop",
+   "hdfs",
+   "healthapp",
+   "hpc",
+   "linux",
+   "mac",
+   "openssh",
+   "openstack",
+   "spark",
+   "thunderbird",
+   "zookeeper"
+  ],
+  "skipped": {},
+  "total_failures": 4354,
+  "found": {
+   "50": {
+    "random": {
+     "mean": 867.2,
+     "seeds": [
+      885,
+      855,
+      853,
+      874,
+      869
+     ],
+     "per_check": 0.6670769230769231,
+     "covered": 0.4379887719594154
+    },
+    "clotho": {
+     "mean": 1056.4,
+     "seeds": [
+      1050,
+      1062,
+      1072,
+      1052,
+      1046
+     ],
+     "per_check": 0.8126153846153846,
+     "covered": 0.4300610541891098
+    },
+    "drain_clotho": {
+     "mean": 1054.6,
+     "seeds": [
+      1054,
+      1063,
+      1065,
+      1049,
+      1042
+     ],
+     "per_check": 0.8112307692307692,
+     "covered": 0.5791275708854703
+    },
+    "drain_random": {
+     "mean": 1000.8,
+     "seeds": [
+      995,
+      1001,
+      1013,
+      1009,
+      986
+     ],
+     "per_check": 0.7698461538461538,
+     "covered": 0.5791275708854703
+    }
+   },
+   "100": {
+    "random": {
+     "mean": 1737.8,
+     "seeds": [
+      1755,
+      1746,
+      1726,
+      1750,
+      1712
+     ],
+     "per_check": 0.6683846153846154,
+     "covered": 0.5802977317025817
+    },
+    "clotho": {
+     "mean": 2098.6,
+     "seeds": [
+      2082,
+      2089,
+      2132,
+      2095,
+      2095
+     ],
+     "per_check": 0.8071538461538461,
+     "covered": 0.5888757304314857
+    },
+    "drain_clotho": {
+     "mean": 2048.6,
+     "seeds": [
+      2046,
+      2041,
+      2052,
+      2054,
+      2050
+     ],
+     "per_check": 0.787923076923077,
+     "covered": 0.68526964208318
+    },
+    "drain_random": {
+     "mean": 1943.2,
+     "seeds": [
+      1930,
+      1927,
+      1939,
+      1974,
+      1946
+     ],
+     "per_check": 0.7473846153846154,
+     "covered": 0.68526964208318
+    }
+   },
+   "200": {
+    "random": {
+     "mean": 3489.8,
+     "seeds": [
+      3503,
+      3475,
+      3500,
+      3487,
+      3484
+     ],
+     "per_check": 0.6711153846153847,
+     "covered": 0.7415012240827439
+    },
+    "clotho": {
+     "mean": 3836.4,
+     "seeds": [
+      3820,
+      3846,
+      3842,
+      3817,
+      3857
+     ],
+     "per_check": 0.7377692307692307,
+     "covered": 0.7615852657196885
+    },
+    "drain_clotho": {
+     "mean": 3842.2,
+     "seeds": [
+      3849,
+      3852,
+      3857,
+      3846,
+      3807
+     ],
+     "per_check": 0.7388846153846154,
+     "covered": 0.8281765562776363
+    },
+    "drain_random": {
+     "mean": 3776,
+     "seeds": [
+      3773,
+      3781,
+      3792,
+      3768,
+      3766
+     ],
+     "per_check": 0.7261538461538461,
+     "covered": 0.8281765562776363
+    }
+   }
+  },
+  "inherit_wrong": {
+   "50": 0.15238183935861643,
+   "100": 0.15455332808104036,
+   "200": 0.14247994670941644
+  },
+  "diff": {
+   "drain_clotho-clotho@50": {
+    "mean": -1.8,
+    "std": 4.324349662087931,
+    "every_seed": false
+   },
+   "drain_clotho-drain_random@50": {
+    "mean": 53.8,
+    "std": 8.555699854482976,
+    "every_seed": true
+   },
+   "clotho-random@50": {
+    "mean": 189.2,
+    "std": 22.720035211240322,
+    "every_seed": true
+   },
+   "drain_clotho-clotho@100": {
+    "mean": -50,
+    "std": 17.363755354185336,
+    "every_seed": true
+   },
+   "drain_clotho-drain_random@100": {
+    "mean": 105.4,
+    "std": 14.926486525636232,
+    "every_seed": true
+   },
+   "clotho-random@100": {
+    "mean": 360.8,
+    "std": 32.57606483294138,
+    "every_seed": true
+   },
+   "drain_clotho-clotho@200": {
+    "mean": 5.8,
+    "std": 32.69097734849786,
+    "every_seed": false
+   },
+   "drain_clotho-drain_random@200": {
+    "mean": 66.2,
+    "std": 14.956603892595403,
+    "every_seed": true
+   },
+   "clotho-random@200": {
+    "mean": 346.6,
+    "std": 24.825390228554312,
+    "every_seed": true
+   }
+  }
+ }
+}

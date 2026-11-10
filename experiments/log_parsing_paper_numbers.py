@@ -181,6 +181,21 @@ def build():
            "`table_cross.py`. Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`. "
            "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
            "`paper/results_outline.md`.\n"]
+    for n, key, title, name, script, until in (
+            (11, "literature", "Literature baselines: LLMLog selection score (A), AdaParser corrector (B)",
+             "log_parsing_literature_details.md", "log_parsing_literature.py", "## Deviations"),
+            (12, "strategy", "Testing strategies at a fixed labelling budget (C)",
+             "log_parsing_strategy_details.md", "log_parsing_strategy.py", None)):
+        p = REP / name
+        if not p.exists():
+            continue
+        lines = p.read_text().splitlines()
+        i = next(k for k, l in enumerate(lines) if l.startswith("## "))
+        j = next((k for k, l in enumerate(lines) if until and l.startswith(until)), len(lines))
+        L_ += [f"## {n}. {title}\n", f"Copied from `reports/{name}` (`{script} report`; protocol in the script "
+               "docstring" + ("; deviations from the original methods are listed at the end of that report" if until else "")
+               + "). Setting fair_leakfree, standard split, 5 seeds.\n"]
+        L_ += [("#" + l) if l.startswith("#") else l for l in lines[i:j]] + [READ.get(key, ""), ""]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",
            "- Per-system tables, Drain grouping accuracy, hybrid coverage: `reports/log_parsing_phase3_final.md`.",
