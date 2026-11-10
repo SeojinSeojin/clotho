@@ -22,6 +22,15 @@ MAIN = ["clotho", "MDSA", "GMMb", "SLL", "tok_prob", "tok_ent", "sem_ent", "loh_
         "lookup_drain", "lookup_drain_default", "lookup_oracle", "hybrid", "random"]
 
 READ = {
+    "literature": ("Reading: LLMLog's selection score ranks failures below Clotho on every seed for both models and suites "
+                   "(0.620-0.720 vs 0.749-0.880 @100), almost entirely through its confidence part; its representativeness "
+                   "part is at chance. AdaParser's corrector fixes 5.9-15.6% of failing inputs and breaks 97-219 passing "
+                   "ones; against the corrected label Clotho keeps or raises its AUC, and the failures in its top 10% are "
+                   "the least fixable (2.1-4.9% fixed vs 6.0-15.3% of all test failures)."),
+    "strategy": ("Reading: on the natural suites Clotho alone finds the most failures at every budget, both models, every "
+                 "seed (Drain-propagate + Clotho 26-64 fewer); on the capped suites the two tie except Gemma at B = 200 "
+                 "(+32). Clotho adds 17-108 failures to Drain-propagate on every seed; inherited group labels are wrong "
+                 "for 8-16% of inputs."),
     "main": ("Reading: on the standard split Clotho (0.749 / 0.794) beats every other pre-generation method and every "
              "lookup; leakage-free output entropy ties or beats it (0.792 / 0.794), and the rank average of the two is "
              "the best score (0.826 / 0.845). On the template-disjoint split every lookup is at chance, Clotho and MDSA "
@@ -185,7 +194,9 @@ def build():
             (11, "literature", "Literature baselines: LLMLog selection score (A), AdaParser corrector (B)",
              "log_parsing_literature_details.md", "log_parsing_literature.py", "## Deviations"),
             (12, "strategy", "Testing strategies at a fixed labelling budget (C)",
-             "log_parsing_strategy_details.md", "log_parsing_strategy.py", None)):
+             "log_parsing_strategy_details.md", "log_parsing_strategy.py", None),
+            (13, "transfer", "Cross-system transfer, leave-one-system-out (D)",
+             "log_parsing_transfer_details.md", "log_parsing_transfer.py", None)):
         p = REP / name
         if not p.exists():
             continue
