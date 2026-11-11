@@ -6698,6 +6698,714 @@ R2 gemma/strong: 1 oracle solutions not certified optimal (inspect job solver st
 | U+V5-zero | 0.718 ± 0.006 | -0.059 ± 0.018 | 0/5 | 2 | 0.327 | 10 |
 | D-zero | 0.676 ± 0.008 | -0.101 ± 0.012 | 0/5 | 2 | 0.228 | 10 |
 
+### R3 llama/base/all/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.080 ± 0.000 | 0.031 ± 0.000 | 5/5 | 1 | 0.616 | 11 |
+| U-zero x size | 0.058 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.545 | 11 |
+| U+V5-zero risk | 0.076 ± 0.000 | 0.026 ± 0.000 | 5/5 | 1 | 0.595 | 11 |
+| U+V5-zero x size | 0.059 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.550 | 11 |
+| frequent | 0.049 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.050 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.506 | 11 |
+
+### R3 llama/base/all/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.366 ± 0.000 | 0.008 ± 0.000 | 5/5 | 1 | 0.529 | 11 |
+| U-zero x size | 0.361 ± 0.000 | 0.002 ± 0.000 | 5/5 | 1 | 0.529 | 11 |
+| U+V5-zero risk | 0.361 ± 0.000 | 0.002 ± 0.000 | 5/5 | 1 | 0.512 | 11 |
+| U+V5-zero x size | 0.361 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.533 | 11 |
+| frequent | 0.359 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.354 ± 0.000 | -0.005 ± 0.000 | 0/5 | 1 | 0.481 | 11 |
+
+### R3 llama/base/all/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.037 ± 0.000 | -0.676 ± 0.000 | 0/5 | 2 | 0.008 | 11 |
+| U-zero x size | 0.699 ± 0.000 | -0.014 ± 0.000 | 0/5 | 1 | 0.492 | 11 |
+| U+V5-zero risk | 0.014 ± 0.000 | -0.699 ± 0.000 | 0/5 | 2 | 0.000 | 11 |
+| U+V5-zero x size | 0.702 ± 0.000 | -0.011 ± 0.000 | 0/5 | 1 | 0.508 | 11 |
+| frequent | 0.713 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.665 ± 0.007 | -0.047 ± 0.007 | 0/5 | 1 | 0.440 | 11 |
+
+### R3 llama/base/all/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.165 ± 0.000 | 0.068 ± 0.000 | 5/5 | 1 | 0.620 | 11 |
+| U-zero x size | 0.110 ± 0.000 | 0.013 ± 0.000 | 5/5 | 2 | 0.525 | 11 |
+| U+V5-zero risk | 0.163 ± 0.000 | 0.066 ± 0.000 | 5/5 | 1 | 0.620 | 11 |
+| U+V5-zero x size | 0.113 ± 0.000 | 0.016 ± 0.000 | 5/5 | 2 | 0.529 | 11 |
+| frequent | 0.097 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 11 |
+| dsize | 0.105 ± 0.002 | 0.008 ± 0.002 | 5/5 | 2 | 0.521 | 11 |
+
+### R3 llama/base/all/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.414 ± 0.000 | 0.023 ± 0.000 | 5/5 | 1 | 0.558 | 11 |
+| U-zero x size | 0.405 ± 0.000 | 0.015 ± 0.000 | 5/5 | 1 | 0.537 | 11 |
+| U+V5-zero risk | 0.410 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.521 | 11 |
+| U+V5-zero x size | 0.405 ± 0.000 | 0.014 ± 0.000 | 5/5 | 1 | 0.541 | 11 |
+| frequent | 0.391 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.399 ± 0.002 | 0.009 ± 0.002 | 5/5 | 1 | 0.535 | 11 |
+
+### R3 llama/base/all/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.050 ± 0.000 | -0.727 ± 0.000 | 0/5 | 2 | 0.000 | 11 |
+| U-zero x size | 0.778 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.521 | 11 |
+| U+V5-zero risk | 0.084 ± 0.000 | -0.693 ± 0.000 | 0/5 | 2 | 0.008 | 11 |
+| U+V5-zero x size | 0.775 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.521 | 11 |
+| frequent | 0.777 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.770 ± 0.019 | -0.007 ± 0.019 | 2/5 | 1 | 0.513 | 11 |
+
+### R3 llama/base/all/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.296 ± 0.000 | 0.108 ± 0.000 | 5/5 | 1 | 0.603 | 11 |
+| U-zero x size | 0.221 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.545 | 11 |
+| U+V5-zero risk | 0.287 ± 0.000 | 0.099 ± 0.000 | 5/5 | 1 | 0.603 | 11 |
+| U+V5-zero x size | 0.221 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.550 | 11 |
+| frequent | 0.189 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.217 ± 0.003 | 0.029 ± 0.003 | 5/5 | 1 | 0.533 | 11 |
+
+### R3 llama/base/all/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.479 ± 0.000 | 0.010 ± 0.000 | 5/5 | 1 | 0.521 | 11 |
+| U-zero x size | 0.487 ± 0.000 | 0.017 ± 0.000 | 5/5 | 1 | 0.550 | 11 |
+| U+V5-zero risk | 0.473 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.504 | 11 |
+| U+V5-zero x size | 0.487 ± 0.000 | 0.018 ± 0.000 | 5/5 | 1 | 0.554 | 11 |
+| frequent | 0.470 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.483 ± 0.003 | 0.013 ± 0.003 | 5/5 | 1 | 0.531 | 11 |
+
+### R3 llama/base/all/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.158 ± 0.000 | -0.677 ± 0.000 | 0/5 | 2 | 0.025 | 11 |
+| U-zero x size | 0.836 ± 0.000 | 0.000 ± 0.000 | 5/5 | 1 | 0.512 | 11 |
+| U+V5-zero risk | 0.159 ± 0.000 | -0.676 ± 0.000 | 0/5 | 2 | 0.025 | 11 |
+| U+V5-zero x size | 0.837 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.521 | 11 |
+| frequent | 0.836 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.824 ± 0.016 | -0.011 ± 0.016 | 2/5 | 1 | 0.515 | 11 |
+
+### R3 llama/base/all/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.469 ± 0.000 | 0.079 ± 0.000 | 5/5 | 1 | 0.566 | 11 |
+| U-zero x size | 0.418 ± 0.000 | 0.027 ± 0.000 | 5/5 | 1 | 0.541 | 11 |
+| U+V5-zero risk | 0.474 ± 0.000 | 0.083 ± 0.000 | 5/5 | 1 | 0.579 | 11 |
+| U+V5-zero x size | 0.419 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.541 | 11 |
+| frequent | 0.391 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.408 ± 0.002 | 0.017 ± 0.002 | 5/5 | 1 | 0.538 | 11 |
+
+### R3 llama/base/all/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.597 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.512 | 11 |
+| U-zero x size | 0.604 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.550 | 11 |
+| U+V5-zero risk | 0.596 ± 0.000 | 0.012 ± 0.000 | 5/5 | 1 | 0.508 | 11 |
+| U+V5-zero x size | 0.604 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.533 | 11 |
+| frequent | 0.584 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.597 ± 0.002 | 0.013 ± 0.002 | 5/5 | 1 | 0.537 | 11 |
+
+### R3 llama/base/all/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.393 ± 0.000 | -0.493 ± 0.000 | 0/5 | 2 | 0.306 | 11 |
+| U-zero x size | 0.881 ± 0.000 | -0.004 ± 0.000 | 0/5 | 1 | 0.492 | 11 |
+| U+V5-zero risk | 0.438 ± 0.000 | -0.448 ± 0.000 | 0/5 | 2 | 0.310 | 11 |
+| U+V5-zero x size | 0.882 ± 0.000 | -0.004 ± 0.000 | 0/5 | 1 | 0.508 | 11 |
+| frequent | 0.886 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.887 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.528 | 11 |
+
+### R3 llama/base/held-out/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.091 ± 0.000 | 0.036 ± 0.000 | 5/5 | 1 | 0.636 | 9 |
+| U-zero x size | 0.065 ± 0.000 | 0.010 ± 0.000 | 5/5 | 2 | 0.549 | 9 |
+| U+V5-zero risk | 0.086 ± 0.000 | 0.031 ± 0.000 | 5/5 | 1 | 0.605 | 9 |
+| U+V5-zero x size | 0.065 ± 0.000 | 0.010 ± 0.000 | 5/5 | 2 | 0.556 | 9 |
+| frequent | 0.055 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.055 ± 0.000 | 0.000 ± 0.000 | 5/5 | 2 | 0.502 | 9 |
+
+### R3 llama/base/held-out/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.382 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.531 | 9 |
+| U-zero x size | 0.376 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.543 | 9 |
+| U+V5-zero risk | 0.376 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+| U+V5-zero x size | 0.376 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+| frequent | 0.373 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.367 ± 0.001 | -0.006 ± 0.001 | 0/5 | 1 | 0.472 | 9 |
+
+### R3 llama/base/held-out/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.045 ± 0.000 | -0.637 ± 0.000 | 0/5 | 2 | 0.012 | 9 |
+| U-zero x size | 0.664 ± 0.000 | -0.017 ± 0.000 | 0/5 | 1 | 0.481 | 9 |
+| U+V5-zero risk | 0.017 ± 0.000 | -0.665 ± 0.000 | 0/5 | 2 | 0.000 | 9 |
+| U+V5-zero x size | 0.668 ± 0.000 | -0.013 ± 0.000 | 0/5 | 1 | 0.506 | 9 |
+| frequent | 0.681 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.623 ± 0.009 | -0.058 ± 0.009 | 0/5 | 1 | 0.416 | 9 |
+
+### R3 llama/base/held-out/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.187 ± 0.000 | 0.081 ± 0.000 | 5/5 | 1 | 0.642 | 9 |
+| U-zero x size | 0.122 ± 0.000 | 0.016 ± 0.000 | 5/5 | 2 | 0.531 | 9 |
+| U+V5-zero risk | 0.185 ± 0.000 | 0.078 ± 0.000 | 5/5 | 1 | 0.642 | 9 |
+| U+V5-zero x size | 0.124 ± 0.000 | 0.018 ± 0.000 | 5/5 | 2 | 0.531 | 9 |
+| frequent | 0.106 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.115 ± 0.003 | 0.009 ± 0.003 | 5/5 | 2 | 0.519 | 9 |
+
+### R3 llama/base/held-out/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.436 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.574 | 9 |
+| U-zero x size | 0.426 ± 0.000 | 0.018 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+| U+V5-zero risk | 0.433 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.531 | 9 |
+| U+V5-zero x size | 0.424 ± 0.000 | 0.016 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+| frequent | 0.408 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.418 ± 0.003 | 0.010 ± 0.003 | 5/5 | 1 | 0.541 | 9 |
+
+### R3 llama/base/held-out/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.059 ± 0.000 | -0.693 ± 0.000 | 0/5 | 2 | 0.000 | 9 |
+| U-zero x size | 0.752 ± 0.000 | -0.000 ± 0.000 | 0/5 | 1 | 0.531 | 9 |
+| U+V5-zero risk | 0.101 ± 0.000 | -0.651 ± 0.000 | 0/5 | 2 | 0.012 | 9 |
+| U+V5-zero x size | 0.748 ± 0.000 | -0.004 ± 0.000 | 0/5 | 1 | 0.519 | 9 |
+| frequent | 0.752 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.743 ± 0.023 | -0.009 ± 0.023 | 2/5 | 1 | 0.511 | 9 |
+
+### R3 llama/base/held-out/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.333 ± 0.000 | 0.125 ± 0.000 | 5/5 | 1 | 0.617 | 9 |
+| U-zero x size | 0.246 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.562 | 9 |
+| U+V5-zero risk | 0.322 ± 0.000 | 0.114 ± 0.000 | 5/5 | 1 | 0.617 | 9 |
+| U+V5-zero x size | 0.246 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.562 | 9 |
+| frequent | 0.209 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.241 ± 0.004 | 0.032 ± 0.004 | 5/5 | 1 | 0.543 | 9 |
+
+### R3 llama/base/held-out/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.507 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+| U-zero x size | 0.518 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.568 | 9 |
+| U+V5-zero risk | 0.501 ± 0.000 | 0.002 ± 0.000 | 5/5 | 1 | 0.494 | 9 |
+| U+V5-zero x size | 0.518 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.568 | 9 |
+| frequent | 0.499 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.512 ± 0.003 | 0.014 ± 0.003 | 5/5 | 1 | 0.541 | 9 |
+
+### R3 llama/base/held-out/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.191 ± 0.000 | -0.627 ± 0.000 | 0/5 | 2 | 0.037 | 9 |
+| U-zero x size | 0.818 ± 0.000 | 0.000 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+| U+V5-zero risk | 0.192 ± 0.000 | -0.626 ± 0.000 | 0/5 | 2 | 0.037 | 9 |
+| U+V5-zero x size | 0.819 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+| frequent | 0.818 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.804 ± 0.019 | -0.014 ± 0.019 | 1/5 | 1 | 0.522 | 9 |
+
+### R3 llama/base/held-out/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.502 ± 0.000 | 0.072 ± 0.000 | 5/5 | 1 | 0.562 | 9 |
+| U-zero x size | 0.455 ± 0.000 | 0.025 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+| U+V5-zero risk | 0.508 ± 0.000 | 0.078 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+| U+V5-zero x size | 0.454 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+| frequent | 0.430 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.446 ± 0.001 | 0.016 ± 0.001 | 5/5 | 1 | 0.544 | 9 |
+
+### R3 llama/base/held-out/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.622 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.481 | 9 |
+| U-zero x size | 0.639 ± 0.000 | 0.018 ± 0.000 | 5/5 | 1 | 0.537 | 9 |
+| U+V5-zero risk | 0.622 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.488 | 9 |
+| U+V5-zero x size | 0.637 ± 0.000 | 0.016 ± 0.000 | 5/5 | 1 | 0.525 | 9 |
+| frequent | 0.621 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.634 ± 0.002 | 0.013 ± 0.002 | 5/5 | 1 | 0.538 | 9 |
+
+### R3 llama/base/held-out/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.473 ± 0.000 | -0.400 ± 0.000 | 0/5 | 2 | 0.358 | 9 |
+| U-zero x size | 0.869 ± 0.000 | -0.005 ± 0.000 | 0/5 | 1 | 0.488 | 9 |
+| U+V5-zero risk | 0.478 ± 0.000 | -0.396 ± 0.000 | 0/5 | 2 | 0.364 | 9 |
+| U+V5-zero x size | 0.869 ± 0.000 | -0.005 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| frequent | 0.874 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.875 ± 0.001 | 0.001 ± 0.001 | 5/5 | 1 | 0.530 | 9 |
+
+### llama/base/gate/U-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.064 ± 0.000 | -0.003 ± 0.008 | 3/5 | 1 | 0.507 | 11 |
+| D gate | 0.066 ± 0.008 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+
+R3 llama/base/U-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 41.364 ± 0.000 |
+| precision | 0.870 ± 0.000 |
+| share | 0.064 ± 0.000 |
+
+### llama/base/gate/U-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.084 ± 0.000 | -0.023 ± 0.013 | 0/5 | 1 | 0.477 | 11 |
+| D gate | 0.107 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+
+R3 llama/base/U-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 88.636 ± 0.000 |
+| precision | 0.933 ± 0.000 |
+| share | 0.084 ± 0.000 |
+
+### llama/base/gate/U-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.218 ± 0.000 | 0.037 ± 0.021 | 5/5 | 1 | 0.608 | 11 |
+| D gate | 0.181 ± 0.021 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+
+R3 llama/base/U-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 161.273 ± 0.000 |
+| precision | 0.938 ± 0.000 |
+| share | 0.218 ± 0.000 |
+
+### llama/base/gate/U+V5-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.062 ± 0.000 | -0.005 ± 0.008 | 3/5 | 1 | 0.490 | 11 |
+| D gate | 0.066 ± 0.008 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+
+R3 llama/base/U+V5-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 44.545 ± 0.000 |
+| precision | 0.849 ± 0.000 |
+| share | 0.062 ± 0.000 |
+
+### llama/base/gate/U+V5-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.084 ± 0.000 | -0.023 ± 0.013 | 0/5 | 1 | 0.485 | 11 |
+| D gate | 0.107 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+
+R3 llama/base/U+V5-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 95.091 ± 0.000 |
+| precision | 0.926 ± 0.000 |
+| share | 0.084 ± 0.000 |
+
+### llama/base/gate/U+V5-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.174 ± 0.000 | -0.007 ± 0.021 | 1/5 | 1 | 0.527 | 11 |
+| D gate | 0.181 ± 0.021 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+
+R3 llama/base/U+V5-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 164.455 ± 0.000 |
+| precision | 0.938 ± 0.000 |
+| share | 0.174 ± 0.000 |
+
+### R3 llama/strong/all/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.232 ± 0.000 | 0.095 ± 0.000 | 5/5 | 1 | 0.565 | 13 |
+| U-zero x size | 0.148 ± 0.000 | 0.011 ± 0.000 | 5/5 | 1 | 0.598 | 13 |
+| U+V5-zero risk | 0.218 ± 0.000 | 0.081 ± 0.000 | 5/5 | 1 | 0.562 | 13 |
+| U+V5-zero x size | 0.148 ± 0.000 | 0.011 ± 0.000 | 5/5 | 1 | 0.598 | 13 |
+| frequent | 0.137 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.148 ± 0.004 | 0.011 ± 0.004 | 5/5 | 1 | 0.550 | 13 |
+
+### R3 llama/strong/all/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.601 ± 0.000 | 0.019 ± 0.000 | 5/5 | 1 | 0.512 | 13 |
+| U-zero x size | 0.587 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.518 | 13 |
+| U+V5-zero risk | 0.598 ± 0.000 | 0.016 ± 0.000 | 5/5 | 1 | 0.512 | 13 |
+| U+V5-zero x size | 0.587 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.518 | 13 |
+| frequent | 0.582 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.585 ± 0.001 | 0.003 ± 0.001 | 5/5 | 1 | 0.502 | 13 |
+
+### R3 llama/strong/all/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.207 ± 0.000 | -0.391 ± 0.000 | 0/5 | 2 | 0.216 | 13 |
+| U-zero x size | 0.621 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.538 | 13 |
+| U+V5-zero risk | 0.148 ± 0.000 | -0.449 ± 0.000 | 0/5 | 2 | 0.175 | 13 |
+| U+V5-zero x size | 0.618 ± 0.000 | 0.021 ± 0.000 | 5/5 | 1 | 0.544 | 13 |
+| frequent | 0.597 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.609 ± 0.006 | 0.012 ± 0.006 | 5/5 | 1 | 0.519 | 13 |
+
+### R3 llama/strong/all/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.308 ± 0.000 | 0.093 ± 0.000 | 5/5 | 1 | 0.559 | 13 |
+| U-zero x size | 0.232 ± 0.000 | 0.017 ± 0.000 | 5/5 | 1 | 0.556 | 13 |
+| U+V5-zero risk | 0.321 ± 0.000 | 0.106 ± 0.000 | 5/5 | 1 | 0.568 | 13 |
+| U+V5-zero x size | 0.242 ± 0.000 | 0.027 ± 0.000 | 5/5 | 1 | 0.556 | 13 |
+| frequent | 0.215 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.245 ± 0.005 | 0.030 ± 0.005 | 5/5 | 1 | 0.521 | 13 |
+
+### R3 llama/strong/all/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.621 ± 0.000 | 0.004 ± 0.000 | 5/5 | 1 | 0.512 | 13 |
+| U-zero x size | 0.619 ± 0.000 | 0.002 ± 0.000 | 5/5 | 1 | 0.518 | 13 |
+| U+V5-zero risk | 0.625 ± 0.000 | 0.007 ± 0.000 | 5/5 | 1 | 0.515 | 13 |
+| U+V5-zero x size | 0.621 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.524 | 13 |
+| frequent | 0.617 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.615 ± 0.002 | -0.002 ± 0.002 | 0/5 | 1 | 0.506 | 13 |
+
+### R3 llama/strong/all/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.238 ± 0.000 | -0.482 ± 0.000 | 0/5 | 2 | 0.151 | 13 |
+| U-zero x size | 0.738 ± 0.000 | 0.018 ± 0.000 | 5/5 | 1 | 0.533 | 13 |
+| U+V5-zero risk | 0.247 ± 0.000 | -0.473 ± 0.000 | 0/5 | 2 | 0.157 | 13 |
+| U+V5-zero x size | 0.739 ± 0.000 | 0.019 ± 0.000 | 5/5 | 1 | 0.533 | 13 |
+| frequent | 0.720 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.707 ± 0.007 | -0.012 ± 0.007 | 0/5 | 1 | 0.487 | 13 |
+
+### R3 llama/strong/all/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.451 ± 0.000 | 0.118 ± 0.000 | 5/5 | 1 | 0.541 | 13 |
+| U-zero x size | 0.364 ± 0.000 | 0.031 ± 0.000 | 5/5 | 1 | 0.541 | 13 |
+| U+V5-zero risk | 0.467 ± 0.000 | 0.134 ± 0.000 | 5/5 | 1 | 0.565 | 13 |
+| U+V5-zero x size | 0.370 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.536 | 13 |
+| frequent | 0.333 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.386 ± 0.005 | 0.053 ± 0.005 | 5/5 | 1 | 0.517 | 13 |
+
+### R3 llama/strong/all/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.657 ± 0.000 | 0.002 ± 0.000 | 5/5 | 1 | 0.500 | 13 |
+| U-zero x size | 0.668 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.533 | 13 |
+| U+V5-zero risk | 0.663 ± 0.000 | 0.007 ± 0.000 | 5/5 | 1 | 0.506 | 13 |
+| U+V5-zero x size | 0.668 ± 0.000 | 0.012 ± 0.000 | 5/5 | 1 | 0.527 | 13 |
+| frequent | 0.656 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.656 ± 0.003 | 0.001 ± 0.003 | 3/5 | 1 | 0.509 | 13 |
+
+### R3 llama/strong/all/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.385 ± 0.000 | -0.407 ± 0.000 | 0/5 | 2 | 0.257 | 13 |
+| U-zero x size | 0.791 ± 0.000 | -0.000 ± 0.000 | 0/5 | 1 | 0.512 | 13 |
+| U+V5-zero risk | 0.400 ± 0.000 | -0.391 ± 0.000 | 0/5 | 2 | 0.257 | 13 |
+| U+V5-zero x size | 0.794 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.509 | 13 |
+| frequent | 0.791 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.771 ± 0.004 | -0.020 ± 0.004 | 0/5 | 1 | 0.485 | 13 |
+
+### R3 llama/strong/all/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.579 ± 0.000 | 0.067 ± 0.000 | 5/5 | 1 | 0.562 | 13 |
+| U-zero x size | 0.528 ± 0.000 | 0.016 ± 0.000 | 5/5 | 1 | 0.521 | 13 |
+| U+V5-zero risk | 0.588 ± 0.000 | 0.076 ± 0.000 | 5/5 | 1 | 0.562 | 13 |
+| U+V5-zero x size | 0.536 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.530 | 13 |
+| frequent | 0.512 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.532 ± 0.006 | 0.020 ± 0.006 | 5/5 | 1 | 0.526 | 13 |
+
+### R3 llama/strong/all/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.716 ± 0.000 | -0.004 ± 0.000 | 0/5 | 1 | 0.506 | 13 |
+| U-zero x size | 0.727 ± 0.000 | 0.006 ± 0.000 | 5/5 | 1 | 0.521 | 13 |
+| U+V5-zero risk | 0.716 ± 0.000 | -0.005 ± 0.000 | 0/5 | 1 | 0.518 | 13 |
+| U+V5-zero x size | 0.730 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.527 | 13 |
+| frequent | 0.721 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.721 ± 0.004 | -0.000 ± 0.004 | 3/5 | 1 | 0.508 | 13 |
+
+### R3 llama/strong/all/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.516 ± 0.000 | -0.326 ± 0.000 | 0/5 | 2 | 0.340 | 13 |
+| U-zero x size | 0.841 ± 0.000 | -0.001 ± 0.000 | 0/5 | 1 | 0.494 | 13 |
+| U+V5-zero risk | 0.556 ± 0.000 | -0.287 ± 0.000 | 0/5 | 2 | 0.346 | 13 |
+| U+V5-zero x size | 0.841 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| frequent | 0.843 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.836 ± 0.010 | -0.007 ± 0.010 | 0/5 | 1 | 0.486 | 13 |
+
+### R3 llama/strong/held-out/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.193 ± 0.000 | 0.121 ± 0.000 | 5/5 | 1 | 0.580 | 10 |
+| U-zero x size | 0.085 ± 0.000 | 0.012 ± 0.000 | 5/5 | 2 | 0.605 | 10 |
+| U+V5-zero risk | 0.176 ± 0.000 | 0.104 ± 0.000 | 5/5 | 1 | 0.575 | 10 |
+| U+V5-zero x size | 0.085 ± 0.000 | 0.012 ± 0.000 | 5/5 | 2 | 0.605 | 10 |
+| frequent | 0.072 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.086 ± 0.005 | 0.014 ± 0.005 | 5/5 | 2 | 0.556 | 10 |
+
+### R3 llama/strong/held-out/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.603 ± 0.000 | 0.023 ± 0.000 | 5/5 | 1 | 0.520 | 10 |
+| U-zero x size | 0.585 ± 0.000 | 0.006 ± 0.000 | 5/5 | 1 | 0.520 | 10 |
+| U+V5-zero risk | 0.599 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.520 | 10 |
+| U+V5-zero x size | 0.585 ± 0.000 | 0.006 ± 0.000 | 5/5 | 1 | 0.520 | 10 |
+| frequent | 0.580 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.582 ± 0.002 | 0.003 ± 0.002 | 5/5 | 1 | 0.509 | 10 |
+
+### R3 llama/strong/held-out/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.168 ± 0.000 | -0.339 ± 0.000 | 0/5 | 2 | 0.210 | 10 |
+| U-zero x size | 0.536 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.545 | 10 |
+| U+V5-zero risk | 0.093 ± 0.000 | -0.415 ± 0.000 | 0/5 | 2 | 0.150 | 10 |
+| U+V5-zero x size | 0.531 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.555 | 10 |
+| frequent | 0.507 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.522 ± 0.008 | 0.015 ± 0.008 | 5/5 | 1 | 0.527 | 10 |
+
+### R3 llama/strong/held-out/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.287 ± 0.000 | 0.120 ± 0.000 | 5/5 | 1 | 0.575 | 10 |
+| U-zero x size | 0.189 ± 0.000 | 0.022 ± 0.000 | 5/5 | 2 | 0.565 | 10 |
+| U+V5-zero risk | 0.304 ± 0.000 | 0.137 ± 0.000 | 5/5 | 1 | 0.590 | 10 |
+| U+V5-zero x size | 0.201 ± 0.000 | 0.035 ± 0.000 | 5/5 | 2 | 0.565 | 10 |
+| frequent | 0.167 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.204 ± 0.006 | 0.037 ± 0.006 | 5/5 | 2 | 0.527 | 10 |
+
+### R3 llama/strong/held-out/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.626 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.520 | 10 |
+| U-zero x size | 0.623 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.520 | 10 |
+| U+V5-zero risk | 0.630 ± 0.000 | 0.010 ± 0.000 | 5/5 | 1 | 0.525 | 10 |
+| U+V5-zero x size | 0.625 ± 0.000 | 0.004 ± 0.000 | 5/5 | 1 | 0.530 | 10 |
+| frequent | 0.621 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.617 ± 0.002 | -0.004 ± 0.002 | 0/5 | 1 | 0.502 | 10 |
+
+### R3 llama/strong/held-out/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.208 ± 0.000 | -0.449 ± 0.000 | 0/5 | 2 | 0.130 | 10 |
+| U-zero x size | 0.680 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.565 | 10 |
+| U+V5-zero risk | 0.220 ± 0.000 | -0.437 ± 0.000 | 0/5 | 2 | 0.140 | 10 |
+| U+V5-zero x size | 0.682 ± 0.000 | 0.025 ± 0.000 | 5/5 | 1 | 0.565 | 10 |
+| frequent | 0.657 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.640 ± 0.008 | -0.016 ± 0.008 | 0/5 | 1 | 0.475 | 10 |
+
+### R3 llama/strong/held-out/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.456 ± 0.000 | 0.145 ± 0.000 | 5/5 | 1 | 0.550 | 10 |
+| U-zero x size | 0.347 ± 0.000 | 0.035 ± 0.000 | 5/5 | 1 | 0.545 | 10 |
+| U+V5-zero risk | 0.477 ± 0.000 | 0.165 ± 0.000 | 5/5 | 1 | 0.570 | 10 |
+| U+V5-zero x size | 0.354 ± 0.000 | 0.042 ± 0.000 | 5/5 | 1 | 0.535 | 10 |
+| frequent | 0.311 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.377 ± 0.007 | 0.065 ± 0.007 | 5/5 | 1 | 0.524 | 10 |
+
+### R3 llama/strong/held-out/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.665 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.490 | 10 |
+| U-zero x size | 0.680 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.535 | 10 |
+| U+V5-zero risk | 0.672 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.500 | 10 |
+| U+V5-zero x size | 0.680 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.525 | 10 |
+| frequent | 0.667 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.666 ± 0.004 | -0.001 ± 0.004 | 2/5 | 1 | 0.508 | 10 |
+
+### R3 llama/strong/held-out/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.398 ± 0.000 | -0.346 ± 0.000 | 0/5 | 2 | 0.270 | 10 |
+| U-zero x size | 0.744 ± 0.000 | -0.000 ± 0.000 | 0/5 | 1 | 0.520 | 10 |
+| U+V5-zero risk | 0.418 ± 0.000 | -0.326 ± 0.000 | 0/5 | 2 | 0.270 | 10 |
+| U+V5-zero x size | 0.748 ± 0.000 | 0.004 ± 0.000 | 5/5 | 1 | 0.515 | 10 |
+| frequent | 0.744 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.718 ± 0.006 | -0.026 ± 0.006 | 0/5 | 1 | 0.478 | 10 |
+
+### R3 llama/strong/held-out/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.580 ± 0.000 | 0.066 ± 0.000 | 5/5 | 1 | 0.570 | 10 |
+| U-zero x size | 0.527 ± 0.000 | 0.012 ± 0.000 | 5/5 | 1 | 0.525 | 10 |
+| U+V5-zero risk | 0.592 ± 0.000 | 0.078 ± 0.000 | 5/5 | 1 | 0.570 | 10 |
+| U+V5-zero x size | 0.537 ± 0.000 | 0.022 ± 0.000 | 5/5 | 1 | 0.540 | 10 |
+| frequent | 0.515 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.534 ± 0.006 | 0.019 ± 0.006 | 5/5 | 1 | 0.529 | 10 |
+
+### R3 llama/strong/held-out/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.718 ± 0.000 | -0.017 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| U-zero x size | 0.740 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.515 | 10 |
+| U+V5-zero risk | 0.719 ± 0.000 | -0.016 ± 0.000 | 0/5 | 1 | 0.510 | 10 |
+| U+V5-zero x size | 0.742 ± 0.000 | 0.007 ± 0.000 | 5/5 | 1 | 0.535 | 10 |
+| frequent | 0.735 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.730 ± 0.004 | -0.005 ± 0.004 | 0/5 | 1 | 0.507 | 10 |
+
+### R3 llama/strong/held-out/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.567 ± 0.000 | -0.240 ± 0.000 | 0/5 | 2 | 0.380 | 10 |
+| U-zero x size | 0.805 ± 0.000 | -0.001 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| U+V5-zero risk | 0.572 ± 0.000 | -0.234 ± 0.000 | 0/5 | 2 | 0.380 | 10 |
+| U+V5-zero x size | 0.805 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| frequent | 0.807 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.798 ± 0.012 | -0.009 ± 0.012 | 0/5 | 1 | 0.484 | 10 |
+
+### llama/strong/gate/U-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.028 ± 0.000 | -0.011 ± 0.011 | 0/5 | 1 | 0.479 | 13 |
+| D gate | 0.040 ± 0.011 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+
+R3 llama/strong/U-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 38.077 ± 0.000 |
+| precision | 0.534 ± 0.000 |
+| share | 0.028 ± 0.000 |
+
+### llama/strong/gate/U-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.054 ± 0.000 | -0.013 ± 0.008 | 0/5 | 1 | 0.484 | 13 |
+| D gate | 0.066 ± 0.008 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+
+R3 llama/strong/U-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 64.000 ± 0.000 |
+| precision | 0.575 ± 0.000 |
+| share | 0.054 ± 0.000 |
+
+### llama/strong/gate/U-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.159 ± 0.000 | 0.038 ± 0.021 | 5/5 | 1 | 0.522 | 13 |
+| D gate | 0.121 ± 0.021 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+
+R3 llama/strong/U-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 138.615 ± 0.000 |
+| precision | 0.566 ± 0.000 |
+| share | 0.159 ± 0.000 |
+
+### llama/strong/gate/U+V5-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.031 ± 0.000 | -0.009 ± 0.011 | 2/5 | 1 | 0.485 | 13 |
+| D gate | 0.040 ± 0.011 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+
+R3 llama/strong/U+V5-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 34.923 ± 0.000 |
+| precision | 0.594 ± 0.000 |
+| share | 0.031 ± 0.000 |
+
+### llama/strong/gate/U+V5-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.049 ± 0.000 | -0.017 ± 0.008 | 0/5 | 1 | 0.503 | 13 |
+| D gate | 0.066 ± 0.008 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+
+R3 llama/strong/U+V5-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 68.385 ± 0.000 |
+| precision | 0.688 ± 0.000 |
+| share | 0.049 ± 0.000 |
+
+### llama/strong/gate/U+V5-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.142 ± 0.000 | 0.021 ± 0.021 | 4/5 | 1 | 0.480 | 13 |
+| D gate | 0.121 ± 0.021 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+
+R3 llama/strong/U+V5-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 129.231 ± 0.000 |
+| precision | 0.600 ± 0.000 |
+| share | 0.142 ± 0.000 |
+
 ### gemma/disjoint/all/strict/@100
 
 | method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
@@ -6801,3 +7509,711 @@ R2 gemma/strong: 1 oracle solutions not certified optimal (inspect job solver st
 | U-zero | 0.762 ± 0.006 | -0.065 ± 0.009 | 0/5 | 2 | 0.315 | 9 |
 | U+V5-zero | 0.773 ± 0.010 | -0.054 ± 0.017 | 0/5 | 2 | 0.337 | 9 |
 | D-zero | 0.667 ± 0.003 | -0.160 ± 0.008 | 0/5 | 3 | 0.128 | 9 |
+
+### R3 gemma/base/all/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.103 ± 0.007 | 0.021 ± 0.007 | 5/5 | 1 | 0.515 | 12 |
+| U-zero x size | 0.084 ± 0.003 | 0.002 ± 0.003 | 3/5 | 1 | 0.513 | 12 |
+| U+V5-zero risk | 0.102 ± 0.004 | 0.020 ± 0.004 | 5/5 | 1 | 0.476 | 12 |
+| U+V5-zero x size | 0.089 ± 0.005 | 0.006 ± 0.005 | 5/5 | 1 | 0.517 | 12 |
+| frequent | 0.082 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.085 ± 0.000 | 0.002 ± 0.000 | 5/5 | 1 | 0.521 | 12 |
+
+### R3 gemma/base/all/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.480 ± 0.005 | 0.003 ± 0.005 | 3/5 | 1 | 0.519 | 12 |
+| U-zero x size | 0.475 ± 0.001 | -0.002 ± 0.001 | 1/5 | 1 | 0.508 | 12 |
+| U+V5-zero risk | 0.480 ± 0.001 | 0.003 ± 0.001 | 5/5 | 1 | 0.515 | 12 |
+| U+V5-zero x size | 0.478 ± 0.003 | 0.002 ± 0.003 | 3/5 | 1 | 0.510 | 12 |
+| frequent | 0.476 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.478 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.507 | 12 |
+
+### R3 gemma/base/all/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.090 ± 0.031 | -0.622 ± 0.031 | 0/5 | 2 | 0.031 | 12 |
+| U-zero x size | 0.654 ± 0.012 | -0.058 ± 0.012 | 0/5 | 1 | 0.449 | 12 |
+| U+V5-zero risk | 0.093 ± 0.007 | -0.619 ± 0.007 | 0/5 | 2 | 0.032 | 12 |
+| U+V5-zero x size | 0.704 ± 0.027 | -0.008 ± 0.027 | 3/5 | 1 | 0.501 | 12 |
+| frequent | 0.712 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.697 ± 0.000 | -0.015 ± 0.000 | 0/5 | 1 | 0.483 | 12 |
+
+### R3 gemma/base/all/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.212 ± 0.010 | 0.052 ± 0.010 | 5/5 | 1 | 0.575 | 12 |
+| U-zero x size | 0.174 ± 0.008 | 0.015 ± 0.008 | 5/5 | 1 | 0.537 | 12 |
+| U+V5-zero risk | 0.209 ± 0.012 | 0.050 ± 0.012 | 5/5 | 1 | 0.550 | 12 |
+| U+V5-zero x size | 0.177 ± 0.007 | 0.017 ± 0.007 | 5/5 | 1 | 0.541 | 12 |
+| frequent | 0.159 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.159 ± 0.000 | -0.000 ± 0.000 | 0/5 | 1 | 0.528 | 12 |
+
+### R3 gemma/base/all/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.536 ± 0.003 | 0.012 ± 0.003 | 5/5 | 1 | 0.513 | 12 |
+| U-zero x size | 0.532 ± 0.003 | 0.008 ± 0.003 | 5/5 | 1 | 0.528 | 12 |
+| U+V5-zero risk | 0.542 ± 0.004 | 0.018 ± 0.004 | 5/5 | 1 | 0.512 | 12 |
+| U+V5-zero x size | 0.535 ± 0.003 | 0.011 ± 0.003 | 5/5 | 1 | 0.528 | 12 |
+| frequent | 0.524 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.526 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.517 | 12 |
+
+### R3 gemma/base/all/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.180 ± 0.031 | -0.601 ± 0.031 | 0/5 | 2 | 0.076 | 12 |
+| U-zero x size | 0.784 ± 0.012 | 0.003 ± 0.012 | 3/5 | 1 | 0.515 | 12 |
+| U+V5-zero risk | 0.194 ± 0.020 | -0.587 ± 0.020 | 0/5 | 2 | 0.085 | 12 |
+| U+V5-zero x size | 0.787 ± 0.011 | 0.005 ± 0.011 | 3/5 | 1 | 0.523 | 12 |
+| frequent | 0.781 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.763 ± 0.000 | -0.018 ± 0.000 | 0/5 | 1 | 0.503 | 12 |
+
+### R3 gemma/base/all/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.351 ± 0.005 | 0.081 ± 0.005 | 5/5 | 1 | 0.583 | 12 |
+| U-zero x size | 0.308 ± 0.005 | 0.038 ± 0.005 | 5/5 | 1 | 0.549 | 12 |
+| U+V5-zero risk | 0.359 ± 0.011 | 0.089 ± 0.011 | 5/5 | 1 | 0.584 | 12 |
+| U+V5-zero x size | 0.307 ± 0.004 | 0.037 ± 0.004 | 5/5 | 1 | 0.551 | 12 |
+| frequent | 0.270 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.298 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.542 | 12 |
+
+### R3 gemma/base/all/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.593 ± 0.002 | -0.003 ± 0.002 | 1/5 | 1 | 0.509 | 12 |
+| U-zero x size | 0.612 ± 0.003 | 0.016 ± 0.003 | 5/5 | 1 | 0.542 | 12 |
+| U+V5-zero risk | 0.600 ± 0.007 | 0.004 ± 0.007 | 3/5 | 1 | 0.522 | 12 |
+| U+V5-zero x size | 0.609 ± 0.004 | 0.013 ± 0.004 | 5/5 | 1 | 0.540 | 12 |
+| frequent | 0.596 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.610 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.542 | 12 |
+
+### R3 gemma/base/all/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.307 ± 0.061 | -0.526 ± 0.061 | 0/5 | 2 | 0.188 | 12 |
+| U-zero x size | 0.833 ± 0.008 | 0.000 ± 0.008 | 4/5 | 1 | 0.526 | 12 |
+| U+V5-zero risk | 0.306 ± 0.046 | -0.527 ± 0.046 | 0/5 | 2 | 0.187 | 12 |
+| U+V5-zero x size | 0.833 ± 0.009 | -0.000 ± 0.009 | 4/5 | 1 | 0.524 | 12 |
+| frequent | 0.833 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.814 ± 0.000 | -0.019 ± 0.000 | 0/5 | 1 | 0.507 | 12 |
+
+### R3 gemma/base/all/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.518 ± 0.003 | 0.071 ± 0.003 | 5/5 | 1 | 0.574 | 12 |
+| U-zero x size | 0.484 ± 0.004 | 0.037 ± 0.004 | 5/5 | 1 | 0.545 | 12 |
+| U+V5-zero risk | 0.518 ± 0.005 | 0.071 ± 0.005 | 5/5 | 1 | 0.574 | 12 |
+| U+V5-zero x size | 0.488 ± 0.002 | 0.041 ± 0.002 | 5/5 | 1 | 0.550 | 12 |
+| frequent | 0.447 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.475 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.531 | 12 |
+
+### R3 gemma/base/all/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.670 ± 0.002 | -0.008 ± 0.002 | 0/5 | 1 | 0.518 | 12 |
+| U-zero x size | 0.697 ± 0.004 | 0.019 ± 0.004 | 5/5 | 1 | 0.546 | 12 |
+| U+V5-zero risk | 0.671 ± 0.006 | -0.007 ± 0.006 | 0/5 | 1 | 0.514 | 12 |
+| U+V5-zero x size | 0.699 ± 0.002 | 0.021 ± 0.002 | 5/5 | 1 | 0.549 | 12 |
+| frequent | 0.678 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.690 ± 0.000 | 0.012 ± 0.000 | 5/5 | 1 | 0.535 | 12 |
+
+### R3 gemma/base/all/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.537 ± 0.015 | -0.341 ± 0.015 | 0/5 | 2 | 0.338 | 12 |
+| U-zero x size | 0.888 ± 0.001 | 0.010 ± 0.001 | 5/5 | 1 | 0.540 | 12 |
+| U+V5-zero risk | 0.524 ± 0.031 | -0.354 ± 0.031 | 0/5 | 2 | 0.353 | 12 |
+| U+V5-zero x size | 0.887 ± 0.001 | 0.010 ± 0.001 | 5/5 | 1 | 0.549 | 12 |
+| frequent | 0.878 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.884 ± 0.000 | 0.007 ± 0.000 | 5/5 | 1 | 0.517 | 12 |
+
+### R3 gemma/base/held-out/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.075 ± 0.009 | 0.004 ± 0.009 | 4/5 | 1 | 0.489 | 9 |
+| U-zero x size | 0.072 ± 0.004 | 0.001 ± 0.004 | 3/5 | 1 | 0.509 | 9 |
+| U+V5-zero risk | 0.072 ± 0.005 | 0.000 ± 0.005 | 3/5 | 1 | 0.438 | 9 |
+| U+V5-zero x size | 0.078 ± 0.007 | 0.007 ± 0.007 | 5/5 | 1 | 0.520 | 9 |
+| frequent | 0.071 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.071 ± 0.000 | 0.000 ± 0.000 | 5/5 | 1 | 0.500 | 9 |
+
+### R3 gemma/base/held-out/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.482 ± 0.005 | -0.004 ± 0.005 | 1/5 | 1 | 0.486 | 9 |
+| U-zero x size | 0.483 ± 0.002 | -0.004 ± 0.002 | 0/5 | 1 | 0.507 | 9 |
+| U+V5-zero risk | 0.481 ± 0.002 | -0.005 ± 0.002 | 0/5 | 1 | 0.485 | 9 |
+| U+V5-zero x size | 0.488 ± 0.004 | 0.001 ± 0.004 | 3/5 | 1 | 0.514 | 9 |
+| frequent | 0.486 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.486 ± 0.000 | -0.001 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+
+### R3 gemma/base/held-out/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.085 ± 0.023 | -0.578 ± 0.023 | 0/5 | 2 | 0.040 | 9 |
+| U-zero x size | 0.590 ± 0.011 | -0.073 ± 0.011 | 0/5 | 1 | 0.422 | 9 |
+| U+V5-zero risk | 0.069 ± 0.009 | -0.594 ± 0.009 | 0/5 | 2 | 0.027 | 9 |
+| U+V5-zero x size | 0.652 ± 0.037 | -0.011 ± 0.037 | 3/5 | 1 | 0.491 | 9 |
+| frequent | 0.663 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.636 ± 0.000 | -0.027 ± 0.000 | 0/5 | 1 | 0.457 | 9 |
+
+### R3 gemma/base/held-out/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.165 ± 0.013 | 0.030 ± 0.013 | 5/5 | 1 | 0.578 | 9 |
+| U-zero x size | 0.139 ± 0.005 | 0.004 ± 0.005 | 4/5 | 1 | 0.528 | 9 |
+| U+V5-zero risk | 0.159 ± 0.014 | 0.024 ± 0.014 | 5/5 | 1 | 0.547 | 9 |
+| U+V5-zero x size | 0.142 ± 0.005 | 0.007 ± 0.005 | 5/5 | 1 | 0.530 | 9 |
+| frequent | 0.135 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.132 ± 0.000 | -0.003 ± 0.000 | 0/5 | 1 | 0.512 | 9 |
+
+### R3 gemma/base/held-out/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.515 ± 0.004 | -0.006 ± 0.004 | 0/5 | 1 | 0.502 | 9 |
+| U-zero x size | 0.524 ± 0.003 | 0.003 ± 0.003 | 4/5 | 1 | 0.522 | 9 |
+| U+V5-zero risk | 0.520 ± 0.001 | -0.001 ± 0.001 | 2/5 | 1 | 0.510 | 9 |
+| U+V5-zero x size | 0.527 ± 0.004 | 0.005 ± 0.004 | 4/5 | 1 | 0.520 | 9 |
+| frequent | 0.521 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.524 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+
+### R3 gemma/base/held-out/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.154 ± 0.039 | -0.593 ± 0.039 | 0/5 | 2 | 0.057 | 9 |
+| U-zero x size | 0.747 ± 0.015 | 0.001 ± 0.015 | 3/5 | 1 | 0.511 | 9 |
+| U+V5-zero risk | 0.142 ± 0.037 | -0.605 ± 0.037 | 0/5 | 2 | 0.047 | 9 |
+| U+V5-zero x size | 0.750 ± 0.015 | 0.004 ± 0.015 | 3/5 | 1 | 0.522 | 9 |
+| frequent | 0.746 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.719 ± 0.000 | -0.027 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+
+### R3 gemma/base/held-out/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.325 ± 0.007 | 0.098 ± 0.007 | 5/5 | 1 | 0.611 | 9 |
+| U-zero x size | 0.274 ± 0.007 | 0.046 ± 0.007 | 5/5 | 1 | 0.568 | 9 |
+| U+V5-zero risk | 0.336 ± 0.014 | 0.109 ± 0.014 | 5/5 | 1 | 0.614 | 9 |
+| U+V5-zero x size | 0.271 ± 0.005 | 0.043 ± 0.005 | 5/5 | 1 | 0.573 | 9 |
+| frequent | 0.227 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.260 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.568 | 9 |
+
+### R3 gemma/base/held-out/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.575 ± 0.002 | -0.009 ± 0.002 | 0/5 | 1 | 0.509 | 9 |
+| U-zero x size | 0.603 ± 0.005 | 0.019 ± 0.005 | 5/5 | 1 | 0.562 | 9 |
+| U+V5-zero risk | 0.584 ± 0.009 | 0.000 ± 0.009 | 2/5 | 1 | 0.531 | 9 |
+| U+V5-zero x size | 0.598 ± 0.006 | 0.014 ± 0.006 | 5/5 | 1 | 0.559 | 9 |
+| frequent | 0.584 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.599 ± 0.000 | 0.015 ± 0.000 | 5/5 | 1 | 0.562 | 9 |
+
+### R3 gemma/base/held-out/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.231 ± 0.027 | -0.575 ± 0.027 | 0/5 | 2 | 0.123 | 9 |
+| U-zero x size | 0.805 ± 0.011 | -0.000 ± 0.011 | 4/5 | 1 | 0.535 | 9 |
+| U+V5-zero risk | 0.218 ± 0.028 | -0.588 ± 0.028 | 0/5 | 2 | 0.119 | 9 |
+| U+V5-zero x size | 0.805 ± 0.012 | -0.001 ± 0.012 | 4/5 | 1 | 0.531 | 9 |
+| frequent | 0.806 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.780 ± 0.000 | -0.026 ± 0.000 | 0/5 | 1 | 0.512 | 9 |
+
+### R3 gemma/base/held-out/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.504 ± 0.003 | 0.073 ± 0.003 | 5/5 | 1 | 0.580 | 9 |
+| U-zero x size | 0.474 ± 0.004 | 0.044 ± 0.004 | 5/5 | 1 | 0.565 | 9 |
+| U+V5-zero risk | 0.506 ± 0.005 | 0.076 ± 0.005 | 5/5 | 1 | 0.578 | 9 |
+| U+V5-zero x size | 0.479 ± 0.003 | 0.048 ± 0.003 | 5/5 | 1 | 0.573 | 9 |
+| frequent | 0.430 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.464 ± 0.000 | 0.034 ± 0.000 | 5/5 | 1 | 0.543 | 9 |
+
+### R3 gemma/base/held-out/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.654 ± 0.003 | -0.020 ± 0.003 | 0/5 | 1 | 0.509 | 9 |
+| U-zero x size | 0.696 ± 0.004 | 0.021 ± 0.004 | 5/5 | 1 | 0.554 | 9 |
+| U+V5-zero risk | 0.656 ± 0.008 | -0.019 ± 0.008 | 0/5 | 1 | 0.504 | 9 |
+| U+V5-zero x size | 0.698 ± 0.004 | 0.023 ± 0.004 | 5/5 | 1 | 0.559 | 9 |
+| frequent | 0.675 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.688 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.537 | 9 |
+
+### R3 gemma/base/held-out/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.487 ± 0.019 | -0.370 ± 0.019 | 0/5 | 2 | 0.301 | 9 |
+| U-zero x size | 0.869 ± 0.001 | 0.013 ± 0.001 | 5/5 | 1 | 0.563 | 9 |
+| U+V5-zero risk | 0.471 ± 0.042 | -0.385 ± 0.042 | 0/5 | 2 | 0.319 | 9 |
+| U+V5-zero x size | 0.869 ± 0.002 | 0.012 ± 0.002 | 5/5 | 1 | 0.572 | 9 |
+| frequent | 0.856 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.865 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.531 | 9 |
+
+### gemma/base/gate/U-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.126 ± 0.019 | 0.000 ± 0.019 | 1/5 | 1 | 0.504 | 12 |
+| D gate | 0.126 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/base/U-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 34.300 ± 9.556 |
+| precision | 0.751 ± 0.048 |
+| share | 0.126 ± 0.019 |
+
+### gemma/base/gate/U-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.172 ± 0.032 | 0.028 ± 0.032 | 3/5 | 1 | 0.553 | 12 |
+| D gate | 0.144 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/base/U-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 83.967 ± 15.592 |
+| precision | 0.824 ± 0.024 |
+| share | 0.172 ± 0.032 |
+
+### gemma/base/gate/U-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.291 ± 0.030 | 0.059 ± 0.030 | 5/5 | 1 | 0.580 | 12 |
+| D gate | 0.232 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/base/U-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 134.000 ± 29.911 |
+| precision | 0.806 ± 0.022 |
+| share | 0.291 ± 0.030 |
+
+### gemma/base/gate/U+V5-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.124 ± 0.001 | -0.002 ± 0.001 | 0/5 | 1 | 0.515 | 12 |
+| D gate | 0.126 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/base/U+V5-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 29.483 ± 8.440 |
+| precision | 0.733 ± 0.036 |
+| share | 0.124 ± 0.001 |
+
+### gemma/base/gate/U+V5-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.157 ± 0.013 | 0.012 ± 0.013 | 4/5 | 1 | 0.540 | 12 |
+| D gate | 0.144 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/base/U+V5-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 65.833 ± 15.022 |
+| precision | 0.830 ± 0.022 |
+| share | 0.157 ± 0.013 |
+
+### gemma/base/gate/U+V5-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.282 ± 0.044 | 0.050 ± 0.044 | 4/5 | 1 | 0.560 | 12 |
+| D gate | 0.232 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/base/U+V5-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 112.883 ± 12.901 |
+| precision | 0.816 ± 0.022 |
+| share | 0.282 ± 0.044 |
+
+### R3 gemma/strong/all/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.181 ± 0.007 | 0.015 ± 0.007 | 5/5 | 1 | 0.539 | 12 |
+| U-zero x size | 0.173 ± 0.007 | 0.007 ± 0.007 | 4/5 | 1 | 0.527 | 12 |
+| U+V5-zero risk | 0.178 ± 0.006 | 0.012 ± 0.006 | 5/5 | 1 | 0.533 | 12 |
+| U+V5-zero x size | 0.174 ± 0.004 | 0.008 ± 0.004 | 5/5 | 1 | 0.527 | 12 |
+| frequent | 0.166 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.158 ± 0.000 | -0.008 ± 0.000 | 0/5 | 1 | 0.510 | 12 |
+
+### R3 gemma/strong/all/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.606 ± 0.002 | 0.003 ± 0.002 | 5/5 | 1 | 0.502 | 12 |
+| U-zero x size | 0.610 ± 0.003 | 0.007 ± 0.003 | 5/5 | 1 | 0.517 | 12 |
+| U+V5-zero risk | 0.608 ± 0.001 | 0.005 ± 0.001 | 5/5 | 1 | 0.506 | 12 |
+| U+V5-zero x size | 0.610 ± 0.002 | 0.008 ± 0.002 | 5/5 | 1 | 0.517 | 12 |
+| frequent | 0.603 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.600 ± 0.000 | -0.003 ± 0.000 | 0/5 | 1 | 0.490 | 12 |
+
+### R3 gemma/strong/all/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.148 ± 0.018 | -0.468 ± 0.018 | 0/5 | 2 | 0.128 | 12 |
+| U-zero x size | 0.619 ± 0.027 | 0.003 ± 0.027 | 4/5 | 1 | 0.496 | 12 |
+| U+V5-zero risk | 0.141 ± 0.015 | -0.475 ± 0.015 | 0/5 | 2 | 0.128 | 12 |
+| U+V5-zero x size | 0.635 ± 0.005 | 0.019 ± 0.005 | 5/5 | 1 | 0.511 | 12 |
+| frequent | 0.616 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.603 ± 0.000 | -0.013 ± 0.000 | 0/5 | 1 | 0.472 | 12 |
+
+### R3 gemma/strong/all/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.285 ± 0.009 | 0.063 ± 0.009 | 5/5 | 1 | 0.564 | 12 |
+| U-zero x size | 0.264 ± 0.010 | 0.042 ± 0.010 | 5/5 | 1 | 0.542 | 12 |
+| U+V5-zero risk | 0.272 ± 0.005 | 0.050 ± 0.005 | 5/5 | 1 | 0.543 | 12 |
+| U+V5-zero x size | 0.261 ± 0.012 | 0.040 ± 0.012 | 5/5 | 1 | 0.538 | 12 |
+| frequent | 0.222 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.235 ± 0.000 | 0.014 ± 0.000 | 5/5 | 1 | 0.521 | 12 |
+
+### R3 gemma/strong/all/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.635 ± 0.002 | -0.001 ± 0.002 | 1/5 | 1 | 0.502 | 12 |
+| U-zero x size | 0.646 ± 0.002 | 0.010 ± 0.002 | 5/5 | 1 | 0.531 | 12 |
+| U+V5-zero risk | 0.635 ± 0.001 | -0.000 ± 0.001 | 2/5 | 1 | 0.508 | 12 |
+| U+V5-zero x size | 0.644 ± 0.004 | 0.009 ± 0.004 | 5/5 | 1 | 0.533 | 12 |
+| frequent | 0.635 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.630 ± 0.000 | -0.006 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+### R3 gemma/strong/all/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.255 ± 0.031 | -0.438 ± 0.031 | 0/5 | 2 | 0.178 | 12 |
+| U-zero x size | 0.720 ± 0.004 | 0.027 ± 0.004 | 5/5 | 1 | 0.541 | 12 |
+| U+V5-zero risk | 0.254 ± 0.041 | -0.439 ± 0.041 | 0/5 | 2 | 0.180 | 12 |
+| U+V5-zero x size | 0.718 ± 0.006 | 0.025 ± 0.006 | 5/5 | 1 | 0.528 | 12 |
+| frequent | 0.693 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.678 ± 0.000 | -0.015 ± 0.000 | 0/5 | 1 | 0.458 | 12 |
+
+### R3 gemma/strong/all/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.394 ± 0.006 | 0.067 ± 0.006 | 5/5 | 1 | 0.560 | 12 |
+| U-zero x size | 0.338 ± 0.003 | 0.011 ± 0.003 | 5/5 | 1 | 0.518 | 12 |
+| U+V5-zero risk | 0.386 ± 0.008 | 0.059 ± 0.008 | 5/5 | 1 | 0.548 | 12 |
+| U+V5-zero x size | 0.348 ± 0.002 | 0.021 ± 0.002 | 5/5 | 1 | 0.531 | 12 |
+| frequent | 0.327 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.330 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.514 | 12 |
+
+### R3 gemma/strong/all/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.662 ± 0.001 | -0.009 ± 0.001 | 0/5 | 1 | 0.487 | 12 |
+| U-zero x size | 0.676 ± 0.003 | 0.006 ± 0.003 | 5/5 | 1 | 0.524 | 12 |
+| U+V5-zero risk | 0.665 ± 0.005 | -0.006 ± 0.005 | 0/5 | 1 | 0.492 | 12 |
+| U+V5-zero x size | 0.678 ± 0.004 | 0.007 ± 0.004 | 5/5 | 1 | 0.528 | 12 |
+| frequent | 0.671 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.675 ± 0.000 | 0.004 ± 0.000 | 5/5 | 1 | 0.517 | 12 |
+
+### R3 gemma/strong/all/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.390 ± 0.020 | -0.388 ± 0.020 | 0/5 | 2 | 0.254 | 12 |
+| U-zero x size | 0.771 ± 0.004 | -0.007 ± 0.004 | 0/5 | 1 | 0.496 | 12 |
+| U+V5-zero risk | 0.387 ± 0.046 | -0.391 ± 0.046 | 0/5 | 2 | 0.257 | 12 |
+| U+V5-zero x size | 0.775 ± 0.002 | -0.003 ± 0.002 | 0/5 | 1 | 0.510 | 12 |
+| frequent | 0.778 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.772 ± 0.000 | -0.007 ± 0.000 | 0/5 | 1 | 0.486 | 12 |
+
+### R3 gemma/strong/all/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.540 ± 0.002 | 0.087 ± 0.002 | 5/5 | 1 | 0.579 | 12 |
+| U-zero x size | 0.506 ± 0.001 | 0.053 ± 0.001 | 5/5 | 1 | 0.557 | 12 |
+| U+V5-zero risk | 0.536 ± 0.003 | 0.083 ± 0.003 | 5/5 | 1 | 0.570 | 12 |
+| U+V5-zero x size | 0.508 ± 0.002 | 0.055 ± 0.002 | 5/5 | 1 | 0.555 | 12 |
+| frequent | 0.453 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.490 ± 0.000 | 0.036 ± 0.000 | 5/5 | 1 | 0.538 | 12 |
+
+### R3 gemma/strong/all/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.713 ± 0.003 | -0.005 ± 0.003 | 1/5 | 1 | 0.492 | 12 |
+| U-zero x size | 0.737 ± 0.002 | 0.020 ± 0.002 | 5/5 | 1 | 0.551 | 12 |
+| U+V5-zero risk | 0.714 ± 0.003 | -0.003 ± 0.003 | 1/5 | 1 | 0.505 | 12 |
+| U+V5-zero x size | 0.739 ± 0.001 | 0.022 ± 0.001 | 5/5 | 1 | 0.553 | 12 |
+| frequent | 0.717 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.731 ± 0.000 | 0.013 ± 0.000 | 5/5 | 1 | 0.538 | 12 |
+
+### R3 gemma/strong/all/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.516 ± 0.040 | -0.308 ± 0.040 | 0/5 | 2 | 0.312 | 12 |
+| U-zero x size | 0.826 ± 0.002 | 0.001 ± 0.002 | 4/5 | 1 | 0.517 | 12 |
+| U+V5-zero risk | 0.516 ± 0.030 | -0.309 ± 0.030 | 0/5 | 2 | 0.306 | 12 |
+| U+V5-zero x size | 0.823 ± 0.005 | -0.001 ± 0.005 | 1/5 | 1 | 0.507 | 12 |
+| frequent | 0.824 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.819 ± 0.000 | -0.005 ± 0.000 | 0/5 | 1 | 0.493 | 12 |
+
+### R3 gemma/strong/held-out/review/groups/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.122 ± 0.010 | 0.018 ± 0.010 | 5/5 | 1 | 0.556 | 9 |
+| U-zero x size | 0.111 ± 0.008 | 0.007 ± 0.008 | 4/5 | 1 | 0.542 | 9 |
+| U+V5-zero risk | 0.118 ± 0.008 | 0.014 ± 0.008 | 5/5 | 1 | 0.556 | 9 |
+| U+V5-zero x size | 0.111 ± 0.005 | 0.007 ± 0.005 | 5/5 | 1 | 0.542 | 9 |
+| frequent | 0.104 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.089 ± 0.000 | -0.014 ± 0.000 | 0/5 | 1 | 0.512 | 9 |
+
+### R3 gemma/strong/held-out/review/FTA/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.591 ± 0.003 | 0.003 ± 0.003 | 4/5 | 1 | 0.504 | 9 |
+| U-zero x size | 0.596 ± 0.004 | 0.008 ± 0.004 | 5/5 | 1 | 0.525 | 9 |
+| U+V5-zero risk | 0.594 ± 0.001 | 0.006 ± 0.001 | 5/5 | 1 | 0.511 | 9 |
+| U+V5-zero x size | 0.596 ± 0.003 | 0.009 ± 0.003 | 5/5 | 1 | 0.525 | 9 |
+| frequent | 0.587 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.582 ± 0.000 | -0.006 ± 0.000 | 0/5 | 1 | 0.475 | 9 |
+
+### R3 gemma/strong/held-out/review/lines/@5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.085 ± 0.024 | -0.427 ± 0.024 | 0/5 | 2 | 0.086 | 9 |
+| U-zero x size | 0.516 ± 0.036 | 0.004 ± 0.036 | 4/5 | 1 | 0.505 | 9 |
+| U+V5-zero risk | 0.076 ± 0.020 | -0.436 ± 0.020 | 0/5 | 2 | 0.086 | 9 |
+| U+V5-zero x size | 0.537 ± 0.008 | 0.025 ± 0.008 | 5/5 | 1 | 0.520 | 9 |
+| frequent | 0.512 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.497 ± 0.000 | -0.015 ± 0.000 | 0/5 | 1 | 0.475 | 9 |
+
+### R3 gemma/strong/held-out/review/groups/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.250 ± 0.011 | 0.081 ± 0.011 | 5/5 | 1 | 0.589 | 9 |
+| U-zero x size | 0.223 ± 0.014 | 0.054 ± 0.014 | 5/5 | 1 | 0.560 | 9 |
+| U+V5-zero risk | 0.234 ± 0.006 | 0.065 ± 0.006 | 5/5 | 1 | 0.567 | 9 |
+| U+V5-zero x size | 0.220 ± 0.016 | 0.051 ± 0.016 | 5/5 | 1 | 0.556 | 9 |
+| frequent | 0.169 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.186 ± 0.000 | 0.017 ± 0.000 | 5/5 | 1 | 0.531 | 9 |
+
+### R3 gemma/strong/held-out/review/FTA/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.625 ± 0.002 | -0.001 ± 0.002 | 1/5 | 1 | 0.504 | 9 |
+| U-zero x size | 0.639 ± 0.003 | 0.013 ± 0.003 | 5/5 | 1 | 0.540 | 9 |
+| U+V5-zero risk | 0.626 ± 0.002 | -0.000 ± 0.002 | 2/5 | 1 | 0.514 | 9 |
+| U+V5-zero x size | 0.637 ± 0.005 | 0.011 ± 0.005 | 5/5 | 1 | 0.540 | 9 |
+| frequent | 0.626 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.618 ± 0.000 | -0.008 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+
+### R3 gemma/strong/held-out/review/lines/@10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.227 ± 0.041 | -0.380 ± 0.041 | 0/5 | 2 | 0.168 | 9 |
+| U-zero x size | 0.642 ± 0.006 | 0.035 ± 0.006 | 5/5 | 1 | 0.538 | 9 |
+| U+V5-zero risk | 0.216 ± 0.055 | -0.391 ± 0.055 | 0/5 | 2 | 0.165 | 9 |
+| U+V5-zero x size | 0.639 ± 0.009 | 0.032 ± 0.009 | 5/5 | 1 | 0.523 | 9 |
+| frequent | 0.607 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.586 ± 0.000 | -0.021 ± 0.000 | 0/5 | 1 | 0.432 | 9 |
+
+### R3 gemma/strong/held-out/review/groups/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.378 ± 0.008 | 0.078 ± 0.008 | 5/5 | 1 | 0.583 | 9 |
+| U-zero x size | 0.310 ± 0.004 | 0.010 ± 0.004 | 5/5 | 1 | 0.520 | 9 |
+| U+V5-zero risk | 0.367 ± 0.012 | 0.067 ± 0.012 | 5/5 | 1 | 0.565 | 9 |
+| U+V5-zero x size | 0.321 ± 0.002 | 0.022 ± 0.002 | 5/5 | 1 | 0.542 | 9 |
+| frequent | 0.300 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.300 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+
+### R3 gemma/strong/held-out/review/FTA/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.653 ± 0.002 | -0.017 ± 0.002 | 0/5 | 1 | 0.465 | 9 |
+| U-zero x size | 0.675 ± 0.004 | 0.005 ± 0.004 | 5/5 | 1 | 0.522 | 9 |
+| U+V5-zero risk | 0.657 ± 0.008 | -0.013 ± 0.008 | 0/5 | 1 | 0.469 | 9 |
+| U+V5-zero x size | 0.676 ± 0.004 | 0.006 ± 0.004 | 5/5 | 1 | 0.528 | 9 |
+| frequent | 0.670 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.674 ± 0.000 | 0.004 ± 0.000 | 5/5 | 1 | 0.525 | 9 |
+
+### R3 gemma/strong/held-out/review/lines/@20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.376 ± 0.008 | -0.341 ± 0.008 | 0/5 | 2 | 0.236 | 9 |
+| U-zero x size | 0.707 ± 0.005 | -0.010 ± 0.005 | 0/5 | 1 | 0.480 | 9 |
+| U+V5-zero risk | 0.371 ± 0.017 | -0.346 ± 0.017 | 0/5 | 2 | 0.238 | 9 |
+| U+V5-zero x size | 0.712 ± 0.003 | -0.005 ± 0.003 | 0/5 | 1 | 0.506 | 9 |
+| frequent | 0.717 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.708 ± 0.000 | -0.009 ± 0.000 | 0/5 | 1 | 0.475 | 9 |
+
+### R3 gemma/strong/held-out/review/groups/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.521 ± 0.004 | 0.081 ± 0.004 | 5/5 | 1 | 0.588 | 9 |
+| U-zero x size | 0.496 ± 0.001 | 0.057 ± 0.001 | 5/5 | 1 | 0.575 | 9 |
+| U+V5-zero risk | 0.516 ± 0.005 | 0.076 ± 0.005 | 5/5 | 1 | 0.575 | 9 |
+| U+V5-zero x size | 0.495 ± 0.002 | 0.055 ± 0.002 | 5/5 | 1 | 0.579 | 9 |
+| frequent | 0.440 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.478 ± 0.000 | 0.039 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+
+### R3 gemma/strong/held-out/review/FTA/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.697 ± 0.005 | -0.022 ± 0.005 | 0/5 | 1 | 0.472 | 9 |
+| U-zero x size | 0.738 ± 0.003 | 0.019 ± 0.003 | 5/5 | 1 | 0.560 | 9 |
+| U+V5-zero risk | 0.699 ± 0.004 | -0.019 ± 0.004 | 0/5 | 1 | 0.494 | 9 |
+| U+V5-zero x size | 0.740 ± 0.002 | 0.021 ± 0.002 | 5/5 | 1 | 0.564 | 9 |
+| frequent | 0.719 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.730 ± 0.000 | 0.012 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+
+### R3 gemma/strong/held-out/review/lines/@50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero risk | 0.460 ± 0.049 | -0.314 ± 0.049 | 0/5 | 2 | 0.284 | 9 |
+| U-zero x size | 0.776 ± 0.003 | 0.001 ± 0.003 | 4/5 | 1 | 0.511 | 9 |
+| U+V5-zero risk | 0.463 ± 0.040 | -0.311 ± 0.040 | 0/5 | 2 | 0.269 | 9 |
+| U+V5-zero x size | 0.772 ± 0.006 | -0.002 ± 0.006 | 1/5 | 1 | 0.496 | 9 |
+| frequent | 0.774 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.768 ± 0.000 | -0.007 ± 0.000 | 0/5 | 1 | 0.481 | 9 |
+
+### gemma/strong/gate/U-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.039 ± 0.003 | 0.001 ± 0.003 | 2/5 | 1 | 0.545 | 12 |
+| D gate | 0.038 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/strong/U-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 39.033 ± 7.751 |
+| precision | 0.695 ± 0.022 |
+| share | 0.039 ± 0.003 |
+
+### gemma/strong/gate/U-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.068 ± 0.017 | 0.014 ± 0.017 | 5/5 | 1 | 0.555 | 12 |
+| D gate | 0.054 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/strong/U-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 76.033 ± 15.648 |
+| precision | 0.690 ± 0.015 |
+| share | 0.068 ± 0.017 |
+
+### gemma/strong/gate/U-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U-zero | 0.182 ± 0.036 | 0.076 ± 0.036 | 5/5 | 1 | 0.599 | 12 |
+| D gate | 0.105 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+
+R3 gemma/strong/U-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 180.283 ± 12.007 |
+| precision | 0.675 ± 0.021 |
+| share | 0.182 ± 0.036 |
+
+### gemma/strong/gate/U+V5-zero/q0.05 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.045 ± 0.008 | 0.006 ± 0.008 | 4/5 | 1 | 0.570 | 12 |
+| D gate | 0.038 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/strong/U+V5-zero/q0.05: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 40.667 ± 6.266 |
+| precision | 0.705 ± 0.020 |
+| share | 0.045 ± 0.008 |
+
+### gemma/strong/gate/U+V5-zero/q0.1 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.080 ± 0.018 | 0.027 ± 0.018 | 5/5 | 1 | 0.578 | 12 |
+| D gate | 0.054 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+
+R3 gemma/strong/U+V5-zero/q0.1: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 74.567 ± 13.654 |
+| precision | 0.685 ± 0.017 |
+| share | 0.080 ± 0.018 |
+
+### gemma/strong/gate/U+V5-zero/q0.2 share of bad lines fixed
+
+| method | mean ± std | minus D gate | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| U+V5-zero | 0.198 ± 0.056 | 0.093 ± 0.056 | 5/5 | 1 | 0.639 | 12 |
+| D gate | 0.105 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+
+R3 gemma/strong/U+V5-zero/q0.2: gate metrics
+
+| metric | mean ± std |
+|---|---|
+| N | 165.033 ± 29.771 |
+| precision | 0.679 ± 0.019 |
+| share | 0.198 ± 0.056 |

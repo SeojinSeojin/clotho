@@ -10,9 +10,11 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 **CPU overnight continuation (2026-11-11 UTC).**
 - R1 complete: **The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds for gemma/base/L1, gemma/base/L2.
 - R2 **changes** the frequency claim within the tested setting: **At 20 reviews, gains over frequency on every seed occur in:** llama/base/full/groups: urisk 0.089 ± 0.003; llama/base/full/FTA: llmlog_size 0.025 ± 0.000; llama/base/tail/groups: urisk 0.119 ± 0.002; llama/base/tail/FTA: urisk 0.077 ± 0.002; llama/base/tail/lines: usize 0.057 ± 0.002; llama/strong/full/groups: urisk 0.128 ± 0.004; llama/strong/full/FTA: llmlog_size 0.016 ± 0.000; llama/strong/full/lines: usize 0.003 ± 0.001; llama/strong/tail/groups: urisk 0.050 ± 0.001; llama/strong/tail/FTA: usize 0.073 ± 0.001; llama/strong/tail/lines: usize 0.024 ± 0.001; gemma/base/full/groups: urisk 0.066 ± 0.008; gemma/base/full/FTA: usize 0.020 ± 0.001; gemma/base/full/lines: usize 0.007 ± 0.002; gemma/base/tail/groups: urisk 0.071 ± 0.013; gemma/base/tail/FTA: llmlog_size 0.025 ± 0.000; gemma/base/tail/lines: usize 0.054 ± 0.005; gemma/strong/full/groups: urisk 0.053 ± 0.006; gemma/strong/full/FTA: wfirst 0.014 ± 0.000; gemma/strong/tail/groups: drisk 0.090 ± 0.000; gemma/strong/tail/FTA: llmlog_size 0.018 ± 0.000; gemma/strong/tail/lines: usize 0.061 ± 0.006.
-- R3 pending/partial; no final claim from incomplete cells.
-- Runner status: running; milestone R3 source-only suite AUC complete; streams pending. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
+- R3 **changes** the frequency claim within the tested setting: **At 20 reviews, gains over frequency on every seed occur in:** llama/base/review/groups: U-zero risk 0.108 ± 0.000; llama/base/review/FTA: U+V5-zero x size 0.018 ± 0.000; llama/base/review/lines: U+V5-zero x size 0.001 ± 0.000; llama/strong/review/groups: U+V5-zero risk 0.134 ± 0.000; llama/strong/review/FTA: U-zero x size 0.013 ± 0.000; llama/strong/review/lines: U+V5-zero x size 0.003 ± 0.000; gemma/base/review/groups: U+V5-zero risk 0.089 ± 0.011; gemma/base/review/FTA: U-zero x size 0.016 ± 0.003; gemma/strong/review/groups: U-zero risk 0.067 ± 0.006; gemma/strong/review/FTA: U+V5-zero x size 0.007 ± 0.004.
+- Runner status: complete; milestone R3 zero-target-label U complete. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
 <!-- OVERNIGHT SUMMARY END -->
+
+
 
 
 
@@ -105,6 +107,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
@@ -237,6 +240,7 @@ R2-R4 not started; their full protocols will be recorded before computation if R
 - N4 row for U's best is added by `log_parsing_stream_u.py` (above); N1-N3, N5 and the N4 core are done (summary 24-26 and the N4/N5 reports).
 
 ## Known issues
+- The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.

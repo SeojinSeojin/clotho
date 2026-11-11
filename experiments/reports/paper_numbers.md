@@ -3725,7 +3725,26 @@ Only completed systems are shown; the system count below makes partial coverage 
 
 ## R3. U without target-system labels
 
-Pending: no complete cell available.
+**At 20 reviews, gains over frequency on every seed occur in:** llama/base/review/groups: U-zero risk 0.108 ± 0.000; llama/base/review/FTA: U+V5-zero x size 0.018 ± 0.000; llama/base/review/lines: U+V5-zero x size 0.001 ± 0.000; llama/strong/review/groups: U+V5-zero risk 0.134 ± 0.000; llama/strong/review/FTA: U-zero x size 0.013 ± 0.000; llama/strong/review/lines: U+V5-zero x size 0.003 ± 0.000; gemma/base/review/groups: U+V5-zero risk 0.089 ± 0.011; gemma/base/review/FTA: U-zero x size 0.016 ± 0.003; gemma/strong/review/groups: U-zero risk 0.067 ± 0.006; gemma/strong/review/FTA: U+V5-zero x size 0.007 ± 0.004.
+
+U in R2 uses 100 target labels; U-zero in R3 uses none. Output entropy requires extra samples and is excluded from this headline.
+
+Only completed systems are shown; the system count below makes partial coverage explicit. R2 details also compare frequency-20 then risk with uninterrupted frequency at equal total budgets.
+
+| model/parser | systems | scope | metric | largest observed predictor gain | minus frequency (positive seeds) |
+|---|---:|---|---|---|---|
+| llama/base | 11 | review | groups | U-zero risk | 0.108 ± 0.000 (5/5) |
+| llama/base | 11 | review | FTA | U+V5-zero x size | 0.018 ± 0.000 (5/5) |
+| llama/base | 11 | review | lines | U+V5-zero x size | 0.001 ± 0.000 (5/5) |
+| llama/strong | 13 | review | groups | U+V5-zero risk | 0.134 ± 0.000 (5/5) |
+| llama/strong | 13 | review | FTA | U-zero x size | 0.013 ± 0.000 (5/5) |
+| llama/strong | 13 | review | lines | U+V5-zero x size | 0.003 ± 0.000 (5/5) |
+| gemma/base | 12 | review | groups | U+V5-zero risk | 0.089 ± 0.011 (5/5) |
+| gemma/base | 12 | review | FTA | U-zero x size | 0.016 ± 0.003 (5/5) |
+| gemma/base | 12 | review | lines | U-zero x size | 0.000 ± 0.008 (4/5) |
+| gemma/strong | 12 | review | groups | U-zero risk | 0.067 ± 0.006 (5/5) |
+| gemma/strong | 12 | review | FTA | U+V5-zero x size | 0.007 ± 0.004 (5/5) |
+| gemma/strong | 12 | review | lines | U+V5-zero x size | -0.003 ± 0.002 (0/5) |
 
 ## R4. Full-length concentration
 
