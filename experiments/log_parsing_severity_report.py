@@ -103,7 +103,7 @@ def report(partial=False):
         for r in dd:D+=r['rows']
     csvsave('taxonomy_counts.csv',A);csvsave('taxonomy_inventory.csv',inventory);csvsave('taxonomy_overlap.csv',overlap);csvsave('manual_review_blind.csv',manual);csvsave('manual_sampling_key.csv',samplekey)
     csvsave('predictor_metrics.csv',B);csvsave('predictor_availability.csv',availability);csvsave('review_metrics.csv',C);csvsave('downstream_metrics.csv',D)
-    summary={'coverage':coverage,'predictor':[],'review':[],'downstream':[],'missing':missing,'semantic_verified_labels':0}
+    summary={'statistics':[], 'coverage':coverage,'predictor':[],'review':[],'downstream':[],'missing':missing,'semantic_verified_labels':0}
     Ls=['# Do failure predictors identify consequential parsing errors?\n',
         '**Status:** '+('partial; only complete saved system jobs included.' if partial else 'completed CPU audit; semantic consequences remain unverified.')+'\n',
         '## Research questions and reference\n',
@@ -144,6 +144,21 @@ def report(partial=False):
         table(['Target','Unit','Predictor','AUROC systems','AUROC','AP systems','AP','Prevalence','P@20','P@20/random','ΔAUROC−Clotho','Positive seeds/5','System-cluster95%CI'],rows)
     Ls.append('AUROC excludes one-class systems; AP excludes zero-positive systems, and AP=1 in all-positive populations is uninformative. Every aggregate requires all five eligible seeds per system; contributing counts are explicit. Raw CSVs include K5/10/20/50, recall and random lifts. GT-template units average risk and majority-label within GT event types solely for retrospective evaluation; this is not a deployable ranking. Strict-on-structural-known controls population changes when comparing failure definitions.\n')
     Ls.append('Mean±sample std describes five seed macros, not five independent datasets. Paired confidence intervals resample systems (1000 draws, seed20261111), averaging each system’s five seeds first; entire correlated template/line clusters stay inside systems. No line-IID or seed-IID p-values are used. Small system counts limit inference.\n')
+    statrows=[]
+    for model in MODELS:
+        for target in ('strict','structural_proxy','word_input_change'):
+            zz=[r for r in B if r['model']==model and r['unit']=='line' and r['target']==target]
+            methodset=set.intersection(*(set(x['method'] for x in availability if x['model']==model and x['system']==ss and x['seed']==seed) for ss in {x['system'] for x in availability if x['model']==model} for seed in range(5)))
+            dd={m:{(r['system'],r['seed']):r['AUROC'] for r in zz if r['method']==m and r['AUROC'] is not None} for m in methodset}
+            keys=set.intersection(*(set(v) for v in dd.values()));dd={m:[v[k] for k in sorted(keys)] for m,v in dd.items()}
+            ranks=ST.sk_esd(dd)
+            for m,v in sorted(dd.items()):
+                a=ST.a12(v,dd['Clotho']);rec={'model':model,'target':target,'method':m,'observations_system_seed':len(keys),'SK_ESD':ranks[m],'A12_vs_Clotho':a,'magnitude':ST.magnitude(a)}
+                summary['statistics'].append(rec);statrows.append(list(rec.values()))
+    Ls.append('Scott–Knott ESD and A12 below use the existing `log_parsing_stats` implementation on matched system×seed observations, for comparability only. Repeated seeds are correlated: these ranks/effect sizes are descriptive, not independent-dataset significance tests. The system-cluster paired intervals above provide the inferential uncertainty.\n')
+    table(['Model','Target','Predictor','Matched system×seeds','SK-ESD group','A12 vs Clotho','Magnitude'],statrows)
+    csvsave('descriptive_statistics.csv',summary['statistics'])
+
     Ls.append('## C. What review orders select\n')
     rows=[]
     for model in MODELS:
@@ -186,8 +201,32 @@ def report(partial=False):
     Ls.append('Selection rule: first sorted readable sample0 example per primary/model/system/suite; the display takes the first such example per model/primary, independent of all predictor scores. Exact stored templates follow.\n');table(['ID','Automatic proxy','Log','Prediction','GT'],examples)
     Ls.append('## Missing comparisons and threats\n')
     Ls.extend('- '+x for x in sorted(set(missing)));Ls.append('')
-    Ls.append('No human-verified semantic labels, temporal E5 handling labels, severity scale or semantic AUROC is available. These are unknown, not evidence of absence. No standard/natural predictor rerun was scheduled in this short CPU window. Recovering exact old MDSA vectors/RNG history and static Clotho stream-risk vectors remains necessary for those comparisons. Label uncertainty, 3ms matching limits, GT convention errors, retrospective template aggregation and capped-distribution bias constrain interpretation. U contains output-validity checks similar to the proxy construction; superior proxy AUC can partly reflect this construct alignment rather than downstream importance. Grouping/semantics/downstream outcomes must not be conflated. D has no target-suite training labels; U has90 plus frozen sources, so their supervision budgets differ. No predictor/threshold/severity weight was tuned on this audit.\n')
+    Ls.append('No human-verified semantic labels, temporal E5 handling labels, severity scale or semantic AUROC is available. Grouping-error prediction AUROC is not computed: stored capped input scores and operational-group histories do not provide a preregistered shared group-risk vector/target mapping; we report actual partition agreement and reviewed mixed-GT groups instead. These are unknown, not evidence of absence. No standard/natural predictor rerun was scheduled in this short CPU window. Recovering exact old MDSA vectors/RNG history and static Clotho stream-risk vectors remains necessary for those comparisons. Label uncertainty, 3ms matching limits, GT convention errors, retrospective template aggregation and capped-distribution bias constrain interpretation. U contains output-validity checks similar to the proxy construction; superior proxy AUC can partly reflect this construct alignment rather than downstream importance. Grouping/semantics/downstream outcomes must not be conflated. D has no target-suite training labels; U has90 plus frozen sources, so their supervision budgets differ. No predictor/threshold/severity weight was tuned on this audit.\n')
     Ls.append('## Research interpretation and smallest follow-up\n')
+    Ls.append('The broad structural proxy almost reproduces strict failure: majority positives are65.4% vs67.0% for Llama and51.4% vs54.6% for Gemma capped suites, with1.4%/2.6% unknown. Thus unchanged predictor rankings under this proxy provide limited evidence of a new severity signal. Whitespace-only differences do not explain most strict failures under this rule, but formal mismatch still does not establish practical harm.\n')
+    rows=[]
+    for model in MODELS:
+        for method in ('Clotho','U','U+V5','Output entropy'):
+            vals=[]
+            for target in ('strict','structural_proxy','word_input_change'):
+                x=next(r for r in summary['predictor'] if r['model']==model and r['method']==method and r['unit']=='line' and r['target']==target)
+                vals.append(fmt(x))
+            rows.append([model,method]+vals)
+    table(['Model','Predictor','Strict AUROC','Structural proxy AUROC','Word-input-change AUROC'],rows)
+    Ls.append('U retains an advantage over Clotho for extraction/representation proxies; the word-input-change advantage is smaller. For U alone it is+0.041 in Llama (system-cluster interval crosses zero), +0.075 in Gemma (interval excludes zero). U+V5 is+0.049/+0.072 on that target. Output entropy has the highest mean AUROC among verified full-cohort methods for both new targets in both models; U has no established advantage over output entropy here. These are changed detector words, not semantic importance. Clotho remains above chance descriptively but is substantially weaker than the best output-based ranking.\n')
+    Ls.append('At20 base/full reviews, U-risk selects+3.38/+1.70 structural-proxy groups per system relative to frequency (Llama11/Gemma12 matched systems), positive on5/5 seed macros, while fixing about23135/15064 fewer net lines. U×size selects+1.57/+2.02 proxy groups (13/12 systems) with−933/+236 net lines. D×size selects+1.05/+1.33 proxy groups with−377/−436 net lines. This answers the review question only at proxy level: more formally erroneous groups can be found without more lines fixed; greater consequence remains unverified. Frequency remains competitive for line utility. Paired system-cluster intervals in `review_summary.csv` must accompany inference; five positive seeds alone do not establish significance.\n')
+    rarity=[]
+    for model,suffix in MODELS.items():
+        aa=[load(p) for p in sorted((EXP/f'results_phase3{suffix}/severity_audit').glob('*.json'))]
+        for parser in ('base','strong','real_adaparser'):
+            zz=[r['streams'][parser] for r in aa if parser in r['streams'] and 'missing' not in r['streams'][parser]]
+            for tag in ('rare_1_2','frequent_3plus'):
+                n=sum(r['rarity'][tag]['groups'] for r in zz);positive=sum(r['rarity'][tag]['structural_proxy'] for r in zz)
+                rarity.append({'model':model,'parser':parser,'rarity':tag,'groups':n,'structural_proxy_groups':positive,'fraction':positive/n if n else None})
+    table(['Model','Parser','Group size','Groups pooled','Structural-proxy groups','Fraction'],[[r[k] for k in ('model','parser','rarity','groups','structural_proxy_groups','fraction')] for r in rarity])
+    csvsave('group_rarity.csv',rarity)
+    Ls.append('Rare groups (size1–2) have a higher pooled structural-proxy fraction in all six model/parser cells; these are descriptive pooled counts, not a verified harm gradient or a system-adjusted causal effect. High output-partition ARI(0.992–0.999) coexists with exact-set line agreement0.856–0.950 andGT-template agreement0.879–0.941: it is incorrect to say every wrong template preserves the true partition. Corrections to fixed operational templates still cannot repair their membership errors.\n')
+    Ls.append('Downstream results reject a simple “more correct templates ⇒ better detector” interpretation. Gemma/BGL IF improves fromF1≈0.114 to≈0.230 after20 reviews for frequency, D×size andU×size alike; frequency has the highest AP of these methods(≈0.640 vs≈0.628). Llama/BGL corrections slightly reduce IF F1/AP. HDFS corrections leave IF F1≈0.185 unchanged while AP rises, but reduce OCSVM F1≈0.186→0.070 andAP≈0.480→0.308. Hence thresholded F1 can hide ranking changes, and correction can hurt a detector. Gemma/BGL OCSVM stays≈0.013 after20 reviews despiteGT F1≈0.123, showing the chosen review budget does not recover its GT behavior. Two systems do not support a general downstream superiority claim for U or D.\n')
     Ls.append('Confirmed scope: we can test formal proxy detection, reviewed error composition and representation-specific detector effects with stored outputs. We cannot conclude that any method identifies expert-verified consequential or semantic errors best. Frequency remains the paired reference at each budget; proxy-group gains with fewer net corrected lines are reported explicitly in machine-readable contrasts and must not be renamed downstream gains. Negative/mixed F1 or AP changes should be retained even when parsing improves.\n')
     Ls.append('Highest-value next step: have two domain reviewers independently annotate the blinded stratified worksheet, resolve disagreements and report agreement before claiming semantic/severity performance. Then use an independent GT-template-disjoint evaluation set and frozen predictor rankings. For downstream validation, first establish a useful GT/oracle ceiling on complete sessions and a representation that observes the annotated errors. Reuse real AdaParser’s existing event partition or a fixed semantic/parameter-consuming detector if count features cannot observe the change; this changes the architecture question and must be stated. No new LLM generation is justified until that sensitivity/ceiling check succeeds.\n')
     csvsave('predictor_summary.csv',summary['predictor']);csvsave('review_summary.csv',summary['review'])

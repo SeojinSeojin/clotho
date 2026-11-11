@@ -71,3 +71,6 @@ experiments/data/cpu_before_g2/
 experiments/data/token_followups/
 # Consequential-error labels and joined scores are persisted to RESULTS_REPO.
 experiments/data/severity_audit/
+
+# Detailed severity CSVs are persisted to RESULTS_REPO.
+experiments/reports/error_severity_audit/
