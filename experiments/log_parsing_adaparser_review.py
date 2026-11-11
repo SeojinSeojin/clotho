@@ -176,7 +176,9 @@ def report(exp, push=False):
                     hs.commit_files(hs.get_results_repo(), {str(q.relative_to(exp)):q}, f'N5 refresh {model} {system}')
         if not R:continue
         J[model] = jm = {'systems':R,'summary':{}}
-        L.append(f'## {model}: {len(R)} completed systems (partial until all model systems finish)\n')
+        expected = 13 if model == 'llama' else 12
+        state = 'complete' if len(R) == expected else f'partial: {len(R)}/{expected}'
+        L.append(f'## {model}: {state}\n')
         rows=[]
         for s,r in R.items():
             pr=r['provenance'];lc=pr.get('line_shares',{});tc=pr.get('template_shares',{})
@@ -248,7 +250,8 @@ def report(exp, push=False):
         main=jm['summary'].get('all/all systems/lines/20')
         if main:
             f=np.mean(main['means']['frequent']);o=np.mean(main['means']['oracle'])
-            L.append(f'Headline: with the real parser, Most frequent fixes {f:.3f} of wrong lines versus Oracle {o:.3f} after 20 reviews (gap {o-f:.3f}); closeness is shown by this gap rather than an invented threshold. D × size beats frequency on every seed '+('in: '+', '.join(wins)+'.' if wins else 'nowhere among the tested budgets, subsets and systems.')+'\n')
+            ratio = 100*f/o if o else float('nan')
+            L.append(f'Headline: with the real parser, Most frequent achieves {ratio:.1f}% of Oracle’s macro gain after 20 reviews: {f:.3f} versus {o:.3f} of wrong lines fixed (gap {o-f:.3f}). D × size beats frequency on every seed '+('in: '+', '.join(wins)+'.' if wins else 'nowhere among the tested budgets, subsets and systems.')+'\n')
         jm['every_seed_wins']=wins
     md=exp/'reports/adaparser_e2e_review.md';js=md.with_suffix('.json')
     md.write_text('\n'.join(L)+'\n');js.write_text(json.dumps(J,indent=1,default=float))
