@@ -21,6 +21,30 @@ def main():
   if system=='HDFS':
    b=(Path.home()/'.cache/loghub1_hdfs/anomaly_label.csv').read_bytes().replace(b'\r\n',b'\n').replace(b'\n',b'\r\n');assert hashlib.sha256(b).hexdigest()==j['prior_label_file_sha256']
   out[system]={'manifest_counts_and_bounds_verified':True,'unit_ids_unique_across_splits':True,'split_line_disjointness_by_verified_bounds':True,'label_bytes_equivalent_after_line_endings':system=='HDFS','splits':summary}
+ # Independently replay-check every stored review outcome and operational invariance.
+ review_checks=0
+ for system in ('HDFS','BGL'):
+  rows=load(OUT/f'representation_{system}.json');baseline={r['parser']:r for r in rows if r['budget']==0}
+  for r in rows:
+   assert r['operational']==baseline[r['parser']]['operational']
+   if r['budget']==0:continue
+   assert r['corrected_lines']-r['newly_wrong_lines']==r['net_correct_lines']
+   assert r['actual_reviews']<=r['budget']
+   model,parser=r['parser'].split('/');suf='' if model=='llama' else '_gemma';root=EXP/f'results_phase3{suf}'
+   if parser=='AdaParser':
+    h=load(root/'adaparser_e2e'/f'{system}.json');curve=h['runs'][r['method']][str(r['seed'])]['pa'];k=min(r['budget'],len(curve)-1);expected=(curve[k]-h['pa0'])*50000
+   else:
+    parser='base' if parser=='cache' else parser;hp=root/'robustness_tail'/parser/f'{system}.json'
+    if not hp.exists():continue
+    h=load(hp);by=h['full']['runs'];zp=root/'zero_target/streams'/parser/f'{system}.json'
+    if zp.exists():by={**by,**load(zp)['review']}
+    if r['method']=='oracle':continue  # saved R2 oracles are metric-specific, not the E1 line oracle.
+    value=by[r['method']][str(r['seed'])]['metrics'][str(r['budget'])]['lines']
+    if value is None:continue
+    expected=value*h['full']['n_bad_lines']
+   assert abs(expected-r['net_correct_lines'])<1e-7,(system,r['parser'],r['method'],expected,r['net_correct_lines'])
+   review_checks+=1
+ out['stored_review_replay']={'checked_rows':review_checks,'operational_grouping_invariant_all_rows':True,'net_line_gains_match_stored_histories':True}
  # Label permutation must leave grouping diagnostics invariant; merging must lower recall/purity appropriately.
  from log_parsing_representation_cpu import partition,seqstats
  g=['a','a','b','b'];p=['x','x','y','y'];z=partition(g,p);assert z['ARI']==z['NMI']==z['pair_precision']==z['pair_recall']==1
