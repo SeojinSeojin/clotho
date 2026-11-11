@@ -101,16 +101,23 @@ def compute(system, E):
     import log_parsing_triage as T
     meta_path = E.DATA / f'{system}.json';digest = source_hash(meta_path)
     out = E.RES / f'{system}.json'
+    layer = 24 if E.MODEL == 'llama' else 35
+    hidden = E.DATA/f'{system}_layer{layer}.npy'
+    hidden_digest = source_hash(hidden)
+    hidden_meta = json.loads(hidden.with_suffix('.meta.json').read_text())
     if out.exists():
         prev = json.loads(out.read_text())
-        if prev.get('review_version') == 1 and prev.get('source_sha256') == digest:
+        if prev.get('review_version') == 1 and prev.get('source_sha256') == digest and prev.get('hidden_sha256') == hidden_digest:
+            if hidden_meta.get('gpu_verified') and not prev.get('hidden_verified'):
+                prev['hidden_verified'] = True
+                out.write_text(json.dumps(prev))
             return str(out), 'exists'
     np.random.seed(0)
     d,cache = E.install(system)
     sizes,base,gain,correct,fix_template,major = metrics(d,cache)
     meta = json.loads(meta_path.read_text())
     prov,llm_mask = provenance(meta,d['grp'],d['G'])
-    r = {'review_version': 1, 'source_sha256': digest, 'model': E.MODEL, 'system': system,
+    r = {'review_version': 1, 'source_sha256': digest, 'hidden_sha256': hidden_digest, 'hidden_verified': bool(hidden_meta.get('gpu_verified')), 'model': E.MODEL, 'system': system,
          'n_lines': d['n'], 'G': d['G'], 'correct_groups': float(correct.mean()), 'wrong_groups': float((~correct).mean()),
          'wrong_majority_groups': float((np.array(cache,dtype=object)!=major).mean()),
          'pa0': float(base.sum()/d['n']), 'provenance': prov, 'n1': n1(sizes,correct,cache,major),
@@ -179,6 +186,9 @@ def report(exp, push=False):
         J[model] = jm = {'systems':R,'summary':{}}
         expected = 13 if model == 'llama' else 12
         state = 'complete' if len(R) == expected else f'partial: {len(R)}/{expected}'
+        provisional = [s for s, r in R.items() if not r.get('hidden_verified')]
+        if provisional:
+            state += '; provisional cached-state replay, fresh GPU check pending: ' + ', '.join(provisional)
         L.append(f'## {model}: {state}\n')
         rows=[]
         for s,r in R.items():

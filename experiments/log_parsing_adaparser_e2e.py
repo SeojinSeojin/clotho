@@ -190,7 +190,7 @@ def hidden(push):
             continue
         digest = hashlib.sha256(source.read_bytes()).hexdigest()
         meta_path = p.with_suffix('.meta.json')
-        if p.exists() and meta_path.exists() and json.loads(meta_path.read_text()).get('source_sha256') == digest:
+        if p.exists() and meta_path.exists() and json.loads(meta_path.read_text()).get('source_sha256') == digest and json.loads(meta_path.read_text()).get('gpu_verified', False):
             continue
         rows = ST.read_stretch(s)
         _, first, _ = groups(s)
@@ -198,8 +198,12 @@ def hidden(push):
         with torch.no_grad():
             for i in first:
                 V.append(w.get_hidden_states(rows[i][1], fn, produce_inference_results=False)["hidden_states"][D_LAYER][0, -1].cpu().to(torch.float32).numpy())
-        np.save(p, np.asarray(V, np.float32))
-        meta_path.write_text(json.dumps({'source_sha256': digest, 'model': MODEL, 'layer': D_LAYER, 'n': len(V)}))
+        fresh = np.asarray(V, np.float32)
+        previous = np.load(p) if p.exists() else None
+        exact = previous is not None and np.array_equal(previous, fresh)
+        np.save(p, fresh)
+        meta_path.write_text(json.dumps({'source_sha256': digest, 'model': MODEL, 'layer': D_LAYER, 'n': len(V),
+                                        'gpu_verified': True, 'reuse_exact_match': exact if previous is not None else None}))
         print(s, len(first), flush=True)
         if push:
             import hub_sync as hs
@@ -319,7 +323,7 @@ def report(push=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["prep", "run", "hidden", "sim", "report", "describe"])
+    ap.add_argument("cmd", choices=["prep", "run", "hidden", "sim", "report", "describe", "reuse"])
     ap.add_argument("--push", action="store_true")
     ap.add_argument('-s', '--systems', nargs='+')
     a = ap.parse_args()
@@ -331,7 +335,11 @@ def main():
         from log_parsing_adaparser_review import describe
         for system in SYSTEMS:
             describe(system, sys.modules[__name__], a.push)
-    {"describe": describe_all, "prep": lambda: prep(), "run": lambda: run(a.push), "hidden": lambda: hidden(a.push),
+    def reuse_all():
+        from adaparser_hidden_reuse import reuse
+        for system in SYSTEMS:
+            reuse(sys.modules[__name__], system, a.push)
+    {"reuse": reuse_all, "describe": describe_all, "prep": lambda: prep(), "run": lambda: run(a.push), "hidden": lambda: hidden(a.push),
      "sim": lambda: sim(a.push), "report": lambda: report(a.push)}[a.cmd]()
 
 
