@@ -125,10 +125,21 @@ def missing(model):
     return out
 
 
-def main(existing):
+class ExternalCPU:
+    """Observe an owned CPU worker that survived a controller restart."""
+    def __init__(self,pid):self.pid=pid;self.returncode=None
+    def poll(self):
+        p=Path(f'/proc/{self.pid}/stat')
+        if not p.exists() or p.read_text().split(') ')[1].startswith('Z '):
+            log=(EXP/'logs/queue_cpu_I_llama.log').read_text()
+            self.returncode=0 if 'I_llama_report EXIT 0' in log and 'Traceback (most recent call last)' not in log else 1
+        return self.returncode
+
+
+def main(existing,resume_g2=False,existing_i_pid=None):
     # Existing G1 job was launched by this same root session under tmux.
-    status('G1 Llama run',existing_pid=existing)
-    while True:
+    if not resume_g2:status('G1 Llama run',existing_pid=existing)
+    while not resume_g2:
         try:os.kill(existing,0)
         except ProcessLookupError:break
         if left()<=0:raise TimeoutError('Existing G1 run reached cutoff; root must stop its known descendants')
@@ -143,9 +154,10 @@ def main(existing):
                 hub_push([archive.relative_to(EXP)])
         run('G1_retry',[PY,'log_parsing_adaparser_e2e.py','run','--push','-s',*todo])
     if missing('llama'):raise RuntimeError('Incomplete G1 run: '+str(missing('llama')))
-    status('G1 Llama hidden')
-    run('G1_hidden',[PY,'log_parsing_adaparser_e2e.py','hidden','--push'])
-    cpus=[start_cpu('I','llama')]
+    if not resume_g2:
+        status('G1 Llama hidden')
+        run('G1_hidden',[PY,'log_parsing_adaparser_e2e.py','hidden','--push'])
+    cpus=[ExternalCPU(existing_i_pid) if existing_i_pid else start_cpu('I','llama')]
     status('G2 base cache generation; G1 Llama sim/report CPU')
     run('G2_restore',[VY,'log_parsing_stream_gen.py','--verify-e1','--push','-s','HDFS','OpenSSH'])
     cpus.append(start_cpu('G2','llama'))
@@ -179,10 +191,10 @@ def main(existing):
 
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('--existing-g1-pid',type=int);ap.add_argument('--cpu-kind',choices=['I','G2']);ap.add_argument('--model',default='llama');a=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--existing-g1-pid',type=int);ap.add_argument('--resume-g2',action='store_true');ap.add_argument('--existing-i-pid',type=int);ap.add_argument('--cpu-kind',choices=['I','G2']);ap.add_argument('--model',default='llama');a=ap.parse_args()
     try:
         if a.cpu_kind:cpu(a.cpu_kind,a.model)
-        else:main(a.existing_g1_pid)
+        else:main(a.existing_g1_pid,a.resume_g2,a.existing_i_pid)
     except Exception as e:
         print(type(e).__name__,str(e),flush=True)
         if not a.cpu_kind:status('ERROR',error=str(e))

@@ -94,7 +94,10 @@ def main():
     from vllm import LLM
     tok = pr.load_tokenizer(MODEL)
     from huggingface_hub import snapshot_download
-    local_model = snapshot_download(pr.MODEL_IDS[MODEL], local_files_only=True)
+    from sharded.hub_sync import MODEL_ALLOW_PATTERNS, MODEL_IGNORE_PATTERNS
+    local_model = snapshot_download(pr.MODEL_IDS[MODEL], local_files_only=True,
+                                    allow_patterns=MODEL_ALLOW_PATTERNS,
+                                    ignore_patterns=MODEL_IGNORE_PATTERNS)
     llm = LLM(model=local_model, dtype="bfloat16", seed=1, max_model_len=8192,
               gpu_memory_utilization=0.90, generation_config="vllm", enable_prefix_caching=True)
     OUT.mkdir(parents=True, exist_ok=True)
