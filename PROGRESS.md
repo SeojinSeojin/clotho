@@ -109,6 +109,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- G1 Llama AdaParser complete; queue status: `experiments/results_phase3/gpu_session_20261111/status.json`.
 - G1 GPU hidden extraction complete (12 successful Llama systems, Mac skipped); provisional exact reuse matched fresh GPU states for Apache/HDFS/HPC. Full CPU sim/report started immediately. G2 first attempt failed before model load: newer HF cache validation demanded the intentionally excluded duplicate `original/consolidated.00.pth`; restrict offline lookup to the same setup download patterns and resume G2 while retaining the active CPU worker. No sampling or scoring protocol changed.
 - G1 Llama parsing update (2026-11-11 15:47 UTC): HealthApp completed all 50,000 lines and uploaded; 11 fresh parser systems are persisted. OpenSSH provenance retry is running, followed by fresh GPU hidden extraction and immediate CPU sim/report. Mac remains the documented fixed-context protocol skip.
 - G4 CPU data preflight complete (2026-11-11): all 8 tasks / 85,850 inputs have aligned 10-output labels, token scores and finite full LOHSvar distance matrices; seeded Sem-Ent subsets total 12,000 inputs. Manifest `results_phase3/gpu_session_20261111/g4_preflight.json` uploaded; GPU Sem-Ent remains after G3. HealthApp is still the active G1 Llama parser system.
