@@ -87,6 +87,16 @@ def main():
     ap.add_argument("--push", action="store_true")
     ap.add_argument("--verify-e1", action="store_true", help="G2: assert restored cache reproduces stored base E1 before upload")
     a = ap.parse_args()
+    if a.verify_e1:
+        for s in a.systems:
+            p=OUT/f'{s}.json'
+            if p.exists():
+                import subprocess
+                subprocess.run([str(EXP.parent/'.venv/bin/python'),str(EXP/'log_parsing_restore_cache.py'),s],check=True)
+                if a.push:
+                    import hub_sync as hs
+                    files=[p,OUT/'adaparser'/f'{s}.json',EXP/'results_phase3/cache_restore'/f'{s}.json',EXP/'data/stream'/f'{s}_same.json']
+                    hs.commit_files(hs.get_results_repo(),{str(q.relative_to(EXP)):q for q in files if q.exists()},f'verified restored stream cache {MODEL} {s}')
     todo = [s for s in a.systems if not (OUT / f"{s}.json").exists()]
     if not todo:
         print("nothing to do")
