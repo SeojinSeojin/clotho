@@ -39,6 +39,25 @@ class CommonSubsetTests(unittest.TestCase):
             self.assertAlmostEqual(sum(v['change_by_seed']['tokprob'])/5,.109)
             self.assertEqual(v['a12']['tokprob']['tokprob'],.5)
 
+    def test_absolute_rank_and_flip_rule_preserves_signed_changes(self):
+        rows=fixture()
+        for r in rows.values():
+            for case in [r,r['sub']]:
+                case['leaky']['tokprob']['spearman']=-.8
+                case['leaky']['tokent']['spearman']=.4
+                for seed in case['leakfree']:
+                    seed['tokprob']['spearman']=-.2
+                    seed['tokent']['spearman']=.4
+        self.assertEqual(E5.order(rows['spell_check']['leaky'],'spearman',['tokent','tokprob']),['tokprob','tokent'])
+        with tempfile.TemporaryDirectory() as td:
+            exp=Path(td);(exp/'reports').mkdir()
+            with patch.object(E5,'EXP',exp),patch('builtins.print'):
+                E5.report(rows)
+            j=json.loads((exp/'reports/e5_leakage.json').read_text())
+            self.assertTrue(any('Tok-Prob vs Tok-Ent' in item for item in j['flips']['spearman']['list']))
+            self.assertTrue(j['g_statistics']['spearman']['absolute_ranking'])
+            self.assertAlmostEqual(j['g_statistics']['spearman']['change_by_seed']['tokprob'][0],.6)
+
     def test_combined_table_uses_subset_for_all_methods(self):
         with tempfile.TemporaryDirectory() as td:
             exp=Path(td);(exp/'reports').mkdir()

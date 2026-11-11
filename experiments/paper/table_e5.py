@@ -46,7 +46,7 @@ def main():
             "Spearman correlation with the test score (scores oriented so higher means PASS). Leaky: the original "
             "protocol (test score from all 10 samples; Tok-Prob and Tok-Ent from sample 0, output entropy from all 10). "
             "Leak-free: test score from 5 samples, score from the other 5 (5 seeded splits, mean $\\pm$ std). MDSA is "
-            "pre-generation, so its change is label noise only. "
+            "pre-generation, so its change is label noise only. Raw signed coefficients/changes are shown; comparison orders use absolute Spearman. "
             + ("All cells use the same seeded subset of 1,500 inputs per task when Sem-Ent is included. " if subset else "")
             +
             f"Pairwise method comparisons that change sign: {f['spearman']['n_flip']} of {f['spearman']['n_pairs']} "

@@ -156,8 +156,13 @@ def evaluate(D):
     return out
 
 
+def strength(value, metric):
+    """E5's preregistered comparison rule: |Spearman|, raw AUC."""
+    return abs(value) if metric == 'spearman' else value
+
+
 def order(d, metric, methods):
-    return sorted(methods, key=lambda m: -d[m][metric])
+    return sorted(methods, key=lambda m: -strength(d[m][metric], metric))
 
 
 def report(R, push=False):
@@ -171,7 +176,7 @@ def report(R, push=False):
          "with the test score, AUC with PASS = pass rate > 0.5). MDSA = pre-generation control (no output leakage): its "
          "change is label noise only. G (2026-11-10): LOHSvar recomputed on all inputs (parity with the stored values: "
          "Spearman >= 0.999 per task, `data/g_recompute/parity.json`); Sem-Ent on a seeded subset of 1,500 inputs per task, "
-         "so every combined comparison table uses that same subset; full-data tables omit Sem-Ent.\n"]
+         "so every combined comparison table uses that same subset; full-data tables omit Sem-Ent. Rankings/comparison flips use |Spearman| or raw AUC; shown coefficients and their changes remain signed.\n"]
     for metric in ("spearman", "auc"):
         L.append(f"\n## {metric}\n")
         L.append("| task | " + " | ".join(f"{NAMES[m]} leaky | leak-free" for m in COLS) + " |")
@@ -212,16 +217,16 @@ def report(R, push=False):
           for t, r0_ in R.items():
               r = r0_["sub"] if pre == "g/" and "sement" in MS else r0_
               lk = order(r["leaky"], metric, MS)
-              lf_mean = {m: {metric: statistics.mean(x[m][metric] for x in r["leakfree"])} for m in MS}
+              lf_mean = {m: {metric: statistics.mean(strength(x[m][metric], metric) for x in r["leakfree"])} for m in MS}
               lf = order(lf_mean, metric, MS)
               n_top += lk[0] != lf[0]
               J["top_changes"].setdefault(pre + metric, {})[t] = [lk, lf]
               for i, a in enumerate(MS):
                   for b in MS[i + 1:]:
                       n_pairs += 1
-                      s_lk = np.sign(r["leaky"][a][metric] - r["leaky"][b][metric])
-                      per = [np.sign(x[a][metric] - x[b][metric]) for x in r["leakfree"]]
-                      s_lf = np.sign(statistics.mean(x[a][metric] - x[b][metric] for x in r["leakfree"]))
+                      s_lk = np.sign(strength(r["leaky"][a][metric], metric) - strength(r["leaky"][b][metric], metric))
+                      per = [np.sign(strength(x[a][metric], metric) - strength(x[b][metric], metric)) for x in r["leakfree"]]
+                      s_lf = np.sign(statistics.mean(strength(x[a][metric], metric) - strength(x[b][metric], metric) for x in r["leakfree"]))
                       if s_lk != s_lf:
                           n_flip += 1
                           flips.append(f"{ALIAS[t]}: {NAMES[a]} vs {NAMES[b]} ({sum(p == s_lf for p in per)}/5 seeds)")
@@ -249,7 +254,7 @@ def report(R, push=False):
             cells = []
             for metric in ("spearman", "auc"):
                 lk = order(r["leaky"], metric, PG)
-                lfm = {m: {metric: statistics.mean(x[m][metric] for x in r["leakfree"])} for m in PG}
+                lfm = {m: {metric: statistics.mean(strength(x[m][metric], metric) for x in r["leakfree"])} for m in PG}
                 lf = order(lfm, metric, PG)
                 J["loh_rank"].setdefault(metric, {})[t] = [lk.index("lohsvar") + 1, lf.index("lohsvar") + 1]
                 cells.append(f"{lk.index('lohsvar') + 1} -> {lf.index('lohsvar') + 1}")
@@ -262,7 +267,7 @@ def report(R, push=False):
             for t, r in R.items():
                 for metric in ("spearman", "auc"):
                     lk = order(r["leaky"], metric, PGf)
-                    lfm = {m: {metric: statistics.mean(x[m][metric] for x in r["leakfree"])} for m in PGf}
+                    lfm = {m: {metric: statistics.mean(strength(x[m][metric], metric) for x in r["leakfree"])} for m in PGf}
                     J["loh_rank_full"].setdefault(metric, {})[t] = [lk.index("lohsvar") + 1, order(lfm, metric, PGf).index("lohsvar") + 1]
             chf = {m: sum(v[0] != v[1] for v in J["loh_rank_full"][m].values()) for m in ("spearman", "auc")}
             L.append(f"On all inputs without Sem-Ent ({', '.join(NAMES[m] for m in PGf)}), LOHSvar's rank changes on "
@@ -274,15 +279,15 @@ def report(R, push=False):
         compared = METHODS + G_M
         paired_rows = {t: r["sub"] if "sement" in G_M else r for t, r in R.items()}
         J["g_statistics"] = {}
-        L.append("\n## G4: paired task/seed statistics (same inputs for every method)\n")
+        L.append("\n## G4: paired task/seed statistics (same inputs for every method)\nSigned coefficients/changes are shown; Spearman ordering, flips, SK-ESD and A12 use absolute correlation as prescribed in Decisions.\n")
         for metric in ("spearman", "auc"):
-            obs = {m: [r["leakfree"][k][m][metric] for r in paired_rows.values() for k in SEEDS] for m in compared}
+            obs = {m: [strength(r["leakfree"][k][m][metric], metric) for r in paired_rows.values() for k in SEEDS] for m in compared}
             obs = {m: v for m, v in obs.items() if all(math.isfinite(x) for x in v)}
             ranks = STT.sk_esd(obs)
             macros = {m: [statistics.mean(r["leakfree"][k][m][metric] for r in paired_rows.values()) for k in SEEDS] for m in obs}
             diffs = {m: [statistics.mean(r["leakfree"][k][m][metric] - r["leaky"][m][metric] for r in paired_rows.values()) for k in SEEDS] for m in obs}
             matrix = {a: {b: STT.a12(obs[a], obs[b]) for b in obs} for a in obs}
-            J["g_statistics"][metric] = {"subset": "sement" in G_M, "macro_by_seed": macros, "change_by_seed": diffs,
+            J["g_statistics"][metric] = {"subset": "sement" in G_M, "absolute_ranking": metric == "spearman", "macro_by_seed": macros, "change_by_seed": diffs,
                                         "sk_esd": ranks, "a12": matrix}
             L.extend([f"### {metric}\n", "| method | leak-free macro | change vs leaky | seeds with change sign | SK-ESD | A12 vs LOHSvar |",
                       "|---|---|---|---|---|---|"])
