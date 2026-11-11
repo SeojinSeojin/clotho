@@ -1,10 +1,10 @@
 # PROGRESS
 
-Last updated: 2026-11-11, active GPU session. Current status is below; older results are in Summary and the linked reports. Superseded operational notes are in [progress_history.md](experiments/reports/progress_history.md).
+Last updated: 2026-11-11 UTC; G1–G5 complete. Current status is below; older results are in Summary and the linked reports. Superseded operational notes are in [progress_history.md](experiments/reports/progress_history.md).
 
 Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_parsing_paper_numbers.py`). Paper files: `experiments/paper/` (one script per table/figure, `results_outline.md`). Main setting **fair_leakfree** everywhere: balanced reference sampling (the paper's method), fair layer (Llama 16, Gemma 21), label from samples 5-9 (PASS if >= 3 of 5 strict template matches), post-generation scores from samples 0-4; rules_template prompt, strict match. Every number is mean ± std over 5 seeds of the per-seed macro mean over systems (Llama 13 systems, Gemma 12; skips explicitly reported).
 
-## In progress
+## Current session
 
 Session deadline: **18:15 EST / 23:15 UTC, 2026-11-11**. Stop long jobs at **17:30 EST / 22:30 UTC**; finish persistence by **17:45 EST / 22:45 UTC**. One GPU model job at a time; CPU work alongside it. Check free disk before every download.
 
@@ -14,15 +14,15 @@ Session deadline: **18:15 EST / 23:15 UTC, 2026-11-11**. Stop long jobs at **17:
 | G2 Llama cache restoration | Complete | HDFS/OpenSSH caches uploaded; all 50 stored E1 curves each reproduced. N1/N2 now cover all 13 systems; N3 includes HDFS and BGL; reports, Lorenz and paper_numbers refreshed. Recreated confidence/entropy selector differences are recorded in Decisions and verification JSON. |
 | G3 Gemma real AdaParser | Complete: 12/12 systems | Parser, fresh GPU hidden states, CPU sim/report uploaded and pushed; no skips. At 20 reviews: frequency 0.614, D × size 0.670 (5/5 positive seeds), Oracle 0.852 of wrong lines fixed. Error-share macros exclude 3 perfect systems. |
 | G4 Sem-Ent subset / E5 | Complete: all 8 tasks | All 12,000 selected inputs, matched-input E5 report and `paper/table_e5.py` uploaded/pushed. G1–G4 GPU and CPU jobs all succeeded. |
-| G5 U token pooling / V2 | GPU complete; Gemma CPU running | Pooled states and V2 features saved for both models. All 13 Llama suite/review jobs uploaded; `reports/log_parsing_token_followups.{md,json}` is explicitly partial pending Gemma suite/review jobs. |
+| G5 U token pooling / V2 | Complete: Llama13/Gemma12, five seeds | Full `reports/log_parsing_token_followups.{md,json}` uploaded. Frozen mean/max pooling lowers disjoint U AUC; V2 changes AUC by +0.001 Llama / +0.010 Gemma (2/5 / 4/5 positive seeds @100). Review effects depend on model/parser; all budgets and statistics are reported. |
 
-G1–G4 driver: `experiments/session_gpu_queue.py` (finished successfully). Status: `experiments/results_phase3/gpu_session_20261111/status.json`. G5 GPU extraction finished (log `g5_extract_gemma_retry.log`); active CPU tmux `clotho_g5_cpu` (root PID 92719; logs `g5_{suites,reviews}_{llama,gemma}.log`), all under `experiments/logs/`. V2 CPU extraction is complete. The owned-process watchdog covers these jobs and enforces the cutoff. Per-system outputs are uploaded as they finish. One GPU model job at a time.
+All requested jobs finished and results were uploaded before the session cutoff. G1–G4 driver: `experiments/session_gpu_queue.py`; G5: `log_parsing_token_extract.py`, `log_parsing_token_features.py`, `log_parsing_token_followups.py`, `log_parsing_token_report.py`. Status: `experiments/results_phase3/gpu_session_20261111/status.json`. Final checks: `results_phase3/gpu_session_20261111/final_validation.json` (25 complete five-seed suite/review systems, stored-baseline checks, G2's 50 curves per restored system, G4's 12,000 selected inputs) and `paper_refresh.json` (20/20 scripts succeeded). Paper artifacts, reports, per-system results and diagnostic logs are persisted in RESULTS_REPO. No experiment job remains running.
 
 ## Next
 
-1. Finish Gemma G5 five-seed suite/review jobs, checking stored baseline reproduction. Generate `log_parsing_token_followups.md` only from complete paired systems; retain explicit alignment coverage and any unfinished stage.
-2. Regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` after final results. Upload artifacts, update this status, commit and push. LaTeX is unavailable; `.tex` is not compiled here.
-3. Meeting examples exist: `experiments/reports/meeting_examples.md` (E2 per-input risk percentiles were unavailable in saved outputs).
+- G1–G5 are complete; no session job needs resuming. Use `experiments/reports/paper_numbers.md` and the linked detailed reports for the meeting. All twenty paper table/figure scripts were regenerated after the final results; LaTeX is unavailable, so `.tex` is not compiled here.
+- Meeting examples exist: `experiments/reports/meeting_examples.md` (E2 per-input Clotho percentiles were unavailable in the stored artifacts used for that document).
+- On a fresh machine, restore the job/result prefixes as below; do not rerun completed experiments merely to recover their outputs.
 
 ### Fresh-machine setup
 
