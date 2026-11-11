@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "dataset": "BGL",
+ "split": "full_horizon_raw_line_60_20_20_nonoverlap20",
+ "initial_condition": "GT_only_health_check",
+ "parser_conditions_after_coverage_gate": ["GT", "Drain", "base_cache", "strong_cache", "real_AdaParser"],
+ "train_normal_units": 10000,
+ "train_selection": "lowest SHA256(unit_id); normal train only; identical unit IDs across conditions",
+ "seeds": [0,1,2,3,4],
+ "sequence": {"label":"DeepLog-style pilot, not exact reproduction", "context":10,"embedding":32,"hidden":64,"layers":2,"epochs":10,"batch":256,"lr":0.001},
+ "contextual": {"label":"masked contextual Transformer pilot, not LogBERT reproduction", "context":20,"hidden":128,"layers":2,"heads":4,"mask_fraction":0.15,"epochs":10,"batch":256,"lr":0.001},
+ "validation": "select epoch by normal validation loss; threshold maximizing validation F1, ties higher threshold; no test selection",
+ "metrics": ["precision","recall","F1","AP","AUROC","FPR"],
+ "expansion": "both test classes, no missing assignments, GT detector AP exceeds test prevalence and validation-selected F1 exceeds always-anomaly baseline; matched parser gap with paired unit-block uncertainty before any review expansion",
+ "reviews": [0,5,10,20,50],
+ "semantic": "faithful attention BiLSTM LogRobust deferred pending fixed word-vector source and validated implementation",
+ "no_test_tuning": true
+}
