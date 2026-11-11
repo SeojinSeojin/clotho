@@ -6,13 +6,13 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 
 ## Summary of findings
 
-**CPU round 3 (2026-11-11 UTC, partial R1; reports `cpu_round3.md`, `cpu_round3_details.md`).**
-- R1 **changes** the interpretation of strict PASS rates: capped Llama 0.330 -> 0.433 / 0.439 (L1/L2), Gemma 0.454 -> 0.535 / 0.549; natural Llama 0.351 -> 0.481 / 0.487, Gemma 0.409 -> 0.470 / 0.485. Official AdaParser includes semantic abstraction, not just formatting. Full robustness is unresolved: disjoint suite jobs completed (65 Llama / 60 Gemma files, original skips preserved), standard partial (40 / 35 files), natural AUC and lenient streams incomplete. No lenient PA_0 or 20-review headline is established.
-- R1 completed disjoint @100: U-best retains its advantage over Clotho on 5/5 seeds under L1/L2 (Llama +0.095/+0.099, Gemma +0.096/+0.104). Absolute U-best falls to 0.714/0.713 and 0.744/0.749. This strengthens confidence in that relative suite result but weakens its absolute AUC; it does not answer the stream frequency question.
-- R2 **not assessed**: no result strengthening, weakening or changing the frequency claim.
-- R3 **not assessed**: no result strengthening, weakening or changing the target-label claim.
-- R4 not started. Earlier priority work was preserved instead.
-
+<!-- OVERNIGHT SUMMARY BEGIN -->
+**CPU overnight continuation (2026-11-11 UTC).**
+- R1 complete: **The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds in [('gemma', 'base', 'L1'), ('gemma', 'base', 'L2')].
+- R2 pending/partial; no final claim from incomplete cells.
+- R3 pending/partial; no final claim from incomplete cells.
+- Runner status: running; milestone R1 complete. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
+<!-- OVERNIGHT SUMMARY END -->
 
 **Core (2026-11-07/08; Gemma replicates every pre-generation finding).**
 1. Standard split: Clotho beats MDSA and Lookup (Drain) on every seed (Llama 0.749 / 0.794 @100 / @200; Gemma 0.780 / 0.832), also on held-out systems and against baselines with random reference sets. Template-disjoint split: Clotho ties MDSA, every lookup is at chance.
@@ -89,6 +89,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - CPU round 3: finish R1 first with `log_parsing_robustness.py suites` and `log_parsing_robustness_stream.py` for both models; inspect partial artifacts and validate stream script before reuse. R2-R4 not started; preregister detailed protocols before computation. Resumable outputs in `results_phase3{,_gemma}/robustness/` are pushed to RESULTS_REPO. Report `cpu_round3.md` is explicitly partial.
 - Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.
 - Paper: after any rerun, regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` (matplotlib in `.venv`). No LaTeX on the server, so the `.tex` files are not compiled (booktabs and `\includegraphics` only).
@@ -202,6 +203,7 @@ R2-R4 not started; their full protocols will be recorded before computation if R
 - N4 row for U's best is added by `log_parsing_stream_u.py` (above); N1-N3, N5 and the N4 core are done (summary 24-26 and the N4/N5 reports).
 
 ## Known issues
+- The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - R1 incomplete at conservative deadline. Local VCL end not exposed; assumed 05:00 UTC from 19:00 machine setup plus 10 h. Long jobs stopped at 04:17 UTC (about 2 min late vs 04:15 cutoff); only owned PIDs/descendants stopped. No new long jobs afterwards. Report only complete five-seed systems; partial standard coverage must not become a paper main-table claim. Stream scorer/review code unvalidated beyond saved strict baselines; incomplete stream artifacts are not lenient results.
 - A new machine needs `gh auth login` and `gh auth setup-git` before `git push` works.
 - A fully skipped `gen_vllm` run still loads the vLLM engine (~45 s) before noticing nothing is pending.
