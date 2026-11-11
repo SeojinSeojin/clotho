@@ -11,8 +11,10 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 - R1 complete: **The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds in [('gemma', 'base', 'L1'), ('gemma', 'base', 'L2')].
 - R2 pending/partial; no final claim from incomplete cells.
 - R3 pending/partial; no final claim from incomplete cells.
-- Runner status: failed; milestone failed during R2; partial results retained. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
+- Runner status: running; milestone R1 complete. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
 <!-- OVERNIGHT SUMMARY END -->
+
+
 
 
 
@@ -91,6 +93,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - CPU round 3: finish R1 first with `log_parsing_robustness.py suites` and `log_parsing_robustness_stream.py` for both models; inspect partial artifacts and validate stream script before reuse. R2-R4 not started; preregister detailed protocols before computation. Resumable outputs in `results_phase3{,_gemma}/robustness/` are pushed to RESULTS_REPO. Report `cpu_round3.md` is explicitly partial.
@@ -208,6 +211,7 @@ R2-R4 not started; their full protocols will be recorded before computation if R
 - N4 row for U's best is added by `log_parsing_stream_u.py` (above); N1-N3, N5 and the N4 core are done (summary 24-26 and the N4/N5 reports).
 
 ## Known issues
+- The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - R1 incomplete at conservative deadline. Local VCL end not exposed; assumed 05:00 UTC from 19:00 machine setup plus 10 h. Long jobs stopped at 04:17 UTC (about 2 min late vs 04:15 cutoff); only owned PIDs/descendants stopped. No new long jobs afterwards. Report only complete five-seed systems; partial standard coverage must not become a paper main-table claim. Stream scorer/review code unvalidated beyond saved strict baselines; incomplete stream artifacts are not lenient results.
