@@ -530,6 +530,8 @@ def report(push=False):
     (EXP / "reports" / "cpu_analyses_details.md").write_text("\n".join(L) + "\n")
     (EXP / "reports" / "cpu_analyses_details.json").write_text(json.dumps(J, indent=1, default=float))
     print("\n".join(L))
+    from log_parsing_cpu_stats import report as stats_report
+    stats_report(EXP, push)
     if push:
         import hub_sync as hs
         files = {f"reports/cpu_analyses_details.{e}": EXP / "reports" / f"cpu_analyses_details.{e}" for e in ("md", "json")}

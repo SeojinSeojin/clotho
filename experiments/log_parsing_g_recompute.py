@@ -214,6 +214,8 @@ def cmd_se(a, chunk=256):
     get_semantic_ids per input (pairs are deterministic per string pair; memo per input)."""
     import torch
     from log_parsing_postgen import BatchedNLI
+    np.random.seed(0)
+    torch.manual_seed(0)
     nli = BatchedNLI("cuda")
     root = a.data / "results_llama"
     subsets = [list(range(10))] + [sorted(np.random.RandomState(s).permutation(10)[:5].tolist()) for s in E5.SEEDS]
