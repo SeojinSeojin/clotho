@@ -1,545 +1,2085 @@
 # CPU round 3 details
 
-Protocol preregistered in PROGRESS.md Decisions. CPU only, no models/tokenizers downloaded, no GPU work or new LLM calls. Long jobs stopped at 04:17 UTC, about two minutes after conservative 04:15 cutoff; only owned process trees stopped. 05:00 UTC deadline is a conservative assumption (machine setup at 19:00 + 10 h), not a verified reservation end.
-
-Official [AdaParser @232951a](https://github.com/wuyifan18/AdaParser/tree/232951a/benchmark/logparser/AdaParser) scoring-only code/regexes are vendored under MIT. L1: post_process_template(prediction), convert {variables} back to <*>, ignore regeneration flag, exact GT match. L2: L1 prediction then symmetric whitespace collapse and merging adjacent/whitespace-separated <*>. None remains failure. No API client imported.
-
-Seed summaries: mean ± sample std of five seed macro means over systems. Held-out excludes HDFS/Spark/Linux. System exclusions and original strict split skips retained. Degenerate AUCs are undefined, never replaced by chance. U uses frozen settings and cached label-free features, rescored source/reference labels. No hyperparameter tuning.
-
-## llama capped: label audit
-
-| system | PASS strict / L1 / L2 | forgiven/broken samples L1; L2 | forgiven/broken inputs L1; L2 | outside 10–90% | reliable between share strict / L1 / L2 |
-|---|---|---|---|---|---|
-| loghub_apache_500 | 0.600 / 0.700 / 0.702 | 404/0; 407/0 | 50/0; 51/0 | none | 0.953 / 0.925 / 0.925 |
-| loghub_bgl_500 | 0.244 / 0.302 / 0.306 | 276/3; 287/3 | 29/0; 31/0 | none | 0.966 / 0.970 / 0.970 |
-| loghub_hdfs_500 | 0.282 / 0.474 / 0.476 | 869/0; 884/0 | 96/0; 97/0 | none | 0.960 / 0.951 / 0.962 |
-| loghub_hpc_500 | 0.214 / 0.254 / 0.286 | 197/0; 346/0 | 20/0; 36/0 | none | 0.795 / 0.813 / 0.951 |
-| loghub_hadoop_500 | 0.302 / 0.470 / 0.488 | 689/0; 765/0 | 84/0; 93/0 | none | 0.994 / 0.992 / 0.992 |
-| loghub_healthapp_500 | 0.336 / 0.482 / 0.482 | 576/0; 597/0 | 73/0; 73/0 | none | 0.977 / 0.985 / 0.985 |
-| loghub_linux_500 | 0.250 / 0.356 / 0.360 | 547/1; 556/1 | 53/0; 55/0 | none | 0.988 / 0.977 / 0.977 |
-| loghub_mac_500 | 0.150 / 0.240 / 0.246 | 482/0; 512/0 | 45/0; 48/0 | none | 1.000 / 1.000 / 1.000 |
-| loghub_openssh_500 | 0.406 / 0.504 / 0.504 | 359/0; 361/0 | 49/0; 49/0 | none | 0.857 / 0.825 / 0.826 |
-| loghub_openstack_500 | 0.566 / 0.690 / 0.692 | 468/0; 489/0 | 62/0; 63/0 | none | 0.989 / 0.991 / 0.992 |
-| loghub_spark_500 | 0.244 / 0.350 / 0.352 | 459/9; 479/9 | 54/1; 55/1 | none | 0.979 / 0.983 / 0.984 |
-| loghub_thunderbird_500 | 0.220 / 0.282 / 0.290 | 368/11; 389/11 | 32/1; 36/1 | none | 1.000 / 1.000 / 1.000 |
-| loghub_zookeeper_500 | 0.478 / 0.526 / 0.526 | 142/0; 143/0 | 24/0; 24/0 | none | 0.974 / 0.981 / 0.981 |
-## llama natural: label audit
-
-| system | PASS strict / L1 / L2 | forgiven/broken samples L1; L2 | forgiven/broken inputs L1; L2 | outside 10–90% | reliable between share strict / L1 / L2 |
-|---|---|---|---|---|---|
-| loghub_apache_nat500 | 0.818 / 0.950 / 0.950 | 677/0; 677/0 | 66/0; 66/0 | L1, L2 | n/a / n/a / n/a |
-| loghub_bgl_nat500 | 0.166 / 0.236 / 0.248 | 347/0; 397/0 | 35/0; 41/0 | none | n/a / n/a / n/a |
-| loghub_hadoop_nat500 | 0.228 / 0.538 / 0.552 | 1241/0; 1326/0 | 155/0; 162/0 | none | n/a / n/a / n/a |
-| loghub_hdfs_nat500 | 0.470 / 0.774 / 0.774 | 1184/0; 1192/0 | 152/0; 152/0 | none | n/a / n/a / n/a |
-| loghub_healthapp_nat500 | 0.328 / 0.714 / 0.728 | 1588/0; 1640/0 | 193/0; 200/0 | none | n/a / n/a / n/a |
-| loghub_hpc_nat500 | 0.384 / 0.504 / 0.506 | 604/0; 611/0 | 60/0; 61/0 | none | n/a / n/a / n/a |
-| loghub_linux_nat500 | 0.088 / 0.112 / 0.114 | 118/0; 131/0 | 12/0; 13/0 | strict | n/a / n/a / n/a |
-| loghub_mac_nat500 | 0.190 / 0.244 / 0.258 | 308/5; 364/5 | 28/1; 35/1 | none | n/a / n/a / n/a |
-| loghub_openssh_nat500 | 0.278 / 0.312 / 0.312 | 191/0; 194/0 | 17/0; 17/0 | none | n/a / n/a / n/a |
-| loghub_openstack_nat500 | 0.206 / 0.248 / 0.248 | 153/0; 159/0 | 21/0; 21/0 | none | n/a / n/a / n/a |
-| loghub_spark_nat500 | 0.400 / 0.588 / 0.610 | 701/0; 778/0 | 94/0; 105/0 | none | n/a / n/a / n/a |
-| loghub_thunderbird_nat500 | 0.214 / 0.238 / 0.240 | 148/0; 157/0 | 12/0; 13/0 | none | n/a / n/a / n/a |
-| loghub_zookeeper_nat500 | 0.788 / 0.792 / 0.792 | 29/0; 29/0 | 2/0; 2/0 | none | n/a / n/a / n/a |
-## llama disjoint: AUC
-
-13 systems with all five seeds; 65 completed jobs. Partial coverage is not a full-main-table result. Original strict-skipped jobs remain skipped.
-
-### all completed/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.645 ± 0.022 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.656 ± 0.025 | 2 | 0.543 | 0.011 ± 0.033 | 3/5 |
-| lookup_drain | 0.505 ± 0.005 | 3 | 0.166 | -0.140 ± 0.023 | 5/5 |
-| out_entropy | 0.796 ± 0.014 | 1 | 0.896 | 0.151 ± 0.026 | 5/5 |
-| random | 0.502 ± 0.013 | 3 | 0.141 | -0.143 ± 0.033 | 5/5 |
-### all completed/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.657 ± 0.012 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.657 ± 0.023 | 2 | 0.517 | 0.001 ± 0.023 | 2/5 |
-| lookup_drain | 0.508 ± 0.003 | 3 | 0.111 | -0.149 ± 0.013 | 5/5 |
-| out_entropy | 0.796 ± 0.014 | 1 | 0.889 | 0.139 ± 0.017 | 5/5 |
-| random | 0.511 ± 0.019 | 3 | 0.115 | -0.145 ± 0.019 | 5/5 |
-### all completed/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.620 ± 0.019 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.602 ± 0.017 | 3 | 0.481 | -0.017 ± 0.007 | 5/5 |
-| lookup_drain | 0.502 ± 0.004 | 4 | 0.123 | -0.118 ± 0.019 | 5/5 |
-| out_entropy | 0.774 ± 0.011 | 1 | 0.875 | 0.155 ± 0.020 | 5/5 |
-| random | 0.505 ± 0.014 | 4 | 0.144 | -0.114 ± 0.024 | 5/5 |
-| U-best | 0.714 ± 0.023 | 2 | 0.759 | 0.095 ± 0.035 | 5/5 |
-### all completed/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.619 ± 0.016 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.605 ± 0.018 | 2 | 0.469 | -0.014 ± 0.010 | 5/5 |
-| lookup_drain | 0.506 ± 0.004 | 3 | 0.139 | -0.113 ± 0.018 | 5/5 |
-| out_entropy | 0.774 ± 0.011 | 1 | 0.894 | 0.155 ± 0.017 | 5/5 |
-| random | 0.512 ± 0.017 | 3 | 0.166 | -0.107 ± 0.011 | 5/5 |
-### all completed/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.614 ± 0.019 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.605 ± 0.018 | 3 | 0.493 | -0.010 ± 0.011 | 4/5 |
-| lookup_drain | 0.502 ± 0.005 | 4 | 0.139 | -0.112 ± 0.019 | 5/5 |
-| out_entropy | 0.774 ± 0.012 | 1 | 0.887 | 0.160 ± 0.020 | 5/5 |
-| random | 0.505 ± 0.014 | 4 | 0.163 | -0.109 ± 0.027 | 5/5 |
-| U-best | 0.713 ± 0.021 | 2 | 0.759 | 0.099 ± 0.035 | 5/5 |
-### all completed/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.614 ± 0.020 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.606 ± 0.018 | 2 | 0.485 | -0.008 ± 0.007 | 5/5 |
-| lookup_drain | 0.506 ± 0.005 | 3 | 0.157 | -0.108 ± 0.020 | 5/5 |
-| out_entropy | 0.774 ± 0.012 | 1 | 0.889 | 0.160 ± 0.024 | 5/5 |
-| random | 0.513 ± 0.017 | 3 | 0.178 | -0.102 ± 0.021 | 5/5 |
-### held-out/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.634 ± 0.022 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.637 ± 0.039 | 2 | 0.506 | 0.002 ± 0.041 | 3/5 |
-| lookup_drain | 0.503 ± 0.005 | 3 | 0.215 | -0.131 ± 0.025 | 5/5 |
-| out_entropy | 0.784 ± 0.016 | 1 | 0.867 | 0.150 ± 0.029 | 5/5 |
-| random | 0.510 ± 0.012 | 3 | 0.194 | -0.124 ± 0.034 | 5/5 |
-### held-out/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.646 ± 0.012 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.641 ± 0.034 | 2 | 0.500 | -0.005 ± 0.026 | 3/5 |
-| lookup_drain | 0.506 ± 0.003 | 3 | 0.142 | -0.141 ± 0.011 | 5/5 |
-| out_entropy | 0.784 ± 0.016 | 1 | 0.864 | 0.138 ± 0.013 | 5/5 |
-| random | 0.508 ± 0.018 | 3 | 0.144 | -0.138 ± 0.019 | 5/5 |
-### held-out/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.631 ± 0.020 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.591 ± 0.026 | 4 | 0.418 | -0.040 ± 0.013 | 5/5 |
-| lookup_drain | 0.502 ± 0.003 | 5 | 0.138 | -0.129 ± 0.021 | 5/5 |
-| out_entropy | 0.770 ± 0.013 | 1 | 0.836 | 0.139 ± 0.025 | 5/5 |
-| random | 0.512 ± 0.012 | 5 | 0.150 | -0.119 ± 0.029 | 5/5 |
-| U-best | 0.711 ± 0.031 | 2 | 0.700 | 0.080 ± 0.044 | 5/5 |
-### held-out/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.630 ± 0.019 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.596 ± 0.024 | 3 | 0.403 | -0.035 ± 0.012 | 5/5 |
-| lookup_drain | 0.503 ± 0.004 | 4 | 0.142 | -0.127 ± 0.019 | 5/5 |
-| out_entropy | 0.770 ± 0.013 | 1 | 0.856 | 0.139 ± 0.022 | 5/5 |
-| random | 0.509 ± 0.019 | 4 | 0.152 | -0.122 ± 0.012 | 5/5 |
-### held-out/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.626 ± 0.023 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.595 ± 0.025 | 3 | 0.430 | -0.031 ± 0.017 | 5/5 |
-| lookup_drain | 0.503 ± 0.004 | 4 | 0.158 | -0.123 ± 0.022 | 5/5 |
-| out_entropy | 0.771 ± 0.013 | 1 | 0.850 | 0.145 ± 0.027 | 5/5 |
-| random | 0.512 ± 0.014 | 4 | 0.172 | -0.114 ± 0.034 | 5/5 |
-| U-best | 0.709 ± 0.029 | 2 | 0.700 | 0.083 ± 0.044 | 5/5 |
-### held-out/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.623 ± 0.030 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.597 ± 0.024 | 2 | 0.430 | -0.026 ± 0.014 | 5/5 |
-| lookup_drain | 0.503 ± 0.004 | 3 | 0.168 | -0.121 ± 0.028 | 5/5 |
-| out_entropy | 0.771 ± 0.013 | 1 | 0.853 | 0.148 ± 0.033 | 5/5 |
-| random | 0.509 ± 0.018 | 3 | 0.174 | -0.114 ± 0.029 | 5/5 |
-## llama standard: AUC
-
-8 systems with all five seeds; 40 completed jobs. Partial coverage is not a full-main-table result. Original strict-skipped jobs remain skipped.
-
-### all completed/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.763 ± 0.012 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.717 ± 0.014 | 2 | 0.351 | -0.046 ± 0.007 | 5/5 |
-| lookup_drain | 0.674 ± 0.008 | 3 | 0.258 | -0.089 ± 0.014 | 5/5 |
-| out_entropy | 0.786 ± 0.002 | 1 | 0.587 | 0.023 ± 0.014 | 5/5 |
-| random | 0.505 ± 0.013 | 4 | 0.001 | -0.258 ± 0.023 | 5/5 |
-### all completed/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.807 ± 0.015 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.737 ± 0.008 | 2 | 0.263 | -0.071 ± 0.013 | 5/5 |
-| lookup_drain | 0.742 ± 0.006 | 2 | 0.351 | -0.065 ± 0.014 | 5/5 |
-| out_entropy | 0.791 ± 0.004 | 1 | 0.424 | -0.017 ± 0.019 | 4/5 |
-| random | 0.504 ± 0.013 | 3 | 0.004 | -0.304 ± 0.013 | 5/5 |
-### all completed/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.696 ± 0.015 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.626 ± 0.010 | 3 | 0.239 | -0.070 ± 0.010 | 5/5 |
-| lookup_drain | 0.672 ± 0.006 | 2 | 0.421 | -0.024 ± 0.016 | 5/5 |
-| out_entropy | 0.771 ± 0.003 | 1 | 0.819 | 0.075 ± 0.014 | 5/5 |
-| random | 0.502 ± 0.014 | 4 | 0.024 | -0.194 ± 0.019 | 5/5 |
-### all completed/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.750 ± 0.019 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.629 ± 0.014 | 2 | 0.092 | -0.121 ± 0.026 | 5/5 |
-| lookup_drain | 0.735 ± 0.008 | 1 | 0.490 | -0.015 ± 0.019 | 4/5 |
-| out_entropy | 0.767 ± 0.006 | 1 | 0.636 | 0.017 ± 0.017 | 4/5 |
-| random | 0.497 ± 0.004 | 3 | 0.000 | -0.253 ± 0.020 | 5/5 |
-### all completed/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.709 ± 0.010 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.625 ± 0.011 | 4 | 0.217 | -0.084 ± 0.016 | 5/5 |
-| lookup_drain | 0.672 ± 0.009 | 3 | 0.408 | -0.037 ± 0.017 | 5/5 |
-| out_entropy | 0.772 ± 0.002 | 1 | 0.781 | 0.063 ± 0.009 | 5/5 |
-| random | 0.506 ± 0.012 | 5 | 0.000 | -0.204 ± 0.012 | 5/5 |
-### all completed/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.746 ± 0.011 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.619 ± 0.013 | 3 | 0.079 | -0.127 ± 0.017 | 5/5 |
-| lookup_drain | 0.731 ± 0.013 | 2 | 0.483 | -0.015 ± 0.009 | 5/5 |
-| out_entropy | 0.770 ± 0.005 | 1 | 0.636 | 0.023 ± 0.011 | 5/5 |
-| random | 0.504 ± 0.012 | 4 | 0.000 | -0.243 ± 0.011 | 5/5 |
-### held-out/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.745 ± 0.014 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.691 ± 0.016 | 2 | 0.322 | -0.054 ± 0.009 | 5/5 |
-| lookup_drain | 0.660 ± 0.008 | 2 | 0.277 | -0.085 ± 0.014 | 5/5 |
-| out_entropy | 0.776 ± 0.003 | 1 | 0.611 | 0.031 ± 0.016 | 5/5 |
-| random | 0.498 ± 0.014 | 3 | 0.000 | -0.247 ± 0.027 | 5/5 |
-### held-out/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.791 ± 0.019 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.714 ± 0.008 | 2 | 0.276 | -0.077 ± 0.016 | 5/5 |
-| lookup_drain | 0.720 ± 0.008 | 2 | 0.332 | -0.071 ± 0.017 | 5/5 |
-| out_entropy | 0.778 ± 0.005 | 1 | 0.478 | -0.013 ± 0.023 | 4/5 |
-| random | 0.509 ± 0.021 | 3 | 0.008 | -0.282 ± 0.016 | 5/5 |
-### held-out/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.695 ± 0.023 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.606 ± 0.020 | 3 | 0.177 | -0.090 ± 0.014 | 5/5 |
-| lookup_drain | 0.669 ± 0.005 | 2 | 0.417 | -0.027 ± 0.025 | 4/5 |
-| out_entropy | 0.768 ± 0.003 | 1 | 0.782 | 0.072 ± 0.020 | 5/5 |
-| random | 0.503 ± 0.015 | 4 | 0.032 | -0.193 ± 0.018 | 5/5 |
-### held-out/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.749 ± 0.020 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.616 ± 0.011 | 2 | 0.090 | -0.133 ± 0.026 | 5/5 |
-| lookup_drain | 0.724 ± 0.009 | 1 | 0.460 | -0.024 ± 0.019 | 4/5 |
-| out_entropy | 0.765 ± 0.006 | 1 | 0.599 | 0.016 ± 0.019 | 4/5 |
-| random | 0.499 ± 0.013 | 3 | 0.000 | -0.250 ± 0.029 | 5/5 |
-### held-out/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.712 ± 0.012 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.606 ± 0.018 | 4 | 0.157 | -0.106 ± 0.020 | 5/5 |
-| lookup_drain | 0.670 ± 0.008 | 3 | 0.394 | -0.042 ± 0.015 | 5/5 |
-| out_entropy | 0.772 ± 0.002 | 1 | 0.736 | 0.060 ± 0.011 | 5/5 |
-| random | 0.506 ± 0.011 | 5 | 0.000 | -0.205 ± 0.005 | 5/5 |
-### held-out/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.746 ± 0.012 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.606 ± 0.012 | 2 | 0.071 | -0.141 ± 0.015 | 5/5 |
-| lookup_drain | 0.719 ± 0.016 | 1 | 0.452 | -0.027 ± 0.009 | 5/5 |
-| out_entropy | 0.769 ± 0.005 | 1 | 0.598 | 0.023 ± 0.013 | 5/5 |
-| random | 0.506 ± 0.011 | 3 | 0.000 | -0.240 ± 0.011 | 5/5 |
-## llama natural: AUC
-
-0 systems with all five seeds; 0 completed jobs. Partial coverage is not a full-main-table result. Original strict-skipped jobs remain skipped.
-
-## gemma capped: label audit
-
-| system | PASS strict / L1 / L2 | forgiven/broken samples L1; L2 | forgiven/broken inputs L1; L2 | outside 10–90% | reliable between share strict / L1 / L2 |
-|---|---|---|---|---|---|
-| loghub_bgl_500 | 0.454 / 0.508 / 0.512 | 259/2; 287/2 | 27/0; 29/0 | none | 0.970 / 0.972 / 0.976 |
-| loghub_hdfs_500 | 0.402 / 0.464 / 0.496 | 353/0; 458/0 | 31/0; 47/0 | none | 0.929 / 0.856 / 0.864 |
-| loghub_hpc_500 | 0.540 / 0.594 / 0.630 | 211/0; 381/0 | 27/0; 45/0 | none | 0.798 / 0.783 / 0.897 |
-| loghub_hadoop_500 | 0.434 / 0.586 / 0.602 | 713/0; 799/0 | 76/0; 84/0 | none | 0.988 / 0.993 / 0.995 |
-| loghub_healthapp_500 | 0.524 / 0.624 / 0.668 | 474/0; 696/0 | 50/0; 72/0 | none | 0.971 / 0.967 / 0.965 |
-| loghub_linux_500 | 0.404 / 0.574 / 0.586 | 815/0; 853/0 | 85/0; 91/0 | none | 0.992 / 0.990 / 0.986 |
-| loghub_mac_500 | 0.290 / 0.356 / 0.360 | 342/0; 375/0 | 33/0; 35/0 | none | 1.000 / 1.000 / 1.000 |
-| loghub_openssh_500 | 0.342 / 0.374 / 0.376 | 130/0; 139/0 | 16/0; 17/0 | none | 0.893 / 0.869 / 0.870 |
-| loghub_openstack_500 | 0.704 / 0.788 / 0.796 | 389/0; 436/0 | 42/0; 46/0 | none | 0.983 / 0.991 / 0.992 |
-| loghub_spark_500 | 0.364 / 0.464 / 0.470 | 455/0; 485/0 | 50/0; 53/0 | none | 0.975 / 0.974 / 0.975 |
-| loghub_thunderbird_500 | 0.376 / 0.428 / 0.436 | 269/12; 290/12 | 27/1; 31/1 | none | 1.000 / 1.000 / 1.000 |
-| loghub_zookeeper_500 | 0.608 / 0.656 / 0.656 | 222/0; 230/0 | 24/0; 24/0 | none | 0.991 / 0.986 / 0.986 |
-## gemma natural: label audit
-
-| system | PASS strict / L1 / L2 | forgiven/broken samples L1; L2 | forgiven/broken inputs L1; L2 | outside 10–90% | reliable between share strict / L1 / L2 |
-|---|---|---|---|---|---|
-| loghub_bgl_nat500 | 0.400 / 0.426 / 0.426 | 113/0; 117/0 | 13/0; 13/0 | none | n/a / n/a / n/a |
-| loghub_hadoop_nat500 | 0.492 / 0.576 / 0.578 | 404/0; 435/0 | 42/0; 43/0 | none | n/a / n/a / n/a |
-| loghub_hdfs_nat500 | 0.446 / 0.522 / 0.522 | 477/0; 480/0 | 38/0; 38/0 | none | n/a / n/a / n/a |
-| loghub_healthapp_nat500 | 0.466 / 0.776 / 0.908 | 1417/0; 2073/0 | 155/0; 221/0 | L2 | n/a / n/a / n/a |
-| loghub_hpc_nat500 | 0.636 / 0.660 / 0.678 | 188/0; 241/0 | 12/0; 21/0 | none | n/a / n/a / n/a |
-| loghub_linux_nat500 | 0.332 / 0.346 / 0.368 | 76/0; 241/0 | 7/0; 18/0 | none | n/a / n/a / n/a |
-| loghub_mac_nat500 | 0.266 / 0.298 / 0.310 | 193/8; 255/8 | 17/1; 23/1 | none | n/a / n/a / n/a |
-| loghub_openssh_nat500 | 0.240 / 0.244 / 0.244 | 19/0; 19/0 | 2/0; 2/0 | none | n/a / n/a / n/a |
-| loghub_openstack_nat500 | 0.282 / 0.310 / 0.310 | 133/0; 153/0 | 14/0; 14/0 | none | n/a / n/a / n/a |
-| loghub_spark_nat500 | 0.726 / 0.752 / 0.752 | 143/0; 150/0 | 13/0; 13/0 | none | n/a / n/a / n/a |
-| loghub_thunderbird_nat500 | 0.230 / 0.262 / 0.262 | 145/0; 155/0 | 16/0; 16/0 | none | n/a / n/a / n/a |
-| loghub_zookeeper_nat500 | 0.386 / 0.462 / 0.466 | 390/0; 398/0 | 38/0; 40/0 | none | n/a / n/a / n/a |
-## gemma disjoint: AUC
-
-12 systems with all five seeds; 60 completed jobs. Partial coverage is not a full-main-table result. Original strict-skipped jobs remain skipped.
-
-### all completed/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.659 ± 0.025 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.655 ± 0.017 | 2 | 0.476 | -0.004 ± 0.025 | 3/5 |
-| lookup_drain | 0.508 ± 0.002 | 3 | 0.087 | -0.152 ± 0.026 | 5/5 |
-| out_entropy | 0.824 ± 0.012 | 1 | 0.928 | 0.164 ± 0.033 | 5/5 |
-| random | 0.507 ± 0.012 | 3 | 0.086 | -0.153 ± 0.033 | 5/5 |
-### all completed/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.671 ± 0.019 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.661 ± 0.017 | 2 | 0.467 | -0.010 ± 0.022 | 3/5 |
-| lookup_drain | 0.512 ± 0.001 | 3 | 0.024 | -0.159 ± 0.019 | 5/5 |
-| out_entropy | 0.824 ± 0.012 | 1 | 0.946 | 0.152 ± 0.022 | 5/5 |
-| random | 0.504 ± 0.009 | 3 | 0.029 | -0.167 ± 0.014 | 5/5 |
-### all completed/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.647 ± 0.037 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.626 ± 0.023 | 3 | 0.409 | -0.021 ± 0.026 | 4/5 |
-| lookup_drain | 0.506 ± 0.002 | 4 | 0.064 | -0.141 ± 0.038 | 5/5 |
-| out_entropy | 0.796 ± 0.014 | 1 | 0.926 | 0.149 ± 0.043 | 5/5 |
-| random | 0.508 ± 0.014 | 4 | 0.091 | -0.140 ± 0.035 | 5/5 |
-| U-best | 0.744 ± 0.011 | 2 | 0.806 | 0.096 ± 0.046 | 5/5 |
-### all completed/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.658 ± 0.017 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.634 ± 0.024 | 2 | 0.400 | -0.024 ± 0.027 | 4/5 |
-| lookup_drain | 0.510 ± 0.002 | 3 | 0.068 | -0.148 ± 0.018 | 5/5 |
-| out_entropy | 0.796 ± 0.014 | 1 | 0.909 | 0.138 ± 0.027 | 5/5 |
-| random | 0.505 ± 0.011 | 3 | 0.071 | -0.153 ± 0.020 | 5/5 |
-### all completed/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.646 ± 0.042 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.625 ± 0.029 | 3 | 0.403 | -0.021 ± 0.034 | 2/5 |
-| lookup_drain | 0.506 ± 0.003 | 4 | 0.086 | -0.140 ± 0.044 | 5/5 |
-| out_entropy | 0.792 ± 0.013 | 1 | 0.922 | 0.147 ± 0.053 | 5/5 |
-| random | 0.509 ± 0.013 | 4 | 0.109 | -0.137 ± 0.040 | 5/5 |
-| U-best | 0.749 ± 0.015 | 2 | 0.819 | 0.104 ± 0.051 | 5/5 |
-### all completed/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.651 ± 0.017 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.634 ± 0.024 | 2 | 0.417 | -0.017 ± 0.016 | 4/5 |
-| lookup_drain | 0.510 ± 0.002 | 3 | 0.103 | -0.141 ± 0.017 | 5/5 |
-| out_entropy | 0.792 ± 0.013 | 1 | 0.912 | 0.141 ± 0.027 | 5/5 |
-| random | 0.504 ± 0.010 | 3 | 0.096 | -0.147 ± 0.020 | 5/5 |
-### held-out/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.658 ± 0.033 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.648 ± 0.026 | 2 | 0.464 | -0.010 ± 0.027 | 2/5 |
-| lookup_drain | 0.509 ± 0.002 | 3 | 0.094 | -0.149 ± 0.034 | 5/5 |
-| out_entropy | 0.823 ± 0.011 | 1 | 0.913 | 0.165 ± 0.039 | 5/5 |
-| random | 0.508 ± 0.015 | 3 | 0.096 | -0.149 ± 0.039 | 5/5 |
-### held-out/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.678 ± 0.024 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.659 ± 0.025 | 2 | 0.437 | -0.019 ± 0.025 | 4/5 |
-| lookup_drain | 0.513 ± 0.001 | 3 | 0.026 | -0.166 ± 0.025 | 5/5 |
-| out_entropy | 0.823 ± 0.011 | 1 | 0.931 | 0.145 ± 0.027 | 5/5 |
-| random | 0.500 ± 0.013 | 3 | 0.026 | -0.178 ± 0.018 | 5/5 |
-### held-out/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.652 ± 0.044 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.630 ± 0.034 | 3 | 0.414 | -0.022 ± 0.023 | 4/5 |
-| lookup_drain | 0.507 ± 0.003 | 4 | 0.062 | -0.145 ± 0.047 | 5/5 |
-| out_entropy | 0.800 ± 0.012 | 1 | 0.910 | 0.148 ± 0.048 | 5/5 |
-| random | 0.509 ± 0.016 | 4 | 0.089 | -0.143 ± 0.033 | 5/5 |
-| U-best | 0.742 ± 0.018 | 2 | 0.769 | 0.091 ± 0.058 | 5/5 |
-### held-out/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.664 ± 0.016 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.633 ± 0.034 | 2 | 0.376 | -0.032 ± 0.024 | 4/5 |
-| lookup_drain | 0.510 ± 0.002 | 3 | 0.067 | -0.154 ± 0.017 | 5/5 |
-| out_entropy | 0.800 ± 0.012 | 1 | 0.889 | 0.135 ± 0.023 | 5/5 |
-| random | 0.502 ± 0.010 | 3 | 0.068 | -0.162 ± 0.020 | 5/5 |
-### held-out/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.651 ± 0.042 | 3 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.627 ± 0.037 | 3 | 0.401 | -0.025 ± 0.030 | 4/5 |
-| lookup_drain | 0.506 ± 0.004 | 4 | 0.086 | -0.145 ± 0.044 | 5/5 |
-| out_entropy | 0.796 ± 0.013 | 1 | 0.901 | 0.145 ± 0.054 | 5/5 |
-| random | 0.510 ± 0.017 | 4 | 0.110 | -0.142 ± 0.031 | 5/5 |
-| U-best | 0.753 ± 0.023 | 2 | 0.789 | 0.102 ± 0.057 | 5/5 |
-### held-out/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.655 ± 0.026 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.633 ± 0.036 | 2 | 0.402 | -0.022 ± 0.021 | 4/5 |
-| lookup_drain | 0.511 ± 0.002 | 3 | 0.116 | -0.145 ± 0.027 | 5/5 |
-| out_entropy | 0.796 ± 0.013 | 1 | 0.888 | 0.141 ± 0.035 | 5/5 |
-| random | 0.502 ± 0.009 | 3 | 0.104 | -0.153 ± 0.031 | 5/5 |
-## gemma standard: AUC
-
-7 systems with all five seeds; 35 completed jobs. Partial coverage is not a full-main-table result. Original strict-skipped jobs remain skipped.
-
-### all completed/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.749 ± 0.006 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.706 ± 0.009 | 3 | 0.365 | -0.044 ± 0.010 | 5/5 |
-| lookup_drain | 0.681 ± 0.006 | 3 | 0.331 | -0.068 ± 0.011 | 5/5 |
-| out_entropy | 0.811 ± 0.003 | 1 | 0.739 | 0.062 ± 0.008 | 5/5 |
-| random | 0.503 ± 0.009 | 4 | 0.000 | -0.247 ± 0.014 | 5/5 |
-### all completed/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.806 ± 0.008 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.725 ± 0.004 | 2 | 0.244 | -0.081 ± 0.006 | 5/5 |
-| lookup_drain | 0.750 ± 0.010 | 2 | 0.377 | -0.056 ± 0.012 | 5/5 |
-| out_entropy | 0.810 ± 0.004 | 1 | 0.503 | 0.004 ± 0.007 | 3/5 |
-| random | 0.503 ± 0.013 | 3 | 0.000 | -0.303 ± 0.018 | 5/5 |
-### all completed/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.724 ± 0.011 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.650 ± 0.014 | 3 | 0.173 | -0.074 ± 0.017 | 5/5 |
-| lookup_drain | 0.667 ± 0.009 | 3 | 0.335 | -0.057 ± 0.007 | 5/5 |
-| out_entropy | 0.796 ± 0.003 | 1 | 0.850 | 0.072 ± 0.011 | 5/5 |
-| random | 0.502 ± 0.009 | 4 | 0.000 | -0.222 ± 0.015 | 5/5 |
-### all completed/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.764 ± 0.005 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.647 ± 0.011 | 3 | 0.070 | -0.118 ± 0.015 | 5/5 |
-| lookup_drain | 0.737 ± 0.007 | 2 | 0.481 | -0.027 ± 0.008 | 5/5 |
-| out_entropy | 0.799 ± 0.006 | 1 | 0.707 | 0.034 ± 0.005 | 5/5 |
-| random | 0.500 ± 0.009 | 4 | 0.000 | -0.265 ± 0.012 | 5/5 |
-### all completed/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.719 ± 0.006 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.634 ± 0.012 | 4 | 0.204 | -0.085 ± 0.012 | 5/5 |
-| lookup_drain | 0.670 ± 0.005 | 3 | 0.349 | -0.049 ± 0.006 | 5/5 |
-| out_entropy | 0.805 ± 0.004 | 1 | 0.841 | 0.086 ± 0.007 | 5/5 |
-| random | 0.503 ± 0.002 | 5 | 0.000 | -0.217 ± 0.006 | 5/5 |
-### all completed/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.768 ± 0.012 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.643 ± 0.011 | 4 | 0.095 | -0.125 ± 0.005 | 5/5 |
-| lookup_drain | 0.735 ± 0.006 | 3 | 0.425 | -0.033 ± 0.013 | 5/5 |
-| out_entropy | 0.805 ± 0.005 | 1 | 0.656 | 0.037 ± 0.014 | 5/5 |
-| random | 0.505 ± 0.009 | 5 | 0.000 | -0.263 ± 0.021 | 5/5 |
-### held-out/strict/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.730 ± 0.010 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.681 ± 0.015 | 3 | 0.323 | -0.049 ± 0.016 | 5/5 |
-| lookup_drain | 0.668 ± 0.006 | 3 | 0.357 | -0.062 ± 0.015 | 5/5 |
-| out_entropy | 0.821 ± 0.003 | 1 | 0.808 | 0.091 ± 0.012 | 5/5 |
-| random | 0.505 ± 0.003 | 4 | 0.000 | -0.225 ± 0.013 | 5/5 |
-### held-out/strict/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.791 ± 0.012 | 1 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.707 ± 0.004 | 2 | 0.245 | -0.084 ± 0.008 | 5/5 |
-| lookup_drain | 0.745 ± 0.007 | 2 | 0.446 | -0.046 ± 0.017 | 5/5 |
-| out_entropy | 0.825 ± 0.001 | 1 | 0.654 | 0.034 ± 0.012 | 5/5 |
-| random | 0.502 ± 0.014 | 3 | 0.000 | -0.289 ± 0.019 | 5/5 |
-### held-out/L1/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.721 ± 0.012 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.651 ± 0.009 | 3 | 0.214 | -0.071 ± 0.005 | 5/5 |
-| lookup_drain | 0.661 ± 0.012 | 3 | 0.312 | -0.061 ± 0.008 | 5/5 |
-| out_entropy | 0.807 ± 0.004 | 1 | 0.866 | 0.085 ± 0.015 | 5/5 |
-| random | 0.502 ± 0.012 | 4 | 0.000 | -0.220 ± 0.019 | 5/5 |
-### held-out/L1/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.766 ± 0.006 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.654 ± 0.007 | 3 | 0.099 | -0.112 ± 0.012 | 5/5 |
-| lookup_drain | 0.733 ± 0.009 | 2 | 0.462 | -0.033 ± 0.010 | 5/5 |
-| out_entropy | 0.812 ± 0.009 | 1 | 0.736 | 0.046 ± 0.008 | 5/5 |
-| random | 0.504 ± 0.012 | 4 | 0.000 | -0.262 ± 0.016 | 5/5 |
-### held-out/L2/@100
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.712 ± 0.008 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.633 ± 0.012 | 3 | 0.189 | -0.079 ± 0.013 | 5/5 |
-| lookup_drain | 0.660 ± 0.006 | 3 | 0.352 | -0.053 ± 0.007 | 5/5 |
-| out_entropy | 0.818 ± 0.004 | 1 | 0.915 | 0.105 ± 0.010 | 5/5 |
-| random | 0.500 ± 0.003 | 4 | 0.000 | -0.213 ± 0.008 | 5/5 |
-### held-out/L2/@200
-
-| method | AUC | SK-ESD | A12 vs Clotho | paired minus Clotho | sign seeds |
-|---|---|---:|---:|---|---:|
-| clotho | 0.761 ± 0.015 | 2 | 0.500 | 0.000 ± 0.000 | 0/5 |
-| MDSA | 0.647 ± 0.012 | 3 | 0.122 | -0.114 ± 0.010 | 5/5 |
-| lookup_drain | 0.735 ± 0.008 | 2 | 0.445 | -0.026 ± 0.013 | 5/5 |
-| out_entropy | 0.822 ± 0.004 | 1 | 0.755 | 0.061 ± 0.017 | 5/5 |
-| random | 0.503 ± 0.005 | 4 | 0.000 | -0.258 ± 0.014 | 5/5 |
-## gemma natural: AUC
-
-0 systems with all five seeds; 0 completed jobs. Partial coverage is not a full-main-table result. Original strict-skipped jobs remain skipped.
-
-## Streams and remaining work
-
-Strict reproduction succeeded on the few completed stream cells, but no complete-model L1/L2 stream results finished. PA_0, N1/N5 and the 20-review frequency headline under lenient scoring are unresolved. Llama base remains 11 systems (HDFS/OpenSSH missing), strong Llama 13 and Gemma 12. Finish standard/natural suite jobs and every rescored D stream job before a full R1 conclusion. Stream script is unfinished and unvalidated beyond saved strict baselines.
-
-## R2–R4
-
-Not started; record detailed protocols before computation.
+Scorers fixed before results: strict; L1 = official AdaParser @232951a prediction post-processing then exact GT match; L2 = L1 plus symmetric whitespace collapse and merging consecutive <*> tokens. None remains failure. L1 includes semantic abstraction of numbers/addresses/paths, beyond formatting; it can break strict matches. Ground truth is not passed through AdaParser. Label samples 5–9 and output-entropy samples 0–4 are disjoint. Original systems and strict split skips remain fixed; scorer-induced class degeneracy is reported as undefined. Every rerun asserts strict stored Clotho/Drain AUC or strict stream PA curves and N5 PA/FTA first.
+
+Corrected time assumption: machine/user setup 19:01 EST is 00:01 UTC, not 19:01 UTC. Conservative deadline 10:00 UTC, long-job cutoff 09:15 UTC; actual VCL reservation end is not exposed locally.
+
+
+## llama per-system scorer audit
+
+| suite | strict/L1/L2 PASS | forgiven inputs L1/L2 | broken inputs L1/L2 | forgiven samples L1/L2 | broken samples L1/L2 | outside 10–90% | between share (40 samples) strict/L1/L2 |
+|---|---|---|---|---|---|---|---|
+| loghub_apache_500 | 0.600/0.700/0.702 | 50/51 | 0/0 | 404/407 | 0/0 | none | 0.953/0.925/0.925 |
+| loghub_bgl_500 | 0.244/0.302/0.306 | 29/31 | 0/0 | 276/287 | 3/3 | none | 0.966/0.970/0.970 |
+| loghub_hdfs_500 | 0.282/0.474/0.476 | 96/97 | 0/0 | 869/884 | 0/0 | none | 0.960/0.951/0.962 |
+| loghub_hpc_500 | 0.214/0.254/0.286 | 20/36 | 0/0 | 197/346 | 0/0 | none | 0.795/0.813/0.951 |
+| loghub_hadoop_500 | 0.302/0.470/0.488 | 84/93 | 0/0 | 689/765 | 0/0 | none | 0.994/0.992/0.992 |
+| loghub_healthapp_500 | 0.336/0.482/0.482 | 73/73 | 0/0 | 576/597 | 0/0 | none | 0.977/0.985/0.985 |
+| loghub_linux_500 | 0.250/0.356/0.360 | 53/55 | 0/0 | 547/556 | 1/1 | none | 0.988/0.977/0.977 |
+| loghub_mac_500 | 0.150/0.240/0.246 | 45/48 | 0/0 | 482/512 | 0/0 | none | 1.000/1.000/1.000 |
+| loghub_openssh_500 | 0.406/0.504/0.504 | 49/49 | 0/0 | 359/361 | 0/0 | none | 0.857/0.825/0.826 |
+| loghub_openstack_500 | 0.566/0.690/0.692 | 62/63 | 0/0 | 468/489 | 0/0 | none | 0.989/0.991/0.992 |
+| loghub_spark_500 | 0.244/0.350/0.352 | 54/55 | 1/1 | 459/479 | 9/9 | none | 0.979/0.983/0.984 |
+| loghub_thunderbird_500 | 0.220/0.282/0.290 | 32/36 | 1/1 | 368/389 | 11/11 | none | 1.000/1.000/1.000 |
+| loghub_zookeeper_500 | 0.478/0.526/0.526 | 24/24 | 0/0 | 142/143 | 0/0 | none | 0.974/0.981/0.981 |
+| loghub_apache_nat500 | 0.818/0.950/0.950 | 66/66 | 0/0 | 677/677 | 0/0 | L1,L2 | n/a/n/a/n/a |
+| loghub_bgl_nat500 | 0.166/0.236/0.248 | 35/41 | 0/0 | 347/397 | 0/0 | none | n/a/n/a/n/a |
+| loghub_hadoop_nat500 | 0.228/0.538/0.552 | 155/162 | 0/0 | 1241/1326 | 0/0 | none | n/a/n/a/n/a |
+| loghub_hdfs_nat500 | 0.470/0.774/0.774 | 152/152 | 0/0 | 1184/1192 | 0/0 | none | n/a/n/a/n/a |
+| loghub_healthapp_nat500 | 0.328/0.714/0.728 | 193/200 | 0/0 | 1588/1640 | 0/0 | none | n/a/n/a/n/a |
+| loghub_hpc_nat500 | 0.384/0.504/0.506 | 60/61 | 0/0 | 604/611 | 0/0 | none | n/a/n/a/n/a |
+| loghub_linux_nat500 | 0.088/0.112/0.114 | 12/13 | 0/0 | 118/131 | 0/0 | strict | n/a/n/a/n/a |
+| loghub_mac_nat500 | 0.190/0.244/0.258 | 28/35 | 1/1 | 308/364 | 5/5 | none | n/a/n/a/n/a |
+| loghub_openssh_nat500 | 0.278/0.312/0.312 | 17/17 | 0/0 | 191/194 | 0/0 | none | n/a/n/a/n/a |
+| loghub_openstack_nat500 | 0.206/0.248/0.248 | 21/21 | 0/0 | 153/159 | 0/0 | none | n/a/n/a/n/a |
+| loghub_spark_nat500 | 0.400/0.588/0.610 | 94/105 | 0/0 | 701/778 | 0/0 | none | n/a/n/a/n/a |
+| loghub_thunderbird_nat500 | 0.214/0.238/0.240 | 12/13 | 0/0 | 148/157 | 0/0 | none | n/a/n/a/n/a |
+| loghub_zookeeper_nat500 | 0.788/0.792/0.792 | 2/2 | 0/0 | 29/29 | 0/0 | none | n/a/n/a/n/a |
+
+llama strict: reliable between-template variance share median 0.977, range 0.795–1.000 (13 capped systems).
+
+llama L1: reliable between-template variance share median 0.981, range 0.813–1.000 (13 capped systems).
+
+llama L2: reliable between-template variance share median 0.981, range 0.826–1.000 (13 capped systems).
+
+### llama/disjoint/all/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.645 ± 0.022 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.656 ± 0.025 | 0.011 ± 0.033 | 3/5 | 2 | 0.543 | 13 |
+| lookup_drain | 0.505 ± 0.005 | -0.140 ± 0.023 | 0/5 | 3 | 0.166 | 13 |
+| out_entropy | 0.796 ± 0.014 | 0.151 ± 0.026 | 5/5 | 1 | 0.896 | 13 |
+| random | 0.502 ± 0.013 | -0.143 ± 0.033 | 0/5 | 3 | 0.141 | 13 |
+| U-best | 0.776 ± 0.028 | 0.132 ± 0.046 | 5/5 | 1 | 0.855 | 13 |
+
+### llama/disjoint/all/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.657 ± 0.012 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.657 ± 0.023 | 0.001 ± 0.023 | 2/5 | 2 | 0.517 | 13 |
+| lookup_drain | 0.508 ± 0.003 | -0.149 ± 0.013 | 0/5 | 3 | 0.111 | 13 |
+| out_entropy | 0.796 ± 0.014 | 0.139 ± 0.017 | 5/5 | 1 | 0.889 | 13 |
+| random | 0.511 ± 0.019 | -0.145 ± 0.019 | 0/5 | 3 | 0.115 | 13 |
+
+### llama/disjoint/all/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.620 ± 0.019 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 13 |
+| MDSA | 0.602 ± 0.017 | -0.017 ± 0.007 | 0/5 | 3 | 0.481 | 13 |
+| lookup_drain | 0.502 ± 0.004 | -0.118 ± 0.019 | 0/5 | 4 | 0.123 | 13 |
+| out_entropy | 0.774 ± 0.011 | 0.155 ± 0.020 | 5/5 | 1 | 0.875 | 13 |
+| random | 0.505 ± 0.014 | -0.114 ± 0.024 | 0/5 | 4 | 0.144 | 13 |
+| U-best | 0.714 ± 0.023 | 0.095 ± 0.035 | 5/5 | 2 | 0.759 | 13 |
+
+### llama/disjoint/all/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.619 ± 0.016 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.605 ± 0.018 | -0.014 ± 0.010 | 0/5 | 2 | 0.469 | 13 |
+| lookup_drain | 0.506 ± 0.004 | -0.113 ± 0.018 | 0/5 | 3 | 0.139 | 13 |
+| out_entropy | 0.774 ± 0.011 | 0.155 ± 0.017 | 5/5 | 1 | 0.894 | 13 |
+| random | 0.512 ± 0.017 | -0.107 ± 0.011 | 0/5 | 3 | 0.166 | 13 |
+
+### llama/disjoint/all/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.614 ± 0.019 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 13 |
+| MDSA | 0.605 ± 0.018 | -0.010 ± 0.011 | 1/5 | 3 | 0.493 | 13 |
+| lookup_drain | 0.502 ± 0.005 | -0.112 ± 0.019 | 0/5 | 4 | 0.139 | 13 |
+| out_entropy | 0.774 ± 0.012 | 0.160 ± 0.020 | 5/5 | 1 | 0.887 | 13 |
+| random | 0.505 ± 0.014 | -0.109 ± 0.027 | 0/5 | 4 | 0.163 | 13 |
+| U-best | 0.713 ± 0.021 | 0.099 ± 0.035 | 5/5 | 2 | 0.759 | 13 |
+
+### llama/disjoint/all/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.614 ± 0.020 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.606 ± 0.018 | -0.008 ± 0.007 | 0/5 | 2 | 0.485 | 13 |
+| lookup_drain | 0.506 ± 0.005 | -0.108 ± 0.020 | 0/5 | 3 | 0.157 | 13 |
+| out_entropy | 0.774 ± 0.012 | 0.160 ± 0.024 | 5/5 | 1 | 0.889 | 13 |
+| random | 0.513 ± 0.017 | -0.102 ± 0.021 | 0/5 | 3 | 0.178 | 13 |
+
+### llama/disjoint/held-out/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.634 ± 0.022 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.637 ± 0.039 | 0.002 ± 0.041 | 3/5 | 2 | 0.506 | 10 |
+| lookup_drain | 0.503 ± 0.005 | -0.131 ± 0.025 | 0/5 | 3 | 0.215 | 10 |
+| out_entropy | 0.784 ± 0.016 | 0.150 ± 0.029 | 5/5 | 1 | 0.867 | 10 |
+| random | 0.510 ± 0.012 | -0.124 ± 0.034 | 0/5 | 3 | 0.194 | 10 |
+| U-best | 0.764 ± 0.036 | 0.129 ± 0.054 | 5/5 | 1 | 0.820 | 10 |
+
+### llama/disjoint/held-out/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.646 ± 0.012 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.641 ± 0.034 | -0.005 ± 0.026 | 2/5 | 2 | 0.500 | 10 |
+| lookup_drain | 0.506 ± 0.003 | -0.141 ± 0.011 | 0/5 | 3 | 0.142 | 10 |
+| out_entropy | 0.784 ± 0.016 | 0.138 ± 0.013 | 5/5 | 1 | 0.864 | 10 |
+| random | 0.508 ± 0.018 | -0.138 ± 0.019 | 0/5 | 3 | 0.144 | 10 |
+
+### llama/disjoint/held-out/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.631 ± 0.020 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 10 |
+| MDSA | 0.591 ± 0.026 | -0.040 ± 0.013 | 0/5 | 4 | 0.418 | 10 |
+| lookup_drain | 0.502 ± 0.003 | -0.129 ± 0.021 | 0/5 | 5 | 0.138 | 10 |
+| out_entropy | 0.770 ± 0.013 | 0.139 ± 0.025 | 5/5 | 1 | 0.836 | 10 |
+| random | 0.512 ± 0.012 | -0.119 ± 0.029 | 0/5 | 5 | 0.150 | 10 |
+| U-best | 0.711 ± 0.031 | 0.080 ± 0.044 | 5/5 | 2 | 0.700 | 10 |
+
+### llama/disjoint/held-out/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.630 ± 0.019 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.596 ± 0.024 | -0.035 ± 0.012 | 0/5 | 3 | 0.403 | 10 |
+| lookup_drain | 0.503 ± 0.004 | -0.127 ± 0.019 | 0/5 | 4 | 0.142 | 10 |
+| out_entropy | 0.770 ± 0.013 | 0.139 ± 0.022 | 5/5 | 1 | 0.856 | 10 |
+| random | 0.509 ± 0.019 | -0.122 ± 0.012 | 0/5 | 4 | 0.152 | 10 |
+
+### llama/disjoint/held-out/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.626 ± 0.023 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 10 |
+| MDSA | 0.595 ± 0.025 | -0.031 ± 0.017 | 0/5 | 3 | 0.430 | 10 |
+| lookup_drain | 0.503 ± 0.004 | -0.123 ± 0.022 | 0/5 | 4 | 0.158 | 10 |
+| out_entropy | 0.771 ± 0.013 | 0.145 ± 0.027 | 5/5 | 1 | 0.850 | 10 |
+| random | 0.512 ± 0.014 | -0.114 ± 0.034 | 0/5 | 4 | 0.172 | 10 |
+| U-best | 0.709 ± 0.029 | 0.083 ± 0.044 | 5/5 | 2 | 0.700 | 10 |
+
+### llama/disjoint/held-out/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.623 ± 0.030 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.597 ± 0.024 | -0.026 ± 0.014 | 0/5 | 2 | 0.430 | 10 |
+| lookup_drain | 0.503 ± 0.004 | -0.121 ± 0.028 | 0/5 | 3 | 0.168 | 10 |
+| out_entropy | 0.771 ± 0.013 | 0.148 ± 0.033 | 5/5 | 1 | 0.853 | 10 |
+| random | 0.509 ± 0.018 | -0.114 ± 0.029 | 0/5 | 3 | 0.174 | 10 |
+
+### llama/standard/all/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.749 ± 0.010 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.715 ± 0.008 | -0.034 ± 0.003 | 0/5 | 3 | 0.379 | 13 |
+| lookup_drain | 0.680 ± 0.006 | -0.069 ± 0.014 | 0/5 | 4 | 0.313 | 13 |
+| out_entropy | 0.792 ± 0.001 | 0.043 ± 0.010 | 5/5 | 1 | 0.621 | 13 |
+| random | 0.504 ± 0.004 | -0.245 ± 0.012 | 0/5 | 5 | 0.021 | 13 |
+
+### llama/standard/all/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.794 ± 0.011 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.737 ± 0.006 | -0.057 ± 0.009 | 0/5 | 2 | 0.289 | 13 |
+| lookup_drain | 0.733 ± 0.005 | -0.061 ± 0.011 | 0/5 | 2 | 0.349 | 13 |
+| out_entropy | 0.794 ± 0.005 | -0.001 ± 0.013 | 3/5 | 1 | 0.458 | 13 |
+| random | 0.506 ± 0.010 | -0.288 ± 0.015 | 0/5 | 3 | 0.008 | 13 |
+
+### llama/standard/all/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.715 ± 0.019 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.650 ± 0.012 | -0.064 ± 0.010 | 0/5 | 3 | 0.291 | 13 |
+| lookup_drain | 0.678 ± 0.007 | -0.037 ± 0.016 | 0/5 | 3 | 0.410 | 13 |
+| out_entropy | 0.776 ± 0.002 | 0.062 ± 0.020 | 5/5 | 1 | 0.723 | 13 |
+| random | 0.503 ± 0.011 | -0.211 ± 0.023 | 0/5 | 4 | 0.019 | 13 |
+
+### llama/standard/all/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.755 ± 0.012 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.652 ± 0.009 | -0.103 ± 0.017 | 0/5 | 3 | 0.161 | 13 |
+| lookup_drain | 0.721 ± 0.006 | -0.034 ± 0.011 | 0/5 | 2 | 0.422 | 13 |
+| out_entropy | 0.774 ± 0.004 | 0.019 ± 0.015 | 4/5 | 1 | 0.599 | 13 |
+| random | 0.499 ± 0.006 | -0.256 ± 0.012 | 0/5 | 4 | 0.002 | 13 |
+
+### llama/standard/all/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.719 ± 0.007 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| MDSA | 0.649 ± 0.009 | -0.071 ± 0.008 | 0/5 | 4 | 0.285 | 13 |
+| lookup_drain | 0.679 ± 0.007 | -0.040 ± 0.010 | 0/5 | 3 | 0.407 | 13 |
+| out_entropy | 0.776 ± 0.001 | 0.057 ± 0.008 | 5/5 | 1 | 0.701 | 13 |
+| random | 0.506 ± 0.010 | -0.214 ± 0.011 | 0/5 | 5 | 0.012 | 13 |
+
+### llama/standard/all/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.754 ± 0.010 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.646 ± 0.012 | -0.108 ± 0.018 | 0/5 | 3 | 0.158 | 13 |
+| lookup_drain | 0.721 ± 0.009 | -0.034 ± 0.005 | 0/5 | 2 | 0.418 | 13 |
+| out_entropy | 0.774 ± 0.001 | 0.020 ± 0.010 | 5/5 | 1 | 0.574 | 13 |
+| random | 0.505 ± 0.013 | -0.249 ± 0.011 | 0/5 | 4 | 0.000 | 13 |
+
+### llama/standard/held-out/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.737 ± 0.010 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.695 ± 0.008 | -0.042 ± 0.004 | 0/5 | 3 | 0.357 | 10 |
+| lookup_drain | 0.675 ± 0.005 | -0.061 ± 0.013 | 0/5 | 3 | 0.347 | 10 |
+| out_entropy | 0.780 ± 0.001 | 0.043 ± 0.010 | 5/5 | 1 | 0.602 | 10 |
+| random | 0.500 ± 0.004 | -0.237 ± 0.013 | 0/5 | 4 | 0.025 | 10 |
+
+### llama/standard/held-out/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.777 ± 0.014 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.720 ± 0.007 | -0.057 ± 0.011 | 0/5 | 2 | 0.326 | 10 |
+| lookup_drain | 0.713 ± 0.005 | -0.063 ± 0.014 | 0/5 | 2 | 0.359 | 10 |
+| out_entropy | 0.779 ± 0.006 | 0.003 ± 0.015 | 4/5 | 1 | 0.494 | 10 |
+| random | 0.508 ± 0.016 | -0.268 ± 0.021 | 0/5 | 3 | 0.010 | 10 |
+
+### llama/standard/held-out/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.720 ± 0.022 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.640 ± 0.019 | -0.080 ± 0.009 | 0/5 | 4 | 0.260 | 10 |
+| lookup_drain | 0.682 ± 0.007 | -0.037 ± 0.020 | 0/5 | 3 | 0.423 | 10 |
+| out_entropy | 0.774 ± 0.003 | 0.054 ± 0.023 | 5/5 | 1 | 0.661 | 10 |
+| random | 0.504 ± 0.013 | -0.216 ± 0.023 | 0/5 | 5 | 0.026 | 10 |
+
+### llama/standard/held-out/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.755 ± 0.011 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.645 ± 0.008 | -0.109 ± 0.017 | 0/5 | 3 | 0.172 | 10 |
+| lookup_drain | 0.710 ± 0.005 | -0.045 ± 0.010 | 0/5 | 2 | 0.397 | 10 |
+| out_entropy | 0.772 ± 0.005 | 0.018 ± 0.015 | 4/5 | 1 | 0.556 | 10 |
+| random | 0.501 ± 0.011 | -0.254 ± 0.019 | 0/5 | 4 | 0.002 | 10 |
+
+### llama/standard/held-out/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.726 ± 0.008 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| MDSA | 0.639 ± 0.013 | -0.087 ± 0.011 | 0/5 | 4 | 0.261 | 10 |
+| lookup_drain | 0.684 ± 0.006 | -0.042 ± 0.009 | 0/5 | 3 | 0.410 | 10 |
+| out_entropy | 0.776 ± 0.002 | 0.051 ± 0.008 | 5/5 | 1 | 0.642 | 10 |
+| random | 0.506 ± 0.010 | -0.219 ± 0.009 | 0/5 | 5 | 0.017 | 10 |
+
+### llama/standard/held-out/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.753 ± 0.010 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.639 ± 0.013 | -0.114 ± 0.019 | 0/5 | 3 | 0.168 | 10 |
+| lookup_drain | 0.708 ± 0.010 | -0.045 ± 0.004 | 0/5 | 2 | 0.396 | 10 |
+| out_entropy | 0.774 ± 0.001 | 0.021 ± 0.011 | 5/5 | 1 | 0.552 | 10 |
+| random | 0.506 ± 0.010 | -0.248 ± 0.014 | 0/5 | 4 | 0.000 | 10 |
+
+### llama/natural/all/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.831 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.815 ± 0.006 | -0.016 ± 0.008 | 0/5 | 1 | 0.502 | 13 |
+| lookup_drain | 0.838 ± 0.013 | 0.006 ± 0.014 | 3/5 | 1 | 0.511 | 13 |
+| out_entropy | 0.789 ± 0.003 | -0.042 ± 0.012 | 0/5 | 1 | 0.324 | 13 |
+| random | 0.505 ± 0.010 | -0.326 ± 0.010 | 0/5 | 2 | 0.045 | 13 |
+
+### llama/natural/all/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.845 ± 0.015 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.838 ± 0.012 | -0.007 ± 0.015 | 1/5 | 1 | 0.462 | 13 |
+| lookup_drain | 0.861 ± 0.006 | 0.016 ± 0.014 | 4/5 | 1 | 0.537 | 13 |
+| out_entropy | 0.784 ± 0.004 | -0.061 ± 0.017 | 0/5 | 2 | 0.321 | 13 |
+| random | 0.499 ± 0.010 | -0.346 ± 0.018 | 0/5 | 3 | 0.018 | 13 |
+
+### llama/natural/all/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.798 ± 0.011 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.792 ± 0.011 | -0.006 ± 0.009 | 1/5 | 1 | 0.491 | 13 |
+| lookup_drain | 0.822 ± 0.007 | 0.025 ± 0.010 | 5/5 | 1 | 0.556 | 13 |
+| out_entropy | 0.741 ± 0.004 | -0.057 ± 0.013 | 0/5 | 2 | 0.307 | 13 |
+| random | 0.501 ± 0.009 | -0.297 ± 0.018 | 0/5 | 3 | 0.017 | 13 |
+
+### llama/natural/all/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.788 ± 0.014 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.777 ± 0.007 | -0.012 ± 0.013 | 1/5 | 1 | 0.459 | 13 |
+| lookup_drain | 0.812 ± 0.007 | 0.024 ± 0.019 | 5/5 | 1 | 0.557 | 13 |
+| out_entropy | 0.722 ± 0.007 | -0.067 ± 0.010 | 0/5 | 2 | 0.353 | 13 |
+| random | 0.492 ± 0.013 | -0.296 ± 0.018 | 0/5 | 3 | 0.027 | 13 |
+
+### llama/natural/all/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.798 ± 0.012 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.790 ± 0.008 | -0.007 ± 0.010 | 1/5 | 1 | 0.486 | 13 |
+| lookup_drain | 0.820 ± 0.010 | 0.022 ± 0.011 | 5/5 | 1 | 0.551 | 13 |
+| out_entropy | 0.738 ± 0.004 | -0.060 ± 0.015 | 0/5 | 2 | 0.314 | 13 |
+| random | 0.503 ± 0.003 | -0.295 ± 0.014 | 0/5 | 3 | 0.025 | 13 |
+
+### llama/natural/all/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.780 ± 0.012 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| MDSA | 0.771 ± 0.006 | -0.009 ± 0.015 | 2/5 | 1 | 0.468 | 13 |
+| lookup_drain | 0.809 ± 0.005 | 0.029 ± 0.013 | 5/5 | 1 | 0.557 | 13 |
+| out_entropy | 0.723 ± 0.006 | -0.058 ± 0.011 | 0/5 | 2 | 0.362 | 13 |
+| random | 0.497 ± 0.015 | -0.283 ± 0.012 | 0/5 | 3 | 0.043 | 13 |
+
+### llama/natural/held-out/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.849 ± 0.015 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.819 ± 0.009 | -0.030 ± 0.008 | 0/5 | 1 | 0.457 | 10 |
+| lookup_drain | 0.850 ± 0.019 | 0.000 ± 0.013 | 3/5 | 1 | 0.481 | 10 |
+| out_entropy | 0.801 ± 0.002 | -0.048 ± 0.013 | 0/5 | 1 | 0.292 | 10 |
+| random | 0.508 ± 0.013 | -0.341 ± 0.010 | 0/5 | 2 | 0.034 | 10 |
+
+### llama/natural/held-out/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.867 ± 0.014 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.841 ± 0.015 | -0.026 ± 0.015 | 0/5 | 1 | 0.409 | 10 |
+| lookup_drain | 0.879 ± 0.006 | 0.012 ± 0.013 | 4/5 | 1 | 0.496 | 10 |
+| out_entropy | 0.798 ± 0.004 | -0.069 ± 0.016 | 0/5 | 2 | 0.265 | 10 |
+| random | 0.498 ± 0.014 | -0.369 ± 0.021 | 0/5 | 3 | 0.020 | 10 |
+
+### llama/natural/held-out/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.816 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.793 ± 0.012 | -0.023 ± 0.011 | 0/5 | 1 | 0.454 | 10 |
+| lookup_drain | 0.841 ± 0.012 | 0.025 ± 0.009 | 5/5 | 1 | 0.549 | 10 |
+| out_entropy | 0.746 ± 0.004 | -0.070 ± 0.016 | 0/5 | 2 | 0.285 | 10 |
+| random | 0.503 ± 0.010 | -0.314 ± 0.018 | 0/5 | 3 | 0.003 | 10 |
+
+### llama/natural/held-out/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.803 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.781 ± 0.008 | -0.022 ± 0.015 | 0/5 | 1 | 0.427 | 10 |
+| lookup_drain | 0.834 ± 0.011 | 0.032 ± 0.018 | 5/5 | 1 | 0.539 | 10 |
+| out_entropy | 0.725 ± 0.008 | -0.078 ± 0.009 | 0/5 | 2 | 0.335 | 10 |
+| random | 0.492 ± 0.016 | -0.311 ± 0.019 | 0/5 | 3 | 0.032 | 10 |
+
+### llama/natural/held-out/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.815 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.792 ± 0.009 | -0.022 ± 0.011 | 0/5 | 1 | 0.460 | 10 |
+| lookup_drain | 0.838 ± 0.015 | 0.023 ± 0.009 | 5/5 | 1 | 0.556 | 10 |
+| out_entropy | 0.743 ± 0.005 | -0.071 ± 0.018 | 0/5 | 2 | 0.296 | 10 |
+| random | 0.507 ± 0.008 | -0.307 ± 0.014 | 0/5 | 3 | 0.002 | 10 |
+
+### llama/natural/held-out/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.792 ± 0.016 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| MDSA | 0.773 ± 0.005 | -0.019 ± 0.016 | 0/5 | 1 | 0.445 | 10 |
+| lookup_drain | 0.829 ± 0.007 | 0.037 ± 0.017 | 5/5 | 1 | 0.543 | 10 |
+| out_entropy | 0.725 ± 0.008 | -0.067 ± 0.015 | 0/5 | 2 | 0.347 | 10 |
+| random | 0.493 ± 0.013 | -0.298 ± 0.012 | 0/5 | 3 | 0.045 | 10 |
+
+### R1 llama/base/all/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.064 ± 0.043 | -0.648 ± 0.043 | 0/5 | 2 | 0.021 | 11 |
+| frequent | 0.713 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.665 ± 0.007 | -0.047 ± 0.007 | 0/5 | 1 | 0.440 | 11 |
+| oracle | 0.762 ± 0.000 | 0.049 ± 0.000 | 5/5 | 1 | 0.603 | 11 |
+
+### R1 llama/base/all/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.115 ± 0.058 | -0.662 ± 0.058 | 0/5 | 2 | 0.030 | 11 |
+| frequent | 0.777 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.770 ± 0.019 | -0.007 ± 0.019 | 2/5 | 1 | 0.513 | 11 |
+| oracle | 0.814 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.620 | 11 |
+
+### R1 llama/base/all/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.201 ± 0.061 | -0.635 ± 0.061 | 0/5 | 2 | 0.071 | 11 |
+| frequent | 0.836 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.824 ± 0.016 | -0.011 ± 0.016 | 2/5 | 1 | 0.515 | 11 |
+| oracle | 0.856 ± 0.000 | 0.020 ± 0.000 | 5/5 | 1 | 0.595 | 11 |
+
+### R1 llama/base/all/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.373 ± 0.019 | -0.513 ± 0.019 | 0/5 | 2 | 0.212 | 11 |
+| frequent | 0.886 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.887 ± 0.000 | 0.001 ± 0.000 | 5/5 | 1 | 0.528 | 11 |
+| oracle | 0.905 ± 0.000 | 0.019 ± 0.000 | 5/5 | 1 | 0.550 | 11 |
+
+R1 llama/base/all/strict: PA_0 0.255, wrong-group share 0.596.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.189 | 0.324 | 0.3723928096450228 | 0.650 | 0.180/0.114/0.000/0.180 | 0.189/0.341/0.851/0.188/0.189 |
+| Spark | 0.018 | 0.712 | -0.08154784858115269 | 0.750 | 0.029/0.384/0.000/0.029 | 0.018/0.290/0.229/0.018/0.018 |
+| OpenStack | 0.159 | 0.161 | -0.1550374277658504 | 0.650 | 0.029/0.004/0.000/0.031 | 0.159/0.070/0.480/0.130/0.159 |
+| Zookeeper | 0.508 | 0.455 | -0.2152990256912206 | 0.350 | 0.850/0.614/0.556/0.850 | 0.508/0.497/0.222/0.508/0.508 |
+| Thunderbird | 0.179 | 0.722 | -0.02961651819116411 | 0.750 | 0.235/0.248/0.193/0.235 | 0.179/0.293/0.284/0.179/0.179 |
+| Hadoop | 0.234 | 0.586 | -0.012782897927332637 | 0.750 | 0.537/0.387/0.226/0.537 | 0.234/0.393/0.321/0.234/0.234 |
+| Linux | 0.234 | 0.751 | 0.00011231800122906983 | 0.750 | 0.111/0.260/0.146/0.111 | 0.234/0.269/0.198/0.234/0.234 |
+| HealthApp | 0.208 | 0.907 | -0.11710332241584265 | 0.800 | 0.304/0.013/0.006/0.350 | 0.208/0.347/0.095/0.226/0.208 |
+| Apache | 0.721 | 0.586 | -0.30218969080376956 | 0.500 | 0.722/0.517/0.000/0.722 | 0.721/0.414/0.500/0.721/0.721 |
+| BGL | 0.110 | 0.529 | 0.19241775332878505 | 0.450 | 0.202/0.229/0.077/0.202 | 0.110/0.423/0.538/0.110/0.110 |
+| Mac | 0.246 | 0.827 | -0.0713277170899104 | 0.700 | 0.376/0.104/0.042/0.387 | 0.246/0.163/0.163/0.249/0.246 |
+
+### R1 llama/base/all/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.067 ± 0.046 | -0.632 ± 0.046 | 0/5 | 3 | 0.025 | 11 |
+| frequent | 0.699 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 11 |
+| dsize | 0.626 ± 0.032 | -0.072 ± 0.032 | 0/5 | 2 | 0.440 | 11 |
+| oracle | 0.777 ± 0.000 | 0.078 ± 0.000 | 5/5 | 1 | 0.603 | 11 |
+
+### R1 llama/base/all/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.120 ± 0.061 | -0.647 ± 0.061 | 0/5 | 2 | 0.041 | 11 |
+| frequent | 0.767 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.733 ± 0.026 | -0.034 ± 0.026 | 1/5 | 1 | 0.487 | 11 |
+| oracle | 0.826 ± 0.000 | 0.058 ± 0.000 | 5/5 | 1 | 0.628 | 11 |
+
+### R1 llama/base/all/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.209 ± 0.070 | -0.627 ± 0.070 | 0/5 | 2 | 0.071 | 11 |
+| frequent | 0.836 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.810 ± 0.035 | -0.026 ± 0.035 | 2/5 | 1 | 0.487 | 11 |
+| oracle | 0.869 ± 0.000 | 0.033 ± 0.000 | 5/5 | 1 | 0.587 | 11 |
+
+### R1 llama/base/all/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.379 ± 0.016 | -0.516 ± 0.016 | 0/5 | 2 | 0.205 | 11 |
+| frequent | 0.895 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.896 ± 0.002 | 0.001 ± 0.002 | 3/5 | 1 | 0.496 | 11 |
+| oracle | 0.921 ± 0.000 | 0.026 ± 0.000 | 5/5 | 1 | 0.574 | 11 |
+
+R1 llama/base/all/L1: PA_0 0.362, wrong-group share 0.464.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.397 | 0.309 | 0.32208877234787514 | 0.600 | 0.390/0.179/0.000/0.390 | 0.397/0.390/0.851/0.397/0.397 |
+| Spark | 0.022 | 0.597 | 0.04261660585416359 | 0.700 | 0.031/0.500/0.457/0.030 | 0.022/0.391/0.400/0.022/0.022 |
+| OpenStack | 0.259 | 0.127 | -0.053673662089182825 | 0.400 | 0.117/0.077/0.003/0.127 | 0.259/0.238/0.500/0.238/0.259 |
+| Zookeeper | 0.509 | 0.442 | -0.2052407797139708 | 0.350 | 0.853/0.795/1.000/0.853 | 0.509/0.509/0.222/0.509/0.509 |
+| Thunderbird | 0.207 | 0.624 | 0.04929022263349339 | 0.750 | 0.336/0.467/0.367/0.336 | 0.207/0.345/0.312/0.207/0.207 |
+| Hadoop | 0.620 | 0.483 | -0.0647290787830547 | 0.500 | 0.587/0.575/0.491/0.587 | 0.620/0.517/0.491/0.621/0.620 |
+| Linux | 0.258 | 0.644 | 0.002211125585677772 | 0.650 | 0.145/0.475/0.354/0.144 | 0.258/0.359/0.292/0.258/0.258 |
+| HealthApp | 0.578 | 0.011 | 0.6125807166122932 | 0.700 | 0.466/0.524/0.994/0.385 | 0.578/0.438/0.993/0.515/0.578 |
+| Apache | 0.721 | 0.552 | -0.18704369698300313 | 0.500 | 0.993/0.793/0.500/0.993 | 0.721/0.448/1.000/0.721/0.721 |
+| BGL | 0.110 | 0.529 | 0.19241775332878505 | 0.450 | 0.210/0.648/0.538/0.210 | 0.110/0.423/0.538/0.110/0.110 |
+| Mac | 0.301 | 0.787 | -0.15114262853792754 | 0.650 | 0.528/0.434/0.568/0.527 | 0.301/0.250/0.190/0.305/0.301 |
+
+### R1 llama/base/all/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.067 ± 0.046 | -0.632 ± 0.046 | 0/5 | 3 | 0.025 | 11 |
+| frequent | 0.699 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.611 ± 0.056 | -0.088 ± 0.056 | 0/5 | 2 | 0.416 | 11 |
+| oracle | 0.778 ± 0.000 | 0.079 ± 0.000 | 5/5 | 1 | 0.603 | 11 |
+
+### R1 llama/base/all/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.120 ± 0.061 | -0.648 ± 0.061 | 0/5 | 2 | 0.041 | 11 |
+| frequent | 0.768 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.764 ± 0.026 | -0.004 ± 0.026 | 3/5 | 1 | 0.504 | 11 |
+| oracle | 0.826 ± 0.000 | 0.058 ± 0.000 | 5/5 | 1 | 0.628 | 11 |
+
+### R1 llama/base/all/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.209 ± 0.071 | -0.628 ± 0.071 | 0/5 | 2 | 0.071 | 11 |
+| frequent | 0.836 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.823 ± 0.028 | -0.013 ± 0.028 | 1/5 | 1 | 0.491 | 11 |
+| oracle | 0.870 ± 0.000 | 0.033 ± 0.000 | 5/5 | 1 | 0.587 | 11 |
+
+### R1 llama/base/all/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.379 ± 0.016 | -0.517 ± 0.016 | 0/5 | 2 | 0.205 | 11 |
+| frequent | 0.896 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 11 |
+| dsize | 0.896 ± 0.002 | 0.000 ± 0.002 | 2/5 | 1 | 0.508 | 11 |
+| oracle | 0.922 ± 0.000 | 0.026 ± 0.000 | 5/5 | 1 | 0.574 | 11 |
+
+R1 llama/base/all/L2: PA_0 0.363, wrong-group share 0.462.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.397 | 0.309 | 0.32208877234787514 | 0.600 | 0.390/0.203/0.000/0.390 | 0.397/0.390/0.851/0.397/0.397 |
+| Spark | 0.022 | 0.597 | 0.04261660585416359 | 0.700 | 0.031/0.500/0.457/0.030 | 0.022/0.391/0.400/0.022/0.022 |
+| OpenStack | 0.259 | 0.127 | -0.05179091492581966 | 0.400 | 0.117/0.077/0.003/0.127 | 0.259/0.260/0.500/0.238/0.259 |
+| Zookeeper | 0.509 | 0.442 | -0.2052407797139708 | 0.350 | 0.853/0.795/1.000/0.853 | 0.509/0.509/0.222/0.509/0.509 |
+| Thunderbird | 0.212 | 0.614 | 0.04657633026994807 | 0.750 | 0.336/0.467/0.367/0.336 | 0.212/0.353/0.312/0.212/0.212 |
+| Hadoop | 0.621 | 0.475 | -0.05507319591603246 | 0.500 | 0.587/0.575/0.491/0.587 | 0.621/0.528/0.491/0.621/0.621 |
+| Linux | 0.258 | 0.644 | 0.002211125585677772 | 0.650 | 0.145/0.475/0.354/0.144 | 0.258/0.359/0.292/0.258/0.258 |
+| HealthApp | 0.578 | 0.011 | 0.6125807166122932 | 0.700 | 0.579/0.539/0.994/0.515 | 0.578/0.438/0.993/0.515/0.578 |
+| Apache | 0.721 | 0.552 | -0.18704369698300313 | 0.500 | 0.993/0.793/0.500/0.993 | 0.721/0.448/1.000/0.721/0.721 |
+| BGL | 0.110 | 0.529 | 0.19241775332878505 | 0.450 | 0.210/0.648/0.538/0.210 | 0.110/0.423/0.538/0.110/0.110 |
+| Mac | 0.302 | 0.784 | -0.1592788179471833 | 0.650 | 0.533/0.440/0.569/0.531 | 0.302/0.259/0.192/0.306/0.302 |
+
+### R1 llama/base/held-out/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.068 ± 0.050 | -0.613 ± 0.050 | 0/5 | 2 | 0.027 | 9 |
+| frequent | 0.681 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.623 ± 0.009 | -0.058 ± 0.009 | 0/5 | 1 | 0.416 | 9 |
+| oracle | 0.736 ± 0.000 | 0.055 ± 0.000 | 5/5 | 1 | 0.617 | 9 |
+
+### R1 llama/base/held-out/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.120 ± 0.056 | -0.632 ± 0.056 | 0/5 | 2 | 0.037 | 9 |
+| frequent | 0.752 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.743 ± 0.023 | -0.009 ± 0.023 | 2/5 | 1 | 0.511 | 9 |
+| oracle | 0.794 ± 0.000 | 0.042 ± 0.000 | 5/5 | 1 | 0.642 | 9 |
+
+### R1 llama/base/held-out/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.220 ± 0.075 | -0.598 ± 0.075 | 0/5 | 2 | 0.089 | 9 |
+| frequent | 0.818 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.804 ± 0.019 | -0.014 ± 0.019 | 1/5 | 1 | 0.522 | 9 |
+| oracle | 0.841 ± 0.000 | 0.023 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+
+### R1 llama/base/held-out/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.416 ± 0.034 | -0.458 ± 0.034 | 0/5 | 2 | 0.254 | 9 |
+| frequent | 0.874 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.875 ± 0.001 | 0.001 ± 0.001 | 5/5 | 1 | 0.530 | 9 |
+| oracle | 0.896 ± 0.000 | 0.022 ± 0.000 | 5/5 | 1 | 0.549 | 9 |
+
+R1 llama/base/held-out/strict: PA_0 0.284, wrong-group share 0.566.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.189 | 0.324 | 0.3723928096450228 | 0.650 | 0.180/0.114/0.000/0.180 | 0.189/0.341/0.851/0.188/0.189 |
+| OpenStack | 0.159 | 0.161 | -0.1550374277658504 | 0.650 | 0.029/0.004/0.000/0.031 | 0.159/0.070/0.480/0.130/0.159 |
+| Zookeeper | 0.508 | 0.455 | -0.2152990256912206 | 0.350 | 0.850/0.614/0.556/0.850 | 0.508/0.497/0.222/0.508/0.508 |
+| Thunderbird | 0.179 | 0.722 | -0.02961651819116411 | 0.750 | 0.235/0.248/0.193/0.235 | 0.179/0.293/0.284/0.179/0.179 |
+| Hadoop | 0.234 | 0.586 | -0.012782897927332637 | 0.750 | 0.537/0.387/0.226/0.537 | 0.234/0.393/0.321/0.234/0.234 |
+| HealthApp | 0.208 | 0.907 | -0.11710332241584265 | 0.800 | 0.304/0.013/0.006/0.350 | 0.208/0.347/0.095/0.226/0.208 |
+| Apache | 0.721 | 0.586 | -0.30218969080376956 | 0.500 | 0.722/0.517/0.000/0.722 | 0.721/0.414/0.500/0.721/0.721 |
+| BGL | 0.110 | 0.529 | 0.19241775332878505 | 0.450 | 0.202/0.229/0.077/0.202 | 0.110/0.423/0.538/0.110/0.110 |
+| Mac | 0.246 | 0.827 | -0.0713277170899104 | 0.700 | 0.376/0.104/0.042/0.387 | 0.246/0.163/0.163/0.249/0.246 |
+
+### R1 llama/base/held-out/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.071 ± 0.054 | -0.590 ± 0.054 | 0/5 | 3 | 0.032 | 9 |
+| frequent | 0.661 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.573 ± 0.040 | -0.089 ± 0.040 | 0/5 | 2 | 0.415 | 9 |
+| oracle | 0.752 ± 0.000 | 0.090 ± 0.000 | 5/5 | 1 | 0.617 | 9 |
+
+### R1 llama/base/held-out/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.126 ± 0.061 | -0.611 ± 0.061 | 0/5 | 2 | 0.052 | 9 |
+| frequent | 0.737 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.696 ± 0.031 | -0.041 ± 0.031 | 1/5 | 1 | 0.477 | 9 |
+| oracle | 0.805 ± 0.000 | 0.068 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 llama/base/held-out/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.230 ± 0.086 | -0.586 ± 0.086 | 0/5 | 2 | 0.091 | 9 |
+| frequent | 0.816 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.785 ± 0.043 | -0.031 ± 0.043 | 2/5 | 1 | 0.488 | 9 |
+| oracle | 0.855 ± 0.000 | 0.038 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+
+### R1 llama/base/held-out/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.424 ± 0.037 | -0.460 ± 0.037 | 0/5 | 2 | 0.242 | 9 |
+| frequent | 0.884 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.884 ± 0.002 | 0.001 ± 0.002 | 3/5 | 1 | 0.506 | 9 |
+| oracle | 0.914 ± 0.000 | 0.030 ± 0.000 | 5/5 | 1 | 0.562 | 9 |
+
+R1 llama/base/held-out/L1: PA_0 0.411, wrong-group share 0.429.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.397 | 0.309 | 0.32208877234787514 | 0.600 | 0.390/0.179/0.000/0.390 | 0.397/0.390/0.851/0.397/0.397 |
+| OpenStack | 0.259 | 0.127 | -0.053673662089182825 | 0.400 | 0.117/0.077/0.003/0.127 | 0.259/0.238/0.500/0.238/0.259 |
+| Zookeeper | 0.509 | 0.442 | -0.2052407797139708 | 0.350 | 0.853/0.795/1.000/0.853 | 0.509/0.509/0.222/0.509/0.509 |
+| Thunderbird | 0.207 | 0.624 | 0.04929022263349339 | 0.750 | 0.336/0.467/0.367/0.336 | 0.207/0.345/0.312/0.207/0.207 |
+| Hadoop | 0.620 | 0.483 | -0.0647290787830547 | 0.500 | 0.587/0.575/0.491/0.587 | 0.620/0.517/0.491/0.621/0.620 |
+| HealthApp | 0.578 | 0.011 | 0.6125807166122932 | 0.700 | 0.466/0.524/0.994/0.385 | 0.578/0.438/0.993/0.515/0.578 |
+| Apache | 0.721 | 0.552 | -0.18704369698300313 | 0.500 | 0.993/0.793/0.500/0.993 | 0.721/0.448/1.000/0.721/0.721 |
+| BGL | 0.110 | 0.529 | 0.19241775332878505 | 0.450 | 0.210/0.648/0.538/0.210 | 0.110/0.423/0.538/0.110/0.110 |
+| Mac | 0.301 | 0.787 | -0.15114262853792754 | 0.650 | 0.528/0.434/0.568/0.527 | 0.301/0.250/0.190/0.305/0.301 |
+
+### R1 llama/base/held-out/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.071 ± 0.054 | -0.590 ± 0.054 | 0/5 | 3 | 0.032 | 9 |
+| frequent | 0.662 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.554 ± 0.069 | -0.108 ± 0.069 | 0/5 | 2 | 0.393 | 9 |
+| oracle | 0.752 ± 0.000 | 0.090 ± 0.000 | 5/5 | 1 | 0.617 | 9 |
+
+### R1 llama/base/held-out/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.126 ± 0.061 | -0.612 ± 0.061 | 0/5 | 2 | 0.052 | 9 |
+| frequent | 0.738 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.733 ± 0.032 | -0.005 ± 0.032 | 3/5 | 1 | 0.502 | 9 |
+| oracle | 0.806 ± 0.000 | 0.068 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 llama/base/held-out/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.230 ± 0.086 | -0.587 ± 0.086 | 0/5 | 2 | 0.091 | 9 |
+| frequent | 0.817 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.801 ± 0.035 | -0.016 ± 0.035 | 1/5 | 1 | 0.494 | 9 |
+| oracle | 0.855 ± 0.000 | 0.039 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+
+### R1 llama/base/held-out/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.423 ± 0.037 | -0.461 ± 0.037 | 0/5 | 2 | 0.242 | 9 |
+| frequent | 0.884 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.884 ± 0.002 | 0.000 ± 0.002 | 2/5 | 1 | 0.502 | 9 |
+| oracle | 0.914 ± 0.000 | 0.030 ± 0.000 | 5/5 | 1 | 0.562 | 9 |
+
+R1 llama/base/held-out/L2: PA_0 0.412, wrong-group share 0.427.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.397 | 0.309 | 0.32208877234787514 | 0.600 | 0.390/0.203/0.000/0.390 | 0.397/0.390/0.851/0.397/0.397 |
+| OpenStack | 0.259 | 0.127 | -0.05179091492581966 | 0.400 | 0.117/0.077/0.003/0.127 | 0.259/0.260/0.500/0.238/0.259 |
+| Zookeeper | 0.509 | 0.442 | -0.2052407797139708 | 0.350 | 0.853/0.795/1.000/0.853 | 0.509/0.509/0.222/0.509/0.509 |
+| Thunderbird | 0.212 | 0.614 | 0.04657633026994807 | 0.750 | 0.336/0.467/0.367/0.336 | 0.212/0.353/0.312/0.212/0.212 |
+| Hadoop | 0.621 | 0.475 | -0.05507319591603246 | 0.500 | 0.587/0.575/0.491/0.587 | 0.621/0.528/0.491/0.621/0.621 |
+| HealthApp | 0.578 | 0.011 | 0.6125807166122932 | 0.700 | 0.579/0.539/0.994/0.515 | 0.578/0.438/0.993/0.515/0.578 |
+| Apache | 0.721 | 0.552 | -0.18704369698300313 | 0.500 | 0.993/0.793/0.500/0.993 | 0.721/0.448/1.000/0.721/0.721 |
+| BGL | 0.110 | 0.529 | 0.19241775332878505 | 0.450 | 0.210/0.648/0.538/0.210 | 0.110/0.423/0.538/0.110/0.110 |
+| Mac | 0.302 | 0.784 | -0.1592788179471833 | 0.650 | 0.533/0.440/0.569/0.531 | 0.302/0.259/0.192/0.306/0.302 |
+
+### R1 llama/strong/all/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.147 ± 0.018 | -0.450 ± 0.018 | 0/5 | 3 | 0.183 | 13 |
+| frequent | 0.597 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| dsize | 0.609 ± 0.006 | 0.012 ± 0.006 | 5/5 | 2 | 0.519 | 13 |
+| oracle | 0.728 ± 0.000 | 0.130 ± 0.000 | 5/5 | 1 | 0.630 | 13 |
+
+### R1 llama/strong/all/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.207 ± 0.060 | -0.513 ± 0.060 | 0/5 | 2 | 0.144 | 13 |
+| frequent | 0.720 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.707 ± 0.007 | -0.012 ± 0.007 | 0/5 | 1 | 0.487 | 13 |
+| oracle | 0.786 ± 0.000 | 0.066 ± 0.000 | 5/5 | 1 | 0.598 | 13 |
+
+### R1 llama/strong/all/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.332 ± 0.022 | -0.459 ± 0.022 | 0/5 | 2 | 0.233 | 13 |
+| frequent | 0.791 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.771 ± 0.004 | -0.020 ± 0.004 | 0/5 | 1 | 0.485 | 13 |
+| oracle | 0.821 ± 0.000 | 0.030 ± 0.000 | 5/5 | 1 | 0.577 | 13 |
+
+### R1 llama/strong/all/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.466 ± 0.037 | -0.377 ± 0.037 | 0/5 | 2 | 0.288 | 13 |
+| frequent | 0.843 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.836 ± 0.010 | -0.007 ± 0.010 | 0/5 | 1 | 0.486 | 13 |
+| oracle | 0.861 ± 0.000 | 0.018 ± 0.000 | 5/5 | 1 | 0.541 | 13 |
+
+R1 llama/strong/all/strict: PA_0 0.639, wrong-group share 0.416.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.221 | 0.21850558445189625 | 0.350 | 0.180/0.114/0.000/0.180 | 0.745/0.683/0.809/0.745/0.375 |
+| Spark | 0.027 | 0.568 | 0.10416641774313781 | 0.700 | 0.029/0.384/0.000/0.029 | 0.027/0.420/0.457/0.027/0.017 |
+| HDFS | 1.000 | 0.143 | -0.23570226039551584 | 0.500 | 0.529/0.444/0.500/0.529 | 1.000/0.846/0.500/1.000/0.954 |
+| OpenStack | 0.813 | 0.042 | -0.2937798998035937 | 0.250 | 0.029/0.004/0.000/0.031 | 0.813/0.434/0.558/0.836/0.532 |
+| Zookeeper | 0.810 | 0.247 | -0.05230557142085607 | 0.200 | 0.850/0.614/0.556/0.850 | 0.810/0.687/0.444/0.810/0.810 |
+| Thunderbird | 0.399 | 0.614 | 0.03526220172590627 | 0.550 | 0.235/0.248/0.193/0.235 | 0.399/0.374/0.358/0.399/0.268 |
+| OpenSSH | 0.998 | 0.346 | -0.4529588092933948 | 0.562 | 0.440/0.528/0.667/0.440 | 0.998/0.604/0.333/0.998/0.724 |
+| Hadoop | 0.308 | 0.456 | 0.022029338922208853 | 0.650 | 0.537/0.387/0.226/0.537 | 0.308/0.530/0.509/0.308/0.273 |
+| Linux | 0.251 | 0.695 | 0.031094281690789607 | 0.750 | 0.111/0.260/0.146/0.111 | 0.251/0.321/0.292/0.251/0.247 |
+| HealthApp | 0.732 | 0.916 | -0.15222105165479974 | 0.850 | 0.304/0.013/0.006/0.350 | 0.732/0.471/0.084/0.832/0.149 |
+| Apache | 0.860 | 0.207 | -0.26897797411039426 | 0.316 | 0.722/0.517/0.000/0.722 | 0.860/0.793/0.500/0.860/0.858 |
+| BGL | 0.989 | 0.157 | 0.08822786295596731 | 0.100 | 0.202/0.229/0.077/0.202 | 0.989/0.731/0.769/0.989/0.902 |
+| Mac | 0.368 | 0.794 | -0.09964084203649418 | 0.700 | 0.376/0.104/0.042/0.387 | 0.368/0.242/0.180/0.374/0.312 |
+
+### R1 llama/strong/all/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.163 ± 0.043 | -0.392 ± 0.043 | 0/5 | 3 | 0.243 | 13 |
+| frequent | 0.555 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| dsize | 0.563 ± 0.009 | 0.008 ± 0.009 | 4/5 | 2 | 0.504 | 13 |
+| oracle | 0.758 ± 0.000 | 0.203 ± 0.000 | 5/5 | 1 | 0.657 | 13 |
+
+### R1 llama/strong/all/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.206 ± 0.044 | -0.515 ± 0.044 | 0/5 | 2 | 0.151 | 13 |
+| frequent | 0.721 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.713 ± 0.004 | -0.008 ± 0.004 | 0/5 | 1 | 0.488 | 13 |
+| oracle | 0.808 ± 0.000 | 0.086 ± 0.000 | 5/5 | 1 | 0.627 | 13 |
+
+### R1 llama/strong/all/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.335 ± 0.027 | -0.480 ± 0.027 | 0/5 | 2 | 0.229 | 13 |
+| frequent | 0.814 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.792 ± 0.004 | -0.022 ± 0.004 | 0/5 | 1 | 0.501 | 13 |
+| oracle | 0.853 ± 0.000 | 0.039 ± 0.000 | 5/5 | 1 | 0.589 | 13 |
+
+### R1 llama/strong/all/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.472 ± 0.037 | -0.398 ± 0.037 | 0/5 | 2 | 0.289 | 13 |
+| frequent | 0.870 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.851 ± 0.010 | -0.019 ± 0.010 | 0/5 | 1 | 0.482 | 13 |
+| oracle | 0.894 ± 0.000 | 0.023 ± 0.000 | 5/5 | 1 | 0.559 | 13 |
+
+R1 llama/strong/all/L1: PA_0 0.696, wrong-group share 0.310.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.221 | 0.21850558445189625 | 0.350 | 0.390/0.179/0.000/0.390 | 0.745/0.683/0.809/0.745/0.375 |
+| Spark | 0.027 | 0.518 | 0.1576857108753196 | 0.700 | 0.031/0.500/0.457/0.030 | 0.027/0.471/0.514/0.027/0.018 |
+| HDFS | 1.000 | 0.143 | -0.23570226039551584 | 0.500 | 0.529/0.519/1.000/0.529 | 1.000/0.846/0.500/1.000/0.954 |
+| OpenStack | 0.829 | 0.040 | -0.31528066104101815 | 0.200 | 0.117/0.077/0.003/0.127 | 0.829/0.530/0.558/0.853/0.571 |
+| Zookeeper | 0.836 | 0.234 | -0.09852800427131816 | 0.150 | 0.853/0.795/1.000/0.853 | 0.836/0.699/0.444/0.836/0.836 |
+| Thunderbird | 0.423 | 0.571 | 0.013225508916747031 | 0.550 | 0.336/0.467/0.367/0.336 | 0.423/0.418/0.376/0.424/0.298 |
+| OpenSSH | 0.998 | 0.308 | -0.490261239632559 | 0.500 | 0.444/0.792/1.000/0.444 | 0.998/0.642/0.333/0.998/0.775 |
+| Hadoop | 0.673 | 0.364 | -0.03984583492137616 | 0.450 | 0.587/0.575/0.491/0.587 | 0.673/0.648/0.604/0.673/0.657 |
+| Linux | 0.283 | 0.567 | 0.02596254132736087 | 0.550 | 0.145/0.475/0.354/0.144 | 0.283/0.433/0.458/0.282/0.280 |
+| HealthApp | 0.868 | 0.008 | 0.5759085833527785 | 0.750 | 0.466/0.524/0.994/0.385 | 0.868/0.575/0.995/0.849/0.581 |
+| Apache | 0.973 | 0.138 | -0.24770475367100375 | 0.211 | 0.993/0.793/0.500/0.993 | 0.973/0.862/1.000/0.973/0.973 |
+| BGL | 0.989 | 0.157 | 0.08822786295596731 | 0.100 | 0.210/0.648/0.538/0.210 | 0.989/0.731/0.769/0.989/0.902 |
+| Mac | 0.398 | 0.759 | -0.19066140078679455 | 0.650 | 0.528/0.434/0.568/0.527 | 0.398/0.345/0.200/0.405/0.345 |
+
+### R1 llama/strong/all/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.163 ± 0.043 | -0.392 ± 0.043 | 0/5 | 3 | 0.243 | 13 |
+| frequent | 0.555 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 13 |
+| dsize | 0.552 ± 0.010 | -0.003 ± 0.010 | 2/5 | 2 | 0.499 | 13 |
+| oracle | 0.758 ± 0.000 | 0.203 ± 0.000 | 5/5 | 1 | 0.657 | 13 |
+
+### R1 llama/strong/all/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.206 ± 0.044 | -0.516 ± 0.044 | 0/5 | 2 | 0.149 | 13 |
+| frequent | 0.722 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.707 ± 0.015 | -0.015 ± 0.015 | 0/5 | 1 | 0.485 | 13 |
+| oracle | 0.808 ± 0.000 | 0.086 ± 0.000 | 5/5 | 1 | 0.627 | 13 |
+
+### R1 llama/strong/all/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.335 ± 0.027 | -0.480 ± 0.027 | 0/5 | 2 | 0.228 | 13 |
+| frequent | 0.815 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.791 ± 0.004 | -0.024 ± 0.004 | 0/5 | 1 | 0.501 | 13 |
+| oracle | 0.854 ± 0.000 | 0.039 ± 0.000 | 5/5 | 1 | 0.589 | 13 |
+
+### R1 llama/strong/all/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.472 ± 0.037 | -0.399 ± 0.037 | 0/5 | 2 | 0.289 | 13 |
+| frequent | 0.871 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 13 |
+| dsize | 0.850 ± 0.001 | -0.022 ± 0.001 | 0/5 | 1 | 0.489 | 13 |
+| oracle | 0.894 ± 0.000 | 0.023 ± 0.000 | 5/5 | 1 | 0.559 | 13 |
+
+R1 llama/strong/all/L2: PA_0 0.696, wrong-group share 0.308.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.221 | 0.21850558445189625 | 0.350 | 0.390/0.203/0.000/0.390 | 0.745/0.683/0.809/0.745/0.375 |
+| Spark | 0.027 | 0.518 | 0.1576857108753196 | 0.700 | 0.031/0.500/0.457/0.030 | 0.027/0.471/0.514/0.027/0.018 |
+| HDFS | 1.000 | 0.143 | -0.23570226039551584 | 0.500 | 0.529/0.615/1.000/0.529 | 1.000/0.846/0.500/1.000/0.954 |
+| OpenStack | 0.829 | 0.040 | -0.31528066104101815 | 0.200 | 0.117/0.077/0.003/0.127 | 0.829/0.530/0.558/0.853/0.571 |
+| Zookeeper | 0.836 | 0.234 | -0.09852800427131816 | 0.150 | 0.853/0.795/1.000/0.853 | 0.836/0.699/0.444/0.836/0.836 |
+| Thunderbird | 0.429 | 0.559 | 0.01438971973846188 | 0.550 | 0.336/0.467/0.367/0.336 | 0.429/0.426/0.376/0.429/0.305 |
+| OpenSSH | 0.998 | 0.308 | -0.490261239632559 | 0.500 | 0.444/0.792/1.000/0.444 | 0.998/0.642/0.333/0.998/0.775 |
+| Hadoop | 0.673 | 0.360 | -0.035087786711275576 | 0.450 | 0.587/0.575/0.491/0.587 | 0.673/0.653/0.604/0.673/0.658 |
+| Linux | 0.283 | 0.565 | 0.024994459445313474 | 0.550 | 0.145/0.475/0.354/0.144 | 0.283/0.436/0.458/0.283/0.280 |
+| HealthApp | 0.868 | 0.008 | 0.5759085833527785 | 0.750 | 0.579/0.539/0.994/0.515 | 0.868/0.575/0.995/0.849/0.581 |
+| Apache | 0.973 | 0.138 | -0.24770475367100375 | 0.211 | 0.993/0.793/0.500/0.993 | 0.973/0.862/1.000/0.973/0.973 |
+| BGL | 0.989 | 0.157 | 0.08822786295596731 | 0.100 | 0.210/0.648/0.538/0.210 | 0.989/0.731/0.769/0.989/0.902 |
+| Mac | 0.402 | 0.758 | -0.194967191632265 | 0.650 | 0.533/0.440/0.569/0.531 | 0.402/0.350/0.200/0.408/0.349 |
+
+### R1 llama/strong/held-out/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.082 ± 0.030 | -0.426 ± 0.030 | 0/5 | 3 | 0.153 | 10 |
+| frequent | 0.507 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.522 ± 0.008 | 0.015 ± 0.008 | 5/5 | 2 | 0.527 | 10 |
+| oracle | 0.669 ± 0.000 | 0.161 ± 0.000 | 5/5 | 1 | 0.680 | 10 |
+
+### R1 llama/strong/held-out/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.150 ± 0.079 | -0.507 ± 0.079 | 0/5 | 2 | 0.098 | 10 |
+| frequent | 0.657 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.640 ± 0.008 | -0.016 ± 0.008 | 0/5 | 1 | 0.475 | 10 |
+| oracle | 0.740 ± 0.000 | 0.083 ± 0.000 | 5/5 | 1 | 0.630 | 10 |
+
+### R1 llama/strong/held-out/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.309 ± 0.043 | -0.435 ± 0.043 | 0/5 | 2 | 0.224 | 10 |
+| frequent | 0.744 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.718 ± 0.006 | -0.026 ± 0.006 | 0/5 | 1 | 0.478 | 10 |
+| oracle | 0.781 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.605 | 10 |
+
+### R1 llama/strong/held-out/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.471 ± 0.042 | -0.336 ± 0.042 | 0/5 | 2 | 0.304 | 10 |
+| frequent | 0.807 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.798 ± 0.012 | -0.009 ± 0.012 | 0/5 | 1 | 0.484 | 10 |
+| oracle | 0.829 ± 0.000 | 0.022 ± 0.000 | 5/5 | 1 | 0.560 | 10 |
+
+R1 llama/strong/held-out/strict: PA_0 0.702, wrong-group share 0.400.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.221 | 0.21850558445189625 | 0.350 | 0.180/0.114/0.000/0.180 | 0.745/0.683/0.809/0.745/0.375 |
+| OpenStack | 0.813 | 0.042 | -0.2937798998035937 | 0.250 | 0.029/0.004/0.000/0.031 | 0.813/0.434/0.558/0.836/0.532 |
+| Zookeeper | 0.810 | 0.247 | -0.05230557142085607 | 0.200 | 0.850/0.614/0.556/0.850 | 0.810/0.687/0.444/0.810/0.810 |
+| Thunderbird | 0.399 | 0.614 | 0.03526220172590627 | 0.550 | 0.235/0.248/0.193/0.235 | 0.399/0.374/0.358/0.399/0.268 |
+| OpenSSH | 0.998 | 0.346 | -0.4529588092933948 | 0.562 | 0.440/0.528/0.667/0.440 | 0.998/0.604/0.333/0.998/0.724 |
+| Hadoop | 0.308 | 0.456 | 0.022029338922208853 | 0.650 | 0.537/0.387/0.226/0.537 | 0.308/0.530/0.509/0.308/0.273 |
+| HealthApp | 0.732 | 0.916 | -0.15222105165479974 | 0.850 | 0.304/0.013/0.006/0.350 | 0.732/0.471/0.084/0.832/0.149 |
+| Apache | 0.860 | 0.207 | -0.26897797411039426 | 0.316 | 0.722/0.517/0.000/0.722 | 0.860/0.793/0.500/0.860/0.858 |
+| BGL | 0.989 | 0.157 | 0.08822786295596731 | 0.100 | 0.202/0.229/0.077/0.202 | 0.989/0.731/0.769/0.989/0.902 |
+| Mac | 0.368 | 0.794 | -0.09964084203649418 | 0.700 | 0.376/0.104/0.042/0.387 | 0.368/0.242/0.180/0.374/0.312 |
+
+### R1 llama/strong/held-out/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.103 ± 0.062 | -0.347 ± 0.062 | 0/5 | 3 | 0.232 | 10 |
+| frequent | 0.449 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.459 ± 0.013 | 0.010 ± 0.013 | 4/5 | 2 | 0.501 | 10 |
+| oracle | 0.704 ± 0.000 | 0.255 ± 0.000 | 5/5 | 1 | 0.720 | 10 |
+
+### R1 llama/strong/held-out/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.149 ± 0.057 | -0.506 ± 0.057 | 0/5 | 3 | 0.110 | 10 |
+| frequent | 0.655 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.645 ± 0.005 | -0.010 ± 0.005 | 0/5 | 2 | 0.488 | 10 |
+| oracle | 0.765 ± 0.000 | 0.110 ± 0.000 | 5/5 | 1 | 0.660 | 10 |
+
+### R1 llama/strong/held-out/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.312 ± 0.047 | -0.460 ± 0.047 | 0/5 | 2 | 0.222 | 10 |
+| frequent | 0.772 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.743 ± 0.006 | -0.029 ± 0.006 | 0/5 | 1 | 0.494 | 10 |
+| oracle | 0.821 ± 0.000 | 0.048 ± 0.000 | 5/5 | 1 | 0.605 | 10 |
+
+### R1 llama/strong/held-out/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.479 ± 0.040 | -0.362 ± 0.040 | 0/5 | 2 | 0.304 | 10 |
+| frequent | 0.841 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.817 ± 0.013 | -0.024 ± 0.013 | 0/5 | 1 | 0.480 | 10 |
+| oracle | 0.869 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.580 | 10 |
+
+R1 llama/strong/held-out/L1: PA_0 0.773, wrong-group share 0.280.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.221 | 0.21850558445189625 | 0.350 | 0.390/0.179/0.000/0.390 | 0.745/0.683/0.809/0.745/0.375 |
+| OpenStack | 0.829 | 0.040 | -0.31528066104101815 | 0.200 | 0.117/0.077/0.003/0.127 | 0.829/0.530/0.558/0.853/0.571 |
+| Zookeeper | 0.836 | 0.234 | -0.09852800427131816 | 0.150 | 0.853/0.795/1.000/0.853 | 0.836/0.699/0.444/0.836/0.836 |
+| Thunderbird | 0.423 | 0.571 | 0.013225508916747031 | 0.550 | 0.336/0.467/0.367/0.336 | 0.423/0.418/0.376/0.424/0.298 |
+| OpenSSH | 0.998 | 0.308 | -0.490261239632559 | 0.500 | 0.444/0.792/1.000/0.444 | 0.998/0.642/0.333/0.998/0.775 |
+| Hadoop | 0.673 | 0.364 | -0.03984583492137616 | 0.450 | 0.587/0.575/0.491/0.587 | 0.673/0.648/0.604/0.673/0.657 |
+| HealthApp | 0.868 | 0.008 | 0.5759085833527785 | 0.750 | 0.466/0.524/0.994/0.385 | 0.868/0.575/0.995/0.849/0.581 |
+| Apache | 0.973 | 0.138 | -0.24770475367100375 | 0.211 | 0.993/0.793/0.500/0.993 | 0.973/0.862/1.000/0.973/0.973 |
+| BGL | 0.989 | 0.157 | 0.08822786295596731 | 0.100 | 0.210/0.648/0.538/0.210 | 0.989/0.731/0.769/0.989/0.902 |
+| Mac | 0.398 | 0.759 | -0.19066140078679455 | 0.650 | 0.528/0.434/0.568/0.527 | 0.398/0.345/0.200/0.405/0.345 |
+
+### R1 llama/strong/held-out/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.103 ± 0.062 | -0.347 ± 0.062 | 0/5 | 3 | 0.232 | 10 |
+| frequent | 0.450 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.445 ± 0.013 | -0.004 ± 0.013 | 2/5 | 2 | 0.494 | 10 |
+| oracle | 0.705 ± 0.000 | 0.255 ± 0.000 | 5/5 | 1 | 0.720 | 10 |
+
+### R1 llama/strong/held-out/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.149 ± 0.057 | -0.506 ± 0.057 | 0/5 | 3 | 0.110 | 10 |
+| frequent | 0.656 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 10 |
+| dsize | 0.636 ± 0.019 | -0.020 ± 0.019 | 0/5 | 2 | 0.480 | 10 |
+| oracle | 0.765 ± 0.000 | 0.110 ± 0.000 | 5/5 | 1 | 0.660 | 10 |
+
+### R1 llama/strong/held-out/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.312 ± 0.047 | -0.461 ± 0.047 | 0/5 | 2 | 0.220 | 10 |
+| frequent | 0.773 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.742 ± 0.005 | -0.032 ± 0.005 | 0/5 | 1 | 0.488 | 10 |
+| oracle | 0.822 ± 0.000 | 0.049 ± 0.000 | 5/5 | 1 | 0.605 | 10 |
+
+### R1 llama/strong/held-out/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.479 ± 0.040 | -0.363 ± 0.040 | 0/5 | 2 | 0.304 | 10 |
+| frequent | 0.842 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 10 |
+| dsize | 0.814 ± 0.001 | -0.028 ± 0.001 | 0/5 | 1 | 0.486 | 10 |
+| oracle | 0.870 ± 0.000 | 0.028 ± 0.000 | 5/5 | 1 | 0.580 | 10 |
+
+R1 llama/strong/held-out/L2: PA_0 0.774, wrong-group share 0.278.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.221 | 0.21850558445189625 | 0.350 | 0.390/0.203/0.000/0.390 | 0.745/0.683/0.809/0.745/0.375 |
+| OpenStack | 0.829 | 0.040 | -0.31528066104101815 | 0.200 | 0.117/0.077/0.003/0.127 | 0.829/0.530/0.558/0.853/0.571 |
+| Zookeeper | 0.836 | 0.234 | -0.09852800427131816 | 0.150 | 0.853/0.795/1.000/0.853 | 0.836/0.699/0.444/0.836/0.836 |
+| Thunderbird | 0.429 | 0.559 | 0.01438971973846188 | 0.550 | 0.336/0.467/0.367/0.336 | 0.429/0.426/0.376/0.429/0.305 |
+| OpenSSH | 0.998 | 0.308 | -0.490261239632559 | 0.500 | 0.444/0.792/1.000/0.444 | 0.998/0.642/0.333/0.998/0.775 |
+| Hadoop | 0.673 | 0.360 | -0.035087786711275576 | 0.450 | 0.587/0.575/0.491/0.587 | 0.673/0.653/0.604/0.673/0.658 |
+| HealthApp | 0.868 | 0.008 | 0.5759085833527785 | 0.750 | 0.579/0.539/0.994/0.515 | 0.868/0.575/0.995/0.849/0.581 |
+| Apache | 0.973 | 0.138 | -0.24770475367100375 | 0.211 | 0.993/0.793/0.500/0.993 | 0.973/0.862/1.000/0.973/0.973 |
+| BGL | 0.989 | 0.157 | 0.08822786295596731 | 0.100 | 0.210/0.648/0.538/0.210 | 0.989/0.731/0.769/0.989/0.902 |
+| Mac | 0.402 | 0.758 | -0.194967191632265 | 0.650 | 0.533/0.440/0.569/0.531 | 0.402/0.350/0.200/0.408/0.349 |
+
+N1 llama strict @5: proxy gap vs actual r=0.938, MAE=0.0141, 24 cell/system points.
+
+N1 llama strict @10: proxy gap vs actual r=0.873, MAE=0.0114, 24 cell/system points.
+
+N1 llama strict @20: proxy gap vs actual r=0.907, MAE=0.0034, 24 cell/system points.
+
+N1 llama L1 @5: proxy gap vs actual r=0.974, MAE=0.0138, 24 cell/system points.
+
+N1 llama L1 @10: proxy gap vs actual r=0.930, MAE=0.0097, 24 cell/system points.
+
+N1 llama L1 @20: proxy gap vs actual r=0.999, MAE=0.0010, 24 cell/system points.
+
+N1 llama L2 @5: proxy gap vs actual r=0.974, MAE=0.0138, 24 cell/system points.
+
+N1 llama L2 @10: proxy gap vs actual r=0.930, MAE=0.0097, 24 cell/system points.
+
+N1 llama L2 @20: proxy gap vs actual r=0.999, MAE=0.0010, 24 cell/system points.
+
+## gemma per-system scorer audit
+
+| suite | strict/L1/L2 PASS | forgiven inputs L1/L2 | broken inputs L1/L2 | forgiven samples L1/L2 | broken samples L1/L2 | outside 10–90% | between share (40 samples) strict/L1/L2 |
+|---|---|---|---|---|---|---|---|
+| loghub_bgl_500 | 0.454/0.508/0.512 | 27/29 | 0/0 | 259/287 | 2/2 | none | 0.970/0.972/0.976 |
+| loghub_hdfs_500 | 0.402/0.464/0.496 | 31/47 | 0/0 | 353/458 | 0/0 | none | 0.929/0.856/0.864 |
+| loghub_hpc_500 | 0.540/0.594/0.630 | 27/45 | 0/0 | 211/381 | 0/0 | none | 0.798/0.783/0.897 |
+| loghub_hadoop_500 | 0.434/0.586/0.602 | 76/84 | 0/0 | 713/799 | 0/0 | none | 0.988/0.993/0.995 |
+| loghub_healthapp_500 | 0.524/0.624/0.668 | 50/72 | 0/0 | 474/696 | 0/0 | none | 0.971/0.967/0.965 |
+| loghub_linux_500 | 0.404/0.574/0.586 | 85/91 | 0/0 | 815/853 | 0/0 | none | 0.992/0.990/0.986 |
+| loghub_mac_500 | 0.290/0.356/0.360 | 33/35 | 0/0 | 342/375 | 0/0 | none | 1.000/1.000/1.000 |
+| loghub_openssh_500 | 0.342/0.374/0.376 | 16/17 | 0/0 | 130/139 | 0/0 | none | 0.893/0.869/0.870 |
+| loghub_openstack_500 | 0.704/0.788/0.796 | 42/46 | 0/0 | 389/436 | 0/0 | none | 0.983/0.991/0.992 |
+| loghub_spark_500 | 0.364/0.464/0.470 | 50/53 | 0/0 | 455/485 | 0/0 | none | 0.975/0.974/0.975 |
+| loghub_thunderbird_500 | 0.376/0.428/0.436 | 27/31 | 1/1 | 269/290 | 12/12 | none | 1.000/1.000/1.000 |
+| loghub_zookeeper_500 | 0.608/0.656/0.656 | 24/24 | 0/0 | 222/230 | 0/0 | none | 0.991/0.986/0.986 |
+| loghub_bgl_nat500 | 0.400/0.426/0.426 | 13/13 | 0/0 | 113/117 | 0/0 | none | n/a/n/a/n/a |
+| loghub_hadoop_nat500 | 0.492/0.576/0.578 | 42/43 | 0/0 | 404/435 | 0/0 | none | n/a/n/a/n/a |
+| loghub_hdfs_nat500 | 0.446/0.522/0.522 | 38/38 | 0/0 | 477/480 | 0/0 | none | n/a/n/a/n/a |
+| loghub_healthapp_nat500 | 0.466/0.776/0.908 | 155/221 | 0/0 | 1417/2073 | 0/0 | L2 | n/a/n/a/n/a |
+| loghub_hpc_nat500 | 0.636/0.660/0.678 | 12/21 | 0/0 | 188/241 | 0/0 | none | n/a/n/a/n/a |
+| loghub_linux_nat500 | 0.332/0.346/0.368 | 7/18 | 0/0 | 76/241 | 0/0 | none | n/a/n/a/n/a |
+| loghub_mac_nat500 | 0.266/0.298/0.310 | 17/23 | 1/1 | 193/255 | 8/8 | none | n/a/n/a/n/a |
+| loghub_openssh_nat500 | 0.240/0.244/0.244 | 2/2 | 0/0 | 19/19 | 0/0 | none | n/a/n/a/n/a |
+| loghub_openstack_nat500 | 0.282/0.310/0.310 | 14/14 | 0/0 | 133/153 | 0/0 | none | n/a/n/a/n/a |
+| loghub_spark_nat500 | 0.726/0.752/0.752 | 13/13 | 0/0 | 143/150 | 0/0 | none | n/a/n/a/n/a |
+| loghub_thunderbird_nat500 | 0.230/0.262/0.262 | 16/16 | 0/0 | 145/155 | 0/0 | none | n/a/n/a/n/a |
+| loghub_zookeeper_nat500 | 0.386/0.462/0.466 | 38/40 | 0/0 | 390/398 | 0/0 | none | n/a/n/a/n/a |
+
+gemma strict: reliable between-template variance share median 0.979, range 0.798–1.000 (12 capped systems).
+
+gemma L1: reliable between-template variance share median 0.980, range 0.783–1.000 (12 capped systems).
+
+gemma L2: reliable between-template variance share median 0.981, range 0.864–1.000 (12 capped systems).
+
+### gemma/disjoint/all/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.659 ± 0.025 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 12 |
+| MDSA | 0.655 ± 0.017 | -0.004 ± 0.025 | 2/5 | 3 | 0.476 | 12 |
+| lookup_drain | 0.508 ± 0.002 | -0.152 ± 0.026 | 0/5 | 4 | 0.087 | 12 |
+| out_entropy | 0.824 ± 0.012 | 0.164 ± 0.033 | 5/5 | 1 | 0.928 | 12 |
+| random | 0.507 ± 0.012 | -0.153 ± 0.033 | 0/5 | 4 | 0.086 | 12 |
+| U-best | 0.773 ± 0.015 | 0.114 ± 0.039 | 5/5 | 2 | 0.810 | 12 |
+
+### gemma/disjoint/all/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.671 ± 0.019 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.661 ± 0.017 | -0.010 ± 0.022 | 2/5 | 2 | 0.467 | 12 |
+| lookup_drain | 0.512 ± 0.001 | -0.159 ± 0.019 | 0/5 | 3 | 0.024 | 12 |
+| out_entropy | 0.824 ± 0.012 | 0.152 ± 0.022 | 5/5 | 1 | 0.946 | 12 |
+| random | 0.504 ± 0.009 | -0.167 ± 0.014 | 0/5 | 3 | 0.029 | 12 |
+
+### gemma/disjoint/all/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.647 ± 0.037 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 12 |
+| MDSA | 0.626 ± 0.023 | -0.021 ± 0.026 | 1/5 | 3 | 0.409 | 12 |
+| lookup_drain | 0.506 ± 0.002 | -0.141 ± 0.038 | 0/5 | 4 | 0.064 | 12 |
+| out_entropy | 0.796 ± 0.014 | 0.149 ± 0.043 | 5/5 | 1 | 0.926 | 12 |
+| random | 0.508 ± 0.014 | -0.140 ± 0.035 | 0/5 | 4 | 0.091 | 12 |
+| U-best | 0.744 ± 0.011 | 0.096 ± 0.046 | 5/5 | 2 | 0.806 | 12 |
+
+### gemma/disjoint/all/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.658 ± 0.017 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.634 ± 0.024 | -0.024 ± 0.027 | 1/5 | 2 | 0.400 | 12 |
+| lookup_drain | 0.510 ± 0.002 | -0.148 ± 0.018 | 0/5 | 3 | 0.068 | 12 |
+| out_entropy | 0.796 ± 0.014 | 0.138 ± 0.027 | 5/5 | 1 | 0.909 | 12 |
+| random | 0.505 ± 0.011 | -0.153 ± 0.020 | 0/5 | 3 | 0.071 | 12 |
+
+### gemma/disjoint/all/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.646 ± 0.042 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 12 |
+| MDSA | 0.625 ± 0.029 | -0.021 ± 0.034 | 3/5 | 3 | 0.403 | 12 |
+| lookup_drain | 0.506 ± 0.003 | -0.140 ± 0.044 | 0/5 | 4 | 0.086 | 12 |
+| out_entropy | 0.792 ± 0.013 | 0.147 ± 0.053 | 5/5 | 1 | 0.922 | 12 |
+| random | 0.509 ± 0.013 | -0.137 ± 0.040 | 0/5 | 4 | 0.109 | 12 |
+| U-best | 0.749 ± 0.015 | 0.104 ± 0.051 | 5/5 | 2 | 0.819 | 12 |
+
+### gemma/disjoint/all/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.651 ± 0.017 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.634 ± 0.024 | -0.017 ± 0.016 | 1/5 | 2 | 0.417 | 12 |
+| lookup_drain | 0.510 ± 0.002 | -0.141 ± 0.017 | 0/5 | 3 | 0.103 | 12 |
+| out_entropy | 0.792 ± 0.013 | 0.141 ± 0.027 | 5/5 | 1 | 0.912 | 12 |
+| random | 0.504 ± 0.010 | -0.147 ± 0.020 | 0/5 | 3 | 0.096 | 12 |
+
+### gemma/disjoint/held-out/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.658 ± 0.033 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 9 |
+| MDSA | 0.648 ± 0.026 | -0.010 ± 0.027 | 3/5 | 3 | 0.464 | 9 |
+| lookup_drain | 0.509 ± 0.002 | -0.149 ± 0.034 | 0/5 | 4 | 0.094 | 9 |
+| out_entropy | 0.823 ± 0.011 | 0.165 ± 0.039 | 5/5 | 1 | 0.913 | 9 |
+| random | 0.508 ± 0.015 | -0.149 ± 0.039 | 0/5 | 4 | 0.096 | 9 |
+| U-best | 0.758 ± 0.022 | 0.101 ± 0.054 | 5/5 | 2 | 0.765 | 9 |
+
+### gemma/disjoint/held-out/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.678 ± 0.024 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.659 ± 0.025 | -0.019 ± 0.025 | 1/5 | 2 | 0.437 | 9 |
+| lookup_drain | 0.513 ± 0.001 | -0.166 ± 0.025 | 0/5 | 3 | 0.026 | 9 |
+| out_entropy | 0.823 ± 0.011 | 0.145 ± 0.027 | 5/5 | 1 | 0.931 | 9 |
+| random | 0.500 ± 0.013 | -0.178 ± 0.018 | 0/5 | 3 | 0.026 | 9 |
+
+### gemma/disjoint/held-out/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.652 ± 0.044 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 9 |
+| MDSA | 0.630 ± 0.034 | -0.022 ± 0.023 | 1/5 | 3 | 0.414 | 9 |
+| lookup_drain | 0.507 ± 0.003 | -0.145 ± 0.047 | 0/5 | 4 | 0.062 | 9 |
+| out_entropy | 0.800 ± 0.012 | 0.148 ± 0.048 | 5/5 | 1 | 0.910 | 9 |
+| random | 0.509 ± 0.016 | -0.143 ± 0.033 | 0/5 | 4 | 0.089 | 9 |
+| U-best | 0.742 ± 0.018 | 0.091 ± 0.058 | 5/5 | 2 | 0.769 | 9 |
+
+### gemma/disjoint/held-out/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.664 ± 0.016 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.633 ± 0.034 | -0.032 ± 0.024 | 1/5 | 2 | 0.376 | 9 |
+| lookup_drain | 0.510 ± 0.002 | -0.154 ± 0.017 | 0/5 | 3 | 0.067 | 9 |
+| out_entropy | 0.800 ± 0.012 | 0.135 ± 0.023 | 5/5 | 1 | 0.889 | 9 |
+| random | 0.502 ± 0.010 | -0.162 ± 0.020 | 0/5 | 3 | 0.068 | 9 |
+
+### gemma/disjoint/held-out/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.651 ± 0.042 | 0.000 ± 0.000 | 0/5 | 3 | 0.500 | 9 |
+| MDSA | 0.627 ± 0.037 | -0.025 ± 0.030 | 1/5 | 3 | 0.401 | 9 |
+| lookup_drain | 0.506 ± 0.004 | -0.145 ± 0.044 | 0/5 | 4 | 0.086 | 9 |
+| out_entropy | 0.796 ± 0.013 | 0.145 ± 0.054 | 5/5 | 1 | 0.901 | 9 |
+| random | 0.510 ± 0.017 | -0.142 ± 0.031 | 0/5 | 4 | 0.110 | 9 |
+| U-best | 0.753 ± 0.023 | 0.102 ± 0.057 | 5/5 | 2 | 0.789 | 9 |
+
+### gemma/disjoint/held-out/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.655 ± 0.026 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.633 ± 0.036 | -0.022 ± 0.021 | 1/5 | 2 | 0.402 | 9 |
+| lookup_drain | 0.511 ± 0.002 | -0.145 ± 0.027 | 0/5 | 3 | 0.116 | 9 |
+| out_entropy | 0.796 ± 0.013 | 0.141 ± 0.035 | 5/5 | 1 | 0.888 | 9 |
+| random | 0.502 ± 0.009 | -0.153 ± 0.031 | 0/5 | 3 | 0.104 | 9 |
+
+### gemma/standard/all/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.780 ± 0.003 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.718 ± 0.007 | -0.063 ± 0.009 | 0/5 | 3 | 0.316 | 12 |
+| lookup_drain | 0.706 ± 0.009 | -0.074 ± 0.011 | 0/5 | 3 | 0.338 | 12 |
+| out_entropy | 0.821 ± 0.002 | 0.040 ± 0.005 | 5/5 | 1 | 0.621 | 12 |
+| random | 0.503 ± 0.008 | -0.277 ± 0.008 | 0/5 | 4 | 0.000 | 12 |
+
+### gemma/standard/all/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.832 ± 0.005 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| MDSA | 0.737 ± 0.006 | -0.095 ± 0.003 | 0/5 | 3 | 0.234 | 12 |
+| lookup_drain | 0.774 ± 0.008 | -0.058 ± 0.006 | 0/5 | 2 | 0.401 | 12 |
+| out_entropy | 0.818 ± 0.003 | -0.014 ± 0.005 | 0/5 | 1 | 0.418 | 12 |
+| random | 0.503 ± 0.013 | -0.329 ± 0.016 | 0/5 | 4 | 0.000 | 12 |
+
+### gemma/standard/all/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.753 ± 0.011 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.678 ± 0.007 | -0.075 ± 0.013 | 0/5 | 3 | 0.252 | 12 |
+| lookup_drain | 0.709 ± 0.013 | -0.044 ± 0.011 | 0/5 | 3 | 0.406 | 12 |
+| out_entropy | 0.792 ± 0.003 | 0.040 ± 0.011 | 5/5 | 1 | 0.677 | 12 |
+| random | 0.497 ± 0.008 | -0.256 ± 0.012 | 0/5 | 4 | 0.000 | 12 |
+
+### gemma/standard/all/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.797 ± 0.006 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| MDSA | 0.683 ± 0.007 | -0.114 ± 0.009 | 0/5 | 2 | 0.179 | 12 |
+| lookup_drain | 0.770 ± 0.004 | -0.027 ± 0.004 | 0/5 | 1 | 0.487 | 12 |
+| out_entropy | 0.795 ± 0.005 | -0.001 ± 0.007 | 2/5 | 1 | 0.495 | 12 |
+| random | 0.497 ± 0.009 | -0.300 ± 0.012 | 0/5 | 3 | 0.000 | 12 |
+
+### gemma/standard/all/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.754 ± 0.004 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.671 ± 0.004 | -0.083 ± 0.004 | 0/5 | 4 | 0.253 | 12 |
+| lookup_drain | 0.708 ± 0.005 | -0.046 ± 0.003 | 0/5 | 3 | 0.395 | 12 |
+| out_entropy | 0.791 ± 0.002 | 0.037 ± 0.005 | 5/5 | 1 | 0.639 | 12 |
+| random | 0.498 ± 0.005 | -0.257 ± 0.002 | 0/5 | 5 | 0.000 | 12 |
+
+### gemma/standard/all/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.798 ± 0.011 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| MDSA | 0.682 ± 0.007 | -0.117 ± 0.010 | 0/5 | 2 | 0.208 | 12 |
+| lookup_drain | 0.770 ± 0.006 | -0.029 ± 0.012 | 0/5 | 1 | 0.467 | 12 |
+| out_entropy | 0.795 ± 0.002 | -0.003 ± 0.012 | 2/5 | 1 | 0.449 | 12 |
+| random | 0.500 ± 0.006 | -0.298 ± 0.014 | 0/5 | 3 | 0.000 | 12 |
+
+### gemma/standard/held-out/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.785 ± 0.005 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| MDSA | 0.717 ± 0.011 | -0.068 ± 0.013 | 0/5 | 2 | 0.295 | 9 |
+| lookup_drain | 0.707 ± 0.010 | -0.078 ± 0.014 | 0/5 | 2 | 0.348 | 9 |
+| out_entropy | 0.824 ± 0.002 | 0.039 ± 0.005 | 5/5 | 1 | 0.572 | 9 |
+| random | 0.504 ± 0.007 | -0.281 ± 0.010 | 0/5 | 3 | 0.000 | 9 |
+
+### gemma/standard/held-out/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.827 ± 0.009 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| MDSA | 0.741 ± 0.006 | -0.086 ± 0.006 | 0/5 | 2 | 0.263 | 9 |
+| lookup_drain | 0.768 ± 0.006 | -0.059 ± 0.012 | 0/5 | 2 | 0.429 | 9 |
+| out_entropy | 0.826 ± 0.003 | -0.001 ± 0.011 | 2/5 | 1 | 0.488 | 9 |
+| random | 0.503 ± 0.007 | -0.324 ± 0.011 | 0/5 | 3 | 0.000 | 9 |
+
+### gemma/standard/held-out/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.763 ± 0.010 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| MDSA | 0.690 ± 0.008 | -0.073 ± 0.007 | 0/5 | 2 | 0.298 | 9 |
+| lookup_drain | 0.718 ± 0.016 | -0.045 ± 0.015 | 0/5 | 2 | 0.421 | 9 |
+| out_entropy | 0.798 ± 0.004 | 0.035 ± 0.011 | 5/5 | 1 | 0.601 | 9 |
+| random | 0.496 ± 0.011 | -0.267 ± 0.014 | 0/5 | 3 | 0.000 | 9 |
+
+### gemma/standard/held-out/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.799 ± 0.006 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| MDSA | 0.698 ± 0.005 | -0.101 ± 0.006 | 0/5 | 2 | 0.226 | 9 |
+| lookup_drain | 0.769 ± 0.005 | -0.031 ± 0.005 | 0/5 | 1 | 0.487 | 9 |
+| out_entropy | 0.803 ± 0.006 | 0.004 ± 0.010 | 3/5 | 1 | 0.497 | 9 |
+| random | 0.497 ± 0.012 | -0.302 ± 0.017 | 0/5 | 3 | 0.000 | 9 |
+
+### gemma/standard/held-out/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.762 ± 0.004 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| MDSA | 0.684 ± 0.003 | -0.078 ± 0.004 | 0/5 | 2 | 0.271 | 9 |
+| lookup_drain | 0.714 ± 0.006 | -0.049 ± 0.003 | 0/5 | 2 | 0.405 | 9 |
+| out_entropy | 0.797 ± 0.004 | 0.035 ± 0.006 | 5/5 | 1 | 0.613 | 9 |
+| random | 0.493 ± 0.006 | -0.269 ± 0.004 | 0/5 | 3 | 0.000 | 9 |
+
+### gemma/standard/held-out/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.796 ± 0.013 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| MDSA | 0.696 ± 0.008 | -0.100 ± 0.013 | 0/5 | 2 | 0.254 | 9 |
+| lookup_drain | 0.771 ± 0.007 | -0.025 ± 0.013 | 0/5 | 1 | 0.478 | 9 |
+| out_entropy | 0.805 ± 0.004 | 0.009 ± 0.017 | 4/5 | 1 | 0.492 | 9 |
+| random | 0.498 ± 0.010 | -0.298 ± 0.013 | 0/5 | 3 | 0.000 | 9 |
+
+### gemma/natural/all/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.880 ± 0.018 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.875 ± 0.010 | -0.005 ± 0.009 | 1/5 | 2 | 0.462 | 12 |
+| lookup_drain | 0.916 ± 0.003 | 0.037 ± 0.018 | 5/5 | 1 | 0.605 | 12 |
+| out_entropy | 0.772 ± 0.002 | -0.108 ± 0.019 | 0/5 | 3 | 0.180 | 12 |
+| random | 0.502 ± 0.012 | -0.378 ± 0.013 | 0/5 | 4 | 0.017 | 12 |
+
+### gemma/natural/all/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.855 ± 0.009 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.830 ± 0.009 | -0.025 ± 0.009 | 0/5 | 2 | 0.444 | 12 |
+| lookup_drain | 0.912 ± 0.002 | 0.057 ± 0.009 | 5/5 | 1 | 0.564 | 12 |
+| out_entropy | 0.762 ± 0.004 | -0.093 ± 0.012 | 0/5 | 3 | 0.279 | 12 |
+| random | 0.502 ± 0.020 | -0.353 ± 0.016 | 0/5 | 4 | 0.015 | 12 |
+
+### gemma/natural/all/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.870 ± 0.014 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.856 ± 0.010 | -0.014 ± 0.010 | 0/5 | 2 | 0.465 | 12 |
+| lookup_drain | 0.897 ± 0.007 | 0.028 ± 0.014 | 5/5 | 1 | 0.564 | 12 |
+| out_entropy | 0.730 ± 0.004 | -0.140 ± 0.016 | 0/5 | 3 | 0.151 | 12 |
+| random | 0.504 ± 0.015 | -0.365 ± 0.027 | 0/5 | 4 | 0.000 | 12 |
+
+### gemma/natural/all/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.851 ± 0.021 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.819 ± 0.015 | -0.032 ± 0.016 | 0/5 | 2 | 0.427 | 12 |
+| lookup_drain | 0.900 ± 0.007 | 0.048 ± 0.015 | 5/5 | 1 | 0.584 | 12 |
+| out_entropy | 0.730 ± 0.018 | -0.121 ± 0.034 | 0/5 | 3 | 0.241 | 12 |
+| random | 0.499 ± 0.010 | -0.352 ± 0.021 | 0/5 | 4 | 0.022 | 12 |
+
+### gemma/natural/all/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.863 ± 0.017 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| MDSA | 0.850 ± 0.010 | -0.013 ± 0.012 | 1/5 | 2 | 0.460 | 12 |
+| lookup_drain | 0.890 ± 0.003 | 0.027 ± 0.016 | 5/5 | 1 | 0.569 | 12 |
+| out_entropy | 0.755 ± 0.002 | -0.108 ± 0.015 | 0/5 | 3 | 0.227 | 12 |
+| random | 0.502 ± 0.013 | -0.360 ± 0.022 | 0/5 | 4 | 0.001 | 12 |
+
+### gemma/natural/all/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.849 ± 0.018 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 11 |
+| MDSA | 0.807 ± 0.012 | -0.042 ± 0.016 | 0/5 | 2 | 0.416 | 11 |
+| lookup_drain | 0.893 ± 0.002 | 0.044 ± 0.016 | 5/5 | 1 | 0.576 | 11 |
+| out_entropy | 0.729 ± 0.005 | -0.120 ± 0.014 | 0/5 | 3 | 0.232 | 11 |
+| random | 0.505 ± 0.012 | -0.344 ± 0.014 | 0/5 | 4 | 0.024 | 11 |
+
+### gemma/natural/held-out/strict/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.889 ± 0.026 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.883 ± 0.013 | -0.006 ± 0.014 | 1/5 | 2 | 0.453 | 9 |
+| lookup_drain | 0.928 ± 0.003 | 0.040 ± 0.024 | 5/5 | 1 | 0.590 | 9 |
+| out_entropy | 0.780 ± 0.003 | -0.109 ± 0.027 | 0/5 | 3 | 0.143 | 9 |
+| random | 0.502 ± 0.012 | -0.386 ± 0.022 | 0/5 | 4 | 0.022 | 9 |
+
+### gemma/natural/held-out/strict/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.870 ± 0.014 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.834 ± 0.011 | -0.036 ± 0.015 | 0/5 | 3 | 0.435 | 9 |
+| lookup_drain | 0.936 ± 0.003 | 0.066 ± 0.012 | 5/5 | 1 | 0.530 | 9 |
+| out_entropy | 0.773 ± 0.006 | -0.097 ± 0.013 | 0/5 | 4 | 0.257 | 9 |
+| random | 0.504 ± 0.018 | -0.366 ± 0.019 | 0/5 | 5 | 0.020 | 9 |
+
+### gemma/natural/held-out/L1/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.872 ± 0.016 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.853 ± 0.015 | -0.018 ± 0.012 | 0/5 | 2 | 0.448 | 9 |
+| lookup_drain | 0.903 ± 0.008 | 0.031 ± 0.017 | 5/5 | 1 | 0.551 | 9 |
+| out_entropy | 0.728 ± 0.004 | -0.143 ± 0.018 | 0/5 | 3 | 0.121 | 9 |
+| random | 0.505 ± 0.016 | -0.367 ± 0.029 | 0/5 | 4 | 0.000 | 9 |
+
+### gemma/natural/held-out/L1/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.863 ± 0.023 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.817 ± 0.017 | -0.046 ± 0.016 | 0/5 | 3 | 0.410 | 9 |
+| lookup_drain | 0.919 ± 0.007 | 0.055 ± 0.018 | 5/5 | 1 | 0.559 | 9 |
+| out_entropy | 0.734 ± 0.021 | -0.129 ± 0.041 | 0/5 | 4 | 0.226 | 9 |
+| random | 0.498 ± 0.010 | -0.365 ± 0.023 | 0/5 | 5 | 0.030 | 9 |
+
+### gemma/natural/held-out/L2/@100
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.867 ± 0.015 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| MDSA | 0.849 ± 0.014 | -0.018 ± 0.012 | 0/5 | 2 | 0.437 | 9 |
+| lookup_drain | 0.895 ± 0.007 | 0.029 ± 0.016 | 5/5 | 1 | 0.560 | 9 |
+| out_entropy | 0.767 ± 0.002 | -0.099 ± 0.013 | 0/5 | 3 | 0.217 | 9 |
+| random | 0.506 ± 0.014 | -0.361 ± 0.021 | 0/5 | 4 | 0.002 | 9 |
+
+### gemma/natural/held-out/L2/@200
+
+| method | mean ± std | minus clotho | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| clotho | 0.863 ± 0.021 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 8 |
+| MDSA | 0.804 ± 0.013 | -0.059 ± 0.016 | 0/5 | 3 | 0.391 | 8 |
+| lookup_drain | 0.914 ± 0.003 | 0.051 ± 0.019 | 5/5 | 1 | 0.551 | 8 |
+| out_entropy | 0.738 ± 0.007 | -0.125 ± 0.020 | 0/5 | 4 | 0.206 | 8 |
+| random | 0.507 ± 0.014 | -0.356 ± 0.017 | 0/5 | 5 | 0.035 | 8 |
+
+### R1 gemma/base/all/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.083 ± 0.052 | -0.629 ± 0.052 | 0/5 | 2 | 0.040 | 12 |
+| frequent | 0.712 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.697 ± 0.000 | -0.015 ± 0.000 | 0/5 | 1 | 0.483 | 12 |
+| oracle | 0.770 ± 0.000 | 0.059 ± 0.000 | 5/5 | 1 | 0.628 | 12 |
+
+### R1 gemma/base/all/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.133 ± 0.060 | -0.648 ± 0.060 | 0/5 | 2 | 0.043 | 12 |
+| frequent | 0.781 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.763 ± 0.000 | -0.018 ± 0.000 | 0/5 | 1 | 0.503 | 12 |
+| oracle | 0.823 ± 0.000 | 0.042 ± 0.000 | 5/5 | 1 | 0.597 | 12 |
+
+### R1 gemma/base/all/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.248 ± 0.054 | -0.585 ± 0.054 | 0/5 | 2 | 0.130 | 12 |
+| frequent | 0.833 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.814 ± 0.000 | -0.019 ± 0.000 | 0/5 | 1 | 0.507 | 12 |
+| oracle | 0.863 ± 0.000 | 0.030 ± 0.000 | 5/5 | 1 | 0.576 | 12 |
+
+### R1 gemma/base/all/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.415 ± 0.029 | -0.463 ± 0.029 | 0/5 | 2 | 0.258 | 12 |
+| frequent | 0.878 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.884 ± 0.000 | 0.007 ± 0.000 | 5/5 | 1 | 0.517 | 12 |
+| oracle | 0.908 ± 0.000 | 0.030 ± 0.000 | 5/5 | 1 | 0.576 | 12 |
+
+R1 gemma/base/all/strict: PA_0 0.364, wrong-group share 0.537.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.250 | 0.014901096600553351 | 0.250 | 0.180/0.114/0.000/0.180 | 0.745/0.698/0.809/0.745/0.745 |
+| Spark | 0.025 | 0.597 | -0.015496947583332215 | 0.600 | 0.029/0.384/0.000/0.029 | 0.025/0.385/0.286/0.025/0.025 |
+| HDFS | 0.447 | 0.714 | -0.43288495068663846 | 0.714 | 0.529/0.444/0.500/0.529 | 0.447/0.296/0.000/0.447/0.447 |
+| OpenStack | 0.149 | 0.112 | -0.3429292783381305 | 0.550 | 0.029/0.004/0.000/0.031 | 0.149/0.182/0.499/0.118/0.149 |
+| Zookeeper | 0.211 | 0.338 | 0.1912876015723887 | 0.500 | 0.850/0.614/0.556/0.850 | 0.211/0.590/0.778/0.211/0.211 |
+| Thunderbird | 0.269 | 0.610 | -0.0655820523404014 | 0.650 | 0.235/0.248/0.193/0.235 | 0.269/0.426/0.367/0.269/0.269 |
+| OpenSSH | 0.386 | 0.654 | -0.17813372137309758 | 0.600 | 0.440/0.528/0.667/0.440 | 0.386/0.340/0.333/0.386/0.386 |
+| Hadoop | 0.546 | 0.536 | -0.021416440003803265 | 0.600 | 0.537/0.387/0.226/0.537 | 0.546/0.471/0.528/0.546/0.546 |
+| Linux | 0.587 | 0.637 | -0.019451863732559967 | 0.650 | 0.111/0.260/0.146/0.111 | 0.587/0.414/0.219/0.589/0.587 |
+| HealthApp | 0.539 | 0.971 | -0.47304779012168363 | 0.500 | 0.304/0.013/0.006/0.350 | 0.539/0.625/0.028/0.618/0.539 |
+| BGL | 0.105 | 0.471 | 0.3779634440386849 | 0.600 | 0.202/0.229/0.077/0.202 | 0.105/0.442/0.692/0.105/0.105 |
+| Mac | 0.361 | 0.559 | 0.144632591745941 | 0.600 | 0.376/0.104/0.042/0.387 | 0.361/0.223/0.470/0.357/0.361 |
+
+### R1 gemma/base/all/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.098 ± 0.041 | -0.565 ± 0.041 | 0/5 | 3 | 0.117 | 12 |
+| frequent | 0.663 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| dsize | 0.692 ± 0.000 | 0.029 ± 0.000 | 5/5 | 2 | 0.524 | 12 |
+| oracle | 0.805 ± 0.000 | 0.142 ± 0.000 | 5/5 | 1 | 0.656 | 12 |
+
+### R1 gemma/base/all/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.154 ± 0.043 | -0.653 ± 0.043 | 0/5 | 2 | 0.050 | 12 |
+| frequent | 0.807 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.824 ± 0.000 | 0.016 ± 0.000 | 5/5 | 1 | 0.542 | 12 |
+| oracle | 0.863 ± 0.000 | 0.055 ± 0.000 | 5/5 | 1 | 0.618 | 12 |
+
+### R1 gemma/base/all/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.283 ± 0.049 | -0.582 ± 0.049 | 0/5 | 2 | 0.138 | 12 |
+| frequent | 0.864 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.872 ± 0.000 | 0.008 ± 0.000 | 5/5 | 1 | 0.531 | 12 |
+| oracle | 0.900 ± 0.000 | 0.036 ± 0.000 | 5/5 | 1 | 0.597 | 12 |
+
+### R1 gemma/base/all/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.434 ± 0.030 | -0.473 ± 0.030 | 0/5 | 2 | 0.272 | 12 |
+| frequent | 0.907 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.911 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.514 | 12 |
+| oracle | 0.939 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.562 | 12 |
+
+R1 gemma/base/all/L1: PA_0 0.424, wrong-group share 0.386.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.954 | 0.235 | -0.04468317153670257 | 0.200 | 0.390/0.179/0.000/0.390 | 0.954/0.744/0.809/0.954/0.954 |
+| Spark | 0.030 | 0.475 | 0.046569294989576716 | 0.550 | 0.031/0.500/0.457/0.030 | 0.030/0.502/0.457/0.030/0.030 |
+| HDFS | 0.455 | 0.643 | -0.42667911117544877 | 0.643 | 0.529/0.519/1.000/0.529 | 0.455/0.370/0.000/0.455/0.455 |
+| OpenStack | 0.235 | 0.075 | -0.20620616077645293 | 0.350 | 0.117/0.077/0.003/0.127 | 0.235/0.381/0.521/0.209/0.235 |
+| Zookeeper | 0.212 | 0.299 | 0.2316617172768453 | 0.500 | 0.853/0.795/1.000/0.853 | 0.212/0.627/0.778/0.211/0.212 |
+| Thunderbird | 0.292 | 0.559 | -0.050596262423396106 | 0.650 | 0.336/0.467/0.367/0.336 | 0.292/0.476/0.422/0.291/0.292 |
+| OpenSSH | 0.386 | 0.615 | -0.07390025903420339 | 0.600 | 0.444/0.792/1.000/0.444 | 0.386/0.377/0.333/0.386/0.386 |
+| Hadoop | 0.581 | 0.375 | 0.08037521690623774 | 0.550 | 0.587/0.575/0.491/0.587 | 0.581/0.597/0.717/0.581/0.581 |
+| Linux | 0.635 | 0.437 | -0.03342099885029204 | 0.450 | 0.145/0.475/0.354/0.144 | 0.635/0.593/0.521/0.635/0.635 |
+| HealthApp | 0.798 | 0.006 | 0.4024394966051165 | 0.450 | 0.466/0.524/0.994/0.385 | 0.798/0.654/0.996/0.767/0.798 |
+| BGL | 0.105 | 0.451 | 0.376378077966335 | 0.550 | 0.210/0.648/0.538/0.210 | 0.105/0.462/0.692/0.105/0.105 |
+| Mac | 0.412 | 0.458 | 0.18720268984881572 | 0.600 | 0.528/0.434/0.568/0.527 | 0.412/0.369/0.582/0.406/0.412 |
+
+### R1 gemma/base/all/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.098 ± 0.041 | -0.516 ± 0.041 | 0/5 | 3 | 0.186 | 12 |
+| frequent | 0.615 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| dsize | 0.715 ± 0.000 | 0.100 ± 0.000 | 5/5 | 1 | 0.556 | 12 |
+| oracle | 0.790 ± 0.000 | 0.175 ± 0.000 | 5/5 | 1 | 0.656 | 12 |
+
+### R1 gemma/base/all/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.154 ± 0.043 | -0.625 ± 0.043 | 0/5 | 2 | 0.061 | 12 |
+| frequent | 0.779 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.803 ± 0.000 | 0.023 ± 0.000 | 5/5 | 1 | 0.528 | 12 |
+| oracle | 0.858 ± 0.000 | 0.079 ± 0.000 | 5/5 | 1 | 0.632 | 12 |
+
+### R1 gemma/base/all/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.283 ± 0.050 | -0.570 ± 0.050 | 0/5 | 2 | 0.141 | 12 |
+| frequent | 0.853 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.858 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.528 | 12 |
+| oracle | 0.898 ± 0.000 | 0.045 ± 0.000 | 5/5 | 1 | 0.618 | 12 |
+
+### R1 gemma/base/all/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.433 ± 0.030 | -0.472 ± 0.030 | 0/5 | 2 | 0.273 | 12 |
+| frequent | 0.905 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.905 ± 0.000 | -0.000 ± 0.000 | 0/5 | 1 | 0.507 | 12 |
+| oracle | 0.937 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.576 | 12 |
+
+R1 gemma/base/all/L2: PA_0 0.438, wrong-group share 0.380.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.954 | 0.235 | -0.04468317153670257 | 0.200 | 0.390/0.203/0.000/0.390 | 0.954/0.744/0.809/0.954/0.954 |
+| Spark | 0.030 | 0.475 | 0.046569294989576716 | 0.550 | 0.031/0.500/0.457/0.030 | 0.030/0.502/0.457/0.030/0.030 |
+| HDFS | 0.455 | 0.643 | -0.42667911117544877 | 0.643 | 0.529/0.615/1.000/0.529 | 0.455/0.370/0.000/0.455/0.455 |
+| OpenStack | 0.235 | 0.075 | -0.20620616077645293 | 0.350 | 0.117/0.077/0.003/0.127 | 0.235/0.381/0.521/0.209/0.235 |
+| Zookeeper | 0.212 | 0.299 | 0.2316617172768453 | 0.500 | 0.853/0.795/1.000/0.853 | 0.212/0.627/0.778/0.211/0.212 |
+| Thunderbird | 0.294 | 0.552 | -0.04906007724696506 | 0.650 | 0.336/0.467/0.367/0.336 | 0.294/0.480/0.422/0.294/0.294 |
+| OpenSSH | 0.388 | 0.577 | -0.10915791681934797 | 0.550 | 0.444/0.792/1.000/0.444 | 0.388/0.415/0.333/0.388/0.388 |
+| Hadoop | 0.583 | 0.360 | 0.09244141182570709 | 0.550 | 0.587/0.575/0.491/0.587 | 0.583/0.616/0.736/0.583/0.583 |
+| Linux | 0.667 | 0.433 | -0.04251876864160222 | 0.400 | 0.145/0.475/0.354/0.144 | 0.667/0.596/0.521/0.668/0.667 |
+| HealthApp | 0.911 | 0.006 | 0.37996559413500386 | 0.400 | 0.579/0.539/0.994/0.515 | 0.911/0.672/0.996/0.898/0.911 |
+| BGL | 0.105 | 0.451 | 0.376378077966335 | 0.550 | 0.210/0.648/0.538/0.210 | 0.105/0.462/0.692/0.105/0.105 |
+| Mac | 0.419 | 0.456 | 0.18009527647572265 | 0.600 | 0.533/0.440/0.569/0.531 | 0.419/0.379/0.582/0.413/0.419 |
+
+### R1 gemma/base/held-out/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.059 ± 0.035 | -0.604 ± 0.035 | 0/5 | 2 | 0.030 | 9 |
+| frequent | 0.663 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.636 ± 0.000 | -0.027 ± 0.000 | 0/5 | 1 | 0.457 | 9 |
+| oracle | 0.730 ± 0.000 | 0.067 ± 0.000 | 5/5 | 1 | 0.636 | 9 |
+
+### R1 gemma/base/held-out/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.086 ± 0.048 | -0.660 ± 0.048 | 0/5 | 2 | 0.022 | 9 |
+| frequent | 0.746 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.719 ± 0.000 | -0.027 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+| oracle | 0.794 ± 0.000 | 0.048 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/base/held-out/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.192 ± 0.054 | -0.614 ± 0.054 | 0/5 | 2 | 0.069 | 9 |
+| frequent | 0.806 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.780 ± 0.000 | -0.026 ± 0.000 | 0/5 | 1 | 0.512 | 9 |
+| oracle | 0.841 ± 0.000 | 0.035 ± 0.000 | 5/5 | 1 | 0.605 | 9 |
+
+### R1 gemma/base/held-out/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.398 ± 0.036 | -0.459 ± 0.036 | 0/5 | 2 | 0.253 | 9 |
+| frequent | 0.856 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.865 ± 0.000 | 0.009 ± 0.000 | 5/5 | 1 | 0.531 | 9 |
+| oracle | 0.894 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.605 | 9 |
+
+R1 gemma/base/held-out/strict: PA_0 0.368, wrong-group share 0.500.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.250 | 0.014901096600553351 | 0.250 | 0.180/0.114/0.000/0.180 | 0.745/0.698/0.809/0.745/0.745 |
+| OpenStack | 0.149 | 0.112 | -0.3429292783381305 | 0.550 | 0.029/0.004/0.000/0.031 | 0.149/0.182/0.499/0.118/0.149 |
+| Zookeeper | 0.211 | 0.338 | 0.1912876015723887 | 0.500 | 0.850/0.614/0.556/0.850 | 0.211/0.590/0.778/0.211/0.211 |
+| Thunderbird | 0.269 | 0.610 | -0.0655820523404014 | 0.650 | 0.235/0.248/0.193/0.235 | 0.269/0.426/0.367/0.269/0.269 |
+| OpenSSH | 0.386 | 0.654 | -0.17813372137309758 | 0.600 | 0.440/0.528/0.667/0.440 | 0.386/0.340/0.333/0.386/0.386 |
+| Hadoop | 0.546 | 0.536 | -0.021416440003803265 | 0.600 | 0.537/0.387/0.226/0.537 | 0.546/0.471/0.528/0.546/0.546 |
+| HealthApp | 0.539 | 0.971 | -0.47304779012168363 | 0.500 | 0.304/0.013/0.006/0.350 | 0.539/0.625/0.028/0.618/0.539 |
+| BGL | 0.105 | 0.471 | 0.3779634440386849 | 0.600 | 0.202/0.229/0.077/0.202 | 0.105/0.442/0.692/0.105/0.105 |
+| Mac | 0.361 | 0.559 | 0.144632591745941 | 0.600 | 0.376/0.104/0.042/0.387 | 0.361/0.223/0.470/0.357/0.361 |
+
+### R1 gemma/base/held-out/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.079 ± 0.019 | -0.507 ± 0.019 | 0/5 | 3 | 0.137 | 9 |
+| frequent | 0.586 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.617 ± 0.000 | 0.031 ± 0.000 | 5/5 | 2 | 0.506 | 9 |
+| oracle | 0.765 ± 0.000 | 0.179 ± 0.000 | 5/5 | 1 | 0.698 | 9 |
+
+### R1 gemma/base/held-out/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.114 ± 0.026 | -0.656 ± 0.026 | 0/5 | 2 | 0.030 | 9 |
+| frequent | 0.771 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.788 ± 0.000 | 0.018 ± 0.000 | 5/5 | 1 | 0.537 | 9 |
+| oracle | 0.837 ± 0.000 | 0.067 ± 0.000 | 5/5 | 1 | 0.642 | 9 |
+
+### R1 gemma/base/held-out/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.237 ± 0.052 | -0.603 ± 0.052 | 0/5 | 2 | 0.081 | 9 |
+| frequent | 0.840 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.849 ± 0.000 | 0.010 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+| oracle | 0.882 ± 0.000 | 0.043 ± 0.000 | 5/5 | 1 | 0.617 | 9 |
+
+### R1 gemma/base/held-out/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.423 ± 0.035 | -0.469 ± 0.035 | 0/5 | 2 | 0.269 | 9 |
+| frequent | 0.892 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.895 ± 0.000 | 0.003 ± 0.000 | 5/5 | 1 | 0.519 | 9 |
+| oracle | 0.930 ± 0.000 | 0.037 ± 0.000 | 5/5 | 1 | 0.580 | 9 |
+
+R1 gemma/base/held-out/L1: PA_0 0.441, wrong-group share 0.342.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.954 | 0.235 | -0.04468317153670257 | 0.200 | 0.390/0.179/0.000/0.390 | 0.954/0.744/0.809/0.954/0.954 |
+| OpenStack | 0.235 | 0.075 | -0.20620616077645293 | 0.350 | 0.117/0.077/0.003/0.127 | 0.235/0.381/0.521/0.209/0.235 |
+| Zookeeper | 0.212 | 0.299 | 0.2316617172768453 | 0.500 | 0.853/0.795/1.000/0.853 | 0.212/0.627/0.778/0.211/0.212 |
+| Thunderbird | 0.292 | 0.559 | -0.050596262423396106 | 0.650 | 0.336/0.467/0.367/0.336 | 0.292/0.476/0.422/0.291/0.292 |
+| OpenSSH | 0.386 | 0.615 | -0.07390025903420339 | 0.600 | 0.444/0.792/1.000/0.444 | 0.386/0.377/0.333/0.386/0.386 |
+| Hadoop | 0.581 | 0.375 | 0.08037521690623774 | 0.550 | 0.587/0.575/0.491/0.587 | 0.581/0.597/0.717/0.581/0.581 |
+| HealthApp | 0.798 | 0.006 | 0.4024394966051165 | 0.450 | 0.466/0.524/0.994/0.385 | 0.798/0.654/0.996/0.767/0.798 |
+| BGL | 0.105 | 0.451 | 0.376378077966335 | 0.550 | 0.210/0.648/0.538/0.210 | 0.105/0.462/0.692/0.105/0.105 |
+| Mac | 0.412 | 0.458 | 0.18720268984881572 | 0.600 | 0.528/0.434/0.568/0.527 | 0.412/0.369/0.582/0.406/0.412 |
+
+### R1 gemma/base/held-out/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.079 ± 0.019 | -0.446 ± 0.019 | 0/5 | 3 | 0.227 | 9 |
+| frequent | 0.525 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.650 ± 0.000 | 0.125 ± 0.000 | 5/5 | 1 | 0.574 | 9 |
+| oracle | 0.746 ± 0.000 | 0.221 ± 0.000 | 5/5 | 1 | 0.710 | 9 |
+
+### R1 gemma/base/held-out/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.114 ± 0.026 | -0.621 ± 0.026 | 0/5 | 2 | 0.040 | 9 |
+| frequent | 0.735 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.762 ± 0.000 | 0.027 ± 0.000 | 5/5 | 1 | 0.531 | 9 |
+| oracle | 0.832 ± 0.000 | 0.097 ± 0.000 | 5/5 | 1 | 0.654 | 9 |
+
+### R1 gemma/base/held-out/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.237 ± 0.053 | -0.590 ± 0.053 | 0/5 | 2 | 0.086 | 9 |
+| frequent | 0.827 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.832 ± 0.000 | 0.005 ± 0.000 | 5/5 | 1 | 0.512 | 9 |
+| oracle | 0.881 ± 0.000 | 0.054 ± 0.000 | 5/5 | 1 | 0.642 | 9 |
+
+### R1 gemma/base/held-out/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.423 ± 0.035 | -0.468 ± 0.035 | 0/5 | 2 | 0.272 | 9 |
+| frequent | 0.891 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.889 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+| oracle | 0.928 ± 0.000 | 0.038 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+
+R1 gemma/base/held-out/L2: PA_0 0.455, wrong-group share 0.335.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.954 | 0.235 | -0.04468317153670257 | 0.200 | 0.390/0.203/0.000/0.390 | 0.954/0.744/0.809/0.954/0.954 |
+| OpenStack | 0.235 | 0.075 | -0.20620616077645293 | 0.350 | 0.117/0.077/0.003/0.127 | 0.235/0.381/0.521/0.209/0.235 |
+| Zookeeper | 0.212 | 0.299 | 0.2316617172768453 | 0.500 | 0.853/0.795/1.000/0.853 | 0.212/0.627/0.778/0.211/0.212 |
+| Thunderbird | 0.294 | 0.552 | -0.04906007724696506 | 0.650 | 0.336/0.467/0.367/0.336 | 0.294/0.480/0.422/0.294/0.294 |
+| OpenSSH | 0.388 | 0.577 | -0.10915791681934797 | 0.550 | 0.444/0.792/1.000/0.444 | 0.388/0.415/0.333/0.388/0.388 |
+| Hadoop | 0.583 | 0.360 | 0.09244141182570709 | 0.550 | 0.587/0.575/0.491/0.587 | 0.583/0.616/0.736/0.583/0.583 |
+| HealthApp | 0.911 | 0.006 | 0.37996559413500386 | 0.400 | 0.579/0.539/0.994/0.515 | 0.911/0.672/0.996/0.898/0.911 |
+| BGL | 0.105 | 0.451 | 0.376378077966335 | 0.550 | 0.210/0.648/0.538/0.210 | 0.105/0.462/0.692/0.105/0.105 |
+| Mac | 0.419 | 0.456 | 0.18009527647572265 | 0.600 | 0.533/0.440/0.569/0.531 | 0.419/0.379/0.582/0.413/0.419 |
+
+### R1 gemma/strong/all/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.132 ± 0.024 | -0.484 ± 0.024 | 0/5 | 2 | 0.116 | 12 |
+| frequent | 0.616 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.603 ± 0.000 | -0.013 ± 0.000 | 0/5 | 1 | 0.472 | 12 |
+| oracle | 0.688 ± 0.000 | 0.072 ± 0.000 | 5/5 | 1 | 0.583 | 12 |
+
+### R1 gemma/strong/all/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.182 ± 0.027 | -0.511 ± 0.027 | 0/5 | 2 | 0.126 | 12 |
+| frequent | 0.693 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.678 ± 0.000 | -0.015 ± 0.000 | 0/5 | 1 | 0.458 | 12 |
+| oracle | 0.776 ± 0.000 | 0.083 ± 0.000 | 5/5 | 1 | 0.615 | 12 |
+
+### R1 gemma/strong/all/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.265 ± 0.015 | -0.513 ± 0.015 | 0/5 | 2 | 0.179 | 12 |
+| frequent | 0.778 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.772 ± 0.000 | -0.007 ± 0.000 | 0/5 | 1 | 0.486 | 12 |
+| oracle | 0.811 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.562 | 12 |
+
+### R1 gemma/strong/all/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.413 ± 0.038 | -0.411 ± 0.038 | 0/5 | 2 | 0.254 | 12 |
+| frequent | 0.824 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.819 ± 0.000 | -0.005 ± 0.000 | 0/5 | 1 | 0.493 | 12 |
+| oracle | 0.848 ± 0.000 | 0.024 ± 0.000 | 5/5 | 1 | 0.549 | 12 |
+
+R1 gemma/strong/all/strict: PA_0 0.630, wrong-group share 0.420.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.397 | -0.061988580414788656 | 0.450 | 0.180/0.114/0.000/0.180 | 0.745/0.698/0.574/0.745/0.374 |
+| Spark | 0.034 | 0.511 | -0.06053438028233746 | 0.600 | 0.029/0.384/0.000/0.029 | 0.034/0.480/0.343/0.034/0.024 |
+| HDFS | 1.000 | 0.071 | -0.5443310539518174 | 0.250 | 0.529/0.444/0.500/0.529 | 1.000/0.923/0.500/1.000/0.998 |
+| OpenStack | 0.822 | 0.080 | -0.44499764400036124 | 0.350 | 0.029/0.004/0.000/0.031 | 0.822/0.381/0.533/0.847/0.552 |
+| Zookeeper | 0.620 | 0.234 | 0.14125253709693403 | 0.350 | 0.850/0.614/0.556/0.850 | 0.620/0.687/0.889/0.620/0.618 |
+| Thunderbird | 0.427 | 0.594 | -0.1003395612884943 | 0.700 | 0.235/0.248/0.193/0.235 | 0.427/0.431/0.358/0.427/0.302 |
+| OpenSSH | 0.995 | 0.423 | -0.014690402681392437 | 0.688 | 0.440/0.528/0.667/0.440 | 0.995/0.528/0.667/0.995/0.332 |
+| Hadoop | 0.591 | 0.425 | 0.035303732490769256 | 0.550 | 0.537/0.387/0.226/0.537 | 0.591/0.540/0.604/0.591/0.571 |
+| Linux | 0.094 | 0.598 | -0.0022340666816415265 | 0.750 | 0.111/0.260/0.146/0.111 | 0.094/0.442/0.240/0.093/0.089 |
+| HealthApp | 0.778 | 0.971 | -0.4520295646590518 | 0.400 | 0.304/0.013/0.006/0.350 | 0.778/0.623/0.028/0.894/0.295 |
+| BGL | 0.988 | 0.196 | 0.37656383956093004 | 0.400 | 0.202/0.229/0.077/0.202 | 0.988/0.712/0.769/0.988/0.891 |
+| Mac | 0.464 | 0.545 | 0.0959740224008866 | 0.650 | 0.376/0.104/0.042/0.387 | 0.464/0.369/0.469/0.464/0.417 |
+
+### R1 gemma/strong/all/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.148 ± 0.026 | -0.500 ± 0.026 | 0/5 | 3 | 0.119 | 12 |
+| frequent | 0.648 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| dsize | 0.589 ± 0.000 | -0.059 ± 0.000 | 0/5 | 2 | 0.462 | 12 |
+| oracle | 0.737 ± 0.000 | 0.089 ± 0.000 | 5/5 | 1 | 0.597 | 12 |
+
+### R1 gemma/strong/all/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.208 ± 0.024 | -0.534 ± 0.024 | 0/5 | 2 | 0.127 | 12 |
+| frequent | 0.742 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.701 ± 0.000 | -0.041 ± 0.000 | 0/5 | 1 | 0.479 | 12 |
+| oracle | 0.821 ± 0.000 | 0.078 ± 0.000 | 5/5 | 1 | 0.622 | 12 |
+
+### R1 gemma/strong/all/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.309 ± 0.055 | -0.509 ± 0.055 | 0/5 | 2 | 0.190 | 12 |
+| frequent | 0.818 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.815 ± 0.000 | -0.003 ± 0.000 | 0/5 | 1 | 0.490 | 12 |
+| oracle | 0.858 ± 0.000 | 0.040 ± 0.000 | 5/5 | 1 | 0.576 | 12 |
+
+### R1 gemma/strong/all/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.438 ± 0.026 | -0.429 ± 0.026 | 0/5 | 2 | 0.274 | 12 |
+| frequent | 0.867 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.865 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.507 | 12 |
+| oracle | 0.893 ± 0.000 | 0.026 ± 0.000 | 5/5 | 1 | 0.583 | 12 |
+
+R1 gemma/strong/all/L1: PA_0 0.672, wrong-group share 0.289.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.953 | 0.382 | -0.12904155035779136 | 0.400 | 0.390/0.179/0.000/0.390 | 0.953/0.744/0.574/0.954/0.886 |
+| Spark | 0.035 | 0.432 | 0.04438370037990012 | 0.550 | 0.031/0.500/0.457/0.030 | 0.035/0.553/0.514/0.034/0.025 |
+| HDFS | 1.000 | 0.071 | -0.5443310539518174 | 0.250 | 0.529/0.519/1.000/0.529 | 1.000/0.923/0.500/1.000/0.998 |
+| OpenStack | 0.846 | 0.041 | -0.3044705213599532 | 0.250 | 0.117/0.077/0.003/0.127 | 0.846/0.482/0.558/0.872/0.615 |
+| Zookeeper | 0.620 | 0.221 | 0.1429986535707957 | 0.350 | 0.853/0.795/1.000/0.853 | 0.620/0.699/0.889/0.620/0.619 |
+| Thunderbird | 0.451 | 0.530 | -0.07745962935440798 | 0.700 | 0.336/0.467/0.367/0.336 | 0.451/0.487/0.404/0.451/0.331 |
+| OpenSSH | 0.995 | 0.423 | -0.014690402681392437 | 0.688 | 0.444/0.792/1.000/0.444 | 0.995/0.528/0.667/0.995/0.332 |
+| Hadoop | 0.629 | 0.337 | 0.03975047431744688 | 0.450 | 0.587/0.575/0.491/0.587 | 0.629/0.642/0.717/0.629/0.611 |
+| Linux | 0.146 | 0.391 | -0.04643972141284888 | 0.500 | 0.145/0.475/0.354/0.144 | 0.146/0.626/0.500/0.145/0.142 |
+| HealthApp | 0.910 | 0.007 | 0.4002365478273121 | 0.400 | 0.466/0.524/0.994/0.385 | 0.910/0.654/0.996/0.896/0.713 |
+| BGL | 0.993 | 0.118 | 0.2720387495004174 | 0.250 | 0.210/0.648/0.538/0.210 | 0.993/0.788/0.769/0.993/0.934 |
+| Mac | 0.481 | 0.522 | 0.06560265002365206 | 0.600 | 0.528/0.434/0.568/0.527 | 0.481/0.431/0.486/0.481/0.436 |
+
+### R1 gemma/strong/all/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.148 ± 0.026 | -0.500 ± 0.026 | 0/5 | 3 | 0.119 | 12 |
+| frequent | 0.648 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 12 |
+| dsize | 0.594 ± 0.000 | -0.054 ± 0.000 | 0/5 | 2 | 0.465 | 12 |
+| oracle | 0.738 ± 0.000 | 0.090 ± 0.000 | 5/5 | 1 | 0.597 | 12 |
+
+### R1 gemma/strong/all/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.208 ± 0.024 | -0.535 ± 0.024 | 0/5 | 2 | 0.127 | 12 |
+| frequent | 0.743 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.697 ± 0.000 | -0.046 ± 0.000 | 0/5 | 1 | 0.472 | 12 |
+| oracle | 0.822 ± 0.000 | 0.079 ± 0.000 | 5/5 | 1 | 0.622 | 12 |
+
+### R1 gemma/strong/all/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.309 ± 0.055 | -0.510 ± 0.055 | 0/5 | 2 | 0.190 | 12 |
+| frequent | 0.819 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.817 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.503 | 12 |
+| oracle | 0.859 ± 0.000 | 0.040 ± 0.000 | 5/5 | 1 | 0.576 | 12 |
+
+### R1 gemma/strong/all/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.438 ± 0.026 | -0.430 ± 0.026 | 0/5 | 2 | 0.274 | 12 |
+| frequent | 0.869 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 12 |
+| dsize | 0.867 ± 0.000 | -0.002 ± 0.000 | 0/5 | 1 | 0.514 | 12 |
+| oracle | 0.894 ± 0.000 | 0.025 ± 0.000 | 5/5 | 1 | 0.583 | 12 |
+
+R1 gemma/strong/all/L2: PA_0 0.673, wrong-group share 0.287.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.953 | 0.382 | -0.12904155035779136 | 0.400 | 0.390/0.203/0.000/0.390 | 0.953/0.744/0.574/0.954/0.886 |
+| Spark | 0.035 | 0.432 | 0.04438370037990012 | 0.550 | 0.031/0.500/0.457/0.030 | 0.035/0.553/0.514/0.034/0.025 |
+| HDFS | 1.000 | 0.071 | -0.5443310539518174 | 0.250 | 0.529/0.615/1.000/0.529 | 1.000/0.923/0.500/1.000/0.998 |
+| OpenStack | 0.846 | 0.041 | -0.3044705213599532 | 0.250 | 0.117/0.077/0.003/0.127 | 0.846/0.482/0.558/0.872/0.615 |
+| Zookeeper | 0.620 | 0.221 | 0.1429986535707957 | 0.350 | 0.853/0.795/1.000/0.853 | 0.620/0.699/0.889/0.620/0.619 |
+| Thunderbird | 0.453 | 0.513 | -0.053216333795947424 | 0.700 | 0.336/0.467/0.367/0.336 | 0.453/0.490/0.404/0.453/0.334 |
+| OpenSSH | 0.995 | 0.423 | -0.014690402681392437 | 0.688 | 0.444/0.792/1.000/0.444 | 0.995/0.528/0.667/0.995/0.332 |
+| Hadoop | 0.631 | 0.330 | 0.037467742956333254 | 0.450 | 0.587/0.575/0.491/0.587 | 0.631/0.651/0.717/0.631/0.613 |
+| Linux | 0.147 | 0.388 | -0.04744275075970148 | 0.500 | 0.145/0.475/0.354/0.144 | 0.147/0.629/0.500/0.145/0.142 |
+| HealthApp | 0.910 | 0.007 | 0.4002365478273121 | 0.400 | 0.579/0.539/0.994/0.515 | 0.910/0.654/0.996/0.896/0.713 |
+| BGL | 0.993 | 0.118 | 0.2720387495004174 | 0.250 | 0.210/0.648/0.538/0.210 | 0.993/0.788/0.769/0.993/0.934 |
+| Mac | 0.488 | 0.515 | 0.05889487413029395 | 0.600 | 0.533/0.440/0.569/0.531 | 0.488/0.445/0.490/0.488/0.443 |
+
+### R1 gemma/strong/held-out/strict share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.055 ± 0.032 | -0.457 ± 0.032 | 0/5 | 2 | 0.057 | 9 |
+| frequent | 0.512 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.497 ± 0.000 | -0.015 ± 0.000 | 0/5 | 1 | 0.475 | 9 |
+| oracle | 0.607 ± 0.000 | 0.096 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/strong/held-out/strict share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.110 ± 0.021 | -0.497 ± 0.021 | 0/5 | 3 | 0.067 | 9 |
+| frequent | 0.607 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.586 ± 0.000 | -0.021 ± 0.000 | 0/5 | 2 | 0.432 | 9 |
+| oracle | 0.716 ± 0.000 | 0.109 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/strong/held-out/strict share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.219 ± 0.037 | -0.498 ± 0.037 | 0/5 | 2 | 0.142 | 9 |
+| frequent | 0.717 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.708 ± 0.000 | -0.009 ± 0.000 | 0/5 | 1 | 0.475 | 9 |
+| oracle | 0.759 ± 0.000 | 0.042 ± 0.000 | 5/5 | 1 | 0.574 | 9 |
+
+### R1 gemma/strong/held-out/strict share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.401 ± 0.045 | -0.373 ± 0.045 | 0/5 | 2 | 0.253 | 9 |
+| frequent | 0.774 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.768 ± 0.000 | -0.007 ± 0.000 | 0/5 | 1 | 0.481 | 9 |
+| oracle | 0.805 ± 0.000 | 0.031 ± 0.000 | 5/5 | 1 | 0.556 | 9 |
+
+R1 gemma/strong/held-out/strict: PA_0 0.714, wrong-group share 0.429.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.745 | 0.397 | -0.061988580414788656 | 0.450 | 0.180/0.114/0.000/0.180 | 0.745/0.698/0.574/0.745/0.374 |
+| OpenStack | 0.822 | 0.080 | -0.44499764400036124 | 0.350 | 0.029/0.004/0.000/0.031 | 0.822/0.381/0.533/0.847/0.552 |
+| Zookeeper | 0.620 | 0.234 | 0.14125253709693403 | 0.350 | 0.850/0.614/0.556/0.850 | 0.620/0.687/0.889/0.620/0.618 |
+| Thunderbird | 0.427 | 0.594 | -0.1003395612884943 | 0.700 | 0.235/0.248/0.193/0.235 | 0.427/0.431/0.358/0.427/0.302 |
+| OpenSSH | 0.995 | 0.423 | -0.014690402681392437 | 0.688 | 0.440/0.528/0.667/0.440 | 0.995/0.528/0.667/0.995/0.332 |
+| Hadoop | 0.591 | 0.425 | 0.035303732490769256 | 0.550 | 0.537/0.387/0.226/0.537 | 0.591/0.540/0.604/0.591/0.571 |
+| HealthApp | 0.778 | 0.971 | -0.4520295646590518 | 0.400 | 0.304/0.013/0.006/0.350 | 0.778/0.623/0.028/0.894/0.295 |
+| BGL | 0.988 | 0.196 | 0.37656383956093004 | 0.400 | 0.202/0.229/0.077/0.202 | 0.988/0.712/0.769/0.988/0.891 |
+| Mac | 0.464 | 0.545 | 0.0959740224008866 | 0.650 | 0.376/0.104/0.042/0.387 | 0.464/0.369/0.469/0.464/0.417 |
+
+### R1 gemma/strong/held-out/L1 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.076 ± 0.023 | -0.473 ± 0.023 | 0/5 | 3 | 0.064 | 9 |
+| frequent | 0.549 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.472 ± 0.000 | -0.077 ± 0.000 | 0/5 | 2 | 0.444 | 9 |
+| oracle | 0.667 ± 0.000 | 0.119 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/strong/held-out/L1 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.146 ± 0.027 | -0.522 ± 0.027 | 0/5 | 3 | 0.074 | 9 |
+| frequent | 0.667 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.611 ± 0.000 | -0.056 ± 0.000 | 0/5 | 2 | 0.457 | 9 |
+| oracle | 0.770 ± 0.000 | 0.103 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/strong/held-out/L1 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.277 ± 0.093 | -0.489 ± 0.093 | 0/5 | 2 | 0.164 | 9 |
+| frequent | 0.766 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.762 ± 0.000 | -0.004 ± 0.000 | 0/5 | 1 | 0.488 | 9 |
+| oracle | 0.817 ± 0.000 | 0.051 ± 0.000 | 5/5 | 1 | 0.574 | 9 |
+
+### R1 gemma/strong/held-out/L1 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.435 ± 0.029 | -0.395 ± 0.029 | 0/5 | 2 | 0.285 | 9 |
+| frequent | 0.830 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.827 ± 0.000 | -0.003 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+| oracle | 0.862 ± 0.000 | 0.032 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+
+R1 gemma/strong/held-out/L1: PA_0 0.764, wrong-group share 0.287.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.953 | 0.382 | -0.12904155035779136 | 0.400 | 0.390/0.179/0.000/0.390 | 0.953/0.744/0.574/0.954/0.886 |
+| OpenStack | 0.846 | 0.041 | -0.3044705213599532 | 0.250 | 0.117/0.077/0.003/0.127 | 0.846/0.482/0.558/0.872/0.615 |
+| Zookeeper | 0.620 | 0.221 | 0.1429986535707957 | 0.350 | 0.853/0.795/1.000/0.853 | 0.620/0.699/0.889/0.620/0.619 |
+| Thunderbird | 0.451 | 0.530 | -0.07745962935440798 | 0.700 | 0.336/0.467/0.367/0.336 | 0.451/0.487/0.404/0.451/0.331 |
+| OpenSSH | 0.995 | 0.423 | -0.014690402681392437 | 0.688 | 0.444/0.792/1.000/0.444 | 0.995/0.528/0.667/0.995/0.332 |
+| Hadoop | 0.629 | 0.337 | 0.03975047431744688 | 0.450 | 0.587/0.575/0.491/0.587 | 0.629/0.642/0.717/0.629/0.611 |
+| HealthApp | 0.910 | 0.007 | 0.4002365478273121 | 0.400 | 0.466/0.524/0.994/0.385 | 0.910/0.654/0.996/0.896/0.713 |
+| BGL | 0.993 | 0.118 | 0.2720387495004174 | 0.250 | 0.210/0.648/0.538/0.210 | 0.993/0.788/0.769/0.993/0.934 |
+| Mac | 0.481 | 0.522 | 0.06560265002365206 | 0.600 | 0.528/0.434/0.568/0.527 | 0.481/0.431/0.486/0.481/0.436 |
+
+### R1 gemma/strong/held-out/L2 share fixed @5
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.076 ± 0.023 | -0.473 ± 0.023 | 0/5 | 3 | 0.064 | 9 |
+| frequent | 0.549 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.479 ± 0.000 | -0.070 ± 0.000 | 0/5 | 2 | 0.451 | 9 |
+| oracle | 0.668 ± 0.000 | 0.119 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/strong/held-out/L2 share fixed @10
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.146 ± 0.027 | -0.523 ± 0.027 | 0/5 | 3 | 0.074 | 9 |
+| frequent | 0.669 ± 0.000 | 0.000 ± 0.000 | 0/5 | 2 | 0.500 | 9 |
+| dsize | 0.606 ± 0.000 | -0.062 ± 0.000 | 0/5 | 2 | 0.444 | 9 |
+| oracle | 0.772 ± 0.000 | 0.103 ± 0.000 | 5/5 | 1 | 0.630 | 9 |
+
+### R1 gemma/strong/held-out/L2 share fixed @20
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.277 ± 0.093 | -0.490 ± 0.093 | 0/5 | 2 | 0.164 | 9 |
+| frequent | 0.768 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.765 ± 0.000 | -0.003 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+| oracle | 0.819 ± 0.000 | 0.051 ± 0.000 | 5/5 | 1 | 0.574 | 9 |
+
+### R1 gemma/strong/held-out/L2 share fixed @50
+
+| method | mean ± std | minus frequent | positive seeds | SK-ESD | A12 | systems |
+|---|---|---|---:|---:|---:|---:|
+| random | 0.435 ± 0.029 | -0.397 ± 0.029 | 0/5 | 2 | 0.285 | 9 |
+| frequent | 0.831 ± 0.000 | 0.000 ± 0.000 | 0/5 | 1 | 0.500 | 9 |
+| dsize | 0.828 ± 0.000 | -0.003 ± 0.000 | 0/5 | 1 | 0.494 | 9 |
+| oracle | 0.863 ± 0.000 | 0.031 ± 0.000 | 5/5 | 1 | 0.593 | 9 |
+
+R1 gemma/strong/held-out/L2: PA_0 0.765, wrong-group share 0.283.
+
+| system | PA_0 | wrong groups | size/wrong Spearman | top20 wrong | Drain PA/FTA/rare/frequent | LLM PA/FTA/rare/frequent/excl seeds |
+|---|---|---|---|---|---|---|
+| HPC | 0.953 | 0.382 | -0.12904155035779136 | 0.400 | 0.390/0.203/0.000/0.390 | 0.953/0.744/0.574/0.954/0.886 |
+| OpenStack | 0.846 | 0.041 | -0.3044705213599532 | 0.250 | 0.117/0.077/0.003/0.127 | 0.846/0.482/0.558/0.872/0.615 |
+| Zookeeper | 0.620 | 0.221 | 0.1429986535707957 | 0.350 | 0.853/0.795/1.000/0.853 | 0.620/0.699/0.889/0.620/0.619 |
+| Thunderbird | 0.453 | 0.513 | -0.053216333795947424 | 0.700 | 0.336/0.467/0.367/0.336 | 0.453/0.490/0.404/0.453/0.334 |
+| OpenSSH | 0.995 | 0.423 | -0.014690402681392437 | 0.688 | 0.444/0.792/1.000/0.444 | 0.995/0.528/0.667/0.995/0.332 |
+| Hadoop | 0.631 | 0.330 | 0.037467742956333254 | 0.450 | 0.587/0.575/0.491/0.587 | 0.631/0.651/0.717/0.631/0.613 |
+| HealthApp | 0.910 | 0.007 | 0.4002365478273121 | 0.400 | 0.579/0.539/0.994/0.515 | 0.910/0.654/0.996/0.896/0.713 |
+| BGL | 0.993 | 0.118 | 0.2720387495004174 | 0.250 | 0.210/0.648/0.538/0.210 | 0.993/0.788/0.769/0.993/0.934 |
+| Mac | 0.488 | 0.515 | 0.05889487413029395 | 0.600 | 0.533/0.440/0.569/0.531 | 0.488/0.445/0.490/0.488/0.443 |
+
+N1 gemma strict @5: proxy gap vs actual r=0.795, MAE=0.0187, 24 cell/system points.
+
+N1 gemma strict @10: proxy gap vs actual r=0.896, MAE=0.0219, 24 cell/system points.
+
+N1 gemma strict @20: proxy gap vs actual r=0.935, MAE=0.0034, 24 cell/system points.
+
+N1 gemma L1 @5: proxy gap vs actual r=0.827, MAE=0.0322, 24 cell/system points.
+
+N1 gemma L1 @10: proxy gap vs actual r=0.772, MAE=0.0237, 24 cell/system points.
+
+N1 gemma L1 @20: proxy gap vs actual r=0.999, MAE=0.0014, 24 cell/system points.
+
+N1 gemma L2 @5: proxy gap vs actual r=0.851, MAE=0.0332, 24 cell/system points.
+
+N1 gemma L2 @10: proxy gap vs actual r=0.795, MAE=0.0244, 24 cell/system points.
+
+N1 gemma L2 @20: proxy gap vs actual r=0.999, MAE=0.0017, 24 cell/system points.

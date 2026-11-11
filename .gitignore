@@ -59,3 +59,6 @@ experiments/data/g_recompute/
 experiments/data/adaparser_e2e/
 experiments/data/skesd_check/
 experiments/results_phase3_cross/
+
+# CPU overnight logs are persisted to RESULTS_REPO, not git.
+/experiments/reports/overnight_logs/
