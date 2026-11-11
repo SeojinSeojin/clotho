@@ -1532,6 +1532,32 @@ Copied from `reports/e5_leakage.md` (`log_parsing_e5_leakage.py report`; protoco
 
 ### spearman
 
+| task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | LOHSvar leaky | leak-free | Sem-Ent leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SYN-BUG | 0.225 | 0.207 ± 0.011 | 0.248 | 0.238 ± 0.014 | 0.095 | 0.138 ± 0.018 | 0.145 | 0.171 ± 0.014 | 0.287 | 0.214 ± 0.024 | 0.279 | 0.276 ± 0.008 | 0.277 | 0.286 ± 0.011 |
+| SPELL-CHK | 0.410 | 0.382 ± 0.005 | 0.467 | 0.436 ± 0.011 | 0.862 | 0.612 ± 0.011 | 0.712 | 0.593 ± 0.008 | 0.488 | 0.278 ± 0.019 | 0.655 | 0.560 ± 0.012 | 0.673 | 0.586 ± 0.012 |
+| GH-TYPO | 0.375 | 0.370 ± 0.007 | 0.448 | 0.452 ± 0.009 | 0.738 | 0.625 ± 0.010 | 0.796 | 0.690 ± 0.010 | 0.399 | 0.129 ± 0.005 | 0.679 | 0.578 ± 0.008 | 0.716 | 0.634 ± 0.005 |
+| JSON-FIX | 0.286 | 0.218 ± 0.010 | 0.336 | 0.259 ± 0.012 | 0.949 | 0.612 ± 0.009 | 0.700 | 0.468 ± 0.012 | 0.440 | 0.268 ± 0.017 | 0.454 | 0.325 ± 0.012 | 0.492 | 0.363 ± 0.014 |
+| POS-TAG | 0.290 | 0.245 ± 0.008 | 0.323 | 0.296 ± 0.010 | 0.779 | 0.549 ± 0.013 | 0.720 | 0.539 ± 0.008 | 0.350 | 0.183 ± 0.014 | 0.476 | 0.378 ± 0.006 | 0.508 | 0.423 ± 0.006 |
+| TOPIC-CLS | 0.088 | 0.121 ± 0.009 | 0.110 | 0.159 ± 0.013 | 0.581 | 0.430 ± 0.008 | 0.557 | 0.476 ± 0.010 | 0.106 | 0.031 ± 0.009 | 0.248 | 0.204 ± 0.013 | 0.258 | 0.223 ± 0.009 |
+| ODD-ADD | 0.536 | 0.498 ± 0.012 | 0.472 | 0.425 ± 0.005 | 0.807 | 0.679 ± 0.009 | 0.501 | 0.420 ± 0.008 | 0.669 | 0.589 ± 0.009 | 0.588 | 0.514 ± 0.012 | 0.470 | 0.407 ± 0.007 |
+| MODEL-EX | 0.185 | 0.162 ± 0.024 | 0.217 | 0.172 ± 0.019 | 0.181 | 0.141 ± 0.007 | 0.668 | 0.592 ± 0.005 | 0.191 | 0.050 ± 0.019 | 0.351 | 0.291 ± 0.009 | 0.358 | 0.303 ± 0.007 |
+
+### auc
+
+| task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | LOHSvar leaky | leak-free | Sem-Ent leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SYN-BUG | 0.692 | 0.657 ± 0.002 | 0.715 | 0.684 ± 0.008 | 0.678 | 0.621 ± 0.007 | 0.694 | 0.652 ± 0.007 | 0.754 | 0.644 ± 0.016 | 0.758 | 0.708 ± 0.006 | 0.761 | 0.719 ± 0.007 |
+| SPELL-CHK | 0.755 | 0.739 ± 0.003 | 0.792 | 0.778 ± 0.011 | 0.862 | 0.794 ± 0.013 | 0.895 | 0.868 ± 0.003 | 0.778 | 0.658 ± 0.012 | 0.885 | 0.852 ± 0.008 | 0.893 | 0.869 ± 0.007 |
+| GH-TYPO | 0.712 | 0.708 ± 0.009 | 0.746 | 0.755 ± 0.010 | 0.890 | 0.831 ± 0.005 | 0.927 | 0.877 ± 0.005 | 0.730 | 0.573 ± 0.007 | 0.877 | 0.824 ± 0.006 | 0.895 | 0.854 ± 0.005 |
+| JSON-FIX | 0.652 | 0.605 ± 0.006 | 0.674 | 0.619 ± 0.008 | 0.965 | 0.809 ± 0.004 | 0.799 | 0.728 ± 0.005 | 0.713 | 0.631 ± 0.008 | 0.726 | 0.660 ± 0.007 | 0.739 | 0.674 ± 0.010 |
+| POS-TAG | 0.631 | 0.628 ± 0.010 | 0.649 | 0.652 ± 0.013 | 0.824 | 0.740 ± 0.007 | 0.836 | 0.780 ± 0.005 | 0.694 | 0.595 ± 0.013 | 0.723 | 0.691 ± 0.008 | 0.743 | 0.714 ± 0.009 |
+| TOPIC-CLS | 0.558 | 0.572 ± 0.009 | 0.565 | 0.596 ± 0.009 | 0.669 | 0.615 ± 0.009 | 0.789 | 0.756 ± 0.007 | 0.557 | 0.514 ± 0.007 | 0.634 | 0.617 ± 0.009 | 0.644 | 0.631 ± 0.006 |
+| ODD-ADD | 0.755 | 0.744 ± 0.010 | 0.717 | 0.701 ± 0.005 | 0.907 | 0.853 ± 0.005 | 0.697 | 0.696 ± 0.006 | 0.837 | 0.803 ± 0.004 | 0.766 | 0.748 ± 0.008 | 0.703 | 0.690 ± 0.007 |
+| MODEL-EX | 0.596 | 0.586 ± 0.010 | 0.619 | 0.592 ± 0.010 | 0.601 | 0.556 ± 0.007 | 0.857 | 0.808 ± 0.005 | 0.603 | 0.523 ± 0.011 | 0.691 | 0.661 ± 0.003 | 0.693 | 0.665 ± 0.007 |
+
+### Full-data spearman (Sem-Ent excluded)
+
 | task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | MDSA (pre-gen. control) leaky | leak-free | LOHSvar leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | SYN-BUG | 0.188 | 0.202 ± 0.005 | 0.219 | 0.239 ± 0.008 | 0.101 | 0.136 ± 0.002 | 0.171 | 0.189 ± 0.001 | 0.162 | 0.183 ± 0.003 | 0.268 | 0.272 ± 0.001 | 0.272 | 0.289 ± 0.001 |
@@ -1543,7 +1569,7 @@ Copied from `reports/e5_leakage.md` (`log_parsing_e5_leakage.py report`; protoco
 | ODD-ADD | 0.548 | 0.517 ± 0.010 | 0.467 | 0.438 ± 0.007 | 0.817 | 0.701 ± 0.004 | 0.369 | 0.353 ± 0.001 | 0.519 | 0.449 ± 0.007 | 0.604 | 0.540 ± 0.005 | 0.479 | 0.428 ± 0.003 |
 | MODEL-EX | 0.173 | 0.158 ± 0.004 | 0.196 | 0.177 ± 0.006 | 0.202 | 0.161 ± 0.006 | 0.024 | 0.025 ± 0.002 | 0.650 | 0.581 ± 0.003 | 0.323 | 0.276 ± 0.004 | 0.337 | 0.296 ± 0.003 |
 
-### auc
+### Full-data auc (Sem-Ent excluded)
 
 | task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | MDSA (pre-gen. control) leaky | leak-free | LOHSvar leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -1563,7 +1589,14 @@ Copied from `reports/e5_leakage.md` (`log_parsing_e5_leakage.py report`; protoco
 **auc**: best method changes on 1 of 8 tasks; 4 of 48 pairwise comparisons flip sign: SYN-BUG: Tok-Prob vs Output entropy (5/5 seeds); SYN-BUG: Output entropy vs MDSA (pre-gen. control) (5/5 seeds); MODEL-EX: Tok-Prob vs Output entropy (5/5 seeds); MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds).
 
 
-### What changes (G: post-generation baselines, Tok-Prob, Tok-Ent, Output entropy, LOHSvar)
+### What changes (G: post-generation baselines on the Sem-Ent subset (1,500 inputs per task, every method on the same inputs), Tok-Prob, Tok-Ent, Output entropy, LOHSvar, Sem-Ent)
+
+**spearman**: best method changes on 2 of 8 tasks; 11 of 80 pairwise comparisons flip sign: SYN-BUG: Tok-Ent vs Sem-Ent (4/5 seeds); SPELL-CHK: Tok-Prob vs Sem-Ent (5/5 seeds); SPELL-CHK: Tok-Ent vs Sem-Ent (5/5 seeds); GH-TYPO: Tok-Prob vs Sem-Ent (5/5 seeds); POS-TAG: Tok-Prob vs Sem-Ent (5/5 seeds); POS-TAG: Tok-Ent vs Sem-Ent (5/5 seeds); TOPIC-CLS: Tok-Prob vs Sem-Ent (5/5 seeds); TOPIC-CLS: Output entropy vs LOHSvar (5/5 seeds); ODD-ADD: Tok-Ent vs LOHSvar (4/5 seeds); MODEL-EX: Tok-Prob vs Sem-Ent (5/5 seeds); MODEL-EX: Output entropy vs Sem-Ent (5/5 seeds).
+
+**auc**: best method changes on 1 of 8 tasks; 11 of 80 pairwise comparisons flip sign: SYN-BUG: Tok-Prob vs LOHSvar (4/5 seeds); SYN-BUG: Tok-Prob vs Sem-Ent (4/5 seeds); SYN-BUG: Tok-Ent vs Sem-Ent (5/5 seeds); SYN-BUG: LOHSvar vs Sem-Ent (4/5 seeds); SPELL-CHK: Tok-Prob vs Sem-Ent (5/5 seeds); GH-TYPO: Tok-Prob vs Sem-Ent (5/5 seeds); POS-TAG: Tok-Prob vs Sem-Ent (5/5 seeds); POS-TAG: Tok-Ent vs Sem-Ent (5/5 seeds); MODEL-EX: Tok-Prob vs Output entropy (5/5 seeds); MODEL-EX: Tok-Prob vs Sem-Ent (5/5 seeds); MODEL-EX: Output entropy vs Sem-Ent (5/5 seeds).
+
+
+### What changes (G on all inputs without Sem-Ent, Tok-Prob, Tok-Ent, Output entropy, LOHSvar)
 
 **spearman**: best method changes on 1 of 8 tasks; 2 of 48 pairwise comparisons flip sign: TOPIC-CLS: Output entropy vs LOHSvar (5/5 seeds); MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds).
 
@@ -1572,23 +1605,46 @@ Copied from `reports/e5_leakage.md` (`log_parsing_e5_leakage.py report`; protoco
 
 Mean change leak-free minus leaky over tasks (per seed mean over tasks, then mean ± std over seeds; (k/5) = seeds with the sign):
 
-- spearman: Tok-Prob -0.024 ± 0.003 (5/5); Tok-Ent -0.021 ± 0.004 (5/5); Output entropy -0.151 ± 0.001 (5/5); MDSA (pre-gen. control) -0.011 ± 0.001 (5/5); LOHSvar -0.104 ± 0.002 (5/5); Tok-Prob (mean of 5) -0.071 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.060 ± 0.002 (5/5)
-- auc: Tok-Prob -0.013 ± 0.001 (5/5); Tok-Ent -0.011 ± 0.001 (5/5); Output entropy -0.071 ± 0.001 (5/5); MDSA (pre-gen. control) -0.004 ± 0.001 (5/5); LOHSvar -0.041 ± 0.001 (5/5); Tok-Prob (mean of 5) -0.035 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.029 ± 0.001 (5/5)
+- spearman: Tok-Prob -0.024 ± 0.003 (5/5); Tok-Ent -0.021 ± 0.004 (5/5); Output entropy -0.151 ± 0.001 (5/5); MDSA (pre-gen. control) -0.011 ± 0.001 (5/5); LOHSvar -0.104 ± 0.002 (5/5); Sem-Ent -0.149 ± 0.004 (5/5); Tok-Prob (mean of 5) -0.071 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.060 ± 0.002 (5/5)
+- auc: Tok-Prob -0.013 ± 0.001 (5/5); Tok-Ent -0.011 ± 0.001 (5/5); Output entropy -0.071 ± 0.001 (5/5); MDSA (pre-gen. control) -0.004 ± 0.001 (5/5); LOHSvar -0.041 ± 0.001 (5/5); Sem-Ent -0.091 ± 0.003 (5/5); Tok-Prob (mean of 5) -0.035 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.029 ± 0.001 (5/5)
 
-### G: LOHSvar's rank among the post-generation baselines (1 = best; leaky -> leak-free seed mean)
+### G: LOHSvar's rank among the post-generation baselines (1 = best; leaky -> leak-free seed mean; Sem-Ent subset, every method on the same inputs)
 
 | task | Spearman rank | AUC rank |
 |---|---|---|
-| SYN-BUG | 3 -> 3 | 2 -> 2 |
+| SYN-BUG | 4 -> 4 | 3 -> 3 |
 | SPELL-CHK | 2 -> 2 | 1 -> 1 |
 | GH-TYPO | 1 -> 1 | 1 -> 1 |
 | JSON-FIX | 2 -> 2 | 2 -> 2 |
 | POS-TAG | 2 -> 2 | 1 -> 1 |
 | TOPIC-CLS | 2 -> 1 | 1 -> 1 |
-| ODD-ADD | 3 -> 3 | 3 -> 3 |
+| ODD-ADD | 4 -> 5 | 5 -> 5 |
 | MODEL-EX | 1 -> 1 | 1 -> 1 |
 
-LOHSvar's rank changes on 1 of 8 tasks (Spearman) and 0 (AUC).
+LOHSvar's rank changes on 2 of 8 tasks (Spearman) and 0 (AUC).
+On all inputs without Sem-Ent (Tok-Prob, Tok-Ent, Output entropy, LOHSvar), LOHSvar's rank changes on 1 of 8 tasks (Spearman) and 0 (AUC): TOPIC-CLS 2->1.
+
+### G4: paired task/seed statistics (same inputs for every method)
+Signed coefficients/changes are shown; Spearman ordering, flips, SK-ESD and A12 use absolute correlation as prescribed in Decisions.
+
+#### spearman
+
+| method | leak-free macro | change vs leaky | seeds with change sign | SK-ESD | A12 vs LOHSvar |
+|---|---|---|---|---|---|
+| Tok-Prob | 0.275 ± 0.003 | -0.024 ± 0.003 | 5/5 | 2 | 0.145 |
+| Tok-Ent | 0.305 ± 0.001 | -0.023 ± 0.001 | 5/5 | 2 | 0.147 |
+| Output entropy | 0.473 ± 0.006 | -0.151 ± 0.006 | 5/5 | 1 | 0.541 |
+| LOHSvar | 0.493 ± 0.003 | -0.106 ± 0.003 | 5/5 | 1 | 0.500 |
+| Sem-Ent | 0.218 ± 0.004 | -0.149 ± 0.004 | 5/5 | 3 | 0.148 |
+#### auc
+
+| method | leak-free macro | change vs leaky | seeds with change sign | SK-ESD | A12 vs LOHSvar |
+|---|---|---|---|---|---|
+| Tok-Prob | 0.655 ± 0.001 | -0.014 ± 0.001 | 5/5 | 3 | 0.135 |
+| Tok-Ent | 0.672 ± 0.002 | -0.012 ± 0.002 | 5/5 | 3 | 0.176 |
+| Output entropy | 0.727 ± 0.002 | -0.072 ± 0.002 | 5/5 | 2 | 0.399 |
+| LOHSvar | 0.771 ± 0.002 | -0.041 ± 0.002 | 5/5 | 1 | 0.500 |
+| Sem-Ent | 0.618 ± 0.003 | -0.091 ± 0.003 | 5/5 | 4 | 0.098 |
 
 Output entropy = entropy of the parsed answers (task labeler) over the samples; it is not the stored `answer_level_entropy` (present for some tasks only; Spearman with ours: GH-TYPO -0.45, JSON-FIX -0.39, POS-TAG -0.05, TOPIC-CLS -0.22, ODD-ADD -0.25, MODEL-EX -0.15). MDSA coverage (inputs with a stored score): SYN-BUG 0.99, SPELL-CHK 0.98, GH-TYPO 0.98, JSON-FIX 0.31, POS-TAG 0.24, TOPIC-CLS 0.98, ODD-ADD 0.97, MODEL-EX 0.62
 
@@ -2084,6 +2140,36 @@ Macro PA_0 0.929; macro wrong groups 0.216.
 SK-ESD @20: 1. Most frequent 0.578; 1. D x size 0.557; 2. Random 0.310
 
 A12 D x size vs Most frequent: 0.46 (negligible)
+
+### gemma (12/12 systems)
+
+| system | groups (templates) | queries | LLM calls | wall s | PA_0 | wrong groups | gap D x size - Most frequent @20 |
+|---|---|---|---|---|---|---|---|
+| BGL | 57 | 55 | 122 | 142 | 0.996 | 0.123 | +0.054 |
+| HDFS | 13 | 0 | 0 | 2 | 1.000 | 0.000 | +nan |
+| HPC | 20 | 4 | 4 | 3 | 1.000 | 0.000 | +nan |
+| Hadoop | 224 | 193 | 302 | 297 | 0.922 | 0.196 | +0.065 |
+| HealthApp | 140 | 110 | 228 | 229 | 0.798 | 0.171 | -0.001 |
+| Linux | 350 | 370 | 561 | 477 | 0.380 | 0.409 | +0.003 |
+| Mac | 466 | 510 | 1152 | 1900 | 0.707 | 0.367 | +0.102 |
+| OpenSSH | 30 | 18 | 107 | 158 | 0.999 | 0.167 | +0.290 |
+| OpenStack | 45 | 13 | 13 | 11 | 1.000 | 0.000 | +nan |
+| Spark | 134 | 114 | 176 | 174 | 0.986 | 0.157 | -0.004 |
+| Thunderbird | 545 | 644 | 1665 | 2002 | 0.646 | 0.378 | -0.005 |
+| Zookeeper | 87 | 55 | 84 | 73 | 0.951 | 0.069 | +0.000 |
+
+Macro PA_0 0.865; macro wrong groups 0.170.
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.050 ± 0.035 | 0.088 ± 0.026 | 0.174 ± 0.028 | 0.404 ± 0.020 | 27 | 27 | 21 | 24 | +0.496 (5/5) |
+| Most frequent | 0.179 ± 0.000 | 0.501 ± 0.000 | 0.614 ± 0.000 | 0.810 ± 0.000 | 466 | 375 | 216 | 105 | +0.056 (5/5) |
+| D x size | 0.272 ± 0.000 | 0.558 ± 0.000 | 0.670 ± 0.000 | 0.821 ± 0.000 | 597 | 398 | 226 | 107 | |
+| Oracle | 0.715 ± 0.000 | 0.802 ± 0.000 | 0.852 ± 0.000 | 0.901 ± 0.000 | 865 | 495 | 275 | 124 | -0.182 (5/5) |
+
+SK-ESD @20: 1. D x size 0.670; 1. Most frequent 0.614; 2. Random 0.174
+
+A12 D x size vs Most frequent: 0.56 (small)
 
 
 ## 24. J: cross-model failure prediction (2026-11-10)
@@ -4058,6 +4144,254 @@ Eligible systems: 9/9; absent cohorts and zero initial-error denominators are ex
 
 Headline: with the real parser, Most frequent achieves 65.6% of Oracle’s macro gain after 20 reviews: 0.578 versus 0.881 of wrong lines fixed (gap 0.303). D × size beats frequency on every seed in: all/all systems/lines/5, all/all systems/templates/5, all/all systems/templates/50, all/held-out/lines/5, all/held-out/lines/50, all/held-out/templates/5, all/held-out/templates/50, llm_only/all systems/lines/5, llm_only/all systems/lines/10, llm_only/all systems/lines/20, llm_only/all systems/lines/50, llm_only/all systems/templates/5, llm_only/all systems/templates/10, llm_only/all systems/templates/20, llm_only/all systems/templates/50, llm_only/held-out/lines/5, llm_only/held-out/lines/50, llm_only/held-out/templates/5, llm_only/held-out/templates/20, llm_only/held-out/templates/50, llm_involved/all systems/lines/5, llm_involved/all systems/lines/10, llm_involved/all systems/lines/20, llm_involved/all systems/lines/50, llm_involved/all systems/templates/5, llm_involved/all systems/templates/10, llm_involved/all systems/templates/20, llm_involved/all systems/templates/50, llm_involved/held-out/lines/5, llm_involved/held-out/lines/50, llm_involved/held-out/templates/5, llm_involved/held-out/templates/20, llm_involved/held-out/templates/50, BGL/all/lines/50, BGL/all/templates/50, BGL/llm_only/lines/50, BGL/llm_only/templates/50, BGL/llm_involved/lines/50, BGL/llm_involved/templates/50, Hadoop/all/lines/50, Hadoop/all/templates/50, Hadoop/llm_only/lines/20, Hadoop/llm_only/lines/50, Hadoop/llm_only/templates/20, Hadoop/llm_only/templates/50, Hadoop/llm_involved/lines/20, Hadoop/llm_involved/lines/50, Hadoop/llm_involved/templates/20, Hadoop/llm_involved/templates/50, HealthApp/all/lines/5, HealthApp/all/templates/5, HealthApp/all/templates/50, Linux/all/lines/50, Linux/all/templates/50, Linux/llm_only/lines/20, Linux/llm_only/lines/50, Linux/llm_only/templates/50, Linux/llm_involved/lines/20, Linux/llm_involved/lines/50, Linux/llm_involved/templates/20, Linux/llm_involved/templates/50, OpenStack/llm_only/lines/5, OpenStack/llm_only/templates/5, OpenStack/llm_involved/lines/5, OpenStack/llm_involved/templates/5, Spark/all/lines/10, Spark/all/lines/20, Spark/all/templates/10, Spark/all/templates/20, Spark/llm_only/lines/10, Spark/llm_only/lines/20, Spark/llm_only/templates/10, Spark/llm_only/templates/20, Spark/llm_involved/lines/10, Spark/llm_involved/lines/20, Spark/llm_involved/templates/10, Spark/llm_involved/templates/20, Thunderbird/all/templates/50, Thunderbird/llm_only/lines/20, Thunderbird/llm_only/lines/50, Thunderbird/llm_only/templates/20, Thunderbird/llm_only/templates/50, Thunderbird/llm_involved/lines/20, Thunderbird/llm_involved/lines/50, Thunderbird/llm_involved/templates/20, Thunderbird/llm_involved/templates/50, Zookeeper/all/lines/50, Zookeeper/all/templates/50, Zookeeper/llm_only/lines/50, Zookeeper/llm_only/templates/50, Zookeeper/llm_involved/lines/50, Zookeeper/llm_involved/templates/50.
 
+### gemma: complete
+
+| System | Output templates | Candidate insertions | PA_0 | Wrong first-line | Wrong majority | Line share candidate / LLM / mixed / unknown | Template share candidate / LLM / mixed / unknown |
+|---|---|---|---|---|---|---|---|
+| BGL | 57 | 32 | 0.996 | 0.123 | 0.123 | 0.131 / 0.869 / 0.000 / 0.000 | 0.246 / 0.754 / 0.000 / 0.000 |
+| HDFS | 13 | 32 | 1.000 | 0.000 | 0.000 | 1.000 / 0.000 / 0.000 / 0.000 | 1.000 / 0.000 / 0.000 / 0.000 |
+| HPC | 20 | 32 | 1.000 | 0.000 | 0.000 | 0.856 / 0.144 / 0.000 / 0.000 | 0.800 / 0.200 / 0.000 / 0.000 |
+| Hadoop | 224 | 32 | 0.922 | 0.196 | 0.196 | 0.140 / 0.860 / 0.000 / 0.000 | 0.143 / 0.857 / 0.000 / 0.000 |
+| HealthApp | 140 | 32 | 0.798 | 0.171 | 0.171 | 0.199 / 0.801 / 0.000 / 0.000 | 0.221 / 0.779 / 0.000 / 0.000 |
+| Linux | 350 | 32 | 0.380 | 0.409 | 0.409 | 0.166 / 0.833 / 0.001 / 0.000 | 0.080 / 0.917 / 0.003 / 0.000 |
+| Mac | 466 | 32 | 0.707 | 0.367 | 0.367 | 0.083 / 0.909 / 0.008 / 0.000 | 0.067 / 0.931 / 0.002 / 0.000 |
+| OpenSSH | 30 | 32 | 0.999 | 0.167 | 0.167 | 0.708 / 0.003 / 0.289 / 0.000 | 0.700 / 0.267 / 0.033 / 0.000 |
+| OpenStack | 45 | 32 | 1.000 | 0.000 | 0.000 | 0.823 / 0.177 / 0.000 / 0.000 | 0.711 / 0.289 / 0.000 / 0.000 |
+| Spark | 134 | 32 | 0.986 | 0.157 | 0.157 | 0.012 / 0.988 / 0.000 / 0.000 | 0.157 / 0.843 / 0.000 / 0.000 |
+| Thunderbird | 545 | 32 | 0.646 | 0.378 | 0.376 | 0.039 / 0.961 / 0.000 / 0.000 | 0.035 / 0.965 / 0.000 / 0.000 |
+| Zookeeper | 87 | 32 | 0.951 | 0.069 | 0.069 | 0.781 / 0.219 / 0.000 / 0.000 | 0.368 / 0.632 / 0.000 / 0.000 |
+
+| System | Gini | Top 1 / 5 / 10 / 20 line share | Top20 wrong first | Top20 wrong majority | ρ(size, first wrong) | ρ(size, majority wrong) |
+|---|---|---|---|---|---|---|
+| BGL | 0.958 | 0.756 / 0.977 / 0.991 / 0.994 | 0.100 | 0.100 | -0.17990644910385414 | -0.17990644910385414 |
+| HDFS | 0.656 | 0.244 / 0.983 / 1.000 / 1.000 | 0.000 | 0.000 | None | None |
+| HPC | 0.746 | 0.267 / 0.880 / 0.979 / 1.000 | 0.000 | 0.000 | None | None |
+| Hadoop | 0.853 | 0.265 / 0.492 / 0.625 / 0.755 | 0.100 | 0.100 | -0.09512662547343127 | -0.09512662547343127 |
+| HealthApp | 0.907 | 0.138 / 0.654 / 0.862 / 0.915 | 0.250 | 0.250 | -0.02098975486773534 | -0.02098975486773534 |
+| Linux | 0.897 | 0.435 / 0.763 / 0.814 / 0.870 | 0.550 | 0.550 | 0.022190811287220367 | 0.022190811287220367 |
+| Mac | 0.779 | 0.098 / 0.201 / 0.297 / 0.419 | 0.200 | 0.200 | -0.09151035832860416 | -0.09151035832860416 |
+| OpenSSH | 0.858 | 0.289 / 0.915 / 0.994 / 0.999 | 0.000 | 0.000 | -0.4606187608610215 | -0.4606187608610215 |
+| OpenStack | 0.631 | 0.467 / 0.622 / 0.707 / 0.813 | 0.000 | 0.000 | None | None |
+| Spark | 0.959 | 0.493 / 0.943 / 0.956 / 0.969 | 0.250 | 0.250 | -0.010960445768136758 | -0.010960445768136758 |
+| Thunderbird | 0.772 | 0.227 / 0.435 / 0.512 / 0.577 | 0.350 | 0.350 | -0.01965712186205011 | -0.025666984618592802 |
+| Zookeeper | 0.875 | 0.140 / 0.695 / 0.845 / 0.981 | 0.100 | 0.100 | 0.0919019615892372 | 0.0919019615892372 |
+
+N5 comparison uses the same 12 systems for every parser, all stream lines; strong retains its 10 verified seed templates.
+
+| Parser | Strict PA | PTA | RTA | FTA |
+|---|---|---|---|---|
+| AdaParser | 0.865 | 0.822 | 0.836 | 0.828 |
+| Drain | 0.318 | 0.267 | 0.342 | 0.277 |
+| base | 0.364 | 0.415 | 0.441 | 0.424 |
+| strong | 0.630 | 0.566 | 0.572 | 0.568 |
+
+#### all, all systems: share of initially wrong lines fixed
+
+Eligible systems: 9/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.050 ± 0.035 | 0.179 ± 0.000 | 0.272 ± 0.000 | 0.715 ± 0.000 | 0.094 ± 0.000 (+5/−0/5) | 0.536 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.617 (small) |
+| 10 | 0.088 ± 0.026 | 0.501 ± 0.000 | 0.558 ± 0.000 | 0.802 ± 0.000 | 0.057 ± 0.000 (+5/−0/5) | 0.301 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.543 (negligible) |
+| 20 | 0.174 ± 0.028 | 0.614 ± 0.000 | 0.670 ± 0.000 | 0.852 ± 0.000 | 0.056 ± 0.000 (+5/−0/5) | 0.238 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.562 (small) |
+| 50 | 0.404 ± 0.020 | 0.810 ± 0.000 | 0.821 ± 0.000 | 0.901 ± 0.000 | 0.011 ± 0.000 (+5/−0/5) | 0.090 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.506 (negligible) |
+
+#### all, all systems: share of initially wrong templates fixed
+
+Eligible systems: 9/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.060 ± 0.029 | 0.009 ± 0.000 | 0.016 ± 0.000 | 0.355 ± 0.000 | 0.007 ± 0.000 (+5/−0/5) | 0.346 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.636 (small) |
+| 10 | 0.111 ± 0.018 | 0.078 ± 0.000 | 0.097 ± 0.000 | 0.477 ± 0.000 | 0.019 ± 0.000 (+5/−0/5) | 0.400 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.519 (negligible) |
+| 20 | 0.210 ± 0.008 | 0.131 ± 0.000 | 0.175 ± 0.000 | 0.622 ± 0.000 | 0.044 ± 0.000 (+5/−0/5) | 0.490 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.617 (small) |
+| 50 | 0.408 ± 0.022 | 0.424 ± 0.000 | 0.413 ± 0.000 | 0.760 ± 0.000 | -0.010 ± 0.000 (+0/−5/5) | 0.336 ± 0.000 | oracle:1; frequent:2; dsize:2; random:2 | 0.512 (negligible) |
+
+#### all, held-out: share of initially wrong lines fixed
+
+Eligible systems: 7/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.056 ± 0.051 | 0.074 ± 0.000 | 0.194 ± 0.000 | 0.701 ± 0.000 | 0.120 ± 0.000 (+5/−0/5) | 0.627 ± 0.000 | oracle:1; dsize:2; frequent:3; random:3 | 0.653 (medium) |
+| 10 | 0.103 ± 0.051 | 0.458 ± 0.000 | 0.534 ± 0.000 | 0.773 ± 0.000 | 0.076 ± 0.000 (+5/−0/5) | 0.315 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.561 (small) |
+| 20 | 0.194 ± 0.032 | 0.562 ± 0.000 | 0.634 ± 0.000 | 0.825 ± 0.000 | 0.072 ± 0.000 (+5/−0/5) | 0.262 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.602 (small) |
+| 50 | 0.449 ± 0.021 | 0.779 ± 0.000 | 0.793 ± 0.000 | 0.883 ± 0.000 | 0.014 ± 0.000 (+5/−0/5) | 0.104 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.500 (negligible) |
+
+#### all, held-out: share of initially wrong templates fixed
+
+Eligible systems: 7/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.070 ± 0.039 | 0.002 ± 0.000 | 0.011 ± 0.000 | 0.418 ± 0.000 | 0.009 ± 0.000 (+5/−0/5) | 0.416 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.684 (medium) |
+| 10 | 0.129 ± 0.026 | 0.087 ± 0.000 | 0.113 ± 0.000 | 0.536 ± 0.000 | 0.025 ± 0.000 (+5/−0/5) | 0.449 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.541 (negligible) |
+| 20 | 0.245 ± 0.003 | 0.131 ± 0.000 | 0.187 ± 0.000 | 0.643 ± 0.000 | 0.056 ± 0.000 (+5/−0/5) | 0.512 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.643 (medium) |
+| 50 | 0.462 ± 0.020 | 0.461 ± 0.000 | 0.448 ± 0.000 | 0.791 ± 0.000 | -0.013 ± 0.000 (+0/−5/5) | 0.329 ± 0.000 | oracle:1; random:2; frequent:2; dsize:2 | 0.520 (negligible) |
+
+#### llm_only, all systems: share of initially wrong lines fixed
+
+Eligible systems: 9/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.126 ± 0.008 | 0.524 ± 0.000 | 0.589 ± 0.000 | 0.752 ± 0.000 | 0.065 ± 0.000 (+5/−0/5) | 0.228 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.556 (negligible) |
+| 10 | 0.194 ± 0.017 | 0.682 ± 0.000 | 0.701 ± 0.000 | 0.840 ± 0.000 | 0.020 ± 0.000 (+5/−0/5) | 0.158 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.512 (negligible) |
+| 20 | 0.292 ± 0.080 | 0.752 ± 0.000 | 0.779 ± 0.000 | 0.890 ± 0.000 | 0.027 ± 0.000 (+5/−0/5) | 0.138 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.519 (negligible) |
+| 50 | 0.508 ± 0.029 | 0.860 ± 0.000 | 0.877 ± 0.000 | 0.938 ± 0.000 | 0.017 ± 0.000 (+5/−0/5) | 0.078 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.549 (negligible) |
+
+#### llm_only, all systems: share of initially wrong templates fixed
+
+Eligible systems: 9/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.126 ± 0.009 | 0.127 ± 0.000 | 0.135 ± 0.000 | 0.355 ± 0.000 | 0.007 ± 0.000 (+5/−0/5) | 0.228 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.549 (negligible) |
+| 10 | 0.203 ± 0.005 | 0.220 ± 0.000 | 0.240 ± 0.000 | 0.478 ± 0.000 | 0.020 ± 0.000 (+5/−0/5) | 0.258 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.519 (negligible) |
+| 20 | 0.280 ± 0.009 | 0.296 ± 0.000 | 0.300 ± 0.000 | 0.622 ± 0.000 | 0.004 ± 0.000 (+5/−0/5) | 0.326 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.525 (negligible) |
+| 50 | 0.478 ± 0.010 | 0.489 ± 0.000 | 0.509 ± 0.000 | 0.760 ± 0.000 | 0.021 ± 0.000 (+5/−0/5) | 0.272 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.549 (negligible) |
+
+#### llm_only, held-out: share of initially wrong lines fixed
+
+Eligible systems: 7/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.154 ± 0.018 | 0.515 ± 0.000 | 0.576 ± 0.000 | 0.748 ± 0.000 | 0.062 ± 0.000 (+5/−0/5) | 0.233 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.551 (negligible) |
+| 10 | 0.240 ± 0.012 | 0.670 ± 0.000 | 0.688 ± 0.000 | 0.821 ± 0.000 | 0.019 ± 0.000 (+5/−0/5) | 0.151 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.520 (negligible) |
+| 20 | 0.335 ± 0.080 | 0.738 ± 0.000 | 0.766 ± 0.000 | 0.873 ± 0.000 | 0.028 ± 0.000 (+5/−0/5) | 0.135 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.520 (negligible) |
+| 50 | 0.578 ± 0.033 | 0.842 ± 0.000 | 0.862 ± 0.000 | 0.930 ± 0.000 | 0.020 ± 0.000 (+5/−0/5) | 0.088 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.561 (small) |
+
+#### llm_only, held-out: share of initially wrong templates fixed
+
+Eligible systems: 7/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.155 ± 0.012 | 0.153 ± 0.000 | 0.162 ± 0.000 | 0.418 ± 0.000 | 0.009 ± 0.000 (+5/−0/5) | 0.265 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.561 (small) |
+| 10 | 0.248 ± 0.006 | 0.261 ± 0.000 | 0.282 ± 0.000 | 0.536 ± 0.000 | 0.021 ± 0.000 (+5/−0/5) | 0.275 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.531 (negligible) |
+| 20 | 0.330 ± 0.004 | 0.341 ± 0.000 | 0.339 ± 0.000 | 0.643 ± 0.000 | -0.002 ± 0.000 (+0/−5/5) | 0.302 ± 0.000 | oracle:1; frequent:2; dsize:2; random:2 | 0.531 (negligible) |
+| 50 | 0.544 ± 0.010 | 0.542 ± 0.000 | 0.561 ± 0.000 | 0.791 ± 0.000 | 0.019 ± 0.000 (+5/−0/5) | 0.249 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.541 (negligible) |
+
+#### llm_involved, all systems: share of initially wrong lines fixed
+
+Eligible systems: 9/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.098 ± 0.008 | 0.487 ± 0.000 | 0.552 ± 0.000 | 0.715 ± 0.000 | 0.065 ± 0.000 (+5/−0/5) | 0.229 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.568 (small) |
+| 10 | 0.158 ± 0.017 | 0.645 ± 0.000 | 0.665 ± 0.000 | 0.802 ± 0.000 | 0.019 ± 0.000 (+5/−0/5) | 0.157 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.512 (negligible) |
+| 20 | 0.257 ± 0.080 | 0.715 ± 0.000 | 0.742 ± 0.000 | 0.852 ± 0.000 | 0.027 ± 0.000 (+5/−0/5) | 0.136 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.519 (negligible) |
+| 50 | 0.472 ± 0.029 | 0.824 ± 0.000 | 0.841 ± 0.000 | 0.901 ± 0.000 | 0.017 ± 0.000 (+5/−0/5) | 0.076 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.549 (negligible) |
+
+#### llm_involved, all systems: share of initially wrong templates fixed
+
+Eligible systems: 9/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.112 ± 0.012 | 0.105 ± 0.000 | 0.112 ± 0.000 | 0.355 ± 0.000 | 0.007 ± 0.000 (+5/−0/5) | 0.250 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.549 (negligible) |
+| 10 | 0.203 ± 0.005 | 0.219 ± 0.000 | 0.240 ± 0.000 | 0.477 ± 0.000 | 0.020 ± 0.000 (+5/−0/5) | 0.258 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.519 (negligible) |
+| 20 | 0.279 ± 0.009 | 0.296 ± 0.000 | 0.300 ± 0.000 | 0.622 ± 0.000 | 0.004 ± 0.000 (+5/−0/5) | 0.326 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.525 (negligible) |
+| 50 | 0.478 ± 0.010 | 0.489 ± 0.000 | 0.510 ± 0.000 | 0.760 ± 0.000 | 0.021 ± 0.000 (+5/−0/5) | 0.271 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.549 (negligible) |
+
+#### llm_involved, held-out: share of initially wrong lines fixed
+
+Eligible systems: 7/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.117 ± 0.027 | 0.467 ± 0.000 | 0.529 ± 0.000 | 0.701 ± 0.000 | 0.062 ± 0.000 (+5/−0/5) | 0.234 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.551 (negligible) |
+| 10 | 0.194 ± 0.011 | 0.623 ± 0.000 | 0.641 ± 0.000 | 0.773 ± 0.000 | 0.018 ± 0.000 (+5/−0/5) | 0.150 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.520 (negligible) |
+| 20 | 0.289 ± 0.080 | 0.691 ± 0.000 | 0.719 ± 0.000 | 0.825 ± 0.000 | 0.028 ± 0.000 (+5/−0/5) | 0.134 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.520 (negligible) |
+| 50 | 0.532 ± 0.033 | 0.797 ± 0.000 | 0.816 ± 0.000 | 0.883 ± 0.000 | 0.019 ± 0.000 (+5/−0/5) | 0.086 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.561 (small) |
+
+#### llm_involved, held-out: share of initially wrong templates fixed
+
+Eligible systems: 7/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.138 ± 0.011 | 0.124 ± 0.000 | 0.134 ± 0.000 | 0.418 ± 0.000 | 0.009 ± 0.000 (+5/−0/5) | 0.293 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.561 (small) |
+| 10 | 0.248 ± 0.006 | 0.261 ± 0.000 | 0.282 ± 0.000 | 0.536 ± 0.000 | 0.021 ± 0.000 (+5/−0/5) | 0.275 ± 0.000 | oracle:1; dsize:2; frequent:2; random:2 | 0.531 (negligible) |
+| 20 | 0.330 ± 0.004 | 0.341 ± 0.000 | 0.339 ± 0.000 | 0.643 ± 0.000 | -0.002 ± 0.000 (+0/−5/5) | 0.302 ± 0.000 | oracle:1; frequent:2; dsize:2; random:2 | 0.531 (negligible) |
+| 50 | 0.544 ± 0.010 | 0.543 ± 0.000 | 0.561 ± 0.000 | 0.791 ± 0.000 | 0.019 ± 0.000 (+5/−0/5) | 0.248 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.541 (negligible) |
+
+#### Per-system D − frequency gains (mean gap, number of strictly positive seeds / 5)
+
+| System | Subset | Metric | N=5 | N=10 | N=20 | N=50 |
+|---|---|---|---|---|---|---|
+| BGL | all | lines | +0.000 (0/5) | +0.000 (0/5) | +0.054 (5/5) | +0.000 (0/5) |
+| BGL | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.143 (5/5) | +0.000 (0/5) |
+| BGL | llm_only | lines | +0.000 (0/5) | +0.054 (5/5) | +0.054 (5/5) | +0.000 (0/5) |
+| BGL | llm_only | templates | +0.000 (0/5) | +0.143 (5/5) | +0.143 (5/5) | +0.000 (0/5) |
+| BGL | llm_involved | lines | +0.000 (0/5) | +0.054 (5/5) | +0.054 (5/5) | +0.000 (0/5) |
+| BGL | llm_involved | templates | +0.000 (0/5) | +0.143 (5/5) | +0.143 (5/5) | +0.000 (0/5) |
+| HDFS | all | lines | undefined | undefined | undefined | undefined |
+| HDFS | all | templates | undefined | undefined | undefined | undefined |
+| HPC | all | lines | undefined | undefined | undefined | undefined |
+| HPC | all | templates | undefined | undefined | undefined | undefined |
+| HPC | llm_only | lines | undefined | undefined | undefined | undefined |
+| HPC | llm_only | templates | undefined | undefined | undefined | undefined |
+| HPC | llm_involved | lines | undefined | undefined | undefined | undefined |
+| HPC | llm_involved | templates | undefined | undefined | undefined | undefined |
+| Hadoop | all | lines | +0.342 (5/5) | +0.000 (0/5) | +0.065 (5/5) | +0.069 (5/5) |
+| Hadoop | all | templates | +0.023 (5/5) | +0.000 (0/5) | +0.023 (5/5) | +0.045 (5/5) |
+| Hadoop | llm_only | lines | +0.342 (5/5) | +0.000 (0/5) | +0.050 (5/5) | +0.054 (5/5) |
+| Hadoop | llm_only | templates | +0.023 (5/5) | +0.000 (0/5) | +0.023 (5/5) | +0.045 (5/5) |
+| Hadoop | llm_involved | lines | +0.342 (5/5) | +0.000 (0/5) | +0.050 (5/5) | +0.054 (5/5) |
+| Hadoop | llm_involved | templates | +0.023 (5/5) | +0.000 (0/5) | +0.023 (5/5) | +0.045 (5/5) |
+| HealthApp | all | lines | +0.560 (5/5) | +0.000 (0/5) | -0.001 (0/5) | +0.000 (0/5) |
+| HealthApp | all | templates | +0.042 (5/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| HealthApp | llm_only | lines | +0.149 (5/5) | -0.001 (0/5) | -0.021 (0/5) | +0.000 (5/5) |
+| HealthApp | llm_only | templates | +0.042 (5/5) | +0.000 (0/5) | -0.042 (0/5) | +0.042 (5/5) |
+| HealthApp | llm_involved | lines | +0.149 (5/5) | -0.001 (0/5) | -0.021 (0/5) | +0.000 (5/5) |
+| HealthApp | llm_involved | templates | +0.042 (5/5) | +0.000 (0/5) | -0.042 (0/5) | +0.042 (5/5) |
+| Linux | all | lines | +0.000 (0/5) | -0.018 (0/5) | +0.003 (5/5) | +0.001 (5/5) |
+| Linux | all | templates | +0.000 (0/5) | -0.007 (0/5) | +0.007 (5/5) | +0.000 (0/5) |
+| Linux | llm_only | lines | -0.002 (0/5) | -0.034 (0/5) | +0.000 (0/5) | +0.001 (5/5) |
+| Linux | llm_only | templates | +0.000 (0/5) | -0.014 (0/5) | +0.000 (0/5) | +0.007 (5/5) |
+| Linux | llm_involved | lines | -0.002 (0/5) | -0.034 (0/5) | +0.000 (0/5) | +0.001 (5/5) |
+| Linux | llm_involved | templates | +0.000 (0/5) | -0.014 (0/5) | +0.000 (0/5) | +0.007 (5/5) |
+| Mac | all | lines | +0.000 (0/5) | +0.084 (5/5) | +0.102 (5/5) | +0.048 (5/5) |
+| Mac | all | templates | +0.000 (0/5) | +0.012 (5/5) | +0.023 (5/5) | +0.023 (5/5) |
+| Mac | llm_only | lines | +0.000 (0/5) | +0.087 (5/5) | +0.125 (5/5) | +0.073 (5/5) |
+| Mac | llm_only | templates | +0.000 (0/5) | +0.012 (5/5) | +0.029 (5/5) | +0.029 (5/5) |
+| Mac | llm_involved | lines | +0.000 (0/5) | +0.084 (5/5) | +0.121 (5/5) | +0.071 (5/5) |
+| Mac | llm_involved | templates | +0.000 (0/5) | +0.012 (5/5) | +0.029 (5/5) | +0.029 (5/5) |
+| OpenSSH | all | lines | +0.000 (0/5) | +0.000 (0/5) | +0.290 (5/5) | +0.000 (0/5) |
+| OpenSSH | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.200 (5/5) | +0.000 (0/5) |
+| OpenSSH | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenSSH | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenSSH | llm_involved | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenSSH | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenStack | all | lines | undefined | undefined | undefined | undefined |
+| OpenStack | all | templates | undefined | undefined | undefined | undefined |
+| OpenStack | llm_only | lines | undefined | undefined | undefined | undefined |
+| OpenStack | llm_only | templates | undefined | undefined | undefined | undefined |
+| OpenStack | llm_involved | lines | undefined | undefined | undefined | undefined |
+| OpenStack | llm_involved | templates | undefined | undefined | undefined | undefined |
+| Spark | all | lines | +0.000 (0/5) | +0.000 (0/5) | -0.004 (0/5) | +0.000 (0/5) |
+| Spark | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| Spark | llm_only | lines | +0.158 (5/5) | +0.081 (5/5) | +0.047 (5/5) | +0.018 (5/5) |
+| Spark | llm_only | templates | +0.000 (0/5) | +0.048 (5/5) | +0.048 (5/5) | +0.048 (5/5) |
+| Spark | llm_involved | lines | +0.158 (5/5) | +0.081 (5/5) | +0.047 (5/5) | +0.018 (5/5) |
+| Spark | llm_involved | templates | +0.000 (0/5) | +0.048 (5/5) | +0.048 (5/5) | +0.048 (5/5) |
+| Thunderbird | all | lines | -0.060 (0/5) | +0.000 (0/5) | -0.005 (0/5) | -0.014 (0/5) |
+| Thunderbird | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.005 (5/5) |
+| Thunderbird | llm_only | lines | -0.060 (0/5) | -0.008 (0/5) | -0.005 (0/5) | +0.011 (5/5) |
+| Thunderbird | llm_only | templates | +0.000 (0/5) | -0.005 (0/5) | +0.000 (0/5) | +0.015 (5/5) |
+| Thunderbird | llm_involved | lines | -0.060 (0/5) | -0.008 (0/5) | -0.005 (0/5) | +0.011 (5/5) |
+| Thunderbird | llm_involved | templates | +0.000 (0/5) | -0.005 (0/5) | +0.000 (0/5) | +0.015 (5/5) |
+| Zookeeper | all | lines | +0.000 (0/5) | +0.447 (5/5) | +0.000 (0/5) | -0.004 (0/5) |
+| Zookeeper | all | templates | +0.000 (0/5) | +0.167 (5/5) | +0.000 (0/5) | -0.167 (0/5) |
+| Zookeeper | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | -0.004 (0/5) | +0.000 (0/5) |
+| Zookeeper | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | -0.167 (0/5) | +0.000 (0/5) |
+| Zookeeper | llm_involved | lines | +0.000 (0/5) | +0.000 (0/5) | -0.004 (0/5) | +0.000 (0/5) |
+| Zookeeper | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | -0.167 (0/5) | +0.000 (0/5) |
+
+Headline: with the real parser, Most frequent achieves 72.1% of Oracle’s macro gain after 20 reviews: 0.614 versus 0.852 of wrong lines fixed (gap 0.238). D × size beats frequency on every seed in: all/all systems/lines/5, all/all systems/lines/10, all/all systems/lines/20, all/all systems/lines/50, all/all systems/templates/5, all/all systems/templates/10, all/all systems/templates/20, all/held-out/lines/5, all/held-out/lines/10, all/held-out/lines/20, all/held-out/lines/50, all/held-out/templates/5, all/held-out/templates/10, all/held-out/templates/20, llm_only/all systems/lines/5, llm_only/all systems/lines/10, llm_only/all systems/lines/20, llm_only/all systems/lines/50, llm_only/all systems/templates/5, llm_only/all systems/templates/10, llm_only/all systems/templates/20, llm_only/all systems/templates/50, llm_only/held-out/lines/5, llm_only/held-out/lines/10, llm_only/held-out/lines/20, llm_only/held-out/lines/50, llm_only/held-out/templates/5, llm_only/held-out/templates/10, llm_only/held-out/templates/50, llm_involved/all systems/lines/5, llm_involved/all systems/lines/10, llm_involved/all systems/lines/20, llm_involved/all systems/lines/50, llm_involved/all systems/templates/5, llm_involved/all systems/templates/10, llm_involved/all systems/templates/20, llm_involved/all systems/templates/50, llm_involved/held-out/lines/5, llm_involved/held-out/lines/10, llm_involved/held-out/lines/20, llm_involved/held-out/lines/50, llm_involved/held-out/templates/5, llm_involved/held-out/templates/10, llm_involved/held-out/templates/50, BGL/all/lines/20, BGL/all/templates/20, BGL/llm_only/lines/10, BGL/llm_only/lines/20, BGL/llm_only/templates/10, BGL/llm_only/templates/20, BGL/llm_involved/lines/10, BGL/llm_involved/lines/20, BGL/llm_involved/templates/10, BGL/llm_involved/templates/20, Hadoop/all/lines/5, Hadoop/all/lines/20, Hadoop/all/lines/50, Hadoop/all/templates/5, Hadoop/all/templates/20, Hadoop/all/templates/50, Hadoop/llm_only/lines/5, Hadoop/llm_only/lines/20, Hadoop/llm_only/lines/50, Hadoop/llm_only/templates/5, Hadoop/llm_only/templates/20, Hadoop/llm_only/templates/50, Hadoop/llm_involved/lines/5, Hadoop/llm_involved/lines/20, Hadoop/llm_involved/lines/50, Hadoop/llm_involved/templates/5, Hadoop/llm_involved/templates/20, Hadoop/llm_involved/templates/50, HealthApp/all/lines/5, HealthApp/all/templates/5, HealthApp/llm_only/lines/5, HealthApp/llm_only/lines/50, HealthApp/llm_only/templates/5, HealthApp/llm_only/templates/50, HealthApp/llm_involved/lines/5, HealthApp/llm_involved/lines/50, HealthApp/llm_involved/templates/5, HealthApp/llm_involved/templates/50, Linux/all/lines/20, Linux/all/lines/50, Linux/all/templates/20, Linux/llm_only/lines/50, Linux/llm_only/templates/50, Linux/llm_involved/lines/50, Linux/llm_involved/templates/50, Mac/all/lines/10, Mac/all/lines/20, Mac/all/lines/50, Mac/all/templates/10, Mac/all/templates/20, Mac/all/templates/50, Mac/llm_only/lines/10, Mac/llm_only/lines/20, Mac/llm_only/lines/50, Mac/llm_only/templates/10, Mac/llm_only/templates/20, Mac/llm_only/templates/50, Mac/llm_involved/lines/10, Mac/llm_involved/lines/20, Mac/llm_involved/lines/50, Mac/llm_involved/templates/10, Mac/llm_involved/templates/20, Mac/llm_involved/templates/50, OpenSSH/all/lines/20, OpenSSH/all/templates/20, Spark/llm_only/lines/5, Spark/llm_only/lines/10, Spark/llm_only/lines/20, Spark/llm_only/lines/50, Spark/llm_only/templates/10, Spark/llm_only/templates/20, Spark/llm_only/templates/50, Spark/llm_involved/lines/5, Spark/llm_involved/lines/10, Spark/llm_involved/lines/20, Spark/llm_involved/lines/50, Spark/llm_involved/templates/10, Spark/llm_involved/templates/20, Spark/llm_involved/templates/50, Thunderbird/all/templates/50, Thunderbird/llm_only/lines/50, Thunderbird/llm_only/templates/50, Thunderbird/llm_involved/lines/50, Thunderbird/llm_involved/templates/50, Zookeeper/all/lines/10, Zookeeper/all/templates/10.
+
 ## 32. N1-N3: paired statistical supplement after cache restoration
 
 Source: `reports/cpu_analyses_stats.md`; protocol in PROGRESS.md Decisions.
@@ -5156,3 +5490,303 @@ N1 concentration is deterministic. N2/N3 use seeds 0–4, mean ± sample std of 
 | n0 | 0.099 ± 0.000 | +0.058 ± 0.000 (+5/−0/5) | 1 | 0.500 |
 | frequent20 | 0.041 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
 | dsize20 | 0.041 ± 0.000 | -0.000 ± 0.000 (+0/−5/5) | 2 | 0.375 |
+
+## 33. U/V: pooled input-token states and decision-point confidence
+
+Source: `reports/log_parsing_token_followups.md`; protocol in PROGRESS.md Decisions.
+
+
+Status: complete for both models.
+
+Fixed ablations; no retuning, winner selection or new generation calls. Mean ± sample std of five seed macros over matched complete systems. Held-out excludes HDFS/Spark/Linux. Reviews retain nominal reference100 (90 real target-suite labels, plus online verdicts) and the original stream layer. Nominal suite references100/200 likewise train U on 90/190 real inputs after dropping ten synthetic initial tests. V2 uses only sample0/initial greedy output; ambiguous stored-token alignments are missing, not guessed. Suite alignment reproduces teacher-forcing tokenization; stream checks use the declared whitespace/stop candidate family because original token IDs are unavailable. Full per-system predictions and review sequences are in `results_phase3{,_gemma}/token_followups/`.
+
+### llama: suites 13/13, review systems 13/13
+
+| System | Aligned suite share | Aligned base share | Aligned strong share |
+|---|---|---|---|
+| Apache | 1.000 | 0.034 | 0.034 |
+| BGL | 0.992 | 0.098 | 0.039 |
+| HDFS | 1.000 | 0.000 | 0.000 |
+| HPC | 1.000 | 0.015 | 0.000 |
+| Hadoop | 0.998 | 0.061 | 0.054 |
+| HealthApp | 1.000 | 0.006 | 0.006 |
+| Linux | 0.994 | 0.116 | 0.140 |
+| Mac | 0.992 | 0.062 | 0.023 |
+| OpenSSH | 1.000 | 0.000 | 0.000 |
+| OpenStack | 1.000 | 0.000 | 0.000 |
+| Spark | 0.998 | 0.194 | 0.144 |
+| Thunderbird | 0.998 | 0.176 | 0.122 |
+| Zookeeper | 0.996 | 0.182 | 0.143 |
+
+#### Disjoint AUC: all
+
+| Reference | Systems | Variant | AUC | Baseline | Δ AUC | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| 100 | 13 | S1 | 0.749 ± 0.032 | S1 | 0.000 ± 0.000 | +0/−0/5 | 2 | 0.500 |
+| 100 | 13 | S1 mean | 0.707 ± 0.034 | S1 | -0.042 ± 0.010 | +0/−5/5 | 3 | 0.347 |
+| 100 | 13 | S1 max | 0.682 ± 0.027 | S1 | -0.067 ± 0.027 | +0/−5/5 | 3 | 0.298 |
+| 100 | 13 | U | 0.776 ± 0.028 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 13 | U mean | 0.745 ± 0.033 | U | -0.032 ± 0.013 | +0/−5/5 | 2 | 0.370 |
+| 100 | 13 | U max | 0.715 ± 0.027 | U | -0.062 ± 0.025 | +0/−5/5 | 3 | 0.307 |
+| 100 | 13 | U+V2 | 0.777 ± 0.029 | U | 0.001 ± 0.002 | +2/−3/5 | 1 | 0.516 |
+| 100 | 13 | U+V5 | 0.783 ± 0.027 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 13 | U+V5+V2 | 0.782 ± 0.027 | U+V5 | -0.001 ± 0.002 | +1/−4/5 | 1 | 0.502 |
+| 200 | 13 | S1 | 0.755 ± 0.028 | S1 | 0.000 ± 0.000 | +0/−0/5 | 2 | 0.500 |
+| 200 | 13 | S1 mean | 0.718 ± 0.034 | S1 | -0.037 ± 0.014 | +0/−5/5 | 3 | 0.355 |
+| 200 | 13 | S1 max | 0.693 ± 0.032 | S1 | -0.063 ± 0.022 | +0/−5/5 | 3 | 0.302 |
+| 200 | 13 | U | 0.779 ± 0.024 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 13 | U mean | 0.751 ± 0.032 | U | -0.028 ± 0.019 | +1/−4/5 | 2 | 0.385 |
+| 200 | 13 | U max | 0.727 ± 0.026 | U | -0.052 ± 0.017 | +0/−5/5 | 3 | 0.312 |
+| 200 | 13 | U+V2 | 0.781 ± 0.025 | U | 0.001 ± 0.001 | +5/−0/5 | 1 | 0.517 |
+| 200 | 13 | U+V5 | 0.786 ± 0.023 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 13 | U+V5+V2 | 0.786 ± 0.024 | U+V5 | -0.001 ± 0.001 | +2/−3/5 | 1 | 0.502 |
+
+#### Review share of wrong lines fixed: all
+
+base: 11 stored baseline systems reproduced to 1e-12; newly reconstructed: HDFS, OpenSSH.
+
+strong: 13 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+
+| Parser | Reviews | Systems | Variant | Share fixed | Δ baseline | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| base | 5 | 13 | baseline | 0.706 ± 0.022 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 5 | 13 | mean | 0.716 ± 0.016 | 0.009 ± 0.007 | +4/−1/5 | 1 | 0.515 |
+| base | 5 | 13 | max | 0.714 ± 0.010 | 0.007 ± 0.028 | +4/−1/5 | 1 | 0.503 |
+| base | 5 | 13 | V2 | 0.732 ± 0.007 | 0.026 ± 0.020 | +4/−1/5 | 1 | 0.521 |
+| base | 10 | 13 | baseline | 0.799 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 10 | 13 | mean | 0.796 ± 0.002 | -0.003 ± 0.004 | +1/−4/5 | 1 | 0.493 |
+| base | 10 | 13 | max | 0.805 ± 0.014 | 0.005 ± 0.017 | +2/−3/5 | 1 | 0.478 |
+| base | 10 | 13 | V2 | 0.801 ± 0.007 | 0.002 ± 0.006 | +3/−2/5 | 1 | 0.502 |
+| base | 20 | 13 | baseline | 0.837 ± 0.001 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 20 | 13 | mean | 0.843 ± 0.012 | 0.006 ± 0.012 | +2/−3/5 | 1 | 0.497 |
+| base | 20 | 13 | max | 0.853 ± 0.011 | 0.016 ± 0.011 | +4/−1/5 | 1 | 0.505 |
+| base | 20 | 13 | V2 | 0.848 ± 0.013 | 0.011 ± 0.014 | +5/−0/5 | 1 | 0.502 |
+| base | 50 | 13 | baseline | 0.904 ± 0.001 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 50 | 13 | mean | 0.907 ± 0.001 | 0.003 ± 0.001 | +5/−0/5 | 1 | 0.496 |
+| base | 50 | 13 | max | 0.906 ± 0.001 | 0.002 ± 0.001 | +5/−0/5 | 1 | 0.482 |
+| base | 50 | 13 | V2 | 0.904 ± 0.001 | 0.000 ± 0.001 | +4/−1/5 | 1 | 0.495 |
+| strong | 5 | 13 | baseline | 0.641 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 5 | 13 | mean | 0.647 ± 0.008 | 0.006 ± 0.010 | +4/−1/5 | 1 | 0.500 |
+| strong | 5 | 13 | max | 0.644 ± 0.006 | 0.003 ± 0.007 | +2/−3/5 | 1 | 0.499 |
+| strong | 5 | 13 | V2 | 0.524 ± 0.033 | -0.117 ± 0.035 | +0/−5/5 | 2 | 0.413 |
+| strong | 10 | 13 | baseline | 0.742 ± 0.005 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 10 | 13 | mean | 0.733 ± 0.003 | -0.008 ± 0.004 | +0/−5/5 | 1 | 0.477 |
+| strong | 10 | 13 | max | 0.723 ± 0.005 | -0.019 ± 0.009 | +0/−5/5 | 1 | 0.466 |
+| strong | 10 | 13 | V2 | 0.696 ± 0.005 | -0.045 ± 0.007 | +0/−5/5 | 1 | 0.458 |
+| strong | 20 | 13 | baseline | 0.794 ± 0.001 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 20 | 13 | mean | 0.790 ± 0.003 | -0.004 ± 0.002 | +0/−5/5 | 1 | 0.487 |
+| strong | 20 | 13 | max | 0.790 ± 0.003 | -0.004 ± 0.004 | +0/−5/5 | 1 | 0.492 |
+| strong | 20 | 13 | V2 | 0.789 ± 0.002 | -0.005 ± 0.002 | +0/−5/5 | 1 | 0.487 |
+| strong | 50 | 13 | baseline | 0.841 ± 0.000 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 50 | 13 | mean | 0.843 ± 0.001 | 0.002 ± 0.001 | +5/−0/5 | 1 | 0.499 |
+| strong | 50 | 13 | max | 0.843 ± 0.001 | 0.002 ± 0.001 | +5/−0/5 | 1 | 0.500 |
+| strong | 50 | 13 | V2 | 0.836 ± 0.001 | -0.005 ± 0.001 | +0/−5/5 | 1 | 0.489 |
+
+#### Disjoint AUC: held-out
+
+| Reference | Systems | Variant | AUC | Baseline | Δ AUC | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| 100 | 10 | S1 | 0.733 ± 0.038 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 10 | S1 mean | 0.695 ± 0.043 | S1 | -0.038 ± 0.011 | +0/−5/5 | 2 | 0.370 |
+| 100 | 10 | S1 max | 0.667 ± 0.039 | S1 | -0.066 ± 0.041 | +0/−5/5 | 2 | 0.311 |
+| 100 | 10 | U | 0.764 ± 0.036 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 10 | U mean | 0.736 ± 0.042 | U | -0.027 ± 0.015 | +0/−5/5 | 1 | 0.397 |
+| 100 | 10 | U max | 0.701 ± 0.035 | U | -0.063 ± 0.038 | +0/−5/5 | 2 | 0.316 |
+| 100 | 10 | U+V2 | 0.764 ± 0.037 | U | 0.001 ± 0.002 | +3/−2/5 | 1 | 0.516 |
+| 100 | 10 | U+V5 | 0.770 ± 0.035 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 10 | U+V5+V2 | 0.769 ± 0.036 | U+V5 | -0.001 ± 0.001 | +1/−4/5 | 1 | 0.503 |
+| 200 | 10 | S1 | 0.738 ± 0.035 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 10 | S1 mean | 0.708 ± 0.038 | S1 | -0.030 ± 0.013 | +0/−5/5 | 2 | 0.394 |
+| 200 | 10 | S1 max | 0.677 ± 0.037 | S1 | -0.061 ± 0.027 | +0/−5/5 | 2 | 0.328 |
+| 200 | 10 | U | 0.766 ± 0.032 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 10 | U mean | 0.743 ± 0.036 | U | -0.022 ± 0.018 | +1/−4/5 | 1 | 0.422 |
+| 200 | 10 | U max | 0.717 ± 0.029 | U | -0.049 ± 0.022 | +0/−5/5 | 2 | 0.347 |
+| 200 | 10 | U+V2 | 0.767 ± 0.033 | U | 0.001 ± 0.002 | +3/−2/5 | 1 | 0.515 |
+| 200 | 10 | U+V5 | 0.772 ± 0.031 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 10 | U+V5+V2 | 0.771 ± 0.033 | U+V5 | -0.001 ± 0.002 | +1/−4/5 | 1 | 0.498 |
+
+#### Review share of wrong lines fixed: held-out
+
+base: 9 stored baseline systems reproduced to 1e-12; newly reconstructed: OpenSSH.
+
+strong: 10 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+
+| Parser | Reviews | Systems | Variant | Share fixed | Δ baseline | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| base | 5 | 10 | baseline | 0.653 ± 0.028 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 5 | 10 | mean | 0.665 ± 0.021 | 0.012 ± 0.009 | +4/−1/5 | 1 | 0.520 |
+| base | 5 | 10 | max | 0.663 ± 0.013 | 0.010 ± 0.036 | +4/−1/5 | 1 | 0.503 |
+| base | 5 | 10 | V2 | 0.687 ± 0.009 | 0.034 ± 0.026 | +4/−1/5 | 1 | 0.527 |
+| base | 10 | 10 | baseline | 0.760 ± 0.006 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 10 | 10 | mean | 0.758 ± 0.002 | -0.002 ± 0.005 | +1/−4/5 | 1 | 0.490 |
+| base | 10 | 10 | max | 0.767 ± 0.017 | 0.007 ± 0.022 | +2/−3/5 | 1 | 0.475 |
+| base | 10 | 10 | V2 | 0.762 ± 0.009 | 0.002 ± 0.008 | +3/−2/5 | 1 | 0.501 |
+| base | 20 | 10 | baseline | 0.805 ± 0.001 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 20 | 10 | mean | 0.813 ± 0.015 | 0.009 ± 0.015 | +2/−3/5 | 1 | 0.501 |
+| base | 20 | 10 | max | 0.825 ± 0.014 | 0.021 ± 0.014 | +4/−1/5 | 1 | 0.506 |
+| base | 20 | 10 | V2 | 0.819 ± 0.017 | 0.014 ± 0.018 | +5/−0/5 | 1 | 0.508 |
+| base | 50 | 10 | baseline | 0.886 ± 0.001 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 50 | 10 | mean | 0.890 ± 0.001 | 0.004 ± 0.001 | +5/−0/5 | 1 | 0.498 |
+| base | 50 | 10 | max | 0.889 ± 0.001 | 0.003 ± 0.001 | +5/−0/5 | 1 | 0.488 |
+| base | 50 | 10 | V2 | 0.886 ± 0.001 | 0.000 ± 0.001 | +4/−1/5 | 1 | 0.495 |
+| strong | 5 | 10 | baseline | 0.564 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 5 | 10 | mean | 0.572 ± 0.010 | 0.008 ± 0.012 | +4/−1/5 | 1 | 0.505 |
+| strong | 5 | 10 | max | 0.566 ± 0.009 | 0.002 ± 0.009 | +2/−3/5 | 1 | 0.495 |
+| strong | 5 | 10 | V2 | 0.513 ± 0.023 | -0.051 ± 0.026 | +0/−5/5 | 1 | 0.462 |
+| strong | 10 | 10 | baseline | 0.684 ± 0.007 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 10 | 10 | mean | 0.675 ± 0.003 | -0.009 ± 0.005 | +0/−5/5 | 1 | 0.486 |
+| strong | 10 | 10 | max | 0.660 ± 0.006 | -0.024 ± 0.011 | +0/−5/5 | 1 | 0.461 |
+| strong | 10 | 10 | V2 | 0.631 ± 0.007 | -0.052 ± 0.008 | +0/−5/5 | 1 | 0.461 |
+| strong | 20 | 10 | baseline | 0.747 ± 0.001 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 20 | 10 | mean | 0.743 ± 0.004 | -0.005 ± 0.003 | +0/−5/5 | 1 | 0.479 |
+| strong | 20 | 10 | max | 0.743 ± 0.003 | -0.005 ± 0.004 | +0/−5/5 | 1 | 0.484 |
+| strong | 20 | 10 | V2 | 0.742 ± 0.003 | -0.006 ± 0.003 | +0/−5/5 | 1 | 0.483 |
+| strong | 50 | 10 | baseline | 0.805 ± 0.000 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 50 | 10 | mean | 0.807 ± 0.001 | 0.003 ± 0.001 | +5/−0/5 | 1 | 0.497 |
+| strong | 50 | 10 | max | 0.807 ± 0.002 | 0.003 ± 0.002 | +5/−0/5 | 1 | 0.504 |
+| strong | 50 | 10 | V2 | 0.798 ± 0.001 | -0.006 ± 0.001 | +0/−5/5 | 1 | 0.481 |
+
+### gemma: suites 12/12, review systems 12/12
+
+| System | Aligned suite share | Aligned base share | Aligned strong share |
+|---|---|---|---|
+| BGL | 1.000 | 0.961 | 0.784 |
+| HDFS | 1.000 | 1.000 | 0.286 |
+| HPC | 1.000 | 1.000 | 0.853 |
+| Hadoop | 1.000 | 0.981 | 0.950 |
+| HealthApp | 1.000 | 1.000 | 0.999 |
+| Linux | 1.000 | 0.986 | 0.965 |
+| Mac | 1.000 | 0.986 | 0.989 |
+| OpenSSH | 1.000 | 1.000 | 0.615 |
+| OpenStack | 1.000 | 1.000 | 0.996 |
+| Spark | 1.000 | 0.978 | 0.914 |
+| Thunderbird | 1.000 | 0.944 | 0.924 |
+| Zookeeper | 1.000 | 1.000 | 0.870 |
+
+#### Disjoint AUC: all
+
+| Reference | Systems | Variant | AUC | Baseline | Δ AUC | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| 100 | 12 | S1 | 0.762 ± 0.010 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 12 | S1 mean | 0.742 ± 0.028 | S1 | -0.020 ± 0.023 | +1/−4/5 | 2 | 0.447 |
+| 100 | 12 | S1 max | 0.718 ± 0.011 | S1 | -0.043 ± 0.007 | +0/−5/5 | 2 | 0.350 |
+| 100 | 12 | U | 0.773 ± 0.015 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 12 | U mean | 0.756 ± 0.029 | U | -0.018 ± 0.025 | +2/−3/5 | 1 | 0.454 |
+| 100 | 12 | U max | 0.732 ± 0.016 | U | -0.042 ± 0.024 | +0/−5/5 | 2 | 0.325 |
+| 100 | 12 | U+V2 | 0.783 ± 0.012 | U | 0.010 ± 0.012 | +4/−1/5 | 1 | 0.560 |
+| 100 | 12 | U+V5 | 0.784 ± 0.010 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 12 | U+V5+V2 | 0.795 ± 0.016 | U+V5 | 0.010 ± 0.007 | +5/−0/5 | 1 | 0.547 |
+| 200 | 12 | S1 | 0.776 ± 0.011 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 12 | S1 mean | 0.752 ± 0.026 | S1 | -0.024 ± 0.024 | +1/−4/5 | 2 | 0.425 |
+| 200 | 12 | S1 max | 0.728 ± 0.009 | S1 | -0.049 ± 0.010 | +0/−5/5 | 2 | 0.336 |
+| 200 | 12 | U | 0.780 ± 0.016 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 12 | U mean | 0.764 ± 0.032 | U | -0.017 ± 0.025 | +1/−4/5 | 2 | 0.449 |
+| 200 | 12 | U max | 0.746 ± 0.019 | U | -0.035 ± 0.022 | +0/−5/5 | 2 | 0.343 |
+| 200 | 12 | U+V2 | 0.790 ± 0.015 | U | 0.010 ± 0.004 | +5/−0/5 | 1 | 0.552 |
+| 200 | 12 | U+V5 | 0.792 ± 0.015 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 12 | U+V5+V2 | 0.801 ± 0.015 | U+V5 | 0.009 ± 0.006 | +5/−0/5 | 1 | 0.560 |
+
+#### Review share of wrong lines fixed: all
+
+base: 12 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+
+strong: 12 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+
+| Parser | Reviews | Systems | Variant | Share fixed | Δ baseline | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| base | 5 | 12 | baseline | 0.739 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 5 | 12 | mean | 0.739 ± 0.012 | 0.000 ± 0.009 | +3/−2/5 | 1 | 0.523 |
+| base | 5 | 12 | max | 0.734 ± 0.010 | -0.006 ± 0.010 | +2/−3/5 | 1 | 0.512 |
+| base | 5 | 12 | V2 | 0.738 ± 0.005 | -0.002 ± 0.003 | +2/−3/5 | 1 | 0.494 |
+| base | 10 | 12 | baseline | 0.800 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 10 | 12 | mean | 0.798 ± 0.001 | -0.002 ± 0.001 | +1/−4/5 | 1 | 0.491 |
+| base | 10 | 12 | max | 0.793 ± 0.010 | -0.007 ± 0.010 | +1/−4/5 | 1 | 0.492 |
+| base | 10 | 12 | V2 | 0.798 ± 0.002 | -0.002 ± 0.002 | +1/−4/5 | 1 | 0.499 |
+| base | 20 | 12 | baseline | 0.840 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 20 | 12 | mean | 0.838 ± 0.002 | -0.003 ± 0.002 | +1/−4/5 | 1 | 0.490 |
+| base | 20 | 12 | max | 0.836 ± 0.001 | -0.004 ± 0.002 | +0/−5/5 | 1 | 0.503 |
+| base | 20 | 12 | V2 | 0.839 ± 0.005 | -0.001 ± 0.006 | +2/−3/5 | 1 | 0.496 |
+| base | 50 | 12 | baseline | 0.889 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 50 | 12 | mean | 0.889 ± 0.002 | 0.001 ± 0.004 | +3/−2/5 | 1 | 0.492 |
+| base | 50 | 12 | max | 0.889 ± 0.002 | 0.000 ± 0.003 | +4/−1/5 | 1 | 0.498 |
+| base | 50 | 12 | V2 | 0.890 ± 0.001 | 0.001 ± 0.003 | +4/−1/5 | 1 | 0.506 |
+| strong | 5 | 12 | baseline | 0.631 ± 0.007 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 5 | 12 | mean | 0.637 ± 0.005 | 0.006 ± 0.008 | +4/−1/5 | 1 | 0.495 |
+| strong | 5 | 12 | max | 0.628 ± 0.010 | -0.003 ± 0.013 | +3/−2/5 | 1 | 0.502 |
+| strong | 5 | 12 | V2 | 0.636 ± 0.004 | 0.005 ± 0.010 | +3/−2/5 | 1 | 0.507 |
+| strong | 10 | 12 | baseline | 0.725 ± 0.005 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 10 | 12 | mean | 0.715 ± 0.007 | -0.010 ± 0.006 | +0/−5/5 | 1 | 0.483 |
+| strong | 10 | 12 | max | 0.719 ± 0.004 | -0.006 ± 0.006 | +1/−4/5 | 1 | 0.476 |
+| strong | 10 | 12 | V2 | 0.722 ± 0.003 | -0.003 ± 0.005 | +1/−4/5 | 1 | 0.493 |
+| strong | 20 | 12 | baseline | 0.779 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 20 | 12 | mean | 0.776 ± 0.002 | -0.003 ± 0.006 | +1/−4/5 | 1 | 0.498 |
+| strong | 20 | 12 | max | 0.780 ± 0.003 | 0.001 ± 0.007 | +2/−3/5 | 1 | 0.495 |
+| strong | 20 | 12 | V2 | 0.780 ± 0.002 | 0.001 ± 0.005 | +3/−2/5 | 1 | 0.503 |
+| strong | 50 | 12 | baseline | 0.826 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 50 | 12 | mean | 0.828 ± 0.003 | 0.002 ± 0.003 | +3/−2/5 | 1 | 0.495 |
+| strong | 50 | 12 | max | 0.827 ± 0.002 | 0.001 ± 0.004 | +2/−3/5 | 1 | 0.494 |
+| strong | 50 | 12 | V2 | 0.829 ± 0.002 | 0.003 ± 0.002 | +5/−0/5 | 1 | 0.503 |
+
+#### Disjoint AUC: held-out
+
+| Reference | Systems | Variant | AUC | Baseline | Δ AUC | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| 100 | 9 | S1 | 0.749 ± 0.019 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 9 | S1 mean | 0.732 ± 0.039 | S1 | -0.017 ± 0.028 | +2/−3/5 | 2 | 0.457 |
+| 100 | 9 | S1 max | 0.706 ± 0.017 | S1 | -0.043 ± 0.016 | +0/−5/5 | 2 | 0.347 |
+| 100 | 9 | U | 0.758 ± 0.022 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 9 | U mean | 0.742 ± 0.042 | U | -0.016 ± 0.032 | +2/−3/5 | 1 | 0.473 |
+| 100 | 9 | U max | 0.716 ± 0.015 | U | -0.042 ± 0.034 | +0/−5/5 | 2 | 0.341 |
+| 100 | 9 | U+V2 | 0.768 ± 0.016 | U | 0.009 ± 0.017 | +3/−2/5 | 1 | 0.561 |
+| 100 | 9 | U+V5 | 0.769 ± 0.012 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 9 | U+V5+V2 | 0.778 ± 0.019 | U+V5 | 0.009 ± 0.008 | +4/−1/5 | 1 | 0.536 |
+| 200 | 9 | S1 | 0.764 ± 0.019 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 9 | S1 mean | 0.743 ± 0.036 | S1 | -0.021 ± 0.030 | +2/−3/5 | 2 | 0.424 |
+| 200 | 9 | S1 max | 0.713 ± 0.015 | S1 | -0.051 ± 0.014 | +0/−5/5 | 2 | 0.317 |
+| 200 | 9 | U | 0.762 ± 0.021 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 9 | U mean | 0.752 ± 0.047 | U | -0.010 ± 0.035 | +3/−2/5 | 1 | 0.485 |
+| 200 | 9 | U max | 0.730 ± 0.020 | U | -0.031 ± 0.033 | +1/−4/5 | 2 | 0.360 |
+| 200 | 9 | U+V2 | 0.772 ± 0.018 | U | 0.011 ± 0.007 | +5/−0/5 | 1 | 0.554 |
+| 200 | 9 | U+V5 | 0.775 ± 0.018 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 9 | U+V5+V2 | 0.784 ± 0.018 | U+V5 | 0.009 ± 0.008 | +4/−1/5 | 1 | 0.559 |
+
+#### Review share of wrong lines fixed: held-out
+
+base: 9 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+
+strong: 9 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+
+| Parser | Reviews | Systems | Variant | Share fixed | Δ baseline | Seed signs | SK-ESD | A12 |
+|---|---|---|---|---|---|---|---|---|
+| base | 5 | 9 | baseline | 0.699 ± 0.006 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 5 | 9 | mean | 0.706 ± 0.007 | 0.007 ± 0.009 | +4/−1/5 | 1 | 0.522 |
+| base | 5 | 9 | max | 0.691 ± 0.013 | -0.008 ± 0.013 | +1/−4/5 | 1 | 0.513 |
+| base | 5 | 9 | V2 | 0.697 ± 0.007 | -0.002 ± 0.004 | +2/−3/5 | 1 | 0.494 |
+| base | 10 | 9 | baseline | 0.767 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 10 | 9 | mean | 0.765 ± 0.001 | -0.003 ± 0.002 | +1/−4/5 | 1 | 0.483 |
+| base | 10 | 9 | max | 0.760 ± 0.013 | -0.007 ± 0.014 | +1/−4/5 | 1 | 0.495 |
+| base | 10 | 9 | V2 | 0.764 ± 0.003 | -0.004 ± 0.003 | +1/−4/5 | 1 | 0.495 |
+| base | 20 | 9 | baseline | 0.814 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 20 | 9 | mean | 0.810 ± 0.002 | -0.004 ± 0.003 | +0/−5/5 | 1 | 0.480 |
+| base | 20 | 9 | max | 0.809 ± 0.002 | -0.005 ± 0.003 | +0/−5/5 | 1 | 0.497 |
+| base | 20 | 9 | V2 | 0.813 ± 0.006 | -0.001 ± 0.008 | +2/−3/5 | 1 | 0.491 |
+| base | 50 | 9 | baseline | 0.870 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 50 | 9 | mean | 0.871 ± 0.003 | 0.001 ± 0.005 | +3/−2/5 | 1 | 0.483 |
+| base | 50 | 9 | max | 0.870 ± 0.002 | 0.000 ± 0.004 | +4/−1/5 | 1 | 0.491 |
+| base | 50 | 9 | V2 | 0.872 ± 0.002 | 0.002 ± 0.004 | +4/−1/5 | 1 | 0.513 |
+| strong | 5 | 9 | baseline | 0.534 ± 0.010 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 5 | 9 | mean | 0.547 ± 0.003 | 0.013 ± 0.012 | +5/−0/5 | 1 | 0.503 |
+| strong | 5 | 9 | max | 0.527 ± 0.013 | -0.007 ± 0.016 | +2/−3/5 | 1 | 0.499 |
+| strong | 5 | 9 | V2 | 0.538 ± 0.005 | 0.005 ± 0.013 | +3/−2/5 | 1 | 0.506 |
+| strong | 10 | 9 | baseline | 0.649 ± 0.007 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 10 | 9 | mean | 0.636 ± 0.009 | -0.013 ± 0.008 | +0/−5/5 | 1 | 0.471 |
+| strong | 10 | 9 | max | 0.642 ± 0.005 | -0.007 ± 0.009 | +1/−4/5 | 1 | 0.480 |
+| strong | 10 | 9 | V2 | 0.644 ± 0.004 | -0.005 ± 0.007 | +1/−4/5 | 1 | 0.486 |
+| strong | 20 | 9 | baseline | 0.718 ± 0.006 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 20 | 9 | mean | 0.713 ± 0.003 | -0.005 ± 0.008 | +1/−4/5 | 1 | 0.490 |
+| strong | 20 | 9 | max | 0.719 ± 0.003 | 0.002 ± 0.009 | +2/−3/5 | 1 | 0.493 |
+| strong | 20 | 9 | V2 | 0.718 ± 0.003 | 0.001 ± 0.006 | +3/−2/5 | 1 | 0.504 |
+| strong | 50 | 9 | baseline | 0.776 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 50 | 9 | mean | 0.779 ± 0.004 | 0.003 ± 0.004 | +3/−2/5 | 1 | 0.501 |
+| strong | 50 | 9 | max | 0.777 ± 0.003 | 0.001 ± 0.006 | +2/−3/5 | 1 | 0.498 |
+| strong | 50 | 9 | V2 | 0.781 ± 0.002 | 0.004 ± 0.003 | +5/−0/5 | 1 | 0.511 |

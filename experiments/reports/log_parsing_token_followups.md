@@ -1,6 +1,6 @@
 # G5: input-token pooling and decision-point confidence
 
-Status: partial; only complete five-seed systems are shown.
+Status: complete for both models.
 
 Fixed ablations; no retuning, winner selection or new generation calls. Mean ± sample std of five seed macros over matched complete systems. Held-out excludes HDFS/Spark/Linux. Reviews retain nominal reference100 (90 real target-suite labels, plus online verdicts) and the original stream layer. Nominal suite references100/200 likewise train U on 90/190 real inputs after dropping ten synthetic initial tests. V2 uses only sample0/initial greedy output; ambiguous stored-token alignments are missing, not guessed. Suite alignment reproduces teacher-forcing tokenization; stream checks use the declared whitespace/stop candidate family because original token IDs are unavailable. Full per-system predictions and review sequences are in `results_phase3{,_gemma}/token_followups/`.
 
@@ -150,7 +150,7 @@ strong: 10 stored baseline systems reproduced to 1e-12; newly reconstructed: non
 | strong | 50 | 10 | max | 0.807 ± 0.002 | 0.003 ± 0.002 | +5/−0/5 | 1 | 0.504 |
 | strong | 50 | 10 | V2 | 0.798 ± 0.001 | -0.006 ± 0.001 | +0/−5/5 | 1 | 0.481 |
 
-## gemma: suites 0/12, review systems 0/12
+## gemma: suites 12/12, review systems 12/12
 
 | System | Aligned suite share | Aligned base share | Aligned strong share |
 |---|---|---|---|
@@ -171,26 +171,126 @@ strong: 10 stored baseline systems reproduced to 1e-12; newly reconstructed: non
 
 | Reference | Systems | Variant | AUC | Baseline | Δ AUC | Seed signs | SK-ESD | A12 |
 |---|---|---|---|---|---|---|---|---|
+| 100 | 12 | S1 | 0.762 ± 0.010 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 12 | S1 mean | 0.742 ± 0.028 | S1 | -0.020 ± 0.023 | +1/−4/5 | 2 | 0.447 |
+| 100 | 12 | S1 max | 0.718 ± 0.011 | S1 | -0.043 ± 0.007 | +0/−5/5 | 2 | 0.350 |
+| 100 | 12 | U | 0.773 ± 0.015 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 12 | U mean | 0.756 ± 0.029 | U | -0.018 ± 0.025 | +2/−3/5 | 1 | 0.454 |
+| 100 | 12 | U max | 0.732 ± 0.016 | U | -0.042 ± 0.024 | +0/−5/5 | 2 | 0.325 |
+| 100 | 12 | U+V2 | 0.783 ± 0.012 | U | 0.010 ± 0.012 | +4/−1/5 | 1 | 0.560 |
+| 100 | 12 | U+V5 | 0.784 ± 0.010 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 12 | U+V5+V2 | 0.795 ± 0.016 | U+V5 | 0.010 ± 0.007 | +5/−0/5 | 1 | 0.547 |
+| 200 | 12 | S1 | 0.776 ± 0.011 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 12 | S1 mean | 0.752 ± 0.026 | S1 | -0.024 ± 0.024 | +1/−4/5 | 2 | 0.425 |
+| 200 | 12 | S1 max | 0.728 ± 0.009 | S1 | -0.049 ± 0.010 | +0/−5/5 | 2 | 0.336 |
+| 200 | 12 | U | 0.780 ± 0.016 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 12 | U mean | 0.764 ± 0.032 | U | -0.017 ± 0.025 | +1/−4/5 | 2 | 0.449 |
+| 200 | 12 | U max | 0.746 ± 0.019 | U | -0.035 ± 0.022 | +0/−5/5 | 2 | 0.343 |
+| 200 | 12 | U+V2 | 0.790 ± 0.015 | U | 0.010 ± 0.004 | +5/−0/5 | 1 | 0.552 |
+| 200 | 12 | U+V5 | 0.792 ± 0.015 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 12 | U+V5+V2 | 0.801 ± 0.015 | U+V5 | 0.009 ± 0.006 | +5/−0/5 | 1 | 0.560 |
 
 ### Review share of wrong lines fixed: all
 
-base: 0 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+base: 12 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
 
-strong: 0 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+strong: 12 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
 
 | Parser | Reviews | Systems | Variant | Share fixed | Δ baseline | Seed signs | SK-ESD | A12 |
 |---|---|---|---|---|---|---|---|---|
+| base | 5 | 12 | baseline | 0.739 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 5 | 12 | mean | 0.739 ± 0.012 | 0.000 ± 0.009 | +3/−2/5 | 1 | 0.523 |
+| base | 5 | 12 | max | 0.734 ± 0.010 | -0.006 ± 0.010 | +2/−3/5 | 1 | 0.512 |
+| base | 5 | 12 | V2 | 0.738 ± 0.005 | -0.002 ± 0.003 | +2/−3/5 | 1 | 0.494 |
+| base | 10 | 12 | baseline | 0.800 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 10 | 12 | mean | 0.798 ± 0.001 | -0.002 ± 0.001 | +1/−4/5 | 1 | 0.491 |
+| base | 10 | 12 | max | 0.793 ± 0.010 | -0.007 ± 0.010 | +1/−4/5 | 1 | 0.492 |
+| base | 10 | 12 | V2 | 0.798 ± 0.002 | -0.002 ± 0.002 | +1/−4/5 | 1 | 0.499 |
+| base | 20 | 12 | baseline | 0.840 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 20 | 12 | mean | 0.838 ± 0.002 | -0.003 ± 0.002 | +1/−4/5 | 1 | 0.490 |
+| base | 20 | 12 | max | 0.836 ± 0.001 | -0.004 ± 0.002 | +0/−5/5 | 1 | 0.503 |
+| base | 20 | 12 | V2 | 0.839 ± 0.005 | -0.001 ± 0.006 | +2/−3/5 | 1 | 0.496 |
+| base | 50 | 12 | baseline | 0.889 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 50 | 12 | mean | 0.889 ± 0.002 | 0.001 ± 0.004 | +3/−2/5 | 1 | 0.492 |
+| base | 50 | 12 | max | 0.889 ± 0.002 | 0.000 ± 0.003 | +4/−1/5 | 1 | 0.498 |
+| base | 50 | 12 | V2 | 0.890 ± 0.001 | 0.001 ± 0.003 | +4/−1/5 | 1 | 0.506 |
+| strong | 5 | 12 | baseline | 0.631 ± 0.007 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 5 | 12 | mean | 0.637 ± 0.005 | 0.006 ± 0.008 | +4/−1/5 | 1 | 0.495 |
+| strong | 5 | 12 | max | 0.628 ± 0.010 | -0.003 ± 0.013 | +3/−2/5 | 1 | 0.502 |
+| strong | 5 | 12 | V2 | 0.636 ± 0.004 | 0.005 ± 0.010 | +3/−2/5 | 1 | 0.507 |
+| strong | 10 | 12 | baseline | 0.725 ± 0.005 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 10 | 12 | mean | 0.715 ± 0.007 | -0.010 ± 0.006 | +0/−5/5 | 1 | 0.483 |
+| strong | 10 | 12 | max | 0.719 ± 0.004 | -0.006 ± 0.006 | +1/−4/5 | 1 | 0.476 |
+| strong | 10 | 12 | V2 | 0.722 ± 0.003 | -0.003 ± 0.005 | +1/−4/5 | 1 | 0.493 |
+| strong | 20 | 12 | baseline | 0.779 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 20 | 12 | mean | 0.776 ± 0.002 | -0.003 ± 0.006 | +1/−4/5 | 1 | 0.498 |
+| strong | 20 | 12 | max | 0.780 ± 0.003 | 0.001 ± 0.007 | +2/−3/5 | 1 | 0.495 |
+| strong | 20 | 12 | V2 | 0.780 ± 0.002 | 0.001 ± 0.005 | +3/−2/5 | 1 | 0.503 |
+| strong | 50 | 12 | baseline | 0.826 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 50 | 12 | mean | 0.828 ± 0.003 | 0.002 ± 0.003 | +3/−2/5 | 1 | 0.495 |
+| strong | 50 | 12 | max | 0.827 ± 0.002 | 0.001 ± 0.004 | +2/−3/5 | 1 | 0.494 |
+| strong | 50 | 12 | V2 | 0.829 ± 0.002 | 0.003 ± 0.002 | +5/−0/5 | 1 | 0.503 |
 
 ### Disjoint AUC: held-out
 
 | Reference | Systems | Variant | AUC | Baseline | Δ AUC | Seed signs | SK-ESD | A12 |
 |---|---|---|---|---|---|---|---|---|
+| 100 | 9 | S1 | 0.749 ± 0.019 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 9 | S1 mean | 0.732 ± 0.039 | S1 | -0.017 ± 0.028 | +2/−3/5 | 2 | 0.457 |
+| 100 | 9 | S1 max | 0.706 ± 0.017 | S1 | -0.043 ± 0.016 | +0/−5/5 | 2 | 0.347 |
+| 100 | 9 | U | 0.758 ± 0.022 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 9 | U mean | 0.742 ± 0.042 | U | -0.016 ± 0.032 | +2/−3/5 | 1 | 0.473 |
+| 100 | 9 | U max | 0.716 ± 0.015 | U | -0.042 ± 0.034 | +0/−5/5 | 2 | 0.341 |
+| 100 | 9 | U+V2 | 0.768 ± 0.016 | U | 0.009 ± 0.017 | +3/−2/5 | 1 | 0.561 |
+| 100 | 9 | U+V5 | 0.769 ± 0.012 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 100 | 9 | U+V5+V2 | 0.778 ± 0.019 | U+V5 | 0.009 ± 0.008 | +4/−1/5 | 1 | 0.536 |
+| 200 | 9 | S1 | 0.764 ± 0.019 | S1 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 9 | S1 mean | 0.743 ± 0.036 | S1 | -0.021 ± 0.030 | +2/−3/5 | 2 | 0.424 |
+| 200 | 9 | S1 max | 0.713 ± 0.015 | S1 | -0.051 ± 0.014 | +0/−5/5 | 2 | 0.317 |
+| 200 | 9 | U | 0.762 ± 0.021 | U | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 9 | U mean | 0.752 ± 0.047 | U | -0.010 ± 0.035 | +3/−2/5 | 1 | 0.485 |
+| 200 | 9 | U max | 0.730 ± 0.020 | U | -0.031 ± 0.033 | +1/−4/5 | 2 | 0.360 |
+| 200 | 9 | U+V2 | 0.772 ± 0.018 | U | 0.011 ± 0.007 | +5/−0/5 | 1 | 0.554 |
+| 200 | 9 | U+V5 | 0.775 ± 0.018 | U+V5 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| 200 | 9 | U+V5+V2 | 0.784 ± 0.018 | U+V5 | 0.009 ± 0.008 | +4/−1/5 | 1 | 0.559 |
 
 ### Review share of wrong lines fixed: held-out
 
-base: 0 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+base: 9 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
 
-strong: 0 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
+strong: 9 stored baseline systems reproduced to 1e-12; newly reconstructed: none.
 
 | Parser | Reviews | Systems | Variant | Share fixed | Δ baseline | Seed signs | SK-ESD | A12 |
 |---|---|---|---|---|---|---|---|---|
+| base | 5 | 9 | baseline | 0.699 ± 0.006 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 5 | 9 | mean | 0.706 ± 0.007 | 0.007 ± 0.009 | +4/−1/5 | 1 | 0.522 |
+| base | 5 | 9 | max | 0.691 ± 0.013 | -0.008 ± 0.013 | +1/−4/5 | 1 | 0.513 |
+| base | 5 | 9 | V2 | 0.697 ± 0.007 | -0.002 ± 0.004 | +2/−3/5 | 1 | 0.494 |
+| base | 10 | 9 | baseline | 0.767 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 10 | 9 | mean | 0.765 ± 0.001 | -0.003 ± 0.002 | +1/−4/5 | 1 | 0.483 |
+| base | 10 | 9 | max | 0.760 ± 0.013 | -0.007 ± 0.014 | +1/−4/5 | 1 | 0.495 |
+| base | 10 | 9 | V2 | 0.764 ± 0.003 | -0.004 ± 0.003 | +1/−4/5 | 1 | 0.495 |
+| base | 20 | 9 | baseline | 0.814 ± 0.002 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 20 | 9 | mean | 0.810 ± 0.002 | -0.004 ± 0.003 | +0/−5/5 | 1 | 0.480 |
+| base | 20 | 9 | max | 0.809 ± 0.002 | -0.005 ± 0.003 | +0/−5/5 | 1 | 0.497 |
+| base | 20 | 9 | V2 | 0.813 ± 0.006 | -0.001 ± 0.008 | +2/−3/5 | 1 | 0.491 |
+| base | 50 | 9 | baseline | 0.870 ± 0.003 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| base | 50 | 9 | mean | 0.871 ± 0.003 | 0.001 ± 0.005 | +3/−2/5 | 1 | 0.483 |
+| base | 50 | 9 | max | 0.870 ± 0.002 | 0.000 ± 0.004 | +4/−1/5 | 1 | 0.491 |
+| base | 50 | 9 | V2 | 0.872 ± 0.002 | 0.002 ± 0.004 | +4/−1/5 | 1 | 0.513 |
+| strong | 5 | 9 | baseline | 0.534 ± 0.010 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 5 | 9 | mean | 0.547 ± 0.003 | 0.013 ± 0.012 | +5/−0/5 | 1 | 0.503 |
+| strong | 5 | 9 | max | 0.527 ± 0.013 | -0.007 ± 0.016 | +2/−3/5 | 1 | 0.499 |
+| strong | 5 | 9 | V2 | 0.538 ± 0.005 | 0.005 ± 0.013 | +3/−2/5 | 1 | 0.506 |
+| strong | 10 | 9 | baseline | 0.649 ± 0.007 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 10 | 9 | mean | 0.636 ± 0.009 | -0.013 ± 0.008 | +0/−5/5 | 1 | 0.471 |
+| strong | 10 | 9 | max | 0.642 ± 0.005 | -0.007 ± 0.009 | +1/−4/5 | 1 | 0.480 |
+| strong | 10 | 9 | V2 | 0.644 ± 0.004 | -0.005 ± 0.007 | +1/−4/5 | 1 | 0.486 |
+| strong | 20 | 9 | baseline | 0.718 ± 0.006 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 20 | 9 | mean | 0.713 ± 0.003 | -0.005 ± 0.008 | +1/−4/5 | 1 | 0.490 |
+| strong | 20 | 9 | max | 0.719 ± 0.003 | 0.002 ± 0.009 | +2/−3/5 | 1 | 0.493 |
+| strong | 20 | 9 | V2 | 0.718 ± 0.003 | 0.001 ± 0.006 | +3/−2/5 | 1 | 0.504 |
+| strong | 50 | 9 | baseline | 0.776 ± 0.004 | 0.000 ± 0.000 | +0/−0/5 | 1 | 0.500 |
+| strong | 50 | 9 | mean | 0.779 ± 0.004 | 0.003 ± 0.004 | +3/−2/5 | 1 | 0.501 |
+| strong | 50 | 9 | max | 0.777 ± 0.003 | 0.001 ± 0.006 | +2/−3/5 | 1 | 0.498 |
+| strong | 50 | 9 | V2 | 0.781 ± 0.002 | 0.004 ± 0.003 | +5/−0/5 | 1 | 0.511 |
