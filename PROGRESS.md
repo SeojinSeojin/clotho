@@ -6,6 +6,8 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 
 ## Summary of findings
 
+- R4 concentration complete on 13/13 systems (up to 2M lines, cached ZIPs, no wrongness measured); see cpu_round3.md.
+
 <!-- OVERNIGHT SUMMARY BEGIN -->
 **CPU overnight continuation (2026-11-11 UTC).**
 - R1 complete: **The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds for gemma/base/L1, gemma/base/L2.

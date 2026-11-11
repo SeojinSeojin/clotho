@@ -133479,5 +133479,606 @@
    }
   }
  },
- "R4": {}
+ "R4": {
+  "HPC": {
+   "system": "HPC",
+   "complete": true,
+   "n_lines": 429988,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.080036864,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 68,
+     "gini": 0.9210294117647059,
+     "top_share": {
+      "1": 0.26736,
+      "5": 0.87284,
+      "10": 0.9668,
+      "20": 0.9981
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 264,
+     "gini": 0.9535878409090909,
+     "top_share": {
+      "1": 0.15032,
+      "5": 0.536735,
+      "10": 0.85873,
+      "20": 0.96764
+     },
+     "new_after_50k_share": 0.704385
+    },
+    "429988": {
+     "n_lines": 429988,
+     "groups": 321,
+     "gini": 0.9640934267034678,
+     "top_share": {
+      "1": 0.19743341674651385,
+      "5": 0.61689163418514,
+      "10": 0.8244857996037098,
+      "20": 0.9635989841576974
+     },
+     "new_after_50k_share": 0.862500813976204
+    }
+   }
+  },
+  "Spark": {
+   "system": "Spark",
+   "complete": true,
+   "n_lines": 2000000,
+   "full_log_reached": false,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079664128,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 139,
+     "gini": 0.9615692086330935,
+     "top_share": {
+      "1": 0.4931,
+      "5": 0.94588,
+      "10": 0.95906,
+      "20": 0.96986
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 166,
+     "gini": 0.9259943373493976,
+     "top_share": {
+      "1": 0.30213,
+      "5": 0.724345,
+      "10": 0.85128,
+      "20": 0.932905
+     },
+     "new_after_50k_share": 0.11178
+    },
+    "1000000": {
+     "n_lines": 1000000,
+     "groups": 171,
+     "gini": 0.9413275555555556,
+     "top_share": {
+      "1": 0.153374,
+      "5": 0.665148,
+      "10": 0.910234,
+      "20": 0.980965
+     },
+     "new_after_50k_share": 0.240982
+    },
+    "2000000": {
+     "n_lines": 2000000,
+     "groups": 174,
+     "gini": 0.9465778620689655,
+     "top_share": {
+      "1": 0.1611545,
+      "5": 0.6987785,
+      "10": 0.914293,
+      "20": 0.986733
+     },
+     "new_after_50k_share": 0.2489775
+    }
+   }
+  },
+  "HDFS": {
+   "system": "HDFS",
+   "complete": true,
+   "n_lines": 2000000,
+   "full_log_reached": false,
+   "raw_extracted": false,
+   "free_disk_gb": 62.080401408,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 14,
+     "gini": 0.6802828571428572,
+     "top_share": {
+      "1": 0.24376,
+      "5": 0.9828,
+      "10": 0.99984,
+      "20": 1.0
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 23,
+     "gini": 0.8044491304347826,
+     "top_share": {
+      "1": 0.23268,
+      "5": 0.98454,
+      "10": 0.99908,
+      "20": 0.999985
+     },
+     "new_after_50k_share": 0.000605
+    },
+    "1000000": {
+     "n_lines": 1000000,
+     "groups": 34,
+     "gini": 0.8363387647058823,
+     "top_share": {
+      "1": 0.196931,
+      "5": 0.871737,
+      "10": 0.998542,
+      "20": 0.999965
+     },
+     "new_after_50k_share": 0.100026
+    },
+    "2000000": {
+     "n_lines": 2000000,
+     "groups": 38,
+     "gini": 0.8219805,
+     "top_share": {
+      "1": 0.160323,
+      "5": 0.7704765,
+      "10": 0.998744,
+      "20": 0.9999665
+     },
+     "new_after_50k_share": 0.146452
+    }
+   }
+  },
+  "OpenStack": {
+   "system": "OpenStack",
+   "complete": true,
+   "n_lines": 207632,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.0796928,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 2616,
+     "gini": 0.9093156422018349,
+     "top_share": {
+      "1": 0.4666,
+      "5": 0.634,
+      "10": 0.73486,
+      "20": 0.84334
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 7221,
+     "gini": 0.931283518903199,
+     "top_share": {
+      "1": 0.452185,
+      "5": 0.648175,
+      "10": 0.7574,
+      "20": 0.8686
+     },
+     "new_after_50k_share": 0.04605
+    },
+    "207632": {
+     "n_lines": 207632,
+     "groups": 7221,
+     "gini": 0.9337594937095198,
+     "top_share": {
+      "1": 0.4357468983586345,
+      "5": 0.6571048778608307,
+      "10": 0.7623150574092625,
+      "20": 0.869427641211374
+     },
+     "new_after_50k_share": 0.04435732449718733
+    }
+   }
+  },
+  "Zookeeper": {
+   "system": "Zookeeper",
+   "complete": true,
+   "n_lines": 74273,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079401984,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 77,
+     "gini": 0.8631994805194805,
+     "top_share": {
+      "1": 0.13954,
+      "5": 0.69512,
+      "10": 0.84518,
+      "20": 0.98494
+     },
+     "new_after_50k_share": 0.0
+    },
+    "74273": {
+     "n_lines": 74273,
+     "groups": 77,
+     "gini": 0.8582934037136776,
+     "top_share": {
+      "1": 0.14041441708292382,
+      "5": 0.6998909428729148,
+      "10": 0.8360238579295303,
+      "20": 0.9783232130114577
+     },
+     "new_after_50k_share": 0.0
+    }
+   }
+  },
+  "Thunderbird": {
+   "system": "Thunderbird",
+   "complete": true,
+   "n_lines": 2000000,
+   "full_log_reached": false,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079574016,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 630,
+     "gini": 0.7476019682539683,
+     "top_share": {
+      "1": 0.22724,
+      "5": 0.39836,
+      "10": 0.4678,
+      "20": 0.53088
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 694,
+     "gini": 0.9137809798270894,
+     "top_share": {
+      "1": 0.3586,
+      "5": 0.670995,
+      "10": 0.755295,
+      "20": 0.812205
+     },
+     "new_after_50k_share": 0.002555
+    },
+    "1000000": {
+     "n_lines": 1000000,
+     "groups": 790,
+     "gini": 0.8173685949367089,
+     "top_share": {
+      "1": 0.090613,
+      "5": 0.322521,
+      "10": 0.398755,
+      "20": 0.474297
+     },
+     "new_after_50k_share": 0.092754
+    },
+    "2000000": {
+     "n_lines": 2000000,
+     "groups": 850,
+     "gini": 0.876515705882353,
+     "top_share": {
+      "1": 0.1053415,
+      "5": 0.4281065,
+      "10": 0.5142265,
+      "20": 0.6062995
+     },
+     "new_after_50k_share": 0.1785995
+    }
+   }
+  },
+  "OpenSSH": {
+   "system": "OpenSSH",
+   "complete": true,
+   "n_lines": 638947,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079725568,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 26,
+     "gini": 0.8360138461538461,
+     "top_share": {
+      "1": 0.2893,
+      "5": 0.91442,
+      "10": 0.99388,
+      "20": 0.99942
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 35,
+     "gini": 0.8718522857142857,
+     "top_share": {
+      "1": 0.28829,
+      "5": 0.91081,
+      "10": 0.99046,
+      "20": 0.999185
+     },
+     "new_after_50k_share": 0.00049
+    },
+    "638947": {
+     "n_lines": 638947,
+     "groups": 40,
+     "gini": 0.8044964997096786,
+     "top_share": {
+      "1": 0.2203124828819918,
+      "5": 0.680834247598001,
+      "10": 0.9170525880863358,
+      "20": 0.9988183683466704
+     },
+     "new_after_50k_share": 0.0004444813106564394
+    }
+   }
+  },
+  "Hadoop": {
+   "system": "Hadoop",
+   "complete": true,
+   "n_lines": 179993,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079950848,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 261,
+     "gini": 0.8616586973180077,
+     "top_share": {
+      "1": 0.26492,
+      "5": 0.49238,
+      "10": 0.6204,
+      "20": 0.7481
+     },
+     "new_after_50k_share": 0.0
+    },
+    "179993": {
+     "n_lines": 179993,
+     "groups": 322,
+     "gini": 0.8786027496652475,
+     "top_share": {
+      "1": 0.2549099131632897,
+      "5": 0.4483396576533532,
+      "10": 0.5914618901846183,
+      "20": 0.7338452050913091
+     },
+     "new_after_50k_share": 0.0034112437705910784
+    }
+   }
+  },
+  "Linux": {
+   "system": "Linux",
+   "complete": true,
+   "n_lines": 23921,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079741952,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "23921": {
+     "n_lines": 23921,
+     "groups": 430,
+     "gini": 0.8939319640327706,
+     "top_share": {
+      "1": 0.4349316500146315,
+      "5": 0.7390995359725764,
+      "10": 0.8158939843652021,
+      "20": 0.8543539149701099
+     },
+     "new_after_50k_share": 0.0
+    }
+   }
+  },
+  "HealthApp": {
+   "system": "HealthApp",
+   "complete": true,
+   "n_lines": 212394,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.079934464,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 6695,
+     "gini": 0.8645477640029873,
+     "top_share": {
+      "1": 0.1382,
+      "5": 0.63854,
+      "10": 0.74432,
+      "20": 0.7936
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 26437,
+     "gini": 0.8674251560313198,
+     "top_share": {
+      "1": 0.142765,
+      "5": 0.643315,
+      "10": 0.755875,
+      "20": 0.801015
+     },
+     "new_after_50k_share": 0.0998
+    },
+    "212394": {
+     "n_lines": 212394,
+     "groups": 27997,
+     "gini": 0.8678098276252063,
+     "top_share": {
+      "1": 0.14200495305893762,
+      "5": 0.6403146981553152,
+      "10": 0.7540373080218838,
+      "20": 0.799815437347571
+     },
+     "new_after_50k_share": 0.10134937898434042
+    }
+   }
+  },
+  "Apache": {
+   "system": "Apache",
+   "complete": true,
+   "n_lines": 51978,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.08073728,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 29,
+     "gini": 0.8153834482758621,
+     "top_share": {
+      "1": 0.3864,
+      "5": 0.84334,
+      "10": 0.98134,
+      "20": 0.99676
+     },
+     "new_after_50k_share": 0.0
+    },
+    "51978": {
+     "n_lines": 51978,
+     "groups": 29,
+     "gini": 0.8192537691675921,
+     "top_share": {
+      "1": 0.4013428758320828,
+      "5": 0.846473508022625,
+      "10": 0.9820500981184347,
+      "20": 0.9968832967794067
+     },
+     "new_after_50k_share": 0.0
+    }
+   }
+  },
+  "BGL": {
+   "system": "BGL",
+   "complete": true,
+   "n_lines": 2000000,
+   "full_log_reached": false,
+   "raw_extracted": false,
+   "free_disk_gb": 62.0807168,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 51,
+     "gini": 0.9539827450980393,
+     "top_share": {
+      "1": 0.75576,
+      "5": 0.97674,
+      "10": 0.99122,
+      "20": 0.99484
+     },
+     "new_after_50k_share": 0.0
+    },
+    "200000": {
+     "n_lines": 200000,
+     "groups": 107,
+     "gini": 0.9730871028037383,
+     "top_share": {
+      "1": 0.780575,
+      "5": 0.951515,
+      "10": 0.97971,
+      "20": 0.988725
+     },
+     "new_after_50k_share": 0.021785
+    },
+    "1000000": {
+     "n_lines": 1000000,
+     "groups": 160,
+     "gini": 0.915966225,
+     "top_share": {
+      "1": 0.320229,
+      "5": 0.666325,
+      "10": 0.811624,
+      "20": 0.886467
+     },
+     "new_after_50k_share": 0.200098
+    },
+    "2000000": {
+     "n_lines": 2000000,
+     "groups": 198,
+     "gini": 0.9515845151515151,
+     "top_share": {
+      "1": 0.5317335,
+      "5": 0.784497,
+      "10": 0.878235,
+      "20": 0.9269715
+     },
+     "new_after_50k_share": 0.1293515
+    }
+   }
+  },
+  "Mac": {
+   "system": "Mac",
+   "complete": true,
+   "n_lines": 100314,
+   "full_log_reached": true,
+   "raw_extracted": false,
+   "free_disk_gb": 62.07973376,
+   "prefix_asserted": true,
+   "wrongness_measured": false,
+   "points": {
+    "50000": {
+     "n_lines": 50000,
+     "groups": 1952,
+     "gini": 0.908073237704918,
+     "top_share": {
+      "1": 0.09782,
+      "5": 0.19692,
+      "10": 0.28544,
+      "20": 0.40366
+     },
+     "new_after_50k_share": 0.0
+    },
+    "100314": {
+     "n_lines": 100314,
+     "groups": 4016,
+     "gini": 0.929740768369789,
+     "top_share": {
+      "1": 0.07660944633849712,
+      "5": 0.183992264290129,
+      "10": 0.26357238271826466,
+      "20": 0.37758438503100267
+     },
+     "new_after_50k_share": 0.0725621548338218
+    }
+   }
+  }
+ }
 }

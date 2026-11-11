@@ -3748,6 +3748,13 @@ Only completed systems are shown; the system count below makes partial coverage 
 
 ## R4. Full-length concentration
 
-Queued only if R1–R3 finish with at least 30 minutes before the CPU cutoff. No wrongness is measured by R4.
+Concentration measured on 13 systems beyond the original stretch. **Wrongness is not measured here.** Existing ZIPs are streamed one system at a time, with a 2M-line cap and no raw extraction. These counts are deterministic; seed standard deviations are zero.
+
+| checkpoint | systems | actual lines | mean groups | mean Gini | mean top1/5/10/20 share | mean new-after-50k share |
+|---|---:|---|---:|---:|---|---:|
+| 50,000 | 12 | 50,000–50,000 | 1046.5 | 0.860 | 0.314/0.716/0.799/0.855 | 0.000 |
+| 200,000 | 8 | 200,000–200,000 | 4368.4 | 0.905 | 0.338/0.759/0.868/0.921 | 0.123 |
+| 1,000,000 | 4 | 1,000,000–1,000,000 | 288.8 | 0.878 | 0.190/0.631/0.780/0.835 | 0.158 |
+| 2M/full | 13 | 23,921–2,000,000 | 3208.7 | 0.888 | 0.251/0.630/0.773/0.853 | 0.138 |
 
 All per-system artifacts and statistics are in [cpu_round3_details.md](cpu_round3_details.md). Tail budgets are additional reviews after the 20 largest eligible groups; FTA uses only remaining lines. “Largest observed gain” describes results, not a held-out method-selection rule.
