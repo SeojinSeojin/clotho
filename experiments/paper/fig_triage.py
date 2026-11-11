@@ -1,4 +1,4 @@
-"""Figure: parsing accuracy vs number of human reviews in the cached-parser simulation (TRIAGE, E1); both models.
+"""Figure: parsing accuracy vs number of human reviews in the cached-parser simulation (active-selection variant, E1); both models.
 
   cd experiments && python paper/fig_triage.py   -> paper/figures/triage_reviews.pdf (+ .png, caption triage_reviews.tex)
 Source: reports/triage_details.json (log_parsing_triage.py report). Macro mean PA over systems, mean over 5 seeds;
@@ -12,8 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common as C  # noqa: E402
 
 NS = (0, 5, 10, 20, 50, 100)
-ORD = [("triage", "TRIAGE", C.COL["clotho"], "-", "o"),
-       ("dsize", "TRIAGE without active selection", C.COL["c+oe"], (0, (3, 1, 1, 1)), "P"),
+ORD = [("triage", "Active-selection variant", C.COL["clotho"], "-", "o"),
+       ("dsize", "D risk x size (no active selection)", C.COL["c+oe"], (0, (3, 1, 1, 1)), "P"),
        ("frequent", "Most frequent", C.COL["MDSA"], "--", "s"),
        ("llmlog", "LLMLog confidence x size", C.COL["lookup_drain"], "-.", "^"),
        ("clotho", "Clotho alone", C.COL["oe"], ":", "D"),
@@ -52,8 +52,8 @@ def main():
               "50,000 Loghub-2.0 lines in log order; Drain (Loghub-2.0 settings) groups lines, the LLM parses the first "
               "line of each new group (rules\\_template, greedy) and the template is cached for the group. A review "
               "replaces one cached template with the group's correct template. Macro mean over systems, mean over 5 "
-              "seeds (band: $\\pm$ std over seeds). TRIAGE: cross-system prior refit with verdicts, Clotho-style "
-              "uncertainty and diversity selection among the top-$M$ by risk $\\times$ lines; without active selection: top risk $\\times$ lines; Oracle: wrong templates by "
+              "seeds (band: $\\pm$ std over seeds). Active-selection variant: cross-system prior (D) refit with verdicts, Clotho-style "
+              "uncertainty and diversity selection among the top-$M$ by risk $\\times$ lines; D risk $\\times$ lines: top risk $\\times$ lines; Oracle: wrong templates by "
               "lines they break.")
     print(out)
 
