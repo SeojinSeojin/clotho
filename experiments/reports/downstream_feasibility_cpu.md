@@ -11,7 +11,7 @@ New contribution: full-horizon structured/label inventory and complete-unit spli
 
 HDFS: 575,061 BlockIds join labels with zero missing/extra blocks; 16,715 anomalous blocks do not occur in the first50,000 lines. The prefix contains4,088 blocks/123 anomalous blocks, but only39 complete blocks, all anomalous;84 anomalous prefix blocks continue outside it. Closing those prefix blocks still requires57,024 additional lines (prior preflight). Total GT types46; prefix13. Labels come from the official Loglizer HDFS label file. Its LF bytes differ from the old CRLF file, but converting line endings reproduces the old SHA256 exactly. This does not establish byte identity of the separate original HDFS_v1 raw corpus.
 
-BGL:332,222 alert lines, of which282 occur in the first50,000 lines and331,940 outside. Original labels are line alerts, not sessions. Any-alert aggregation produces18,738 anomalous nonoverlapping20-line windows out of231,564 (last short window retained);233 anomalous windows are in the cached prefix,18,505 outside. GT types320; prefix54. Do not compare line prevalence to window prevalence as if they were the same outcome.
+BGL:332,222 alert lines, of which282 occur in the first50,000 lines and331,940 outside. Original labels are line alerts, not sessions: 4,299,039 normal and332,222 anomalous lines (7.17% line prevalence). Any-alert aggregation produces18,738 anomalous nonoverlapping20-line windows out of231,564 (last short window retained);233 anomalous windows are in the cached prefix,18,505 outside. GT types320; prefix54. Do not compare line prevalence to window prevalence as if they were the same outcome.
 
 Raw timestamps exist (HDFS YYMMDD/HHMMSS, BGL epoch seconds), with zero backwards steps and no missing timestamps. Structured CSVs omit timestamps/labels, so these were recovered by raw LineId joins. HDFS BlockIds are extracted from content; BGL has no analogous session key. Four BGL Content fields are truncated at raw NUL bytes (LineIds4113275,4113305,4114040,4114041); the exact truncation was verified and recorded, without shifting or dropping rows. Future parser inputs must explicitly preserve or separately study this transformation.
 
@@ -42,14 +42,14 @@ Candidate1 (old prefix):60/20/20 raw-line cuts; HDFS normal counts0/0/0 and anom
 
 Selected candidate2 (new full horizon): raw-line chronological60/20/20, complete units wholly within a split; purge boundary-crossing units. HDFS129,899 crossing blocks are recorded explicitly (22.6% of blocks); BGL2 crossing windows. Original IDs and all members/events are stored in data/cpu_research/full_horizon/{HDFS,BGL}/{train,validation,test}.jsonl.gz; purged IDs saved separately. Cuts were frozen before scans and no detector outcome was consulted.
 
-| Dataset | Split | Units | Normal | Anomalous | Event types | Unseen event positions vs full train | Fully predicted units |
-|---|---|---|---|---|---|---|---|
-| HDFS | train | 262597 | 252485 | 10112 | 43 | 0.00% | 39 |
-| HDFS | validation | 62006 | 60670 | 1336 | 32 | 0.00% | 0 |
-| HDFS | test | 120559 | 118574 | 1985 | 28 | 0.00% | 0 |
-| BGL | train | 138937 | 126671 | 12266 | 200 | 0.00% | 2500 |
-| BGL | validation | 46312 | 42812 | 3500 | 214 | 43.58% | 0 |
-| BGL | test | 46313 | 43341 | 2972 | 258 | 78.97% | 0 |
+| Dataset | Split | Units | Normal | Anomalous | Event types | Unseen event types | Unseen event positions vs full train | Fully predicted units |
+|---|---|---|---|---|---|---|---|---|
+| HDFS | train | 262597 | 252485 | 10112 | 43 | 0.00% | 0.0000% | 39 |
+| HDFS | validation | 62006 | 60670 | 1336 | 32 | 3.12% | 0.0002% | 0 |
+| HDFS | test | 120559 | 118574 | 1985 | 28 | 3.57% | 0.0002% | 0 |
+| BGL | train | 138937 | 126671 | 12266 | 200 | 0.00% | 0.0000% | 2500 |
+| BGL | validation | 46312 | 42812 | 3500 | 214 | 19.63% | 43.5831% | 0 |
+| BGL | test | 46313 | 43341 | 2972 | 258 | 37.98% | 78.9666% | 0 |
 
 No HDFS session or raw line crosses splits. Purging HDFS long sessions changes the population; these results apply to contained sessions, not all blocks. Normal-only training is feasible for both full-horizon datasets. Additional label supervision is required for a supervised semantic model and must be costed separately from parser correctness labels.
 
