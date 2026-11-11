@@ -75,7 +75,7 @@ def prep():
 def start_server():
     import prompt_render as pr
     import urllib.request
-    env = dict(os.environ, VLLM_USE_FLASHINFER_SAMPLER="0")
+    env = dict(os.environ, VLLM_USE_FLASHINFER_SAMPLER="0", HF_HUB_OFFLINE="1")
     cmd = [str(EXP.parent / ".venv-vllm" / "bin" / "vllm"), "serve", pr.MODEL_IDS[MODEL], "--served-model-name", SERVED,
            "--port", str(PORT), "--dtype", "bfloat16", "--max-model-len", "8192", "--seed", "0",
            "--gpu-memory-utilization", "0.90", "--generation-config", "vllm"]
@@ -132,6 +132,10 @@ def run(push):
             # wait for every raw ZIP to finish restoring.
             csv_path = WORK / "full_dataset" / s / f"{s}_full.log_structured.csv"
             if not csv_path.exists():
+                for _ in range(60):
+                    if (ST.RAW / f'{s}.zip').exists():
+                        break
+                    time.sleep(10)
                 rows = ST.read_stretch(s)
                 csv_path.parent.mkdir(parents=True, exist_ok=True)
                 pd.DataFrame({'LineId': [r[0] for r in rows], 'Content': [r[1] for r in rows]}).to_csv(csv_path, index=False)
@@ -175,6 +179,8 @@ def hidden(push):
     import torch
     from clotho.exp_config import task2template
     D_LAYER = {"llama": 24, "gemma": 35}[MODEL]
+    np.random.seed(0)
+    torch.manual_seed(0)
     w = MC.wrapper()
     fn = task2template["log_parsing"]["rules_template"]
     for s in SYSTEMS:
@@ -238,24 +244,8 @@ def sim_job(system):
     import warnings
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
-    import log_parsing_triage as T
-    out = RES / f"{system}.json"
-    if out.exists():
-        return str(out), "exists"
-    d, cache = install(system)
-    ver = T.verdicts_of(system, "e2e")
-    full = (np.ones(d["G"], bool), np.bincount(d["grp"], minlength=d["G"]).astype(float))
-    tid = {t: i for i, t in enumerate(d["templates"])}
-    res = {"system": system, "n_lines": d["n"], "G": d["G"], "correct_groups": float(ver.mean()), "wrong_groups": float(1 - ver.mean()),
-           "pa0": float(sum(d["cnt"][g].get(tid.get(cache[g], -1), 0) for g in range(d["G"])) / d["n"]), "runs": {}}
-    src = T.source_data()
-    for name, facs in T.policies(system, "e2e", src, 10, ["random", "frequent", "dsize", "oracle"]).items():
-        for seed, fac in facs:
-            seq = T.run_policy(system, "e2e", fac(), [(full[0], full[1], 50)], ver)
-            res["runs"].setdefault(name, {})[seed] = {"seq": seq, "pa": [c / d["n"] for c in T.curve(d, cache, seq)]}
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(res))
-    return str(out), "done"
+    from log_parsing_adaparser_review import compute
+    return compute(system, sys.modules[__name__])
 
 
 def sim(push):
@@ -319,6 +309,8 @@ def report(push=False):
     (EXP / "reports" / "adaparser_e2e_details.md").write_text("\n".join(L) + "\n")
     (EXP / "reports" / "adaparser_e2e_details.json").write_text(json.dumps(J, indent=1, default=float))
     print("\n".join(L))
+    from log_parsing_adaparser_review import report as review_report
+    review_report(EXP, push)
     if push:
         import hub_sync as hs
         hs.commit_files(hs.get_results_repo(), {f"reports/adaparser_e2e_details.{e}": EXP / "reports" / f"adaparser_e2e_details.{e}"
