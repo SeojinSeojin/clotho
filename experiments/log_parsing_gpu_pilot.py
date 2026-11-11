@@ -60,7 +60,18 @@ def smoke():
   with torch.no_grad():out=model(torch.ones((2,cfg['context']),dtype=torch.long))
   assert tuple(out.shape)==((2,8) if kind=='deeplog' else (2,cfg['context'],8))
   assert torch.isfinite(out).all()
- save(OUT/'pilot_smoke.json',{'synthetic_only':True,'DeepLog_X':[20,10],'contextual_X':[2,20],'no_cross_unit_sequences':True,'small_random_CPU_detector_forward_passes':True,'no_pretrained_model_or_training':True})
+ real_checks=[]
+ from itertools import islice
+ for system in ('HDFS','BGL'):
+  root=DATA/'pilot'/system/'GT'
+  if not (root/'metadata.json').exists():continue
+  meta=load(root/'metadata.json')
+  for split in ('train','validation','test'):
+   tiny=list(islice(records(root/f'{split}.jsonl.gz'),2))
+   for kind,cfg in [('deeplog',CFG['sequence']),('contextual',CFG['contextual'])]:
+    xx,yy,oo=arrays(tiny,cfg['context'],kind);assert xx.shape[1]==cfg['context'] and len(xx)==len(yy)==len(oo);assert xx.max()<=len(meta['vocab']);assert set(oo)==set(range(len(tiny)))
+    real_checks.append({'system':system,'split':split,'detector':kind,'shape':list(xx.shape)})
+ save(OUT/'pilot_smoke.json',{'real_preprocessing_checks':real_checks,'synthetic_forward_only':True,'DeepLog_X':[20,10],'contextual_X':[2,20],'no_cross_unit_sequences':True,'small_random_CPU_detector_forward_passes':True,'no_pretrained_model_or_training':True})
  print('CPU preprocessing and small random detector forward smoke passed; no training or detector metrics')
 def build_model(n,cfg,detector):
  import torch

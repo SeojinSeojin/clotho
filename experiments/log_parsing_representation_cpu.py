@@ -105,7 +105,7 @@ def main():
      rvset=set(rv)
      pp=[corrections[g] if g in rvset else pred[i] for i,g in enumerate(operational)]
      lex,pairs=lexstats(gt,pp,test,vec)
-     memo[effective]=({'corrected_lines':sum(pp[i]==gt[i] and pred[i]!=gt[i] for i in range(len(gt))),'changed_template_groups':len(effective),'operational':baseline,'string_partition':partition(gt,pp),'sequence':seqstats(gt,pp,units),'test_lexical':lex},pairs)
+     memo[effective]=({'corrected_lines':sum(pp[i]==gt[i] and pred[i]!=gt[i] for i in range(len(gt))),'newly_wrong_lines':sum(pp[i]!=gt[i] and pred[i]==gt[i] for i in range(len(gt))),'net_correct_lines':sum(pp[i]==gt[i] for i in range(len(gt)))-sum(pred[i]==gt[i] for i in range(len(gt))),'changed_template_groups':len(effective),'operational':baseline,'string_partition':partition(gt,pp),'sequence':seqstats(gt,pp,units),'test_lexical':lex},pairs)
     metrics,pairs=memo[effective]
     z={'system':system,'parser':name,'method':method,'seed':seed,'budget':budget,'actual_reviews':len(rv),'partition_scope':'operational assignments fixed under template-only review',**metrics}
     allrows.append(z)
@@ -131,8 +131,8 @@ def plots(allrows,pairrows):
   for method in ['frequent','dsize','usize']:
    zz=[z for z in allrows if z['system']=='BGL' and z['parser']==name and z['method']==method]
    if zz:
-    bs=sorted({z['budget'] for z in zz});axs[1,1].plot(bs,[np.mean([z['test_lexical']['word_cosine'] for z in zz if z['budget']==b]) for b in bs],label=name+'/'+method)
- axs[1,1].set_title('BGL test lexical recovery; invalid anomaly split');axs[1,1].legend(fontsize=6)
+    bs=sorted({z['budget'] for z in zz});axs[1,1].plot(bs,[max(0.,1-np.mean([z['test_lexical']['word_cosine'] for z in zz if z['budget']==b])) for b in bs],label=name+'/'+method)
+ axs[1,1].set_title('BGL test lexical distortion; invalid anomaly split');axs[1,1].set_ylabel('1 − word TF-IDF cosine');axs[1,1].ticklabel_format(axis='y',style='sci',scilimits=(0,0),useOffset=False);axs[1,1].legend(fontsize=6)
  fig.tight_layout();fig.savefig(OUT/'representation.pdf');plt.close(fig)
  print('rows',len(allrows),flush=True)
 def allrows_for_system(rows,s):return [z for z in rows if z['system']==s]

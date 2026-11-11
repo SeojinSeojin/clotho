@@ -82,6 +82,8 @@ def main():
        # Pareto dominance uses matched common systems, cost and all three outcomes available.
       eligible=[m for m in methods if any(k[0]==m for k in selected)]
       common=sorted(set.intersection(*[{s for m0,s,k in selected if m0==m and all((m,s,q) in selected for q in range(5))} for m in eligible])) if eligible else []
+      required=('lines','groups') if parser=='real_AdaParser' else ('lines','groups','FTA')
+      common=[s for s in common if all(selected[m,s,q][met] is not None for m in eligible for q in range(5) for met in required)]
       if not common:continue
       objectives={m:{'cost':np.mean([cost(selected[m,s,q],scenario,ratio) for s in common for q in range(5)]),**{met:np.mean([selected[m,s,q][met] for s in common for q in range(5)]) for met in ('lines','groups','FTA') if all(selected[m,s,q][met] is not None for s in common for q in range(5))}} for m in eligible}
       # Restrict to common defined objectives for all methods; no incompatible units summed.
@@ -111,6 +113,8 @@ def main():
  for method in ['D × size','U+V5 × size','U-zero × size','U+V5-zero × size']:
   z=[r for r in comparisons if r.get('cohort','all')=='all' and r['model']=='llama' and r['parser']=='base' and r['metric']=='lines' and r['scenario']=='B_amortized' and r['budget_review_equivalents']==100 and r['method']==method]
   if z:axs[1,1].plot([r['review_to_label_cost'] for r in z],[r['mean_delta'] for r in z],marker='o',label=method)
+ axs[1,1].set_xticks([1,5,10]);axs[1,1].set_xlim(0,11)
+ for ratio in (1,5):axs[1,1].text(ratio,-.025,'No affordable\nstored point',ha='center',fontsize=7)
  axs[1,1].axhline(0,color='black',lw=.5);axs[1,1].set_title('Analytical cost ratios; observed outcomes');axs[1,1].set_xlabel('Review / binary-label cost');axs[1,1].set_ylabel('Paired gain vs frequency');axs[1,1].legend(fontsize=6)
  fig.tight_layout();fig.savefig(OUT/'review_cost.pdf');plt.close(fig)
  print('points',len(rows),'frontiers',len(front),'paired comparisons',len(comparisons),'pareto',len(pareto))
