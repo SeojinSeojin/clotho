@@ -318,8 +318,34 @@ def main():
         else:
             short += ['Pending: no complete cell available.']
         short += ['']
-    short += ['## R4. Full-length concentration', '', 'Not started; priority remains R1–R3. No wrongness is measured by R4.', '',
-              'All per-system artifacts and statistics are in [cpu_round3_details.md](cpu_round3_details.md). '
+    short += ['## R4. Full-length concentration', '']
+    full = {p.stem: read(p) for p in (E / 'results_phase3/concentration_full').glob('*.json') if read(p).get('complete')}
+    summary['R4'] = full
+    if full:
+        short += [f'Concentration measured on {len(full)} systems beyond the original stretch. **Wrongness is not measured here.** '
+                  'Existing ZIPs are streamed one system at a time, with a 2M-line cap and no raw extraction. '
+                  'These counts are deterministic; seed standard deviations are zero.', '',
+                  '| checkpoint | systems | actual lines | mean groups | mean Gini | mean top1/5/10/20 share | mean new-after-50k share |',
+                  '|---|---:|---|---:|---:|---|---:|']
+        for k in (50_000, 200_000, 1_000_000, 'full'):
+            points = [r['points'][str(max(map(int, r['points'])))] if k == 'full' else r['points'].get(str(k)) for r in full.values()]
+            points = [p for p in points if p]
+            if not points:
+                continue
+            means = lambda key: float(np.mean([p[key] for p in points]))
+            tops = '/'.join(f"{np.mean([p['top_share'][str(v)] for p in points]):.3f}" for v in (1, 5, 10, 20))
+            low, high = min(p['n_lines'] for p in points), max(p['n_lines'] for p in points)
+            label = '2M/full' if k == 'full' else f'{k:,}'
+            short.append(f"| {label} | {len(points)} | {low:,}–{high:,} | {means('groups'):.1f} | {means('gini'):.3f} | {tops} | {means('new_after_50k_share'):.3f} |")
+        detail += ['', '## R4 full-length concentration (no wrongness measured)', '',
+                   '| system | lines | groups | Gini | top1/5/10/20 shares | new-after-50k share |', '|---|---:|---:|---:|---|---:|']
+        for s, r in full.items():
+            for n, p in r['points'].items():
+                tops = '/'.join(f"{p['top_share'][str(v)]:.3f}" for v in (1, 5, 10, 20))
+                detail.append(f"| {s} | {n} | {p['groups']} | {p['gini']:.3f} | {tops} | {p['new_after_50k_share']:.3f} |")
+    else:
+        short += ['Queued only if R1–R3 finish with at least 30 minutes before the CPU cutoff. No wrongness is measured by R4.']
+    short += ['', 'All per-system artifacts and statistics are in [cpu_round3_details.md](cpu_round3_details.md). '
               'Tail budgets are additional reviews after the 20 largest eligible groups; FTA uses only remaining lines. '
               '“Largest observed gain” describes results, not a held-out method-selection rule.']
     REP.mkdir(exist_ok=True)
