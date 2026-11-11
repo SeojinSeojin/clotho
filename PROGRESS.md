@@ -109,6 +109,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- Meeting examples: `experiments/reports/meeting_examples.md` exists (stored-artifact extraction; E2 per-input risk percentiles unavailable in saved outputs).
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
