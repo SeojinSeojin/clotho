@@ -111559,10 +111559,3756 @@
  },
  "R3": {
   "llama": {
-   "suites": {}
+   "suites": {
+    "llama/disjoint/all/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.6472787217286611,
+       0.6186435427742776,
+       0.6546963641280746,
+       0.6747396665605142,
+       0.6287236080469009
+      ],
+      "text": "0.645 \u00b1 0.022",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 3,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6204953952503995,
+       0.6714436778934683,
+       0.6860157873490473,
+       0.6575745913782693,
+       0.6456675767694351
+      ],
+      "text": "0.656 \u00b1 0.025",
+      "delta": "0.011 \u00b1 0.033",
+      "delta_mean": 0.011423025080438243,
+      "positive_seeds": 3,
+      "sign_seeds": 3,
+      "rank": 3,
+      "a12": 0.5427218934911242,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5077642401861377,
+       0.5048517891873865,
+       0.49753367342090543,
+       0.507082199194715,
+       0.5090473711769467
+      ],
+      "text": "0.505 \u00b1 0.005",
+      "delta": "-0.140 \u00b1 0.023",
+      "delta_mean": -0.1395605260144674,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.16615384615384615,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8005738442481631,
+       0.8097526500306849,
+       0.8011233238831779,
+       0.7947357628669665,
+       0.7724751968220899
+      ],
+      "text": "0.796 \u00b1 0.014",
+      "delta": "0.151 \u00b1 0.026",
+      "delta_mean": 0.15091577492253078,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.8963313609467456,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.4983562008822994,
+       0.5235872664163893,
+       0.49267997901923277,
+       0.49343285189235747,
+       0.5029454174816099
+      ],
+      "text": "0.502 \u00b1 0.013",
+      "delta": "-0.143 \u00b1 0.033",
+      "delta_mean": -0.1426160375093079,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.1408284023668639,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.762696206375778,
+       0.7904584409853305,
+       0.7521731587276185,
+       0.7187589316933758,
+       0.7362119836191986
+      ],
+      "text": "0.752 \u00b1 0.027",
+      "delta": "0.107 \u00b1 0.046",
+      "delta_mean": 0.10724336363257458,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7936094674556213,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7677133345998481,
+       0.7981837075465749,
+       0.7629937280687058,
+       0.730406617218291,
+       0.7413982582111148
+      ],
+      "text": "0.760 \u00b1 0.026",
+      "delta": "0.115 \u00b1 0.044",
+      "delta_mean": 0.11532274848122126,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.8222485207100592,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.7420784481847902,
+       0.7278924437250368,
+       0.7575701832578166,
+       0.6858364010037825,
+       0.7209517858239274
+      ],
+      "text": "0.727 \u00b1 0.027",
+      "delta": "0.082 \u00b1 0.040",
+      "delta_mean": 0.08204947175138502,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7368047337278106,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/disjoint/all/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.6621257972220789,
+       0.6422734364551409,
+       0.6666636086185606,
+       0.666611349931711,
+       0.6454498126990056
+      ],
+      "text": "0.657 \u00b1 0.012",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 4,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6288093811489249,
+       0.6632367095666702,
+       0.6887532168837449,
+       0.6638093139475075,
+       0.6414307793198647
+      ],
+      "text": "0.657 \u00b1 0.023",
+      "delta": "0.001 \u00b1 0.023",
+      "delta_mean": 0.0005830791880430785,
+      "positive_seeds": 2,
+      "sign_seeds": 2,
+      "rank": 4,
+      "a12": 0.517396449704142,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5042284538856768,
+       0.5101661181340537,
+       0.5058854560340753,
+       0.5126895809825475,
+       0.5071302054071848
+      ],
+      "text": "0.508 \u00b1 0.003",
+      "delta": "-0.149 \u00b1 0.013",
+      "delta_mean": -0.14860483809659178,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.11053254437869822,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8005738442481631,
+       0.8097526500306849,
+       0.8011233238831779,
+       0.7947357628669665,
+       0.7724751968220899
+      ],
+      "text": "0.796 \u00b1 0.014",
+      "delta": "0.139 \u00b1 0.017",
+      "delta_mean": 0.13910735458491705,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.8889940828402367,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5103484004225135,
+       0.5089510746125671,
+       0.5434457829516786,
+       0.4937717925793995,
+       0.49998025884401326
+      ],
+      "text": "0.511 \u00b1 0.019",
+      "delta": "-0.145 \u00b1 0.019",
+      "delta_mean": -0.145325339103265,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.11455621301775148,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.762696206375778,
+       0.7904584409853305,
+       0.7521731587276185,
+       0.7187589316933758,
+       0.7362119836191986
+      ],
+      "text": "0.752 \u00b1 0.027",
+      "delta": "0.095 \u00b1 0.035",
+      "delta_mean": 0.09543494329496087,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7902958579881657,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7677133345998481,
+       0.7981837075465749,
+       0.7629937280687058,
+       0.730406617218291,
+       0.7413982582111148
+      ],
+      "text": "0.760 \u00b1 0.026",
+      "delta": "0.104 \u00b1 0.033",
+      "delta_mean": 0.10351432814360755,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.8097041420118343,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.7420784481847902,
+       0.7278924437250368,
+       0.7575701832578166,
+       0.6858364010037825,
+       0.7209517858239274
+      ],
+      "text": "0.727 \u00b1 0.027",
+      "delta": "0.070 \u00b1 0.029",
+      "delta_mean": 0.07024105141377131,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.7244970414201184,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/disjoint/held-out/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.6307945913148065,
+       0.610641788840829,
+       0.654410179300409,
+       0.6598348408419581,
+       0.6162851931139137
+      ],
+      "text": "0.634 \u00b1 0.022",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 3,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.5817239204936613,
+       0.6609488293324177,
+       0.6846274452124897,
+       0.6299899373079267,
+       0.6255117624387434
+      ],
+      "text": "0.637 \u00b1 0.039",
+      "delta": "0.002 \u00b1 0.041",
+      "delta_mean": 0.002167060274664512,
+      "positive_seeds": 3,
+      "sign_seeds": 3,
+      "rank": 3,
+      "a12": 0.5064,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5056512584173722,
+       0.5023811311462644,
+       0.49547087830243,
+       0.5037494091207338,
+       0.5090545400132054
+      ],
+      "text": "0.503 \u00b1 0.005",
+      "delta": "-0.131 \u00b1 0.025",
+      "delta_mean": -0.1311318752823821,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.2148,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.7872002711239444,
+       0.8057737470879032,
+       0.7836047381030384,
+       0.7823098709748445,
+       0.7611406499071799
+      ],
+      "text": "0.784 \u00b1 0.016",
+      "delta": "0.150 \u00b1 0.029",
+      "delta_mean": 0.14961253675699882,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.8672,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5121743155170673,
+       0.5266948928352159,
+       0.49904856861669467,
+       0.4978371009969328,
+       0.5151011496024199
+      ],
+      "text": "0.510 \u00b1 0.012",
+      "delta": "-0.124 \u00b1 0.034",
+      "delta_mean": -0.12422211316871716,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.194,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7514362506020464,
+       0.7897739715975693,
+       0.7330192546586931,
+       0.6961014508792811,
+       0.716585954017763
+      ],
+      "text": "0.737 \u00b1 0.036",
+      "delta": "0.103 \u00b1 0.053",
+      "delta_mean": 0.10299005766868734,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7532,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7553451524740907,
+       0.7971271000777082,
+       0.744091124011068,
+       0.705863214817131,
+       0.7223763329750541
+      ],
+      "text": "0.745 \u00b1 0.035",
+      "delta": "0.111 \u00b1 0.051",
+      "delta_mean": 0.11056726618862714,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.78,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.7390321110880026,
+       0.7179101367205226,
+       0.7473943581895351,
+       0.657189374946159,
+       0.7086286160442414
+      ],
+      "text": "0.714 \u00b1 0.035",
+      "delta": "0.080 \u00b1 0.047",
+      "delta_mean": 0.0796376007153089,
+      "positive_seeds": 4,
+      "sign_seeds": 4,
+      "rank": 2,
+      "a12": 0.6972,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/disjoint/held-out/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.6360892273026287,
+       0.6530936157476412,
+       0.6542539936705505,
+       0.6564681614224636,
+       0.6306630632852238
+      ],
+      "text": "0.646 \u00b1 0.012",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 3,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.5977097335746699,
+       0.6548282090415641,
+       0.6887056250580958,
+       0.6433011741254425,
+       0.6207862688432305
+      ],
+      "text": "0.641 \u00b1 0.034",
+      "delta": "-0.005 \u00b1 0.026",
+      "delta_mean": -0.005047410157100973,
+      "positive_seeds": 2,
+      "sign_seeds": 3,
+      "rank": 3,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5007840510296174,
+       0.5063977631628964,
+       0.5063281956995509,
+       0.5075280038919756,
+       0.5065622245125152
+      ],
+      "text": "0.506 \u00b1 0.003",
+      "delta": "-0.141 \u00b1 0.011",
+      "delta_mean": -0.14059356462639044,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.1424,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.7872002711239444,
+       0.8057737470879032,
+       0.7836047381030384,
+       0.7823098709748445,
+       0.7611406499071799
+      ],
+      "text": "0.784 \u00b1 0.016",
+      "delta": "0.138 \u00b1 0.013",
+      "delta_mean": 0.1378922431536805,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.864,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5047888016792663,
+       0.4997472884772761,
+       0.5392061059800095,
+       0.4936057541018206,
+       0.5013726754914642
+      ],
+      "text": "0.508 \u00b1 0.018",
+      "delta": "-0.138 \u00b1 0.019",
+      "delta_mean": -0.1383694871397342,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.144,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7514362506020464,
+       0.7897739715975693,
+       0.7330192546586931,
+       0.6961014508792811,
+       0.716585954017763
+      ],
+      "text": "0.737 \u00b1 0.036",
+      "delta": "0.091 \u00b1 0.037",
+      "delta_mean": 0.09126976406536905,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7532,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7553451524740907,
+       0.7971271000777082,
+       0.744091124011068,
+       0.705863214817131,
+       0.7223763329750541
+      ],
+      "text": "0.745 \u00b1 0.035",
+      "delta": "0.099 \u00b1 0.035",
+      "delta_mean": 0.09884697258530883,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7724,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.7390321110880026,
+       0.7179101367205226,
+       0.7473943581895351,
+       0.657189374946159,
+       0.7086286160442414
+      ],
+      "text": "0.714 \u00b1 0.035",
+      "delta": "0.068 \u00b1 0.040",
+      "delta_mean": 0.0679173071119906,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.6968,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/standard/all/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.742666130898668,
+       0.7501481003121213,
+       0.7658333593204639,
+       0.7406417709732552,
+       0.7449110076089588
+      ],
+      "text": "0.749 \u00b1 0.010",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 2,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7108229134317006,
+       0.7175493662997261,
+       0.7258151099909042,
+       0.7054216957731361,
+       0.7131228966399535
+      ],
+      "text": "0.715 \u00b1 0.008",
+      "delta": "-0.034 \u00b1 0.003",
+      "delta_mean": -0.03429367739560936,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.37917159763313607,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.6849888794348798,
+       0.6862434564376056,
+       0.6731236507026813,
+       0.6798306885432464,
+       0.6759573669521313
+      ],
+      "text": "0.680 \u00b1 0.006",
+      "delta": "-0.069 \u00b1 0.014",
+      "delta_mean": -0.06881126540858455,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.31266272189349115,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.7935226046249446,
+       0.7922759970109335,
+       0.79101537369552,
+       0.7897954192764017,
+       0.7910027038527198
+      ],
+      "text": "0.792 \u00b1 0.001",
+      "delta": "0.043 \u00b1 0.010",
+      "delta_mean": 0.042682345869410485,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.6210650887573964,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5030051976440071,
+       0.5065629455031216,
+       0.5013132508182537,
+       0.5088936991257991,
+       0.4980034183279909
+      ],
+      "text": "0.504 \u00b1 0.004",
+      "delta": "-0.245 \u00b1 0.012",
+      "delta_mean": -0.245284371538859,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.021301775147928994,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7351182770733641,
+       0.7349781292152175,
+       0.7320054977485542,
+       0.7332782584380274,
+       0.7256015477877831
+      ],
+      "text": "0.732 \u00b1 0.004",
+      "delta": "-0.017 \u00b1 0.011",
+      "delta_mean": -0.016643731770104187,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.4369230769230769,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7421154593162207,
+       0.7437611738629535,
+       0.7399944250106022,
+       0.7408095184579195,
+       0.7330738767678073
+      ],
+      "text": "0.740 \u00b1 0.004",
+      "delta": "-0.009 \u00b1 0.011",
+      "delta_mean": -0.008889183139592794,
+      "positive_seeds": 1,
+      "sign_seeds": 4,
+      "rank": 2,
+      "a12": 0.45349112426035504,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.702560143951059,
+       0.6975985883004452,
+       0.6972938840866608,
+       0.7014893401351701,
+       0.710547773469988
+      ],
+      "text": "0.702 \u00b1 0.005",
+      "delta": "-0.047 \u00b1 0.014",
+      "delta_mean": -0.046942127834028825,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.35597633136094675,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/standard/all/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.7941364053824589,
+       0.7851954567875501,
+       0.7950764406300738,
+       0.7846201534804629,
+       0.8115905796962426
+      ],
+      "text": "0.794 \u00b1 0.011",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 1,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7287431914320744,
+       0.7352734204366178,
+       0.7425752580174687,
+       0.7350214358010498,
+       0.7438691228053594
+      ],
+      "text": "0.737 \u00b1 0.006",
+      "delta": "-0.057 \u00b1 0.009",
+      "delta_mean": -0.0570273214968436,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.28852071005917157,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.7275639300156395,
+       0.7316770282019281,
+       0.7399707793300381,
+       0.7315886712530657,
+       0.7334429718287289
+      ],
+      "text": "0.733 \u00b1 0.005",
+      "delta": "-0.061 \u00b1 0.011",
+      "delta_mean": -0.061275131069477594,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.3486390532544379,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.7910389431314176,
+       0.7990317072987025,
+       0.7978279792434775,
+       0.7884942551830332,
+       0.7912867315316615
+      ],
+      "text": "0.794 \u00b1 0.005",
+      "delta": "-0.001 \u00b1 0.013",
+      "delta_mean": -0.0005878839176991724,
+      "positive_seeds": 3,
+      "sign_seeds": 2,
+      "rank": 1,
+      "a12": 0.4577514792899408,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5142799844915752,
+       0.5019246050293685,
+       0.5187599947355934,
+       0.4991116504885614,
+       0.49721546496141716
+      ],
+      "text": "0.506 \u00b1 0.010",
+      "delta": "-0.288 \u00b1 0.015",
+      "delta_mean": -0.2878654672540545,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.0078106508875739646,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7317731060919439,
+       0.7346962617510268,
+       0.7231045828016723,
+       0.735035707486939,
+       0.7259750918808863
+      ],
+      "text": "0.730 \u00b1 0.005",
+      "delta": "-0.064 \u00b1 0.015",
+      "delta_mean": -0.06400685719286399,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.29088757396449705,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.738047416157123,
+       0.7423615136224344,
+       0.7319814700869702,
+       0.7423252789140853,
+       0.7339587769054637
+      ],
+      "text": "0.738 \u00b1 0.005",
+      "delta": "-0.056 \u00b1 0.015",
+      "delta_mean": -0.056388916058142315,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.3084023668639053,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.692791654685566,
+       0.6995565646418229,
+       0.6898410915549563,
+       0.7029130397958455,
+       0.7112454665641759
+      ],
+      "text": "0.699 \u00b1 0.008",
+      "delta": "-0.095 \u00b1 0.010",
+      "delta_mean": -0.09485424374688431,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.21254437869822485,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/standard/held-out/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.7285202907961187,
+       0.7410103912412273,
+       0.751843232171929,
+       0.7267071003575004,
+       0.7345117216189363
+      ],
+      "text": "0.737 \u00b1 0.010",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 2,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6903024287988181,
+       0.6998546348605801,
+       0.7040985738489652,
+       0.6848819431959621,
+       0.6938547342376745
+      ],
+      "text": "0.695 \u00b1 0.008",
+      "delta": "-0.042 \u00b1 0.004",
+      "delta_mean": -0.04192008424874234,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.3568,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.6786068695723124,
+       0.6815480328617753,
+       0.6693780444632845,
+       0.6759021604688495,
+       0.6716995345907215
+      ],
+      "text": "0.675 \u00b1 0.005",
+      "delta": "-0.061 \u00b1 0.013",
+      "delta_mean": -0.06109161884575367,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.3468,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.7813997049455434,
+       0.7796354834523698,
+       0.779907152923617,
+       0.778796586544819,
+       0.7790745263158992
+      ],
+      "text": "0.780 \u00b1 0.001",
+      "delta": "0.043 \u00b1 0.010",
+      "delta_mean": 0.04324414359930735,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.6016,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5011313475568345,
+       0.5006435128063564,
+       0.49625200049845136,
+       0.5050971453859281,
+       0.4952920217543175
+      ],
+      "text": "0.500 \u00b1 0.004",
+      "delta": "-0.237 \u00b1 0.013",
+      "delta_mean": -0.23683534163676478,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.0248,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7158840536046631,
+       0.7176085872679916,
+       0.7150126650559511,
+       0.7169503303608081,
+       0.708388268809841
+      ],
+      "text": "0.715 \u00b1 0.004",
+      "delta": "-0.022 \u00b1 0.011",
+      "delta_mean": -0.021749766217291366,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.4304,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7234140501533256,
+       0.7262382892628632,
+       0.7230127496941339,
+       0.7244293213051475,
+       0.7158067735284972
+      ],
+      "text": "0.723 \u00b1 0.004",
+      "delta": "-0.014 \u00b1 0.011",
+      "delta_mean": -0.013938310448348878,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.446,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6805917056433411,
+       0.6751905216676433,
+       0.6783967912713329,
+       0.6755079745316823,
+       0.690523714529764
+      ],
+      "text": "0.680 \u00b1 0.006",
+      "delta": "-0.056 \u00b1 0.013",
+      "delta_mean": -0.05647640570838961,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.3464,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "llama/standard/held-out/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.7751637693997689,
+       0.7640395089090856,
+       0.7792318469947517,
+       0.7664291504359013,
+       0.7985163258737318
+      ],
+      "text": "0.777 \u00b1 0.014",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 1,
+      "a12": 0.5,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7098902977180905,
+       0.7185694571151569,
+       0.724430576565753,
+       0.719237285633104,
+       0.7272122405363091
+      ],
+      "text": "0.720 \u00b1 0.007",
+      "delta": "-0.057 \u00b1 0.011",
+      "delta_mean": -0.05680814880896516,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.3264,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.7069411218440205,
+       0.7136697757648875,
+       0.7214383564795033,
+       0.7127616019594388,
+       0.7126858573513795
+      ],
+      "text": "0.713 \u00b1 0.005",
+      "delta": "-0.063 \u00b1 0.014",
+      "delta_mean": -0.06317677764280194,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.3588,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.7771193917858366,
+       0.7846023285450546,
+       0.7861479876756442,
+       0.7725559578857831,
+       0.7766995833489937
+      ],
+      "text": "0.779 \u00b1 0.006",
+      "delta": "0.003 \u00b1 0.015",
+      "delta_mean": 0.002748929525614585,
+      "positive_seeds": 4,
+      "sign_seeds": 4,
+      "rank": 1,
+      "a12": 0.494,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5304705150495513,
+       0.5029438478000685,
+       0.5198693842910534,
+       0.4894966398738795,
+       0.499493196225436
+      ],
+      "text": "0.508 \u00b1 0.016",
+      "delta": "-0.268 \u00b1 0.021",
+      "delta_mean": -0.2682214036746501,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.0104,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7101973826541532,
+       0.7144356730618284,
+       0.7026402800996975,
+       0.7174575464806567,
+       0.7046785398093417
+      ],
+      "text": "0.710 \u00b1 0.006",
+      "delta": "-0.067 \u00b1 0.019",
+      "delta_mean": -0.06679423590151234,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.306,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7167117659782519,
+       0.7224944730083812,
+       0.711233072927515,
+       0.7247711959449443,
+       0.7135900642028211
+      ],
+      "text": "0.718 \u00b1 0.006",
+      "delta": "-0.059 \u00b1 0.018",
+      "delta_mean": -0.058916005910265135,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.3268,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6686569352457803,
+       0.6753440228936547,
+       0.6687945435057572,
+       0.6789527678870819,
+       0.6884198821440743
+      ],
+      "text": "0.676 \u00b1 0.008",
+      "delta": "-0.101 \u00b1 0.012",
+      "delta_mean": -0.10064248998737817,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.2276,
+      "systems": [
+       "loghub_apache_500",
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    }
+   }
   },
   "gemma": {
-   "suites": {}
+   "suites": {
+    "gemma/disjoint/all/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.6473361872299014,
+       0.6262442208781871,
+       0.6905602707150619,
+       0.6591189092336568,
+       0.6738928725463916
+      ],
+      "text": "0.659 \u00b1 0.025",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 4,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6450637579466242,
+       0.6375785837997278,
+       0.6488941186167242,
+       0.6820586520823917,
+       0.6613654495527107
+      ],
+      "text": "0.655 \u00b1 0.017",
+      "delta": "-0.004 \u00b1 0.025",
+      "delta_mean": -0.004438379721004049,
+      "positive_seeds": 2,
+      "sign_seeds": 3,
+      "rank": 4,
+      "a12": 0.47555555555555556,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.509186084894808,
+       0.5100797864889599,
+       0.5070025102840909,
+       0.5055874380493294,
+       0.5066208397356916
+      ],
+      "text": "0.508 \u00b1 0.002",
+      "delta": "-0.152 \u00b1 0.026",
+      "delta_mean": -0.15173516023006378,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.08694444444444445,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8271034372194098,
+       0.8303676800490081,
+       0.8187333695694002,
+       0.8364394913651654,
+       0.8051090855759608
+      ],
+      "text": "0.824 \u00b1 0.012",
+      "delta": "0.164 \u00b1 0.033",
+      "delta_mean": 0.1641201206351491,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.9277777777777778,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.4991851413249568,
+       0.518397839882196,
+       0.489318795236811,
+       0.5094489437556268,
+       0.5170662877032116
+      ],
+      "text": "0.507 \u00b1 0.012",
+      "delta": "-0.153 \u00b1 0.033",
+      "delta_mean": -0.15274709054007932,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.08611111111111111,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7617017144035391,
+       0.7782611918354383,
+       0.7626224849327543,
+       0.7685121805942751,
+       0.7623172481959014
+      ],
+      "text": "0.767 \u00b1 0.007",
+      "delta": "0.107 \u00b1 0.030",
+      "delta_mean": 0.10725247187174188,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7922222222222223,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7763949754720131,
+       0.7829726564308713,
+       0.7623041392915105,
+       0.79157629555994,
+       0.7653705819250914
+      ],
+      "text": "0.776 \u00b1 0.012",
+      "delta": "0.116 \u00b1 0.034",
+      "delta_mean": 0.11629323761524553,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.8158333333333333,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.688145487111461,
+       0.6973419000039435,
+       0.6938826130229462,
+       0.7228269773011521,
+       0.6861071701242073
+      ],
+      "text": "0.698 \u00b1 0.015",
+      "delta": "0.038 \u00b1 0.030",
+      "delta_mean": 0.03823033739210224,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.6227777777777778,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/disjoint/all/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.6580898388166916,
+       0.6570327056752717,
+       0.6999392460873466,
+       0.6795472001428214,
+       0.661129366139066
+      ],
+      "text": "0.671 \u00b1 0.019",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 4,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6445074643076817,
+       0.6474390566522757,
+       0.655248840683131,
+       0.6837012971246322,
+       0.6751989296797415
+      ],
+      "text": "0.661 \u00b1 0.017",
+      "delta": "-0.010 \u00b1 0.022",
+      "delta_mean": -0.009928553682747032,
+      "positive_seeds": 2,
+      "sign_seeds": 3,
+      "rank": 4,
+      "a12": 0.46694444444444444,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5116605968620868,
+       0.5138694964685219,
+       0.511012270192868,
+       0.5105711409279801,
+       0.5120215437764007
+      ],
+      "text": "0.512 \u00b1 0.001",
+      "delta": "-0.159 \u00b1 0.019",
+      "delta_mean": -0.15932066172666798,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.024166666666666666,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8271034372194098,
+       0.8303676800490081,
+       0.8187333695694002,
+       0.8364394913651654,
+       0.8051090855759608
+      ],
+      "text": "0.824 \u00b1 0.012",
+      "delta": "0.152 \u00b1 0.022",
+      "delta_mean": 0.1524029413835494,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.9461111111111111,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.4965287269065213,
+       0.49377111948785957,
+       0.5137239902489575,
+       0.5050340358486747,
+       0.5128122932613262
+      ],
+      "text": "0.504 \u00b1 0.009",
+      "delta": "-0.167 \u00b1 0.014",
+      "delta_mean": -0.16677363822157162,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.028888888888888888,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7617017144035391,
+       0.7782611918354383,
+       0.7626224849327543,
+       0.7685121805942751,
+       0.7623172481959014
+      ],
+      "text": "0.767 \u00b1 0.007",
+      "delta": "0.096 \u00b1 0.022",
+      "delta_mean": 0.09553529262014215,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7938888888888889,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7763949754720131,
+       0.7829726564308713,
+       0.7623041392915105,
+       0.79157629555994,
+       0.7653705819250914
+      ],
+      "text": "0.776 \u00b1 0.012",
+      "delta": "0.105 \u00b1 0.025",
+      "delta_mean": 0.10457605836364581,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.82,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.688145487111461,
+       0.6973419000039435,
+       0.6938826130229462,
+       0.7228269773011521,
+       0.6861071701242073
+      ],
+      "text": "0.698 \u00b1 0.015",
+      "delta": "0.027 \u00b1 0.020",
+      "delta_mean": 0.026513158140502525,
+      "positive_seeds": 4,
+      "sign_seeds": 4,
+      "rank": 3,
+      "a12": 0.6080555555555556,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/disjoint/held-out/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.6390993318893284,
+       0.6111865566778943,
+       0.6915488008948483,
+       0.681959035159627,
+       0.6641466755584859
+      ],
+      "text": "0.658 \u00b1 0.033",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 3,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6422198086810614,
+       0.6185169650627464,
+       0.6359405977294752,
+       0.6891025011275483,
+       0.6523587684876646
+      ],
+      "text": "0.648 \u00b1 0.026",
+      "delta": "-0.010 \u00b1 0.027",
+      "delta_mean": -0.009960351818337588,
+      "positive_seeds": 3,
+      "sign_seeds": 2,
+      "rank": 3,
+      "a12": 0.46370370370370373,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5112524641488821,
+       0.510540074300221,
+       0.5089872743690046,
+       0.5062031603076618,
+       0.5064482098224121
+      ],
+      "text": "0.509 \u00b1 0.002",
+      "delta": "-0.149 \u00b1 0.034",
+      "delta_mean": -0.14890184344640048,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.09432098765432098,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8330243739223978,
+       0.8281747808444712,
+       0.8163850345515978,
+       0.830062814090192,
+       0.8055288468092472
+      ],
+      "text": "0.823 \u00b1 0.011",
+      "delta": "0.165 \u00b1 0.039",
+      "delta_mean": 0.16504709000754442,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.9130864197530865,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5015081459777067,
+       0.5126347679931956,
+       0.4880974974193951,
+       0.512428915747186,
+       0.5272337603902448
+      ],
+      "text": "0.508 \u00b1 0.015",
+      "delta": "-0.149 \u00b1 0.039",
+      "delta_mean": -0.14920746253049116,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.0962962962962963,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7513864153436673,
+       0.7666336113197376,
+       0.747190456720369,
+       0.7499201825612052,
+       0.7443397593739819
+      ],
+      "text": "0.752 \u00b1 0.009",
+      "delta": "0.094 \u00b1 0.040",
+      "delta_mean": 0.09430600502775541,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.745679012345679,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7620082484332831,
+       0.7681677520885458,
+       0.7493851977903877,
+       0.7787368525992938,
+       0.7472071217418587
+      ],
+      "text": "0.761 \u00b1 0.013",
+      "delta": "0.104 \u00b1 0.038",
+      "delta_mean": 0.10351295449463702,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7713580246913581,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6810044821788285,
+       0.6707015760397486,
+       0.6633137788424405,
+       0.7058090569018106,
+       0.6490051854792165
+      ],
+      "text": "0.674 \u00b1 0.021",
+      "delta": "0.016 \u00b1 0.037",
+      "delta_mean": 0.01637873585237213,
+      "positive_seeds": 3,
+      "sign_seeds": 3,
+      "rank": 3,
+      "a12": 0.557037037037037,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/disjoint/held-out/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.6551145689625992,
+       0.6671770744586643,
+       0.7064320827578175,
+       0.7010638562193932,
+       0.6605813981095445
+      ],
+      "text": "0.678 \u00b1 0.024",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 3,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.6436813836933131,
+       0.6321806406585015,
+       0.6521620747831781,
+       0.6973399648014308,
+       0.6690446371370792
+      ],
+      "text": "0.659 \u00b1 0.025",
+      "delta": "-0.019 \u00b1 0.025",
+      "delta_mean": -0.019192055886903203,
+      "positive_seeds": 1,
+      "sign_seeds": 4,
+      "rank": 3,
+      "a12": 0.43703703703703706,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.5136858153745039,
+       0.513067761038434,
+       0.5133137247131541,
+       0.5099809304943272,
+       0.5125667283409306
+      ],
+      "text": "0.513 \u00b1 0.001",
+      "delta": "-0.166 \u00b1 0.025",
+      "delta_mean": -0.1655508041093338,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.02617283950617284,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8330243739223978,
+       0.8281747808444712,
+       0.8163850345515978,
+       0.830062814090192,
+       0.8055288468092472
+      ],
+      "text": "0.823 \u00b1 0.011",
+      "delta": "0.145 \u00b1 0.027",
+      "delta_mean": 0.14456137394197746,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.931358024691358,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.4948935616516626,
+       0.4802375995655107,
+       0.5121789600762231,
+       0.5078489975583149,
+       0.504415519352885
+      ],
+      "text": "0.500 \u00b1 0.013",
+      "delta": "-0.178 \u00b1 0.018",
+      "delta_mean": -0.17815886846068446,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.02617283950617284,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7513864153436673,
+       0.7666336113197376,
+       0.747190456720369,
+       0.7499201825612052,
+       0.7443397593739819
+      ],
+      "text": "0.752 \u00b1 0.009",
+      "delta": "0.074 \u00b1 0.027",
+      "delta_mean": 0.07382028896218847,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7288888888888889,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7620082484332831,
+       0.7681677520885458,
+       0.7493851977903877,
+       0.7787368525992938,
+       0.7472071217418587
+      ],
+      "text": "0.761 \u00b1 0.013",
+      "delta": "0.083 \u00b1 0.025",
+      "delta_mean": 0.08302723842907007,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.7595061728395062,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6810044821788285,
+       0.6707015760397486,
+       0.6633137788424405,
+       0.7058090569018106,
+       0.6490051854792165
+      ],
+      "text": "0.674 \u00b1 0.021",
+      "delta": "-0.004 \u00b1 0.026",
+      "delta_mean": -0.004106980213194822,
+      "positive_seeds": 3,
+      "sign_seeds": 2,
+      "rank": 3,
+      "a12": 0.5081481481481481,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/standard/all/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.7785269091614554,
+       0.784244797267264,
+       0.777943633012751,
+       0.7788646558465708,
+       0.7828352597328441
+      ],
+      "text": "0.780 \u00b1 0.003",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 2,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7177862368304809,
+       0.7136860184775679,
+       0.7188622884567958,
+       0.7289362405252705,
+       0.7093648748458893
+      ],
+      "text": "0.718 \u00b1 0.007",
+      "delta": "-0.063 \u00b1 0.009",
+      "delta_mean": -0.0627559191769762,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.31555555555555553,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.7131067765745406,
+       0.6911562766940181,
+       0.7102248380160013,
+       0.7057238387688552,
+       0.7114267631262953
+      ],
+      "text": "0.706 \u00b1 0.009",
+      "delta": "-0.074 \u00b1 0.011",
+      "delta_mean": -0.07415535236823496,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.3383333333333333,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8234191488546799,
+       0.8179921669068461,
+       0.820262683108695,
+       0.8213406117573524,
+       0.8198735152449969
+      ],
+      "text": "0.821 \u00b1 0.002",
+      "delta": "0.040 \u00b1 0.005",
+      "delta_mean": 0.040094574170336975,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.6211111111111111,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.49813042178107453,
+       0.4967716244337311,
+       0.5115268156008371,
+       0.49750058158014726,
+       0.5111183439067197
+      ],
+      "text": "0.503 \u00b1 0.008",
+      "delta": "-0.277 \u00b1 0.008",
+      "delta_mean": -0.2774734935436751,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.0,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.765843282985882,
+       0.7570772522912042,
+       0.760981256649819,
+       0.7527275895053088,
+       0.7695624325420586
+      ],
+      "text": "0.761 \u00b1 0.007",
+      "delta": "-0.019 \u00b1 0.007",
+      "delta_mean": -0.01924468820932257,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.4588888888888889,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7747333293670433,
+       0.7726517896873015,
+       0.7596136397728905,
+       0.7756738808428129,
+       0.7666760086910117
+      ],
+      "text": "0.770 \u00b1 0.007",
+      "delta": "-0.011 \u00b1 0.007",
+      "delta_mean": -0.010613321331965086,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.4802777777777778,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6805762020911702,
+       0.6783114770287576,
+       0.679004424817277,
+       0.6790772013665071,
+       0.6791054904037258
+      ],
+      "text": "0.679 \u00b1 0.001",
+      "delta": "-0.101 \u00b1 0.003",
+      "delta_mean": -0.10126809186268955,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.24472222222222223,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/standard/all/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.8359282127995596,
+       0.8332003127713291,
+       0.83602952694852,
+       0.8247684325614152,
+       0.8316294589144652
+      ],
+      "text": "0.832 \u00b1 0.005",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 1,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7396930999225275,
+       0.7370803117834642,
+       0.7458733051140275,
+       0.7302658490335517,
+       0.7342101033159473
+      ],
+      "text": "0.737 \u00b1 0.006",
+      "delta": "-0.095 \u00b1 0.003",
+      "delta_mean": -0.09488665496515417,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.2338888888888889,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.7756863879807065,
+       0.7764248155500196,
+       0.7844846592782573,
+       0.76897907552838,
+       0.7649275537211163
+      ],
+      "text": "0.774 \u00b1 0.008",
+      "delta": "-0.058 \u00b1 0.006",
+      "delta_mean": -0.05821069038736186,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.4011111111111111,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8200583903049901,
+       0.8140108003823728,
+       0.8227405340275412,
+       0.8183797188647784,
+       0.8161831936558525
+      ],
+      "text": "0.818 \u00b1 0.003",
+      "delta": "-0.014 \u00b1 0.005",
+      "delta_mean": -0.014036661351950808,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.41833333333333333,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5075433699669467,
+       0.48752689480860073,
+       0.4909469670677466,
+       0.5120590475055026,
+       0.5165707036944139
+      ],
+      "text": "0.503 \u00b1 0.013",
+      "delta": "-0.329 \u00b1 0.016",
+      "delta_mean": -0.32938179219041575,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.0,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7678242748630981,
+       0.7624944421673834,
+       0.7621106463473045,
+       0.7603581446663763,
+       0.7765170005164773
+      ],
+      "text": "0.766 \u00b1 0.007",
+      "delta": "-0.066 \u00b1 0.007",
+      "delta_mean": -0.06645028708692988,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.2683333333333333,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7762103607345526,
+       0.785009896738191,
+       0.7655958941055263,
+       0.7831922864908177,
+       0.7735589816795758
+      ],
+      "text": "0.777 \u00b1 0.008",
+      "delta": "-0.056 \u00b1 0.011",
+      "delta_mean": -0.055597704849325115,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.29777777777777775,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6897216987212463,
+       0.6881234317305948,
+       0.6884021549697598,
+       0.6842832974608738,
+       0.6844562205714627
+      ],
+      "text": "0.687 \u00b1 0.002",
+      "delta": "-0.145 \u00b1 0.003",
+      "delta_mean": -0.14531382810827034,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.135,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_hdfs_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_linux_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_spark_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/standard/held-out/strict/@100": {
+     "clotho": {
+      "per_seed": [
+       0.7839881857065653,
+       0.7922738850115908,
+       0.7846722034797158,
+       0.7836061360944959,
+       0.7799808122395783
+      ],
+      "text": "0.785 \u00b1 0.005",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 2,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7145785669648717,
+       0.7084900542932048,
+       0.7201196931422257,
+       0.7345084102215882,
+       0.7058661640159855
+      ],
+      "text": "0.717 \u00b1 0.011",
+      "delta": "-0.068 \u00b1 0.013",
+      "delta_mean": -0.06819166677881405,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.2948148148148148,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.7136945470906332,
+       0.6894202686700623,
+       0.7138590964724785,
+       0.7085539713878687,
+       0.708369578241261
+      ],
+      "text": "0.707 \u00b1 0.010",
+      "delta": "-0.078 \u00b1 0.014",
+      "delta_mean": -0.07812475213392847,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.34814814814814815,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8269430227752461,
+       0.8228591761671199,
+       0.822127111001658,
+       0.8250761770193246,
+       0.823325540952245
+      ],
+      "text": "0.824 \u00b1 0.002",
+      "delta": "0.039 \u00b1 0.005",
+      "delta_mean": 0.039161961076729514,
+      "positive_seeds": 5,
+      "sign_seeds": 5,
+      "rank": 1,
+      "a12": 0.5723456790123457,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.49781280041500864,
+       0.4960278938938674,
+       0.5125265871051161,
+       0.5098757000170413,
+       0.5038629941680469
+      ],
+      "text": "0.504 \u00b1 0.007",
+      "delta": "-0.281 \u00b1 0.010",
+      "delta_mean": -0.28088304938657316,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 5,
+      "a12": 0.0,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7563585198136265,
+       0.7539744487369839,
+       0.755966786968809,
+       0.7447835884032648,
+       0.7624699828940136
+      ],
+      "text": "0.755 \u00b1 0.006",
+      "delta": "-0.030 \u00b1 0.009",
+      "delta_mean": -0.030193579143049654,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.44049382716049384,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.7630353095791551,
+       0.7646162802841954,
+       0.7528613337201783,
+       0.7728629311571109,
+       0.7578399929679068
+      ],
+      "text": "0.762 \u00b1 0.008",
+      "delta": "-0.023 \u00b1 0.008",
+      "delta_mean": -0.022661074964679905,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.4474074074074074,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.659016239739066,
+       0.6584881997198999,
+       0.6609366318195168,
+       0.6588482731961096,
+       0.6596532006345741
+      ],
+      "text": "0.659 \u00b1 0.001",
+      "delta": "-0.126 \u00b1 0.005",
+      "delta_mean": -0.1255157354845559,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.19901234567901235,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    },
+    "gemma/standard/held-out/strict/@200": {
+     "clotho": {
+      "per_seed": [
+       0.8393689793531165,
+       0.8260542924860799,
+       0.82673585423087,
+       0.8146964576969036,
+       0.8281020877193261
+      ],
+      "text": "0.827 \u00b1 0.009",
+      "delta": "0.000 \u00b1 0.000",
+      "delta_mean": 0.0,
+      "positive_seeds": 0,
+      "sign_seeds": 0,
+      "rank": 1,
+      "a12": 0.5,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "MDSA": {
+      "per_seed": [
+       0.7440045004065586,
+       0.741504666911507,
+       0.7471534444441839,
+       0.7301484763296762,
+       0.7402286747743945
+      ],
+      "text": "0.741 \u00b1 0.006",
+      "delta": "-0.086 \u00b1 0.006",
+      "delta_mean": -0.08638358172399521,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.26271604938271603,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "lookup_drain": {
+      "per_seed": [
+       0.7636003549213879,
+       0.7690137322972027,
+       0.7783425334778619,
+       0.7662949035018258,
+       0.7617830318001706
+      ],
+      "text": "0.768 \u00b1 0.006",
+      "delta": "-0.059 \u00b1 0.012",
+      "delta_mean": -0.059184623097569444,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.42864197530864195,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "out_entropy": {
+      "per_seed": [
+       0.8233161066518895,
+       0.8236479528982577,
+       0.8293339513406865,
+       0.8292120113024181,
+       0.8240068735569003
+      ],
+      "text": "0.826 \u00b1 0.003",
+      "delta": "-0.001 \u00b1 0.011",
+      "delta_mean": -0.0010881551472288198,
+      "positive_seeds": 2,
+      "sign_seeds": 3,
+      "rank": 1,
+      "a12": 0.4883950617283951,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "random": {
+      "per_seed": [
+       0.5020373062833808,
+       0.4984069427384974,
+       0.4960787969790478,
+       0.502858948226702,
+       0.5137227129332306
+      ],
+      "text": "0.503 \u00b1 0.007",
+      "delta": "-0.324 \u00b1 0.011",
+      "delta_mean": -0.32437059286508757,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 4,
+      "a12": 0.0,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U-zero": {
+      "per_seed": [
+       0.7614804836876986,
+       0.7658667817621159,
+       0.7570151901898227,
+       0.7558956272082997,
+       0.7713658508670951
+      ],
+      "text": "0.762 \u00b1 0.006",
+      "delta": "-0.065 \u00b1 0.009",
+      "delta_mean": -0.06466674755425283,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.3145679012345679,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "U+V5-zero": {
+      "per_seed": [
+       0.766442005325459,
+       0.7846015178318386,
+       0.7635165038413287,
+       0.7845836542844375,
+       0.7679714649062017
+      ],
+      "text": "0.773 \u00b1 0.010",
+      "delta": "-0.054 \u00b1 0.017",
+      "delta_mean": -0.053568505059406094,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 2,
+      "a12": 0.33728395061728395,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     },
+     "D-zero": {
+      "per_seed": [
+       0.6697805147091501,
+       0.670693693059937,
+       0.6664425004966605,
+       0.6660464250285999,
+       0.6637399994880057
+      ],
+      "text": "0.667 \u00b1 0.003",
+      "delta": "-0.160 \u00b1 0.008",
+      "delta_mean": -0.15965090774078858,
+      "positive_seeds": 0,
+      "sign_seeds": 5,
+      "rank": 3,
+      "a12": 0.12839506172839507,
+      "systems": [
+       "loghub_bgl_500",
+       "loghub_hadoop_500",
+       "loghub_healthapp_500",
+       "loghub_hpc_500",
+       "loghub_mac_500",
+       "loghub_openssh_500",
+       "loghub_openstack_500",
+       "loghub_thunderbird_500",
+       "loghub_zookeeper_500"
+      ]
+     }
+    }
+   }
   }
  },
  "R4": {}
