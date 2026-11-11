@@ -77,3 +77,6 @@ experiments/reports/error_severity_audit/
 
 # Strong downstream preflight data/results are persisted to RESULTS_REPO.
 experiments/data/strong_downstream_preflight/
+
+.venv-cpu/
+experiments/data/cpu_research/
