@@ -52,8 +52,15 @@ def blocks(ds,c,rows=None,target=None):
     return np.hstack([x,v if rows is None else v[rows]])
 
 
+@lru_cache(None)
+def static_stream_features(system,parser,blocks_,mode_):
+    return ORIG_STREAM_FEATS(system,parser,{'blocks':list(blocks_)},mode_)
+
+
 def stream_feats(system,parser,cfg,mode_):
-    cache,cols,masked=ORIG_STREAM_FEATS(system,parser,cfg,mode_)
+    blocks_=tuple(b for b in cfg['blocks'] if b!='V2')
+    cache,cols,masked=static_stream_features(system,parser,blocks_,mode_)
+    cols=dict(cols)
     if 'V2' in cfg['blocks']:cols['V2']=np.array(v2(system)[parser],float)
     return cache,cols,masked
 

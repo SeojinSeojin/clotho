@@ -22,7 +22,7 @@ def ms(v):return f'{statistics.mean(v):.3f} ± {statistics.stdev(v):.3f}'
 
 def report(push=False,partial=False):
     L=['# G5: input-token pooling and decision-point confidence\n',
-       'Fixed ablations; no retuning, winner selection or new generation calls. Mean ± sample std of five seed macros over matched complete systems. Held-out excludes HDFS/Spark/Linux. Reviews retain 100 target-system labels and the original stream layer. V2 uses only sample0/initial greedy output; ambiguous stored-token alignments are missing, not guessed. Full per-system predictions and review sequences are in `results_phase3{,_gemma}/token_followups/`.\n']
+       'Fixed ablations; no retuning, winner selection or new generation calls. Mean ± sample std of five seed macros over matched complete systems. Held-out excludes HDFS/Spark/Linux. Reviews retain 100 target-system labels and the original stream layer. V2 uses only sample0/initial greedy output; ambiguous stored-token alignments are missing, not guessed. Suite alignment reproduces teacher-forcing tokenization; stream checks use the declared whitespace/stop candidate family because original token IDs are unavailable. Full per-system predictions and review sequences are in `results_phase3{,_gemma}/token_followups/`.\n']
     J={}
     def table(head,rows):
         L.extend(['| '+' | '.join(head)+' |','|'+'|'.join('---' for _ in head)+'|'])
