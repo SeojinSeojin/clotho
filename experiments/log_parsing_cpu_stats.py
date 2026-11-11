@@ -48,6 +48,52 @@ def report(exp,push=False):
                 output(f'N3/{model}/{detector}',data,('gt','n0','frequent20','dsize20'),'frequent20')
     md=exp/'reports/cpu_analyses_stats.md';js=md.with_suffix('.json')
     md.write_text('\n'.join(L)+'\n');js.write_text(json.dumps(J,indent=1))
+    summary = write_summary(exp, J)
     if push:
         import hub_sync as hs
-        hs.commit_files(hs.get_results_repo(),{str(p.relative_to(exp)):p for p in (md,js)},'N1-N3 statistical supplement')
+        hs.commit_files(hs.get_results_repo(),{str(p.relative_to(exp)):p for p in (md,js,summary)},'N1-N3 statistical supplement')
+
+
+def write_summary(exp, stats):
+    """Regenerate the short overview so its old missing-cache statements cannot linger."""
+    detail=exp/'reports/cpu_analyses_details.json'
+    path=exp/'reports/cpu_analyses.md'
+    if not detail.exists():
+        path.write_text('# N1-N3: see cpu_analyses_stats.md for the available statistical rows.\n')
+        return path
+    j=json.loads(detail.read_text())
+    L=['# N1-N3: updated after Llama cache restoration\n',
+       'Protocol: PROGRESS.md Decisions (N1-N3 and G2). Details: cpu_analyses_details.md; five-seed macros and SK-ESD/A12: cpu_analyses_stats.md. N1 concentration is deterministic. N2 is a simulation, not a measurement of a newly improved parser.\n']
+    def table(h,rows):
+        L.extend(['| '+' | '.join(h)+' |','|'+'|'.join('---' for _ in h)+'|'])
+        L.extend('| '+' | '.join(str(x) for x in row)+' |' for row in rows);L.append('')
+    n1=j.get('n1',{})
+    if n1:
+        L.append('## N1: concentration and the frequency/Oracle gap\n')
+        table(['Mean Gini','Top 1 / 5 / 10 / 20 line share'],[[f"{n1['gini_mean']:.3f}",' / '.join(f"{n1['top_share_mean'][str(k)]:.3f}" for k in (1,5,10,20))]])
+        rows=[]
+        for cell,r in n1['cells'].items():
+            model,parser=cell.split('/')
+            source=exp/('results_phase3' if model=='llama' else 'results_phase3_gemma')/'cpu/n1.json'
+            data=json.loads(source.read_text())
+            n=sum(parser in v['cells'] for v in data['systems'].values())
+            rows.append([cell,n,f"{r['wrong_share']:.3f}",f"{r['top20_wrong']:.3f}",f"{r['spearman']:+.3f}",
+                         f"{r['20']['frequent']:.3f}",f"{r['20']['oracle']:.3f}"])
+        table(['Cell','Systems','Wrong templates','Top20 wrong','Mean ρ(size, wrong)','Frequency @20','Oracle @20'],rows)
+    L.append('## N2: every tested flip level at the original headline budget, 20 reviews\n')
+    rows=[]
+    def ms(v):return f'{statistics.mean(v):.3f} ± {statistics.stdev(v):.3f}'
+    for key,c in stats.items():
+        if not key.startswith('N2/') or not key.endswith('/N20'):continue
+        model,parser,run=key.split('/')[1],key.split('/')[2],'/'.join(key.split('/')[3:-1])
+        v=c['macro_by_seed'];d=c['paired_vs_reference']['dsize']
+        rows.append([model+'/'+parser,run,ms(v['frequent']),ms(v['dsize']),ms(v['oracle']),ms(d),f'{sum(x>0 for x in d)}/5'])
+    table(['Cell','Flip rule / target','Frequency','D × size','Oracle','D − frequency','Positive seeds'],rows)
+    L.append('Random flips test accuracy improvements independent of D; D-low-risk flips deliberately favour D. Full budgets 5/10/20 and undefined no-error exclusions are in the details/statistics.\n')
+    L.append('## N3: template-word anomaly detectors\n')
+    rows=[]
+    for key,c in stats.items():
+        if key.startswith('N3/'):
+            for method,v in c['macro_by_seed'].items():rows.append([key.removeprefix('N3/'),method,ms(v)])
+    table(['Model / detector','Templates / review order','F1, macro over HDFS and BGL'],rows)
+    path.write_text('\n'.join(L)+'\n');return path

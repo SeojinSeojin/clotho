@@ -94,7 +94,7 @@ def cpu(kind,model):
         run('G2_paper_numbers',[PY,'log_parsing_paper_numbers.py'],model)
         hub_push(['reports/paper_numbers.md','paper/figures/lorenz.pdf','paper/figures/lorenz.tex'])
         git_milestone('G2 Llama base caches restored and N1-N3 recomputed',[
-            'experiments/reports/cpu_analyses_details.md','experiments/reports/cpu_analyses_details.json',
+            'experiments/reports/cpu_analyses_details.md','experiments/reports/cpu_analyses_details.json','experiments/reports/cpu_analyses.md',
             'experiments/reports/cpu_analyses_stats.md','experiments/reports/cpu_analyses_stats.json',
             'experiments/reports/paper_numbers.md','experiments/paper/figures/lorenz.tex'])
 
