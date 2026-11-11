@@ -46,6 +46,10 @@ def sequence(system, seed, sizes, ver, seeds0, prefix=(), nmax=100, method='dsiz
 
 def verify_stored(d, cache, stored):
     for method, byseed in stored['runs'].items():
+        if method not in ('random', 'frequent', 'dsize', 'llmlog', 'entropy', 'oracle'):
+            # Stored E1 also includes ablations (e.g. no propagation), whose PA
+            # curve intentionally has different correction semantics.
+            continue
         for r in byseed.values():
             pa = np.asarray(T.curve(d, cache, r['seq'])) / d['n']
             assert np.allclose(pa, r['pa'], atol=1e-12), (method, 'strict replay failed')
