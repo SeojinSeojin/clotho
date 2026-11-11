@@ -119,7 +119,7 @@ def stream(system,parser):
                 for name,seq in oo.items():
                     ids=[int(g) for g in seq[:N] if g in keep];assert len(ids)==len(set(ids))
                     selected=[grows[g] for g in ids];wrongstrings={x['predicted'] for x in selected if x['strict']}
-                    fully=sum(all((not x['strict']) or (x['group'] in ids and x['first_fixed']) for x in grows if x['predicted']==s) for s in wrongstrings)
+                    fully=sum(all((not x['strict']) or (x['group'] in ids and x['first_fixed']) for x in grows if x['group'] in keep and x['predicted']==s) for s in wrongstrings)
                     review.append({'model':MC.MODEL,'system':system,'parser':parser,'scope':scope,'seed':seed,'budget':N,'method':name,'actual_reviews':len(ids),'group_ids':ids,
                         'wrong_groups':sum(x['strict'] for x in selected),'gross_lines_fixed':sum(x['gross_fixed'] for x in selected),'broken_lines':sum(x['broken'] for x in selected),'net_lines_fixed':sum(x['net_gain'] for x in selected),
                         'distinct_wrong_strings_touched':len(wrongstrings),'distinct_wrong_strings_fully_repaired':int(fully),'structural_groups':sum(x['structural_proxy'] is True for x in selected),'uncertain_structural_groups':sum(x['structural_proxy'] is None for x in selected),

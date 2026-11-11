@@ -50,7 +50,7 @@ def fmt(m,key='mean'):
 
 def report(partial=False):
     import log_parsing_stats as ST
-    A=[];B=[];C=[];D=[];inventory=[];manual=[];samplekey=[];overlap=[];availability=[];coverage={};missing=[]
+    A=[];B=[];C=[];D=[];inventory=[];manual=[];samplekey=[];overlap=[];availability=[];coverage={};missing=[];uncertainty=[]
     for model,suffix in MODELS.items():
         root=EXP/f'results_phase3{suffix}/severity_audit';data=EXP/'data/severity_audit'/model
         aa=[load(p) for p in sorted(root.glob('*.json'))];bb=[load(p) for p in sorted((root/'prediction').glob('*.json'))];dd=[load(p) for p in sorted((root/'downstream').glob('*.json'))]
@@ -66,9 +66,10 @@ def report(partial=False):
                     A.append({'model':model,'system':system,'suite':kind,'target':target,'n':len(rec),'positive':ct['True'],'negative':ct['False'],'unknown':ct['None']})
                 assert sum(v['counts'].values())==6*len(rec)
                 for k,count in v['counts'].items():inventory.append({'model':model,'system':system,'suite':kind,'sample_category':k,'count':count})
-                chosen=set();skips=Counter();ov=Counter()
+                chosen=set();skips=Counter();ov=Counter();reasons=Counter()
                 for x in rec:
                     for sample,c in x['samples'].items():
+                        if c.get('reason'):reasons[(sample,c['primary'],c['reason'])]+=1
                         attrs=[z for z in ('retained_variable','masked_constant','slot_change','word_changed','unsupported_words_proxy','mask_inconsistency_proxy') if c.get(z)]
                         for a,b in itertools.combinations_with_replacement(attrs,2):ov[a,b]+=1
                         key=c['primary']
@@ -78,12 +79,13 @@ def report(partial=False):
                         manual.append({'id':uid,'model':model,'suite':kind,'system':system,'content':x['content'],'predicted':c['predicted'],'ground_truth':x['ground_truth'],
                                        'verified_surface':'','verified_variable':'','verified_semantic':'','uncertain_reason':'','reviewer':''})
                         samplekey.append({'id':uid,'automatic_primary':key,'skipped_unreadable_before_selection':skips[key]});chosen.add(key)
+                uncertainty += [{'model':model,'system':system,'suite':kind,'sample':sample,'primary':primary,'reason':reason,'count':n} for (sample,primary,reason),n in reasons.items()]
                 overlap += [{'model':model,'system':system,'suite':kind,'attribute_a':a,'attribute_b':b,'count':n,'denominator_outputs':6*len(rec)} for (a,b),n in ov.items()]
             for parser,v in r['streams'].items():
                 if 'missing' in v:missing.append(f'{model}/{system}/{parser}: '+v['missing']);continue
                 pr=v['output_partition'];inventory.append({'model':model,'system':system,'suite':'stream_'+parser,'sample_category':'partition','count':v['groups'],**pr,
                     'wrong_groups':v['wrong_groups'],'wrong_word_changed':v['wrong_word_changed'],'rare_groups':v['rarity']['rare_1_2']['groups'],'rare_structural':v['rarity']['rare_1_2']['structural_proxy']})
-            C+=load(data/f'reviews_{system}.json.gz')
+            C+=load(data/f'reviews_validated_{system}.json.gz' if (data/f'reviews_validated_{system}.json.gz').exists() else data/f'reviews_{system}.json.gz')
         for r in bb:
             B+=r['rows'];missing += [f'{model}/{r["system"]}/{k}: {v}' for k,v in r['missing'].items()]
             availability.extend({'model':model,'system':r['system'],'seed':int(seed),'method':m,'verified_original_setting':True} for seed,v in r['seeds'].items() for m in v['methods'])
@@ -101,7 +103,7 @@ def report(partial=False):
                         vals=[gg[k] for k in sorted(gg)];yy=[np.mean([x['targets']['strict'] for x in v])>=.5 for v in vals];scores={m:[np.mean([x['risk'][m] for x in v]) for v in vals] for m in methods}
                     for m,s in scores.items():B.append({'model':model,'system':r['system'],'split':'disjoint','seed':seed,'ref':100,'target':'strict_matched_structural','unit':unit,'method':m,**metrics(yy,s,seed)})
         for r in dd:D+=r['rows']
-    csvsave('taxonomy_counts.csv',A);csvsave('taxonomy_inventory.csv',inventory);csvsave('taxonomy_overlap.csv',overlap);csvsave('manual_review_blind.csv',manual);csvsave('manual_sampling_key.csv',samplekey)
+    csvsave('uncertainty_reasons.csv',uncertainty);csvsave('taxonomy_counts.csv',A);csvsave('taxonomy_inventory.csv',inventory);csvsave('taxonomy_overlap.csv',overlap);csvsave('manual_review_blind.csv',manual);csvsave('manual_sampling_key.csv',samplekey)
     csvsave('predictor_metrics.csv',B);csvsave('predictor_availability.csv',availability);csvsave('review_metrics.csv',C);csvsave('downstream_metrics.csv',D)
     summary={'statistics':[], 'coverage':coverage,'predictor':[],'review':[],'downstream':[],'missing':missing,'semantic_verified_labels':0}
     Ls=['# Do failure predictors identify consequential parsing errors?\n',
@@ -171,7 +173,7 @@ def report(partial=False):
                             a=macro(zz,metric,method,'frequent');rec={'model':model,'parser':parser,'scope':scope,'budget':budget,'method':method,'metric':metric,**a};summary['review'].append(rec)
                             if budget==20:rows.append([model,parser,scope,method,metric,a['n_systems'],fmt(a),fmt(a,'delta'),a.get('positive_seeds')])
     table(['Model','Parser','Scope','Ordering','Metric @20','Systems','Count','Δfrequency','Positive seeds/5'],rows)
-    Ls.append('All budgets, selected group IDs, wrong groups, gross newly-correct lines, broken previously-correct lines, net gains, mixed GT groups, primary distributions and overlapping proxy attributes are in `review_metrics.csv`. “Fully repaired wrong string” requires every initially wrong eligible group sharing that string to be successfully corrected, not just touched. Majority-template review does not repair fixed operational grouping. Structural groups use one real representative of each GT event present in the group; this is a proxy, not verified semantic value. Static Clotho risk and risk×size vectors were not stored; an active Clotho sequence is not substituted. Tail histories missing for regenerated Llama/base HDFS/OpenSSH are not invented. Real AdaParser has only Random/frequency/Dsize/Oracle here.\n')
+    Ls.append('All budgets, selected group IDs, wrong groups, gross newly-correct lines, broken previously-correct lines, net gains, mixed GT groups, primary distributions and overlapping proxy attributes are in `review_metrics.csv`. “Fully repaired wrong string” requires every initially wrong eligible group sharing that string to be successfully corrected, not just touched. Validated v2 exports correct the eligible-queue denominator; original review files are preserved. Majority-template review does not repair fixed operational grouping. Structural groups use one real representative of each GT event present in the group; this is a proxy, not verified semantic value. Static Clotho risk and risk×size vectors were not stored; an active Clotho sequence is not substituted. Tail histories missing for regenerated Llama/base HDFS/OpenSSH are not invented. Real AdaParser has only Random/frequency/Dsize/Oracle here.\n')
     Ls.append('## D. Partition and downstream diagnostics\n')
     rows=[]
     for model in MODELS:
@@ -180,6 +182,20 @@ def report(partial=False):
             zz=[r for r in inventory if r['model']==model and r['suite']=='stream_'+tag]
             if zz:rows.append([model,tag,len(zz),f"{np.mean([r['ARI'] for r in zz]):.6f}",f"{np.mean([r['exact_partition_line_share'] for r in zz]):.3f}",f"{np.mean([r['exact_partition_gt_share'] for r in zz]):.3f}",sum(r['mixed_pred_groups'] for r in zz),sum(r['split_gt_groups'] for r in zz)])
     table(['Model','Parser','Systems','Mean ARI','Exact-set line share','Exact-set GT-template share','Mixed output groups (sum)','Split GT types (sum)'],rows)
+    conditional=load(DEST/'conditional_partition.json');summary['conditional_partition']=conditional
+    rows=[]
+    for model in MODELS:
+        for parser in ('base','strong','real_adaparser'):
+            for partition in ('operational','output_string'):
+                zz=[r for r in conditional if r['model']==model and r['parser']==parser and r['partition']==partition]
+                n=sum(r['first_line_wrong_groups'] for r in zz);q=sum(r['wrong_groups_with_exact_GT_line_set'] for r in zz)
+                rows.append([model,parser,partition,n,q,f'{q/n:.3f}' if n else 'NA'])
+    table(['Model','Parser','Partition IDs','First-line-wrong groups pooled','Wrong groups with exact GT line set','Fraction'],rows)
+    Ls.append('Conditional counts use actual GT membership sets: a predicted ID must contain exactly one GT type, and that GT type must occur in exactly that predicted ID. Output-string mode first coalesces equal strings. These are pooled groups, not system macros or claims that every line in a mixed group is wrong. Both directions are checked; purity alone is insufficient.\n')
+    diag=load(DEST/'detector_input_diagnostic.json');summary['detector_input_diagnostic']=diag
+    table(['System','GT test sessions','Empty TF-IDF sessions','Empty anomalous sessions','GT training vocabulary'],[[r[k] for k in ('system','test_sessions','empty_GT_test_sessions','empty_anomalous_GT_test_sessions','training_vocabulary')] for r in diag])
+    Ls.append('The GT word representation is not empty for any anomalous test session in HDFS/BGL. Empty vectors therefore do not explain the weak thresholded baselines. Detector choice, thresholds, train/test distribution and prefix/session construction remain plausible causes; none is established causally by this audit.\n')
+
     rows=[]
     for model in MODELS:
         for system in ('HDFS','BGL'):
@@ -201,7 +217,19 @@ def report(partial=False):
     Ls.append('Selection rule: first sorted readable sample0 example per primary/model/system/suite; the display takes the first such example per model/primary, independent of all predictor scores. Exact stored templates follow.\n');table(['ID','Automatic proxy','Log','Prediction','GT'],examples)
     Ls.append('## Missing comparisons and threats\n')
     Ls.extend('- '+x for x in sorted(set(missing)));Ls.append('')
-    Ls.append('No human-verified semantic labels, temporal E5 handling labels, severity scale or semantic AUROC is available. Grouping-error prediction AUROC is not computed: stored capped input scores and operational-group histories do not provide a preregistered shared group-risk vector/target mapping; we report actual partition agreement and reviewed mixed-GT groups instead. These are unknown, not evidence of absence. No standard/natural predictor rerun was scheduled in this short CPU window. Recovering exact old MDSA vectors/RNG history and static Clotho stream-risk vectors remains necessary for those comparisons. Label uncertainty, 3ms matching limits, GT convention errors, retrospective template aggregation and capped-distribution bias constrain interpretation. U contains output-validity checks similar to the proxy construction; superior proxy AUC can partly reflect this construct alignment rather than downstream importance. Grouping/semantics/downstream outcomes must not be conflated. D has no target-suite training labels; U has90 plus frozen sources, so their supervision budgets differ. No predictor/threshold/severity weight was tuned on this audit.\n')
+    Ls.append('No human-verified semantic labels, temporal E5 handling labels, severity scale or semantic AUROC is available. Grouping-error prediction AUROC is not computed: stored capped input scores and operational-group histories do not provide a preregistered shared group-risk vector/target mapping; we report actual partition agreement and reviewed mixed-GT groups instead. These are unknown, not evidence of absence. No standard/natural or individual-subtype predictor rerun was scheduled in this short CPU window. The broad structural union overlaps strict failure heavily; subtype-specific hard cases remain unresolved. Recovering exact old MDSA vectors/RNG history and static Clotho stream-risk vectors remains necessary for those comparisons. Label uncertainty, 3ms matching limits, GT convention errors, retrospective template aggregation and capped-distribution bias constrain interpretation. U contains output-validity checks similar to the proxy construction; superior proxy AUC can partly reflect this construct alignment rather than downstream importance. Grouping/semantics/downstream outcomes must not be conflated. D has no target-suite training labels; U has90 plus frozen sources, so their supervision budgets differ. No predictor/threshold/severity weight was tuned on this audit.\n')
+    Ls.append('## Reproduction and artifact map\n')
+    Ls.append('New scripts leave all earlier validated results intact. Detailed data are in private RESULTS_REPO, with the following paths relative to `experiments/`. Pull these narrow prefixes on a fresh machine.\n')
+    table(['Artifact','Location'],[
+        ['Suite outputs and GT','`data/results_<model>/log_parsing/inference_results/rules_template/` and original suite JSONL'],
+        ['Original hidden states/scores/splits','Original data/results paths and `results_phase3{,_gemma}/final/fair_leakfree/disjoint/`; frozen U vectors in `token_followups/suites/`'],
+        ['Per-input labels, exact templates and scores','`data/severity_audit/<model>/{capped,natural,joined_scores}_<System>.json.gz`'],
+        ['Group membership annotations / review histories','`data/severity_audit/<model>/stream_<parser>_<System>.json.gz` and `reviews_validated_<System>.json.gz`'],
+        ['Per-system A/B/D results','`results_phase3{,_gemma}/severity_audit/`, `prediction/`, `downstream/`'],
+        ['CSV metrics / blind labels / uncertainty / validation','`reports/error_severity_audit/` (raw CSVs stay private; aggregate report is in Git)'],
+        ['Paper artefacts','`paper/figures/error_{distribution,predictors,budget,review}.{pdf,tex}` and `paper/tables/error_severity*.tex`']])
+    Ls.append('Run from the repo root with the existing CPU `.venv` and saved inputs; each model-specific producer uses `CLOTHO_MODEL=llama|gemma`, and existing per-system results are skipped. CPU jobs set OMP/BLAS threads to1.\n')
+    Ls.append('```bash\n# Source the existing secret environment without printing it.\n# Only needed to regenerate missing new audit jobs, for each model:\nCLOTHO_MODEL=llama .venv/bin/python experiments/log_parsing_error_severity.py --workers 6\nCLOTHO_MODEL=llama .venv/bin/python experiments/log_parsing_severity_predict.py --workers 6\nCLOTHO_MODEL=llama .venv/bin/python experiments/log_parsing_severity_downstream.py\n# Repeat the three commands with CLOTHO_MODEL=gemma.\n.venv/bin/python experiments/log_parsing_severity_validate.py\n.venv/bin/python experiments/log_parsing_severity_partition.py\n.venv/bin/python experiments/log_parsing_severity_report.py\n.venv/bin/python experiments/paper/fig_error_distribution.py\n.venv/bin/python experiments/paper/fig_error_predictors.py\n.venv/bin/python experiments/paper/fig_error_budget.py\n.venv/bin/python experiments/paper/fig_error_review.py\n.venv/bin/python experiments/paper/table_error_severity.py\n```\n')
     Ls.append('## Research interpretation and smallest follow-up\n')
     Ls.append('The broad structural proxy almost reproduces strict failure: majority positives are65.4% vs67.0% for Llama and51.4% vs54.6% for Gemma capped suites, with1.4%/2.6% unknown. Thus unchanged predictor rankings under this proxy provide limited evidence of a new severity signal. Whitespace-only differences do not explain most strict failures under this rule, but formal mismatch still does not establish practical harm.\n')
     rows=[]

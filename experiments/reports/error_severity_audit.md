@@ -245,22 +245,22 @@ Scott–Knott ESD and A12 below use the existing `log_parsing_stats` implementat
 | llama | base | full | usize | distinct_wrong_strings_fully_repaired | 13 | 13.169 ± 0.034 | 1.631 ± 0.034 | 5 |
 | llama | base | tail | drisk | net_lines_fixed | 11 | 303.164 ± 18.376 | -1139.836 ± 18.376 | 0 |
 | llama | base | tail | drisk | structural_groups | 11 | 14.236 ± 0.434 | 2.509 ± 0.434 | 5 |
-| llama | base | tail | drisk | distinct_wrong_strings_fully_repaired | 11 | 12.109 ± 0.491 | 2.564 ± 0.491 | 5 |
+| llama | base | tail | drisk | distinct_wrong_strings_fully_repaired | 11 | 12.200 ± 0.491 | 2.564 ± 0.491 | 5 |
 | llama | base | tail | dsize | net_lines_fixed | 11 | 1474.782 ± 28.284 | 31.782 ± 28.284 | 4 |
 | llama | base | tail | dsize | structural_groups | 11 | 13.436 ± 0.175 | 1.709 ± 0.175 | 5 |
-| llama | base | tail | dsize | distinct_wrong_strings_fully_repaired | 11 | 10.982 ± 0.175 | 1.436 ± 0.175 | 5 |
+| llama | base | tail | dsize | distinct_wrong_strings_fully_repaired | 11 | 11.164 ± 0.175 | 1.527 ± 0.175 | 5 |
 | llama | base | tail | oracle_lines | net_lines_fixed | 11 | 1904.636 ± 0.000 | 461.636 ± 0.000 | 5 |
 | llama | base | tail | oracle_lines | structural_groups | 11 | 17.545 ± 0.000 | 5.818 ± 0.000 | 5 |
-| llama | base | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 11 | 14.909 ± 0.000 | 5.364 ± 0.000 | 5 |
+| llama | base | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 11 | 15.091 ± 0.000 | 5.455 ± 0.000 | 5 |
 | llama | base | tail | random | net_lines_fixed | 11 | 178.164 ± 53.541 | -1264.836 ± 53.541 | 0 |
 | llama | base | tail | random | structural_groups | 11 | 12.327 ± 0.237 | 0.600 ± 0.237 | 5 |
-| llama | base | tail | random | distinct_wrong_strings_fully_repaired | 11 | 7.891 ± 0.528 | -1.655 ± 0.528 | 0 |
+| llama | base | tail | random | distinct_wrong_strings_fully_repaired | 11 | 7.891 ± 0.528 | -1.745 ± 0.528 | 0 |
 | llama | base | tail | urisk | net_lines_fixed | 11 | 351.382 ± 25.865 | -1091.618 ± 25.865 | 0 |
 | llama | base | tail | urisk | structural_groups | 11 | 15.309 ± 0.138 | 3.582 ± 0.138 | 5 |
-| llama | base | tail | urisk | distinct_wrong_strings_fully_repaired | 11 | 13.891 ± 0.197 | 4.345 ± 0.197 | 5 |
+| llama | base | tail | urisk | distinct_wrong_strings_fully_repaired | 11 | 13.982 ± 0.197 | 4.345 ± 0.197 | 5 |
 | llama | base | tail | usize | net_lines_fixed | 11 | 1535.000 ± 19.093 | 92.000 ± 19.093 | 5 |
 | llama | base | tail | usize | structural_groups | 11 | 14.018 ± 0.119 | 2.291 ± 0.119 | 5 |
-| llama | base | tail | usize | distinct_wrong_strings_fully_repaired | 11 | 12.000 ± 0.064 | 2.455 ± 0.064 | 5 |
+| llama | base | tail | usize | distinct_wrong_strings_fully_repaired | 11 | 12.091 ± 0.064 | 2.455 ± 0.064 | 5 |
 | llama | strong | full | drisk | net_lines_fixed | 13 | 2400.169 ± 421.725 | -9999.369 ± 421.725 | 0 |
 | llama | strong | full | drisk | structural_groups | 13 | 11.769 ± 0.598 | 2.154 ± 0.598 | 5 |
 | llama | strong | full | drisk | distinct_wrong_strings_fully_repaired | 13 | 8.231 ± 0.365 | -0.231 ± 0.365 | 1 |
@@ -281,22 +281,22 @@ Scott–Knott ESD and A12 below use the existing `log_parsing_stats` implementat
 | llama | strong | full | usize | distinct_wrong_strings_fully_repaired | 13 | 9.862 ± 0.100 | 1.400 ± 0.100 | 5 |
 | llama | strong | tail | drisk | net_lines_fixed | 13 | 175.446 ± 39.873 | -696.631 ± 39.873 | 0 |
 | llama | strong | tail | drisk | structural_groups | 13 | 10.446 ± 0.213 | 1.062 ± 0.213 | 5 |
-| llama | strong | tail | drisk | distinct_wrong_strings_fully_repaired | 13 | 8.000 ± 0.340 | 0.846 ± 0.340 | 5 |
+| llama | strong | tail | drisk | distinct_wrong_strings_fully_repaired | 13 | 8.138 ± 0.333 | 0.908 ± 0.333 | 5 |
 | llama | strong | tail | dsize | net_lines_fixed | 13 | 914.846 ± 29.369 | 42.769 ± 29.369 | 5 |
 | llama | strong | tail | dsize | structural_groups | 13 | 9.938 ± 0.064 | 0.554 ± 0.064 | 5 |
-| llama | strong | tail | dsize | distinct_wrong_strings_fully_repaired | 13 | 7.754 ± 0.064 | 0.600 ± 0.064 | 5 |
+| llama | strong | tail | dsize | distinct_wrong_strings_fully_repaired | 13 | 7.908 ± 0.064 | 0.677 ± 0.064 | 5 |
 | llama | strong | tail | oracle_lines | net_lines_fixed | 13 | 1214.231 ± 0.000 | 342.154 ± 0.000 | 5 |
 | llama | strong | tail | oracle_lines | structural_groups | 13 | 13.000 ± 0.000 | 3.615 ± 0.000 | 5 |
-| llama | strong | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 13 | 11.000 ± 0.000 | 3.846 ± 0.000 | 5 |
+| llama | strong | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 13 | 11.154 ± 0.000 | 3.923 ± 0.000 | 5 |
 | llama | strong | tail | random | net_lines_fixed | 13 | 108.662 ± 19.777 | -763.415 ± 19.777 | 0 |
 | llama | strong | tail | random | structural_groups | 13 | 8.908 ± 0.240 | -0.477 ± 0.240 | 0 |
-| llama | strong | tail | random | distinct_wrong_strings_fully_repaired | 13 | 4.831 ± 0.227 | -2.323 ± 0.227 | 0 |
+| llama | strong | tail | random | distinct_wrong_strings_fully_repaired | 13 | 4.831 ± 0.227 | -2.400 ± 0.227 | 0 |
 | llama | strong | tail | urisk | net_lines_fixed | 13 | 202.769 ± 7.368 | -669.308 ± 7.368 | 0 |
 | llama | strong | tail | urisk | structural_groups | 13 | 10.569 ± 0.193 | 1.185 ± 0.193 | 5 |
-| llama | strong | tail | urisk | distinct_wrong_strings_fully_repaired | 13 | 9.800 ± 0.160 | 2.646 ± 0.160 | 5 |
+| llama | strong | tail | urisk | distinct_wrong_strings_fully_repaired | 13 | 9.877 ± 0.160 | 2.646 ± 0.160 | 5 |
 | llama | strong | tail | usize | net_lines_fixed | 13 | 919.292 ± 11.088 | 47.215 ± 11.088 | 5 |
 | llama | strong | tail | usize | structural_groups | 13 | 10.415 ± 0.042 | 1.031 ± 0.042 | 5 |
-| llama | strong | tail | usize | distinct_wrong_strings_fully_repaired | 13 | 8.738 ± 0.117 | 1.585 ± 0.117 | 5 |
+| llama | strong | tail | usize | distinct_wrong_strings_fully_repaired | 13 | 8.815 ± 0.117 | 1.585 ± 0.117 | 5 |
 | llama | real_adaparser | full | dsize | net_lines_fixed | 12 | 1947.067 ± 26.247 | -44.767 ± 26.247 | 0 |
 | llama | real_adaparser | full | dsize | structural_groups | 12 | 3.133 ± 0.126 | 0.050 ± 0.126 | 3 |
 | llama | real_adaparser | full | dsize | distinct_wrong_strings_fully_repaired | 12 | 3.050 ± 0.126 | 0.133 ± 0.126 | 3 |
@@ -332,13 +332,13 @@ Scott–Knott ESD and A12 below use the existing `log_parsing_stats` implementat
 | gemma | base | tail | dsize | distinct_wrong_strings_fully_repaired | 12 | 8.667 ± 0.000 | 2.000 ± 0.000 | 5 |
 | gemma | base | tail | oracle_lines | net_lines_fixed | 12 | 1520.750 ± 0.000 | 498.000 ± 0.000 | 5 |
 | gemma | base | tail | oracle_lines | structural_groups | 12 | 14.917 ± 0.000 | 6.417 ± 0.000 | 5 |
-| gemma | base | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 12 | 12.667 ± 0.000 | 6.000 ± 0.000 | 5 |
+| gemma | base | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 12 | 12.750 ± 0.000 | 6.083 ± 0.000 | 5 |
 | gemma | base | tail | random | net_lines_fixed | 12 | 139.267 ± 54.045 | -883.483 ± 54.045 | 0 |
 | gemma | base | tail | random | structural_groups | 12 | 9.867 ± 0.267 | 1.367 ± 0.267 | 5 |
 | gemma | base | tail | random | distinct_wrong_strings_fully_repaired | 12 | 5.967 ± 0.280 | -0.700 ± 0.280 | 0 |
 | gemma | base | tail | urisk | net_lines_fixed | 12 | 201.333 ± 35.660 | -821.417 ± 35.660 | 0 |
 | gemma | base | tail | urisk | structural_groups | 12 | 10.467 ± 0.292 | 1.967 ± 0.292 | 5 |
-| gemma | base | tail | urisk | distinct_wrong_strings_fully_repaired | 12 | 8.967 ± 0.192 | 2.300 ± 0.192 | 5 |
+| gemma | base | tail | urisk | distinct_wrong_strings_fully_repaired | 12 | 8.983 ± 0.199 | 2.317 ± 0.199 | 5 |
 | gemma | base | tail | usize | net_lines_fixed | 12 | 1256.933 ± 32.386 | 234.183 ± 32.386 | 5 |
 | gemma | base | tail | usize | structural_groups | 12 | 11.167 ± 0.177 | 2.667 ± 0.177 | 5 |
 | gemma | base | tail | usize | distinct_wrong_strings_fully_repaired | 12 | 9.483 ± 0.109 | 2.817 ± 0.109 | 5 |
@@ -362,22 +362,22 @@ Scott–Knott ESD and A12 below use the existing `log_parsing_stats` implementat
 | gemma | strong | full | usize | distinct_wrong_strings_fully_repaired | 12 | 9.700 ± 0.075 | 1.033 ± 0.075 | 5 |
 | gemma | strong | tail | drisk | net_lines_fixed | 12 | 198.333 ± 0.000 | -486.083 ± 0.000 | 0 |
 | gemma | strong | tail | drisk | structural_groups | 12 | 10.417 ± 0.000 | 2.167 ± 0.000 | 5 |
-| gemma | strong | tail | drisk | distinct_wrong_strings_fully_repaired | 12 | 5.750 ± 0.000 | 0.250 ± 0.000 | 5 |
+| gemma | strong | tail | drisk | distinct_wrong_strings_fully_repaired | 12 | 5.917 ± 0.000 | 0.333 ± 0.000 | 5 |
 | gemma | strong | tail | dsize | net_lines_fixed | 12 | 752.417 ± 0.000 | 68.000 ± 0.000 | 5 |
 | gemma | strong | tail | dsize | structural_groups | 12 | 9.000 ± 0.000 | 0.750 ± 0.000 | 5 |
-| gemma | strong | tail | dsize | distinct_wrong_strings_fully_repaired | 12 | 6.083 ± 0.000 | 0.583 ± 0.000 | 5 |
+| gemma | strong | tail | dsize | distinct_wrong_strings_fully_repaired | 12 | 6.167 ± 0.000 | 0.583 ± 0.000 | 5 |
 | gemma | strong | tail | oracle_lines | net_lines_fixed | 12 | 1171.500 ± 0.000 | 487.083 ± 0.000 | 5 |
 | gemma | strong | tail | oracle_lines | structural_groups | 12 | 14.167 ± 0.000 | 5.917 ± 0.000 | 5 |
-| gemma | strong | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 12 | 10.833 ± 0.000 | 5.333 ± 0.000 | 5 |
+| gemma | strong | tail | oracle_lines | distinct_wrong_strings_fully_repaired | 12 | 11.000 ± 0.000 | 5.417 ± 0.000 | 5 |
 | gemma | strong | tail | random | net_lines_fixed | 12 | 104.167 ± 28.395 | -580.250 ± 28.395 | 0 |
 | gemma | strong | tail | random | structural_groups | 12 | 9.033 ± 0.126 | 0.783 ± 0.126 | 5 |
-| gemma | strong | tail | random | distinct_wrong_strings_fully_repaired | 12 | 4.300 ± 0.126 | -1.200 ± 0.126 | 0 |
+| gemma | strong | tail | random | distinct_wrong_strings_fully_repaired | 12 | 4.367 ± 0.126 | -1.217 ± 0.126 | 0 |
 | gemma | strong | tail | urisk | net_lines_fixed | 12 | 155.983 ± 7.942 | -528.433 ± 7.942 | 0 |
 | gemma | strong | tail | urisk | structural_groups | 12 | 9.867 ± 0.484 | 1.617 ± 0.484 | 5 |
-| gemma | strong | tail | urisk | distinct_wrong_strings_fully_repaired | 12 | 7.217 ± 0.139 | 1.717 ± 0.139 | 5 |
+| gemma | strong | tail | urisk | distinct_wrong_strings_fully_repaired | 12 | 7.383 ± 0.139 | 1.800 ± 0.139 | 5 |
 | gemma | strong | tail | usize | net_lines_fixed | 12 | 852.600 ± 37.158 | 168.183 ± 37.158 | 5 |
 | gemma | strong | tail | usize | structural_groups | 12 | 10.217 ± 0.183 | 1.967 ± 0.183 | 5 |
-| gemma | strong | tail | usize | distinct_wrong_strings_fully_repaired | 12 | 7.400 ± 0.149 | 1.900 ± 0.149 | 5 |
+| gemma | strong | tail | usize | distinct_wrong_strings_fully_repaired | 12 | 7.483 ± 0.149 | 1.900 ± 0.149 | 5 |
 | gemma | real_adaparser | full | dsize | net_lines_fixed | 12 | 3389.250 ± 0.000 | 143.833 ± 0.000 | 5 |
 | gemma | real_adaparser | full | dsize | structural_groups | 12 | 3.833 ± 0.000 | 0.583 ± 0.000 | 5 |
 | gemma | real_adaparser | full | dsize | distinct_wrong_strings_fully_repaired | 12 | 3.500 ± 0.000 | 0.667 ± 0.000 | 5 |
@@ -388,7 +388,7 @@ Scott–Knott ESD and A12 below use the existing `log_parsing_stats` implementat
 | gemma | real_adaparser | full | random | structural_groups | 12 | 3.400 ± 0.379 | 0.150 ± 0.379 | 3 |
 | gemma | real_adaparser | full | random | distinct_wrong_strings_fully_repaired | 12 | 3.417 ± 0.475 | 0.583 ± 0.475 | 4 |
 
-All budgets, selected group IDs, wrong groups, gross newly-correct lines, broken previously-correct lines, net gains, mixed GT groups, primary distributions and overlapping proxy attributes are in `review_metrics.csv`. “Fully repaired wrong string” requires every initially wrong eligible group sharing that string to be successfully corrected, not just touched. Majority-template review does not repair fixed operational grouping. Structural groups use one real representative of each GT event present in the group; this is a proxy, not verified semantic value. Static Clotho risk and risk×size vectors were not stored; an active Clotho sequence is not substituted. Tail histories missing for regenerated Llama/base HDFS/OpenSSH are not invented. Real AdaParser has only Random/frequency/Dsize/Oracle here.
+All budgets, selected group IDs, wrong groups, gross newly-correct lines, broken previously-correct lines, net gains, mixed GT groups, primary distributions and overlapping proxy attributes are in `review_metrics.csv`. “Fully repaired wrong string” requires every initially wrong eligible group sharing that string to be successfully corrected, not just touched. Validated v2 exports correct the eligible-queue denominator; original review files are preserved. Majority-template review does not repair fixed operational grouping. Structural groups use one real representative of each GT event present in the group; this is a proxy, not verified semantic value. Static Clotho risk and risk×size vectors were not stored; an active Clotho sequence is not substituted. Tail histories missing for regenerated Llama/base HDFS/OpenSSH are not invented. Real AdaParser has only Random/frequency/Dsize/Oracle here.
 
 ## D. Partition and downstream diagnostics
 
@@ -400,6 +400,30 @@ All budgets, selected group IDs, wrong groups, gross newly-correct lines, broken
 | gemma | base | 12 | 0.995124 | 0.861 | 0.879 | 61 | 113 |
 | gemma | strong | 12 | 0.995420 | 0.857 | 0.896 | 60 | 101 |
 | gemma | real_adaparser | 12 | 0.997400 | 0.950 | 0.941 | 45 | 77 |
+
+| Model | Parser | Partition IDs | First-line-wrong groups pooled | Wrong groups with exact GT line set | Fraction |
+|---|---|---|---|---|---|
+| llama | base | operational | 9257 | 1243 | 0.134 |
+| llama | base | output_string | 9257 | 1249 | 0.135 |
+| llama | strong | operational | 8737 | 1022 | 0.117 |
+| llama | strong | output_string | 8737 | 1655 | 0.189 |
+| llama | real_adaparser | operational | 627 | 309 | 0.493 |
+| llama | real_adaparser | output_string | 627 | 309 | 0.493 |
+| gemma | base | operational | 8860 | 974 | 0.110 |
+| gemma | base | output_string | 8860 | 7562 | 0.853 |
+| gemma | strong | operational | 8651 | 869 | 0.100 |
+| gemma | strong | output_string | 8651 | 1299 | 0.150 |
+| gemma | real_adaparser | operational | 627 | 429 | 0.684 |
+| gemma | real_adaparser | output_string | 627 | 429 | 0.684 |
+
+Conditional counts use actual GT membership sets: a predicted ID must contain exactly one GT type, and that GT type must occur in exactly that predicted ID. Output-string mode first coalesces equal strings. These are pooled groups, not system macros or claims that every line in a mixed group is wrong. Both directions are checked; purity alone is insufficient.
+
+| System | GT test sessions | Empty TF-IDF sessions | Empty anomalous sessions | GT training vocabulary |
+|---|---|---|---|---|
+| HDFS | 2044 | 0 | 0 | 34 |
+| BGL | 1250 | 1 | 0 | 74 |
+
+The GT word representation is not empty for any anomalous test session in HDFS/BGL. Empty vectors therefore do not explain the weak thresholded baselines. Detector choice, thresholds, train/test distribution and prefix/session construction remain plausible causes; none is established causally by this audit.
 
 | Model | System | Detector | Templates/review | Test sessions | Test positives | F1 | AP | ΔF1−N0 | ΔAP−N0 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -523,7 +547,40 @@ Selection rule: first sorted readable sample0 example per primary/model/system/s
 - llama/Zookeeper/MDSA/seed1: strict replay failed: observed 0.6510015408320493, stored 0.6509373394966614
 - llama/Zookeeper/MDSA/seed2: strict replay failed: observed 0.663085434894493, stored 0.6631497683993823
 
-No human-verified semantic labels, temporal E5 handling labels, severity scale or semantic AUROC is available. Grouping-error prediction AUROC is not computed: stored capped input scores and operational-group histories do not provide a preregistered shared group-risk vector/target mapping; we report actual partition agreement and reviewed mixed-GT groups instead. These are unknown, not evidence of absence. No standard/natural predictor rerun was scheduled in this short CPU window. Recovering exact old MDSA vectors/RNG history and static Clotho stream-risk vectors remains necessary for those comparisons. Label uncertainty, 3ms matching limits, GT convention errors, retrospective template aggregation and capped-distribution bias constrain interpretation. U contains output-validity checks similar to the proxy construction; superior proxy AUC can partly reflect this construct alignment rather than downstream importance. Grouping/semantics/downstream outcomes must not be conflated. D has no target-suite training labels; U has90 plus frozen sources, so their supervision budgets differ. No predictor/threshold/severity weight was tuned on this audit.
+No human-verified semantic labels, temporal E5 handling labels, severity scale or semantic AUROC is available. Grouping-error prediction AUROC is not computed: stored capped input scores and operational-group histories do not provide a preregistered shared group-risk vector/target mapping; we report actual partition agreement and reviewed mixed-GT groups instead. These are unknown, not evidence of absence. No standard/natural or individual-subtype predictor rerun was scheduled in this short CPU window. The broad structural union overlaps strict failure heavily; subtype-specific hard cases remain unresolved. Recovering exact old MDSA vectors/RNG history and static Clotho stream-risk vectors remains necessary for those comparisons. Label uncertainty, 3ms matching limits, GT convention errors, retrospective template aggregation and capped-distribution bias constrain interpretation. U contains output-validity checks similar to the proxy construction; superior proxy AUC can partly reflect this construct alignment rather than downstream importance. Grouping/semantics/downstream outcomes must not be conflated. D has no target-suite training labels; U has90 plus frozen sources, so their supervision budgets differ. No predictor/threshold/severity weight was tuned on this audit.
+
+## Reproduction and artifact map
+
+New scripts leave all earlier validated results intact. Detailed data are in private RESULTS_REPO, with the following paths relative to `experiments/`. Pull these narrow prefixes on a fresh machine.
+
+| Artifact | Location |
+|---|---|
+| Suite outputs and GT | `data/results_<model>/log_parsing/inference_results/rules_template/` and original suite JSONL |
+| Original hidden states/scores/splits | Original data/results paths and `results_phase3{,_gemma}/final/fair_leakfree/disjoint/`; frozen U vectors in `token_followups/suites/` |
+| Per-input labels, exact templates and scores | `data/severity_audit/<model>/{capped,natural,joined_scores}_<System>.json.gz` |
+| Group membership annotations / review histories | `data/severity_audit/<model>/stream_<parser>_<System>.json.gz` and `reviews_validated_<System>.json.gz` |
+| Per-system A/B/D results | `results_phase3{,_gemma}/severity_audit/`, `prediction/`, `downstream/` |
+| CSV metrics / blind labels / uncertainty / validation | `reports/error_severity_audit/` (raw CSVs stay private; aggregate report is in Git) |
+| Paper artefacts | `paper/figures/error_{distribution,predictors,budget,review}.{pdf,tex}` and `paper/tables/error_severity*.tex` |
+
+Run from the repo root with the existing CPU `.venv` and saved inputs; each model-specific producer uses `CLOTHO_MODEL=llama|gemma`, and existing per-system results are skipped. CPU jobs set OMP/BLAS threads to1.
+
+```bash
+# Source the existing secret environment without printing it.
+# Only needed to regenerate missing new audit jobs, for each model:
+CLOTHO_MODEL=llama .venv/bin/python experiments/log_parsing_error_severity.py --workers 6
+CLOTHO_MODEL=llama .venv/bin/python experiments/log_parsing_severity_predict.py --workers 6
+CLOTHO_MODEL=llama .venv/bin/python experiments/log_parsing_severity_downstream.py
+# Repeat the three commands with CLOTHO_MODEL=gemma.
+.venv/bin/python experiments/log_parsing_severity_validate.py
+.venv/bin/python experiments/log_parsing_severity_partition.py
+.venv/bin/python experiments/log_parsing_severity_report.py
+.venv/bin/python experiments/paper/fig_error_distribution.py
+.venv/bin/python experiments/paper/fig_error_predictors.py
+.venv/bin/python experiments/paper/fig_error_budget.py
+.venv/bin/python experiments/paper/fig_error_review.py
+.venv/bin/python experiments/paper/table_error_severity.py
+```
 
 ## Research interpretation and smallest follow-up
 
