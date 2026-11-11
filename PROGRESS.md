@@ -125,6 +125,8 @@ Historical session deadlines, resolved preflight fixes, and superseded queue not
 
 ### Consequential-error audit (2026-11-11, protocol before results)
 
+- Additional diagnostic (before computation, 22:25 UTC): condition exact-set membership agreement on first-line-wrong groups, for both operational IDs and equal-template-string partitions. Use saved group GT-ID memberships only; report pooled group counts separately from overall ARI. Also audit N3 GT-empty TF-IDF test sessions to diagnose count/word metric disagreements. No predictor or threshold changes.
+
 - Validation correction (2026-11-11 22:23 UTC): the initial distinct-wrong-string “fully repaired” derivation checked excluded seed/head groups as well as the eligible queue. Correct the denominator to the declared eligible queue per scope, retaining old review files and writing `reviews_validated_*` plus validation metadata. This is a derived-metric bug fix, not a new ranking or label; no predictor is refit.
 
 B recovery deviation22:10UTC: the first CPU MDSA reconstruction failed its original HDFS strict-AUC equality check. Reject any predictor vector failing its old scalar check, retain observed/expected diagnostics, and continue other predictors on the same systems; do not relax tolerance or drop difficult systems. Main tables use methods available across the full completed system/seed cohort; any partial predictor comparison must show its matched coverage separately. Cause of MDSA replay discrepancy is unresolved; exact cached vectors/original RNG execution history may be needed. Also report strict performance restricted to structural-label-known inputs as a population-control metric, computed from saved joined vectors only; no refitting.
