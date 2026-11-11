@@ -177,14 +177,17 @@ def report(R, push=False):
          "change is label noise only. G (2026-11-10): LOHSvar recomputed on all inputs (parity with the stored values: "
          "Spearman >= 0.999 per task, `data/g_recompute/parity.json`); Sem-Ent on a seeded subset of 1,500 inputs per task, "
          "so every combined comparison table uses that same subset; full-data tables omit Sem-Ent. Rankings/comparison flips use |Spearman| or raw AUC; shown coefficients and their changes remain signed.\n"]
+    table_cols = [m for m in COLS if m != 'mdsa'] if 'sement' in G_M else COLS
+    if 'sement' in G_M:
+        L.append('MDSA has incomplete archived input coverage and is shown only in the separate available-score/full-data control panel; matched-subset comparisons use post-generation methods only.\n')
     for metric in ("spearman", "auc"):
         L.append(f"\n## {metric}\n")
-        L.append("| task | " + " | ".join(f"{NAMES[m]} leaky | leak-free" for m in COLS) + " |")
-        L.append("|---|" + "---|---|" * len(COLS))
+        L.append("| task | " + " | ".join(f"{NAMES[m]} leaky | leak-free" for m in table_cols) + " |")
+        L.append("|---|" + "---|---|" * len(table_cols))
         for t, original in R.items():
             r = original['sub'] if 'sement' in G_M else original
             cells = []
-            for m in COLS:
+            for m in table_cols:
                 lf = [x[m][metric] for x in r["leakfree"]]
                 cells.append(f"{r['leaky'][m][metric]:.3f} | {statistics.mean(lf):.3f} ± {statistics.stdev(lf):.3f}")
             L.append(f"| {ALIAS[t]} | " + " | ".join(cells) + " |")
@@ -276,7 +279,7 @@ def report(R, push=False):
     # G4 requested statistics: identical subsets for all methods, observations (task, seed).
     if G_M:
         import log_parsing_stats as STT
-        compared = METHODS + G_M
+        compared = PG
         paired_rows = {t: r["sub"] if "sement" in G_M else r for t, r in R.items()}
         J["g_statistics"] = {}
         L.append("\n## G4: paired task/seed statistics (same inputs for every method)\nSigned coefficients/changes are shown; Spearman ordering, flips, SK-ESD and A12 use absolute correlation as prescribed in Decisions.\n")

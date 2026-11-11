@@ -35,6 +35,7 @@ class CommonSubsetTests(unittest.TestCase):
             j=json.loads((exp/'reports/e5_leakage.json').read_text())
             v=j['g_statistics']['spearman']
             self.assertTrue(v['subset'])
+            self.assertNotIn('mdsa',v['sk_esd'])
             self.assertAlmostEqual(sum(v['macro_by_seed']['tokprob'])/5,.414)
             self.assertAlmostEqual(sum(v['change_by_seed']['tokprob'])/5,.109)
             self.assertEqual(v['a12']['tokprob']['tokprob'],.5)
@@ -70,6 +71,7 @@ class CommonSubsetTests(unittest.TestCase):
             self.assertIn('0.300 & 0.404',body[0])
             self.assertIn('+0.109',body[-1])
             self.assertIn('same seeded subset',captured[0][2])
+            self.assertFalse(any('MDSA' in row for row in captured[0][-2]))
 
 
 if __name__=='__main__':unittest.main()
