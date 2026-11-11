@@ -717,7 +717,7 @@ def report(push=False):
             if not R:
                 continue
             systems = sorted(R)
-            held = [d for d in systems if d not in TUNE]
+            held = [d for d in systems if SYSNAME(d) not in {SYSNAME(t) for t in TUNE}]
             methods = list(BASE_METHODS) + sorted({m for ds in R for s in R[ds] for (_, m) in R[ds][s]} - set(BASE_METHODS),
                                                   key=lambda m: (not m.startswith("U:"), not m.startswith("V:"), m))
             ub = f"U:{U['best']}"
