@@ -69,3 +69,5 @@ experiments/data/cpu_before_g2/
 
 # G5 pooled states and aligned token features are persisted in RESULTS_REPO.
 experiments/data/token_followups/
+# Consequential-error labels and joined scores are persisted to RESULTS_REPO.
+experiments/data/severity_audit/
