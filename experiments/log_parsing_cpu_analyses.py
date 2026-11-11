@@ -159,6 +159,11 @@ def n1():
                                 "oracle": float(wsort[:N].sum() / msum) if msum else float("nan")}
                 c["indep"][N] = float(sizes[mf[:N]].sum() / sizes[e].sum())
         print(s, "done", flush=True)
+        if os.environ.get('CLOTHO_PUSH_SYSTEMS') == '1':
+            save('n1', res)
+            import hub_sync as hs
+            q = OUTD / 'n1.json'
+            hs.commit_files(hs.get_results_repo(), {str(q.relative_to(EXP)): q}, f'N1 {MODEL} through {s}')
     save("n1", res)
 
 
@@ -262,6 +267,11 @@ def n2(workers):
     with Pool(min(workers, len(jobs))) as p:
         for r in p.imap_unordered(n2_job, jobs):
             print(*r, flush=True)
+            if os.environ.get('CLOTHO_PUSH_SYSTEMS') == '1':
+                import hub_sync as hs
+                q = Path(r[0])
+                if q.exists():
+                    hs.commit_files(hs.get_results_repo(), {str(q.relative_to(EXP)): q}, f'N2 {MODEL} {q.stem}')
     allr = {p.stem: json.loads(p.read_text()) for p in sorted((OUTD / "n2").glob("*.json"))}
     save("n2", {"model": MODEL, "jobs": allr})
 
@@ -334,6 +344,11 @@ def n3():
             r = detect_words(ev_after(job["runs"]["dsize"][str(k)]["seq"], 20), wins, y, [k])
             rs["dsize20"][k] = {"IF": r["IF"][k], "OCSVM": r["OCSVM"]}
         print(s, "done", flush=True)
+        if os.environ.get('CLOTHO_PUSH_SYSTEMS') == '1':
+            save('n3', res)
+            import hub_sync as hs
+            q = OUTD / 'n3.json'
+            hs.commit_files(hs.get_results_repo(), {str(q.relative_to(EXP)): q}, f'N3 {MODEL} through {s}')
     save("n3", res)
 
 

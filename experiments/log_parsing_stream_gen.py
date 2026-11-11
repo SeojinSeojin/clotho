@@ -93,7 +93,9 @@ def main():
         return
     from vllm import LLM
     tok = pr.load_tokenizer(MODEL)
-    llm = LLM(model=pr.MODEL_IDS[MODEL], dtype="bfloat16", seed=1, max_model_len=8192,
+    from huggingface_hub import snapshot_download
+    local_model = snapshot_download(pr.MODEL_IDS[MODEL], local_files_only=True)
+    llm = LLM(model=local_model, dtype="bfloat16", seed=1, max_model_len=8192,
               gpu_memory_utilization=0.90, generation_config="vllm", enable_prefix_caching=True)
     OUT.mkdir(parents=True, exist_ok=True)
     for s in todo:

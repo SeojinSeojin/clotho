@@ -62,3 +62,7 @@ experiments/results_phase3_cross/
 
 # CPU overnight logs are persisted to RESULTS_REPO, not git.
 /experiments/reports/overnight_logs/
+
+# Archived pre-restoration results live in RESULTS_REPO only.
+experiments/data/adaparser_e2e_previous/
+experiments/data/cpu_before_g2/
