@@ -177,4 +177,3 @@ Eligible systems: 2/2; absent cohorts and zero initial-error denominators are ex
 | HPC | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
 
 Headline: with the real parser, Most frequent achieves 50.0% of Oracle’s macro gain after 20 reviews: 0.500 versus 1.000 of wrong lines fixed (gap 0.500). D × size beats frequency on every seed nowhere among the tested budgets, subsets and systems.
-

@@ -47,7 +47,7 @@ def report(exp,push=False):
                         data[system,seed]={m:val(m) for m in ('gt','n0','frequent20','dsize20')}
                 output(f'N3/{model}/{detector}',data,('gt','n0','frequent20','dsize20'),'frequent20')
     md=exp/'reports/cpu_analyses_stats.md';js=md.with_suffix('.json')
-    md.write_text('\n'.join(L)+'\n');js.write_text(json.dumps(J,indent=1))
+    md.write_text('\n'.join(L).rstrip()+'\n');js.write_text(json.dumps(J,indent=1))
     summary = write_summary(exp, J)
     if push:
         import hub_sync as hs
@@ -96,4 +96,4 @@ def write_summary(exp, stats):
         if key.startswith('N3/'):
             for method,v in c['macro_by_seed'].items():rows.append([key.removeprefix('N3/'),method,ms(v)])
     table(['Model / detector','Templates / review order','F1, macro over HDFS and BGL'],rows)
-    path.write_text('\n'.join(L)+'\n');return path
+    path.write_text('\n'.join(L).rstrip()+'\n');return path

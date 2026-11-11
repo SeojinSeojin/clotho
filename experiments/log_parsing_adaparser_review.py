@@ -183,7 +183,15 @@ def report(exp, push=False):
                     import hub_sync as hs
                     hs.commit_files(hs.get_results_repo(), {str(q.relative_to(exp)):q}, f'N5 refresh {model} {system}')
         if not R:continue
-        J[model] = jm = {'systems':R,'summary':{}}
+        system_summary = {}
+        for system, r in R.items():
+            keep = ('source_sha256','hidden_sha256','hidden_verified','model','system','n_lines','G','pa0',
+                    'correct_groups','wrong_groups','wrong_majority_groups','provenance','n1','n5')
+            system_summary[system] = {k:r[k] for k in keep if k in r}
+            system_summary[system]['job'] = str((rd/f'{system}.json').relative_to(exp))
+            system_summary[system]['cohorts'] = {k:{x:v[x] for x in ('groups','lines','reason') if x in v}
+                                                for k,v in r['subsets'].items()}
+        J[model] = jm = {'systems':system_summary,'summary':{}}
         expected = 13 if model == 'llama' else 12
         state = 'complete' if len(R) == expected else f'partial: {len(R)}/{expected}'
         provisional = [s for s, r in R.items() if not r.get('hidden_verified')]
@@ -268,7 +276,7 @@ def report(exp, push=False):
             L.append(f'Headline: with the real parser, Most frequent achieves {ratio:.1f}% of Oracle’s macro gain after 20 reviews: {f:.3f} versus {o:.3f} of wrong lines fixed (gap {o-f:.3f}). D × size beats frequency on every seed '+('in: '+', '.join(wins)+'.' if wins else 'nowhere among the tested budgets, subsets and systems.')+'\n')
         jm['every_seed_wins']=wins
     md=exp/'reports/adaparser_e2e_review.md';js=md.with_suffix('.json')
-    md.write_text('\n'.join(L)+'\n');js.write_text(json.dumps(J,indent=1,default=float))
+    md.write_text('\n'.join(L).rstrip()+'\n');js.write_text(json.dumps(J,indent=1,default=float))
     if push:
         import hub_sync as hs
         hs.commit_files(hs.get_results_repo(),{str(p.relative_to(exp)):p for p in (md,js)},'Real AdaParser review/provenance report')
