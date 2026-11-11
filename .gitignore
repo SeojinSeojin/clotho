@@ -52,6 +52,7 @@ experiments/data/stream/
 experiments/data/stream_gen/
 experiments/data/stream_hidden/
 experiments/data/stream_gen_strong/
+experiments/data/stream_drain_templates/
 experiments/data/template_difficulty/
 experiments/data/g_recompute/
 experiments/data/adaparser_e2e/
