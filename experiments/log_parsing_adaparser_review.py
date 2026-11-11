@@ -146,7 +146,7 @@ def report(exp, push=False):
     import math
     import log_parsing_stats as STT
     L = ['# Real AdaParser: provenance, concentration and review outcomes\n',
-         'Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Parser cache seed 0; seeds 0–4 apply to review policies. Candidate/LLM/mixed/unknown provenance tracks final trie ancestry. LLM-only excludes mixed groups; LLM-involved includes them. Both restrictions exclude unknowns and refit within their own queue.\n']
+         'Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Parser cache seed 0; seeds 0–4 apply to review policies. Candidate/LLM/mixed/unknown provenance tracks final trie ancestry. LLM-only excludes mixed groups; LLM-involved includes them. Both restrictions exclude unknowns and refit within their own queue. Budgets are capped at the cohort’s available templates; actual review counts are saved per run.\n']
     J = {}
     def table(h,rows):
         L.extend(['| '+' | '.join(h)+' |','|'+'|'.join('---' for _ in h)+'|'])

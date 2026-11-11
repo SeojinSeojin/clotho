@@ -345,6 +345,14 @@ def main():
     round3 = REP / "cpu_round3.md"
     if round3.exists():
         lines += ["", "## 30. CPU round 3 robustness (partial)", ""] + round3.read_text().splitlines()[2:]
+    for number, title, filename in (
+            (31, "Real AdaParser: candidate provenance and restricted review queues", "adaparser_e2e_review.md"),
+            (32, "N1-N3: paired statistical supplement after cache restoration", "cpu_analyses_stats.md"),
+            (33, "U/V: pooled input-token states and decision-point confidence", "log_parsing_token_followups.md")):
+        source = REP / filename
+        if source.exists():
+            lines += ["", f"## {number}. {title}", "", f"Source: `reports/{filename}`; protocol in PROGRESS.md Decisions.", ""]
+            lines += [("#" + row) if row.startswith("#") else row for row in source.read_text().splitlines()[1:]]
     out.write_text("\n".join(lines) + "\n")
     print(out.read_text())
     if a.push:
