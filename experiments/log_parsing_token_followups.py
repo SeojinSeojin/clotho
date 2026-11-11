@@ -140,7 +140,7 @@ def run(kind,workers,push):
     from multiprocessing import Pool
     systems=[U.SYSNAME(ds) for ds in sorted(U.capped())]
     for system in systems:
-        while not (DATA/f'{system}.npz').exists() or not (DATA/f'{system}_v2.json').exists():
+        while not all(p.exists() for p in (DATA/f'{system}.npz',DATA/f'{system}.json',DATA/f'{system}_v2.json')):
             if time.time()>datetime.datetime(2026,11,11,22,30,tzinfo=datetime.timezone.utc).timestamp():raise TimeoutError('G5 inputs not ready by cutoff')
             time.sleep(10)
     with Pool(workers,maxtasksperchild=1) as pool:
