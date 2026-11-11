@@ -2051,6 +2051,41 @@ Copied from `reports/stopping_details.md` (`log_parsing_stopping.py report`; pro
 | platt | 10% | 60/60 | 0.42 | 9.6 | 0.116 | 90.4 |
 
 
+## 23. I: AdaParser's official pipeline as the parser under review (2026-11-10)
+
+Copied from `reports/adaparser_e2e_details.md` (`log_parsing_adaparser_e2e.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+### llama (12/13 systems; failed: Mac)
+
+| system | groups (templates) | queries | LLM calls | wall s | PA_0 | wrong groups | gap D x size - Most frequent @20 |
+|---|---|---|---|---|---|---|---|
+| Apache | 29 | 5 | 6 | 4 | 0.999 | 0.069 | +0.617 |
+| BGL | 66 | 111 | 473 | 473 | 0.995 | 0.273 | -0.056 |
+| HDFS | 13 | 0 | 0 | 2 | 1.000 | 0.000 | +nan |
+| HPC | 22 | 7 | 28 | 15 | 0.965 | 0.136 | -0.000 |
+| Hadoop | 228 | 205 | 426 | 231 | 0.939 | 0.246 | +0.000 |
+| HealthApp | 182 | 917 | 5942 | 3933 | 0.807 | 0.379 | -0.042 |
+| Linux | 365 | 436 | 1362 | 1028 | 0.876 | 0.384 | +0.003 |
+| OpenSSH | 31 | 25 | 174 | 242 | 1.000 | 0.161 | +0.052 |
+| OpenStack | 45 | 13 | 18 | 15 | 0.989 | 0.022 | -1.000 |
+| Spark | 141 | 120 | 225 | 120 | 0.985 | 0.206 | +0.182 |
+| Thunderbird | 577 | 720 | 2474 | 1505 | 0.644 | 0.489 | +0.014 |
+| Zookeeper | 98 | 66 | 166 | 85 | 0.955 | 0.224 | +0.000 |
+
+Macro PA_0 0.929; macro wrong groups 0.216.
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.066 ± 0.052 | 0.145 ± 0.069 | 0.310 ± 0.080 | 0.526 ± 0.054 | 13 | 13 | 21 | 14 | +0.247 (5/5) |
+| Most frequent | 0.051 ± 0.000 | 0.372 ± 0.000 | 0.578 ± 0.000 | 0.840 ± 0.000 | 132 | 177 | 109 | 53 | -0.021 (4/5) |
+| D x size | 0.115 ± 0.010 | 0.319 ± 0.047 | 0.557 ± 0.035 | 0.846 ± 0.010 | 255 | 165 | 106 | 54 | |
+| Oracle | 0.737 ± 0.000 | 0.825 ± 0.000 | 0.881 ± 0.000 | 0.909 ± 0.000 | 440 | 253 | 138 | 60 | -0.324 (5/5) |
+
+SK-ESD @20: 1. Most frequent 0.578; 1. D x size 0.557; 2. Random 0.310
+
+A12 D x size vs Most frequent: 0.46 (negligible)
+
+
 ## 24. J: cross-model failure prediction (2026-11-10)
 
 Copied from `reports/crossmodel_details.md` (`log_parsing_crossmodel.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
@@ -2232,17 +2267,19 @@ Copied from `reports/cpu_analyses_details.md` (`log_parsing_cpu_analyses.py repo
 |---|---|---|---|---|---|---|---|---|---|---|
 | Apache | 0.586 | 0.50 | -0.30 | 0.990 | 1.000 | 0.010 | 0.990 | 1.000 | 0.010 | 0.997 |
 | BGL | 0.529 | 0.45 | +0.19 | 0.996 | 0.999 | 0.003 | 0.996 | 1.000 | 0.003 | 0.995 |
+| HDFS | 0.643 | 0.64 | -0.28 | 1.000 | 1.000 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
 | HPC | 0.324 | 0.65 | +0.37 | 0.999 | 1.000 | 0.001 | 0.999 | 1.000 | 0.001 | 0.998 |
 | Hadoop | 0.586 | 0.75 | -0.01 | 0.824 | 0.857 | 0.033 | 0.829 | 0.864 | 0.034 | 0.748 |
 | HealthApp | 0.907 | 0.80 | -0.12 | 0.763 | 0.784 | 0.020 | 0.768 | 0.789 | 0.020 | 0.794 |
 | Linux | 0.751 | 0.75 | +0.00 | 0.854 | 0.866 | 0.012 | 0.855 | 0.867 | 0.012 | 0.854 |
 | Mac | 0.827 | 0.70 | -0.07 | 0.392 | 0.454 | 0.062 | 0.392 | 0.454 | 0.062 | 0.404 |
+| OpenSSH | 0.423 | 0.35 | -0.27 | 0.998 | 1.000 | 0.001 | 0.999 | 1.000 | 0.001 | 0.999 |
 | OpenStack | 0.161 | 0.65 | -0.16 | 0.830 | 0.868 | 0.038 | 0.938 | 0.980 | 0.042 | 0.843 |
 | Spark | 0.712 | 0.75 | -0.08 | 0.976 | 0.980 | 0.004 | 0.981 | 0.985 | 0.004 | 0.970 |
 | Thunderbird | 0.722 | 0.75 | -0.03 | 0.588 | 0.617 | 0.028 | 0.590 | 0.619 | 0.028 | 0.531 |
 | Zookeeper | 0.455 | 0.35 | -0.22 | 0.979 | 0.989 | 0.010 | 0.987 | 0.997 | 0.010 | 0.985 |
 
-Macro: wrong share 0.596, top-20 wrong share 0.645, Spearman(size, wrong) -0.038 (8/11 negative). @5: MF 0.713 / Oracle 0.762 (pred 0.722 / 0.772; indep 0.676); @10: MF 0.777 / Oracle 0.814 (pred 0.787 / 0.826; indep 0.765); @20: MF 0.836 / Oracle 0.856 (pred 0.848 / 0.868; indep 0.829)
+Macro: wrong share 0.587, top-20 wrong share 0.623, Spearman(size, wrong) -0.075 (10/13 negative). @5: MF 0.752 / Oracle 0.798 (pred 0.760 / 0.807; indep 0.718); @10: MF 0.810 / Oracle 0.843 (pred 0.819 / 0.852; indep 0.800); @20: MF 0.861 / Oracle 0.878 (pred 0.871 / 0.889; indep 0.855)
 
 #### llama/strong
 
@@ -2306,9 +2343,9 @@ Macro: wrong share 0.420, top-20 wrong share 0.511, Spearman(size, wrong) -0.086
 
 | N | points | actual gap mean | predicted gap mean | Pearson r (gap) | MAE (gap) | Pearson r (MF share) | MAE (MF share) | MF minus indep (mean) |
 |---|---|---|---|---|---|---|---|---|
-| 5 | 48 | 0.079 | 0.096 | 0.88 | 0.016 | 0.99 | 0.013 | -0.010 |
-| 10 | 48 | 0.058 | 0.074 | 0.88 | 0.017 | 0.99 | 0.015 | -0.012 |
-| 20 | 48 | 0.028 | 0.032 | 0.92 | 0.003 | 0.91 | 0.029 | -0.014 |
+| 5 | 50 | 0.077 | 0.093 | 0.88 | 0.016 | 0.99 | 0.012 | -0.009 |
+| 10 | 50 | 0.056 | 0.072 | 0.88 | 0.016 | 0.99 | 0.014 | -0.012 |
+| 20 | 50 | 0.027 | 0.030 | 0.93 | 0.003 | 0.91 | 0.028 | -0.014 |
 
 ### N2: counterfactual simulation (a SIMULATION: wrong groups flipped to correct)
 
@@ -2319,25 +2356,25 @@ Rows: target wrong-group share t (actual = no flips). Cells: share fixed, mean �
 
 | t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| actual | 0.596 | 0/11 | 0.713 ± 0.000 | 0.665 ± 0.007 | 0.762 ± 0.000 | 0.777 ± 0.000 | 0.770 ± 0.019 | 0.814 ± 0.000 | 0.836 ± 0.000 | 0.824 ± 0.016 | 0.856 ± 0.000 | -0.047 (5/5) | -0.007 (3/5) | -0.011 (3/5) |
-| 0.4 | 0.367 | 2/11 | 0.651 ± 0.045 | 0.605 ± 0.046 | 0.765 ± 0.029 | 0.738 ± 0.032 | 0.725 ± 0.030 | 0.821 ± 0.024 | 0.807 ± 0.028 | 0.780 ± 0.030 | 0.876 ± 0.019 | -0.047 (5/5) | -0.013 (3/5) | -0.027 (5/5) |
-| 0.3 | 0.283 | 1/11 | 0.589 ± 0.062 | 0.541 ± 0.053 | 0.760 ± 0.027 | 0.710 ± 0.023 | 0.681 ± 0.022 | 0.822 ± 0.021 | 0.781 ± 0.024 | 0.747 ± 0.032 | 0.881 ± 0.016 | -0.048 (4/5) | -0.029 (4/5) | -0.035 (4/5) |
-| 0.2 | 0.192 | 1/11 | 0.490 ± 0.129 | 0.443 ± 0.138 | 0.748 ± 0.047 | 0.632 ± 0.081 | 0.609 ± 0.083 | 0.820 ± 0.034 | 0.731 ± 0.062 | 0.708 ± 0.045 | 0.874 ± 0.031 | -0.047 (4/5) | -0.022 (4/5) | -0.023 (4/5) |
-| 0.1 | 0.094 | 0/11 | 0.361 ± 0.121 | 0.355 ± 0.044 | 0.748 ± 0.048 | 0.525 ± 0.081 | 0.514 ± 0.077 | 0.808 ± 0.043 | 0.643 ± 0.080 | 0.605 ± 0.093 | 0.843 ± 0.037 | -0.005 (3/5) | -0.011 (3/5) | -0.037 (5/5) |
-| 0.05 | 0.045 | 0/11 | 0.243 ± 0.033 | 0.250 ± 0.078 | 0.713 ± 0.030 | 0.390 ± 0.056 | 0.388 ± 0.106 | 0.753 ± 0.033 | 0.530 ± 0.057 | 0.503 ± 0.077 | 0.792 ± 0.042 | +0.008 (3/5) | -0.002 (2/5) | -0.028 (3/5) |
+| actual | 0.587 | 0/13 | 0.752 ± 0.000 | 0.706 ± 0.006 | 0.798 ± 0.000 | 0.810 ± 0.000 | 0.805 ± 0.016 | 0.843 ± 0.000 | 0.861 ± 0.000 | 0.851 ± 0.013 | 0.878 ± 0.000 | -0.046 (5/5) | -0.006 (3/5) | -0.010 (3/5) |
+| 0.4 | 0.368 | 2/13 | 0.700 ± 0.039 | 0.656 ± 0.038 | 0.801 ± 0.024 | 0.778 ± 0.027 | 0.767 ± 0.025 | 0.849 ± 0.020 | 0.837 ± 0.024 | 0.814 ± 0.025 | 0.895 ± 0.016 | -0.044 (5/5) | -0.011 (3/5) | -0.023 (5/5) |
+| 0.3 | 0.282 | 1/13 | 0.630 ± 0.049 | 0.573 ± 0.025 | 0.796 ± 0.022 | 0.738 ± 0.035 | 0.714 ± 0.039 | 0.849 ± 0.018 | 0.810 ± 0.023 | 0.785 ± 0.027 | 0.898 ± 0.013 | -0.057 (5/5) | -0.024 (4/5) | -0.026 (3/5) |
+| 0.2 | 0.188 | 1/13 | 0.505 ± 0.152 | 0.436 ± 0.146 | 0.786 ± 0.041 | 0.668 ± 0.092 | 0.635 ± 0.118 | 0.847 ± 0.030 | 0.768 ± 0.058 | 0.751 ± 0.040 | 0.892 ± 0.027 | -0.069 (4/5) | -0.034 (4/5) | -0.017 (3/5) |
+| 0.1 | 0.091 | 0/13 | 0.351 ± 0.134 | 0.347 ± 0.074 | 0.779 ± 0.041 | 0.536 ± 0.087 | 0.527 ± 0.092 | 0.829 ± 0.037 | 0.668 ± 0.076 | 0.644 ± 0.082 | 0.859 ± 0.032 | -0.004 (3/5) | -0.010 (3/5) | -0.024 (4/5) |
+| 0.05 | 0.041 | 0/13 | 0.239 ± 0.054 | 0.246 ± 0.085 | 0.715 ± 0.008 | 0.374 ± 0.058 | 0.372 ± 0.104 | 0.752 ± 0.011 | 0.518 ± 0.044 | 0.518 ± 0.064 | 0.787 ± 0.017 | +0.007 (3/5) | -0.002 (2/5) | +0.000 (3/5) |
 
-Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.05; @10 none; @20 none
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.05; @10 none; @20 0.05
 
 #### llama/base/dlow
 
 | t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| actual | 0.596 | 0/11 | 0.713 ± 0.000 | 0.665 ± 0.007 | 0.762 ± 0.000 | 0.777 ± 0.000 | 0.770 ± 0.019 | 0.814 ± 0.000 | 0.836 ± 0.000 | 0.824 ± 0.016 | 0.856 ± 0.000 | -0.047 (5/5) | -0.007 (3/5) | -0.011 (3/5) |
-| 0.4 | 0.367 | 2/11 | 0.688 ± 0.010 | 0.672 ± 0.021 | 0.775 ± 0.005 | 0.766 ± 0.007 | 0.787 ± 0.007 | 0.832 ± 0.005 | 0.832 ± 0.008 | 0.844 ± 0.008 | 0.882 ± 0.004 | -0.016 (5/5) | +0.021 (5/5) | +0.011 (5/5) |
-| 0.3 | 0.283 | 1/11 | 0.619 ± 0.053 | 0.648 ± 0.055 | 0.794 ± 0.006 | 0.737 ± 0.031 | 0.756 ± 0.027 | 0.851 ± 0.006 | 0.832 ± 0.006 | 0.850 ± 0.011 | 0.899 ± 0.006 | +0.029 (5/5) | +0.020 (5/5) | +0.018 (5/5) |
-| 0.2 | 0.192 | 1/11 | 0.464 ± 0.045 | 0.533 ± 0.024 | 0.771 ± 0.032 | 0.652 ± 0.041 | 0.686 ± 0.042 | 0.829 ± 0.024 | 0.775 ± 0.040 | 0.803 ± 0.029 | 0.884 ± 0.020 | +0.069 (5/5) | +0.034 (5/5) | +0.028 (5/5) |
-| 0.1 | 0.094 | 0/11 | 0.257 ± 0.035 | 0.296 ± 0.021 | 0.721 ± 0.033 | 0.484 ± 0.047 | 0.495 ± 0.053 | 0.780 ± 0.035 | 0.601 ± 0.082 | 0.674 ± 0.050 | 0.829 ± 0.030 | +0.039 (5/5) | +0.012 (4/5) | +0.073 (5/5) |
-| 0.05 | 0.045 | 0/11 | 0.150 ± 0.041 | 0.159 ± 0.044 | 0.626 ± 0.009 | 0.169 ± 0.041 | 0.180 ± 0.041 | 0.677 ± 0.008 | 0.303 ± 0.018 | 0.418 ± 0.017 | 0.719 ± 0.010 | +0.010 (5/5) | +0.011 (5/5) | +0.115 (5/5) |
+| actual | 0.587 | 0/13 | 0.752 ± 0.000 | 0.706 ± 0.006 | 0.798 ± 0.000 | 0.810 ± 0.000 | 0.805 ± 0.016 | 0.843 ± 0.000 | 0.861 ± 0.000 | 0.851 ± 0.013 | 0.878 ± 0.000 | -0.046 (5/5) | -0.006 (3/5) | -0.010 (3/5) |
+| 0.4 | 0.368 | 2/13 | 0.733 ± 0.007 | 0.720 ± 0.016 | 0.810 ± 0.004 | 0.801 ± 0.006 | 0.819 ± 0.006 | 0.858 ± 0.004 | 0.858 ± 0.006 | 0.868 ± 0.007 | 0.900 ± 0.004 | -0.013 (5/5) | +0.018 (5/5) | +0.010 (5/5) |
+| 0.3 | 0.282 | 1/13 | 0.662 ± 0.037 | 0.686 ± 0.038 | 0.826 ± 0.005 | 0.773 ± 0.023 | 0.792 ± 0.021 | 0.874 ± 0.005 | 0.857 ± 0.005 | 0.873 ± 0.009 | 0.915 ± 0.005 | +0.024 (5/5) | +0.018 (5/5) | +0.016 (5/5) |
+| 0.2 | 0.188 | 1/13 | 0.485 ± 0.077 | 0.543 ± 0.063 | 0.805 ± 0.027 | 0.657 ± 0.068 | 0.703 ± 0.055 | 0.855 ± 0.020 | 0.806 ± 0.035 | 0.833 ± 0.025 | 0.901 ± 0.017 | +0.058 (5/5) | +0.047 (5/5) | +0.027 (5/5) |
+| 0.1 | 0.091 | 0/13 | 0.218 ± 0.030 | 0.251 ± 0.018 | 0.757 ± 0.027 | 0.409 ± 0.040 | 0.481 ± 0.047 | 0.806 ± 0.029 | 0.622 ± 0.057 | 0.716 ± 0.041 | 0.848 ± 0.025 | +0.033 (5/5) | +0.072 (5/5) | +0.095 (5/5) |
+| 0.05 | 0.041 | 0/13 | 0.137 ± 0.037 | 0.146 ± 0.040 | 0.639 ± 0.010 | 0.154 ± 0.038 | 0.165 ± 0.038 | 0.686 ± 0.008 | 0.292 ± 0.032 | 0.449 ± 0.013 | 0.724 ± 0.008 | +0.009 (5/5) | +0.010 (5/5) | +0.157 (5/5) |
 
 Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.30; @10 0.40; @20 0.40
 
@@ -2427,6 +2464,9 @@ Overtake point (largest t from which D x size > Most frequent at every smaller t
 | row | IF F1 | IF P | IF R | OCSVM F1 | OCSVM P | OCSVM R | H count-based PCA F1 | H IM F1 |
 |---|---|---|---|---|---|---|---|---|
 | ground-truth templates | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 | 0.036 | 1.000 | 0.000 | 0.186 |
+| llama base N=0 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.186 | 0.108 | 0.649 | 0.000 | 0.186 |
+| llama Most frequent @20 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 | 0.036 | 1.000 | 0.000 | 0.186 |
+| llama D x size @20 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 ± 0.000 | 0.036 ± 0.000 | 1.000 ± 0.000 | 0.000 | 0.186 |
 | gemma base N=0 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.186 | 0.108 | 0.649 | 0.000 | 0.186 |
 | gemma Most frequent @20 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 | 0.036 | 1.000 | 0.000 | 0.186 |
 | gemma D x size @20 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 ± 0.000 | 0.036 ± 0.000 | 1.000 ± 0.000 | 0.000 | 0.186 |
@@ -3758,3 +3798,1361 @@ Concentration measured on 13 systems beyond the original stretch. **Wrongness is
 | 2M/full | 13 | 23,921–2,000,000 | 3208.7 | 0.888 | 0.251/0.630/0.773/0.853 | 0.138 |
 
 All per-system artifacts and statistics are in [cpu_round3_details.md](cpu_round3_details.md). Tail budgets are additional reviews after the 20 largest eligible groups; FTA uses only remaining lines. “Largest observed gain” describes results, not a held-out method-selection rule.
+
+## 31. Real AdaParser: candidate provenance and restricted review queues
+
+Source: `reports/adaparser_e2e_review.md`; protocol in PROGRESS.md Decisions.
+
+
+The official parser preloads 32 labelled Loghub-2.0 candidates per system; provenance shares count only templates with stream lines. Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Parser cache seed 0; seeds 0–4 apply to review policies. Candidate/LLM/mixed/unknown provenance tracks final trie ancestry. LLM-only excludes mixed groups; LLM-involved includes them. Both restrictions exclude unknowns and refit within their own queue. Budgets are capped at the cohort’s available templates; actual review counts are saved per run.
+
+### llama: complete with protocol skips: 12/13 successful; skipped: Mac
+
+| System | Disposition | Reason | Failed line |
+|---|---|---|---|
+| Mac | unsupported_context | Correction dialogue exceeds the fixed local context; original client exhausted its retries. | 394 |
+
+| System | Output templates | Candidate insertions | PA_0 | Wrong first-line | Wrong majority | Line share candidate / LLM / mixed / unknown | Template share candidate / LLM / mixed / unknown |
+|---|---|---|---|---|---|---|---|
+| Apache | 29 | 32 | 0.999 | 0.069 | 0.069 | 0.998 / 0.002 / 0.000 / 0.000 | 0.828 / 0.172 / 0.000 / 0.000 |
+| BGL | 66 | 32 | 0.995 | 0.273 | 0.273 | 0.131 / 0.869 / 0.000 / 0.000 | 0.212 / 0.788 / 0.000 / 0.000 |
+| HDFS | 13 | 32 | 1.000 | 0.000 | 0.000 | 1.000 / 0.000 / 0.000 / 0.000 | 1.000 / 0.000 / 0.000 / 0.000 |
+| HPC | 22 | 32 | 0.965 | 0.136 | 0.136 | 0.856 / 0.144 / 0.000 / 0.000 | 0.727 / 0.273 / 0.000 / 0.000 |
+| Hadoop | 228 | 32 | 0.939 | 0.246 | 0.246 | 0.136 / 0.864 / 0.000 / 0.000 | 0.140 / 0.860 / 0.000 / 0.000 |
+| HealthApp | 182 | 32 | 0.807 | 0.379 | 0.379 | 0.188 / 0.801 / 0.012 / 0.000 | 0.165 / 0.830 / 0.005 / 0.000 |
+| Linux | 365 | 32 | 0.876 | 0.384 | 0.384 | 0.166 / 0.833 / 0.001 / 0.000 | 0.077 / 0.921 / 0.003 / 0.000 |
+| OpenSSH | 31 | 32 | 1.000 | 0.161 | 0.161 | 0.708 / 0.003 / 0.290 / 0.000 | 0.677 / 0.290 / 0.032 / 0.000 |
+| OpenStack | 45 | 32 | 0.989 | 0.022 | 0.022 | 0.823 / 0.177 / 0.000 / 0.000 | 0.711 / 0.289 / 0.000 / 0.000 |
+| Spark | 141 | 32 | 0.985 | 0.206 | 0.206 | 0.012 / 0.988 / 0.000 / 0.000 | 0.149 / 0.851 / 0.000 / 0.000 |
+| Thunderbird | 577 | 32 | 0.644 | 0.489 | 0.490 | 0.041 / 0.959 / 0.000 / 0.000 | 0.035 / 0.965 / 0.000 / 0.000 |
+| Zookeeper | 98 | 32 | 0.955 | 0.224 | 0.224 | 0.781 / 0.219 / 0.000 / 0.000 | 0.327 / 0.673 / 0.000 / 0.000 |
+
+| System | Gini | Top 1 / 5 / 10 / 20 line share | Top20 wrong first | Top20 wrong majority | ρ(size, first wrong) | ρ(size, majority wrong) |
+|---|---|---|---|---|---|---|
+| Apache | 0.815 | 0.386 / 0.843 / 0.981 / 0.997 | 0.000 | 0.000 | -0.32630621299906587 | -0.32630621299906587 |
+| BGL | 0.963 | 0.756 / 0.977 / 0.990 / 0.993 | 0.250 | 0.250 | -0.21950489674524018 | -0.21950489674524018 |
+| HDFS | 0.656 | 0.244 / 0.983 / 1.000 / 1.000 | 0.000 | 0.000 | None | None |
+| HPC | 0.769 | 0.267 / 0.880 / 0.979 / 1.000 | 0.100 | 0.100 | -0.2924509453959643 | -0.2924509453959643 |
+| Hadoop | 0.855 | 0.265 / 0.492 / 0.625 / 0.755 | 0.100 | 0.100 | -0.23134461280721527 | -0.23134461280721527 |
+| HealthApp | 0.926 | 0.138 / 0.654 / 0.860 / 0.913 | 0.350 | 0.350 | -0.24589711330745997 | -0.24589711330745997 |
+| Linux | 0.902 | 0.435 / 0.761 / 0.825 / 0.868 | 0.300 | 0.300 | -0.18589620211514787 | -0.18589620211514787 |
+| OpenSSH | 0.863 | 0.290 / 0.915 / 0.994 / 0.999 | 0.000 | 0.000 | -0.5168933211417037 | -0.5168933211417037 |
+| OpenStack | 0.631 | 0.467 / 0.622 / 0.707 / 0.813 | 0.050 | 0.050 | 0.029412171797582633 | 0.029412171797582633 |
+| Spark | 0.961 | 0.493 / 0.943 / 0.956 / 0.968 | 0.200 | 0.200 | 0.08625984726840735 | 0.08625984726840735 |
+| Thunderbird | 0.780 | 0.227 / 0.403 / 0.489 / 0.563 | 0.300 | 0.300 | -0.2645863415768722 | -0.26091942661191475 |
+| Zookeeper | 0.889 | 0.140 / 0.695 / 0.845 / 0.981 | 0.150 | 0.150 | -0.36830216732123067 | -0.36830216732123067 |
+
+N5 comparison uses the same 12 systems for every parser, all stream lines; strong retains its 10 verified seed templates.
+
+| Parser | Strict PA | PTA | RTA | FTA |
+|---|---|---|---|---|
+| AdaParser | 0.929 | 0.763 | 0.829 | 0.793 |
+| Drain | 0.347 | 0.305 | 0.364 | 0.312 |
+| base | 0.327 | 0.346 | 0.350 | 0.347 |
+| strong | 0.661 | 0.579 | 0.572 | 0.574 |
+
+#### all, all systems: share of initially wrong lines fixed
+
+Eligible systems: 11/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.066 ± 0.052 | 0.051 ± 0.000 | 0.115 ± 0.010 | 0.737 ± 0.000 | 0.063 ± 0.010 (+5/−0/5) | 0.685 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.550 (negligible) |
+| 10 | 0.145 ± 0.069 | 0.372 ± 0.000 | 0.319 ± 0.047 | 0.825 ± 0.000 | -0.053 ± 0.047 (+1/−4/5) | 0.453 ± 0.000 | oracle:1; frequent:2; dsize:2; random:3 | 0.444 (negligible) |
+| 20 | 0.310 ± 0.080 | 0.578 ± 0.000 | 0.557 ± 0.035 | 0.881 ± 0.000 | -0.021 ± 0.035 (+1/−4/5) | 0.303 ± 0.000 | oracle:1; frequent:2; dsize:2; random:3 | 0.464 (negligible) |
+| 50 | 0.526 ± 0.054 | 0.840 ± 0.000 | 0.846 ± 0.010 | 0.909 ± 0.000 | 0.007 ± 0.010 (+3/−2/5) | 0.069 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.529 (negligible) |
+
+#### all, all systems: share of initially wrong templates fixed
+
+Eligible systems: 11/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.069 ± 0.035 | 0.001 ± 0.000 | 0.003 ± 0.001 | 0.445 ± 0.000 | 0.002 ± 0.001 (+5/−0/5) | 0.443 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.554 (negligible) |
+| 10 | 0.164 ± 0.085 | 0.054 ± 0.000 | 0.039 ± 0.016 | 0.526 ± 0.000 | -0.016 ± 0.016 (+2/−3/5) | 0.472 ± 0.000 | oracle:1; random:2; frequent:3; dsize:3 | 0.466 (negligible) |
+| 20 | 0.313 ± 0.103 | 0.220 ± 0.000 | 0.161 ± 0.019 | 0.678 ± 0.000 | -0.059 ± 0.019 (+0/−5/5) | 0.458 ± 0.000 | oracle:1; random:2; frequent:3; dsize:3 | 0.483 (negligible) |
+| 50 | 0.578 ± 0.011 | 0.537 ± 0.000 | 0.581 ± 0.006 | 0.832 ± 0.000 | 0.043 ± 0.006 (+5/−0/5) | 0.295 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.540 (negligible) |
+
+#### all, held-out: share of initially wrong lines fixed
+
+Eligible systems: 9/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.076 ± 0.057 | 0.042 ± 0.000 | 0.120 ± 0.012 | 0.784 ± 0.000 | 0.078 ± 0.012 (+5/−0/5) | 0.742 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.562 (small) |
+| 10 | 0.167 ± 0.082 | 0.371 ± 0.000 | 0.303 ± 0.061 | 0.855 ± 0.000 | -0.067 ± 0.061 (+0/−5/5) | 0.485 ± 0.000 | oracle:1; frequent:2; dsize:2; random:3 | 0.446 (negligible) |
+| 20 | 0.364 ± 0.099 | 0.593 ± 0.000 | 0.547 ± 0.044 | 0.887 ± 0.000 | -0.046 ± 0.044 (+0/−5/5) | 0.294 ± 0.000 | oracle:1; frequent:2; dsize:2; random:3 | 0.431 (small) |
+| 50 | 0.589 ± 0.063 | 0.848 ± 0.000 | 0.862 ± 0.008 | 0.907 ± 0.000 | 0.014 ± 0.008 (+5/−0/5) | 0.059 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.536 (negligible) |
+
+#### all, held-out: share of initially wrong templates fixed
+
+Eligible systems: 9/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.081 ± 0.043 | 0.001 ± 0.000 | 0.003 ± 0.001 | 0.521 ± 0.000 | 0.003 ± 0.001 (+5/−0/5) | 0.520 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.562 (small) |
+| 10 | 0.193 ± 0.105 | 0.058 ± 0.000 | 0.036 ± 0.020 | 0.597 ± 0.000 | -0.022 ± 0.020 (+0/−3/5) | 0.538 ± 0.000 | oracle:1; random:2; frequent:3; dsize:3 | 0.452 (negligible) |
+| 20 | 0.366 ± 0.129 | 0.248 ± 0.000 | 0.163 ± 0.025 | 0.736 ± 0.000 | -0.086 ± 0.025 (+0/−5/5) | 0.488 ± 0.000 | oracle:1; random:2; frequent:3; dsize:3 | 0.468 (negligible) |
+| 50 | 0.651 ± 0.015 | 0.588 ± 0.000 | 0.633 ± 0.005 | 0.866 ± 0.000 | 0.044 ± 0.005 (+5/−0/5) | 0.278 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.536 (negligible) |
+
+#### llm_only, all systems: share of initially wrong lines fixed
+
+Eligible systems: 11/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.262 ± 0.057 | 0.457 ± 0.000 | 0.558 ± 0.009 | 0.781 ± 0.000 | 0.101 ± 0.009 (+5/−0/5) | 0.324 ± 0.000 | oracle:1; dsize:2; frequent:3; random:4 | 0.577 (small) |
+| 10 | 0.359 ± 0.044 | 0.695 ± 0.000 | 0.707 ± 0.007 | 0.869 ± 0.000 | 0.012 ± 0.007 (+5/−0/5) | 0.174 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.506 (negligible) |
+| 20 | 0.455 ± 0.027 | 0.793 ± 0.000 | 0.806 ± 0.002 | 0.925 ± 0.000 | 0.013 ± 0.002 (+5/−0/5) | 0.132 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.512 (negligible) |
+| 50 | 0.628 ± 0.070 | 0.903 ± 0.000 | 0.910 ± 0.003 | 0.953 ± 0.000 | 0.008 ± 0.003 (+5/−0/5) | 0.050 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.537 (negligible) |
+
+#### llm_only, all systems: share of initially wrong templates fixed
+
+Eligible systems: 11/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.268 ± 0.052 | 0.187 ± 0.000 | 0.279 ± 0.001 | 0.445 ± 0.000 | 0.092 ± 0.001 (+5/−0/5) | 0.258 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.577 (small) |
+| 10 | 0.374 ± 0.062 | 0.406 ± 0.000 | 0.411 ± 0.002 | 0.526 ± 0.000 | 0.004 ± 0.002 (+5/−0/5) | 0.120 ± 0.000 | oracle:1; dsize:1; frequent:1; random:1 | 0.516 (negligible) |
+| 20 | 0.466 ± 0.014 | 0.459 ± 0.000 | 0.474 ± 0.002 | 0.678 ± 0.000 | 0.015 ± 0.002 (+5/−0/5) | 0.220 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.530 (negligible) |
+| 50 | 0.641 ± 0.013 | 0.594 ± 0.000 | 0.632 ± 0.005 | 0.832 ± 0.000 | 0.038 ± 0.005 (+5/−0/5) | 0.238 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.552 (negligible) |
+
+#### llm_only, held-out: share of initially wrong lines fixed
+
+Eligible systems: 9/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.315 ± 0.069 | 0.516 ± 0.000 | 0.640 ± 0.011 | 0.838 ± 0.000 | 0.124 ± 0.011 (+5/−0/5) | 0.321 ± 0.000 | oracle:1; dsize:2; frequent:3; random:4 | 0.601 (small) |
+| 10 | 0.429 ± 0.052 | 0.753 ± 0.000 | 0.759 ± 0.009 | 0.909 ± 0.000 | 0.006 ± 0.009 (+2/−0/5) | 0.155 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.502 (negligible) |
+| 20 | 0.536 ± 0.033 | 0.838 ± 0.000 | 0.842 ± 0.004 | 0.940 ± 0.000 | 0.004 ± 0.004 (+4/−1/5) | 0.102 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.504 (negligible) |
+| 50 | 0.709 ± 0.079 | 0.921 ± 0.000 | 0.932 ± 0.004 | 0.961 ± 0.000 | 0.011 ± 0.004 (+5/−0/5) | 0.040 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.543 (negligible) |
+
+#### llm_only, held-out: share of initially wrong templates fixed
+
+Eligible systems: 9/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.323 ± 0.067 | 0.227 ± 0.000 | 0.339 ± 0.001 | 0.521 ± 0.000 | 0.112 ± 0.001 (+5/−0/5) | 0.293 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.596 (small) |
+| 10 | 0.447 ± 0.075 | 0.485 ± 0.000 | 0.486 ± 0.002 | 0.597 ± 0.000 | 0.001 ± 0.002 (+2/−0/5) | 0.112 ± 0.000 | oracle:1; dsize:1; frequent:1; random:1 | 0.505 (negligible) |
+| 20 | 0.549 ± 0.019 | 0.529 ± 0.000 | 0.539 ± 0.004 | 0.736 ± 0.000 | 0.010 ± 0.004 (+5/−0/5) | 0.208 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.514 (negligible) |
+| 50 | 0.718 ± 0.013 | 0.651 ± 0.000 | 0.688 ± 0.009 | 0.866 ± 0.000 | 0.037 ± 0.009 (+5/−0/5) | 0.215 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.544 (negligible) |
+
+#### llm_involved, all systems: share of initially wrong lines fixed
+
+Eligible systems: 11/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.233 ± 0.073 | 0.435 ± 0.000 | 0.509 ± 0.009 | 0.737 ± 0.000 | 0.074 ± 0.009 (+5/−0/5) | 0.302 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.561 (small) |
+| 10 | 0.315 ± 0.044 | 0.651 ± 0.000 | 0.663 ± 0.007 | 0.825 ± 0.000 | 0.012 ± 0.007 (+5/−0/5) | 0.174 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.506 (negligible) |
+| 20 | 0.411 ± 0.027 | 0.747 ± 0.000 | 0.763 ± 0.003 | 0.881 ± 0.000 | 0.015 ± 0.003 (+5/−0/5) | 0.134 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.512 (negligible) |
+| 50 | 0.585 ± 0.070 | 0.858 ± 0.000 | 0.866 ± 0.003 | 0.909 ± 0.000 | 0.008 ± 0.003 (+5/−0/5) | 0.050 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.533 (negligible) |
+
+#### llm_involved, all systems: share of initially wrong templates fixed
+
+Eligible systems: 11/12; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.257 ± 0.054 | 0.187 ± 0.000 | 0.260 ± 0.001 | 0.445 ± 0.000 | 0.073 ± 0.001 (+5/−0/5) | 0.258 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.518 (negligible) |
+| 10 | 0.374 ± 0.062 | 0.406 ± 0.000 | 0.411 ± 0.002 | 0.526 ± 0.000 | 0.004 ± 0.002 (+5/−0/5) | 0.120 ± 0.000 | oracle:1; dsize:1; frequent:1; random:1 | 0.516 (negligible) |
+| 20 | 0.466 ± 0.014 | 0.457 ± 0.000 | 0.474 ± 0.002 | 0.678 ± 0.000 | 0.017 ± 0.002 (+5/−0/5) | 0.221 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.535 (negligible) |
+| 50 | 0.641 ± 0.013 | 0.594 ± 0.000 | 0.633 ± 0.007 | 0.832 ± 0.000 | 0.039 ± 0.007 (+5/−0/5) | 0.238 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.555 (negligible) |
+
+#### llm_involved, held-out: share of initially wrong lines fixed
+
+Eligible systems: 9/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.279 ± 0.088 | 0.490 ± 0.000 | 0.580 ± 0.011 | 0.784 ± 0.000 | 0.090 ± 0.011 (+5/−0/5) | 0.295 ± 0.000 | oracle:1; dsize:2; frequent:3; random:4 | 0.579 (small) |
+| 10 | 0.376 ± 0.052 | 0.700 ± 0.000 | 0.706 ± 0.009 | 0.855 ± 0.000 | 0.006 ± 0.009 (+2/−0/5) | 0.155 ± 0.000 | oracle:1; dsize:2; frequent:2; random:3 | 0.502 (negligible) |
+| 20 | 0.483 ± 0.033 | 0.782 ± 0.000 | 0.789 ± 0.005 | 0.887 ± 0.000 | 0.007 ± 0.005 (+4/−1/5) | 0.105 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.504 (negligible) |
+| 50 | 0.656 ± 0.079 | 0.868 ± 0.000 | 0.879 ± 0.004 | 0.907 ± 0.000 | 0.012 ± 0.004 (+5/−0/5) | 0.040 ± 0.000 | oracle:1; dsize:1; frequent:1; random:2 | 0.537 (negligible) |
+
+#### llm_involved, held-out: share of initially wrong templates fixed
+
+Eligible systems: 9/9; absent cohorts and zero initial-error denominators are excluded.
+
+| Reviews | Random | Most frequent | D × size | Oracle | D − frequency (seed signs) | Oracle − frequency | SK-ESD | A12 D vs frequency |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.310 ± 0.068 | 0.227 ± 0.000 | 0.317 ± 0.001 | 0.521 ± 0.000 | 0.090 ± 0.001 (+5/−0/5) | 0.293 ± 0.000 | oracle:1; dsize:2; random:2; frequent:2 | 0.527 (negligible) |
+| 10 | 0.447 ± 0.075 | 0.485 ± 0.000 | 0.486 ± 0.002 | 0.597 ± 0.000 | 0.001 ± 0.002 (+2/−0/5) | 0.112 ± 0.000 | oracle:1; dsize:1; frequent:1; random:1 | 0.505 (negligible) |
+| 20 | 0.549 ± 0.019 | 0.527 ± 0.000 | 0.539 ± 0.003 | 0.736 ± 0.000 | 0.012 ± 0.003 (+5/−0/5) | 0.209 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.520 (negligible) |
+| 50 | 0.718 ± 0.014 | 0.651 ± 0.000 | 0.689 ± 0.011 | 0.866 ± 0.000 | 0.038 ± 0.011 (+5/−0/5) | 0.215 ± 0.000 | oracle:1; random:2; dsize:2; frequent:2 | 0.548 (negligible) |
+
+#### Per-system D − frequency gains (mean gap, number of strictly positive seeds / 5)
+
+| System | Subset | Metric | N=5 | N=10 | N=20 | N=50 |
+|---|---|---|---|---|---|---|
+| Apache | all | lines | +0.000 (0/5) | +0.000 (0/5) | +0.617 (4/5) | +0.000 (0/5) |
+| Apache | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.400 (4/5) | +0.000 (0/5) |
+| Apache | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| Apache | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| Apache | llm_involved | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| Apache | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| BGL | all | lines | +0.000 (0/5) | +0.000 (0/5) | -0.056 (0/5) | +0.015 (5/5) |
+| BGL | all | templates | +0.000 (0/5) | +0.000 (0/5) | -0.056 (0/5) | +0.211 (5/5) |
+| BGL | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | -0.013 (2/5) | +0.004 (5/5) |
+| BGL | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.056 (4/5) | +0.056 (5/5) |
+| BGL | llm_involved | lines | +0.000 (0/5) | +0.000 (0/5) | -0.013 (2/5) | +0.004 (5/5) |
+| BGL | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.056 (4/5) | +0.056 (5/5) |
+| HDFS | all | lines | undefined | undefined | undefined | undefined |
+| HDFS | all | templates | undefined | undefined | undefined | undefined |
+| HPC | all | lines | +0.000 (0/5) | -0.599 (0/5) | -0.000 (0/5) | +0.000 (0/5) |
+| HPC | all | templates | +0.000 (0/5) | -0.200 (0/5) | -0.133 (0/5) | +0.000 (0/5) |
+| HPC | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| HPC | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| HPC | llm_involved | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| HPC | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| Hadoop | all | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.090 (5/5) |
+| Hadoop | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.054 (5/5) |
+| Hadoop | llm_only | lines | +0.000 (0/5) | +0.032 (1/5) | +0.054 (5/5) | +0.094 (5/5) |
+| Hadoop | llm_only | templates | +0.000 (0/5) | +0.004 (1/5) | +0.029 (5/5) | +0.054 (5/5) |
+| Hadoop | llm_involved | lines | +0.000 (0/5) | +0.032 (1/5) | +0.054 (5/5) | +0.094 (5/5) |
+| Hadoop | llm_involved | templates | +0.000 (0/5) | +0.004 (1/5) | +0.029 (5/5) | +0.054 (5/5) |
+| HealthApp | all | lines | +0.700 (5/5) | +0.000 (0/5) | -0.042 (0/5) | -0.003 (3/5) |
+| HealthApp | all | templates | +0.023 (5/5) | +0.000 (0/5) | -0.026 (0/5) | +0.017 (5/5) |
+| HealthApp | llm_only | lines | +0.115 (3/5) | +0.000 (0/5) | -0.027 (0/5) | -0.002 (0/5) |
+| HealthApp | llm_only | templates | +0.009 (3/5) | +0.000 (0/5) | -0.017 (0/5) | -0.017 (0/5) |
+| HealthApp | llm_involved | lines | +0.077 (2/5) | +0.000 (0/5) | -0.003 (0/5) | -0.002 (1/5) |
+| HealthApp | llm_involved | templates | +0.006 (2/5) | +0.000 (0/5) | +0.000 (0/5) | -0.006 (2/5) |
+| Linux | all | lines | -0.002 (0/5) | -0.085 (0/5) | +0.003 (1/5) | +0.027 (5/5) |
+| Linux | all | templates | +0.000 (0/5) | -0.006 (0/5) | +0.001 (1/5) | +0.071 (5/5) |
+| Linux | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | +0.016 (5/5) | +0.038 (5/5) |
+| Linux | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.006 (4/5) | +0.072 (5/5) |
+| Linux | llm_involved | lines | +0.000 (0/5) | +0.000 (0/5) | +0.018 (5/5) | +0.038 (5/5) |
+| Linux | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.007 (5/5) | +0.073 (5/5) |
+| OpenSSH | all | lines | +0.000 (0/5) | +0.000 (0/5) | +0.052 (1/5) | +0.000 (0/5) |
+| OpenSSH | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.040 (1/5) | +0.000 (0/5) |
+| OpenSSH | llm_only | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenSSH | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenSSH | llm_involved | lines | -0.261 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenSSH | llm_involved | templates | -0.200 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenStack | all | lines | +0.000 (0/5) | +0.000 (0/5) | -1.000 (0/5) | +0.000 (0/5) |
+| OpenStack | all | templates | +0.000 (0/5) | +0.000 (0/5) | -1.000 (0/5) | +0.000 (0/5) |
+| OpenStack | llm_only | lines | +1.000 (5/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenStack | llm_only | templates | +1.000 (5/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenStack | llm_involved | lines | +1.000 (5/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| OpenStack | llm_involved | templates | +1.000 (5/5) | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) |
+| Spark | all | lines | +0.000 (0/5) | +0.107 (5/5) | +0.182 (5/5) | -0.080 (0/5) |
+| Spark | all | templates | +0.000 (0/5) | +0.034 (5/5) | +0.124 (5/5) | +0.007 (2/5) |
+| Spark | llm_only | lines | +0.000 (0/5) | +0.076 (5/5) | +0.093 (5/5) | -0.057 (0/5) |
+| Spark | llm_only | templates | +0.000 (0/5) | +0.034 (5/5) | +0.069 (5/5) | +0.014 (3/5) |
+| Spark | llm_involved | lines | +0.000 (0/5) | +0.076 (5/5) | +0.093 (5/5) | -0.057 (0/5) |
+| Spark | llm_involved | templates | +0.000 (0/5) | +0.034 (5/5) | +0.069 (5/5) | +0.014 (3/5) |
+| Thunderbird | all | lines | +0.000 (0/5) | -0.008 (0/5) | +0.014 (3/5) | +0.009 (4/5) |
+| Thunderbird | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.004 (3/5) | +0.009 (5/5) |
+| Thunderbird | llm_only | lines | -0.003 (0/5) | +0.000 (0/5) | +0.022 (5/5) | +0.006 (5/5) |
+| Thunderbird | llm_only | templates | +0.000 (0/5) | +0.000 (0/5) | +0.006 (5/5) | +0.005 (5/5) |
+| Thunderbird | llm_involved | lines | -0.003 (0/5) | +0.000 (0/5) | +0.022 (5/5) | +0.006 (5/5) |
+| Thunderbird | llm_involved | templates | +0.000 (0/5) | +0.000 (0/5) | +0.006 (5/5) | +0.005 (5/5) |
+| Zookeeper | all | lines | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.015 (5/5) |
+| Zookeeper | all | templates | +0.000 (0/5) | +0.000 (0/5) | +0.000 (0/5) | +0.109 (5/5) |
+| Zookeeper | llm_only | lines | +0.000 (0/5) | +0.023 (1/5) | +0.000 (2/5) | +0.002 (5/5) |
+| Zookeeper | llm_only | templates | +0.000 (0/5) | +0.009 (1/5) | +0.018 (2/5) | +0.236 (5/5) |
+| Zookeeper | llm_involved | lines | +0.000 (0/5) | +0.023 (1/5) | +0.000 (2/5) | +0.002 (5/5) |
+| Zookeeper | llm_involved | templates | +0.000 (0/5) | +0.009 (1/5) | +0.018 (2/5) | +0.236 (5/5) |
+
+Headline: with the real parser, Most frequent achieves 65.6% of Oracle’s macro gain after 20 reviews: 0.578 versus 0.881 of wrong lines fixed (gap 0.303). D × size beats frequency on every seed in: all/all systems/lines/5, all/all systems/templates/5, all/all systems/templates/50, all/held-out/lines/5, all/held-out/lines/50, all/held-out/templates/5, all/held-out/templates/50, llm_only/all systems/lines/5, llm_only/all systems/lines/10, llm_only/all systems/lines/20, llm_only/all systems/lines/50, llm_only/all systems/templates/5, llm_only/all systems/templates/10, llm_only/all systems/templates/20, llm_only/all systems/templates/50, llm_only/held-out/lines/5, llm_only/held-out/lines/50, llm_only/held-out/templates/5, llm_only/held-out/templates/20, llm_only/held-out/templates/50, llm_involved/all systems/lines/5, llm_involved/all systems/lines/10, llm_involved/all systems/lines/20, llm_involved/all systems/lines/50, llm_involved/all systems/templates/5, llm_involved/all systems/templates/10, llm_involved/all systems/templates/20, llm_involved/all systems/templates/50, llm_involved/held-out/lines/5, llm_involved/held-out/lines/50, llm_involved/held-out/templates/5, llm_involved/held-out/templates/20, llm_involved/held-out/templates/50, BGL/all/lines/50, BGL/all/templates/50, BGL/llm_only/lines/50, BGL/llm_only/templates/50, BGL/llm_involved/lines/50, BGL/llm_involved/templates/50, Hadoop/all/lines/50, Hadoop/all/templates/50, Hadoop/llm_only/lines/20, Hadoop/llm_only/lines/50, Hadoop/llm_only/templates/20, Hadoop/llm_only/templates/50, Hadoop/llm_involved/lines/20, Hadoop/llm_involved/lines/50, Hadoop/llm_involved/templates/20, Hadoop/llm_involved/templates/50, HealthApp/all/lines/5, HealthApp/all/templates/5, HealthApp/all/templates/50, Linux/all/lines/50, Linux/all/templates/50, Linux/llm_only/lines/20, Linux/llm_only/lines/50, Linux/llm_only/templates/50, Linux/llm_involved/lines/20, Linux/llm_involved/lines/50, Linux/llm_involved/templates/20, Linux/llm_involved/templates/50, OpenStack/llm_only/lines/5, OpenStack/llm_only/templates/5, OpenStack/llm_involved/lines/5, OpenStack/llm_involved/templates/5, Spark/all/lines/10, Spark/all/lines/20, Spark/all/templates/10, Spark/all/templates/20, Spark/llm_only/lines/10, Spark/llm_only/lines/20, Spark/llm_only/templates/10, Spark/llm_only/templates/20, Spark/llm_involved/lines/10, Spark/llm_involved/lines/20, Spark/llm_involved/templates/10, Spark/llm_involved/templates/20, Thunderbird/all/templates/50, Thunderbird/llm_only/lines/20, Thunderbird/llm_only/lines/50, Thunderbird/llm_only/templates/20, Thunderbird/llm_only/templates/50, Thunderbird/llm_involved/lines/20, Thunderbird/llm_involved/lines/50, Thunderbird/llm_involved/templates/20, Thunderbird/llm_involved/templates/50, Zookeeper/all/lines/50, Zookeeper/all/templates/50, Zookeeper/llm_only/lines/50, Zookeeper/llm_only/templates/50, Zookeeper/llm_involved/lines/50, Zookeeper/llm_involved/templates/50.
+
+## 32. N1-N3: paired statistical supplement after cache restoration
+
+Source: `reports/cpu_analyses_stats.md`; protocol in PROGRESS.md Decisions.
+
+
+N1 concentration is deterministic. N2/N3 use seeds 0–4, mean ± sample std of per-seed system macros; paired seed signs. SK-ESD and A12 use (system, seed) observations. Undefined no-error cells are excluded jointly.
+
+#### N2/llama/base/actual/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.752 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.706 ± 0.006 | -0.046 ± 0.006 (+0/−5/5) | 1 | 0.436 |
+| oracle | 0.798 ± 0.000 | +0.046 ± 0.000 (+5/−0/5) | 1 | 0.615 |
+
+#### N2/llama/base/actual/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.810 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.805 ± 0.016 | -0.006 ± 0.016 (+2/−3/5) | 1 | 0.512 |
+| oracle | 0.843 ± 0.000 | +0.032 ± 0.000 (+5/−0/5) | 1 | 0.615 |
+
+#### N2/llama/base/actual/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.861 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.851 ± 0.013 | -0.010 ± 0.013 (+2/−3/5) | 1 | 0.515 |
+| oracle | 0.878 ± 0.000 | +0.017 ± 0.000 (+5/−0/5) | 1 | 0.592 |
+
+#### N2/llama/base/dlow/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.137 ± 0.037 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.146 ± 0.040 | +0.009 ± 0.005 (+5/−0/5) | 2 | 0.509 |
+| oracle | 0.639 ± 0.010 | +0.502 ± 0.033 (+5/−0/5) | 1 | 0.902 |
+
+#### N2/llama/base/dlow/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.154 ± 0.038 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.165 ± 0.038 | +0.010 ± 0.007 (+5/−0/5) | 2 | 0.522 |
+| oracle | 0.686 ± 0.008 | +0.532 ± 0.035 (+5/−0/5) | 1 | 0.888 |
+
+#### N2/llama/base/dlow/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.292 ± 0.032 | +0.000 ± 0.000 (+0/−0/5) | 3 | 0.500 |
+| dsize | 0.449 ± 0.013 | +0.157 ± 0.042 (+5/−0/5) | 2 | 0.635 |
+| oracle | 0.724 ± 0.008 | +0.433 ± 0.036 (+5/−0/5) | 1 | 0.820 |
+
+#### N2/llama/base/dlow/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.218 ± 0.030 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.251 ± 0.018 | +0.033 ± 0.017 (+5/−0/5) | 2 | 0.523 |
+| oracle | 0.757 ± 0.027 | +0.539 ± 0.030 (+5/−0/5) | 1 | 0.898 |
+
+#### N2/llama/base/dlow/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.409 ± 0.040 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.481 ± 0.047 | +0.072 ± 0.035 (+5/−0/5) | 2 | 0.562 |
+| oracle | 0.806 ± 0.029 | +0.397 ± 0.049 (+5/−0/5) | 1 | 0.808 |
+
+#### N2/llama/base/dlow/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.622 ± 0.057 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.716 ± 0.041 | +0.095 ± 0.040 (+5/−0/5) | 2 | 0.584 |
+| oracle | 0.848 ± 0.025 | +0.226 ± 0.048 (+5/−0/5) | 1 | 0.711 |
+
+#### N2/llama/base/dlow/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.485 ± 0.077 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.543 ± 0.063 | +0.058 ± 0.027 (+5/−0/5) | 2 | 0.548 |
+| oracle | 0.805 ± 0.027 | +0.321 ± 0.088 (+5/−0/5) | 1 | 0.779 |
+
+#### N2/llama/base/dlow/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.657 ± 0.068 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.703 ± 0.055 | +0.047 ± 0.026 (+5/−0/5) | 2 | 0.546 |
+| oracle | 0.855 ± 0.020 | +0.198 ± 0.074 (+5/−0/5) | 1 | 0.727 |
+
+#### N2/llama/base/dlow/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.806 ± 0.035 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.833 ± 0.025 | +0.027 ± 0.011 (+5/−0/5) | 2 | 0.550 |
+| oracle | 0.901 ± 0.017 | +0.095 ± 0.024 (+5/−0/5) | 1 | 0.642 |
+
+#### N2/llama/base/dlow/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.662 ± 0.037 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.686 ± 0.038 | +0.024 ± 0.003 (+5/−0/5) | 2 | 0.527 |
+| oracle | 0.826 ± 0.005 | +0.164 ± 0.035 (+5/−0/5) | 1 | 0.696 |
+
+#### N2/llama/base/dlow/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.773 ± 0.023 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.792 ± 0.021 | +0.018 ± 0.003 (+5/−0/5) | 2 | 0.521 |
+| oracle | 0.874 ± 0.005 | +0.100 ± 0.023 (+5/−0/5) | 1 | 0.684 |
+
+#### N2/llama/base/dlow/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.857 ± 0.005 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.873 ± 0.009 | +0.016 ± 0.005 (+5/−0/5) | 1 | 0.531 |
+| oracle | 0.915 ± 0.005 | +0.057 ± 0.007 (+5/−0/5) | 1 | 0.619 |
+
+#### N2/llama/base/dlow/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.733 ± 0.007 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.720 ± 0.016 | -0.013 ± 0.012 (+0/−5/5) | 2 | 0.474 |
+| oracle | 0.810 ± 0.004 | +0.076 ± 0.008 (+5/−0/5) | 1 | 0.622 |
+
+#### N2/llama/base/dlow/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.801 ± 0.006 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.819 ± 0.006 | +0.018 ± 0.003 (+5/−0/5) | 1 | 0.533 |
+| oracle | 0.858 ± 0.004 | +0.057 ± 0.002 (+5/−0/5) | 1 | 0.638 |
+
+#### N2/llama/base/dlow/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.858 ± 0.006 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.868 ± 0.007 | +0.010 ± 0.003 (+5/−0/5) | 1 | 0.527 |
+| oracle | 0.900 ± 0.004 | +0.042 ± 0.004 (+5/−0/5) | 1 | 0.597 |
+
+#### N2/llama/base/random/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.239 ± 0.054 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.246 ± 0.085 | +0.007 ± 0.089 (+3/−1/5) | 2 | 0.510 |
+| oracle | 0.715 ± 0.008 | +0.476 ± 0.059 (+5/−0/5) | 1 | 0.821 |
+
+#### N2/llama/base/random/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.374 ± 0.058 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.372 ± 0.104 | -0.002 ± 0.053 (+3/−2/5) | 2 | 0.518 |
+| oracle | 0.752 ± 0.011 | +0.378 ± 0.067 (+5/−0/5) | 1 | 0.749 |
+
+#### N2/llama/base/random/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.518 ± 0.044 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.518 ± 0.064 | +0.000 ± 0.054 (+3/−2/5) | 2 | 0.500 |
+| oracle | 0.787 ± 0.017 | +0.270 ± 0.053 (+5/−0/5) | 1 | 0.691 |
+
+#### N2/llama/base/random/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.351 ± 0.134 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.347 ± 0.074 | -0.004 ± 0.069 (+2/−3/5) | 2 | 0.507 |
+| oracle | 0.779 ± 0.041 | +0.428 ± 0.108 (+5/−0/5) | 1 | 0.770 |
+
+#### N2/llama/base/random/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.536 ± 0.087 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.527 ± 0.092 | -0.010 ± 0.035 (+2/−3/5) | 2 | 0.503 |
+| oracle | 0.829 ± 0.037 | +0.293 ± 0.056 (+5/−0/5) | 1 | 0.684 |
+
+#### N2/llama/base/random/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.668 ± 0.076 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.644 ± 0.082 | -0.024 ± 0.057 (+1/−4/5) | 2 | 0.491 |
+| oracle | 0.859 ± 0.032 | +0.191 ± 0.048 (+5/−0/5) | 1 | 0.656 |
+
+#### N2/llama/base/random/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.505 ± 0.152 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.436 ± 0.146 | -0.069 ± 0.066 (+1/−4/5) | 2 | 0.460 |
+| oracle | 0.786 ± 0.041 | +0.282 ± 0.117 (+5/−0/5) | 1 | 0.718 |
+
+#### N2/llama/base/random/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.668 ± 0.092 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.635 ± 0.118 | -0.034 ± 0.046 (+1/−4/5) | 2 | 0.474 |
+| oracle | 0.847 ± 0.030 | +0.178 ± 0.065 (+5/−0/5) | 1 | 0.661 |
+
+#### N2/llama/base/random/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.768 ± 0.058 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.751 ± 0.040 | -0.017 ± 0.029 (+2/−3/5) | 2 | 0.498 |
+| oracle | 0.892 ± 0.027 | +0.124 ± 0.032 (+5/−0/5) | 1 | 0.632 |
+
+#### N2/llama/base/random/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.630 ± 0.049 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.573 ± 0.025 | -0.057 ± 0.045 (+0/−5/5) | 2 | 0.446 |
+| oracle | 0.796 ± 0.022 | +0.166 ± 0.037 (+5/−0/5) | 1 | 0.658 |
+
+#### N2/llama/base/random/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.738 ± 0.035 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.714 ± 0.039 | -0.024 ± 0.018 (+1/−4/5) | 2 | 0.492 |
+| oracle | 0.849 ± 0.018 | +0.111 ± 0.036 (+5/−0/5) | 1 | 0.625 |
+
+#### N2/llama/base/random/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.810 ± 0.023 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.785 ± 0.027 | -0.026 ± 0.027 (+2/−3/5) | 2 | 0.494 |
+| oracle | 0.898 ± 0.013 | +0.088 ± 0.014 (+5/−0/5) | 1 | 0.617 |
+
+#### N2/llama/base/random/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.700 ± 0.039 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.656 ± 0.038 | -0.044 ± 0.010 (+0/−5/5) | 2 | 0.443 |
+| oracle | 0.801 ± 0.024 | +0.100 ± 0.015 (+5/−0/5) | 1 | 0.620 |
+
+#### N2/llama/base/random/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.778 ± 0.027 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.767 ± 0.025 | -0.011 ± 0.018 (+2/−3/5) | 1 | 0.504 |
+| oracle | 0.849 ± 0.020 | +0.071 ± 0.009 (+5/−0/5) | 1 | 0.618 |
+
+#### N2/llama/base/random/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.837 ± 0.024 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.814 ± 0.025 | -0.023 ± 0.019 (+0/−5/5) | 1 | 0.491 |
+| oracle | 0.895 ± 0.016 | +0.058 ± 0.010 (+5/−0/5) | 1 | 0.603 |
+
+#### N2/llama/strong/actual/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.597 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.609 ± 0.006 | +0.012 ± 0.006 (+5/−0/5) | 2 | 0.519 |
+| oracle | 0.728 ± 0.000 | +0.130 ± 0.000 (+5/−0/5) | 1 | 0.630 |
+
+#### N2/llama/strong/actual/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.720 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.707 ± 0.007 | -0.012 ± 0.007 (+0/−5/5) | 1 | 0.487 |
+| oracle | 0.786 ± 0.000 | +0.066 ± 0.000 (+5/−0/5) | 1 | 0.598 |
+
+#### N2/llama/strong/actual/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.791 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.771 ± 0.004 | -0.020 ± 0.004 (+0/−5/5) | 1 | 0.485 |
+| oracle | 0.821 ± 0.000 | +0.030 ± 0.000 (+5/−0/5) | 1 | 0.577 |
+
+#### N2/llama/strong/dlow/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.072 ± 0.035 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.106 ± 0.026 | +0.034 ± 0.026 (+4/−1/5) | 2 | 0.560 |
+| oracle | 0.598 ± 0.019 | +0.526 ± 0.028 (+5/−0/5) | 1 | 0.956 |
+
+#### N2/llama/strong/dlow/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.171 ± 0.047 | +0.000 ± 0.000 (+0/−0/5) | 3 | 0.500 |
+| dsize | 0.300 ± 0.022 | +0.129 ± 0.031 (+5/−0/5) | 2 | 0.639 |
+| oracle | 0.659 ± 0.016 | +0.488 ± 0.035 (+5/−0/5) | 1 | 0.904 |
+
+#### N2/llama/strong/dlow/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.454 ± 0.010 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.492 ± 0.010 | +0.038 ± 0.010 (+5/−0/5) | 2 | 0.532 |
+| oracle | 0.710 ± 0.012 | +0.256 ± 0.016 (+5/−0/5) | 1 | 0.725 |
+
+#### N2/llama/strong/dlow/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.336 ± 0.030 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.357 ± 0.030 | +0.021 ± 0.006 (+5/−0/5) | 2 | 0.549 |
+| oracle | 0.710 ± 0.033 | +0.374 ± 0.042 (+5/−0/5) | 1 | 0.800 |
+
+#### N2/llama/strong/dlow/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.436 ± 0.033 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.503 ± 0.019 | +0.067 ± 0.026 (+5/−0/5) | 2 | 0.564 |
+| oracle | 0.770 ± 0.033 | +0.334 ± 0.047 (+5/−0/5) | 1 | 0.780 |
+
+#### N2/llama/strong/dlow/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.651 ± 0.028 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.677 ± 0.039 | +0.026 ± 0.021 (+5/−0/5) | 2 | 0.533 |
+| oracle | 0.820 ± 0.024 | +0.169 ± 0.007 (+5/−0/5) | 1 | 0.656 |
+
+#### N2/llama/strong/dlow/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.552 ± 0.057 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.574 ± 0.058 | +0.022 ± 0.018 (+4/−1/5) | 2 | 0.523 |
+| oracle | 0.755 ± 0.025 | +0.203 ± 0.034 (+5/−0/5) | 1 | 0.680 |
+
+#### N2/llama/strong/dlow/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.683 ± 0.039 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.703 ± 0.038 | +0.020 ± 0.011 (+5/−0/5) | 2 | 0.532 |
+| oracle | 0.810 ± 0.018 | +0.127 ± 0.022 (+5/−0/5) | 1 | 0.636 |
+
+#### N2/llama/strong/dlow/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.772 ± 0.033 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.773 ± 0.027 | +0.002 ± 0.011 (+2/−3/5) | 2 | 0.507 |
+| oracle | 0.860 ± 0.015 | +0.088 ± 0.020 (+5/−0/5) | 1 | 0.602 |
+
+#### N2/llama/strong/dlow/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.598 ± 0.006 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.629 ± 0.009 | +0.031 ± 0.009 (+5/−0/5) | 2 | 0.530 |
+| oracle | 0.771 ± 0.005 | +0.174 ± 0.006 (+5/−0/5) | 1 | 0.655 |
+
+#### N2/llama/strong/dlow/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.727 ± 0.009 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.748 ± 0.011 | +0.021 ± 0.003 (+5/−0/5) | 1 | 0.535 |
+| oracle | 0.820 ± 0.006 | +0.093 ± 0.004 (+5/−0/5) | 1 | 0.613 |
+
+#### N2/llama/strong/dlow/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.808 ± 0.007 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.803 ± 0.010 | -0.006 ± 0.006 (+1/−4/5) | 1 | 0.512 |
+| oracle | 0.865 ± 0.005 | +0.057 ± 0.004 (+5/−0/5) | 1 | 0.584 |
+
+#### N2/llama/strong/dlow/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.582 ± 0.006 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.603 ± 0.009 | +0.021 ± 0.008 (+5/−0/5) | 2 | 0.523 |
+| oracle | 0.738 ± 0.005 | +0.156 ± 0.003 (+5/−0/5) | 1 | 0.632 |
+
+#### N2/llama/strong/dlow/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.717 ± 0.007 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.717 ± 0.010 | +0.000 ± 0.009 (+3/−2/5) | 1 | 0.500 |
+| oracle | 0.802 ± 0.005 | +0.084 ± 0.003 (+5/−0/5) | 1 | 0.596 |
+
+#### N2/llama/strong/dlow/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.796 ± 0.005 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.786 ± 0.009 | -0.010 ± 0.006 (+0/−5/5) | 1 | 0.504 |
+| oracle | 0.847 ± 0.004 | +0.051 ± 0.003 (+5/−0/5) | 1 | 0.567 |
+
+#### N2/llama/strong/random/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.183 ± 0.063 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.195 ± 0.054 | +0.012 ± 0.030 (+3/−2/5) | 2 | 0.515 |
+| oracle | 0.665 ± 0.024 | +0.483 ± 0.075 (+5/−0/5) | 1 | 0.867 |
+
+#### N2/llama/strong/random/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.368 ± 0.049 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.346 ± 0.102 | -0.022 ± 0.078 (+2/−3/5) | 2 | 0.484 |
+| oracle | 0.709 ± 0.032 | +0.341 ± 0.078 (+5/−0/5) | 1 | 0.747 |
+
+#### N2/llama/strong/random/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.527 ± 0.039 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.447 ± 0.052 | -0.080 ± 0.039 (+0/−5/5) | 2 | 0.439 |
+| oracle | 0.741 ± 0.034 | +0.215 ± 0.061 (+5/−0/5) | 1 | 0.672 |
+
+#### N2/llama/strong/random/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.325 ± 0.094 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.345 ± 0.110 | +0.020 ± 0.026 (+4/−1/5) | 2 | 0.525 |
+| oracle | 0.726 ± 0.029 | +0.401 ± 0.068 (+5/−0/5) | 1 | 0.777 |
+
+#### N2/llama/strong/random/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.509 ± 0.082 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.505 ± 0.099 | -0.003 ± 0.034 (+2/−3/5) | 2 | 0.500 |
+| oracle | 0.779 ± 0.024 | +0.270 ± 0.062 (+5/−0/5) | 1 | 0.692 |
+
+#### N2/llama/strong/random/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.654 ± 0.044 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.601 ± 0.043 | -0.052 ± 0.015 (+0/−5/5) | 2 | 0.461 |
+| oracle | 0.809 ± 0.017 | +0.155 ± 0.028 (+5/−0/5) | 1 | 0.629 |
+
+#### N2/llama/strong/random/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.490 ± 0.060 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.488 ± 0.071 | -0.002 ± 0.018 (+3/−2/5) | 2 | 0.509 |
+| oracle | 0.754 ± 0.013 | +0.264 ± 0.053 (+5/−0/5) | 1 | 0.702 |
+
+#### N2/llama/strong/random/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.654 ± 0.028 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.638 ± 0.042 | -0.016 ± 0.030 (+1/−4/5) | 2 | 0.493 |
+| oracle | 0.808 ± 0.014 | +0.155 ± 0.021 (+5/−0/5) | 1 | 0.645 |
+
+#### N2/llama/strong/random/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.741 ± 0.016 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.708 ± 0.018 | -0.033 ± 0.013 (+0/−5/5) | 2 | 0.485 |
+| oracle | 0.842 ± 0.015 | +0.102 ± 0.004 (+5/−0/5) | 1 | 0.601 |
+
+#### N2/llama/strong/random/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.551 ± 0.017 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.559 ± 0.022 | +0.008 ± 0.016 (+3/−2/5) | 2 | 0.513 |
+| oracle | 0.739 ± 0.008 | +0.188 ± 0.012 (+5/−0/5) | 1 | 0.661 |
+
+#### N2/llama/strong/random/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.685 ± 0.011 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.662 ± 0.019 | -0.023 ± 0.016 (+1/−4/5) | 2 | 0.485 |
+| oracle | 0.801 ± 0.008 | +0.116 ± 0.007 (+5/−0/5) | 1 | 0.617 |
+
+#### N2/llama/strong/random/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.756 ± 0.007 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.727 ± 0.017 | -0.029 ± 0.014 (+0/−5/5) | 1 | 0.491 |
+| oracle | 0.836 ± 0.009 | +0.079 ± 0.008 (+5/−0/5) | 1 | 0.589 |
+
+#### N2/llama/strong/random/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.579 ± 0.012 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.592 ± 0.015 | +0.012 ± 0.004 (+5/−0/5) | 2 | 0.518 |
+| oracle | 0.738 ± 0.011 | +0.159 ± 0.005 (+5/−0/5) | 1 | 0.636 |
+
+#### N2/llama/strong/random/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.706 ± 0.014 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.689 ± 0.018 | -0.017 ± 0.007 (+0/−5/5) | 2 | 0.490 |
+| oracle | 0.804 ± 0.012 | +0.098 ± 0.004 (+5/−0/5) | 1 | 0.615 |
+
+#### N2/llama/strong/random/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.777 ± 0.018 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.749 ± 0.017 | -0.028 ± 0.008 (+0/−5/5) | 1 | 0.497 |
+| oracle | 0.837 ± 0.013 | +0.060 ± 0.006 (+5/−0/5) | 1 | 0.580 |
+
+#### N3/llama/IF
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| gt | 0.195 ± 0.025 | -0.011 ± 0.026 (+1/−2/5) | 1 | 0.430 |
+| n0 | 0.209 ± 0.005 | +0.003 ± 0.005 (+4/−1/5) | 1 | 0.535 |
+| frequent20 | 0.207 ± 0.001 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize20 | 0.207 ± 0.001 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+
+#### N3/llama/OCSVM
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| gt | 0.097 ± 0.000 | -0.000 ± 0.000 (+0/−5/5) | 2 | 0.375 |
+| n0 | 0.153 ± 0.000 | +0.056 ± 0.000 (+5/−0/5) | 1 | 0.750 |
+| frequent20 | 0.097 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize20 | 0.097 ± 0.000 | -0.000 ± 0.000 (+0/−5/5) | 2 | 0.375 |
+
+#### N2/gemma/base/actual/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.712 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.697 ± 0.000 | -0.015 ± 0.000 (+0/−5/5) | 1 | 0.483 |
+| oracle | 0.770 ± 0.000 | +0.059 ± 0.000 (+5/−0/5) | 1 | 0.628 |
+
+#### N2/gemma/base/actual/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.781 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.763 ± 0.000 | -0.018 ± 0.000 (+0/−5/5) | 1 | 0.503 |
+| oracle | 0.823 ± 0.000 | +0.042 ± 0.000 (+5/−0/5) | 1 | 0.597 |
+
+#### N2/gemma/base/actual/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.833 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.814 ± 0.000 | -0.019 ± 0.000 (+0/−5/5) | 1 | 0.507 |
+| oracle | 0.863 ± 0.000 | +0.030 ± 0.000 (+5/−0/5) | 1 | 0.576 |
+
+#### N2/gemma/base/dlow/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.240 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.273 ± 0.000 | +0.034 ± 0.000 (+5/−0/5) | 2 | 0.537 |
+| oracle | 0.704 ± 0.000 | +0.464 ± 0.000 (+5/−0/5) | 1 | 0.851 |
+
+#### N2/gemma/base/dlow/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.361 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.412 ± 0.000 | +0.050 ± 0.000 (+5/−0/5) | 2 | 0.541 |
+| oracle | 0.740 ± 0.000 | +0.379 ± 0.000 (+5/−0/5) | 1 | 0.793 |
+
+#### N2/gemma/base/dlow/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.551 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.576 ± 0.000 | +0.025 ± 0.000 (+5/−0/5) | 2 | 0.517 |
+| oracle | 0.771 ± 0.000 | +0.220 ± 0.000 (+5/−0/5) | 1 | 0.707 |
+
+#### N2/gemma/base/dlow/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.407 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.454 ± 0.000 | +0.047 ± 0.000 (+5/−0/5) | 2 | 0.531 |
+| oracle | 0.753 ± 0.000 | +0.346 ± 0.000 (+5/−0/5) | 1 | 0.736 |
+
+#### N2/gemma/base/dlow/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.457 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.560 ± 0.000 | +0.103 ± 0.000 (+5/−0/5) | 2 | 0.583 |
+| oracle | 0.799 ± 0.000 | +0.342 ± 0.000 (+5/−0/5) | 1 | 0.743 |
+
+#### N2/gemma/base/dlow/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.627 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.723 ± 0.000 | +0.096 ± 0.000 (+5/−0/5) | 2 | 0.566 |
+| oracle | 0.836 ± 0.000 | +0.208 ± 0.000 (+5/−0/5) | 1 | 0.649 |
+
+#### N2/gemma/base/dlow/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.458 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.487 ± 0.000 | +0.029 ± 0.000 (+5/−0/5) | 2 | 0.521 |
+| oracle | 0.744 ± 0.000 | +0.286 ± 0.000 (+5/−0/5) | 1 | 0.750 |
+
+#### N2/gemma/base/dlow/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.632 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.668 ± 0.000 | +0.036 ± 0.000 (+5/−0/5) | 2 | 0.535 |
+| oracle | 0.788 ± 0.000 | +0.156 ± 0.000 (+5/−0/5) | 1 | 0.681 |
+
+#### N2/gemma/base/dlow/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.731 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.763 ± 0.000 | +0.032 ± 0.000 (+5/−0/5) | 1 | 0.562 |
+| oracle | 0.834 ± 0.000 | +0.103 ± 0.000 (+5/−0/5) | 1 | 0.618 |
+
+#### N2/gemma/base/dlow/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.669 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.685 ± 0.000 | +0.016 ± 0.000 (+5/−0/5) | 1 | 0.517 |
+| oracle | 0.757 ± 0.000 | +0.088 ± 0.000 (+5/−0/5) | 1 | 0.628 |
+
+#### N2/gemma/base/dlow/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.737 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.761 ± 0.000 | +0.024 ± 0.000 (+5/−0/5) | 1 | 0.528 |
+| oracle | 0.804 ± 0.000 | +0.066 ± 0.000 (+5/−0/5) | 1 | 0.611 |
+
+#### N2/gemma/base/dlow/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.786 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.804 ± 0.000 | +0.018 ± 0.000 (+5/−0/5) | 1 | 0.542 |
+| oracle | 0.843 ± 0.000 | +0.057 ± 0.000 (+5/−0/5) | 1 | 0.597 |
+
+#### N2/gemma/base/dlow/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.658 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.666 ± 0.000 | +0.007 ± 0.000 (+5/−0/5) | 1 | 0.503 |
+| oracle | 0.732 ± 0.000 | +0.073 ± 0.000 (+5/−0/5) | 1 | 0.587 |
+
+#### N2/gemma/base/dlow/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.725 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.746 ± 0.000 | +0.021 ± 0.000 (+5/−0/5) | 1 | 0.517 |
+| oracle | 0.788 ± 0.000 | +0.063 ± 0.000 (+5/−0/5) | 1 | 0.597 |
+
+#### N2/gemma/base/dlow/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.782 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.798 ± 0.000 | +0.017 ± 0.000 (+5/−0/5) | 1 | 0.549 |
+| oracle | 0.829 ± 0.000 | +0.048 ± 0.000 (+5/−0/5) | 1 | 0.590 |
+
+#### N2/gemma/base/random/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.240 ± 0.069 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.259 ± 0.078 | +0.020 ± 0.049 (+3/−1/5) | 2 | 0.518 |
+| oracle | 0.708 ± 0.023 | +0.468 ± 0.054 (+5/−0/5) | 1 | 0.831 |
+
+#### N2/gemma/base/random/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.350 ± 0.096 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.357 ± 0.123 | +0.007 ± 0.034 (+3/−2/5) | 2 | 0.514 |
+| oracle | 0.753 ± 0.019 | +0.403 ± 0.078 (+5/−0/5) | 1 | 0.780 |
+
+#### N2/gemma/base/random/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.487 ± 0.053 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.496 ± 0.109 | +0.009 ± 0.070 (+4/−1/5) | 2 | 0.504 |
+| oracle | 0.784 ± 0.015 | +0.297 ± 0.049 (+5/−0/5) | 1 | 0.732 |
+
+#### N2/gemma/base/random/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.354 ± 0.105 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.370 ± 0.143 | +0.016 ± 0.055 (+4/−1/5) | 2 | 0.516 |
+| oracle | 0.757 ± 0.035 | +0.403 ± 0.078 (+5/−0/5) | 1 | 0.788 |
+
+#### N2/gemma/base/random/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.457 ± 0.145 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.468 ± 0.150 | +0.011 ± 0.024 (+3/−2/5) | 2 | 0.509 |
+| oracle | 0.811 ± 0.031 | +0.354 ± 0.123 (+5/−0/5) | 1 | 0.751 |
+
+#### N2/gemma/base/random/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.639 ± 0.066 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.665 ± 0.072 | +0.026 ± 0.049 (+4/−1/5) | 2 | 0.512 |
+| oracle | 0.848 ± 0.026 | +0.209 ± 0.050 (+5/−0/5) | 1 | 0.657 |
+
+#### N2/gemma/base/random/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.556 ± 0.058 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.566 ± 0.088 | +0.010 ± 0.045 (+3/−2/5) | 2 | 0.505 |
+| oracle | 0.764 ± 0.045 | +0.208 ± 0.081 (+5/−0/5) | 1 | 0.671 |
+
+#### N2/gemma/base/random/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.663 ± 0.058 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.664 ± 0.072 | +0.001 ± 0.015 (+2/−3/5) | 2 | 0.496 |
+| oracle | 0.813 ± 0.039 | +0.151 ± 0.057 (+5/−0/5) | 1 | 0.645 |
+
+#### N2/gemma/base/random/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.754 ± 0.037 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.748 ± 0.044 | -0.006 ± 0.015 (+2/−3/5) | 2 | 0.498 |
+| oracle | 0.861 ± 0.036 | +0.107 ± 0.010 (+5/−0/5) | 1 | 0.613 |
+
+#### N2/gemma/base/random/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.630 ± 0.053 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.639 ± 0.058 | +0.010 ± 0.012 (+3/−2/5) | 2 | 0.508 |
+| oracle | 0.765 ± 0.042 | +0.136 ± 0.044 (+5/−0/5) | 1 | 0.644 |
+
+#### N2/gemma/base/random/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.724 ± 0.042 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.731 ± 0.041 | +0.007 ± 0.014 (+4/−1/5) | 1 | 0.502 |
+| oracle | 0.816 ± 0.037 | +0.092 ± 0.009 (+5/−0/5) | 1 | 0.612 |
+
+#### N2/gemma/base/random/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.790 ± 0.037 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.784 ± 0.033 | -0.006 ± 0.012 (+2/−3/5) | 1 | 0.510 |
+| oracle | 0.859 ± 0.033 | +0.069 ± 0.006 (+5/−0/5) | 1 | 0.598 |
+
+#### N2/gemma/base/random/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.680 ± 0.032 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.667 ± 0.055 | -0.013 ± 0.031 (+3/−2/5) | 1 | 0.493 |
+| oracle | 0.773 ± 0.026 | +0.093 ± 0.038 (+5/−0/5) | 1 | 0.618 |
+
+#### N2/gemma/base/random/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.761 ± 0.027 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.745 ± 0.035 | -0.016 ± 0.031 (+3/−2/5) | 1 | 0.498 |
+| oracle | 0.823 ± 0.023 | +0.062 ± 0.006 (+5/−0/5) | 1 | 0.601 |
+
+#### N2/gemma/base/random/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.815 ± 0.023 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.792 ± 0.030 | -0.022 ± 0.029 (+1/−4/5) | 1 | 0.507 |
+| oracle | 0.862 ± 0.022 | +0.047 ± 0.007 (+5/−0/5) | 1 | 0.584 |
+
+#### N2/gemma/strong/actual/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.616 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.603 ± 0.000 | -0.013 ± 0.000 (+0/−5/5) | 1 | 0.472 |
+| oracle | 0.688 ± 0.000 | +0.072 ± 0.000 (+5/−0/5) | 1 | 0.583 |
+
+#### N2/gemma/strong/actual/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.693 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.678 ± 0.000 | -0.015 ± 0.000 (+0/−5/5) | 1 | 0.458 |
+| oracle | 0.776 ± 0.000 | +0.083 ± 0.000 (+5/−0/5) | 1 | 0.615 |
+
+#### N2/gemma/strong/actual/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.778 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.772 ± 0.000 | -0.007 ± 0.000 (+0/−5/5) | 1 | 0.486 |
+| oracle | 0.811 ± 0.000 | +0.032 ± 0.000 (+5/−0/5) | 1 | 0.562 |
+
+#### N2/gemma/strong/dlow/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.214 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.286 ± 0.000 | +0.072 ± 0.000 (+5/−0/5) | 2 | 0.583 |
+| oracle | 0.640 ± 0.000 | +0.425 ± 0.000 (+5/−0/5) | 1 | 0.851 |
+
+#### N2/gemma/strong/dlow/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.385 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.413 ± 0.000 | +0.029 ± 0.000 (+5/−0/5) | 2 | 0.512 |
+| oracle | 0.667 ± 0.000 | +0.283 ± 0.000 (+5/−0/5) | 1 | 0.748 |
+
+#### N2/gemma/strong/dlow/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.493 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.519 ± 0.000 | +0.026 ± 0.000 (+5/−0/5) | 2 | 0.521 |
+| oracle | 0.697 ± 0.000 | +0.203 ± 0.000 (+5/−0/5) | 1 | 0.694 |
+
+#### N2/gemma/strong/dlow/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.444 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.506 ± 0.000 | +0.063 ± 0.000 (+5/−0/5) | 2 | 0.545 |
+| oracle | 0.707 ± 0.000 | +0.264 ± 0.000 (+5/−0/5) | 1 | 0.677 |
+
+#### N2/gemma/strong/dlow/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.533 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.562 ± 0.000 | +0.029 ± 0.000 (+5/−0/5) | 2 | 0.549 |
+| oracle | 0.779 ± 0.000 | +0.246 ± 0.000 (+5/−0/5) | 1 | 0.698 |
+
+#### N2/gemma/strong/dlow/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.618 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.653 ± 0.000 | +0.034 ± 0.000 (+5/−0/5) | 2 | 0.538 |
+| oracle | 0.813 ± 0.000 | +0.195 ± 0.000 (+5/−0/5) | 1 | 0.663 |
+
+#### N2/gemma/strong/dlow/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.454 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.494 ± 0.000 | +0.041 ± 0.000 (+5/−0/5) | 2 | 0.552 |
+| oracle | 0.668 ± 0.000 | +0.215 ± 0.000 (+5/−0/5) | 1 | 0.677 |
+
+#### N2/gemma/strong/dlow/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.519 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.615 ± 0.000 | +0.096 ± 0.000 (+5/−0/5) | 2 | 0.604 |
+| oracle | 0.743 ± 0.000 | +0.224 ± 0.000 (+5/−0/5) | 1 | 0.698 |
+
+#### N2/gemma/strong/dlow/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.663 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.689 ± 0.000 | +0.026 ± 0.000 (+5/−0/5) | 2 | 0.521 |
+| oracle | 0.792 ± 0.000 | +0.128 ± 0.000 (+5/−0/5) | 1 | 0.615 |
+
+#### N2/gemma/strong/dlow/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.504 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.529 ± 0.000 | +0.025 ± 0.000 (+5/−0/5) | 2 | 0.531 |
+| oracle | 0.687 ± 0.000 | +0.183 ± 0.000 (+5/−0/5) | 1 | 0.677 |
+
+#### N2/gemma/strong/dlow/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.626 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.676 ± 0.000 | +0.050 ± 0.000 (+5/−0/5) | 1 | 0.556 |
+| oracle | 0.760 ± 0.000 | +0.134 ± 0.000 (+5/−0/5) | 1 | 0.649 |
+
+#### N2/gemma/strong/dlow/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.731 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.747 ± 0.000 | +0.015 ± 0.000 (+5/−0/5) | 1 | 0.528 |
+| oracle | 0.804 ± 0.000 | +0.073 ± 0.000 (+5/−0/5) | 1 | 0.601 |
+
+#### N2/gemma/strong/dlow/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.578 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.599 ± 0.000 | +0.022 ± 0.000 (+5/−0/5) | 1 | 0.528 |
+| oracle | 0.677 ± 0.000 | +0.099 ± 0.000 (+5/−0/5) | 1 | 0.601 |
+
+#### N2/gemma/strong/dlow/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.651 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.674 ± 0.000 | +0.023 ± 0.000 (+5/−0/5) | 1 | 0.514 |
+| oracle | 0.756 ± 0.000 | +0.104 ± 0.000 (+5/−0/5) | 1 | 0.594 |
+
+#### N2/gemma/strong/dlow/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.742 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.752 ± 0.000 | +0.010 ± 0.000 (+5/−0/5) | 1 | 0.514 |
+| oracle | 0.791 ± 0.000 | +0.049 ± 0.000 (+5/−0/5) | 1 | 0.562 |
+
+#### N2/gemma/strong/random/0.05/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.234 ± 0.069 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.224 ± 0.077 | -0.010 ± 0.018 (+2/−3/5) | 2 | 0.455 |
+| oracle | 0.640 ± 0.015 | +0.405 ± 0.075 (+5/−0/5) | 1 | 0.810 |
+
+#### N2/gemma/strong/random/0.05/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.351 ± 0.073 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.325 ± 0.113 | -0.026 ± 0.082 (+2/−3/5) | 2 | 0.464 |
+| oracle | 0.686 ± 0.021 | +0.335 ± 0.092 (+5/−0/5) | 1 | 0.746 |
+
+#### N2/gemma/strong/random/0.05/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.522 ± 0.011 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.538 ± 0.016 | +0.016 ± 0.014 (+5/−0/5) | 2 | 0.508 |
+| oracle | 0.720 ± 0.020 | +0.197 ± 0.019 (+5/−0/5) | 1 | 0.660 |
+
+#### N2/gemma/strong/random/0.1/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.430 ± 0.050 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.398 ± 0.063 | -0.031 ± 0.063 (+2/−3/5) | 2 | 0.477 |
+| oracle | 0.720 ± 0.031 | +0.291 ± 0.030 (+5/−0/5) | 1 | 0.700 |
+
+#### N2/gemma/strong/random/0.1/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.526 ± 0.057 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.528 ± 0.057 | +0.003 ± 0.049 (+3/−2/5) | 2 | 0.498 |
+| oracle | 0.780 ± 0.028 | +0.254 ± 0.062 (+5/−0/5) | 1 | 0.689 |
+
+#### N2/gemma/strong/random/0.1/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.682 ± 0.033 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.679 ± 0.033 | -0.003 ± 0.016 (+3/−2/5) | 2 | 0.488 |
+| oracle | 0.809 ± 0.029 | +0.127 ± 0.030 (+5/−0/5) | 1 | 0.625 |
+
+#### N2/gemma/strong/random/0.2/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.537 ± 0.065 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.516 ± 0.055 | -0.021 ± 0.048 (+3/−2/5) | 2 | 0.488 |
+| oracle | 0.734 ± 0.039 | +0.198 ± 0.036 (+5/−0/5) | 1 | 0.648 |
+
+#### N2/gemma/strong/random/0.2/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.635 ± 0.034 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.627 ± 0.045 | -0.008 ± 0.020 (+1/−4/5) | 2 | 0.502 |
+| oracle | 0.799 ± 0.033 | +0.164 ± 0.015 (+5/−0/5) | 1 | 0.649 |
+
+#### N2/gemma/strong/random/0.2/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.750 ± 0.037 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.740 ± 0.034 | -0.011 ± 0.007 (+0/−5/5) | 1 | 0.483 |
+| oracle | 0.832 ± 0.029 | +0.082 ± 0.016 (+5/−0/5) | 1 | 0.590 |
+
+#### N2/gemma/strong/random/0.3/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.605 ± 0.022 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.590 ± 0.027 | -0.015 ± 0.011 (+0/−5/5) | 2 | 0.486 |
+| oracle | 0.733 ± 0.012 | +0.127 ± 0.025 (+5/−0/5) | 1 | 0.598 |
+
+#### N2/gemma/strong/random/0.3/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.681 ± 0.005 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize | 0.672 ± 0.026 | -0.009 ± 0.022 (+2/−3/5) | 2 | 0.480 |
+| oracle | 0.803 ± 0.016 | +0.122 ± 0.015 (+5/−0/5) | 1 | 0.614 |
+
+#### N2/gemma/strong/random/0.3/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.776 ± 0.016 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.768 ± 0.018 | -0.007 ± 0.005 (+0/−5/5) | 1 | 0.487 |
+| oracle | 0.837 ± 0.018 | +0.061 ± 0.009 (+5/−0/5) | 1 | 0.571 |
+
+#### N2/gemma/strong/random/0.4/N5
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.614 ± 0.014 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.602 ± 0.017 | -0.012 ± 0.014 (+1/−4/5) | 1 | 0.482 |
+| oracle | 0.711 ± 0.008 | +0.097 ± 0.011 (+5/−0/5) | 1 | 0.583 |
+
+#### N2/gemma/strong/random/0.4/N10
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.689 ± 0.010 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.683 ± 0.015 | -0.007 ± 0.009 (+1/−4/5) | 1 | 0.478 |
+| oracle | 0.791 ± 0.009 | +0.101 ± 0.007 (+5/−0/5) | 1 | 0.615 |
+
+#### N2/gemma/strong/random/0.4/N20
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| frequent | 0.778 ± 0.008 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize | 0.772 ± 0.008 | -0.006 ± 0.001 (+0/−5/5) | 1 | 0.492 |
+| oracle | 0.823 ± 0.011 | +0.045 ± 0.005 (+5/−0/5) | 1 | 0.561 |
+
+#### N3/gemma/IF
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| gt | 0.195 ± 0.025 | -0.012 ± 0.026 (+0/−2/5) | 1 | 0.400 |
+| n0 | 0.149 ± 0.001 | -0.058 ± 0.001 (+0/−5/5) | 2 | 0.125 |
+| frequent20 | 0.207 ± 0.001 | +0.000 ± 0.000 (+0/−0/5) | 1 | 0.500 |
+| dsize20 | 0.207 ± 0.001 | -0.000 ± 0.000 (+0/−2/5) | 1 | 0.480 |
+
+#### N3/gemma/OCSVM
+
+| method | mean ± std | minus reference (seed signs) | SK-ESD | A12 vs reference |
+|---|---|---|---|---|
+| gt | 0.097 ± 0.000 | +0.055 ± 0.000 (+5/−0/5) | 1 | 0.875 |
+| n0 | 0.099 ± 0.000 | +0.058 ± 0.000 (+5/−0/5) | 1 | 0.500 |
+| frequent20 | 0.041 ± 0.000 | +0.000 ± 0.000 (+0/−0/5) | 2 | 0.500 |
+| dsize20 | 0.041 ± 0.000 | -0.000 ± 0.000 (+0/−5/5) | 2 | 0.375 |
