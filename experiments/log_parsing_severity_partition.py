@@ -22,7 +22,8 @@ def main():
                 for r in wrong:
                     key=r['group'] if mode=='operational' else r['predicted']
                     if len(left[key])==1 and len(right[next(iter(left[key]))])==1:exact.append(r)
-                out.append({'model':model,'system':system,'parser':parser,'partition':mode,'first_line_wrong_groups':len(wrong),'wrong_groups_with_exact_GT_line_set':len(exact),'fraction':len(exact)/len(wrong) if wrong else None})
+                keys={r['group'] if mode=='operational' else r['predicted'] for r in wrong};ekeys={r['group'] if mode=='operational' else r['predicted'] for r in exact}
+                out.append({'model':model,'system':system,'parser':parser,'partition':mode,'wrong_predicted_IDs':len(keys),'wrong_predicted_IDs_with_exact_GT_line_set':len(ekeys),'distinct_ID_fraction':len(ekeys)/len(keys) if keys else None,'first_line_wrong_groups':len(wrong),'wrong_groups_with_exact_GT_line_set':len(exact),'fraction':len(exact)/len(wrong) if wrong else None})
     dst=EXP/'reports/error_severity_audit';save(dst/'conditional_partition.json',out)
     import log_parsing_triage as T
     import log_parsing_downstream as H

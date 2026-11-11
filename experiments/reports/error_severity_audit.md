@@ -401,22 +401,24 @@ All budgets, selected group IDs, wrong groups, gross newly-correct lines, broken
 | gemma | strong | 12 | 0.995420 | 0.857 | 0.896 | 60 | 101 |
 | gemma | real_adaparser | 12 | 0.997400 | 0.950 | 0.941 | 45 | 77 |
 
-| Model | Parser | Partition IDs | First-line-wrong groups pooled | Wrong groups with exact GT line set | Fraction |
-|---|---|---|---|---|---|
-| llama | base | operational | 9257 | 1243 | 0.134 |
-| llama | base | output_string | 9257 | 1249 | 0.135 |
-| llama | strong | operational | 8737 | 1022 | 0.117 |
-| llama | strong | output_string | 8737 | 1655 | 0.189 |
-| llama | real_adaparser | operational | 627 | 309 | 0.493 |
-| llama | real_adaparser | output_string | 627 | 309 | 0.493 |
-| gemma | base | operational | 8860 | 974 | 0.110 |
-| gemma | base | output_string | 8860 | 7562 | 0.853 |
-| gemma | strong | operational | 8651 | 869 | 0.100 |
-| gemma | strong | output_string | 8651 | 1299 | 0.150 |
-| gemma | real_adaparser | operational | 627 | 429 | 0.684 |
-| gemma | real_adaparser | output_string | 627 | 429 | 0.684 |
+| Model | Parser | Partition IDs | First-line-wrong groups pooled | Wrong groups with exact GT line set | Group fraction | Distinct wrong IDs | Exact-set wrong IDs | ID fraction |
+|---|---|---|---|---|---|---|---|---|
+| llama | base | operational | 9257 | 1243 | 0.134 | 9257 | 1243 | 0.134 |
+| llama | base | output_string | 9257 | 1249 | 0.135 | 2021 | 1233 | 0.610 |
+| llama | strong | operational | 8737 | 1022 | 0.117 | 8737 | 1022 | 0.117 |
+| llama | strong | output_string | 8737 | 1655 | 0.189 | 1527 | 1010 | 0.661 |
+| llama | real_adaparser | operational | 627 | 309 | 0.493 | 627 | 309 | 0.493 |
+| llama | real_adaparser | output_string | 627 | 309 | 0.493 | 627 | 309 | 0.493 |
+| gemma | base | operational | 8860 | 974 | 0.110 | 8860 | 974 | 0.110 |
+| gemma | base | output_string | 8860 | 7562 | 0.853 | 1758 | 975 | 0.555 |
+| gemma | strong | operational | 8651 | 869 | 0.100 | 8651 | 869 | 0.100 |
+| gemma | strong | output_string | 8651 | 1299 | 0.150 | 1224 | 885 | 0.723 |
+| gemma | real_adaparser | operational | 627 | 429 | 0.684 | 627 | 429 | 0.684 |
+| gemma | real_adaparser | output_string | 627 | 429 | 0.684 | 627 | 429 | 0.684 |
 
-Conditional counts use actual GT membership sets: a predicted ID must contain exactly one GT type, and that GT type must occur in exactly that predicted ID. Output-string mode first coalesces equal strings. These are pooled groups, not system macros or claims that every line in a mixed group is wrong. Both directions are checked; purity alone is insufficient.
+Conditional counts use actual GT membership sets: a predicted ID must contain exactly one GT type, and that GT type must occur in exactly that predicted ID. Output-string mode first coalesces equal strings. Original queue-group counts and distinct predicted-ID counts are both shown; equal-string coalescence may change the denominator greatly. These are pooled counts, not system macros or claims that every line in a mixed group is wrong. Both directions are checked; purity alone is insufficient.
+
+Among distinct first-line-wrong base output-string IDs,61.0% (Llama) and55.5% (Gemma) retain exactly one GT event’s full line set. Thus many wrong texts can preserve event-count features locally, while the remaining partition errors prevent a claim of global count-vector invariance. Group-weighted fractions differ sharply because repeated cached strings coalesce many operational groups; the distinct-ID denominator matters.
 
 | System | GT test sessions | Empty TF-IDF sessions | Empty anomalous sessions | GT training vocabulary |
 |---|---|---|---|---|
