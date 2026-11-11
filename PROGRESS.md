@@ -19,6 +19,7 @@ Session deadline: **18:15 EST / 23:15 UTC, 2026-11-11**. Stop long jobs at **17:
 Driver: `experiments/session_gpu_queue.py`, tmux `clotho_gpu_queue4` (root PID 58498). Status: `experiments/results_phase3/gpu_session_20261111/status.json`; log: `experiments/logs/gpu_session_queue4.log`. The owned-process watchdog enforces the cutoff. Per-system parser outputs, states and CPU results are pushed to RESULTS_REPO as they finish; Gemma provenance/N1/N5 descriptors run in parallel. No competing model job.
 
 ## Next
+- G3 Gemma AdaParser complete; queue status: `experiments/results_phase3/gpu_session_20261111/status.json`.
 
 1. Let G3 finish, then run its hidden/sim/report and G4 in the queued order. Retain explicit skips and successful-system coverage; do not use partial coverage as a full-system headline.
 2. If eligible, run G5 under its Decisions protocol. Otherwise record the unfinished stage and reason before shutdown.
