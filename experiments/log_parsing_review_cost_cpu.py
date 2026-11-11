@@ -23,6 +23,13 @@ def rawpoints():
       for budget,metrics in r['metrics'].items():
        k=min(int(budget),len(seq));target=90 if method=='usize' else 0;source=500*(nsys-1) if method in ['usize','dsize'] or 'zero' in method else 0
        rows.append({'model':model,'parser':parser,'system':system,'seed':seed,'method':METHODS[method],'review_budget':int(budget),'reviews':k,'target_labels':target,'source_labels_single':source,'source_labels_portfolio_per_system':500 if source else 0,'common_parser_labels':seeds,'lines':metrics['lines'],'groups':metrics['groups'],'FTA':metrics['FTA'],'baseline_FTA':j['full']['baseline']['FTA']})
+    for method,runs in j['tail']['runs'].items():
+     if method not in METHODS:continue
+     for seed in range(5):
+      r=runs[str(seed)]
+      for budget,metrics in r['metrics'].items():
+       target=90 if method=='usize' else 0;source=500*(nsys-1) if method in ['usize','dsize'] else 0
+       rows.append({'model':model,'parser':parser+'/tail_after_frequency20','system':system,'seed':seed,'method':METHODS[method],'review_budget':int(budget),'reviews':len(j['tail']['already_reviewed'])+min(int(budget),len(r['seq'])),'target_labels':target,'source_labels_single':source,'source_labels_portfolio_per_system':500 if source else 0,'common_parser_labels':seeds,'lines':metrics['lines'],'groups':metrics['groups'],'FTA':metrics['FTA'],'baseline_FTA':j['tail']['baseline']['FTA']})
     audit.append({'model':model,'parser':parser,'system':system,'n_groups':j['full']['n_groups'],'n_bad_lines':j['full']['n_bad_lines'],'n_wrong_groups':j['full']['n_wrong'],'methods':list(by)})
   # Real parser remains an entirely separate population/condition.
   for p in sorted((root/'adaparser_e2e').glob('*.json')):
@@ -48,7 +55,7 @@ def main():
  rows,audit=rawpoints();save(OUT/'review_cost_points.json',rows);save(OUT/'review_cost_coverage.json',audit)
  front=[];comparisons=[];pareto=[]
  for model in ('llama','gemma'):
-  for parser in ('base','strong','real_AdaParser'):
+  for parser in sorted({r['parser'] for r in rows if r['model']==model}):
    rr=[r for r in rows if r['model']==model and r['parser']==parser];methods=sorted({r['method'] for r in rr})
    for scenario in ('A_target','B_single','B_amortized'):
     for ratio in (1,5,10):
@@ -70,7 +77,8 @@ def main():
         common=[s for s in ss if all(('Frequency',s,q) in selected and selected['Frequency',s,q][metric] is not None for q in range(5))]
         if common and method!='Frequency':
          pairs={s:[selected[method,s,q][metric]-selected['Frequency',s,q][metric] for q in range(5)] for s in common}
-         comparisons.append({k:point[k] for k in ('model','parser','scenario','review_to_label_cost','budget_review_equivalents','metric','method')}|cluster_summary(pairs))
+         for cohort,pp in [('all',pairs),('held_out',{s:v for s,v in pairs.items() if s not in ('HDFS','Spark','Linux')})]:
+          if pp:comparisons.append({k:point[k] for k in ('model','parser','scenario','review_to_label_cost','budget_review_equivalents','metric','method')}|{'cohort':cohort}|cluster_summary(pp))
        # Pareto dominance uses matched common systems, cost and all three outcomes available.
       eligible=[m for m in methods if any(k[0]==m for k in selected)]
       common=sorted(set.intersection(*[{s for m0,s,k in selected if m0==m and all((m,s,q) in selected for q in range(5))} for m in eligible])) if eligible else []
@@ -101,7 +109,7 @@ def main():
   if 'lines' in r['objectives']:axs[1,0].scatter(r['objectives']['cost'],r['objectives']['lines'],label=r['method'],marker='x' if r['dominated_by'] else 'o')
  axs[1,0].set_title('Matched-system descriptive Pareto points');axs[1,0].set_xlabel('Actual cost');axs[1,0].set_ylabel('Wrong-line fraction corrected');axs[1,0].legend(fontsize=6)
  for method in ['D × size','U+V5 × size','U-zero × size','U+V5-zero × size']:
-  z=[r for r in comparisons if r['model']=='llama' and r['parser']=='base' and r['metric']=='lines' and r['scenario']=='B_amortized' and r['budget_review_equivalents']==100 and r['method']==method]
+  z=[r for r in comparisons if r.get('cohort','all')=='all' and r['model']=='llama' and r['parser']=='base' and r['metric']=='lines' and r['scenario']=='B_amortized' and r['budget_review_equivalents']==100 and r['method']==method]
   if z:axs[1,1].plot([r['review_to_label_cost'] for r in z],[r['mean_delta'] for r in z],marker='o',label=method)
  axs[1,1].axhline(0,color='black',lw=.5);axs[1,1].set_title('Analytical cost ratios; observed outcomes');axs[1,1].set_xlabel('Review / binary-label cost');axs[1,1].set_ylabel('Paired gain vs frequency');axs[1,1].legend(fontsize=6)
  fig.tight_layout();fig.savefig(OUT/'review_cost.pdf');plt.close(fig)

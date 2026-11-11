@@ -6,14 +6,16 @@ import numpy as np
 from sklearn.metrics import adjusted_rand_score,normalized_mutual_info_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.spatial.distance import jensenshannon
+from scipy.optimize import linear_sum_assignment
 
 def tokens(s):return re.findall('[a-z]+',(s or '').replace('<*>',' ').lower())
 def partition(gt,pred):
+ gi={};pi={};gn=[gi.setdefault(x,len(gi)) for x in gt];pn=[pi.setdefault(x,len(pi)) for x in pred]
  c=Counter(zip(gt,pred));a=Counter(gt);b=Counter(pred);pair=lambda n:n*(n-1)//2
  tp=sum(pair(n) for n in c.values());pp=sum(pair(n) for n in b.values());gp=sum(pair(n) for n in a.values())
  byp=defaultdict(Counter);byg=defaultdict(Counter)
  for (g,p),n in c.items():byp[p][g]=n;byg[g][p]=n
- return {'ARI':adjusted_rand_score(gt,pred),'NMI':normalized_mutual_info_score(gt,pred),'pair_precision':tp/pp if pp else 1.,'pair_recall':tp/gp if gp else 1.,'predicted_groups':len(b),'GT_groups':len(a),'merged_groups':sum(len(v)>1 for v in byp.values()),'split_GT_events':sum(len(v)>1 for v in byg.values()),'merge_affected_lines':sum(sum(v.values()) for v in byp.values() if len(v)>1),'split_affected_lines':sum(sum(v.values()) for v in byg.values() if len(v)>1),'event_macro_split_fraction':np.mean([len(v)>1 for v in byg.values()]),'pred_event_macro_purity':np.mean([max(v.values())/sum(v.values()) for v in byp.values()]),'GT_event_macro_completeness':np.mean([max(v.values())/sum(v.values()) for v in byg.values()])}
+ return {'ARI':adjusted_rand_score(gn,pn),'NMI':normalized_mutual_info_score(gn,pn),'pair_precision':tp/pp if pp else 1.,'pair_recall':tp/gp if gp else 1.,'predicted_groups':len(b),'GT_groups':len(a),'parse_failure_lines':sum(p is None for p in pred),'merged_groups':sum(len(v)>1 for v in byp.values()),'split_GT_events':sum(len(v)>1 for v in byg.values()),'merge_affected_lines':sum(sum(v.values()) for v in byp.values() if len(v)>1),'split_affected_lines':sum(sum(v.values()) for v in byg.values() if len(v)>1),'event_macro_split_fraction':np.mean([len(v)>1 for v in byg.values()]),'pred_event_macro_purity':np.mean([max(v.values())/sum(v.values()) for v in byp.values()]),'GT_event_macro_completeness':np.mean([max(v.values())/sum(v.values()) for v in byg.values()])}
 def mapping(gt,pred):
  c=defaultdict(Counter)
  for g,p in zip(gt,pred):c[p][g]+=1
@@ -27,7 +29,11 @@ def js(a,b):
  return float(jensenshannon(x/x.sum(),y/y.sum(),base=2)**2)
 def seqstats(gt,pred,units):
  m,info=mapping(gt,pred);mp=[m[p] for p in pred];idx=[i for u in units for i in u['lines']]
- out={**info,'mapped_changed_positions':float(np.mean([gt[i]!=mp[i] for i in idx])),'positions':len(idx),'vocabulary_ratio':len(set(pred))/len(set(gt))}
+ gs=sorted(set(gt));ps=sorted(set(pred),key=str);gc={g:i for i,g in enumerate(gs)};pc={p:i for i,p in enumerate(ps)};cont=np.zeros((len(gs),len(ps)),dtype=np.int64)
+ for g,p in zip(gt,pred):cont[gc[g],pc[p]]+=1
+ rr,cc=linear_sum_assignment(-cont);one={ps[j]:gs[i] for i,j in zip(rr,cc) if cont[i,j]>0}
+ unmatched=[p for p in ps if p not in one];one.update({p:f'__UNMATCHED_PRED_EVENT_{j}' for j,p in enumerate(unmatched)});op=[one[p] for p in pred]
+ out={**info,'one_to_one_unmatched_events':len(unmatched),'one_to_one_unmatched_positions':sum(pred[i] in unmatched for i in idx),'one_to_one_changed_positions':float(np.mean([gt[i]!=op[i] for i in idx])),'mapped_changed_positions':float(np.mean([gt[i]!=mp[i] for i in idx])),'positions':len(idx),'vocabulary_ratio':len(set(pred))/len(set(gt))}
  for n in (1,2,3):
   def counts(v):
    z=Counter()
@@ -35,6 +41,7 @@ def seqstats(gt,pred,units):
     s=[v[i] for i in u['lines']];z.update(tuple(s[j:j+n]) for j in range(len(s)-n+1))
    return z
   out[f'ngram{n}_JS_bits']=js(counts(gt),counts(mp))
+  out[f'one_to_one_ngram{n}_JS_bits']=js(counts(gt),counts(op))
  # ngram2 is the transition joint distribution; no cross-unit edges.
  return out
 
@@ -48,6 +55,10 @@ def lexstats(gt,pred,indices,vectorizers):
  lost=[];added=[];overlap=[]
  for g,p in keys:
   a=Counter(tokens(g));b=Counter(tokens(p));lost.append(sum((a-b).values()));added.append(sum((b-a).values()));overlap.append(sum((a&b).values())/max(1,sum(a.values())))
+ ga=Counter();pa=Counter()
+ for (g,p),weight in pairs.items():
+  ga.update({k:v*weight for k,v in Counter(tokens(g)).items()});pa.update({k:v*weight for k,v in Counter(tokens(p)).items()})
+ out.update(GT_lexical_vocabulary=len(ga),predicted_lexical_vocabulary=len(pa),lost_vocabulary=len(set(ga)-set(pa)),introduced_vocabulary=len(set(pa)-set(ga)),token_frequency_JS_bits=js(ga,pa))
  out.update(lost_constants_per_line=float(np.average(lost,weights=w)),unsupported_constants_per_line=float(np.average(added,weights=w)),constant_recall=float(np.average(overlap,weights=w)))
  pergt=defaultdict(list)
  for k,(g,p) in enumerate(keys):pergt[g].append(k)
@@ -82,30 +93,39 @@ def main():
    assert len(pred)==len(gt)==50000
    operational=groups.get(name,gt)
    baseline=partition(gt,operational)
+   c=defaultdict(Counter);firstpred={}
+   for i,g in enumerate(operational):c[g][gt[i]]+=1;firstpred.setdefault(g,pred[i])
+   corrections={g:sorted(v,key=lambda x:(-v[x],x))[0] for g,v in c.items()}
+   memo={}
    for method,seed,budget,rv in [('none',0,0,[])]+[(m,s,b,list(histories.get(name,{}).get(m,{}).get(str(s),{}).get('seq',[]))[:b]) for m in ('frequent','dsize','usize','U-zero x size','U+V5-zero x size','oracle') if m in histories.get(name,{}) for s in range(5) for b in (5,10,20,50)]:
     if method!='none' and not rv:continue
-    assert len(rv)==len(set(rv));c=defaultdict(Counter)
-    for i,g in enumerate(operational):c[g][gt[i]]+=1
-    corrections={g:sorted(v,key=lambda x:(-v[x],x))[0] for g,v in c.items()}
-    rvset=set(rv)
-    pp=[corrections[g] if g in rvset else pred[i] for i,g in enumerate(operational)]
-    lex,pairs=lexstats(gt,pp,test,vec)
-    z={'system':system,'parser':name,'method':method,'seed':seed,'budget':budget,'actual_reviews':len(rv),'corrected_lines':sum(pp[i]==gt[i] and pred[i]!=gt[i] for i in range(len(gt))),'changed_template_groups':sum(any(pred[i]!=pp[i] for i,g0 in enumerate(operational) if g0==g) for g in rv),'partition_scope':'operational assignments fixed under template-only review','operational':baseline,'string_partition':partition(gt,pp),'sequence':seqstats(gt,pp,units),'test_lexical':lex}
+    assert len(rv)==len(set(rv))
+    effective=tuple(sorted(g for g in rv if corrections[g]!=firstpred[g]))
+    if effective not in memo:
+     rvset=set(rv)
+     pp=[corrections[g] if g in rvset else pred[i] for i,g in enumerate(operational)]
+     lex,pairs=lexstats(gt,pp,test,vec)
+     memo[effective]=({'corrected_lines':sum(pp[i]==gt[i] and pred[i]!=gt[i] for i in range(len(gt))),'changed_template_groups':len(effective),'operational':baseline,'string_partition':partition(gt,pp),'sequence':seqstats(gt,pp,units),'test_lexical':lex},pairs)
+    metrics,pairs=memo[effective]
+    z={'system':system,'parser':name,'method':method,'seed':seed,'budget':budget,'actual_reviews':len(rv),'partition_scope':'operational assignments fixed under template-only review',**metrics}
     allrows.append(z)
     if budget==0:
      pairrows.extend({'system':system,'parser':name,**x} for x in pairs)
    save(OUT/f'representation_{system}.json',allrows_for_system(allrows,system))
  save(OUT/'representation_validation.json',validation)
  save(OUT/'lexical_pairs.json',pairrows)
+ plots(allrows,pairrows)
+
+def plots(allrows,pairrows):
  import matplotlib;matplotlib.use('Agg')
  import matplotlib.pyplot as plt
  fig,axs=plt.subplots(2,2,figsize=(12,8))
  base=[z for z in allrows if z['budget']==0 and z['parser']!='GT'];names=[z['system']+'/'+z['parser'] for z in base];x=np.arange(len(base))
  axs[0,0].plot(x,[z['string_partition']['ARI'] for z in base],'o',label='ARI');axs[0,0].plot(x,[z['string_partition']['NMI'] for z in base],'x',label='NMI');axs[0,0].legend()
- axs[0,1].bar(x,[z['sequence']['mapped_changed_positions'] for z in base]);axs[0,1].set_title('Majority-GT mapped position change (oracle diagnostic)')
+ axs[0,1].bar(x,[z['sequence']['one_to_one_changed_positions'] for z in base]);axs[0,1].set_title('One-to-one mapped position change (oracle diagnostic)')
  for ax in axs[0]:ax.set_xticks(x,names,rotation=90,fontsize=6)
  for name in sorted({z['parser'] for z in base}):
-  zz=[z for z in pairrows if z['system']=='BGL' and z['parser']==name];axs[1,0].hist([z['word_cosine'] for z in zz],weights=[z['lines'] for z in zz],bins=20,histtype='step',label=name)
+  zz=[z for z in pairrows if z['system']=='BGL' and z['parser']==name];axs[1,0].hist([z['word_cosine'] for z in zz],weights=[z['lines'] for z in zz],bins=np.linspace(0,1.0000001,21),histtype='step',label=name)
  axs[1,0].set_title('BGL test line-weighted lexical cosine');axs[1,0].legend(fontsize=6)
  for name in ['llama/cache','llama/AdaParser','gemma/AdaParser']:
   for method in ['frequent','dsize','usize']:
@@ -116,4 +136,7 @@ def main():
  fig.tight_layout();fig.savefig(OUT/'representation.pdf');plt.close(fig)
  print('rows',len(allrows),flush=True)
 def allrows_for_system(rows,s):return [z for z in rows if z['system']==s]
-if __name__=='__main__':main()
+if __name__=='__main__':
+ import sys
+ if '--plot-only' in sys.argv:plots(load(OUT/'representation_HDFS.json')+load(OUT/'representation_BGL.json'),load(OUT/'lexical_pairs.json'))
+ else:main()

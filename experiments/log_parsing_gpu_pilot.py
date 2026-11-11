@@ -53,18 +53,19 @@ def smoke():
  us=[{'id':'a','tokens':list(range(1,21)),'line_ids':list(range(1,21)),'label':0},{'id':'b','tokens':[1]*20,'line_ids':list(range(21,41)),'label':1}]
  x,y,o=arrays(us,10,'deeplog');assert x.shape==(20,10) and y.shape==(20,) and set(o)=={0,1};assert x[10].tolist()==[1]*10
  x,y,o=arrays(us,20,'contextual');assert x.shape==(2,20) and y.tolist()==[20,20]
- save(OUT/'pilot_smoke.json',{'synthetic_only':True,'DeepLog_X':[20,10],'contextual_X':[2,20],'no_cross_unit_sequences':True,'no_model_initialized':True})
- print('CPU preprocessing smoke passed; no detector metrics')
-def train(system,condition,detector,seed,device):
+ import torch
+ torch.set_num_threads(1);torch.manual_seed(0)
+ for kind,cfg in [('deeplog',CFG['sequence']),('contextual',CFG['contextual'])]:
+  model=build_model(8,cfg,kind).cpu().eval()
+  with torch.no_grad():out=model(torch.ones((2,cfg['context']),dtype=torch.long))
+  assert tuple(out.shape)==((2,8) if kind=='deeplog' else (2,cfg['context'],8))
+  assert torch.isfinite(out).all()
+ save(OUT/'pilot_smoke.json',{'synthetic_only':True,'DeepLog_X':[20,10],'contextual_X':[2,20],'no_cross_unit_sequences':True,'small_random_CPU_detector_forward_passes':True,'no_pretrained_model_or_training':True})
+ print('CPU preprocessing and small random detector forward smoke passed; no training or detector metrics')
+def build_model(n,cfg,detector):
  import torch
  from torch import nn
- from sklearn.metrics import average_precision_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
- random.seed(seed);np.random.seed(seed);torch.manual_seed(seed)
- if device=='cuda':torch.cuda.manual_seed_all(seed)
- torch.use_deterministic_algorithms(True);torch.set_num_threads(1)
- root=DATA/'pilot'/system/condition;meta=load(root/'metadata.json');cfg=CFG['sequence' if detector=='deeplog' else 'contextual'];context=cfg['context'];n=len(meta['vocab'])+1
- us={s:list(records(root/f'{s}.jsonl.gz')) for s in ('train','validation','test')};aa={s:arrays(u,context,detector) for s,u in us.items()}
- assert all(len(v[0]) for v in aa.values())
+ context=cfg["context"]
  class Model(nn.Module):
   def __init__(self):
    super().__init__();h=cfg.get('embedding',cfg['hidden']);self.emb=nn.Embedding(n+1,h)
@@ -75,7 +76,19 @@ def train(system,condition,detector,seed,device):
    x=self.emb(x)
    if detector=='deeplog':return self.head(self.body(x)[0][:,-1])
    return self.head(self.body(x+self.pos))
- model=Model().to(device);opt=torch.optim.Adam(model.parameters(),lr=cfg['lr']);rng=np.random.default_rng(seed)
+ return Model()
+
+def train(system,condition,detector,seed,device):
+ import torch
+ from torch import nn
+ from sklearn.metrics import average_precision_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
+ random.seed(seed);np.random.seed(seed);torch.manual_seed(seed)
+ if device=='cuda':torch.cuda.manual_seed_all(seed)
+ torch.use_deterministic_algorithms(True);torch.set_num_threads(1)
+ root=DATA/'pilot'/system/condition;meta=load(root/'metadata.json');cfg=CFG['sequence' if detector=='deeplog' else 'contextual'];context=cfg['context'];n=len(meta['vocab'])+1
+ us={s:list(records(root/f'{s}.jsonl.gz')) for s in ('train','validation','test')};aa={s:arrays(u,context,detector) for s,u in us.items()}
+ assert all(len(v[0]) for v in aa.values())
+ model=build_model(n,cfg,detector).to(device);opt=torch.optim.Adam(model.parameters(),lr=cfg['lr']);rng=np.random.default_rng(seed)
  def losses(x,y,training=False):
   xt=torch.tensor(x,device=device);yt=torch.tensor(y,device=device)
   if detector=='deeplog':return nn.functional.cross_entropy(model(xt),yt,reduction='none')

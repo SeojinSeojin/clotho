@@ -1,7 +1,6 @@
 """Small CPU-only helpers; importing this module never imports torch/transformers."""
 import os
 for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'): os.environ[key]='1'
-os.environ['CUDA_VISIBLE_DEVICES']=''
 import json,gzip,hashlib
 from pathlib import Path
 EXP=Path(__file__).resolve().parent
