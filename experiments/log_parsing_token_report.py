@@ -23,6 +23,7 @@ def ms(v):return f'{statistics.mean(v):.3f} ± {statistics.stdev(v):.3f}'
 def report(push=False,partial=False):
     L=['# G5: input-token pooling and decision-point confidence\n',
        'Fixed ablations; no retuning, winner selection or new generation calls. Mean ± sample std of five seed macros over matched complete systems. Held-out excludes HDFS/Spark/Linux. Reviews retain nominal reference100 (90 real target-suite labels, plus online verdicts) and the original stream layer. Nominal suite references100/200 likewise train U on 90/190 real inputs after dropping ten synthetic initial tests. V2 uses only sample0/initial greedy output; ambiguous stored-token alignments are missing, not guessed. Suite alignment reproduces teacher-forcing tokenization; stream checks use the declared whitespace/stop candidate family because original token IDs are unavailable. Full per-system predictions and review sequences are in `results_phase3{,_gemma}/token_followups/`.\n']
+    L.insert(1,'Status: partial; only complete five-seed systems are shown.\n' if partial else 'Status: complete for both models.\n')
     J={}
     def table(head,rows):
         L.extend(['| '+' | '.join(head)+' |','|'+'|'.join('---' for _ in head)+'|'])
@@ -33,7 +34,7 @@ def report(push=False,partial=False):
         reviews={p.stem:json.loads(p.read_text()) for p in (root/'reviews').glob('*.json')}
         if not partial:assert len(suites)==len(reviews)==n,(model,'incomplete coverage',len(suites),len(reviews),n)
         L.append(f'## {model}: suites {len(suites)}/{n}, review systems {len(reviews)}/{n}\n')
-        jm={'suite_coverage':len(suites),'review_coverage':len(reviews),'expected':n,'cells':{}};J[model]=jm
+        jm={'status':'complete' if len(suites)==len(reviews)==n else 'partial','suite_coverage':len(suites),'review_coverage':len(reviews),'expected':n,'cells':{}};J[model]=jm
         coverage=[]
         for p in sorted((EXP/'data/token_followups'/model).glob('*_v2.json')):
             r=json.loads(p.read_text());coverage.append([r['system'],*[f"{r['coverage'][k]:.3f}" for k in ('suite','base','strong')]])
