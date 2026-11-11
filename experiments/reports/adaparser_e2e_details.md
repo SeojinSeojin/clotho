@@ -32,3 +32,33 @@ Macro PA_0 0.929; macro wrong groups 0.216.
 SK-ESD @20: 1. Most frequent 0.578; 1. D x size 0.557; 2. Random 0.310
 
 A12 D x size vs Most frequent: 0.46 (negligible)
+
+## gemma (12/12 systems)
+
+| system | groups (templates) | queries | LLM calls | wall s | PA_0 | wrong groups | gap D x size - Most frequent @20 |
+|---|---|---|---|---|---|---|---|
+| BGL | 57 | 55 | 122 | 142 | 0.996 | 0.123 | +0.054 |
+| HDFS | 13 | 0 | 0 | 2 | 1.000 | 0.000 | +nan |
+| HPC | 20 | 4 | 4 | 3 | 1.000 | 0.000 | +nan |
+| Hadoop | 224 | 193 | 302 | 297 | 0.922 | 0.196 | +0.065 |
+| HealthApp | 140 | 110 | 228 | 229 | 0.798 | 0.171 | -0.001 |
+| Linux | 350 | 370 | 561 | 477 | 0.380 | 0.409 | +0.003 |
+| Mac | 466 | 510 | 1152 | 1900 | 0.707 | 0.367 | +0.102 |
+| OpenSSH | 30 | 18 | 107 | 158 | 0.999 | 0.167 | +0.290 |
+| OpenStack | 45 | 13 | 13 | 11 | 1.000 | 0.000 | +nan |
+| Spark | 134 | 114 | 176 | 174 | 0.986 | 0.157 | -0.004 |
+| Thunderbird | 545 | 644 | 1665 | 2002 | 0.646 | 0.378 | -0.005 |
+| Zookeeper | 87 | 55 | 84 | 73 | 0.951 | 0.069 | +0.000 |
+
+Macro PA_0 0.865; macro wrong groups 0.170.
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.050 ± 0.035 | 0.088 ± 0.026 | 0.174 ± 0.028 | 0.404 ± 0.020 | 27 | 27 | 21 | 24 | +0.496 (5/5) |
+| Most frequent | 0.179 ± 0.000 | 0.501 ± 0.000 | 0.614 ± 0.000 | 0.810 ± 0.000 | 466 | 375 | 216 | 105 | +0.056 (5/5) |
+| D x size | 0.272 ± 0.000 | 0.558 ± 0.000 | 0.670 ± 0.000 | 0.821 ± 0.000 | 597 | 398 | 226 | 107 | |
+| Oracle | 0.715 ± 0.000 | 0.802 ± 0.000 | 0.852 ± 0.000 | 0.901 ± 0.000 | 865 | 495 | 275 | 124 | -0.182 (5/5) |
+
+SK-ESD @20: 1. D x size 0.670; 1. Most frequent 0.614; 2. Random 0.174
+
+A12 D x size vs Most frequent: 0.56 (small)
