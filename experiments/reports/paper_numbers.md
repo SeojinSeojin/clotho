@@ -452,7 +452,7 @@ Reading: every Llama finding about the pre-generation methods and lookups holds 
 
 ## 10. Paper artefacts
 
-`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); tables `table_triage_ablation.py` (E2), `table_e5.py` (E5). Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
+`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3), `fig_lorenz.py` (N1). Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
 
 ## 11. Literature baselines: LLMLog selection score (A), AdaParser corrector (B)
 
@@ -1526,35 +1526,35 @@ TRIAGE minus Random (new-template lines): N=10 +0.023 (4/5), N=20 -0.006 (3/5), 
 AdaParser corrector (vLLM, batched over the system's templates): 56 ms; greedy parse (vLLM, batched): 43 ms; hidden state as a separate HF forward pass (unbatched): 59 ms (free if the parser's prefill exposes it); TRIAGE CPU (prior PCA + 20 refits + queue for 100 reviews, one process) per template: 2 ms.
 
 
-## 17. E5: leakage of the post-generation baselines on the original Clotho tasks (Llama; 2026-11-10)
+## 17. E5 and G: leakage of the post-generation baselines on the original Clotho tasks (Llama; 2026-11-10)
 
 Copied from `reports/e5_leakage.md` (`log_parsing_e5_leakage.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (E; TRIAGE and E1-E5), 5 seeds.
 
 ### spearman
 
-| task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | MDSA (pre-gen. control) leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| SYN-BUG | 0.188 | 0.202 ± 0.005 | 0.219 | 0.239 ± 0.008 | 0.101 | 0.136 ± 0.002 | 0.171 | 0.189 ± 0.001 | 0.268 | 0.272 ± 0.001 | 0.272 | 0.289 ± 0.001 |
-| SPELL-CHK | 0.430 | 0.396 ± 0.008 | 0.480 | 0.449 ± 0.011 | 0.873 | 0.612 ± 0.005 | 0.467 | 0.448 ± 0.003 | 0.679 | 0.574 ± 0.006 | 0.693 | 0.599 ± 0.005 |
-| GH-TYPO | 0.382 | 0.366 ± 0.005 | 0.465 | 0.452 ± 0.007 | 0.744 | 0.627 ± 0.006 | 0.368 | 0.358 ± 0.001 | 0.690 | 0.588 ± 0.006 | 0.724 | 0.644 ± 0.005 |
-| JSON-FIX | 0.277 | 0.223 ± 0.006 | 0.319 | 0.268 ± 0.004 | 0.933 | 0.605 ± 0.008 | 0.422 | 0.383 ± 0.004 | 0.440 | 0.323 ± 0.002 | 0.483 | 0.369 ± 0.003 |
-| POS-TAG | 0.274 | 0.247 ± 0.007 | 0.321 | 0.288 ± 0.007 | 0.790 | 0.561 ± 0.004 | 0.161 | 0.152 ± 0.005 | 0.479 | 0.385 ± 0.002 | 0.497 | 0.415 ± 0.002 |
-| TOPIC-CLS | 0.142 | 0.112 ± 0.013 | 0.152 | 0.139 ± 0.009 | 0.586 | 0.433 ± 0.002 | 0.223 | 0.210 ± 0.003 | 0.232 | 0.193 ± 0.006 | 0.244 | 0.212 ± 0.003 |
-| ODD-ADD | 0.548 | 0.517 ± 0.010 | 0.467 | 0.438 ± 0.007 | 0.817 | 0.701 ± 0.004 | 0.369 | 0.353 ± 0.001 | 0.604 | 0.540 ± 0.005 | 0.479 | 0.428 ± 0.003 |
-| MODEL-EX | 0.173 | 0.158 ± 0.004 | 0.196 | 0.177 ± 0.006 | 0.202 | 0.161 ± 0.006 | 0.024 | 0.025 ± 0.002 | 0.323 | 0.276 ± 0.004 | 0.337 | 0.296 ± 0.003 |
+| task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | MDSA (pre-gen. control) leaky | leak-free | LOHSvar leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SYN-BUG | 0.188 | 0.202 ± 0.005 | 0.219 | 0.239 ± 0.008 | 0.101 | 0.136 ± 0.002 | 0.171 | 0.189 ± 0.001 | 0.162 | 0.183 ± 0.003 | 0.268 | 0.272 ± 0.001 | 0.272 | 0.289 ± 0.001 |
+| SPELL-CHK | 0.430 | 0.396 ± 0.008 | 0.480 | 0.449 ± 0.011 | 0.873 | 0.612 ± 0.005 | 0.467 | 0.448 ± 0.003 | 0.722 | 0.604 ± 0.006 | 0.679 | 0.574 ± 0.006 | 0.693 | 0.599 ± 0.005 |
+| GH-TYPO | 0.382 | 0.366 ± 0.005 | 0.465 | 0.452 ± 0.007 | 0.744 | 0.627 ± 0.006 | 0.368 | 0.358 ± 0.001 | 0.800 | 0.697 ± 0.004 | 0.690 | 0.588 ± 0.006 | 0.724 | 0.644 ± 0.005 |
+| JSON-FIX | 0.277 | 0.223 ± 0.006 | 0.319 | 0.268 ± 0.004 | 0.933 | 0.605 ± 0.008 | 0.422 | 0.383 ± 0.004 | 0.688 | 0.467 ± 0.009 | 0.440 | 0.323 ± 0.002 | 0.483 | 0.369 ± 0.003 |
+| POS-TAG | 0.274 | 0.247 ± 0.007 | 0.321 | 0.288 ± 0.007 | 0.790 | 0.561 ± 0.004 | 0.161 | 0.152 ± 0.005 | 0.726 | 0.539 ± 0.003 | 0.479 | 0.385 ± 0.002 | 0.497 | 0.415 ± 0.002 |
+| TOPIC-CLS | 0.142 | 0.112 ± 0.013 | 0.152 | 0.139 ± 0.009 | 0.586 | 0.433 ± 0.002 | 0.223 | 0.210 ± 0.003 | 0.557 | 0.471 ± 0.003 | 0.232 | 0.193 ± 0.006 | 0.244 | 0.212 ± 0.003 |
+| ODD-ADD | 0.548 | 0.517 ± 0.010 | 0.467 | 0.438 ± 0.007 | 0.817 | 0.701 ± 0.004 | 0.369 | 0.353 ± 0.001 | 0.519 | 0.449 ± 0.007 | 0.604 | 0.540 ± 0.005 | 0.479 | 0.428 ± 0.003 |
+| MODEL-EX | 0.173 | 0.158 ± 0.004 | 0.196 | 0.177 ± 0.006 | 0.202 | 0.161 ± 0.006 | 0.024 | 0.025 ± 0.002 | 0.650 | 0.581 ± 0.003 | 0.323 | 0.276 ± 0.004 | 0.337 | 0.296 ± 0.003 |
 
 ### auc
 
-| task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | MDSA (pre-gen. control) leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| SYN-BUG | 0.670 | 0.653 ± 0.002 | 0.697 | 0.680 ± 0.003 | 0.673 | 0.621 ± 0.001 | 0.659 | 0.643 ± 0.001 | 0.744 | 0.705 ± 0.002 | 0.751 | 0.718 ± 0.002 |
-| SPELL-CHK | 0.754 | 0.743 ± 0.003 | 0.785 | 0.777 ± 0.006 | 0.862 | 0.789 ± 0.004 | 0.788 | 0.785 ± 0.002 | 0.887 | 0.850 ± 0.002 | 0.895 | 0.866 ± 0.002 |
-| GH-TYPO | 0.709 | 0.701 ± 0.002 | 0.755 | 0.747 ± 0.003 | 0.891 | 0.831 ± 0.004 | 0.693 | 0.692 ± 0.001 | 0.877 | 0.822 ± 0.005 | 0.894 | 0.851 ± 0.004 |
-| JSON-FIX | 0.628 | 0.607 ± 0.007 | 0.645 | 0.627 ± 0.005 | 0.958 | 0.802 ± 0.006 | 0.691 | 0.688 ± 0.005 | 0.708 | 0.655 ± 0.003 | 0.726 | 0.676 ± 0.002 |
-| POS-TAG | 0.628 | 0.623 ± 0.004 | 0.651 | 0.641 ± 0.003 | 0.820 | 0.744 ± 0.003 | 0.582 | 0.581 ± 0.003 | 0.720 | 0.691 ± 0.002 | 0.729 | 0.705 ± 0.002 |
-| TOPIC-CLS | 0.585 | 0.564 ± 0.008 | 0.589 | 0.581 ± 0.005 | 0.683 | 0.630 ± 0.003 | 0.619 | 0.615 ± 0.002 | 0.628 | 0.608 ± 0.005 | 0.635 | 0.620 ± 0.002 |
-| ODD-ADD | 0.763 | 0.753 ± 0.004 | 0.714 | 0.705 ± 0.002 | 0.914 | 0.860 ± 0.003 | 0.668 | 0.667 ± 0.002 | 0.778 | 0.759 ± 0.002 | 0.709 | 0.695 ± 0.001 |
-| MODEL-EX | 0.599 | 0.584 ± 0.004 | 0.611 | 0.596 ± 0.005 | 0.617 | 0.572 ± 0.003 | 0.522 | 0.518 ± 0.004 | 0.682 | 0.650 ± 0.004 | 0.688 | 0.660 ± 0.003 |
+| task | Tok-Prob leaky | leak-free | Tok-Ent leaky | leak-free | Output entropy leaky | leak-free | MDSA (pre-gen. control) leaky | leak-free | LOHSvar leaky | leak-free | Tok-Prob (mean of 5) leaky | leak-free | Tok-Ent (mean of 5) leaky | leak-free |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SYN-BUG | 0.670 | 0.653 ± 0.002 | 0.697 | 0.680 ± 0.003 | 0.673 | 0.621 ± 0.001 | 0.659 | 0.643 ± 0.001 | 0.693 | 0.658 ± 0.002 | 0.744 | 0.705 ± 0.002 | 0.751 | 0.718 ± 0.002 |
+| SPELL-CHK | 0.754 | 0.743 ± 0.003 | 0.785 | 0.777 ± 0.006 | 0.862 | 0.789 ± 0.004 | 0.788 | 0.785 ± 0.002 | 0.897 | 0.868 ± 0.003 | 0.887 | 0.850 ± 0.002 | 0.895 | 0.866 ± 0.002 |
+| GH-TYPO | 0.709 | 0.701 ± 0.002 | 0.755 | 0.747 ± 0.003 | 0.891 | 0.831 ± 0.004 | 0.693 | 0.692 ± 0.001 | 0.930 | 0.880 ± 0.003 | 0.877 | 0.822 ± 0.005 | 0.894 | 0.851 ± 0.004 |
+| JSON-FIX | 0.628 | 0.607 ± 0.007 | 0.645 | 0.627 ± 0.005 | 0.958 | 0.802 ± 0.006 | 0.691 | 0.688 ± 0.005 | 0.798 | 0.724 ± 0.006 | 0.708 | 0.655 ± 0.003 | 0.726 | 0.676 ± 0.002 |
+| POS-TAG | 0.628 | 0.623 ± 0.004 | 0.651 | 0.641 ± 0.003 | 0.820 | 0.744 ± 0.003 | 0.582 | 0.581 ± 0.003 | 0.833 | 0.777 ± 0.002 | 0.720 | 0.691 ± 0.002 | 0.729 | 0.705 ± 0.002 |
+| TOPIC-CLS | 0.585 | 0.564 ± 0.008 | 0.589 | 0.581 ± 0.005 | 0.683 | 0.630 ± 0.003 | 0.619 | 0.615 ± 0.002 | 0.794 | 0.762 ± 0.002 | 0.628 | 0.608 ± 0.005 | 0.635 | 0.620 ± 0.002 |
+| ODD-ADD | 0.763 | 0.753 ± 0.004 | 0.714 | 0.705 ± 0.002 | 0.914 | 0.860 ± 0.003 | 0.668 | 0.667 ± 0.002 | 0.714 | 0.706 ± 0.005 | 0.778 | 0.759 ± 0.002 | 0.709 | 0.695 ± 0.001 |
+| MODEL-EX | 0.599 | 0.584 ± 0.004 | 0.611 | 0.596 ± 0.005 | 0.617 | 0.572 ± 0.003 | 0.522 | 0.518 ± 0.004 | 0.857 | 0.812 ± 0.002 | 0.682 | 0.650 ± 0.004 | 0.688 | 0.660 ± 0.003 |
 
 ### What changes (paper-style comparison set: Tok-Prob, Tok-Ent, output entropy, MDSA control)
 
@@ -1563,12 +1563,889 @@ Copied from `reports/e5_leakage.md` (`log_parsing_e5_leakage.py report`; protoco
 **auc**: best method changes on 1 of 8 tasks; 4 of 48 pairwise comparisons flip sign: SYN-BUG: Tok-Prob vs Output entropy (5/5 seeds); SYN-BUG: Output entropy vs MDSA (pre-gen. control) (5/5 seeds); MODEL-EX: Tok-Prob vs Output entropy (5/5 seeds); MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds).
 
 
+### What changes (G: post-generation baselines, Tok-Prob, Tok-Ent, Output entropy, LOHSvar)
+
+**spearman**: best method changes on 1 of 8 tasks; 2 of 48 pairwise comparisons flip sign: TOPIC-CLS: Output entropy vs LOHSvar (5/5 seeds); MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds).
+
+**auc**: best method changes on 0 of 8 tasks; 3 of 48 pairwise comparisons flip sign: SYN-BUG: Tok-Prob vs Output entropy (5/5 seeds); MODEL-EX: Tok-Prob vs Output entropy (5/5 seeds); MODEL-EX: Tok-Ent vs Output entropy (5/5 seeds).
+
+
 Mean change leak-free minus leaky over tasks (per seed mean over tasks, then mean ± std over seeds; (k/5) = seeds with the sign):
 
-- spearman: Tok-Prob -0.024 ± 0.003 (5/5); Tok-Ent -0.021 ± 0.004 (5/5); Output entropy -0.151 ± 0.001 (5/5); MDSA (pre-gen. control) -0.011 ± 0.001 (5/5); Tok-Prob (mean of 5) -0.071 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.060 ± 0.002 (5/5)
-- auc: Tok-Prob -0.013 ± 0.001 (5/5); Tok-Ent -0.011 ± 0.001 (5/5); Output entropy -0.071 ± 0.001 (5/5); MDSA (pre-gen. control) -0.004 ± 0.001 (5/5); Tok-Prob (mean of 5) -0.035 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.029 ± 0.001 (5/5)
+- spearman: Tok-Prob -0.024 ± 0.003 (5/5); Tok-Ent -0.021 ± 0.004 (5/5); Output entropy -0.151 ± 0.001 (5/5); MDSA (pre-gen. control) -0.011 ± 0.001 (5/5); LOHSvar -0.104 ± 0.002 (5/5); Tok-Prob (mean of 5) -0.071 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.060 ± 0.002 (5/5)
+- auc: Tok-Prob -0.013 ± 0.001 (5/5); Tok-Ent -0.011 ± 0.001 (5/5); Output entropy -0.071 ± 0.001 (5/5); MDSA (pre-gen. control) -0.004 ± 0.001 (5/5); LOHSvar -0.041 ± 0.001 (5/5); Tok-Prob (mean of 5) -0.035 ± 0.001 (5/5); Tok-Ent (mean of 5) -0.029 ± 0.001 (5/5)
+
+### G: LOHSvar's rank among the post-generation baselines (1 = best; leaky -> leak-free seed mean)
+
+| task | Spearman rank | AUC rank |
+|---|---|---|
+| SYN-BUG | 3 -> 3 | 2 -> 2 |
+| SPELL-CHK | 2 -> 2 | 1 -> 1 |
+| GH-TYPO | 1 -> 1 | 1 -> 1 |
+| JSON-FIX | 2 -> 2 | 2 -> 2 |
+| POS-TAG | 2 -> 2 | 1 -> 1 |
+| TOPIC-CLS | 2 -> 1 | 1 -> 1 |
+| ODD-ADD | 3 -> 3 | 3 -> 3 |
+| MODEL-EX | 1 -> 1 | 1 -> 1 |
+
+LOHSvar's rank changes on 1 of 8 tasks (Spearman) and 0 (AUC).
 
 Output entropy = entropy of the parsed answers (task labeler) over the samples; it is not the stored `answer_level_entropy` (present for some tasks only; Spearman with ours: GH-TYPO -0.45, JSON-FIX -0.39, POS-TAG -0.05, TOPIC-CLS -0.22, ODD-ADD -0.25, MODEL-EX -0.15). MDSA coverage (inputs with a stored score): SYN-BUG 0.99, SPELL-CHK 0.98, GH-TYPO 0.98, JSON-FIX 0.31, POS-TAG 0.24, TOPIC-CLS 0.98, ODD-ADD 0.97, MODEL-EX 0.62
+
+
+## 18. F: strong-parser rerun of the cached-parser simulation (2026-11-10)
+
+Copied from `reports/strong_details.md` (`log_parsing_strong.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+### llama: configuration C2 (mean PA_0 on HDFS, Spark, Linux: C1 0.249, C2 0.426)
+
+| system | groups | PA_0 base | wrong groups base | PA_0 strong | wrong groups strong | ICL before corrector correct groups | ms / template |
+|---|---|---|---|---|---|---|---|
+| Apache | 29 | 0.721 | 0.586 | 0.860 | 0.207 | 0.474 | 309 |
+| BGL | 51 | 0.110 | 0.529 | 0.989 | 0.157 | 0.439 | 269 |
+| HDFS | 14 | 0.682 | 0.643 | 1.000 | 0.143 | 0.500 | 444 |
+| HPC | 68 | 0.189 | 0.324 | 0.745 | 0.221 | 0.741 | 139 |
+| Hadoop | 261 | 0.234 | 0.586 | 0.308 | 0.456 | 0.466 | 367 |
+| HealthApp | 6695 | 0.208 | 0.907 | 0.732 | 0.916 | 0.080 | 51 |
+| Linux | 430 | 0.234 | 0.751 | 0.251 | 0.695 | 0.250 | 220 |
+| Mac | 1952 | 0.246 | 0.827 | 0.368 | 0.794 | 0.186 | 377 |
+| OpenSSH | 26 | 0.682 | 0.423 | 0.998 | 0.346 | 0.500 | 680 |
+| OpenStack | 2616 | 0.159 | 0.161 | 0.813 | 0.042 | 0.957 | 78 |
+| Spark | 139 | 0.018 | 0.712 | 0.027 | 0.568 | 0.279 | 280 |
+| Thunderbird | 630 | 0.179 | 0.722 | 0.399 | 0.614 | 0.284 | 364 |
+| Zookeeper | 77 | 0.508 | 0.455 | 0.810 | 0.247 | 0.552 | 469 |
+
+Also run, C1: HDFS PA_0 0.471, Linux PA_0 0.253, Spark PA_0 0.022.
+
+Macro PA_0 0.639 (base 0.321); macro share of wrong groups 0.416 (base 0.587).
+
+
+#### F2 llama, all systems
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.147 ± 0.018 | 0.207 ± 0.060 | 0.332 ± 0.022 | 0.466 ± 0.037 | 138 | 134 | 100 | 71 | +0.438 (5/5) |
+| Most frequent | 0.597 ± 0.000 | 0.720 ± 0.000 | 0.791 ± 0.000 | 0.843 ± 0.000 | 2028 | 1125 | 620 | 270 | -0.020 (5/5) |
+| D x size | 0.609 ± 0.006 | 0.707 ± 0.007 | 0.771 ± 0.004 | 0.836 ± 0.010 | 2044 | 1118 | 607 | 268 | |
+| LLMLog confidence x size | 0.554 ± 0.000 | 0.702 ± 0.000 | 0.770 ± 0.000 | 0.825 ± 0.000 | 1744 | 1066 | 590 | 260 | +0.001 (4/5) |
+| Output entropy x size | 0.635 ± 0.000 | 0.730 ± 0.000 | 0.790 ± 0.000 | 0.835 ± 0.000 | 2072 | 1140 | 621 | 268 | -0.020 (5/5) |
+| Oracle | 0.728 ± 0.000 | 0.786 ± 0.000 | 0.821 ± 0.000 | 0.861 ± 0.000 | 2220 | 1207 | 647 | 282 | -0.050 (5/5) |
+
+SK-ESD @20 over (system, seed): 1. Most frequent 0.791; 1. Output entropy x size 0.790; 1. D x size 0.771; 1. LLMLog confidence x size 0.770; 2. Random 0.332
+
+A12 D x size vs: Random 0.77 (large); Most frequent 0.49 (negligible); LLMLog confidence x size 0.52 (negligible); Output entropy x size 0.47 (negligible)
+
+#### F2 llama, held-out systems
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.082 ± 0.030 | 0.150 ± 0.079 | 0.309 ± 0.043 | 0.471 ± 0.042 | 89 | 83 | 81 | 62 | +0.408 (5/5) |
+| Most frequent | 0.507 ± 0.000 | 0.657 ± 0.000 | 0.744 ± 0.000 | 0.807 ± 0.000 | 1437 | 841 | 490 | 223 | -0.026 (5/5) |
+| D x size | 0.522 ± 0.008 | 0.640 ± 0.008 | 0.718 ± 0.006 | 0.798 ± 0.012 | 1455 | 832 | 473 | 220 | |
+| LLMLog confidence x size | 0.460 ± 0.000 | 0.636 ± 0.000 | 0.718 ± 0.000 | 0.787 ± 0.000 | 1098 | 772 | 453 | 211 | -0.001 (1/5) |
+| Output entropy x size | 0.553 ± 0.000 | 0.672 ± 0.000 | 0.746 ± 0.000 | 0.800 ± 0.000 | 1481 | 863 | 493 | 221 | -0.028 (5/5) |
+| Oracle | 0.669 ± 0.000 | 0.740 ± 0.000 | 0.781 ± 0.000 | 0.829 ± 0.000 | 1656 | 942 | 523 | 237 | -0.063 (5/5) |
+
+#### F3 llama: gap (D x size minus Most frequent, share @20, seed mean) vs share of wrong groups
+
+| system | wrong base | gap base | wrong strong | gap strong |
+|---|---|---|---|---|
+| Apache | 0.586 | +0.003 | 0.207 | +0.000 |
+| BGL | 0.529 | +0.001 | 0.157 | +0.035 |
+| HDFS | 0.643 | +0.000 | 0.143 | +0.000 |
+| HPC | 0.324 | -0.000 | 0.221 | -0.001 |
+| Hadoop | 0.586 | +0.010 | 0.456 | +0.005 |
+| HealthApp | 0.907 | -0.125 | 0.916 | -0.042 |
+| Linux | 0.751 | -0.000 | 0.695 | -0.002 |
+| Mac | 0.827 | -0.022 | 0.794 | -0.031 |
+| OpenSSH | 0.423 | +0.000 | 0.346 | +0.000 |
+| OpenStack | 0.161 | +0.006 | 0.042 | -0.238 |
+| Spark | 0.712 | +0.001 | 0.568 | +0.001 |
+| Thunderbird | 0.722 | +0.003 | 0.614 | +0.009 |
+| Zookeeper | 0.455 | +0.000 | 0.247 | +0.001 |
+
+Spearman(wrong share, gap) over 26 (system, parser) points: -0.27 (p = 0.184). Mean gap base -0.010, strong -0.020; gap rises on 4/13 systems (mean change -0.011, mean change in wrong share -0.171). Systems with < 25% wrong groups (strong): 6, mean gap -0.034.
+
+### gemma: configuration C2 (mean PA_0 on HDFS, Spark, Linux: C1 0.111, C2 0.376)
+
+| system | groups | PA_0 base | wrong groups base | PA_0 strong | wrong groups strong | ICL before corrector correct groups | ms / template |
+|---|---|---|---|---|---|---|---|
+| BGL | 51 | 0.105 | 0.471 | 0.988 | 0.196 | 0.610 | 263 |
+| HDFS | 14 | 0.447 | 0.714 | 1.000 | 0.071 | 0.750 | 380 |
+| HPC | 68 | 0.745 | 0.250 | 0.745 | 0.397 | 0.534 | 91 |
+| Hadoop | 261 | 0.546 | 0.536 | 0.591 | 0.425 | 0.522 | 225 |
+| HealthApp | 6695 | 0.539 | 0.971 | 0.778 | 0.971 | 0.028 | 56 |
+| Linux | 430 | 0.587 | 0.637 | 0.094 | 0.598 | 0.388 | 145 |
+| Mac | 1952 | 0.361 | 0.559 | 0.464 | 0.545 | 0.440 | 212 |
+| OpenSSH | 26 | 0.386 | 0.654 | 0.995 | 0.423 | 0.375 | 537 |
+| OpenStack | 2616 | 0.149 | 0.112 | 0.822 | 0.080 | 0.919 | 83 |
+| Spark | 139 | 0.025 | 0.597 | 0.034 | 0.511 | 0.326 | 254 |
+| Thunderbird | 630 | 0.269 | 0.610 | 0.427 | 0.594 | 0.358 | 358 |
+| Zookeeper | 77 | 0.211 | 0.338 | 0.620 | 0.234 | 0.612 | 214 |
+
+Also run, C1: HDFS PA_0 0.220, Linux PA_0 0.088, Spark PA_0 0.026.
+
+Macro PA_0 0.630 (base 0.364); macro share of wrong groups 0.420 (base 0.537).
+
+
+#### F2 gemma, all systems
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.132 ± 0.024 | 0.182 ± 0.027 | 0.265 ± 0.015 | 0.413 ± 0.038 | 123 | 124 | 85 | 74 | +0.506 (5/5) |
+| Most frequent | 0.616 ± 0.000 | 0.693 ± 0.000 | 0.778 ± 0.000 | 0.824 ± 0.000 | 2049 | 1140 | 633 | 272 | -0.007 (5/5) |
+| D x size | 0.603 ± 0.000 | 0.678 ± 0.000 | 0.772 ± 0.000 | 0.819 ± 0.000 | 2045 | 1126 | 628 | 271 | |
+| LLMLog confidence x size | 0.578 ± 0.000 | 0.659 ± 0.000 | 0.756 ± 0.000 | 0.802 ± 0.000 | 1899 | 1054 | 604 | 260 | +0.015 (5/5) |
+| Output entropy x size | 0.591 ± 0.000 | 0.653 ± 0.000 | 0.698 ± 0.000 | 0.802 ± 0.000 | 1983 | 1089 | 582 | 266 | +0.074 (5/5) |
+| Oracle | 0.688 ± 0.000 | 0.776 ± 0.000 | 0.811 ± 0.000 | 0.848 ± 0.000 | 2258 | 1246 | 663 | 285 | -0.039 (5/5) |
+
+SK-ESD @20 over (system, seed): 1. Most frequent 0.778; 1. D x size 0.772; 1. LLMLog confidence x size 0.756; 1. Output entropy x size 0.698; 2. Random 0.265
+
+A12 D x size vs: Random 0.82 (large); Most frequent 0.49 (negligible); LLMLog confidence x size 0.52 (negligible); Output entropy x size 0.56 (small)
+
+#### F2 gemma, held-out systems
+
+| ordering | share N=5 | share N=10 | share N=20 | share N=50 | lines/review N=5 | lines/review N=10 | lines/review N=20 | lines/review N=50 | D x size minus row @20 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random | 0.055 ± 0.032 | 0.110 ± 0.021 | 0.219 ± 0.037 | 0.401 ± 0.045 | 63 | 66 | 59 | 64 | +0.489 (5/5) |
+| Most frequent | 0.512 ± 0.000 | 0.607 ± 0.000 | 0.717 ± 0.000 | 0.774 ± 0.000 | 1299 | 785 | 471 | 212 | -0.009 (5/5) |
+| D x size | 0.497 ± 0.000 | 0.586 ± 0.000 | 0.708 ± 0.000 | 0.768 ± 0.000 | 1299 | 764 | 464 | 210 | |
+| LLMLog confidence x size | 0.467 ± 0.000 | 0.573 ± 0.000 | 0.690 ± 0.000 | 0.745 ± 0.000 | 1124 | 695 | 437 | 195 | +0.018 (5/5) |
+| Output entropy x size | 0.480 ± 0.000 | 0.554 ± 0.000 | 0.612 ± 0.000 | 0.747 ± 0.000 | 1217 | 718 | 405 | 205 | +0.096 (5/5) |
+| Oracle | 0.607 ± 0.000 | 0.716 ± 0.000 | 0.759 ± 0.000 | 0.805 ± 0.000 | 1571 | 921 | 508 | 227 | -0.050 (5/5) |
+
+#### F3 gemma: gap (D x size minus Most frequent, share @20, seed mean) vs share of wrong groups
+
+| system | wrong base | gap base | wrong strong | gap strong |
+|---|---|---|---|---|
+| BGL | 0.471 | +0.000 | 0.196 | -0.021 |
+| HDFS | 0.714 | +0.000 | 0.071 | +0.000 |
+| HPC | 0.250 | +0.002 | 0.397 | +0.000 |
+| Hadoop | 0.536 | +0.003 | 0.425 | -0.015 |
+| HealthApp | 0.971 | -0.272 | 0.971 | +0.000 |
+| Linux | 0.637 | -0.001 | 0.598 | -0.000 |
+| Mac | 0.559 | +0.052 | 0.545 | -0.025 |
+| OpenSSH | 0.654 | +0.000 | 0.423 | +0.000 |
+| OpenStack | 0.112 | -0.028 | 0.080 | -0.013 |
+| Spark | 0.597 | +0.002 | 0.511 | +0.001 |
+| Thunderbird | 0.610 | +0.009 | 0.594 | -0.004 |
+| Zookeeper | 0.338 | +0.000 | 0.234 | +0.000 |
+
+Spearman(wrong share, gap) over 24 (system, parser) points: +0.17 (p = 0.420). Mean gap base -0.019, strong -0.007; gap rises on 3/12 systems (mean change +0.013, mean change in wrong share -0.117). Systems with < 25% wrong groups (strong): 4, mean gap -0.009.
+
+
+## 19. H: downstream anomaly detection after N reviews (2026-11-10)
+
+Copied from `reports/downstream_details.md` (`log_parsing_downstream.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+### HDFS: 4088 sessions, 123 anomalous (74 in the test half). GT templates: PCA F1 0.000, IM F1 0.186
+
+
+#### HDFS, llama, base parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| D x size | PCA | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 |
+| Oracle | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| GT templates | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Most frequent | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| D x size | IM | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 |
+| Oracle | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| GT templates | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+
+#### HDFS, llama, strong parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| D x size | PCA | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 |
+| Oracle | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| GT templates | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Most frequent | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| D x size | IM | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 |
+| Oracle | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| GT templates | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+
+#### HDFS, gemma, base parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| D x size | PCA | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 |
+| Oracle | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| GT templates | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Most frequent | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| D x size | IM | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 |
+| Oracle | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| GT templates | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+
+#### HDFS, gemma, strong parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| D x size | PCA | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 | 0.000 ± 0.000 |
+| Oracle | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| GT templates | PCA | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Most frequent | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| D x size | IM | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 | 0.186 ± 0.000 |
+| Oracle | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+| GT templates | IM | 0.186 | 0.186 | 0.186 | 0.186 | 0.186 |
+
+### BGL: 2500 sessions, 233 anomalous (92 in the test half). GT templates: PCA F1 0.056, IM F1 0.019
+
+
+#### BGL, llama, base parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| D x size | PCA | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 |
+| Oracle | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| GT templates | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| Most frequent | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| D x size | IM | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 |
+| Oracle | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| GT templates | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+
+#### BGL, llama, strong parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| D x size | PCA | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 |
+| Oracle | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| GT templates | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| Most frequent | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| D x size | IM | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 |
+| Oracle | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| GT templates | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+
+#### BGL, gemma, base parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| D x size | PCA | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 |
+| Oracle | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| GT templates | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| Most frequent | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| D x size | IM | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 |
+| Oracle | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| GT templates | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+
+#### BGL, gemma, strong parser
+
+| ordering | detector | F1 N=0 | F1 N=5 | F1 N=10 | F1 N=20 | F1 N=50 |
+|---|---|---|---|---|---|---|
+| Most frequent | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| D x size | PCA | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 | 0.056 ± 0.000 |
+| Oracle | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| GT templates | PCA | 0.056 | 0.056 | 0.056 | 0.056 | 0.056 |
+| Most frequent | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| D x size | IM | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 | 0.019 ± 0.000 |
+| Oracle | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+| GT templates | IM | 0.019 | 0.019 | 0.019 | 0.019 | 0.019 |
+
+### Summary
+
+| system | model / parser | detector | F1 N=0 | F1 N=50 (Oracle) | max |F1 Most frequent - D x size| over N | F1 GT |
+|---|---|---|---|---|---|---|
+| HDFS | llama/base | PCA | 0.000 | 0.000 | 0.000 | 0.000 |
+| HDFS | llama/base | IM | 0.186 | 0.186 | 0.000 | 0.186 |
+| HDFS | llama/strong | PCA | 0.000 | 0.000 | 0.000 | 0.000 |
+| HDFS | llama/strong | IM | 0.186 | 0.186 | 0.000 | 0.186 |
+| HDFS | gemma/base | PCA | 0.000 | 0.000 | 0.000 | 0.000 |
+| HDFS | gemma/base | IM | 0.186 | 0.186 | 0.000 | 0.186 |
+| HDFS | gemma/strong | PCA | 0.000 | 0.000 | 0.000 | 0.000 |
+| HDFS | gemma/strong | IM | 0.186 | 0.186 | 0.000 | 0.186 |
+| BGL | llama/base | PCA | 0.056 | 0.056 | 0.000 | 0.056 |
+| BGL | llama/base | IM | 0.019 | 0.019 | 0.000 | 0.019 |
+| BGL | llama/strong | PCA | 0.056 | 0.056 | 0.000 | 0.056 |
+| BGL | llama/strong | IM | 0.019 | 0.019 | 0.000 | 0.019 |
+| BGL | gemma/base | PCA | 0.056 | 0.056 | 0.000 | 0.056 |
+| BGL | gemma/base | IM | 0.019 | 0.019 | 0.000 | 0.019 |
+| BGL | gemma/strong | PCA | 0.056 | 0.056 | 0.000 | 0.056 |
+| BGL | gemma/strong | IM | 0.019 | 0.019 | 0.000 | 0.019 |
+
+
+## 20. M: Python Scott-Knott ESD vs the R package (2026-11-10)
+
+Copied from `reports/skesd_check.md` (`log_parsing_skesd_check.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+
+Generated by `log_parsing_skesd_check.py`. Protocol: PROGRESS.md Decisions (H-M). R `sk_esd(version='p')` is the parametric original our reimplementation follows; `version='np'` is the package default. Rank 1 = best.
+
+| matrix | obs / method | methods | identical ranks to R p | identical to R np | differing methods (Python / R p / R np) |
+|---|---|---|---|---|---|
+| llama_main_capped_100 | 65 | 14 | 4/14 | 4/14 | lookup_drain_default 3/4/4; lookup_oracle 3/4/4; lookup_drain 3/4/4; loh_var 4/5/5; GMMb 4/5/5; sem_ent 5/6/6; tok_prob 6/7/7; tok_ent 6/8/8; SLL 6/8/8; random 6/8/8 |
+| llama_main_natural_100 | 65 | 10 | 4/10 | 4/10 | MDSA 1/2/2; out_entropy 2/3/3; GMMb 2/3/3; loh_var 3/4/4; random 4/5/5; tok_prob 4/5/5 |
+| llama_main_capped_200 | 65 | 14 | 5/14 | 5/14 | MDSA 2/3/3; lookup_drain 2/3/3; GMMb 2/3/3; loh_var 3/4/4; sem_ent 4/5/5; tok_prob 4/6/6; random 4/6/6; tok_ent 4/6/6; SLL 4/6/6 |
+| llama_main_natural_200 | 65 | 10 | 10/10 | 10/10 |  |
+| gemma_main_capped_100 | 60 | 14 | 1/14 | 1/14 | hybrid 1/2/2; clotho 1/2/2; lookup_oracle 2/3/3; lookup_drain_default 2/3/3; MDSA 2/3/3; lookup_drain 2/3/3; GMMb 3/4/4; loh_var 3/4/4; sem_ent 4/5/5; tok_ent 5/6/6; random 6/7/7; tok_prob 6/8/8; SLL 7/9/9 |
+| gemma_main_natural_100 | 60 | 10 | 3/10 | 3/10 | clotho 2/3/3; MDSA 2/3/3; GMMb 3/4/4; out_entropy 3/4/4; loh_var 4/5/5; random 5/6/6; tok_prob 5/7/7 |
+| gemma_main_capped_200 | 60 | 14 | 2/14 | 2/14 | out_entropy 1/2/2; lookup_oracle 2/3/3; lookup_drain_default 2/3/3; lookup_drain 2/4/4; GMMb 2/4/4; MDSA 3/5/5; loh_var 4/6/6; sem_ent 5/7/7; tok_ent 5/8/8; random 6/9/9; tok_prob 6/10/10; SLL 7/11/11 |
+| gemma_main_natural_200 | 60 | 10 | 5/10 | 5/10 | MDSA 2/3/3; out_entropy 3/4/4; loh_var 4/5/5; random 5/6/6; tok_prob 5/7/7 |
+| llama_triage_e1_20 | 65 | 9 | 8/9 | 8/9 | newest 3/4/4 |
+| llama_strong_f2_20 | 65 | 5 | 5/5 | 5/5 |  |
+| gemma_triage_e1_20 | 60 | 9 | 9/9 | 9/9 |  |
+| gemma_strong_f2_20 | 60 | 5 | 3/5 | 3/5 | entropy 1/2/2; random 2/3/3 |
+
+Pairwise (method pairs within a matrix, Python vs R 'p'): same relation 593, R separates, Python merges 43, Python separates, R merges 0, inverted 0.
+
+Overall: 59/124 method ranks identical to R 'p', 59/124 to R 'np' (ScottKnottESD 2.0.3).
+
+
+## 21. L: what makes a template hard (2026-11-10)
+
+Copied from `reports/template_difficulty.md` (`log_parsing_template_difficulty.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+
+Generated by `log_parsing_template_difficulty.py fit`. Protocol: PROGRESS.md Decisions (H-M). 12500 capped-suite inputs (both models, kept systems), FAIL rate 0.611; 2 inputs where the template did not match the line (variable types unknown, structural features kept). Odds ratio of FAIL (> 1 = harder), 95% CI cluster-robust by template, system fixed effects.
+
+| factor | prevalence | OR pooled [95% CI] | p | OR Llama | OR Gemma |
+|---|---|---|---|---|---|
+| variables (per variable) | 0.92 | 1.32 [1.11, 1.58] | 0.00186 | 1.20 | 1.44 |
+| template length (per 10 tokens) | 1.00 | 1.34 [0.85, 2.11] | 0.209 | 2.37 | 0.88 |
+| share of variable tokens (0 to 1) | 0.92 | 0.64 [0.27, 1.54] | 0.32 | 0.59 | 0.63 |
+| variable attached to text/punctuation | 0.49 | 2.09 [1.52, 2.88] | 5.08e-06 | 2.43 | 2.00 |
+| IP address variable | 0.20 | 1.29 [0.75, 2.20] | 0.352 | 0.89 | 1.93 |
+| path variable | 0.10 | 1.78 [1.08, 2.92] | 0.0225 | 1.87 | 1.96 |
+| hex variable | 0.11 | 1.17 [0.74, 1.87] | 0.502 | 1.05 | 1.30 |
+| pure-number variable | 0.48 | 0.82 [0.56, 1.20] | 0.309 | 0.95 | 0.69 |
+| other variable (word-like, mixed) | 0.53 | 2.08 [1.42, 3.04] | 0.000161 | 2.17 | 2.08 |
+| model = Gemma | nan | 0.48 [0.42, 0.55] | 5.3e-27 |  | |
+
+Top factors (largest |log OR| with p < 0.05): variable attached to text/punctuation, other variable (word-like, mixed), path variable.
+
+
+#### variable attached to text/punctuation: 10 illustrative templates (highest FAIL rate, both models pooled)
+
+| system | template | FAIL rate | inputs |
+|---|---|---|---|
+| OpenSSH | `PAM <*> more authentication failures; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>` | 1.00 | 56 |
+| OpenSSH | `pam_unix(sshd:auth): authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>` | 1.00 | 56 |
+| Apache | `[client <*>] request failed: URI too long (longer than <*>)` | 1.00 | 37 |
+| OpenStack | `<*> "DELETE <*> <*>" status: <*> len: <*> time: <*>` | 1.00 | 34 |
+| OpenStack | `<*> "GET <*> <*>" status: <*> len: <*> time: <*>` | 1.00 | 34 |
+| Zookeeper | `Got user-level KeeperException when processing sessionid:<*> type:<*> cxid:<*> zxid:<*> txntype:<*> reqpath:<*` | 1.00 | 34 |
+| Zookeeper | `New election. My id = <*>, proposed <*>` | 1.00 | 34 |
+| HPC | `Targeting domains:<*> and nodes:<*>` | 1.00 | 32 |
+| OpenStack | `<*> "POST <*> <*>" status: <*> len: <*> time: <*>` | 1.00 | 32 |
+| OpenStack | `[instance: <*>] memory limit: <*> MB, free: <*> MB` | 1.00 | 32 |
+
+#### other variable (word-like, mixed): 10 illustrative templates (highest FAIL rate, both models pooled)
+
+| system | template | FAIL rate | inputs |
+|---|---|---|---|
+| OpenSSH | `PAM <*> more authentication failures; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>` | 1.00 | 56 |
+| OpenSSH | `message repeated <*> times: [ Failed password for <*> from <*> port <*> ssh2]` | 1.00 | 56 |
+| OpenSSH | `pam_unix(sshd:auth): authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>` | 1.00 | 56 |
+| OpenSSH | `Bad protocol version identification <*> from <*> port <*>` | 1.00 | 44 |
+| Zookeeper | `Got user-level KeeperException when processing sessionid:<*> type:<*> cxid:<*> zxid:<*> txntype:<*> reqpath:<*` | 1.00 | 34 |
+| Zookeeper | `Notification: <*> (n.leader), <*> (n.zxid), <*> (n.round), <*> (n.state), <*> (n.sid), <*> (n.peerEPoch), <*> ` | 1.00 | 34 |
+| HPC | `Targeting domains:<*> and nodes:<*>` | 1.00 | 32 |
+| OpenStack | `[instance: <*>] memory limit: <*> MB, free: <*> MB` | 1.00 | 32 |
+| Zookeeper | `Expiring session <*> timeout of <*> exceeded` | 1.00 | 32 |
+| HPC | `Fan speeds ( <*> )` | 1.00 | 30 |
+
+#### path variable: 10 illustrative templates (highest FAIL rate, both models pooled)
+
+| system | template | FAIL rate | inputs |
+|---|---|---|---|
+| OpenSSH | `Bad protocol version identification <*> from <*> port <*>` | 1.00 | 44 |
+| OpenStack | `<*> "DELETE <*> <*>" status: <*> len: <*> time: <*>` | 1.00 | 34 |
+| OpenStack | `<*> "GET <*> <*>" status: <*> len: <*> time: <*>` | 1.00 | 34 |
+| Zookeeper | `Got user-level KeeperException when processing sessionid:<*> type:<*> cxid:<*> zxid:<*> txntype:<*> reqpath:<*` | 1.00 | 34 |
+| OpenStack | `<*> "POST <*> <*>" status: <*> len: <*> time: <*>` | 1.00 | 32 |
+| HDFS | `BLOCK* NameSystem.allocateBlock: <*> <*>` | 1.00 | 28 |
+| Linux | `<*> Privoxy(<*>) Info: loading configuration file <*>` | 1.00 | 12 |
+| Linux | `audit(<*>): avc: denied <*> for pid=<*> exe=<*> name=<*> dev=<*> ino=<*> scontext=<*> tcontext=<*> tclass=<*>` | 1.00 | 12 |
+| Linux | `audit(<*>): item=<*> name=<*> inode=<*> dev=<*>` | 1.00 | 12 |
+| BGL | `power module status fault detected on node card. status registers are: <*>` | 1.00 | 6 |
+
+
+## 22. K: stopping rule from D's risk (2026-11-10)
+
+Copied from `reports/stopping_details.md` (`log_parsing_stopping.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+### llama, base parser (13 systems)
+
+| N | true remaining (mean) | raw: mean abs err | raw: mean signed err | Platt: mean abs err | Platt: mean signed err |
+|---|---|---|---|---|---|
+| 0 | 0.644 | 0.237 | +0.080 | 0.237 | +0.080 |
+| 5 | 0.216 | 0.067 | -0.011 | 0.079 | -0.001 |
+| 10 | 0.150 | 0.035 | -0.008 | 0.040 | -0.001 |
+| 20 | 0.126 | 0.029 | -0.017 | 0.032 | -0.013 |
+| 50 | 0.098 | 0.018 | -0.014 | 0.020 | -0.011 |
+| 100 | 0.095 | 0.022 | -0.015 | 0.023 | -0.013 |
+
+| estimator | threshold | runs stopping by 100 | precision (true < t at stop) | mean N at stop | mean true remaining at stop | reviews saved vs 100 |
+|---|---|---|---|---|---|---|
+| raw | 2% | 41/65 | 0.78 | 23.5 | 0.015 | 76.5 |
+| raw | 5% | 45/65 | 0.84 | 19.7 | 0.042 | 80.3 |
+| raw | 10% | 55/65 | 0.73 | 17.2 | 0.084 | 82.8 |
+| platt | 2% | 41/65 | 0.78 | 22.7 | 0.015 | 77.3 |
+| platt | 5% | 44/65 | 0.82 | 18.5 | 0.041 | 81.5 |
+| platt | 10% | 51/65 | 0.78 | 16.1 | 0.081 | 83.9 |
+
+### llama, strong parser (13 systems)
+
+| N | true remaining (mean) | raw: mean abs err | raw: mean signed err | Platt: mean abs err | Platt: mean signed err |
+|---|---|---|---|---|---|
+| 0 | 0.361 | 0.157 | +0.032 | 0.157 | +0.032 |
+| 5 | 0.147 | 0.062 | -0.018 | 0.063 | -0.024 |
+| 10 | 0.123 | 0.046 | -0.027 | 0.047 | -0.032 |
+| 20 | 0.121 | 0.043 | -0.032 | 0.045 | -0.034 |
+| 50 | 0.095 | 0.033 | -0.032 | 0.035 | -0.034 |
+| 100 | 0.087 | 0.030 | -0.027 | 0.032 | -0.027 |
+
+| estimator | threshold | runs stopping by 100 | precision (true < t at stop) | mean N at stop | mean true remaining at stop | reviews saved vs 100 |
+|---|---|---|---|---|---|---|
+| raw | 2% | 45/65 | 0.64 | 15.0 | 0.025 | 85.0 |
+| raw | 5% | 45/65 | 0.78 | 10.3 | 0.032 | 89.7 |
+| raw | 10% | 60/65 | 0.68 | 15.2 | 0.066 | 84.8 |
+| platt | 2% | 45/65 | 0.64 | 13.7 | 0.027 | 86.3 |
+| platt | 5% | 45/65 | 0.78 | 9.4 | 0.034 | 90.6 |
+| platt | 10% | 60/65 | 0.70 | 14.8 | 0.066 | 85.2 |
+
+### gemma, base parser (12 systems)
+
+| N | true remaining (mean) | raw: mean abs err | raw: mean signed err | Platt: mean abs err | Platt: mean signed err |
+|---|---|---|---|---|---|
+| 0 | 0.636 | 0.172 | -0.144 | 0.172 | -0.144 |
+| 5 | 0.174 | 0.052 | -0.039 | 0.080 | -0.062 |
+| 10 | 0.140 | 0.041 | -0.040 | 0.050 | -0.049 |
+| 20 | 0.119 | 0.038 | -0.036 | 0.048 | -0.046 |
+| 50 | 0.083 | 0.024 | -0.024 | 0.032 | -0.032 |
+| 100 | 0.085 | 0.033 | -0.033 | 0.038 | -0.038 |
+
+| estimator | threshold | runs stopping by 100 | precision (true < t at stop) | mean N at stop | mean true remaining at stop | reviews saved vs 100 |
+|---|---|---|---|---|---|---|
+| raw | 2% | 35/60 | 0.57 | 20.0 | 0.017 | 80.0 |
+| raw | 5% | 45/60 | 0.67 | 19.4 | 0.046 | 80.6 |
+| raw | 10% | 55/60 | 0.55 | 16.8 | 0.100 | 83.2 |
+| platt | 2% | 40/60 | 0.38 | 23.1 | 0.032 | 76.9 |
+| platt | 5% | 50/60 | 0.60 | 12.5 | 0.091 | 87.5 |
+| platt | 10% | 60/60 | 0.50 | 18.3 | 0.119 | 81.7 |
+
+### gemma, strong parser (12 systems)
+
+| N | true remaining (mean) | raw: mean abs err | raw: mean signed err | Platt: mean abs err | Platt: mean signed err |
+|---|---|---|---|---|---|
+| 0 | 0.370 | 0.156 | -0.096 | 0.156 | -0.096 |
+| 5 | 0.147 | 0.049 | -0.034 | 0.079 | -0.076 |
+| 10 | 0.120 | 0.044 | -0.037 | 0.069 | -0.069 |
+| 20 | 0.100 | 0.031 | -0.029 | 0.050 | -0.050 |
+| 50 | 0.084 | 0.032 | -0.032 | 0.048 | -0.048 |
+| 100 | 0.079 | 0.035 | -0.035 | 0.043 | -0.043 |
+
+| estimator | threshold | runs stopping by 100 | precision (true < t at stop) | mean N at stop | mean true remaining at stop | reviews saved vs 100 |
+|---|---|---|---|---|---|---|
+| raw | 2% | 35/60 | 0.57 | 15.0 | 0.016 | 85.0 |
+| raw | 5% | 45/60 | 0.56 | 15.0 | 0.061 | 85.0 |
+| raw | 10% | 60/60 | 0.50 | 18.8 | 0.101 | 81.2 |
+| platt | 2% | 45/60 | 0.33 | 13.9 | 0.051 | 86.1 |
+| platt | 5% | 50/60 | 0.40 | 12.0 | 0.080 | 88.0 |
+| platt | 10% | 60/60 | 0.42 | 9.6 | 0.116 | 90.4 |
+
+
+## 24. J: cross-model failure prediction (2026-11-10)
+
+Copied from `reports/crossmodel_details.md` (`log_parsing_crossmodel.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (F; G; H-M).
+
+### parser llama, scorer gemma, capped, @100 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.751 ± 0.010 |  | +0.073 (5/5) | -0.056 (5/5) |
+| Clotho, cross-model states | 0.755 ± 0.011 | +0.004 (3/5) | +0.077 (5/5) | -0.052 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.757 ± 0.010 |  | +0.079 (5/5) | -0.050 (5/5) |
+| MDSA, same-model | 0.720 ± 0.008 |  | +0.042 (5/5) | -0.087 (5/5) |
+| MDSA, cross-model | 0.730 ± 0.007 | +0.010 (5/5) | +0.052 (5/5) | -0.077 (5/5) |
+| D transfer, same-model | 0.718 ± 0.003 |  | +0.040 (5/5) | -0.089 (5/5) |
+| D transfer, cross-model | 0.709 ± 0.003 | -0.009 (5/5) | +0.031 (5/5) | -0.098 (5/5) |
+| Lookup (Drain) | 0.678 ± 0.003 |  |  |  |
+| Output entropy (parser) | 0.807 ± 0.002 |  |  |  |
+
+SK-ESD over (system, seed): 1. Output entropy (parser) 0.807; 2. Clotho, same-model (stored balanced run) 0.757; 2. Clotho, cross-model states 0.755; 2. Clotho, same-model states (refit) 0.751; 3. MDSA, cross-model 0.730; 3. MDSA, same-model 0.720; 3. D transfer, same-model 0.718; 3. D transfer, cross-model 0.709; 4. Lookup (Drain) 0.678
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.50 (negligible); Lookup (Drain) 0.69 (medium); Output entropy (parser) 0.29 (large)
+
+### parser llama, scorer gemma, capped, @200 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.792 ± 0.008 |  | +0.055 (5/5) | -0.018 (5/5) |
+| Clotho, cross-model states | 0.785 ± 0.007 | -0.007 (5/5) | +0.048 (5/5) | -0.025 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.805 ± 0.012 |  | +0.068 (5/5) | -0.005 (4/5) |
+| MDSA, same-model | 0.744 ± 0.009 |  | +0.007 (5/5) | -0.066 (5/5) |
+| MDSA, cross-model | 0.743 ± 0.004 | -0.001 (3/5) | +0.006 (5/5) | -0.067 (5/5) |
+| D transfer, same-model | 0.721 ± 0.003 |  | -0.016 (5/5) | -0.089 (5/5) |
+| D transfer, cross-model | 0.705 ± 0.004 | -0.016 (5/5) | -0.031 (5/5) | -0.105 (5/5) |
+| Lookup (Drain) | 0.736 ± 0.006 |  |  |  |
+| Output entropy (parser) | 0.810 ± 0.005 |  |  |  |
+
+SK-ESD over (system, seed): 1. Output entropy (parser) 0.810; 1. Clotho, same-model (stored balanced run) 0.805; 1. Clotho, same-model states (refit) 0.792; 1. Clotho, cross-model states 0.785; 2. MDSA, same-model 0.744; 2. MDSA, cross-model 0.743; 2. Lookup (Drain) 0.736; 3. D transfer, same-model 0.721; 3. D transfer, cross-model 0.705
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.44 (small); Lookup (Drain) 0.59 (small); Output entropy (parser) 0.43 (small)
+
+### parser llama, scorer gemma, natural, @100 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.860 ± 0.011 |  | +0.002 (2/5) | +0.051 (5/5) |
+| Clotho, cross-model states | 0.839 ± 0.006 | -0.021 (5/5) | -0.019 (5/5) | +0.030 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.857 ± 0.015 |  | -0.001 (2/5) | +0.048 (5/5) |
+| MDSA, same-model | 0.839 ± 0.007 |  | -0.019 (5/5) | +0.030 (5/5) |
+| MDSA, cross-model | 0.842 ± 0.010 | +0.003 (4/5) | -0.016 (5/5) | +0.033 (5/5) |
+| D transfer, same-model | 0.697 ± 0.005 |  | -0.161 (5/5) | -0.112 (5/5) |
+| D transfer, cross-model | 0.622 ± 0.005 | -0.075 (5/5) | -0.236 (5/5) | -0.186 (5/5) |
+| Lookup (Drain) | 0.858 ± 0.014 |  |  |  |
+| Output entropy (parser) | 0.809 ± 0.002 |  |  |  |
+
+SK-ESD over (system, seed): 1. Clotho, same-model states (refit) 0.860; 1. Lookup (Drain) 0.858; 1. Clotho, same-model (stored balanced run) 0.857; 1. MDSA, cross-model 0.842; 1. MDSA, same-model 0.839; 1. Clotho, cross-model states 0.839; 1. Output entropy (parser) 0.809; 2. D transfer, same-model 0.697; 3. D transfer, cross-model 0.622
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.40 (small); Lookup (Drain) 0.40 (small); Output entropy (parser) 0.59 (small)
+
+### parser llama, scorer gemma, natural, @200 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.877 ± 0.007 |  | -0.005 (3/5) | +0.073 (5/5) |
+| Clotho, cross-model states | 0.854 ± 0.010 | -0.023 (5/5) | -0.028 (5/5) | +0.050 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.870 ± 0.016 |  | -0.011 (4/5) | +0.066 (5/5) |
+| MDSA, same-model | 0.862 ± 0.012 |  | -0.020 (5/5) | +0.058 (5/5) |
+| MDSA, cross-model | 0.854 ± 0.008 | -0.008 (4/5) | -0.028 (5/5) | +0.050 (5/5) |
+| D transfer, same-model | 0.691 ± 0.008 |  | -0.191 (5/5) | -0.113 (5/5) |
+| D transfer, cross-model | 0.609 ± 0.010 | -0.081 (5/5) | -0.272 (5/5) | -0.195 (5/5) |
+| Lookup (Drain) | 0.882 ± 0.007 |  |  |  |
+| Output entropy (parser) | 0.804 ± 0.004 |  |  |  |
+
+SK-ESD over (system, seed): 1. Lookup (Drain) 0.882; 1. Clotho, same-model states (refit) 0.877; 1. Clotho, same-model (stored balanced run) 0.870; 1. MDSA, same-model 0.862; 1. MDSA, cross-model 0.854; 1. Clotho, cross-model states 0.854; 2. Output entropy (parser) 0.804; 3. D transfer, same-model 0.691; 4. D transfer, cross-model 0.609
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.43 (small); Lookup (Drain) 0.39 (small); Output entropy (parser) 0.70 (medium)
+
+### parser gemma, scorer llama, capped, @100 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.778 ± 0.004 |  | +0.072 (5/5) | -0.042 (5/5) |
+| Clotho, cross-model states | 0.748 ± 0.008 | -0.031 (5/5) | +0.041 (5/5) | -0.073 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.780 ± 0.003 |  | +0.074 (5/5) | -0.040 (5/5) |
+| MDSA, same-model | 0.718 ± 0.007 |  | +0.011 (4/5) | -0.103 (5/5) |
+| MDSA, cross-model | 0.695 ± 0.007 | -0.022 (5/5) | -0.011 (4/5) | -0.125 (5/5) |
+| D transfer, same-model | 0.679 ± 0.001 |  | -0.027 (5/5) | -0.141 (5/5) |
+| D transfer, cross-model | 0.677 ± 0.002 | -0.002 (5/5) | -0.029 (5/5) | -0.143 (5/5) |
+| Lookup (Drain) | 0.706 ± 0.009 |  |  |  |
+| Output entropy (parser) | 0.821 ± 0.002 |  |  |  |
+
+SK-ESD over (system, seed): 1. Output entropy (parser) 0.821; 2. Clotho, same-model (stored balanced run) 0.780; 2. Clotho, same-model states (refit) 0.778; 2. Clotho, cross-model states 0.748; 3. MDSA, same-model 0.718; 3. Lookup (Drain) 0.706; 3. MDSA, cross-model 0.695; 3. D transfer, same-model 0.679; 3. D transfer, cross-model 0.677
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.41 (small); Lookup (Drain) 0.58 (small); Output entropy (parser) 0.35 (medium)
+
+### parser gemma, scorer llama, capped, @200 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.834 ± 0.005 |  | +0.060 (5/5) | +0.016 (5/5) |
+| Clotho, cross-model states | 0.806 ± 0.008 | -0.028 (5/5) | +0.032 (5/5) | -0.012 (4/5) |
+| Clotho, same-model (stored balanced run) | 0.832 ± 0.005 |  | +0.058 (5/5) | +0.014 (5/5) |
+| MDSA, same-model | 0.737 ± 0.006 |  | -0.037 (5/5) | -0.081 (5/5) |
+| MDSA, cross-model | 0.709 ± 0.004 | -0.029 (5/5) | -0.066 (5/5) | -0.110 (5/5) |
+| D transfer, same-model | 0.687 ± 0.002 |  | -0.087 (5/5) | -0.131 (5/5) |
+| D transfer, cross-model | 0.682 ± 0.004 | -0.005 (4/5) | -0.092 (5/5) | -0.137 (5/5) |
+| Lookup (Drain) | 0.774 ± 0.008 |  |  |  |
+| Output entropy (parser) | 0.818 ± 0.003 |  |  |  |
+
+SK-ESD over (system, seed): 1. Clotho, same-model states (refit) 0.834; 1. Clotho, same-model (stored balanced run) 0.832; 1. Output entropy (parser) 0.818; 1. Clotho, cross-model states 0.806; 2. Lookup (Drain) 0.774; 3. MDSA, same-model 0.737; 4. MDSA, cross-model 0.709; 4. D transfer, same-model 0.687; 4. D transfer, cross-model 0.682
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.43 (small); Lookup (Drain) 0.54 (negligible); Output entropy (parser) 0.49 (negligible)
+
+### parser gemma, scorer llama, natural, @100 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.886 ± 0.020 |  | -0.030 (5/5) | +0.114 (5/5) |
+| Clotho, cross-model states | 0.890 ± 0.005 | +0.004 (3/5) | -0.026 (5/5) | +0.118 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.880 ± 0.018 |  | -0.037 (5/5) | +0.108 (5/5) |
+| MDSA, same-model | 0.875 ± 0.010 |  | -0.041 (5/5) | +0.103 (5/5) |
+| MDSA, cross-model | 0.871 ± 0.013 | -0.004 (4/5) | -0.045 (5/5) | +0.099 (5/5) |
+| D transfer, same-model | 0.744 ± 0.003 |  | -0.172 (5/5) | -0.028 (5/5) |
+| D transfer, cross-model | 0.625 ± 0.006 | -0.119 (5/5) | -0.292 (5/5) | -0.147 (5/5) |
+| Lookup (Drain) | 0.916 ± 0.003 |  |  |  |
+| Output entropy (parser) | 0.772 ± 0.002 |  |  |  |
+
+SK-ESD over (system, seed): 1. Lookup (Drain) 0.916; 1. Clotho, cross-model states 0.890; 1. Clotho, same-model states (refit) 0.886; 1. Clotho, same-model (stored balanced run) 0.880; 1. MDSA, same-model 0.875; 1. MDSA, cross-model 0.871; 2. Output entropy (parser) 0.772; 2. D transfer, same-model 0.744; 3. D transfer, cross-model 0.625
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.50 (negligible); Lookup (Drain) 0.43 (small); Output entropy (parser) 0.83 (large)
+
+### parser gemma, scorer llama, natural, @200 (12 systems)
+
+| method | AUC | cross minus same (paired) | vs Lookup (Drain) | vs output entropy |
+|---|---|---|---|---|
+| Clotho, same-model states (refit) | 0.863 ± 0.014 |  | -0.049 (5/5) | +0.101 (5/5) |
+| Clotho, cross-model states | 0.859 ± 0.013 | -0.004 (4/5) | -0.052 (5/5) | +0.098 (5/5) |
+| Clotho, same-model (stored balanced run) | 0.855 ± 0.009 |  | -0.057 (5/5) | +0.093 (5/5) |
+| MDSA, same-model | 0.830 ± 0.009 |  | -0.082 (5/5) | +0.068 (5/5) |
+| MDSA, cross-model | 0.839 ± 0.013 | +0.009 (4/5) | -0.073 (5/5) | +0.077 (5/5) |
+| D transfer, same-model | 0.739 ± 0.007 |  | -0.173 (5/5) | -0.023 (5/5) |
+| D transfer, cross-model | 0.632 ± 0.009 | -0.107 (5/5) | -0.280 (5/5) | -0.130 (5/5) |
+| Lookup (Drain) | 0.912 ± 0.002 |  |  |  |
+| Output entropy (parser) | 0.762 ± 0.004 |  |  |  |
+
+SK-ESD over (system, seed): 1. Lookup (Drain) 0.912; 2. Clotho, same-model states (refit) 0.863; 2. Clotho, cross-model states 0.859; 2. Clotho, same-model (stored balanced run) 0.855; 2. MDSA, cross-model 0.839; 2. MDSA, same-model 0.830; 3. Output entropy (parser) 0.762; 3. D transfer, same-model 0.739; 4. D transfer, cross-model 0.632
+
+A12 Clotho cross-model vs: Clotho, same-model states (refit) 0.48 (negligible); Lookup (Drain) 0.43 (small); Output entropy (parser) 0.72 (large)
+
+### Template-level failure overlap (capped suites, 2581 templates)
+
+Spearman of the two models' template pass rates 0.59; PASS/FAIL agreement (rate >= 0.5) 0.73 (both fail 0.53, only Llama fails 0.22, only Gemma fails 0.05). Per system: BGL 0.57, HDFS 0.42, HPC 0.73, Hadoop 0.57, HealthApp 0.51, Linux 0.61, Mac 0.49, OpenSSH 0.68, OpenStack 0.65, Spark 0.55, Thunderbird 0.64, Zookeeper 0.48.
+
+
+## 25. N1-N3: frequency vs oracle, counterfactual parser accuracy (simulation), template-word detectors (2026-11-10)
+
+Copied from `reports/cpu_analyses_details.md` (`log_parsing_cpu_analyses.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (N1-N3).
+
+### N1: group-size concentration and the Most frequent vs Oracle gap
+
+| system | groups | top 1 | top 5 | top 10 | top 20 | Gini |
+|---|---|---|---|---|---|---|
+| Apache | 29 | 0.386 | 0.843 | 0.981 | 0.997 | 0.815 |
+| BGL | 51 | 0.756 | 0.977 | 0.991 | 0.995 | 0.954 |
+| HDFS | 14 | 0.244 | 0.983 | 1.000 | 1.000 | 0.680 |
+| HPC | 68 | 0.267 | 0.873 | 0.967 | 0.998 | 0.921 |
+| Hadoop | 261 | 0.265 | 0.492 | 0.620 | 0.748 | 0.862 |
+| HealthApp | 6695 | 0.138 | 0.639 | 0.744 | 0.794 | 0.865 |
+| Linux | 430 | 0.435 | 0.739 | 0.816 | 0.854 | 0.894 |
+| Mac | 1952 | 0.098 | 0.197 | 0.285 | 0.404 | 0.908 |
+| OpenSSH | 26 | 0.289 | 0.914 | 0.994 | 0.999 | 0.836 |
+| OpenStack | 2616 | 0.467 | 0.634 | 0.735 | 0.843 | 0.909 |
+| Spark | 139 | 0.493 | 0.946 | 0.959 | 0.970 | 0.962 |
+| Thunderbird | 630 | 0.227 | 0.398 | 0.468 | 0.531 | 0.748 |
+| Zookeeper | 77 | 0.140 | 0.695 | 0.845 | 0.985 | 0.863 |
+
+#### llama/base
+
+| system | wrong share | top-20 wrong share | Spearman(size, wrong) | MF@20 | Oracle@20 | gap@20 | pred MF@20 | pred Oracle@20 | pred gap@20 | indep MF@20 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Apache | 0.586 | 0.50 | -0.30 | 0.990 | 1.000 | 0.010 | 0.990 | 1.000 | 0.010 | 0.997 |
+| BGL | 0.529 | 0.45 | +0.19 | 0.996 | 0.999 | 0.003 | 0.996 | 1.000 | 0.003 | 0.995 |
+| HPC | 0.324 | 0.65 | +0.37 | 0.999 | 1.000 | 0.001 | 0.999 | 1.000 | 0.001 | 0.998 |
+| Hadoop | 0.586 | 0.75 | -0.01 | 0.824 | 0.857 | 0.033 | 0.829 | 0.864 | 0.034 | 0.748 |
+| HealthApp | 0.907 | 0.80 | -0.12 | 0.763 | 0.784 | 0.020 | 0.768 | 0.789 | 0.020 | 0.794 |
+| Linux | 0.751 | 0.75 | +0.00 | 0.854 | 0.866 | 0.012 | 0.855 | 0.867 | 0.012 | 0.854 |
+| Mac | 0.827 | 0.70 | -0.07 | 0.392 | 0.454 | 0.062 | 0.392 | 0.454 | 0.062 | 0.404 |
+| OpenStack | 0.161 | 0.65 | -0.16 | 0.830 | 0.868 | 0.038 | 0.938 | 0.980 | 0.042 | 0.843 |
+| Spark | 0.712 | 0.75 | -0.08 | 0.976 | 0.980 | 0.004 | 0.981 | 0.985 | 0.004 | 0.970 |
+| Thunderbird | 0.722 | 0.75 | -0.03 | 0.588 | 0.617 | 0.028 | 0.590 | 0.619 | 0.028 | 0.531 |
+| Zookeeper | 0.455 | 0.35 | -0.22 | 0.979 | 0.989 | 0.010 | 0.987 | 0.997 | 0.010 | 0.985 |
+
+Macro: wrong share 0.596, top-20 wrong share 0.645, Spearman(size, wrong) -0.038 (8/11 negative). @5: MF 0.713 / Oracle 0.762 (pred 0.722 / 0.772; indep 0.676); @10: MF 0.777 / Oracle 0.814 (pred 0.787 / 0.826; indep 0.765); @20: MF 0.836 / Oracle 0.856 (pred 0.848 / 0.868; indep 0.829)
+
+#### llama/strong
+
+| system | wrong share | top-20 wrong share | Spearman(size, wrong) | MF@20 | Oracle@20 | gap@20 | pred MF@20 | pred Oracle@20 | pred gap@20 | indep MF@20 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Apache | 0.207 | 0.32 | -0.27 | 1.000 | 1.000 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
+| BGL | 0.157 | 0.10 | +0.09 | 0.876 | 0.969 | 0.093 | 0.902 | 1.000 | 0.098 | 0.977 |
+| HDFS | 0.143 | 0.50 | -0.24 | 1.000 | 1.000 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
+| HPC | 0.221 | 0.35 | +0.22 | 0.999 | 1.000 | 0.001 | 0.999 | 1.000 | 0.001 | 0.998 |
+| Hadoop | 0.456 | 0.65 | +0.02 | 0.872 | 0.916 | 0.044 | 0.880 | 0.924 | 0.044 | 0.787 |
+| HealthApp | 0.916 | 0.85 | -0.15 | 0.420 | 0.458 | 0.038 | 0.426 | 0.465 | 0.039 | 0.447 |
+| Linux | 0.695 | 0.75 | +0.03 | 0.861 | 0.874 | 0.012 | 0.864 | 0.876 | 0.012 | 0.860 |
+| Mac | 0.794 | 0.70 | -0.10 | 0.423 | 0.494 | 0.071 | 0.423 | 0.494 | 0.071 | 0.423 |
+| OpenSSH | 0.346 | 0.56 | -0.45 | 0.972 | 0.972 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
+| OpenStack | 0.042 | 0.25 | -0.29 | 0.399 | 0.446 | 0.047 | 0.861 | 0.977 | 0.116 | 0.703 |
+| Spark | 0.568 | 0.70 | +0.10 | 0.981 | 0.986 | 0.004 | 0.986 | 0.991 | 0.004 | 0.977 |
+| Thunderbird | 0.614 | 0.55 | +0.04 | 0.522 | 0.579 | 0.056 | 0.525 | 0.581 | 0.057 | 0.466 |
+| Zookeeper | 0.247 | 0.20 | -0.05 | 0.958 | 0.979 | 0.021 | 0.978 | 1.000 | 0.022 | 0.988 |
+
+Macro: wrong share 0.416, top-20 wrong share 0.498, Spearman(size, wrong) -0.081 (7/13 negative). @5: MF 0.597 / Oracle 0.728 (pred 0.619 / 0.775; indep 0.653); @10: MF 0.720 / Oracle 0.786 (pred 0.748 / 0.834; indep 0.744); @20: MF 0.791 / Oracle 0.821 (pred 0.834 / 0.870; indep 0.817)
+
+#### gemma/base
+
+| system | wrong share | top-20 wrong share | Spearman(size, wrong) | MF@20 | Oracle@20 | gap@20 | pred MF@20 | pred Oracle@20 | pred gap@20 | indep MF@20 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BGL | 0.471 | 0.60 | +0.38 | 0.997 | 0.999 | 0.002 | 0.997 | 1.000 | 0.003 | 0.995 |
+| HDFS | 0.714 | 0.71 | -0.43 | 1.000 | 1.000 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
+| HPC | 0.250 | 0.25 | +0.01 | 0.997 | 1.000 | 0.003 | 0.997 | 1.000 | 0.003 | 0.998 |
+| Hadoop | 0.536 | 0.60 | -0.02 | 0.735 | 0.820 | 0.085 | 0.744 | 0.832 | 0.087 | 0.748 |
+| HealthApp | 0.971 | 0.50 | -0.47 | 0.675 | 0.709 | 0.034 | 0.681 | 0.716 | 0.035 | 0.794 |
+| Linux | 0.637 | 0.65 | -0.02 | 0.770 | 0.801 | 0.031 | 0.772 | 0.802 | 0.031 | 0.854 |
+| Mac | 0.559 | 0.60 | +0.14 | 0.406 | 0.501 | 0.095 | 0.406 | 0.501 | 0.095 | 0.404 |
+| OpenSSH | 0.654 | 0.60 | -0.18 | 0.999 | 1.000 | 0.001 | 0.999 | 1.000 | 0.001 | 0.999 |
+| OpenStack | 0.112 | 0.55 | -0.34 | 0.820 | 0.872 | 0.053 | 0.930 | 0.991 | 0.060 | 0.843 |
+| Spark | 0.597 | 0.60 | -0.02 | 0.976 | 0.983 | 0.006 | 0.982 | 0.988 | 0.006 | 0.970 |
+| Thunderbird | 0.610 | 0.65 | -0.07 | 0.635 | 0.676 | 0.041 | 0.637 | 0.678 | 0.041 | 0.531 |
+| Zookeeper | 0.338 | 0.50 | +0.19 | 0.990 | 0.994 | 0.005 | 0.995 | 0.999 | 0.005 | 0.985 |
+
+Macro: wrong share 0.537, top-20 wrong share 0.568, Spearman(size, wrong) -0.068 (8/12 negative). @5: MF 0.712 / Oracle 0.770 (pred 0.721 / 0.781; indep 0.707); @10: MF 0.781 / Oracle 0.823 (pred 0.791 / 0.835; indep 0.785); @20: MF 0.833 / Oracle 0.863 (pred 0.845 / 0.876; indep 0.843)
+
+#### gemma/strong
+
+| system | wrong share | top-20 wrong share | Spearman(size, wrong) | MF@20 | Oracle@20 | gap@20 | pred MF@20 | pred Oracle@20 | pred gap@20 | indep MF@20 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BGL | 0.196 | 0.40 | +0.38 | 0.948 | 0.972 | 0.025 | 0.975 | 1.000 | 0.025 | 0.977 |
+| HDFS | 0.071 | 0.25 | -0.54 | 1.000 | 1.000 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
+| HPC | 0.397 | 0.45 | -0.06 | 0.999 | 0.999 | 0.001 | 0.999 | 0.999 | 0.001 | 0.998 |
+| Hadoop | 0.425 | 0.55 | +0.04 | 0.793 | 0.881 | 0.088 | 0.806 | 0.894 | 0.088 | 0.787 |
+| HealthApp | 0.971 | 0.40 | -0.45 | 0.310 | 0.397 | 0.086 | 0.315 | 0.404 | 0.089 | 0.447 |
+| Linux | 0.598 | 0.75 | -0.00 | 0.901 | 0.911 | 0.010 | 0.903 | 0.913 | 0.010 | 0.860 |
+| Mac | 0.545 | 0.65 | +0.10 | 0.479 | 0.570 | 0.091 | 0.479 | 0.570 | 0.091 | 0.423 |
+| OpenSSH | 0.423 | 0.69 | -0.01 | 0.988 | 0.988 | 0.000 | 1.000 | 1.000 | 0.000 | 1.000 |
+| OpenStack | 0.080 | 0.35 | -0.44 | 0.369 | 0.409 | 0.041 | 0.837 | 0.944 | 0.107 | 0.703 |
+| Spark | 0.511 | 0.60 | -0.06 | 0.984 | 0.989 | 0.004 | 0.989 | 0.994 | 0.005 | 0.977 |
+| Thunderbird | 0.594 | 0.70 | -0.10 | 0.585 | 0.621 | 0.036 | 0.591 | 0.627 | 0.037 | 0.466 |
+| Zookeeper | 0.234 | 0.35 | +0.14 | 0.982 | 0.989 | 0.007 | 0.992 | 1.000 | 0.008 | 0.988 |
+
+Macro: wrong share 0.420, top-20 wrong share 0.511, Spearman(size, wrong) -0.086 (8/12 negative). @5: MF 0.616 / Oracle 0.688 (pred 0.618 / 0.727; indep 0.636); @10: MF 0.693 / Oracle 0.776 (pred 0.702 / 0.828; indep 0.723); @20: MF 0.778 / Oracle 0.811 (pred 0.824 / 0.862; indep 0.802)
+
+#### Does the proxy explain the gap? (all (system, cell) points)
+
+| N | points | actual gap mean | predicted gap mean | Pearson r (gap) | MAE (gap) | Pearson r (MF share) | MAE (MF share) | MF minus indep (mean) |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 48 | 0.079 | 0.096 | 0.88 | 0.016 | 0.99 | 0.013 | -0.010 |
+| 10 | 48 | 0.058 | 0.074 | 0.88 | 0.017 | 0.99 | 0.015 | -0.012 |
+| 20 | 48 | 0.028 | 0.032 | 0.92 | 0.003 | 0.91 | 0.029 | -0.014 |
+
+### N2: counterfactual simulation (a SIMULATION: wrong groups flipped to correct)
+
+Rows: target wrong-group share t (actual = no flips). Cells: share fixed, mean ± std over seeds 0-4 of the macro mean. 'unchanged' = systems already at or below t. D - MF: seed-mean difference (seeds with its sign).
+
+
+#### llama/base/random
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.596 | 0/11 | 0.713 ± 0.000 | 0.665 ± 0.007 | 0.762 ± 0.000 | 0.777 ± 0.000 | 0.770 ± 0.019 | 0.814 ± 0.000 | 0.836 ± 0.000 | 0.824 ± 0.016 | 0.856 ± 0.000 | -0.047 (5/5) | -0.007 (3/5) | -0.011 (3/5) |
+| 0.4 | 0.367 | 2/11 | 0.651 ± 0.045 | 0.605 ± 0.046 | 0.765 ± 0.029 | 0.738 ± 0.032 | 0.725 ± 0.030 | 0.821 ± 0.024 | 0.807 ± 0.028 | 0.780 ± 0.030 | 0.876 ± 0.019 | -0.047 (5/5) | -0.013 (3/5) | -0.027 (5/5) |
+| 0.3 | 0.283 | 1/11 | 0.589 ± 0.062 | 0.541 ± 0.053 | 0.760 ± 0.027 | 0.710 ± 0.023 | 0.681 ± 0.022 | 0.822 ± 0.021 | 0.781 ± 0.024 | 0.747 ± 0.032 | 0.881 ± 0.016 | -0.048 (4/5) | -0.029 (4/5) | -0.035 (4/5) |
+| 0.2 | 0.192 | 1/11 | 0.490 ± 0.129 | 0.443 ± 0.138 | 0.748 ± 0.047 | 0.632 ± 0.081 | 0.609 ± 0.083 | 0.820 ± 0.034 | 0.731 ± 0.062 | 0.708 ± 0.045 | 0.874 ± 0.031 | -0.047 (4/5) | -0.022 (4/5) | -0.023 (4/5) |
+| 0.1 | 0.094 | 0/11 | 0.361 ± 0.121 | 0.355 ± 0.044 | 0.748 ± 0.048 | 0.525 ± 0.081 | 0.514 ± 0.077 | 0.808 ± 0.043 | 0.643 ± 0.080 | 0.605 ± 0.093 | 0.843 ± 0.037 | -0.005 (3/5) | -0.011 (3/5) | -0.037 (5/5) |
+| 0.05 | 0.045 | 0/11 | 0.243 ± 0.033 | 0.250 ± 0.078 | 0.713 ± 0.030 | 0.390 ± 0.056 | 0.388 ± 0.106 | 0.753 ± 0.033 | 0.530 ± 0.057 | 0.503 ± 0.077 | 0.792 ± 0.042 | +0.008 (3/5) | -0.002 (2/5) | -0.028 (3/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.05; @10 none; @20 none
+
+#### llama/base/dlow
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.596 | 0/11 | 0.713 ± 0.000 | 0.665 ± 0.007 | 0.762 ± 0.000 | 0.777 ± 0.000 | 0.770 ± 0.019 | 0.814 ± 0.000 | 0.836 ± 0.000 | 0.824 ± 0.016 | 0.856 ± 0.000 | -0.047 (5/5) | -0.007 (3/5) | -0.011 (3/5) |
+| 0.4 | 0.367 | 2/11 | 0.688 ± 0.010 | 0.672 ± 0.021 | 0.775 ± 0.005 | 0.766 ± 0.007 | 0.787 ± 0.007 | 0.832 ± 0.005 | 0.832 ± 0.008 | 0.844 ± 0.008 | 0.882 ± 0.004 | -0.016 (5/5) | +0.021 (5/5) | +0.011 (5/5) |
+| 0.3 | 0.283 | 1/11 | 0.619 ± 0.053 | 0.648 ± 0.055 | 0.794 ± 0.006 | 0.737 ± 0.031 | 0.756 ± 0.027 | 0.851 ± 0.006 | 0.832 ± 0.006 | 0.850 ± 0.011 | 0.899 ± 0.006 | +0.029 (5/5) | +0.020 (5/5) | +0.018 (5/5) |
+| 0.2 | 0.192 | 1/11 | 0.464 ± 0.045 | 0.533 ± 0.024 | 0.771 ± 0.032 | 0.652 ± 0.041 | 0.686 ± 0.042 | 0.829 ± 0.024 | 0.775 ± 0.040 | 0.803 ± 0.029 | 0.884 ± 0.020 | +0.069 (5/5) | +0.034 (5/5) | +0.028 (5/5) |
+| 0.1 | 0.094 | 0/11 | 0.257 ± 0.035 | 0.296 ± 0.021 | 0.721 ± 0.033 | 0.484 ± 0.047 | 0.495 ± 0.053 | 0.780 ± 0.035 | 0.601 ± 0.082 | 0.674 ± 0.050 | 0.829 ± 0.030 | +0.039 (5/5) | +0.012 (4/5) | +0.073 (5/5) |
+| 0.05 | 0.045 | 0/11 | 0.150 ± 0.041 | 0.159 ± 0.044 | 0.626 ± 0.009 | 0.169 ± 0.041 | 0.180 ± 0.041 | 0.677 ± 0.008 | 0.303 ± 0.018 | 0.418 ± 0.017 | 0.719 ± 0.010 | +0.010 (5/5) | +0.011 (5/5) | +0.115 (5/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.30; @10 0.40; @20 0.40
+
+#### llama/strong/random
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.416 | 0/13 | 0.597 ± 0.000 | 0.609 ± 0.006 | 0.728 ± 0.000 | 0.720 ± 0.000 | 0.707 ± 0.007 | 0.786 ± 0.000 | 0.791 ± 0.000 | 0.771 ± 0.004 | 0.821 ± 0.000 | +0.012 (5/5) | -0.012 (5/5) | -0.020 (5/5) |
+| 0.4 | 0.289 | 7/13 | 0.579 ± 0.012 | 0.592 ± 0.015 | 0.738 ± 0.011 | 0.706 ± 0.014 | 0.689 ± 0.018 | 0.804 ± 0.012 | 0.777 ± 0.018 | 0.749 ± 0.017 | 0.837 ± 0.013 | +0.012 (5/5) | -0.017 (5/5) | -0.028 (5/5) |
+| 0.3 | 0.237 | 6/13 | 0.551 ± 0.017 | 0.559 ± 0.022 | 0.739 ± 0.008 | 0.685 ± 0.011 | 0.662 ± 0.019 | 0.801 ± 0.008 | 0.756 ± 0.007 | 0.727 ± 0.017 | 0.836 ± 0.009 | +0.008 (3/5) | -0.023 (4/5) | -0.029 (5/5) |
+| 0.2 | 0.176 | 3/13 | 0.490 ± 0.060 | 0.488 ± 0.071 | 0.754 ± 0.013 | 0.654 ± 0.028 | 0.638 ± 0.042 | 0.808 ± 0.014 | 0.741 ± 0.016 | 0.708 ± 0.018 | 0.842 ± 0.015 | -0.002 (2/5) | -0.016 (4/5) | -0.033 (5/5) |
+| 0.1 | 0.087 | 1/13 | 0.325 ± 0.094 | 0.345 ± 0.110 | 0.726 ± 0.029 | 0.509 ± 0.082 | 0.505 ± 0.099 | 0.779 ± 0.024 | 0.654 ± 0.044 | 0.601 ± 0.043 | 0.809 ± 0.017 | +0.020 (4/5) | -0.003 (3/5) | -0.052 (5/5) |
+| 0.05 | 0.041 | 1/13 | 0.183 ± 0.063 | 0.195 ± 0.054 | 0.665 ± 0.024 | 0.368 ± 0.049 | 0.346 ± 0.102 | 0.709 ± 0.032 | 0.527 ± 0.039 | 0.447 ± 0.052 | 0.741 ± 0.034 | +0.012 (3/5) | -0.022 (3/5) | -0.080 (5/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.10; @10 none; @20 none
+
+#### llama/strong/dlow
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.416 | 0/13 | 0.597 ± 0.000 | 0.609 ± 0.006 | 0.728 ± 0.000 | 0.720 ± 0.000 | 0.707 ± 0.007 | 0.786 ± 0.000 | 0.791 ± 0.000 | 0.771 ± 0.004 | 0.821 ± 0.000 | +0.012 (5/5) | -0.012 (5/5) | -0.020 (5/5) |
+| 0.4 | 0.289 | 7/13 | 0.582 ± 0.006 | 0.603 ± 0.009 | 0.738 ± 0.005 | 0.717 ± 0.007 | 0.717 ± 0.010 | 0.802 ± 0.005 | 0.796 ± 0.005 | 0.786 ± 0.009 | 0.847 ± 0.004 | +0.021 (5/5) | +0.000 (3/5) | -0.010 (5/5) |
+| 0.3 | 0.237 | 6/13 | 0.598 ± 0.006 | 0.629 ± 0.009 | 0.771 ± 0.005 | 0.727 ± 0.009 | 0.748 ± 0.011 | 0.820 ± 0.006 | 0.808 ± 0.007 | 0.803 ± 0.010 | 0.865 ± 0.005 | +0.031 (5/5) | +0.021 (5/5) | -0.006 (4/5) |
+| 0.2 | 0.176 | 3/13 | 0.552 ± 0.057 | 0.574 ± 0.058 | 0.755 ± 0.025 | 0.683 ± 0.039 | 0.703 ± 0.038 | 0.810 ± 0.018 | 0.772 ± 0.033 | 0.773 ± 0.027 | 0.860 ± 0.015 | +0.022 (4/5) | +0.020 (5/5) | +0.002 (2/5) |
+| 0.1 | 0.087 | 1/13 | 0.336 ± 0.030 | 0.357 ± 0.030 | 0.710 ± 0.033 | 0.436 ± 0.033 | 0.503 ± 0.019 | 0.770 ± 0.033 | 0.651 ± 0.028 | 0.677 ± 0.039 | 0.820 ± 0.024 | +0.021 (5/5) | +0.067 (5/5) | +0.026 (5/5) |
+| 0.05 | 0.041 | 1/13 | 0.072 ± 0.035 | 0.106 ± 0.026 | 0.598 ± 0.019 | 0.171 ± 0.047 | 0.300 ± 0.022 | 0.659 ± 0.016 | 0.454 ± 0.010 | 0.492 ± 0.010 | 0.710 ± 0.012 | +0.034 (4/5) | +0.129 (5/5) | +0.038 (5/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.40; @10 0.40; @20 0.20
+
+#### gemma/base/random
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.537 | 0/12 | 0.712 ± 0.000 | 0.697 ± 0.000 | 0.770 ± 0.000 | 0.781 ± 0.000 | 0.763 ± 0.000 | 0.823 ± 0.000 | 0.833 ± 0.000 | 0.814 ± 0.000 | 0.863 ± 0.000 | -0.015 (5/5) | -0.018 (5/5) | -0.019 (5/5) |
+| 0.4 | 0.352 | 3/12 | 0.680 ± 0.032 | 0.667 ± 0.055 | 0.773 ± 0.026 | 0.761 ± 0.027 | 0.745 ± 0.035 | 0.823 ± 0.023 | 0.815 ± 0.023 | 0.792 ± 0.030 | 0.862 ± 0.022 | -0.013 (2/5) | -0.016 (2/5) | -0.022 (4/5) |
+| 0.3 | 0.275 | 2/12 | 0.630 ± 0.053 | 0.639 ± 0.058 | 0.765 ± 0.042 | 0.724 ± 0.042 | 0.731 ± 0.041 | 0.816 ± 0.037 | 0.790 ± 0.037 | 0.784 ± 0.033 | 0.859 ± 0.033 | +0.010 (3/5) | +0.007 (4/5) | -0.006 (3/5) |
+| 0.2 | 0.185 | 1/12 | 0.556 ± 0.058 | 0.566 ± 0.088 | 0.764 ± 0.045 | 0.663 ± 0.058 | 0.664 ± 0.072 | 0.813 ± 0.039 | 0.754 ± 0.037 | 0.748 ± 0.044 | 0.861 ± 0.036 | +0.010 (3/5) | +0.001 (2/5) | -0.006 (3/5) |
+| 0.1 | 0.093 | 0/12 | 0.354 ± 0.105 | 0.370 ± 0.143 | 0.757 ± 0.035 | 0.457 ± 0.145 | 0.468 ± 0.150 | 0.811 ± 0.031 | 0.639 ± 0.066 | 0.665 ± 0.072 | 0.848 ± 0.026 | +0.016 (4/5) | +0.011 (3/5) | +0.026 (4/5) |
+| 0.05 | 0.042 | 0/12 | 0.240 ± 0.069 | 0.259 ± 0.078 | 0.708 ± 0.023 | 0.350 ± 0.096 | 0.357 ± 0.123 | 0.753 ± 0.019 | 0.487 ± 0.053 | 0.496 ± 0.109 | 0.784 ± 0.015 | +0.020 (3/5) | +0.007 (3/5) | +0.009 (4/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.30; @10 0.30; @20 0.10
+
+#### gemma/base/dlow
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.537 | 0/12 | 0.712 ± 0.000 | 0.697 ± 0.000 | 0.770 ± 0.000 | 0.781 ± 0.000 | 0.763 ± 0.000 | 0.823 ± 0.000 | 0.833 ± 0.000 | 0.814 ± 0.000 | 0.863 ± 0.000 | -0.015 (5/5) | -0.018 (5/5) | -0.019 (5/5) |
+| 0.4 | 0.352 | 3/12 | 0.658 ± 0.000 | 0.666 ± 0.000 | 0.732 ± 0.000 | 0.725 ± 0.000 | 0.746 ± 0.000 | 0.788 ± 0.000 | 0.782 ± 0.000 | 0.798 ± 0.000 | 0.829 ± 0.000 | +0.007 (5/5) | +0.021 (5/5) | +0.017 (5/5) |
+| 0.3 | 0.275 | 2/12 | 0.669 ± 0.000 | 0.685 ± 0.000 | 0.757 ± 0.000 | 0.737 ± 0.000 | 0.761 ± 0.000 | 0.804 ± 0.000 | 0.786 ± 0.000 | 0.804 ± 0.000 | 0.843 ± 0.000 | +0.016 (5/5) | +0.024 (5/5) | +0.018 (5/5) |
+| 0.2 | 0.185 | 1/12 | 0.458 ± 0.000 | 0.487 ± 0.000 | 0.744 ± 0.000 | 0.632 ± 0.000 | 0.668 ± 0.000 | 0.788 ± 0.000 | 0.731 ± 0.000 | 0.763 ± 0.000 | 0.834 ± 0.000 | +0.029 (5/5) | +0.036 (5/5) | +0.032 (5/5) |
+| 0.1 | 0.093 | 0/12 | 0.407 ± 0.000 | 0.454 ± 0.000 | 0.753 ± 0.000 | 0.457 ± 0.000 | 0.560 ± 0.000 | 0.799 ± 0.000 | 0.627 ± 0.000 | 0.723 ± 0.000 | 0.836 ± 0.000 | +0.047 (5/5) | +0.103 (5/5) | +0.096 (5/5) |
+| 0.05 | 0.042 | 0/12 | 0.240 ± 0.000 | 0.273 ± 0.000 | 0.704 ± 0.000 | 0.361 ± 0.000 | 0.412 ± 0.000 | 0.740 ± 0.000 | 0.551 ± 0.000 | 0.576 ± 0.000 | 0.771 ± 0.000 | +0.034 (5/5) | +0.050 (5/5) | +0.025 (5/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.40; @10 0.40; @20 0.40
+
+#### gemma/strong/random
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.420 | 0/12 | 0.616 ± 0.000 | 0.603 ± 0.000 | 0.688 ± 0.000 | 0.693 ± 0.000 | 0.678 ± 0.000 | 0.776 ± 0.000 | 0.778 ± 0.000 | 0.772 ± 0.000 | 0.811 ± 0.000 | -0.013 (5/5) | -0.015 (5/5) | -0.007 (5/5) |
+| 0.4 | 0.313 | 5/12 | 0.614 ± 0.014 | 0.602 ± 0.017 | 0.711 ± 0.008 | 0.689 ± 0.010 | 0.683 ± 0.015 | 0.791 ± 0.009 | 0.778 ± 0.008 | 0.772 ± 0.008 | 0.823 ± 0.011 | -0.012 (4/5) | -0.007 (4/5) | -0.006 (5/5) |
+| 0.3 | 0.245 | 4/12 | 0.605 ± 0.022 | 0.590 ± 0.027 | 0.733 ± 0.012 | 0.681 ± 0.005 | 0.672 ± 0.026 | 0.803 ± 0.016 | 0.776 ± 0.016 | 0.768 ± 0.018 | 0.837 ± 0.018 | -0.015 (5/5) | -0.009 (3/5) | -0.007 (5/5) |
+| 0.2 | 0.177 | 3/12 | 0.537 ± 0.065 | 0.516 ± 0.055 | 0.734 ± 0.039 | 0.635 ± 0.034 | 0.627 ± 0.045 | 0.799 ± 0.033 | 0.750 ± 0.037 | 0.740 ± 0.034 | 0.832 ± 0.029 | -0.021 (2/5) | -0.008 (4/5) | -0.011 (5/5) |
+| 0.1 | 0.092 | 2/12 | 0.430 ± 0.050 | 0.398 ± 0.063 | 0.720 ± 0.031 | 0.526 ± 0.057 | 0.528 ± 0.057 | 0.780 ± 0.028 | 0.682 ± 0.033 | 0.679 ± 0.033 | 0.809 ± 0.029 | -0.031 (3/5) | +0.003 (3/5) | -0.003 (2/5) |
+| 0.05 | 0.042 | 0/12 | 0.234 ± 0.069 | 0.224 ± 0.077 | 0.640 ± 0.015 | 0.351 ± 0.073 | 0.325 ± 0.113 | 0.686 ± 0.021 | 0.522 ± 0.011 | 0.538 ± 0.016 | 0.720 ± 0.020 | -0.010 (3/5) | -0.026 (3/5) | +0.016 (5/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 none; @10 none; @20 0.05
+
+#### gemma/strong/dlow
+
+| t | mean wrong share | unchanged | MF @5 | D x size @5 | Oracle @5 | MF @10 | D x size @10 | Oracle @10 | MF @20 | D x size @20 | Oracle @20 | D - MF @5 | D - MF @10 | D - MF @20 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| actual | 0.420 | 0/12 | 0.616 ± 0.000 | 0.603 ± 0.000 | 0.688 ± 0.000 | 0.693 ± 0.000 | 0.678 ± 0.000 | 0.776 ± 0.000 | 0.778 ± 0.000 | 0.772 ± 0.000 | 0.811 ± 0.000 | -0.013 (5/5) | -0.015 (5/5) | -0.007 (5/5) |
+| 0.4 | 0.313 | 5/12 | 0.578 ± 0.000 | 0.599 ± 0.000 | 0.677 ± 0.000 | 0.651 ± 0.000 | 0.674 ± 0.000 | 0.756 ± 0.000 | 0.742 ± 0.000 | 0.752 ± 0.000 | 0.791 ± 0.000 | +0.022 (5/5) | +0.023 (5/5) | +0.010 (5/5) |
+| 0.3 | 0.245 | 4/12 | 0.504 ± 0.000 | 0.529 ± 0.000 | 0.687 ± 0.000 | 0.626 ± 0.000 | 0.676 ± 0.000 | 0.760 ± 0.000 | 0.731 ± 0.000 | 0.747 ± 0.000 | 0.804 ± 0.000 | +0.025 (5/5) | +0.050 (5/5) | +0.015 (5/5) |
+| 0.2 | 0.177 | 3/12 | 0.454 ± 0.000 | 0.494 ± 0.000 | 0.668 ± 0.000 | 0.519 ± 0.000 | 0.615 ± 0.000 | 0.743 ± 0.000 | 0.663 ± 0.000 | 0.689 ± 0.000 | 0.792 ± 0.000 | +0.041 (5/5) | +0.096 (5/5) | +0.026 (5/5) |
+| 0.1 | 0.092 | 2/12 | 0.444 ± 0.000 | 0.506 ± 0.000 | 0.707 ± 0.000 | 0.533 ± 0.000 | 0.562 ± 0.000 | 0.779 ± 0.000 | 0.618 ± 0.000 | 0.653 ± 0.000 | 0.813 ± 0.000 | +0.063 (5/5) | +0.029 (5/5) | +0.034 (5/5) |
+| 0.05 | 0.042 | 0/12 | 0.214 ± 0.000 | 0.286 ± 0.000 | 0.640 ± 0.000 | 0.385 ± 0.000 | 0.413 ± 0.000 | 0.667 ± 0.000 | 0.493 ± 0.000 | 0.519 ± 0.000 | 0.697 ± 0.000 | +0.072 (5/5) | +0.029 (5/5) | +0.026 (5/5) |
+
+Overtake point (largest t from which D x size > Most frequent at every smaller t): @5 0.40; @10 0.40; @20 0.40
+
+### N3: template-word TF-IDF detectors on HDFS / BGL sessions
+
+
+#### HDFS
+
+| row | IF F1 | IF P | IF R | OCSVM F1 | OCSVM P | OCSVM R | H count-based PCA F1 | H IM F1 |
+|---|---|---|---|---|---|---|---|---|
+| ground-truth templates | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 | 0.036 | 1.000 | 0.000 | 0.186 |
+| gemma base N=0 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.186 | 0.108 | 0.649 | 0.000 | 0.186 |
+| gemma Most frequent @20 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 | 0.036 | 1.000 | 0.000 | 0.186 |
+| gemma D x size @20 | 0.185 ± 0.000 | 0.108 ± 0.000 | 0.649 ± 0.000 | 0.070 ± 0.000 | 0.036 ± 0.000 | 1.000 ± 0.000 | 0.000 | 0.186 |
+
+4088 sessions, 123 anomalous (74 in the test half).
+
+#### BGL
+
+| row | IF F1 | IF P | IF R | OCSVM F1 | OCSVM P | OCSVM R | H count-based PCA F1 | H IM F1 |
+|---|---|---|---|---|---|---|---|---|
+| ground-truth templates | 0.206 ± 0.051 | 0.353 ± 0.069 | 0.146 ± 0.039 | 0.123 | 0.211 | 0.087 | 0.056 | 0.019 |
+| llama base N=0 | 0.234 ± 0.011 | 0.440 ± 0.078 | 0.161 ± 0.005 | 0.119 | 0.190 | 0.087 | 0.056 | 0.019 |
+| llama Most frequent @20 | 0.229 ± 0.003 | 0.383 ± 0.015 | 0.163 ± 0.000 | 0.124 | 0.216 | 0.087 | 0.056 | 0.019 |
+| llama D x size @20 | 0.229 ± 0.003 | 0.383 ± 0.015 | 0.163 ± 0.000 | 0.123 ± 0.000 | 0.211 ± 0.000 | 0.087 ± 0.000 | 0.056 | 0.019 |
+| gemma base N=0 | 0.114 ± 0.001 | 0.228 ± 0.008 | 0.076 ± 0.000 | 0.013 | 0.007 | 0.087 | 0.056 | 0.019 |
+| gemma Most frequent @20 | 0.230 ± 0.002 | 0.410 ± 0.051 | 0.161 ± 0.005 | 0.013 | 0.007 | 0.087 | 0.056 | 0.019 |
+| gemma D x size @20 | 0.230 ± 0.003 | 0.406 ± 0.054 | 0.161 ± 0.005 | 0.013 ± 0.000 | 0.007 ± 0.000 | 0.087 ± 0.000 | 0.056 | 0.019 |
+
+2500 sessions, 233 anomalous (92 in the test half).
 
 
 ## Other reports

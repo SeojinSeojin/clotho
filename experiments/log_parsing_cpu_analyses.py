@@ -210,7 +210,7 @@ def n2_job(args):
     def evaluate(cache, seed):
         ver = verdicts(d, cache)
         gain = gains(d, cache)
-        key = (hashlib.md5("\x00".join(cache).encode()).hexdigest(), seed)
+        key = (hashlib.md5("\x00".join(str(x) for x in cache).encode()).hexdigest(), seed)
         if key in memo:
             return memo[key]
         r = {}

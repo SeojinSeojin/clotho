@@ -42,16 +42,16 @@ def main():
     for j, (m, p, col) in enumerate(CELLS):
         xs, top, allw = [], [], []
         for i, s in enumerate(systems):
-            if s not in N[m]["systems"]:
+            if p not in N[m]["systems"].get(s, {}).get("cells", {}):
                 continue
             c = N[m]["systems"][s]["cells"][p]
             xs.append(i + (j - 1.5) * w); top.append(c["top20_wrong"]); allw.append(c["wrong_share"])
         ax.vlines(xs, allw, top, color=col, lw=1, alpha=0.6)
-        ax.scatter(xs, allw, s=22, facecolors="white", edgecolors=col, lw=1.3, zorder=3)
-        ax.scatter(xs, top, s=26, color=col, edgecolors="white", lw=0.8, zorder=4,
+        ax.scatter(xs, allw, s=26, facecolors="white", edgecolors=col, lw=1.3, zorder=3)
+        ax.scatter(xs, top, s=38, color=col, edgecolors="white", lw=0.6, zorder=4,
                    label=f"{C.LABEL[m].split('-')[0]}, {p} parser")
     ax.set_xticks(range(len(systems)))
-    ax.set_xticklabels(systems, fontsize=8)
+    ax.set_xticklabels(systems, fontsize=7.5, rotation=25, ha="right")
     ax.set_ylim(-0.03, 1.03)
     ax.set_ylabel("share of wrong groups")
     ax.grid(axis="y", color=C.GRID, lw=0.8)
@@ -60,7 +60,7 @@ def main():
     from matplotlib.lines import Line2D
     h += [Line2D([], [], marker="o", ls="", color=C.INK2, ms=5), Line2D([], [], marker="o", ls="", mfc="white", mec=C.INK2, ms=5)]
     lab += ["among the 20 largest groups", "among all groups"]
-    ax.legend(h, lab, ncol=3, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.13), fontsize=7.5)
+    ax.legend(h, lab, ncol=3, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.24), fontsize=7.5)
     out = C.PAPER / "figures" / "lorenz.pdf"
     fig.savefig(out, bbox_inches="tight")
     fig.savefig(out.with_suffix(".png"), dpi=130, bbox_inches="tight")

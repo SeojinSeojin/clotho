@@ -205,7 +205,7 @@ def build():
            "(both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, "
            "`table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, "
            "`fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); "
-           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3). "
+           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3), `fig_lorenz.py` (N1). "
            "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
            "`paper/results_outline.md`.\n"]
     for n, key, title, name, script, until in (
@@ -236,18 +236,21 @@ def build():
             (23, "adaparser_e2e", "I: AdaParser's official pipeline as the parser under review (2026-11-10)",
              "adaparser_e2e_details.md", "log_parsing_adaparser_e2e.py", None),
             (24, "crossmodel", "J: cross-model failure prediction (2026-11-10)",
-             "crossmodel_details.md", "log_parsing_crossmodel.py", None)):
+             "crossmodel_details.md", "log_parsing_crossmodel.py", None),
+            (25, "cpu", "N1-N3: frequency vs oracle, counterfactual parser accuracy (simulation), template-word detectors (2026-11-10)",
+             "cpu_analyses_details.md", "log_parsing_cpu_analyses.py", None)):
         p = REP / name
         if not p.exists():
             continue
         lines = p.read_text().splitlines()
-        i = next(k for k, l in enumerate(lines) if l.startswith("## "))
+        i = next((k for k, l in enumerate(lines) if l.startswith("## ")), 1)   # reports without "## " sections: skip the title
         j = next((k for k, l in enumerate(lines) if until and l.startswith(until)), len(lines))
         L_ += [f"## {n}. {title}\n", f"Copied from `reports/{name}` (`{script} report`; protocol in the script "
                "docstring" + ("; deviations from the original methods are listed at the end of that report" if until else "")
                + (("). Setting fair_leakfree, standard split, 5 seeds.\n") if n < 16 else
                   ("). Protocol in PROGRESS.md Decisions (E; TRIAGE and E1-E5), 5 seeds.\n") if n < 18 else
-                  ("). Protocol in PROGRESS.md Decisions (F; G; H-M).\n"))]
+                  ("). Protocol in PROGRESS.md Decisions (F; G; H-M).\n") if n < 25 else
+                  ("). Protocol in PROGRESS.md Decisions (N1-N3).\n"))]
         L_ += [("#" + l) if l.startswith("#") else l for l in lines[i:j]] + [READ.get(key, ""), ""]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",

@@ -70,6 +70,7 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `experiments/model_cfg.py` | Model switch for the log_parsing scripts: `CLOTHO_MODEL=llama|gemma` (HF id, layers, dropped systems); non-Llama outputs in `results_phase3_<model>/`, `reports/*_<model>.md` |
 | `experiments/log_parsing_pass_rates.py` | PASS rates per system for the current model and the 10-90% drop rule |
 | `experiments/log_parsing_paper_numbers.py` | Builds `reports/paper_numbers.md`, the single source of numbers for the paper |
+| `experiments/log_parsing_cpu_analyses.py`, `paper/fig_lorenz.py` | 2026-11-10 evening, CPU only: N1 group-size concentration vs the frequency/oracle gap, N2 counterfactual parser accuracy (simulation), N3 template-word TF-IDF detectors; outputs `results_phase3{,_gemma}/cpu/` |
 | `experiments/sharded/git_backup.py` | Uploads a git bundle of `main` to RESULTS_REPO `git_bundles/` when `git push` has no credentials |
 | `AGENTS.md`, `CLAUDE.md`, `PROGRESS.md` | Agent memory |
 
