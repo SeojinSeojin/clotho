@@ -171,17 +171,30 @@ def report(R, push=False):
          "with the test score, AUC with PASS = pass rate > 0.5). MDSA = pre-generation control (no output leakage): its "
          "change is label noise only. G (2026-11-10): LOHSvar recomputed on all inputs (parity with the stored values: "
          "Spearman >= 0.999 per task, `data/g_recompute/parity.json`); Sem-Ent on a seeded subset of 1,500 inputs per task, "
-         "so its columns are subset values.\n"]
+         "so every combined comparison table uses that same subset; full-data tables omit Sem-Ent.\n"]
     for metric in ("spearman", "auc"):
         L.append(f"\n## {metric}\n")
         L.append("| task | " + " | ".join(f"{NAMES[m]} leaky | leak-free" for m in COLS) + " |")
         L.append("|---|" + "---|---|" * len(COLS))
-        for t, r in R.items():
+        for t, original in R.items():
+            r = original['sub'] if 'sement' in G_M else original
             cells = []
             for m in COLS:
                 lf = [x[m][metric] for x in r["leakfree"]]
                 cells.append(f"{r['leaky'][m][metric]:.3f} | {statistics.mean(lf):.3f} ± {statistics.stdev(lf):.3f}")
             L.append(f"| {ALIAS[t]} | " + " | ".join(cells) + " |")
+    if 'sement' in G_M:
+        full_cols = [m for m in COLS if m != 'sement']
+        for metric in ('spearman', 'auc'):
+            L.append(f"\n## Full-data {metric} (Sem-Ent excluded)\n")
+            L.append('| task | ' + ' | '.join(f'{NAMES[m]} leaky | leak-free' for m in full_cols) + ' |')
+            L.append('|---|' + '---|---|' * len(full_cols))
+            for t, r in R.items():
+                cells=[]
+                for m in full_cols:
+                    v=[x[m][metric] for x in r['leakfree']]
+                    cells.append(f"{r['leaky'][m][metric]:.3f} | {statistics.mean(v):.3f} ± {statistics.stdev(v):.3f}")
+                L.append(f"| {ALIAS[t]} | " + ' | '.join(cells) + ' |')
     # changes
     J = {"flips": {}, "top_changes": {}, "drops": {}}
     sets = [("", METHODS, "paper-style comparison set: Tok-Prob, Tok-Ent, output entropy, MDSA control")]

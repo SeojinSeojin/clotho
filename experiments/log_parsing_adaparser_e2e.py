@@ -286,7 +286,7 @@ def report(push=False):
         L.append("|---|---|---|---|---|---|---|---|")
         for s, r in R.items():
             m = json.loads((dd / f"{s}.json").read_text())
-            gap = SS.gap20(r)
+            gap = SS.gap20(r) if r["pa0"] < 1 else float("nan")
             jm["systems"][s] = {"pa0": r["pa0"], "wrong": r["wrong_groups"], "G": r["G"], "queries": m["queries"], "gap20": gap}
             L.append(f"| {s} | {r['G']} | {m['queries']} | {m.get('llm_calls', '')} | {m['wall_s']:.0f} | {r['pa0']:.3f} | {r['wrong_groups']:.3f} | {gap:+.3f} |")
         L.append(f"\nMacro PA_0 {statistics.mean(r['pa0'] for r in R.values()):.3f}; macro wrong groups {statistics.mean(r['wrong_groups'] for r in R.values()):.3f}.\n")
