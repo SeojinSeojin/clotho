@@ -26,6 +26,7 @@ for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
 import argparse
 import json
 import shutil
+import hashlib
 import subprocess
 import sys
 import time
@@ -59,9 +60,7 @@ GEMMA_TEMPLATE = (
 
 def prep():
     import pandas as pd
-    if WORK.exists():
-        shutil.rmtree(WORK)
-    shutil.copytree(SRC, WORK, ignore=shutil.ignore_patterns(".git"))
+    shutil.copytree(SRC, WORK, dirs_exist_ok=True, ignore=shutil.ignore_patterns(".git"))
     (WORK / "openai_key.txt").write_text(f"EMPTY\nhttp://127.0.0.1:{PORT}/v1\n")
     for s in SYSTEMS:
         rows = ST.read_stretch(s)
@@ -98,13 +97,16 @@ def start_server():
 
 RUNNER = """
 import sys, time, json
+sys.path.insert(0, {exp!r})
+from adaparser_provenance import instrument
 sys.path.insert(0, {bench!r})
 from logparser.AdaParser.AdaParser import LogParser
 p = LogParser({indir!r}, {outdir!r}, {model!r}, "20")
+provenance = instrument(p)
 t0 = time.perf_counter()
 p.parse({log!r})
 print("@@RESULT@@" + json.dumps({{"wall_s": time.perf_counter() - t0, "prompt_tokens": p.total_prompt_tokens,
-                                   "completion_tokens": p.total_completion_tokens}}))
+                                   "completion_tokens": p.total_completion_tokens, "provenance": provenance()}}))
 """
 
 
@@ -116,9 +118,25 @@ def run(push):
         for s in sorted(SYSTEMS, key=lambda s: len(ST.load(s)["first"])):
             out = DATA / f"{s}.json"
             if out.exists():
-                continue
+                old = json.loads(out.read_text())
+                if old.get("provenance", {}).get("version") == 1:
+                    continue
+                backup = EXP / "data" / "adaparser_e2e_previous" / MODEL / out.name
+                backup.parent.mkdir(parents=True, exist_ok=True)
+                if not backup.exists():
+                    shutil.copy2(out, backup)
+                if push:
+                    import hub_sync as hs
+                    hs.commit_files(hs.get_results_repo(), {str(backup.relative_to(EXP)): backup}, f"preserve pre-provenance AdaParser {MODEL} {s}")
+            # Prepare one input just before parsing, so the first system need not
+            # wait for every raw ZIP to finish restoring.
+            csv_path = WORK / "full_dataset" / s / f"{s}_full.log_structured.csv"
+            if not csv_path.exists():
+                rows = ST.read_stretch(s)
+                csv_path.parent.mkdir(parents=True, exist_ok=True)
+                pd.DataFrame({'LineId': [r[0] for r in rows], 'Content': [r[1] for r in rows]}).to_csv(csv_path, index=False)
             outdir = WORK / "result" / s
-            code = RUNNER.format(bench=str(WORK / "benchmark"), indir=str(WORK / "full_dataset" / s), outdir=str(outdir),
+            code = RUNNER.format(exp=str(EXP), bench=str(WORK / "benchmark"), indir=str(WORK / "full_dataset" / s), outdir=str(outdir),
                                  model=SERVED, log=f"{s}_full.log")
             r = subprocess.run([str(EXP.parent / ".venv" / "bin" / "python"), "-I", "-c", code], cwd=WORK / "benchmark" / "evaluation",
                                capture_output=True, text=True)
@@ -161,7 +179,12 @@ def hidden(push):
     fn = task2template["log_parsing"]["rules_template"]
     for s in SYSTEMS:
         p = DATA / f"{s}_layer{D_LAYER}.npy"
-        if p.exists() or not (DATA / f"{s}.json").exists():
+        source = DATA / f"{s}.json"
+        if not source.exists():
+            continue
+        digest = hashlib.sha256(source.read_bytes()).hexdigest()
+        meta_path = p.with_suffix('.meta.json')
+        if p.exists() and meta_path.exists() and json.loads(meta_path.read_text()).get('source_sha256') == digest:
             continue
         rows = ST.read_stretch(s)
         _, first, _ = groups(s)
@@ -170,10 +193,11 @@ def hidden(push):
             for i in first:
                 V.append(w.get_hidden_states(rows[i][1], fn, produce_inference_results=False)["hidden_states"][D_LAYER][0, -1].cpu().to(torch.float32).numpy())
         np.save(p, np.asarray(V, np.float32))
+        meta_path.write_text(json.dumps({'source_sha256': digest, 'model': MODEL, 'layer': D_LAYER, 'n': len(V)}))
         print(s, len(first), flush=True)
         if push:
             import hub_sync as hs
-            hs.commit_files(hs.get_results_repo(), {str(p.relative_to(EXP)): p}, f"AdaParser e2e hidden {MODEL} {s}")
+            hs.commit_files(hs.get_results_repo(), {str(p.relative_to(EXP)): p, str(meta_path.relative_to(EXP)): meta_path}, f"AdaParser e2e hidden {MODEL} {s}")
 
 
 # ---------------------------------------------------------------- simulation (log_parsing_triage machinery on AdaParser groups)
@@ -236,10 +260,14 @@ def sim_job(system):
 
 def sim(push):
     from multiprocessing import Pool
-    todo = [s for s in SYSTEMS if (DATA / f"{s}.json").exists()]
-    with Pool(min(12, len(todo))) as p:      # each worker installs one system (fresh process per task)
+    todo = [s for s in SYSTEMS if (DATA / f"{s}.json").exists() and (DATA / f"{s}_layer{24 if MODEL == 'llama' else 35}.npy").exists()]
+    with Pool(min(4, len(todo)), maxtasksperchild=1) as p:      # each worker installs one system (fresh process per task)
         for r in p.imap_unordered(sim_job, todo, chunksize=1):
             print(*r, flush=True)
+            if push:
+                import hub_sync as hs
+                q = Path(r[0])
+                hs.commit_files(hs.get_results_repo(), {str(q.relative_to(EXP)): q}, f"AdaParser e2e sim {MODEL} {q.stem}")
     if push:
         import hub_sync as hs
         hs.commit_files(hs.get_results_repo(), {str(p.relative_to(EXP)): p for p in RES.glob("*.json")}, f"AdaParser e2e sim {MODEL}")
@@ -301,7 +329,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["prep", "run", "hidden", "sim", "report"])
     ap.add_argument("--push", action="store_true")
+    ap.add_argument('-s', '--systems', nargs='+')
     a = ap.parse_args()
+    if a.systems:
+        global SYSTEMS
+        assert all(s in SYSTEMS for s in a.systems)
+        SYSTEMS = a.systems
     {"prep": lambda: prep(), "run": lambda: run(a.push), "hidden": lambda: hidden(a.push),
      "sim": lambda: sim(a.push), "report": lambda: report(a.push)}[a.cmd]()
 
