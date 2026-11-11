@@ -57,7 +57,7 @@ def provenance(meta, grp, G):
     for g in range(G):
         vals = {origins[i] for i in np.flatnonzero(grp == g)}
         # Distinct terminal nodes can normalize to the same output string.
-        group_origins.append(next(iter(vals)) if len(vals) == 1 else 'mixed')
+        group_origins.append('unknown' if 'unknown' in vals else next(iter(vals)) if len(vals) == 1 else 'mixed')
     return {'available': True, 'candidate_insertions': prov['candidate_insertions'],
             'line_counts': dict(Counter(origins)), 'line_shares': {k: origins.count(k) / len(origins) for k in ('candidate','llm','mixed','unknown')},
             'template_counts': dict(Counter(group_origins)),
@@ -116,7 +116,8 @@ def compute(system, E):
          'pa0': float(base.sum()/d['n']), 'provenance': prov, 'n1': n1(sizes,correct,cache,major),
          'n5': n5(system,meta,E.MODEL), 'runs': {}, 'subsets': {}}
     src = T.source_data()
-    for subset,mask in [('all',np.ones(d['G'],bool)),('llm_only',llm_mask)]:
+    involved = np.isin(prov.get('group_origins', []), ['llm', 'mixed']) if prov['available'] else None
+    for subset,mask in [('all',np.ones(d['G'],bool)),('llm_only',llm_mask),('llm_involved',involved)]:
         if mask is None or not mask.any():
             r['subsets'][subset] = {'groups': 0, 'reason': 'no pure LLM output groups' if mask is not None else 'no provenance'}
             continue
@@ -145,7 +146,7 @@ def report(exp, push=False):
     import math
     import log_parsing_stats as STT
     L = ['# Real AdaParser: provenance, concentration and review outcomes\n',
-         'Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Candidate/LLM/mixed provenance tracks final trie ancestry; LLM-only excludes mixed groups and refits within its own queue.\n']
+         'Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Parser cache seed 0; seeds 0–4 apply to review policies. Candidate/LLM/mixed/unknown provenance tracks final trie ancestry. LLM-only excludes mixed groups; LLM-involved includes them. Both restrictions exclude unknowns and refit within their own queue.\n']
     J = {}
     def table(h,rows):
         L.extend(['| '+' | '.join(h)+' |','|'+'|'.join('---' for _ in h)+'|'])
@@ -183,9 +184,9 @@ def report(exp, push=False):
         for s,r in R.items():
             pr=r['provenance'];lc=pr.get('line_shares',{});tc=pr.get('template_shares',{})
             rows.append([s,r['G'],f"{r['pa0']:.3f}",f"{r['wrong_groups']:.3f}",f"{r['wrong_majority_groups']:.3f}",
-                         ' / '.join(f'{lc.get(k,float("nan")):.3f}' for k in ('candidate','llm','mixed')),
-                         ' / '.join(f'{tc.get(k,float("nan")):.3f}' for k in ('candidate','llm','mixed'))])
-        table(['System','Output templates','PA_0','Wrong first-line','Wrong majority','Line share candidate / LLM / mixed','Template share candidate / LLM / mixed'],rows)
+                         ' / '.join(f'{lc.get(k,float("nan")):.3f}' for k in ('candidate','llm','mixed','unknown')),
+                         ' / '.join(f'{tc.get(k,float("nan")):.3f}' for k in ('candidate','llm','mixed','unknown'))])
+        table(['System','Output templates','PA_0','Wrong first-line','Wrong majority','Line share candidate / LLM / mixed / unknown','Template share candidate / LLM / mixed / unknown'],rows)
         rows=[]
         for s,r in R.items():
             q=r['n1'];rows.append([s,f"{q['gini']:.3f}",' / '.join(f"{q['top_shares'][str(k)]:.3f}" for k in (1,5,10,20)),
@@ -199,7 +200,7 @@ def report(exp, push=False):
         table(['Parser','Strict PA','PTA','RTA','FTA'],rows)
         jm['n5_common']=common
         wins=[]
-        for subset in ('all','llm_only'):
+        for subset in ('all','llm_only','llm_involved'):
             for bucket,systems in [('all systems',list(R)),('held-out',[s for s in R if s not in {'HDFS','Spark','Linux'}])]:
                 if not systems:continue
                 for metric in ('lines','templates'):
@@ -234,7 +235,7 @@ def report(exp, push=False):
         L.append('### Per-system D − frequency gains (mean gap, number of strictly positive seeds / 5)\n')
         rows=[]
         for s,r in R.items():
-            for subset in ('all','llm_only'):
+            for subset in ('all','llm_only','llm_involved'):
                 cell=r['subsets'].get(subset,{})
                 if 'runs' not in cell:continue
                 for metric in ('lines','templates'):
