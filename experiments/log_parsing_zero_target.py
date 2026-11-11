@@ -167,7 +167,8 @@ def stream_job(args):
     sizes = np.bincount(d['grp'], minlength=d['G']).astype(float)
     ver = GT.verdicts(d, cache)
     pdat = GT.parser_data(system, parser)
-    result = {'system': system, 'parser': parser, 'target_labels': 0, 'strict_reproduced': True,
+    result = {'system': system, 'parser': parser, 'target_labels': 0, 'target_suite_labels': 0,
+              'initial_verified_seed_groups': len(seeds0), 'strict_reproduced': True,
               'review': {}, 'gate': {}, 'complete': False}
     for name, cfg in configs().items():
         if part and name != part[0]:
@@ -210,6 +211,8 @@ def merge_stream_parts(target_system=None, target_parser=None):
                       'review': {}, 'gate': {}, 'complete': True}
             for p in parts:
                 item = json.loads(p.read_text())
+                result['target_suite_labels'] = 0
+                result['initial_verified_seed_groups'] = item['initial_verified_seed_groups']
                 for name, seeds in item['review'].items():
                     result['review'].setdefault(name, {}).update(seeds)
                 for name, byq in item['gate'].items():

@@ -113,7 +113,8 @@ def main():
               'Every rerun asserts strict stored Clotho/Drain AUC or strict stream PA curves and N5 PA/FTA first.', '',
               'The existing U reference budget @100 contains 90 target-suite labels plus 10 synthetic initial tests; '
               'U drops synthetic rows from feature training. We retain the original 100-label budget convention for '
-              'the requested equal-effort reference. U-zero uses no target labels at all. '
+              'the requested equal-effort reference. U-zero uses no target-suite labels; the strong parser still '
+              'has its ten verified seed templates, supplied equally to all review methods as in D. '
               'Deterministic orders repeat across seeds: five positive seeds are descriptive, not five independent datasets.', '',
               'Corrected time assumption: machine/user setup 19:01 EST is 00:01 UTC, not 19:01 UTC. '
               'Conservative deadline 10:00 UTC, long-job cutoff 09:15 UTC; actual VCL reservation end is not exposed locally.', '']
