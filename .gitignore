@@ -66,3 +66,6 @@ experiments/results_phase3_cross/
 # Archived pre-restoration results live in RESULTS_REPO only.
 experiments/data/adaparser_e2e_previous/
 experiments/data/cpu_before_g2/
+
+# G5 pooled states and aligned token features are persisted in RESULTS_REPO.
+experiments/data/token_followups/
