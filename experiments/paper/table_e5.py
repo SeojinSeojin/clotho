@@ -23,15 +23,18 @@ def main():
     J = json.loads((C.EXP / "reports" / "e5_leakage.json").read_text())
     r0 = next(iter(J["tasks"].values()))["leaky"]
     M = M[:3] + [(m, n) for m, n in (("lohsvar", "LOHSvar$^*$"), ("sement", "Sem-Ent$^*$")) if m in r0] + M[3:]
+    subset = any(m == 'sement' for m, _ in M)
+    tasks = {t: r['sub'] if subset else r for t, r in J['tasks'].items()}
     body = []
-    for t, r in J["tasks"].items():
+    for t, r in tasks.items():
         cells = []
         for m, _ in M:
             lf = [x[m]["spearman"] for x in r["leakfree"]]
             cells.append(f"{r['leaky'][m]['spearman']:.3f} & {statistics.mean(lf):.3f} $\\pm$ {statistics.stdev(lf):.3f}")
         body.append(ALIAS[t] + " & " + " & ".join(cells) + " \\\\")
     body.append("\\midrule")
-    d = J["drops"]["spearman"]
+    d = {m: [statistics.mean(r['leakfree'][k][m]['spearman'] - r['leaky'][m]['spearman']
+                             for r in tasks.values()) for k in range(5)] for m, _ in M}
     body.append("$\\Delta$ (mean over tasks) & " + " & ".join(
         f"\\multicolumn{{2}}{{c}}{{{statistics.mean(d[m]):+.3f} $\\pm$ {statistics.stdev(d[m]):.3f}}}" for m, _ in M) + " \\\\")
     f = J["flips"]
@@ -44,6 +47,8 @@ def main():
             "protocol (test score from all 10 samples; Tok-Prob and Tok-Ent from sample 0, output entropy from all 10). "
             "Leak-free: test score from 5 samples, score from the other 5 (5 seeded splits, mean $\\pm$ std). MDSA is "
             "pre-generation, so its change is label noise only. "
+            + ("All cells use the same seeded subset of 1,500 inputs per task when Sem-Ent is included. " if subset else "")
+            +
             f"Pairwise method comparisons that change sign: {f['spearman']['n_flip']} of {f['spearman']['n_pairs']} "
             f"(Spearman), {f['auc']['n_flip']} of {f['auc']['n_pairs']} (ROC-AUC)"
             + (f"; with LOHSvar and Sem-Ent in the comparison set (MDSA excluded): {f['g/spearman']['n_flip']} of "

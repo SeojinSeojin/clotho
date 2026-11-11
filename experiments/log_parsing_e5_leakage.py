@@ -255,6 +255,30 @@ def report(R, push=False):
             L.append(f"On all inputs without Sem-Ent ({', '.join(NAMES[m] for m in PGf)}), LOHSvar's rank changes on "
                      f"{chf['spearman']} of {len(R)} tasks (Spearman) and {chf['auc']} (AUC): " + "; ".join(
                          f"{ALIAS[t]} {v[0]}->{v[1]}" for t, v in J["loh_rank_full"]["spearman"].items() if v[0] != v[1]) + ".")
+    # G4 requested statistics: identical subsets for all methods, observations (task, seed).
+    if G_M:
+        import log_parsing_stats as STT
+        compared = METHODS + G_M
+        paired_rows = {t: r["sub"] if "sement" in G_M else r for t, r in R.items()}
+        J["g_statistics"] = {}
+        L.append("\n## G4: paired task/seed statistics (same inputs for every method)\n")
+        for metric in ("spearman", "auc"):
+            obs = {m: [r["leakfree"][k][m][metric] for r in paired_rows.values() for k in SEEDS] for m in compared}
+            obs = {m: v for m, v in obs.items() if all(math.isfinite(x) for x in v)}
+            ranks = STT.sk_esd(obs)
+            macros = {m: [statistics.mean(r["leakfree"][k][m][metric] for r in paired_rows.values()) for k in SEEDS] for m in obs}
+            diffs = {m: [statistics.mean(r["leakfree"][k][m][metric] - r["leaky"][m][metric] for r in paired_rows.values()) for k in SEEDS] for m in obs}
+            matrix = {a: {b: STT.a12(obs[a], obs[b]) for b in obs} for a in obs}
+            J["g_statistics"][metric] = {"subset": "sement" in G_M, "macro_by_seed": macros, "change_by_seed": diffs,
+                                        "sk_esd": ranks, "a12": matrix}
+            L.extend([f"### {metric}\n", "| method | leak-free macro | change vs leaky | seeds with change sign | SK-ESD | A12 vs LOHSvar |",
+                      "|---|---|---|---|---|---|"])
+            for m in obs:
+                v, d = macros[m], diffs[m]
+                mu = statistics.mean(d)
+                sign = sum((x > 0) == (mu > 0) and x != 0 for x in d)
+                a = matrix[m].get("lohsvar", float("nan"))
+                L.append(f"| {NAMES[m]} | {statistics.mean(v):.3f} ± {statistics.stdev(v):.3f} | {mu:+.3f} ± {statistics.stdev(d):.3f} | {sign}/5 | {ranks[m]} | {a:.3f} |")
     L.append("\nOutput entropy = entropy of the parsed answers (task labeler) over the samples; it is not the stored "
              "`answer_level_entropy` (present for some tasks only; Spearman with ours: "
              + ", ".join(f"{ALIAS[t]} {r['ae_check']:.2f}" for t, r in R.items() if not math.isnan(r['ae_check']))
