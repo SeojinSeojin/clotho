@@ -55,10 +55,25 @@ def verify_stored(d, cache, stored):
             assert np.allclose(pa, r['pa'], atol=1e-12), (method, 'strict replay failed')
 
 
+def switch_metrics(result, d, cache, mf):
+    """Fixed frequency-20 then risk policy, compared at equal total review cost."""
+    metric = ReviewMetrics(d, cache)
+    prior = result['tail']['already_reviewed']
+    out = {'prior_reviews': len(prior), 'runs': {}, 'frequent': {
+        n: metric.evaluate(mf[:len(prior)+n]) for n in TAIL_BUDGETS}}
+    for name, seeds in result['tail']['runs'].items():
+        for seed, item in seeds.items():
+            out['runs'].setdefault(name, {})[seed] = {'metrics': {
+                n: metric.evaluate(prior+item['seq'][:n]) for n in TAIL_BUDGETS}}
+    result['switch'] = out
+    result['protocol_version'] = 2
+
+
 def job(args):
     system, parser = args
     out = DEST / parser / f'{system}.json'
-    if out.exists() and json.loads(out.read_text()).get('complete'):
+    previous = json.loads(out.read_text()) if out.exists() else {}
+    if previous.get('complete') and previous.get('protocol_version', 1) >= 2:
         return system, parser, 'exists'
     try:
         cache, seeds0, stored = C.cell(system, parser)
@@ -71,6 +86,10 @@ def job(args):
     ver = GT.verdicts(d, cache)
     elig = [g for g in range(d['G']) if g not in seeds0]
     mf = C.order_static(sizes, sizes, elig)
+    if previous.get('complete'):
+        switch_metrics(previous, d, cache, mf)
+        save(out, previous)
+        return system, parser, 'upgraded switch metrics'
     top20 = mf[:20]
     from log_parsing_groupcheck import flags
     wf = flags(system, cache)  # existing raw ZIP only; read_stretch never downloads
@@ -123,6 +142,7 @@ def job(args):
             save(out, result)
         save(out, result)
         print('R2', system, parser, scope, 'done', flush=True)
+    switch_metrics(result, d, cache, mf)
     result['complete'] = True
     save(out, result)
     return system, parser, 'done'

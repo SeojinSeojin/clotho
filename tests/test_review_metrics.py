@@ -24,11 +24,13 @@ class ReviewMetricTests(unittest.TestCase):
                 metric = ReviewMetrics(d, cache, keep)
                 eligible = metric.ids
                 for budget in (0, 1, 3):
-                    exhaustive = max(metric.evaluate(sub)['FTA'] for k in range(budget+1)
-                                     for sub in itertools.combinations(eligible, k))
-                    result = metric.oracle(budget, eligible, 'FTA')
-                    self.assertTrue(result['certified'])
-                    self.assertAlmostEqual(exhaustive, result['value'])
+                    for name in ('FTA', 'groups', 'lines'):
+                        vals = [metric.evaluate(sub)[name] for k in range(budget+1)
+                                for sub in itertools.combinations(eligible, k)]
+                        result = metric.oracle(budget, eligible, name)
+                        self.assertTrue(result['certified'])
+                        if vals[0] is not None:
+                            self.assertAlmostEqual(max(vals), result['value'])
 
     def test_mixed_group_can_remain_wrong_after_majority_correction(self):
         d = {'G': 1, 'templates': ['A', 'B'], 'grp': np.array([0, 0, 0]),
@@ -60,6 +62,27 @@ class ReviewMetricTests(unittest.TestCase):
             seq = gate(Model(), np.zeros(100, bool), set(), q, 0)
             for k in range(1, 101):
                 self.assertLessEqual(sum(g < k for g in seq), int(np.ceil(q*k)))
+
+    def test_zero_model_never_reads_target_labels(self):
+        import log_parsing_zero_target as Z
+        from unittest.mock import patch
+        rng = np.random.RandomState(41)
+        states = {s: rng.randn(20, 4).astype(np.float32) for s in ('loghub_bgl_500', 'loghub_hpc_500')}
+        target = rng.randn(8, 4).astype(np.float32)
+        features = {s: {'y': np.arange(20) % 2 == 0, 'S3': rng.randn(20, 3), 'V5': rng.randn(20, 3)}
+                    for s in states}
+        cfg = {'blocks': ['S1', 'S3', 'V5'], 'layer': 16, 'p': 2, 'clf': ['lr', 1.0]}
+        cols = {'S3': rng.randn(8, 3), 'V5': rng.randn(8, 3)}
+        # Indexing either dict by the target name would raise KeyError.
+        with patch.object(Z.U, 'source_ds', return_value=list(states)), \
+             patch.object(Z.U, 'hidden', side_effect=lambda s, layer: states[s]), \
+             patch.object(Z.U, 'F_', side_effect=lambda s: features[s]), \
+             patch.object(Z.T, 'states', return_value=target), \
+             patch.object(Z.SU, 'stream_feats', return_value=(['T']*8, cols, [])):
+            model = Z.ZeroModel('Apache', 'base', cfg, 0, 'review')
+            model.fit([])
+            self.assertEqual(model.risk().shape, (8,))
+            self.assertTrue(np.isfinite(model.risk()).all())
 
 
 if __name__ == '__main__':

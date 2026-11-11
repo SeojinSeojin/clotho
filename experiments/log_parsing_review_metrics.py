@@ -37,7 +37,7 @@ class ReviewMetrics:
         ids = sorted(set(eligible) & self.keep)
         if metric != 'FTA':
             gains = self.gain if metric == 'lines' else self.group_gain
-            ids.sort(key=lambda g: (-gains[g], -sum(self.d['cnt'][g].values()), g))
+            ids.sort(key=lambda g: (-float(gains[g]), -sum(self.d['cnt'][g].values()), g))
             seq = ids[:budget]
             return {'seq': seq, 'value': self.evaluate(seq)[metric], 'certified': True}
         return self.fta_oracle(budget, ids)

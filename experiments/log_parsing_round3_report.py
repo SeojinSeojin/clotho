@@ -111,6 +111,10 @@ def main():
               'Ground truth is not passed through AdaParser. Label samples 5–9 and output-entropy samples 0–4 are disjoint. '
               'Original systems and strict split skips remain fixed; scorer-induced class degeneracy is reported as undefined. '
               'Every rerun asserts strict stored Clotho/Drain AUC or strict stream PA curves and N5 PA/FTA first.', '',
+              'The existing U reference budget @100 contains 90 target-suite labels plus 10 synthetic initial tests; '
+              'U drops synthetic rows from feature training. We retain the original 100-label budget convention for '
+              'the requested equal-effort reference. U-zero uses no target labels at all. '
+              'Deterministic orders repeat across seeds: five positive seeds are descriptive, not five independent datasets.', '',
               'Corrected time assumption: machine/user setup 19:01 EST is 00:01 UTC, not 19:01 UTC. '
               'Conservative deadline 10:00 UTC, long-job cutoff 09:15 UTC; actual VCL reservation end is not exposed locally.', '']
     summary = {'R1': {}, 'R2': {}, 'R3': {}}
@@ -196,8 +200,8 @@ def main():
                                f'MAE={np.mean(np.abs(np.array(actual)-proxy)):.4f}, {len(actual)} cell/system points.']
     if stream_short:
         wins = [(m, p, s) for m, p, s, _, _, _, d in stream_short if d.get('positive_seeds') == 5]
-        short += [('**The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds in '
-                   +str(wins)+'.') if wins else '**The 20-review frequency claim survives the completed stream cells:** D x size does not beat Most frequent on all five seeds in any model/parser/scorer cell.', '',
+        short += [('**The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds for '
+                   +', '.join('/'.join(x) for x in wins)+'.') if wins else '**The 20-review frequency claim survives the completed stream cells:** D x size does not beat Most frequent on all five seeds in any model/parser/scorer cell.', '',
                   '“Close to Oracle” is quantified below, rather than assumed. L1/L2 are sensitivity analyses, not a new ground truth.', '',
                   '| model/parser | scorer | systems | PA_0 | Most frequent / Oracle @20 | D minus frequency @20 (positive seeds) |',
                   '|---|---|---:|---:|---:|---|']
@@ -226,13 +230,16 @@ def main():
                         for n in budgets:
                             for metric in ('groups', 'FTA', 'lines'):
                                 values = {}
+                                oracle_name = 'Oracle-'+metric
+                                if number == 2 and any(not r[scope]['oracle'][str(n)][metric]['certified'] for r in systems.values()):
+                                    oracle_name += ' (uncertified incumbent)'
                                 for s, r in systems.items():
                                     by = r[scope]['runs'] if number == 2 else r['review']
                                     for method, runs in by.items():
                                         values.setdefault(method, {})[s] = [runs[str(k)]['metrics'][str(n)][metric] for k in SEEDS]
                                     if number == 2:
                                         val = r[scope]['oracle'][str(n)][metric]['value']
-                                        values.setdefault('Oracle-'+metric, {})[s] = [val]*5
+                                        values.setdefault(oracle_name, {})[s] = [val]*5
                                     else:
                                         other = root / 'robustness_tail' / parser / f'{s}.json'
                                         if other.exists() and read(other).get('complete'):
@@ -252,17 +259,31 @@ def main():
                                     if st[best]['positive_seeds'] == 5:
                                         wins.append(f'{model}/{parser}/{scope}/{metric}: {best} {st[best]["delta"]}')
                 if number == 2:
+                    if all('switch' in r for r in ss.values()):
+                        for n in (5, 10, 20, 50):
+                            for metric in ('groups', 'FTA', 'lines'):
+                                values = {'frequent': {}}
+                                for s, r in ss.items():
+                                    values['frequent'][s] = [r['switch']['frequent'][str(n)][metric]]*5
+                                    for name, seeds in r['switch']['runs'].items():
+                                        values.setdefault(name, {})[s] = [seeds[str(k)]['metrics'][str(n)][metric] for k in SEEDS]
+                                st = stats(values, 'frequent')
+                                label = f'{model}/{parser}/switch20+{n}/{metric}'
+                                summary['R2'][label] = st
+                                if st:
+                                    table(detail, label+' FULL-stream outcome at matched total budget', st, 'frequent')
                     # Oracle certification and equal-effort comparison, never hide a bound.
                     uncert = sum(not x['certified'] for r in ss.values() for scope in ('full', 'tail')
                                  for by in r[scope]['oracle'].values() for x in by.values())
                     detail += ['', f'R2 {model}/{parser}: {uncert} oracle solutions not certified optimal (inspect job solver status/gap).', '',
                                '| equal-effort reference @20 | U+V5 (100 target labels) | Most frequent @100 (capped; requested N+100=120) |', '|---|---|---|']
-                    for metric in ('groups', 'FTA', 'lines'):
-                        u, f = [], []
-                        for k in SEEDS:
-                            u.append(np.nanmean([float('nan') if r['full']['runs']['usize'][str(k)]['metrics']['20'][metric] is None else r['full']['runs']['usize'][str(k)]['metrics']['20'][metric] for r in ss.values()]))
-                            f.append(np.nanmean([float('nan') if r['full']['runs']['frequent'][str(k)]['metrics']['100'][metric] is None else r['full']['runs']['frequent'][str(k)]['metrics']['100'][metric] for r in ss.values()]))
-                        detail.append(f'| {metric} | {fmt(u)} | {fmt(f)} |')
+                    for n in (5, 10, 20, 50):
+                        for metric in ('groups', 'FTA', 'lines'):
+                            u, f = [], []
+                            for k in SEEDS:
+                                u.append(np.nanmean([float('nan') if r['full']['runs']['usize'][str(k)]['metrics'][str(n)][metric] is None else r['full']['runs']['usize'][str(k)]['metrics'][str(n)][metric] for r in ss.values()]))
+                                f.append(np.nanmean([float('nan') if r['full']['runs']['frequent'][str(k)]['metrics']['100'][metric] is None else r['full']['runs']['frequent'][str(k)]['metrics']['100'][metric] for r in ss.values()]))
+                            detail.append(f'| {metric}, N={n} | {fmt(u)} | {fmt(f)} |')
                 else:
                     for name in ('U-zero', 'U+V5-zero'):
                         for q in ('0.05', '0.1', '0.2'):
@@ -278,14 +299,21 @@ def main():
                                 label = f'{model}/{parser}/gate/{name}/q{q}'
                                 summary['R3'][label] = st
                                 table(detail, label+' share of bad lines fixed', st, 'D gate')
+                            detail += ['', f'R3 {model}/{parser}/{name}/q{q}: gate metrics', '',
+                                       '| metric | mean ± std |', '|---|---|']
+                            for metric in ('N', 'precision', 'share'):
+                                per = [float(np.nanmean([r['gate'][name][q][str(k)][metric] for r in ss.values()])) for k in SEEDS]
+                                detail.append(f'| {metric} | {fmt(per)} |')
         if headline_rows:
             short += [('**At 20 reviews, gains over frequency on every seed occur in:** '+ '; '.join(wins)+'.') if wins else
                       '**At 20 reviews, none of the evaluated zero-extra-call predictors beats frequency on every seed in the completed cells.**', '',
                       'U in R2 uses 100 target labels; U-zero in R3 uses none. Output entropy requires extra samples and is excluded from this headline.', '',
-                      '| model/parser | scope | metric | largest observed predictor gain | minus frequency (positive seeds) |',
-                      '|---|---|---|---|---|']
+                      'Only completed systems are shown; the system count below makes partial coverage explicit. '
+                      'R2 details also compare frequency-20 then risk with uninterrupted frequency at equal total budgets.', '',
+                      '| model/parser | systems | scope | metric | largest observed predictor gain | minus frequency (positive seeds) |',
+                      '|---|---:|---|---|---|---|']
             for m, p, scope, metric, best, r in headline_rows:
-                short.append(f"| {m}/{p} | {scope} | {metric} | {best} | {r['delta']} ({r['positive_seeds']}/5) |")
+                short.append(f"| {m}/{p} | {len(r['systems'])} | {scope} | {metric} | {best} | {r['delta']} ({r['positive_seeds']}/5) |")
         else:
             short += ['Pending: no complete cell available.']
         short += ['']

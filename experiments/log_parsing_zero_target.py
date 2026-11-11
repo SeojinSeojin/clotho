@@ -64,7 +64,9 @@ class ZeroModel:
         self.src_ds = U.source_ds(self.ds)
         assert all(U.SYSNAME(s) != system for s in self.src_ds)
         self.shared = {} if shared is None else shared
-        self.cache, self.cols, _ = SU.stream_feats(system, parser, self.cfg, mode)
+        if 'features' not in self.shared:
+            self.shared['features'] = SU.stream_feats(system, parser, self.cfg, mode)
+        self.cache, self.cols, _ = self.shared['features']
         self.H = np.asarray(T.states(system, self.cfg['layer']), np.float32)
         key = ('sources', self.cfg['layer'])
         if key not in self.shared:
@@ -150,8 +152,9 @@ def gate(model, ver, seeds0, q, seed):
 
 
 def stream_job(args):
-    system, parser = args
-    out = DEST / 'streams' / parser / f'{system}.json'
+    system, parser, *part = args
+    out = (DEST / 'stream_parts' / parser / system / part[0] / f'seed{part[1]}.json' if part
+           else DEST / 'streams' / parser / f'{system}.json')
     if out.exists() and json.loads(out.read_text()).get('complete'):
         return system, parser, 'exists'
     try:
@@ -167,9 +170,11 @@ def stream_job(args):
     result = {'system': system, 'parser': parser, 'target_labels': 0, 'strict_reproduced': True,
               'review': {}, 'gate': {}, 'complete': False}
     for name, cfg in configs().items():
+        if part and name != part[0]:
+            continue
         # Review and gate have different V5 features, so do not share their matrices.
         shared_review, shared_gate = {}, {}
-        for seed in SEEDS:
+        for seed in ([part[1]] if part else SEEDS):
             for freq in (False, True):
                 model = ZeroModel(system, parser, cfg, seed, 'review', shared_review)
                 seq = review(model, ver, sizes, seeds0, freq=freq)
@@ -189,13 +194,40 @@ def stream_job(args):
     return system, parser, 'done'
 
 
+def merge_stream_parts(target_system=None, target_parser=None):
+    """A cell becomes complete only after every config/seed part has finished."""
+    for system in T.SYSTEMS:
+        if target_system is not None and system != target_system:
+            continue
+        for parser in ('base', 'strong'):
+            if target_parser is not None and parser != target_parser:
+                continue
+            parts = [DEST / 'stream_parts' / parser / system / name / f'seed{seed}.json'
+                     for name in configs() for seed in SEEDS]
+            if not all(p.exists() and json.loads(p.read_text()).get('complete') for p in parts):
+                continue
+            result = {'system': system, 'parser': parser, 'target_labels': 0, 'strict_reproduced': True,
+                      'review': {}, 'gate': {}, 'complete': True}
+            for p in parts:
+                item = json.loads(p.read_text())
+                for name, seeds in item['review'].items():
+                    result['review'].setdefault(name, {}).update(seeds)
+                for name, byq in item['gate'].items():
+                    for q, seeds in byq.items():
+                        result['gate'].setdefault(name, {}).setdefault(q, {}).update(seeds)
+            save(DEST / 'streams' / parser / f'{system}.json', result)
+
+
 if __name__ == '__main__':
     import argparse
     from multiprocessing import Pool
     ap = argparse.ArgumentParser(); ap.add_argument('stage', choices=['suites', 'streams'])
     ap.add_argument('--workers', type=int, default=6); a = ap.parse_args()
     jobs = ([(kind, ds, seed) for kind in ('disjoint', 'standard') for ds in U.capped() for seed in SEEDS]
-            if a.stage == 'suites' else [(s, p) for p in ('base', 'strong') for s in T.SYSTEMS])
+            if a.stage == 'suites' else [(s, p, name, seed) for p in ('base', 'strong')
+                for s in T.SYSTEMS for name in configs() for seed in SEEDS])
     with Pool(a.workers) as pool:
         for r in pool.imap_unordered(suite_job if a.stage == 'suites' else stream_job, jobs):
             print(*r, flush=True)
+            if a.stage == 'streams':
+                merge_stream_parts(r[0], r[1])
