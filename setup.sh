@@ -68,6 +68,7 @@ wait_bg() {
 # ----------------------------------------------------------------------------- 1. uv
 install_uv() {
   if command -v uv >/dev/null && [ "$(uv --version | awk '{print $2}')" = "$UV_VERSION" ]; then return; fi
+  df -h "$REPO"
   curl -LsSf "https://astral.sh/uv/$UV_VERSION/install.sh" | env UV_NO_MODIFY_PATH=1 sh
 }
 step uv install_uv
@@ -80,7 +81,7 @@ command -v uv >/dev/null || die "uv not on PATH"
 # ----------------------------------------------------------------------------- 2. parallel work
 # Throwaway env with just huggingface_hub + hf_transfer, so downloads start
 # before the big venvs are ready.
-hub() { uv run --no-project --python 3.10 --with "huggingface_hub[hf_transfer]==$HF_HUB_VERSION" \
+hub() { df -h "$REPO"; uv run --no-project --python 3.10 --with "huggingface_hub[hf_transfer]==$HF_HUB_VERSION" \
           python "$REPO/experiments/sharded/hub_sync.py" "$@"; }
 
 if [ -n "${HF_TOKEN:-}" ]; then
@@ -90,6 +91,7 @@ if [ -n "${HF_TOKEN:-}" ]; then
 fi
 
 make_main_venv() {
+  df -h "$REPO"
   uv venv --python 3.10 --allow-existing .venv
   uv pip install --python .venv/bin/python -r requirements.txt "hf_transfer==0.1.9"
   uv pip install --python .venv/bin/python -e .
@@ -100,6 +102,7 @@ make_main_venv() {
 bg venv_main make_main_venv
 
 make_vllm_venv() {
+  df -h "$REPO"
   # Separate venv: vLLM needs a far newer torch/transformers than requirements.txt pins.
   uv venv --python 3.12 --allow-existing .venv-vllm
   uv pip install --python .venv-vllm/bin/python "vllm==$VLLM_VERSION" "hf_transfer==0.1.9"
