@@ -2,24 +2,24 @@
 \begin{table*}[t]
 \centering
 \small
-\caption{Leakage beyond logs: the paper's post-generation baselines on the original Clotho tasks (Llama-3.1-8B), Spearman correlation with the test score (scores oriented so higher means PASS). Leaky: the original protocol (test score from all 10 samples; Tok-Prob and Tok-Ent from sample 0, output entropy from all 10). Leak-free: test score from 5 samples, score from the other 5 (5 seeded splits, mean $\pm$ std). MDSA is pre-generation, so its change is label noise only. Pairwise method comparisons that change sign: 1 of 48 (Spearman), 4 of 48 (ROC-AUC). $^*$ needs the generated outputs.}
+\caption{Leakage beyond logs: the paper's post-generation baselines on the original Clotho tasks (Llama-3.1-8B), Spearman correlation with the test score (scores oriented so higher means PASS). Leaky: the original protocol (test score from all 10 samples; Tok-Prob and Tok-Ent from sample 0, output entropy from all 10). Leak-free: test score from 5 samples, score from the other 5 (5 seeded splits, mean $\pm$ std). MDSA is pre-generation, so its change is label noise only (available-score control in the full E5 report). Raw signed coefficients/changes are shown; comparison orders use absolute Spearman. All cells use the same seeded subset of 1,500 inputs per task when Sem-Ent is included; MDSA is omitted because its archived coverage is incomplete. Pairwise method comparisons that change sign: 1 of 48 (Spearman), 4 of 48 (ROC-AUC); with LOHSvar and Sem-Ent in the comparison set (MDSA excluded): 11 of 80 (Spearman), 11 of 80 (ROC-AUC). $^*$ needs the generated outputs.}
 \label{tab:e5-leakage}
-\begin{tabular}{lrrrrrrrr}
+\begin{tabular}{lrrrrrrrrrr}
 \toprule
- & \multicolumn{2}{c}{Tok-Prob$^*$} & \multicolumn{2}{c}{Tok-Ent$^*$} & \multicolumn{2}{c}{Output entropy$^*$} & \multicolumn{2}{c}{MDSA} \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
-task & leaky & leak-free & leaky & leak-free & leaky & leak-free & leaky & leak-free \\
+ & \multicolumn{2}{c}{Tok-Prob$^*$} & \multicolumn{2}{c}{Tok-Ent$^*$} & \multicolumn{2}{c}{Output entropy$^*$} & \multicolumn{2}{c}{LOHSvar$^*$} & \multicolumn{2}{c}{Sem-Ent$^*$} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+task & leaky & leak-free & leaky & leak-free & leaky & leak-free & leaky & leak-free & leaky & leak-free \\
 \midrule
-SYN-BUG & 0.188 & 0.202 $\pm$ 0.005 & 0.219 & 0.239 $\pm$ 0.008 & 0.101 & 0.136 $\pm$ 0.002 & 0.171 & 0.189 $\pm$ 0.001 \\
-SPELL-CHK & 0.430 & 0.396 $\pm$ 0.008 & 0.480 & 0.449 $\pm$ 0.011 & 0.873 & 0.612 $\pm$ 0.005 & 0.467 & 0.448 $\pm$ 0.003 \\
-GH-TYPO & 0.382 & 0.366 $\pm$ 0.005 & 0.465 & 0.452 $\pm$ 0.007 & 0.744 & 0.627 $\pm$ 0.006 & 0.368 & 0.358 $\pm$ 0.001 \\
-JSON-FIX & 0.277 & 0.223 $\pm$ 0.006 & 0.319 & 0.268 $\pm$ 0.004 & 0.933 & 0.605 $\pm$ 0.008 & 0.422 & 0.383 $\pm$ 0.004 \\
-POS-TAG & 0.274 & 0.247 $\pm$ 0.007 & 0.321 & 0.288 $\pm$ 0.007 & 0.790 & 0.561 $\pm$ 0.004 & 0.161 & 0.152 $\pm$ 0.005 \\
-TOPIC-CLS & 0.142 & 0.112 $\pm$ 0.013 & 0.152 & 0.139 $\pm$ 0.009 & 0.586 & 0.433 $\pm$ 0.002 & 0.223 & 0.210 $\pm$ 0.003 \\
-ODD-ADD & 0.548 & 0.517 $\pm$ 0.010 & 0.467 & 0.438 $\pm$ 0.007 & 0.817 & 0.701 $\pm$ 0.004 & 0.369 & 0.353 $\pm$ 0.001 \\
-MODEL-EX & 0.173 & 0.158 $\pm$ 0.004 & 0.196 & 0.177 $\pm$ 0.006 & 0.202 & 0.161 $\pm$ 0.006 & 0.024 & 0.025 $\pm$ 0.002 \\
+SYN-BUG & 0.225 & 0.207 $\pm$ 0.011 & 0.248 & 0.238 $\pm$ 0.014 & 0.095 & 0.138 $\pm$ 0.018 & 0.145 & 0.171 $\pm$ 0.014 & 0.287 & 0.214 $\pm$ 0.024 \\
+SPELL-CHK & 0.410 & 0.382 $\pm$ 0.005 & 0.467 & 0.436 $\pm$ 0.011 & 0.862 & 0.612 $\pm$ 0.011 & 0.712 & 0.593 $\pm$ 0.008 & 0.488 & 0.278 $\pm$ 0.019 \\
+GH-TYPO & 0.375 & 0.370 $\pm$ 0.007 & 0.448 & 0.452 $\pm$ 0.009 & 0.738 & 0.625 $\pm$ 0.010 & 0.796 & 0.690 $\pm$ 0.010 & 0.399 & 0.129 $\pm$ 0.005 \\
+JSON-FIX & 0.286 & 0.218 $\pm$ 0.010 & 0.336 & 0.259 $\pm$ 0.012 & 0.949 & 0.612 $\pm$ 0.009 & 0.700 & 0.468 $\pm$ 0.012 & 0.440 & 0.268 $\pm$ 0.017 \\
+POS-TAG & 0.290 & 0.245 $\pm$ 0.008 & 0.323 & 0.296 $\pm$ 0.010 & 0.779 & 0.549 $\pm$ 0.013 & 0.720 & 0.539 $\pm$ 0.008 & 0.350 & 0.183 $\pm$ 0.014 \\
+TOPIC-CLS & 0.088 & 0.121 $\pm$ 0.009 & 0.110 & 0.159 $\pm$ 0.013 & 0.581 & 0.430 $\pm$ 0.008 & 0.557 & 0.476 $\pm$ 0.010 & 0.106 & 0.031 $\pm$ 0.009 \\
+ODD-ADD & 0.536 & 0.498 $\pm$ 0.012 & 0.472 & 0.425 $\pm$ 0.005 & 0.807 & 0.679 $\pm$ 0.009 & 0.501 & 0.420 $\pm$ 0.008 & 0.669 & 0.589 $\pm$ 0.009 \\
+MODEL-EX & 0.185 & 0.162 $\pm$ 0.024 & 0.217 & 0.172 $\pm$ 0.019 & 0.181 & 0.141 $\pm$ 0.007 & 0.668 & 0.592 $\pm$ 0.005 & 0.191 & 0.050 $\pm$ 0.019 \\
 \midrule
-$\Delta$ (mean over tasks) & \multicolumn{2}{c}{-0.024 $\pm$ 0.003} & \multicolumn{2}{c}{-0.021 $\pm$ 0.004} & \multicolumn{2}{c}{-0.151 $\pm$ 0.001} & \multicolumn{2}{c}{-0.011 $\pm$ 0.001} \\
+$\Delta$ (mean over tasks) & \multicolumn{2}{c}{-0.024 $\pm$ 0.003} & \multicolumn{2}{c}{-0.023 $\pm$ 0.001} & \multicolumn{2}{c}{-0.151 $\pm$ 0.006} & \multicolumn{2}{c}{-0.106 $\pm$ 0.003} & \multicolumn{2}{c}{-0.149 $\pm$ 0.004} \\
 \bottomrule
 \end{tabular}
 \end{table*}
