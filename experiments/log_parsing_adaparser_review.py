@@ -245,3 +245,31 @@ def report(exp, push=False):
         import hub_sync as hs
         hs.commit_files(hs.get_results_repo(),{str(p.relative_to(exp)):p for p in (md,js)},'Real AdaParser review/provenance report')
     print(md)
+
+
+def describe(system, E, push=False):
+    """GPU-independent system summary, computed as soon as its parser run finishes."""
+    import log_parsing_stream as ST
+    path=E.DATA/f'{system}.json'
+    if not path.exists():return
+    meta=json.loads(path.read_text())
+    if meta.get('provenance',{}).get('version')!=1:return
+    out=E.RES.parent/'adaparser_describe'/f'{system}.json'
+    digest=source_hash(path)
+    if out.exists() and json.loads(out.read_text()).get('source_sha256')==digest:return
+    templates,first,grp=E.groups(system);base=ST.load(system)
+    cnt=[Counter() for _ in templates]
+    for g,t in zip(grp,base['gt']):cnt[g][t]+=1
+    major=[max(c,key=c.get) for c in cnt]  # Counter insertion order preserves first-seen ties.
+    d={'templates':base['templates'],'cnt':cnt,'major':major,'gtl':base['gt'],'first':first,'G':len(templates)}
+    sizes,b,gain,correct,fix,major_text=metrics(d,templates)
+    prov,_=provenance(meta,np.array(grp),len(templates))
+    r={'source_sha256':digest,'model':E.MODEL,'system':system,'pa0':float(b.sum()/sum(sizes)),
+       'wrong_first':float((~correct).mean()),'wrong_majority':float((np.array(templates,dtype=object)!=major_text).mean()),
+       'G':len(templates),'n_lines':len(grp),'provenance':prov,'n1':n1(sizes,correct,templates,major_text),
+       'n5':n5(system,meta,E.MODEL)}
+    out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(r,default=float))
+    if push:
+        import hub_sync as hs
+        hs.commit_files(hs.get_results_repo(),{str(out.relative_to(E.EXP)):out},f'AdaParser describe {E.MODEL} {system}')
+    print(system,'PA_0',r['pa0'],'wrong templates',r['wrong_first'],flush=True)

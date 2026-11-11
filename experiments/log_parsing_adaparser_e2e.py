@@ -319,7 +319,7 @@ def report(push=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["prep", "run", "hidden", "sim", "report"])
+    ap.add_argument("cmd", choices=["prep", "run", "hidden", "sim", "report", "describe"])
     ap.add_argument("--push", action="store_true")
     ap.add_argument('-s', '--systems', nargs='+')
     a = ap.parse_args()
@@ -327,7 +327,11 @@ def main():
         global SYSTEMS
         assert all(s in SYSTEMS for s in a.systems)
         SYSTEMS = a.systems
-    {"prep": lambda: prep(), "run": lambda: run(a.push), "hidden": lambda: hidden(a.push),
+    def describe_all():
+        from log_parsing_adaparser_review import describe
+        for system in SYSTEMS:
+            describe(system, sys.modules[__name__], a.push)
+    {"describe": describe_all, "prep": lambda: prep(), "run": lambda: run(a.push), "hidden": lambda: hidden(a.push),
      "sim": lambda: sim(a.push), "report": lambda: report(a.push)}[a.cmd]()
 
 
