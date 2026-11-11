@@ -4,7 +4,7 @@
    "Apache": {
     "source_sha256": "44d1c29cdddaf211e2d46dea0e7a240d886e5e1036617903b219450b36ba6f19",
     "hidden_sha256": "f0bf75b428eae7bef089868ab94369521563837fcda0da8f79ffbb971e52c4fe",
-    "hidden_verified": false,
+    "hidden_verified": true,
     "model": "llama",
     "system": "Apache",
     "n_lines": 50000,
@@ -137,10 +137,183 @@
      }
     }
    },
+   "BGL": {
+    "source_sha256": "003ec739748efd024d9d37107abed0e7f09b2acfbb4d6c777f403a7b22b18cbb",
+    "hidden_sha256": "7d311ccea17b2a8c38af588b9a07770de285083a0c2b8a98b4758f7f9a298f2f",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "BGL",
+    "n_lines": 50000,
+    "G": 66,
+    "pa0": 0.99496,
+    "correct_groups": 0.7272727272727273,
+    "wrong_groups": 0.2727272727272727,
+    "wrong_majority_groups": 0.2727272727272727,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 43459,
+      "candidate": 6541
+     },
+     "line_shares": {
+      "candidate": 0.13082,
+      "llm": 0.86918,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 52,
+      "candidate": 14
+     },
+     "template_shares": {
+      "candidate": 0.21212121212121213,
+      "llm": 0.7878787878787878,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 43459,
+      "candidate": 6541
+     },
+     "duplicate_line_writes": 0,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate"
+     ]
+    },
+    "n1": {
+     "gini": 0.9627866666666667,
+     "top_shares": {
+      "1": 0.75576,
+      "5": 0.97674,
+      "10": 0.98982,
+      "20": 0.99332
+     },
+     "top20_wrong_first": 0.25,
+     "top20_wrong_majority": 0.25,
+     "spearman_size_wrong_first": -0.21950489674524018,
+     "spearman_size_wrong_majority": -0.21950489674524018
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.99496,
+      "PTA": 0.7272727272727273,
+      "RTA": 0.8888888888888888,
+      "FTA": 0.7999999999999999,
+      "n_pred": 66,
+      "n_gt": 54
+     },
+     "Drain": {
+      "PA": 0.20188,
+      "PTA": 0.23529411764705882,
+      "RTA": 0.2222222222222222,
+      "FTA": 0.22857142857142856,
+      "n_pred": 51,
+      "n_gt": 54
+     },
+     "base": {
+      "PA": 0.10998,
+      "PTA": 0.44,
+      "RTA": 0.4074074074074074,
+      "FTA": 0.4230769230769231,
+      "n_pred": 50,
+      "n_gt": 54
+     },
+     "strong": {
+      "PA": 0.98904,
+      "PTA": 0.76,
+      "RTA": 0.7037037037037037,
+      "FTA": 0.7307692307692308,
+      "n_pred": 50,
+      "n_gt": 54
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/BGL.json",
+    "cohorts": {
+     "all": {
+      "groups": 66,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 52,
+      "lines": 43459
+     },
+     "llm_involved": {
+      "groups": 52,
+      "lines": 43459
+     }
+    }
+   },
    "HDFS": {
     "source_sha256": "9f1d20b51512ea156eab591103494c2240c40d62a31aeb0e8ebfd7537ddbdf99",
     "hidden_sha256": "1e60967409318579305638af5a7aba8a1390d05edafc91cd0c6664920d2fa518",
-    "hidden_verified": false,
+    "hidden_verified": true,
     "model": "llama",
     "system": "HDFS",
     "n_lines": 50000,
@@ -221,6 +394,14 @@
       "n_pred": 14,
       "n_gt": 13
      },
+     "base": {
+      "PA": 0.6821,
+      "PTA": 0.2857142857142857,
+      "RTA": 0.3076923076923077,
+      "FTA": 0.29629629629629634,
+      "n_pred": 14,
+      "n_gt": 13
+     },
      "strong": {
       "PA": 0.9996,
       "PTA": 0.8461538461538461,
@@ -249,7 +430,7 @@
    "HPC": {
     "source_sha256": "819fec54c2a355819691442bcb94a322d3390db30863316ef75ab0758ebdf115",
     "hidden_sha256": "f0d7cea3117b51cfaa2810daba79e62080494620f193115b6066a9e4c93d68cc",
-    "hidden_verified": false,
+    "hidden_verified": true,
     "model": "llama",
     "system": "HPC",
     "n_lines": 50000,
@@ -374,390 +555,2968 @@
       "lines": 7179
      }
     }
+   },
+   "Hadoop": {
+    "source_sha256": "6e575fcee1222bdbb4ab56c67f28088f32bec89cb42204bca988b4731ec59b86",
+    "hidden_sha256": "649193ab461d18da3e7d936efcfb90523992e09435f23f926c137fc23e17a4db",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "Hadoop",
+    "n_lines": 50000,
+    "G": 228,
+    "pa0": 0.93918,
+    "correct_groups": 0.7543859649122807,
+    "wrong_groups": 0.24561403508771928,
+    "wrong_majority_groups": 0.24561403508771928,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 43216,
+      "candidate": 6784
+     },
+     "line_shares": {
+      "candidate": 0.13568,
+      "llm": 0.86432,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 196,
+      "candidate": 32
+     },
+     "template_shares": {
+      "candidate": 0.14035087719298245,
+      "llm": 0.8596491228070176,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 43216,
+      "candidate": 6784
+     },
+     "duplicate_line_writes": 0,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.8554070175438597,
+     "top_shares": {
+      "1": 0.26492,
+      "5": 0.49238,
+      "10": 0.62548,
+      "20": 0.75466
+     },
+     "top20_wrong_first": 0.1,
+     "top20_wrong_majority": 0.1,
+     "spearman_size_wrong_first": -0.23134461280721527,
+     "spearman_size_wrong_majority": -0.23134461280721527
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.93918,
+      "PTA": 0.7368421052631579,
+      "RTA": 0.7850467289719626,
+      "FTA": 0.7601809954751131,
+      "n_pred": 228,
+      "n_gt": 214
+     },
+     "Drain": {
+      "PA": 0.5371,
+      "PTA": 0.3524904214559387,
+      "RTA": 0.42990654205607476,
+      "FTA": 0.3873684210526316,
+      "n_pred": 261,
+      "n_gt": 214
+     },
+     "base": {
+      "PA": 0.23442,
+      "PTA": 0.38392857142857145,
+      "RTA": 0.40186915887850466,
+      "FTA": 0.3926940639269407,
+      "n_pred": 224,
+      "n_gt": 214
+     },
+     "strong": {
+      "PA": 0.30788,
+      "PTA": 0.5227272727272727,
+      "RTA": 0.5373831775700935,
+      "FTA": 0.5299539170506912,
+      "n_pred": 220,
+      "n_gt": 214
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/Hadoop.json",
+    "cohorts": {
+     "all": {
+      "groups": 228,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 196,
+      "lines": 43216
+     },
+     "llm_involved": {
+      "groups": 196,
+      "lines": 43216
+     }
+    }
+   },
+   "HealthApp": {
+    "source_sha256": "b7f4b3aa148f27d90736e19bee1cf7d7d49c98a70ea0789991cec41f593fad49",
+    "hidden_sha256": "1eafe4af87cdcb95005c6e0e5e19a0b87882a7b7e611b27bfa01fe486e4ff5c8",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "HealthApp",
+    "n_lines": 50000,
+    "G": 182,
+    "pa0": 0.80658,
+    "correct_groups": 0.6208791208791209,
+    "wrong_groups": 0.3791208791208791,
+    "wrong_majority_groups": 0.3791208791208791,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 40033,
+      "mixed": 578,
+      "candidate": 9389
+     },
+     "line_shares": {
+      "candidate": 0.18778,
+      "llm": 0.80066,
+      "mixed": 0.01156,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 151,
+      "mixed": 1,
+      "candidate": 30
+     },
+     "template_shares": {
+      "candidate": 0.16483516483516483,
+      "llm": 0.8296703296703297,
+      "mixed": 0.005494505494505495,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 40050,
+      "candidate": 9390,
+      "mixed": 560
+     },
+     "duplicate_line_writes": 8178,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "mixed",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.9264298901098902,
+     "top_shares": {
+      "1": 0.1382,
+      "5": 0.65446,
+      "10": 0.8602,
+      "20": 0.9127
+     },
+     "top20_wrong_first": 0.35,
+     "top20_wrong_majority": 0.35,
+     "spearman_size_wrong_first": -0.24589711330745997,
+     "spearman_size_wrong_majority": -0.24589711330745997
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.80658,
+      "PTA": 0.5934065934065934,
+      "RTA": 0.7941176470588235,
+      "FTA": 0.6792452830188679,
+      "n_pred": 182,
+      "n_gt": 136
+     },
+     "Drain": {
+      "PA": 0.30378,
+      "PTA": 0.006721433905899925,
+      "RTA": 0.33088235294117646,
+      "FTA": 0.013175230566534914,
+      "n_pred": 6695,
+      "n_gt": 136
+     },
+     "base": {
+      "PA": 0.20816,
+      "PTA": 0.3404255319148936,
+      "RTA": 0.35294117647058826,
+      "FTA": 0.3465703971119134,
+      "n_pred": 141,
+      "n_gt": 136
+     },
+     "strong": {
+      "PA": 0.73248,
+      "PTA": 0.4642857142857143,
+      "RTA": 0.47794117647058826,
+      "FTA": 0.4710144927536232,
+      "n_pred": 140,
+      "n_gt": 136
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/HealthApp.json",
+    "cohorts": {
+     "all": {
+      "groups": 182,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 151,
+      "lines": 40033
+     },
+     "llm_involved": {
+      "groups": 152,
+      "lines": 40611
+     }
+    }
+   },
+   "Linux": {
+    "source_sha256": "86b00a87e6195e1f018eee31ef2b8cf19236b4f12b6076a974819ce9679c9ba6",
+    "hidden_sha256": "b6e6a709c346281e7146be557e5465cfa333bac0feac0ff9c8d03c43656133c5",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "Linux",
+    "n_lines": 23921,
+    "G": 365,
+    "pa0": 0.8759249195267756,
+    "correct_groups": 0.6164383561643836,
+    "wrong_groups": 0.3835616438356164,
+    "wrong_majority_groups": 0.3835616438356164,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 19928,
+      "candidate": 3977,
+      "mixed": 16
+     },
+     "line_shares": {
+      "candidate": 0.16625559132143305,
+      "llm": 0.8330755403202207,
+      "mixed": 0.000668868358346223,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 336,
+      "candidate": 28,
+      "mixed": 1
+     },
+     "template_shares": {
+      "candidate": 0.07671232876712329,
+      "llm": 0.9205479452054794,
+      "mixed": 0.0027397260273972603,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 19929,
+      "candidate": 3977,
+      "mixed": 15
+     },
+     "duplicate_line_writes": 0,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "mixed",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.9019472201017846,
+     "top_shares": {
+      "1": 0.4349316500146315,
+      "5": 0.7610467789808119,
+      "10": 0.8249237072028761,
+      "20": 0.8681911291333975
+     },
+     "top20_wrong_first": 0.3,
+     "top20_wrong_majority": 0.3,
+     "spearman_size_wrong_first": -0.18589620211514787,
+     "spearman_size_wrong_majority": -0.18589620211514787
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.8759249195267756,
+      "PTA": 0.5835616438356165,
+      "RTA": 0.6301775147928994,
+      "FTA": 0.6059743954480796,
+      "n_pred": 365,
+      "n_gt": 338
+     },
+     "Drain": {
+      "PA": 0.1111157560302663,
+      "PTA": 0.23255813953488372,
+      "RTA": 0.2958579881656805,
+      "FTA": 0.2604166666666667,
+      "n_pred": 430,
+      "n_gt": 338
+     },
+     "base": {
+      "PA": 0.2339367083315915,
+      "PTA": 0.24630541871921183,
+      "RTA": 0.2958579881656805,
+      "FTA": 0.2688172043010753,
+      "n_pred": 406,
+      "n_gt": 338
+     },
+     "strong": {
+      "PA": 0.25082563437983363,
+      "PTA": 0.293398533007335,
+      "RTA": 0.35502958579881655,
+      "FTA": 0.321285140562249,
+      "n_pred": 409,
+      "n_gt": 338
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/Linux.json",
+    "cohorts": {
+     "all": {
+      "groups": 365,
+      "lines": 23921
+     },
+     "llm_only": {
+      "groups": 336,
+      "lines": 19928
+     },
+     "llm_involved": {
+      "groups": 337,
+      "lines": 19944
+     }
+    }
+   },
+   "OpenSSH": {
+    "source_sha256": "420361b2ac44d2031398fac327165d9bd15572e59ed3822b12dccddcd70d79eb",
+    "hidden_sha256": "b50e52a07f90e7eab45ed97d2d4cb6d7f24181392ae7517a7d1a2b021fc77531",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "OpenSSH",
+    "n_lines": 50000,
+    "G": 31,
+    "pa0": 0.99954,
+    "correct_groups": 0.8387096774193549,
+    "wrong_groups": 0.16129032258064516,
+    "wrong_majority_groups": 0.16129032258064516,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "candidate": 35396,
+      "mixed": 14476,
+      "llm": 128
+     },
+     "line_shares": {
+      "candidate": 0.70792,
+      "llm": 0.00256,
+      "mixed": 0.28952,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "candidate": 21,
+      "mixed": 1,
+      "llm": 9
+     },
+     "template_shares": {
+      "candidate": 0.6774193548387096,
+      "llm": 0.2903225806451613,
+      "mixed": 0.03225806451612903,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "candidate": 36659,
+      "llm": 139,
+      "mixed": 13202
+     },
+     "duplicate_line_writes": 12907538,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "mixed",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.8625729032258065,
+     "top_shares": {
+      "1": 0.28952,
+      "5": 0.91458,
+      "10": 0.99404,
+      "20": 0.99936
+     },
+     "top20_wrong_first": 0.0,
+     "top20_wrong_majority": 0.0,
+     "spearman_size_wrong_first": -0.5168933211417037,
+     "spearman_size_wrong_majority": -0.5168933211417037
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.99954,
+      "PTA": 0.7741935483870968,
+      "RTA": 0.8888888888888888,
+      "FTA": 0.8275862068965517,
+      "n_pred": 31,
+      "n_gt": 27
+     },
+     "Drain": {
+      "PA": 0.4403,
+      "PTA": 0.5384615384615384,
+      "RTA": 0.5185185185185185,
+      "FTA": 0.5283018867924528,
+      "n_pred": 26,
+      "n_gt": 27
+     },
+     "strong": {
+      "PA": 0.99786,
+      "PTA": 0.6153846153846154,
+      "RTA": 0.5925925925925926,
+      "FTA": 0.6037735849056604,
+      "n_pred": 26,
+      "n_gt": 27
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/OpenSSH.json",
+    "cohorts": {
+     "all": {
+      "groups": 31,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 9,
+      "lines": 128
+     },
+     "llm_involved": {
+      "groups": 10,
+      "lines": 14604
+     }
+    }
+   },
+   "OpenStack": {
+    "source_sha256": "0ca08a1cc1023ae94dc2b7ca7b53e8cb2f4c550a0828c809a4ae5f92528cde90",
+    "hidden_sha256": "2fb05de28bf095ff47df711591906e4a6bb56febb1df8d6ad3914887d77818df",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "OpenStack",
+    "n_lines": 50000,
+    "G": 45,
+    "pa0": 0.98936,
+    "correct_groups": 0.9777777777777777,
+    "wrong_groups": 0.022222222222222223,
+    "wrong_majority_groups": 0.022222222222222223,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "candidate": 41169,
+      "llm": 8831
+     },
+     "line_shares": {
+      "candidate": 0.82338,
+      "llm": 0.17662,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "candidate": 32,
+      "llm": 13
+     },
+     "template_shares": {
+      "candidate": 0.7111111111111111,
+      "llm": 0.28888888888888886,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "candidate": 41169,
+      "llm": 8831
+     },
+     "duplicate_line_writes": 0,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.6307128888888889,
+     "top_shares": {
+      "1": 0.4666,
+      "5": 0.62246,
+      "10": 0.70654,
+      "20": 0.81302
+     },
+     "top20_wrong_first": 0.05,
+     "top20_wrong_majority": 0.05,
+     "spearman_size_wrong_first": 0.029412171797582633,
+     "spearman_size_wrong_majority": 0.029412171797582633
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.98936,
+      "PTA": 0.9777777777777777,
+      "RTA": 0.9777777777777777,
+      "FTA": 0.9777777777777777,
+      "n_pred": 45,
+      "n_gt": 45
+     },
+     "Drain": {
+      "PA": 0.02888,
+      "PTA": 0.00191131498470948,
+      "RTA": 0.1111111111111111,
+      "FTA": 0.0037579857196542656,
+      "n_pred": 2616,
+      "n_gt": 45
+     },
+     "base": {
+      "PA": 0.15858,
+      "PTA": 0.057971014492753624,
+      "RTA": 0.08888888888888889,
+      "FTA": 0.07017543859649124,
+      "n_pred": 69,
+      "n_gt": 45
+     },
+     "strong": {
+      "PA": 0.81332,
+      "PTA": 0.47368421052631576,
+      "RTA": 0.4,
+      "FTA": 0.43373493975903615,
+      "n_pred": 38,
+      "n_gt": 45
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/OpenStack.json",
+    "cohorts": {
+     "all": {
+      "groups": 45,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 13,
+      "lines": 8831
+     },
+     "llm_involved": {
+      "groups": 13,
+      "lines": 8831
+     }
+    }
+   },
+   "Spark": {
+    "source_sha256": "d9432adfb6d1733d28a845ba01bc148d5c147529185d45c6dbcd8d0bbc6835cb",
+    "hidden_sha256": "fdbf9c7696017f362a859f47d6c610b9a04823af5bf1d4525ece1f2b91b64c2c",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "Spark",
+    "n_lines": 50000,
+    "G": 141,
+    "pa0": 0.98502,
+    "correct_groups": 0.7943262411347518,
+    "wrong_groups": 0.20567375886524822,
+    "wrong_majority_groups": 0.20567375886524822,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 49400,
+      "candidate": 600
+     },
+     "line_shares": {
+      "candidate": 0.012,
+      "llm": 0.988,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 120,
+      "candidate": 21
+     },
+     "template_shares": {
+      "candidate": 0.14893617021276595,
+      "llm": 0.851063829787234,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 49400,
+      "candidate": 600
+     },
+     "duplicate_line_writes": 0,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.9607543262411349,
+     "top_shares": {
+      "1": 0.4931,
+      "5": 0.94296,
+      "10": 0.9557,
+      "20": 0.9681
+     },
+     "top20_wrong_first": 0.2,
+     "top20_wrong_majority": 0.2,
+     "spearman_size_wrong_first": 0.08625984726840735,
+     "spearman_size_wrong_majority": 0.08625984726840735
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.98502,
+      "PTA": 0.7588652482269503,
+      "RTA": 0.781021897810219,
+      "FTA": 0.7697841726618706,
+      "n_pred": 141,
+      "n_gt": 137
+     },
+     "Drain": {
+      "PA": 0.02888,
+      "PTA": 0.381294964028777,
+      "RTA": 0.38686131386861317,
+      "FTA": 0.38405797101449274,
+      "n_pred": 139,
+      "n_gt": 137
+     },
+     "base": {
+      "PA": 0.01846,
+      "PTA": 0.28776978417266186,
+      "RTA": 0.291970802919708,
+      "FTA": 0.2898550724637681,
+      "n_pred": 139,
+      "n_gt": 137
+     },
+     "strong": {
+      "PA": 0.02714,
+      "PTA": 0.4172661870503597,
+      "RTA": 0.4233576642335766,
+      "FTA": 0.4202898550724638,
+      "n_pred": 139,
+      "n_gt": 137
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/Spark.json",
+    "cohorts": {
+     "all": {
+      "groups": 141,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 120,
+      "lines": 49400
+     },
+     "llm_involved": {
+      "groups": 120,
+      "lines": 49400
+     }
+    }
+   },
+   "Thunderbird": {
+    "source_sha256": "e4b7f173c288ab96212f104eb5de7d4823cee2f6108e9d931f88fe7ca2fe33cf",
+    "hidden_sha256": "bf44daeef56d3f32990b4d7d3fa19cc6c52a41fced0c10ca5ba66e6982eded81",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "Thunderbird",
+    "n_lines": 50000,
+    "G": 577,
+    "pa0": 0.64372,
+    "correct_groups": 0.511265164644714,
+    "wrong_groups": 0.48873483535528595,
+    "wrong_majority_groups": 0.4904679376083189,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 47944,
+      "candidate": 2056
+     },
+     "line_shares": {
+      "candidate": 0.04112,
+      "llm": 0.95888,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 557,
+      "candidate": 20
+     },
+     "template_shares": {
+      "candidate": 0.03466204506065858,
+      "llm": 0.9653379549393414,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 47944,
+      "candidate": 2056
+     },
+     "duplicate_line_writes": 834,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.7797312305025996,
+     "top_shares": {
+      "1": 0.22724,
+      "5": 0.40334,
+      "10": 0.48852,
+      "20": 0.56262
+     },
+     "top20_wrong_first": 0.3,
+     "top20_wrong_majority": 0.3,
+     "spearman_size_wrong_first": -0.2645863415768722,
+     "spearman_size_wrong_majority": -0.26091942661191475
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.64372,
+      "PTA": 0.49220103986135183,
+      "RTA": 0.5259259259259259,
+      "FTA": 0.5085049239033124,
+      "n_pred": 577,
+      "n_gt": 540
+     },
+     "Drain": {
+      "PA": 0.23516,
+      "PTA": 0.23015873015873015,
+      "RTA": 0.26851851851851855,
+      "FTA": 0.24786324786324784,
+      "n_pred": 630,
+      "n_gt": 540
+     },
+     "base": {
+      "PA": 0.17896,
+      "PTA": 0.2799325463743676,
+      "RTA": 0.3074074074074074,
+      "FTA": 0.29302736098852605,
+      "n_pred": 593,
+      "n_gt": 540
+     },
+     "strong": {
+      "PA": 0.39878,
+      "PTA": 0.3555926544240401,
+      "RTA": 0.39444444444444443,
+      "FTA": 0.3740122914837577,
+      "n_pred": 599,
+      "n_gt": 540
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/Thunderbird.json",
+    "cohorts": {
+     "all": {
+      "groups": 577,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 557,
+      "lines": 47944
+     },
+     "llm_involved": {
+      "groups": 557,
+      "lines": 47944
+     }
+    }
+   },
+   "Zookeeper": {
+    "source_sha256": "475c748fddebeb02281116c718c58203076fa490ce66a081d8a8050c6cb5b06d",
+    "hidden_sha256": "2ae0eeb517bef523557e30f834d33978807e584f3434ae1497ec9bf21f8e8514",
+    "hidden_verified": true,
+    "model": "llama",
+    "system": "Zookeeper",
+    "n_lines": 50000,
+    "G": 98,
+    "pa0": 0.9551,
+    "correct_groups": 0.7755102040816326,
+    "wrong_groups": 0.22448979591836735,
+    "wrong_majority_groups": 0.22448979591836735,
+    "provenance": {
+     "available": true,
+     "candidate_insertions": 32,
+     "line_counts": {
+      "llm": 10965,
+      "candidate": 39035
+     },
+     "line_shares": {
+      "candidate": 0.7807,
+      "llm": 0.2193,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "template_counts": {
+      "llm": 66,
+      "candidate": 32
+     },
+     "template_shares": {
+      "candidate": 0.32653061224489793,
+      "llm": 0.673469387755102,
+      "mixed": 0.0,
+      "unknown": 0.0
+     },
+     "arrival_counts": {
+      "llm": 10965,
+      "candidate": 39035
+     },
+     "duplicate_line_writes": 0,
+     "unassigned_lines": 0,
+     "group_origins": [
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "candidate",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm",
+      "llm"
+     ]
+    },
+    "n1": {
+     "gini": 0.8887534693877552,
+     "top_shares": {
+      "1": 0.13954,
+      "5": 0.69512,
+      "10": 0.84518,
+      "20": 0.9812
+     },
+     "top20_wrong_first": 0.15,
+     "top20_wrong_majority": 0.15,
+     "spearman_size_wrong_first": -0.36830216732123067,
+     "spearman_size_wrong_majority": -0.36830216732123067
+    },
+    "n5": {
+     "AdaParser": {
+      "PA": 0.9551,
+      "PTA": 0.7653061224489796,
+      "RTA": 0.8426966292134831,
+      "FTA": 0.8021390374331551,
+      "n_pred": 98,
+      "n_gt": 89
+     },
+     "Drain": {
+      "PA": 0.84956,
+      "PTA": 0.6623376623376623,
+      "RTA": 0.5730337078651685,
+      "FTA": 0.6144578313253012,
+      "n_pred": 77,
+      "n_gt": 89
+     },
+     "base": {
+      "PA": 0.50838,
+      "PTA": 0.5394736842105263,
+      "RTA": 0.4606741573033708,
+      "FTA": 0.496969696969697,
+      "n_pred": 76,
+      "n_gt": 89
+     },
+     "strong": {
+      "PA": 0.81042,
+      "PTA": 0.7402597402597403,
+      "RTA": 0.6404494382022472,
+      "FTA": 0.6867469879518073,
+      "n_pred": 77,
+      "n_gt": 89
+     }
+    },
+    "job": "results_phase3/adaparser_e2e/Zookeeper.json",
+    "cohorts": {
+     "all": {
+      "groups": 98,
+      "lines": 50000
+     },
+     "llm_only": {
+      "groups": 66,
+      "lines": 10965
+     },
+     "llm_involved": {
+      "groups": 66,
+      "lines": 10965
+     }
+    }
    }
   },
   "summary": {
    "all/all systems/lines/5": {
     "means": {
      "random": [
-      0.0,
-      0.0,
-      0.49913990825688076,
-      0.38628768020969856,
-      0.38600098296199215
+      0.014362306390072405,
+      0.011893825749965168,
+      0.12893628552195488,
+      0.0965211096016266,
+      0.08054277560607244
      ],
      "frequent": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.05145153503901446,
+      0.05145153503901446,
+      0.05145153503901446,
+      0.05145153503901446,
+      0.05145153503901446
      ],
      "dsize": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.12178058055818296,
+      0.12205624828668088,
+      0.10435265639879358,
+      0.10435265639879358,
+      0.12178058055818296
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7367198953157039,
+      0.7367198953157039,
+      0.7367198953157039,
+      0.7367198953157039,
+      0.7367198953157039
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.07032904551916849,
+     0.07060471324766643,
+     0.052901121359779125,
+     0.052901121359779125,
+     0.07032904551916849
     ],
     "oracle_minus_frequency": [
-     1.0,
-     1.0,
-     1.0,
-     1.0,
-     1.0
+     0.6852683602766895,
+     0.6852683602766895,
+     0.6852683602766895,
+     0.6852683602766895,
+     0.6852683602766895
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
+     "dsize": 2,
      "random": 2,
-     "frequent": 3,
-     "dsize": 3
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5504132231404959,
     "a12_all_vs_frequency": {
-     "random": 0.75,
+     "random": 0.675206611570248,
      "frequent": 0.5,
-     "dsize": 0.5,
+     "dsize": 0.5504132231404959,
      "oracle": 1.0
     }
    },
    "all/all systems/lines/10": {
     "means": {
      "random": [
-      0.6139990170380079,
-      0.38571428571428573,
-      0.4994266055045872,
-      0.38628768020969856,
-      0.5002866972477065
+      0.2638850152868227,
+      0.09404394107701414,
+      0.13210818650510447,
+      0.10228011665403551,
+      0.13100360864929061
      ],
      "frequent": [
-      0.49913990825688076,
-      0.49913990825688076,
-      0.49913990825688076,
-      0.49913990825688076,
-      0.49913990825688076
+      0.37203574993158495,
+      0.37203574993158495,
+      0.37203574993158495,
+      0.37203574993158495,
+      0.37203574993158495
      ],
      "dsize": [
-      0.49913990825688076,
-      0.0,
-      0.49913990825688076,
-      0.0,
-      0.0
+      0.3567622462065877,
+      0.2902682957222443,
+      0.3810210063144044,
+      0.28319282402413104,
+      0.28319282402413104
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8247146014827276,
+      0.8247146014827276,
+      0.8247146014827276,
+      0.8247146014827276,
+      0.8247146014827276
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     -0.49913990825688076,
-     0.0,
-     -0.49913990825688076,
-     -0.49913990825688076
+     -0.01527350372499725,
+     -0.08176745420934067,
+     0.00898525638281944,
+     -0.0888429259074539,
+     -0.0888429259074539
     ],
     "oracle_minus_frequency": [
-     0.5008600917431192,
-     0.5008600917431192,
-     0.5008600917431192,
-     0.5008600917431192,
-     0.5008600917431192
+     0.4526788515511426,
+     0.4526788515511426,
+     0.4526788515511426,
+     0.4526788515511426,
+     0.4526788515511426
     ],
-    "positive_seeds": 0,
-    "negative_seeds": 3,
-    "n_systems": 2,
+    "positive_seeds": 1,
+    "negative_seeds": 4,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
      "frequent": 2,
-     "random": 2,
-     "dsize": 2
+     "dsize": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.35,
+    "a12_d_frequency": 0.44380165289256196,
     "a12_all_vs_frequency": {
-     "random": 0.6,
+     "random": 0.4066115702479339,
      "frequent": 0.5,
-     "dsize": 0.35,
-     "oracle": 1.0
+     "dsize": 0.44380165289256196,
+     "oracle": 0.8429752066115702
     }
    },
    "all/all systems/lines/20": {
     "means": {
      "random": [
-      1.0,
-      0.8857142857142857,
-      0.8857142857142857,
-      0.8857142857142857,
-      0.9994266055045872
+      0.41732458649752696,
+      0.36309798201787213,
+      0.2141803075483952,
+      0.2860701413352953,
+      0.2714489758242515
      ],
      "frequent": [
-      0.4997133027522936,
-      0.4997133027522936,
-      0.4997133027522936,
-      0.4997133027522936,
-      0.4997133027522936
+      0.5778862382726992,
+      0.5778862382726992,
+      0.5778862382726992,
+      0.5778862382726992,
+      0.5778862382726992
      ],
      "dsize": [
-      0.4997133027522936,
-      0.8848541939711665,
-      0.8854275884665793,
-      0.8848541939711665,
-      0.8854275884665793
+      0.49603343073408085,
+      0.5851622521194065,
+      0.5663297010022577,
+      0.5685152524266937,
+      0.5686996104059864
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.880661961898552,
+      0.880661961898552,
+      0.880661961898552,
+      0.880661961898552,
+      0.880661961898552
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.3851408912188729,
-     0.38571428571428573,
-     0.3851408912188729,
-     0.38571428571428573
+     -0.0818528075386184,
+     0.0072760138467072855,
+     -0.011556537270441591,
+     -0.009370985846005597,
+     -0.009186627866712871
     ],
     "oracle_minus_frequency": [
-     0.5002866972477065,
-     0.5002866972477065,
-     0.5002866972477065,
-     0.5002866972477065,
-     0.5002866972477065
+     0.3027757236258527,
+     0.3027757236258527,
+     0.3027757236258527,
+     0.3027757236258527,
+     0.3027757236258527
     ],
-    "positive_seeds": 4,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "positive_seeds": 1,
+    "negative_seeds": 4,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "random": 1,
-     "dsize": 1,
-     "frequent": 2
+     "frequent": 2,
+     "dsize": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.55,
+    "a12_d_frequency": 0.4636363636363636,
     "a12_all_vs_frequency": {
-     "random": 0.8,
+     "random": 0.35702479338842974,
      "frequent": 0.5,
-     "dsize": 0.55,
-     "oracle": 1.0
+     "dsize": 0.4636363636363636,
+     "oracle": 0.768595041322314
     }
    },
    "all/all systems/lines/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4926407570673779,
+      0.5542819902613905,
+      0.5343127991064714,
+      0.5920286700246499,
+      0.4543086754630376
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8397293354802106,
+      0.8397293354802106,
+      0.8397293354802106,
+      0.8397293354802106,
+      0.8397293354802106
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.851475529551226,
+      0.8378501415196862,
+      0.8341453017635772,
+      0.8537030572454363,
+      0.8549513239047409
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9087574742068433,
+      0.9087574742068433,
+      0.9087574742068433,
+      0.9087574742068433,
+      0.9087574742068433
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.011746194071015403,
+     -0.0018791939605243835,
+     -0.0055840337166334075,
+     0.01397372176522571,
+     0.015221988424530375
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.06902813872663272,
+     0.06902813872663272,
+     0.06902813872663272,
+     0.06902813872663272,
+     0.06902813872663272
     ],
-    "positive_seeds": 0,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "positive_seeds": 3,
+    "negative_seeds": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5289256198347108,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.2958677685950413,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5289256198347108,
+     "oracle": 0.6074380165289256
     }
    },
    "all/all systems/templates/5": {
     "means": {
      "random": [
-      0.0,
-      0.0,
-      0.16666666666666666,
-      0.41666666666666663,
-      0.41666666666666663
+      0.043774803673046044,
+      0.04171707948934423,
+      0.04657974555890685,
+      0.09681154444841265,
+      0.11590474617916408
      ],
      "frequent": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.0012940959749470386,
+      0.0012940959749470386,
+      0.0012940959749470386,
+      0.0012940959749470386,
+      0.0012940959749470386
      ],
      "dsize": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.003929142088254022,
+      0.003929142088254022,
+      0.0026116190316005303,
+      0.0026116190316005303,
+      0.003929142088254022
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.44478714206579967,
+      0.44478714206579967,
+      0.44478714206579967,
+      0.44478714206579967,
+      0.44478714206579967
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.002635046113306984,
+     0.002635046113306984,
+     0.0013175230566534917,
+     0.0013175230566534917,
+     0.002635046113306984
     ],
     "oracle_minus_frequency": [
-     1.0,
-     1.0,
-     1.0,
-     1.0,
-     1.0
+     0.4434930460908526,
+     0.4434930460908526,
+     0.4434930460908526,
+     0.4434930460908526,
+     0.4434930460908526
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
      "random": 2,
-     "frequent": 3,
-     "dsize": 3
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5537190082644629,
     "a12_all_vs_frequency": {
-     "random": 0.75,
+     "random": 0.7636363636363637,
      "frequent": 0.5,
-     "dsize": 0.5,
+     "dsize": 0.5537190082644629,
      "oracle": 1.0
     }
    },
    "all/all systems/templates/10": {
     "means": {
      "random": [
-      0.5833333333333333,
-      0.25,
-      0.3333333333333333,
-      0.41666666666666663,
-      0.6666666666666666
+      0.3040840481188731,
+      0.13191998435039393,
+      0.08688989864132467,
+      0.11839301896524251,
+      0.17826450982351272
      ],
      "frequent": [
-      0.16666666666666666,
-      0.16666666666666666,
-      0.16666666666666666,
-      0.16666666666666666,
-      0.16666666666666666
+      0.054197612732900205,
+      0.054197612732900205,
+      0.054197612732900205,
+      0.054197612732900205,
+      0.054197612732900205
      ],
      "dsize": [
-      0.16666666666666666,
-      0.0,
-      0.16666666666666666,
-      0.0,
-      0.0
+      0.05603370767244342,
+      0.027029378668114425,
+      0.05733240897114473,
+      0.02638002801876378,
+      0.02638002801876378
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5259379204952357,
+      0.5259379204952357,
+      0.5259379204952357,
+      0.5259379204952357,
+      0.5259379204952357
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     -0.16666666666666666,
-     0.0,
-     -0.16666666666666666,
-     -0.16666666666666666
+     0.0018360949395432175,
+     -0.02716823406478578,
+     0.0031347962382445235,
+     -0.027817584714136426,
+     -0.027817584714136426
     ],
     "oracle_minus_frequency": [
-     0.8333333333333334,
-     0.8333333333333334,
-     0.8333333333333334,
-     0.8333333333333334,
-     0.8333333333333334
+     0.4717403077623355,
+     0.4717403077623355,
+     0.4717403077623355,
+     0.4717403077623355,
+     0.4717403077623355
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 2,
     "negative_seeds": 3,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
@@ -765,197 +3524,74 @@
      "frequent": 3,
      "dsize": 3
     },
-    "a12_d_frequency": 0.35,
+    "a12_d_frequency": 0.46611570247933887,
     "a12_all_vs_frequency": {
-     "random": 0.8,
+     "random": 0.6570247933884298,
      "frequent": 0.5,
-     "dsize": 0.35,
-     "oracle": 1.0
+     "dsize": 0.46611570247933887,
+     "oracle": 0.9338842975206612
     }
    },
    "all/all systems/templates/20": {
     "means": {
      "random": [
-      1.0,
-      0.75,
-      0.75,
-      0.75,
-      0.8333333333333333
+      0.45595354530778015,
+      0.384713216043054,
+      0.21513916325516808,
+      0.23665783581033886,
+      0.2713785887792453
      ],
      "frequent": [
-      0.3333333333333333,
-      0.3333333333333333,
-      0.3333333333333333,
-      0.3333333333333333,
-      0.3333333333333333
+      0.2196809377889534,
+      0.2196809377889534,
+      0.2196809377889534,
+      0.2196809377889534,
+      0.2196809377889534
      ],
      "dsize": [
-      0.3333333333333333,
-      0.41666666666666663,
-      0.5833333333333333,
-      0.41666666666666663,
-      0.5833333333333333
+      0.13362548066902855,
+      0.16382401776411734,
+      0.17790749826757934,
+      0.14974871913269253,
+      0.17972477144917035
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6781384672530976,
+      0.6781384672530976,
+      0.6781384672530976,
+      0.6781384672530976,
+      0.6781384672530976
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.08333333333333331,
-     0.24999999999999994,
-     0.08333333333333331,
-     0.24999999999999994
+     -0.08605545711992485,
+     -0.055856920024836054,
+     -0.04177343952137405,
+     -0.06993221865626087,
+     -0.03995616633978305
     ],
     "oracle_minus_frequency": [
-     0.6666666666666667,
-     0.6666666666666667,
-     0.6666666666666667,
-     0.6666666666666667,
-     0.6666666666666667
-    ],
-    "positive_seeds": 4,
-    "negative_seeds": 0,
-    "n_systems": 2,
-    "systems": [
-     "Apache",
-     "HPC"
-    ],
-    "sk_esd": {
-     "oracle": 1,
-     "random": 1,
-     "dsize": 2,
-     "frequent": 2
-    },
-    "a12_d_frequency": 0.55,
-    "a12_all_vs_frequency": {
-     "random": 0.825,
-     "frequent": 0.5,
-     "dsize": 0.55,
-     "oracle": 1.0
-    }
-   },
-   "all/all systems/templates/50": {
-    "means": {
-     "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-     ],
-     "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-     ],
-     "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-     ],
-     "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-     ]
-    },
-    "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
-    ],
-    "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.4584575294641442,
+     0.4584575294641442,
+     0.4584575294641442,
+     0.4584575294641442,
+     0.4584575294641442
     ],
     "positive_seeds": 0,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "negative_seeds": 5,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
-    ],
-    "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
-    },
-    "a12_d_frequency": 0.5,
-    "a12_all_vs_frequency": {
-     "random": 0.5,
-     "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
-    }
-   },
-   "all/held-out/lines/5": {
-    "means": {
-     "random": [
-      0.0,
-      0.0,
-      0.49913990825688076,
-      0.38628768020969856,
-      0.38600098296199215
-     ],
-     "frequent": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "dsize": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-     ]
-    },
-    "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
-    ],
-    "oracle_minus_frequency": [
-     1.0,
-     1.0,
-     1.0,
-     1.0,
-     1.0
-    ],
-    "positive_seeds": 0,
-    "negative_seeds": 0,
-    "n_systems": 2,
-    "systems": [
-     "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
@@ -963,329 +3599,512 @@
      "frequent": 3,
      "dsize": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.4834710743801653,
     "a12_all_vs_frequency": {
-     "random": 0.75,
+     "random": 0.6074380165289256,
      "frequent": 0.5,
-     "dsize": 0.5,
+     "dsize": 0.4834710743801653,
+     "oracle": 0.8553719008264463
+    }
+   },
+   "all/all systems/templates/50": {
+    "means": {
+     "random": [
+      0.5757672180430338,
+      0.5905596413864042,
+      0.5871182625254815,
+      0.5763705560451288,
+      0.5619165721090822
+     ],
+     "frequent": [
+      0.5374201833327686,
+      0.5374201833327686,
+      0.5374201833327686,
+      0.5374201833327686,
+      0.5374201833327686
+     ],
+     "dsize": [
+      0.5814852983633197,
+      0.5817214258721745,
+      0.5713707668844704,
+      0.5842931166150117,
+      0.5855032700978925
+     ],
+     "oracle": [
+      0.8319947859725842,
+      0.8319947859725842,
+      0.8319947859725842,
+      0.8319947859725842,
+      0.8319947859725842
+     ]
+    },
+    "d_minus_frequency": [
+     0.044065115030551105,
+     0.044301242539405816,
+     0.033950583551701774,
+     0.04687293328224307,
+     0.04808308676512385
+    ],
+    "oracle_minus_frequency": [
+     0.2945746026398156,
+     0.2945746026398156,
+     0.2945746026398156,
+     0.2945746026398156,
+     0.2945746026398156
+    ],
+    "positive_seeds": 5,
+    "negative_seeds": 0,
+    "n_systems": 11,
+    "systems": [
+     "Apache",
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
+    ],
+    "sk_esd": {
+     "oracle": 1,
+     "dsize": 2,
+     "random": 2,
+     "frequent": 2
+    },
+    "a12_d_frequency": 0.540495867768595,
+    "a12_all_vs_frequency": {
+     "random": 0.552892561983471,
+     "frequent": 0.5,
+     "dsize": 0.540495867768595,
+     "oracle": 0.7107438016528925
+    }
+   },
+   "all/held-out/lines/5": {
+    "means": {
+     "random": [
+      0.01669289379391599,
+      0.014499461780655238,
+      0.14067455696348583,
+      0.1079373010734466,
+      0.09829282424246118
+     ],
+     "frequent": [
+      0.04188341254693562,
+      0.04188341254693562,
+      0.04188341254693562,
+      0.04188341254693562,
+      0.04188341254693562
+     ],
+     "dsize": [
+      0.12817806207186122,
+      0.12817806207186122,
+      0.106877265877052,
+      0.106877265877052,
+      0.12817806207186122
+     ],
+     "oracle": [
+      0.7843827172157494,
+      0.7843827172157494,
+      0.7843827172157494,
+      0.7843827172157494,
+      0.7843827172157494
+     ]
+    },
+    "d_minus_frequency": [
+     0.0862946495249256,
+     0.0862946495249256,
+     0.06499385333011638,
+     0.06499385333011638,
+     0.0862946495249256
+    ],
+    "oracle_minus_frequency": [
+     0.7424993046688138,
+     0.7424993046688138,
+     0.7424993046688138,
+     0.7424993046688138,
+     0.7424993046688138
+    ],
+    "positive_seeds": 5,
+    "negative_seeds": 0,
+    "n_systems": 9,
+    "systems": [
+     "Apache",
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
+    ],
+    "sk_esd": {
+     "oracle": 1,
+     "dsize": 2,
+     "random": 2,
+     "frequent": 2
+    },
+    "a12_d_frequency": 0.5617283950617284,
+    "a12_all_vs_frequency": {
+     "random": 0.7283950617283951,
+     "frequent": 0.5,
+     "dsize": 0.5617283950617284,
      "oracle": 1.0
     }
    },
    "all/held-out/lines/10": {
     "means": {
      "random": [
-      0.6139990170380079,
-      0.38571428571428573,
-      0.4994266055045872,
-      0.38628768020969856,
-      0.5002866972477065
+      0.3097599817793424,
+      0.11415643112767136,
+      0.1442518339662512,
+      0.10889110483850646,
+      0.15970512123239028
      ],
      "frequent": [
-      0.49913990825688076,
-      0.49913990825688076,
-      0.49913990825688076,
-      0.49913990825688076,
-      0.49913990825688076
+      0.37084872020940696,
+      0.37084872020940696,
+      0.37084872020940696,
+      0.37084872020940696,
+      0.37084872020940696
      ],
      "dsize": [
-      0.49913990825688076,
-      0.0,
-      0.49913990825688076,
-      0.0,
-      0.0
+      0.3699630248137755,
+      0.25904304520113536,
+      0.3699630248137755,
+      0.25904304520113536,
+      0.25904304520113536
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8553631281559428,
+      0.8553631281559428,
+      0.8553631281559428,
+      0.8553631281559428,
+      0.8553631281559428
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     -0.49913990825688076,
-     0.0,
-     -0.49913990825688076,
-     -0.49913990825688076
+     -0.0008856953956314362,
+     -0.1118056750082716,
+     -0.0008856953956314362,
+     -0.1118056750082716,
+     -0.1118056750082716
     ],
     "oracle_minus_frequency": [
-     0.5008600917431192,
-     0.5008600917431192,
-     0.5008600917431192,
-     0.5008600917431192,
-     0.5008600917431192
+     0.4845144079465359,
+     0.4845144079465359,
+     0.4845144079465359,
+     0.4845144079465359,
+     0.4845144079465359
     ],
     "positive_seeds": 0,
-    "negative_seeds": 3,
-    "n_systems": 2,
+    "negative_seeds": 5,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
      "frequent": 2,
-     "random": 2,
-     "dsize": 2
+     "dsize": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.35,
+    "a12_d_frequency": 0.445679012345679,
     "a12_all_vs_frequency": {
-     "random": 0.6,
+     "random": 0.4641975308641975,
      "frequent": 0.5,
-     "dsize": 0.35,
-     "oracle": 1.0
+     "dsize": 0.445679012345679,
+     "oracle": 0.8395061728395061
     }
    },
    "all/held-out/lines/20": {
     "means": {
      "random": [
-      1.0,
-      0.8857142857142857,
-      0.8857142857142857,
-      0.8857142857142857,
-      0.9994266055045872
+      0.4902000716878006,
+      0.4400609800175165,
+      0.2428096927454218,
+      0.328674824032209,
+      0.32061773469097415
      ],
      "frequent": [
-      0.4997133027522936,
-      0.4997133027522936,
-      0.4997133027522936,
-      0.4997133027522936,
-      0.4997133027522936
+      0.593303930069792,
+      0.593303930069792,
+      0.593303930069792,
+      0.593303930069792,
+      0.593303930069792
      ],
      "dsize": [
-      0.4997133027522936,
-      0.8848541939711665,
-      0.8854275884665793,
-      0.8848541939711665,
-      0.8854275884665793
+      0.47086137239130554,
+      0.5854337443529875,
+      0.5621194899909951,
+      0.5579888481116878,
+      0.5596755919903011
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8869320993088059,
+      0.8869320993088059,
+      0.8869320993088059,
+      0.8869320993088059,
+      0.8869320993088059
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.3851408912188729,
-     0.38571428571428573,
-     0.3851408912188729,
-     0.38571428571428573
+     -0.12244255767848644,
+     -0.007870185716804534,
+     -0.031184440078796838,
+     -0.03531508195810418,
+     -0.03362833807949084
     ],
     "oracle_minus_frequency": [
-     0.5002866972477065,
-     0.5002866972477065,
-     0.5002866972477065,
-     0.5002866972477065,
-     0.5002866972477065
+     0.2936281692390139,
+     0.2936281692390139,
+     0.2936281692390139,
+     0.2936281692390139,
+     0.2936281692390139
     ],
-    "positive_seeds": 4,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "positive_seeds": 0,
+    "negative_seeds": 5,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "random": 1,
-     "dsize": 1,
-     "frequent": 2
+     "frequent": 2,
+     "dsize": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.55,
+    "a12_d_frequency": 0.4308641975308642,
     "a12_all_vs_frequency": {
-     "random": 0.8,
+     "random": 0.4074074074074074,
      "frequent": 0.5,
-     "dsize": 0.55,
-     "oracle": 1.0
+     "dsize": 0.4308641975308642,
+     "oracle": 0.7654320987654321
     }
    },
    "all/held-out/lines/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5602339428569769,
+      0.6348801304365865,
+      0.5985832739877504,
+      0.6554193383033527,
+      0.4979965779345716
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8483165247195759,
+      0.8483165247195759,
+      0.8483165247195759,
+      0.8483165247195759,
+      0.8483165247195759
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8680505245639755,
+      0.8526326723457324,
+      0.8541048483518092,
+      0.8687074111343229,
+      0.8683115705791133
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9072590147855552,
+      0.9072590147855552,
+      0.9072590147855552,
+      0.9072590147855552,
+      0.9072590147855552
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.019733999844399608,
+     0.004316147626156508,
+     0.005788323632233361,
+     0.020390886414747067,
+     0.019995045859537486
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.05894249006597929,
+     0.05894249006597929,
+     0.05894249006597929,
+     0.05894249006597929,
+     0.05894249006597929
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5358024691358024,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.34814814814814815,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5358024691358024,
+     "oracle": 0.5987654320987654
     }
    },
    "all/held-out/templates/5": {
     "means": {
      "random": [
-      0.0,
-      0.0,
-      0.16666666666666666,
-      0.41666666666666663,
-      0.41666666666666663
+      0.05032793464800865,
+      0.0501938908044366,
+      0.048474314084859874,
+      0.11753157019885357,
+      0.1378299388166795
      ],
      "frequent": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.0007880220646178092,
+      0.0007880220646178092,
+      0.0007880220646178092,
+      0.0007880220646178092,
+      0.0007880220646178092
      ],
      "dsize": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.004008633980881899,
+      0.004008633980881899,
+      0.002398328022749854,
+      0.002398328022749854,
+      0.004008633980881899
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.00322061191626409,
+     0.00322061191626409,
+     0.0016103059581320449,
+     0.0016103059581320449,
+     0.00322061191626409
     ],
     "oracle_minus_frequency": [
-     1.0,
-     1.0,
-     1.0,
-     1.0,
-     1.0
+     0.5197153650360558,
+     0.5197153650360558,
+     0.5197153650360558,
+     0.5197153650360558,
+     0.5197153650360558
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
      "random": 2,
-     "frequent": 3,
-     "dsize": 3
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5617283950617284,
     "a12_all_vs_frequency": {
-     "random": 0.75,
+     "random": 0.7851851851851852,
      "frequent": 0.5,
-     "dsize": 0.5,
+     "dsize": 0.5617283950617284,
      "oracle": 1.0
     }
    },
    "all/held-out/templates/10": {
     "means": {
      "random": [
-      0.5833333333333333,
-      0.25,
-      0.3333333333333333,
-      0.41666666666666663,
-      0.6666666666666666
+      0.36385860944140314,
+      0.15806093325365606,
+      0.09694862816971975,
+      0.13162102427443162,
+      0.213253776921677
      ],
      "frequent": [
-      0.16666666666666666,
-      0.16666666666666666,
-      0.16666666666666666,
-      0.16666666666666666,
-      0.16666666666666666
+      0.05844185508076966,
+      0.05844185508076966,
+      0.05844185508076966,
+      0.05844185508076966,
+      0.05844185508076966
      ],
      "dsize": [
-      0.16666666666666666,
-      0.0,
-      0.16666666666666666,
-      0.0,
-      0.0
+      0.05844185508076966,
+      0.021404818043732628,
+      0.05844185508076966,
+      0.021404818043732628,
+      0.021404818043732628
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027
      ]
     },
     "d_minus_frequency": [
      0.0,
-     -0.16666666666666666,
+     -0.037037037037037035,
      0.0,
-     -0.16666666666666666,
-     -0.16666666666666666
+     -0.037037037037037035,
+     -0.037037037037037035
     ],
     "oracle_minus_frequency": [
-     0.8333333333333334,
-     0.8333333333333334,
-     0.8333333333333334,
-     0.8333333333333334,
-     0.8333333333333334
+     0.538120474676133,
+     0.538120474676133,
+     0.538120474676133,
+     0.538120474676133,
+     0.538120474676133
     ],
     "positive_seeds": 0,
     "negative_seeds": 3,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
@@ -1293,2256 +4112,2526 @@
      "frequent": 3,
      "dsize": 3
     },
-    "a12_d_frequency": 0.35,
+    "a12_d_frequency": 0.45185185185185184,
     "a12_all_vs_frequency": {
-     "random": 0.8,
+     "random": 0.691358024691358,
      "frequent": 0.5,
-     "dsize": 0.35,
-     "oracle": 1.0
+     "dsize": 0.45185185185185184,
+     "oracle": 0.9382716049382716
     }
    },
    "all/held-out/templates/20": {
     "means": {
      "random": [
-      1.0,
-      0.75,
-      0.75,
-      0.75,
-      0.8333333333333333
+      0.5408835613969748,
+      0.4616117194439735,
+      0.24206664014712118,
+      0.2675735891431235,
+      0.319260201830353
      ],
      "frequent": [
-      0.3333333333333333,
-      0.3333333333333333,
-      0.3333333333333333,
-      0.3333333333333333,
-      0.3333333333333333
+      0.2484113487042873,
+      0.2484113487042873,
+      0.2484113487042873,
+      0.2484113487042873,
+      0.2484113487042873
      ],
      "dsize": [
-      0.3333333333333333,
-      0.41666666666666663,
-      0.5833333333333333,
-      0.41666666666666663,
-      0.5833333333333333
+      0.12790678617073928,
+      0.16864752691148002,
+      0.1858606697490447,
+      0.14681931572156673,
+      0.18425036379091264
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.08333333333333331,
-     0.24999999999999994,
-     0.08333333333333331,
-     0.24999999999999994
+     -0.12050456253354802,
+     -0.07976382179280728,
+     -0.0625506789552426,
+     -0.10159203298272057,
+     -0.06416098491337466
     ],
     "oracle_minus_frequency": [
-     0.6666666666666667,
-     0.6666666666666667,
-     0.6666666666666667,
-     0.6666666666666667,
-     0.6666666666666667
+     0.4879231873527281,
+     0.4879231873527281,
+     0.4879231873527281,
+     0.4879231873527281,
+     0.4879231873527281
     ],
-    "positive_seeds": 4,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "positive_seeds": 0,
+    "negative_seeds": 5,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "random": 1,
-     "dsize": 2,
-     "frequent": 2
+     "random": 2,
+     "frequent": 3,
+     "dsize": 3
     },
-    "a12_d_frequency": 0.55,
+    "a12_d_frequency": 0.4679012345679012,
     "a12_all_vs_frequency": {
-     "random": 0.825,
+     "random": 0.6283950617283951,
      "frequent": 0.5,
-     "dsize": 0.55,
-     "oracle": 1.0
+     "dsize": 0.4679012345679012,
+     "oracle": 0.845679012345679
     }
    },
    "all/held-out/templates/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6570542955063461,
+      0.6699888775127751,
+      0.6557389601638753,
+      0.6387714568411454,
+      0.6319429148985116
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5882645152611233,
+      0.5882645152611233,
+      0.5882645152611233,
+      0.5882645152611233,
+      0.5882645152611233
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6333917193460825,
+      0.6344739704283335,
+      0.6248609318297879,
+      0.6337857303783915,
+      0.6368521084447695
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.04512720408495918,
+     0.0462094551672102,
+     0.036596416568664525,
+     0.04552121511726814,
+     0.04858759318364614
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.27782435013394,
+     0.27782435013394,
+     0.27782435013394,
+     0.27782435013394,
+     0.27782435013394
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5358024691358024,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.554320987654321,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5358024691358024,
+     "oracle": 0.6790123456790124
     }
    },
    "llm_only/all systems/lines/5": {
     "means": {
      "random": [
-      0.9997133027522935,
-      0.5008600917431193,
-      0.9994266055045872,
-      1.0,
-      0.9994266055045872
+      0.2988457890968589,
+      0.18271634234286568,
+      0.2352967456800977,
+      0.329361830607645,
+      0.26453433853021574
      ],
      "frequent": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.45683097008897666,
+      0.45683097008897666,
+      0.45683097008897666,
+      0.45683097008897666,
+      0.45683097008897666
      ],
      "dsize": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.5477400609980676,
+      0.5644740146099022,
+      0.5477400609980676,
+      0.5651986744790551,
+      0.5644740146099022
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7806380449461238,
+      0.7806380449461238,
+      0.7806380449461238,
+      0.7806380449461238,
+      0.7806380449461238
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.09090909090909094,
+     0.10764304452092555,
+     0.09090909090909094,
+     0.10836770439007848,
+     0.10764304452092555
     ],
     "oracle_minus_frequency": [
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887
+     0.3238070748571471,
+     0.3238070748571471,
+     0.3238070748571471,
+     0.3238070748571471,
+     0.3238070748571471
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "random": 1
+     "dsize": 2,
+     "frequent": 3,
+     "random": 4
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5768595041322314,
     "a12_all_vs_frequency": {
-     "random": 0.475,
+     "random": 0.3975206611570248,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5768595041322314,
+     "oracle": 0.768595041322314
     }
    },
    "llm_only/all systems/lines/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.39343777779961636,
+      0.3822108224021499,
+      0.3145222666085634,
+      0.39585142598829653,
+      0.30882499371353045
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6950347397073,
+      0.6950347397073,
+      0.6950347397073,
+      0.6950347397073,
+      0.6950347397073
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7019530550368303,
+      0.7164518742051661,
+      0.7019530550368303,
+      0.7123600200094968,
+      0.7019530550368303
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8686855606347801,
+      0.8686855606347801,
+      0.8686855606347801,
+      0.8686855606347801,
+      0.8686855606347801
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.006918315329530245,
+     0.021417134497866086,
+     0.006918315329530245,
+     0.01732528030219682,
+     0.006918315329530245
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.17365082092748008,
+     0.17365082092748008,
+     0.17365082092748008,
+     0.17365082092748008,
+     0.17365082092748008
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5057851239669422,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.32975206611570246,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5057851239669422,
+     "oracle": 0.6033057851239669
     }
    },
    "llm_only/all systems/lines/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.472473682747979,
+      0.46164619298571447,
+      0.43250764542510933,
+      0.48523151171673296,
+      0.422131394489559
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7928358611303182,
+      0.7928358611303182,
+      0.7928358611303182,
+      0.7928358611303182,
+      0.7928358611303182
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8046086949270113,
+      0.8038396897811307,
+      0.8078083637024374,
+      0.808175515678245,
+      0.8051200200332758
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9246662073564026,
+      0.9246662073564026,
+      0.9246662073564026,
+      0.9246662073564026,
+      0.9246662073564026
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.011772833796693027,
+     0.011003828650812508,
+     0.014972502572119128,
+     0.01533965454792674,
+     0.012284158902957532
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.13183034622608436,
+     0.13183034622608436,
+     0.13183034622608436,
+     0.13183034622608436,
+     0.13183034622608436
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.512396694214876,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.31735537190082647,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.512396694214876,
+     "oracle": 0.6363636363636364
     }
    },
    "llm_only/all systems/lines/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6027360705102308,
+      0.6228075091961914,
+      0.6152160490843738,
+      0.7442360016450117,
+      0.5568312138674101
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9026414225230833,
+      0.9026414225230833,
+      0.9026414225230833,
+      0.9026414225230833,
+      0.9026414225230833
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9128739373871544,
+      0.9095964774543339,
+      0.9098414658499775,
+      0.9127871794443597,
+      0.9063305006666489
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9528119209205547,
+      0.9528119209205547,
+      0.9528119209205547,
+      0.9528119209205547,
+      0.9528119209205547
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.010232514864071063,
+     0.006955054931250593,
+     0.007200043326894168,
+     0.010145756921276394,
+     0.0036890781435655606
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.05017049839747134,
+     0.05017049839747134,
+     0.05017049839747134,
+     0.05017049839747134,
+     0.05017049839747134
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5371900826446281,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.3776859504132231,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5371900826446281,
+     "oracle": 0.5785123966942148
     }
    },
    "llm_only/all systems/templates/5": {
     "means": {
      "random": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      1.0,
-      0.8333333333333333
+      0.3101551586570635,
+      0.2609592649207127,
+      0.20481419695882588,
+      0.33014954936915136,
+      0.23215818970533483
      ],
      "frequent": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.18720052405870044,
+      0.18720052405870044,
+      0.18720052405870044,
+      0.18720052405870044,
+      0.18720052405870044
      ],
      "dsize": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.27810961496779135,
+      0.27942713802444485,
+      0.27810961496779135,
+      0.27942713802444485,
+      0.27942713802444485
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4448105000028267,
+      0.4448105000028267,
+      0.4448105000028267,
+      0.4448105000028267,
+      0.4448105000028267
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.09090909090909091,
+     0.09222661396574441,
+     0.09090909090909091,
+     0.09222661396574441,
+     0.09222661396574441
     ],
     "oracle_minus_frequency": [
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674
+     0.25760997594412627,
+     0.25760997594412627,
+     0.25760997594412627,
+     0.25760997594412627,
+     0.25760997594412627
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
+     "dsize": 2,
      "random": 2,
-     "frequent": 2,
-     "dsize": 2
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5768595041322314,
     "a12_all_vs_frequency": {
-     "random": 0.55,
+     "random": 0.5776859504132231,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5768595041322314,
+     "oracle": 0.7768595041322314
     }
    },
    "llm_only/all systems/templates/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4229958956953778,
+      0.425630471568117,
+      0.30215525017559214,
+      0.40693517225559733,
+      0.31160251474425144
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.40623986480412727,
+      0.40623986480412727,
+      0.40623986480412727,
+      0.40623986480412727,
+      0.40623986480412727
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.40937466104237186,
+      0.41099803766574855,
+      0.40937466104237186,
+      0.4135068924473306,
+      0.40937466104237186
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5259846363692897,
+      0.5259846363692897,
+      0.5259846363692897,
+      0.5259846363692897,
+      0.5259846363692897
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.003134796238244586,
+     0.004758172861621279,
+     0.003134796238244586,
+     0.007267027643203305,
+     0.003134796238244586
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.11974477156516244,
+     0.11974477156516244,
+     0.11974477156516244,
+     0.11974477156516244,
+     0.11974477156516244
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 1
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.515702479338843,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.48016528925619834,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.515702479338843,
+     "oracle": 0.628099173553719
     }
    },
    "llm_only/all systems/templates/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.488849282342048,
+      0.46880998294639187,
+      0.4603955335241629,
+      0.45083662265099617,
+      0.4607186531319341
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.45850210517971435,
+      0.45850210517971435,
+      0.45850210517971435,
+      0.45850210517971435,
+      0.45850210517971435
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.47404763562587476,
+      0.47423924741123025,
+      0.4721319268136142,
+      0.471410304739709,
+      0.47582330664953304
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6782318990012055,
+      0.6782318990012055,
+      0.6782318990012055,
+      0.6782318990012055,
+      0.6782318990012055
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.015545530446160416,
+     0.0157371422315159,
+     0.013629821633899863,
+     0.01290819955999467,
+     0.017321201469818692
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.21972979382149116,
+     0.21972979382149116,
+     0.21972979382149116,
+     0.21972979382149116,
+     0.21972979382149116
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "random": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5297520661157025,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.515702479338843,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5297520661157025,
+     "oracle": 0.6446280991735537
     }
    },
    "llm_only/all systems/templates/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.629785950287045,
+      0.6421422078207908,
+      0.6532914900221922,
+      0.6533571388055952,
+      0.626828424879777
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5939247395873876,
+      0.5939247395873876,
+      0.5939247395873876,
+      0.5939247395873876,
+      0.5939247395873876
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6277366452831534,
+      0.6402733772866318,
+      0.6338404219815216,
+      0.6287225187658491,
+      0.6294141003658401
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8322283653428543,
+      0.8322283653428543,
+      0.8322283653428543,
+      0.8322283653428543,
+      0.8322283653428543
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.033811905695765865,
+     0.046348637699244244,
+     0.03991568239413401,
+     0.034797779178461496,
+     0.03548936077845255
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.2383036257554667,
+     0.2383036257554667,
+     0.2383036257554667,
+     0.2383036257554667,
+     0.2383036257554667
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5520661157024793,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5388429752066116,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5520661157024793,
+     "oracle": 0.6776859504132231
     }
    },
    "llm_only/held-out/lines/5": {
     "means": {
      "random": [
-      0.9997133027522935,
-      0.5008600917431193,
-      0.9994266055045872,
-      1.0,
-      0.9994266055045872
+      0.3643902613502409,
+      0.2229812205870797,
+      0.2703679375555732,
+      0.39246602542500186,
+      0.32317140114974746
      ],
      "frequent": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.5164564611837267,
+      0.5164564611837267,
+      0.5164564611837267,
+      0.5164564611837267,
+      0.5164564611837267
      ],
      "dsize": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.6275675722948377,
+      0.6480201822648579,
+      0.6275675722948377,
+      0.6489058776604895,
+      0.6480201822648579
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8376895414915565,
+      0.8376895414915565,
+      0.8376895414915565,
+      0.8376895414915565,
+      0.8376895414915565
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.11111111111111105,
+     0.13156372108113124,
+     0.11111111111111105,
+     0.13244941647676278,
+     0.13156372108113124
     ],
     "oracle_minus_frequency": [
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887
+     0.3212330803078298,
+     0.3212330803078298,
+     0.3212330803078298,
+     0.3212330803078298,
+     0.3212330803078298
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "random": 1
+     "dsize": 2,
+     "frequent": 3,
+     "random": 4
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.6012345679012345,
     "a12_all_vs_frequency": {
-     "random": 0.475,
+     "random": 0.3987654320987654,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.6012345679012345,
+     "oracle": 0.7530864197530864
     }
    },
    "llm_only/held-out/lines/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4680973773025856,
+      0.46405124623441096,
+      0.3666057460305219,
+      0.4674939234956194,
+      0.37704094929460574
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.753386673688164,
+      0.753386673688164,
+      0.753386673688164,
+      0.753386673688164,
+      0.753386673688164
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.753386673688164,
+      0.7711074526716855,
+      0.753386673688164,
+      0.7661062975436453,
+      0.753386673688164
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9086906694710932,
+      0.9086906694710932,
+      0.9086906694710932,
+      0.9086906694710932,
+      0.9086906694710932
      ]
     },
     "d_minus_frequency": [
      0.0,
+     0.017720778983521424,
      0.0,
-     0.0,
-     0.0,
+     0.01271962385548131,
      0.0
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.1553039957829292,
+     0.1553039957829292,
+     0.1553039957829292,
+     0.1553039957829292,
+     0.1553039957829292
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 2,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5024691358024691,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.37407407407407406,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5024691358024691,
+     "oracle": 0.5925925925925926
     }
    },
    "llm_only/held-out/lines/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5516579018043374,
+      0.5545652161727762,
+      0.5011897730759788,
+      0.5720224476106076,
+      0.4991998530790654
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8378320846487048,
+      0.8378320846487048,
+      0.8378320846487048,
+      0.8378320846487048,
+      0.8378320846487048
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8449942642941146,
+      0.8341151909523389,
+      0.8434161706938678,
+      0.8444295009768557,
+      0.8418972516702926
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9402664384024908,
+      0.9402664384024908,
+      0.9402664384024908,
+      0.9402664384024908,
+      0.9402664384024908
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.007162179645409772,
+     -0.003716893696365964,
+     0.005584086045162917,
+     0.006597416328150807,
+     0.004065167021587768
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.10243435375378596,
+     0.10243435375378596,
+     0.10243435375378596,
+     0.10243435375378596,
+     0.10243435375378596
     ],
-    "positive_seeds": 0,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "positive_seeds": 4,
+    "negative_seeds": 1,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5037037037037037,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.3654320987654321,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5037037037037037,
+     "oracle": 0.6172839506172839
     }
    },
    "llm_only/held-out/lines/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6820419404696854,
+      0.7173475742184716,
+      0.6954974073558968,
+      0.8337863489077075,
+      0.6187402715489669
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9208973719378021,
+      0.9208973719378021,
+      0.9208973719378021,
+      0.9208973719378021,
+      0.9208973719378021
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9339352514499871,
+      0.9362618588865728,
+      0.9295890298392071,
+      0.9345819992699802,
+      0.9275030889935911
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.960594041749687,
+      0.960594041749687,
+      0.960594041749687,
+      0.960594041749687,
+      0.960594041749687
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.013037879512185047,
+     0.015364486948770684,
+     0.008691657901405025,
+     0.013684627332178123,
+     0.006605717055789051
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.03969666981188491,
+     0.03969666981188491,
+     0.03969666981188491,
+     0.03969666981188491,
+     0.03969666981188491
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5432098765432098,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.42345679012345677,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5432098765432098,
+     "oracle": 0.5802469135802469
     }
    },
    "llm_only/held-out/templates/5": {
     "means": {
      "random": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      1.0,
-      0.8333333333333333
+      0.3758810852011592,
+      0.3173514916576896,
+      0.24106690667745248,
+      0.4027167553840387,
+      0.2799174809042215
      ],
      "frequent": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.227201919493008,
+      0.227201919493008,
+      0.227201919493008,
+      0.227201919493008,
+      0.227201919493008
      ],
      "dsize": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.3383130306041191,
+      0.33992333656225115,
+      0.3383130306041191,
+      0.33992333656225115,
+      0.33992333656225115
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.1111111111111111,
+     0.11272141706924316,
+     0.1111111111111111,
+     0.11272141706924316,
+     0.11272141706924316
     ],
     "oracle_minus_frequency": [
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674
+     0.29330146760766557,
+     0.29330146760766557,
+     0.29330146760766557,
+     0.29330146760766557,
+     0.29330146760766557
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
+     "dsize": 2,
      "random": 2,
-     "frequent": 2,
-     "dsize": 2
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5962962962962963,
     "a12_all_vs_frequency": {
-     "random": 0.55,
+     "random": 0.5814814814814815,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5962962962962963,
+     "oracle": 0.7654320987654321
     }
    },
    "llm_only/held-out/templates/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5091667634452093,
+      0.5123868006230017,
+      0.35620788742897896,
+      0.48347287612628354,
+      0.37621673988463994
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.48485575250915985,
+      0.48485575250915985,
+      0.48485575250915985,
+      0.48485575250915985,
+      0.48485575250915985
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.48485575250915985,
+      0.4868398794932868,
+      0.48485575250915985,
+      0.48990625755966494,
+      0.48485575250915985
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027
      ]
     },
     "d_minus_frequency": [
      0.0,
+     0.0019841269841269216,
      0.0,
-     0.0,
-     0.0,
+     0.005050505050505083,
      0.0
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.11170657724774286,
+     0.11170657724774286,
+     0.11170657724774286,
+     0.11170657724774286,
+     0.11170657724774286
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 2,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 1
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5049382716049383,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.49506172839506174,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5049382716049383,
+     "oracle": 0.5925925925925926
     }
    },
    "llm_only/held-out/templates/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5771952376947751,
+      0.5566995632135935,
+      0.5379530403813475,
+      0.5293019842048519,
+      0.5460107995954435
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5287753754451257,
+      0.5287753754451257,
+      0.5287753754451257,
+      0.5287753754451257,
+      0.5287753754451257
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5431446900765433,
+      0.5357160470096024,
+      0.5369718505703704,
+      0.5360898680355973,
+      0.5422828975480841
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.014369314631417662,
+     0.0069406715644767525,
+     0.008196475125244795,
+     0.007314492590471677,
+     0.013507522102958469
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.20755916061188973,
+     0.20755916061188973,
+     0.20755916061188973,
+     0.20755916061188973,
+     0.20755916061188973
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5135802469135803,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5246913580246914,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5135802469135803,
+     "oracle": 0.6296296296296297
     }
    },
    "llm_only/held-out/templates/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7106408341375965,
+      0.7291057536586368,
+      0.7272415986954994,
+      0.7242897789845062,
+      0.6980952944566883
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6510162043618719,
+      0.6510162043618719,
+      0.6510162043618719,
+      0.6510162043618719,
+      0.6510162043618719
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6805168441384908,
+      0.702702991324638,
+      0.6871776551471278,
+      0.6825211611289317,
+      0.6871978451534418
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.029500639776618875,
+     0.051686786962766074,
+     0.0361614507852559,
+     0.03150495676705978,
+     0.036181640791569936
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.21507266103319145,
+     0.21507266103319145,
+     0.21507266103319145,
+     0.21507266103319145,
+     0.21507266103319145
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5444444444444444,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5444444444444444,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5444444444444444,
+     "oracle": 0.6419753086419753
     }
    },
    "llm_involved/all systems/lines/5": {
     "means": {
      "random": [
-      0.9997133027522935,
-      0.5008600917431193,
-      0.9994266055045872,
-      1.0,
-      0.9994266055045872
+      0.2915955277306155,
+      0.1191442945131763,
+      0.22409511035420354,
+      0.3029668278243692,
+      0.22829573394119357
      ],
      "frequent": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.43481342457632705,
+      0.43481342457632705,
+      0.43481342457632705,
+      0.43481342457632705,
+      0.43481342457632705
      ],
      "dsize": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.502007100465655,
+      0.5187103647558914,
+      0.502007100465655,
+      0.502007100465655,
+      0.5187103647558914
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7367198953157039,
+      0.7367198953157039,
+      0.7367198953157039,
+      0.7367198953157039,
+      0.7367198953157039
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.06719367588932795,
+     0.08389694017956434,
+     0.06719367588932795,
+     0.06719367588932795,
+     0.08389694017956434
     ],
     "oracle_minus_frequency": [
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887
+     0.3019064707393769,
+     0.3019064707393769,
+     0.3019064707393769,
+     0.3019064707393769,
+     0.3019064707393769
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "random": 1
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5611570247933885,
     "a12_all_vs_frequency": {
-     "random": 0.475,
+     "random": 0.384297520661157,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5611570247933885,
+     "oracle": 0.756198347107438
     }
    },
    "llm_involved/all systems/lines/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.34995538359534895,
+      0.33872729919970146,
+      0.2710378568109402,
+      0.35232661473678684,
+      0.2653388336556365
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6511235754564456,
+      0.6511235754564456,
+      0.6511235754564456,
+      0.6511235754564456,
+      0.6511235754564456
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6580418907859759,
+      0.6725407099543116,
+      0.6580418907859759,
+      0.6684488557586424,
+      0.6580418907859759
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8247146014827276,
+      0.8247146014827276,
+      0.8247146014827276,
+      0.8247146014827276,
+      0.8247146014827276
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.006918315329530245,
+     0.021417134497865975,
+     0.006918315329530245,
+     0.01732528030219682,
+     0.006918315329530245
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.17359102602628196,
+     0.17359102602628196,
+     0.17359102602628196,
+     0.17359102602628196,
+     0.17359102602628196
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5057851239669422,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.2950413223140496,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5057851239669422,
+     "oracle": 0.6198347107438017
     }
    },
    "llm_involved/all systems/lines/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4289781761970255,
+      0.4181581094617233,
+      0.38901173473976697,
+      0.4415974642539226,
+      0.37858850394408344
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7470267434293177,
+      0.7470267434293177,
+      0.7470267434293177,
+      0.7470267434293177,
+      0.7470267434293177
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7606549074134599,
+      0.7598483015682064,
+      0.7639109772379455,
+      0.7661169806910315,
+      0.7620310040931937
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.880661961898552,
+      0.880661961898552,
+      0.880661961898552,
+      0.880661961898552,
+      0.880661961898552
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.013628163984142128,
+     0.012821558138888633,
+     0.016884233808627802,
+     0.01909023726171377,
+     0.015004260663875946
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.1336352184692342,
+     0.1336352184692342,
+     0.1336352184692342,
+     0.1336352184692342,
+     0.1336352184692342
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.512396694214876,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.2809917355371901,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.512396694214876,
+     "oracle": 0.6487603305785123
     }
    },
    "llm_involved/all systems/lines/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5592196333287669,
+      0.57912098280902,
+      0.5716820501825716,
+      0.7005724890487213,
+      0.5132749198822869
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8583987295363665,
+      0.8583987295363665,
+      0.8583987295363665,
+      0.8583987295363665,
+      0.8583987295363665
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8692329140737113,
+      0.8657703324726956,
+      0.8641875365154278,
+      0.869151239110815,
+      0.8619284374354094
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9087574742068433,
+      0.9087574742068433,
+      0.9087574742068433,
+      0.9087574742068433,
+      0.9087574742068433
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.010834184537344749,
+     0.0073716029363291025,
+     0.005788806979061256,
+     0.01075250957444851,
+     0.0035297078990428332
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.05035874467047674,
+     0.05035874467047674,
+     0.05035874467047674,
+     0.05035874467047674,
+     0.05035874467047674
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5330578512396694,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.33636363636363636,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5330578512396694,
+     "oracle": 0.5743801652892562
     }
    },
    "llm_involved/all systems/templates/5": {
     "means": {
      "random": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      1.0,
-      0.8333333333333333
+      0.31013647230744196,
+      0.24276810356408368,
+      0.1866230356021969,
+      0.3119630595999278,
+      0.23215818970533483
      ],
      "frequent": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.18719118088388964,
+      0.18719118088388964,
+      0.18719118088388964,
+      0.18719118088388964,
+      0.18719118088388964
      ],
      "dsize": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.25991845361116234,
+      0.26123597666781584,
+      0.25991845361116234,
+      0.25991845361116234,
+      0.26123597666781584
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.44478714206579967,
+      0.44478714206579967,
+      0.44478714206579967,
+      0.44478714206579967,
+      0.44478714206579967
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.0727272727272727,
+     0.0740447957839262,
+     0.0727272727272727,
+     0.0727272727272727,
+     0.0740447957839262
     ],
     "oracle_minus_frequency": [
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674
+     0.25759596118191,
+     0.25759596118191,
+     0.25759596118191,
+     0.25759596118191,
+     0.25759596118191
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
+     "dsize": 2,
      "random": 2,
-     "frequent": 2,
-     "dsize": 2
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5181818181818182,
     "a12_all_vs_frequency": {
-     "random": 0.55,
+     "random": 0.5743801652892562,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5181818181818182,
+     "oracle": 0.7768595041322314
     }
    },
    "llm_involved/all systems/templates/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4229725377583508,
+      0.42560711363109005,
+      0.3021459070007813,
+      0.40692115749338115,
+      0.311597843156846
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4062165068671003,
+      0.4062165068671003,
+      0.4062165068671003,
+      0.4062165068671003,
+      0.4062165068671003
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4093513031053449,
+      0.41097467972872154,
+      0.4093513031053449,
+      0.4134835345103036,
+      0.4093513031053449
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5259379204952357,
+      0.5259379204952357,
+      0.5259379204952357,
+      0.5259379204952357,
+      0.5259379204952357
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.003134796238244586,
+     0.004758172861621224,
+     0.003134796238244586,
+     0.007267027643203305,
+     0.003134796238244586
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.11972141362813538,
+     0.11972141362813538,
+     0.11972141362813538,
+     0.11972141362813538,
+     0.11972141362813538
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 1
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.515702479338843,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.4818181818181818,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.515702479338843,
+     "oracle": 0.628099173553719
     }
    },
    "llm_involved/all systems/templates/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4887978948805886,
+      0.46878195342195944,
+      0.4603628324123251,
+      0.4507992499517529,
+      0.45936842896344293
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4571565525986285,
+      0.4571565525986285,
+      0.4571565525986285,
+      0.4571565525986285,
+      0.4571565525986285
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.474014934514037,
+      0.47420654629939246,
+      0.4720992257017764,
+      0.47269512668452474,
+      0.4764446277744513
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6781384672530976,
+      0.6781384672530976,
+      0.6781384672530976,
+      0.6781384672530976,
+      0.6781384672530976
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.016858381915408505,
+     0.017049993700763988,
+     0.014942673103147952,
+     0.015538574085896262,
+     0.019288075175822816
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.2209819146544691,
+     0.2209819146544691,
+     0.2209819146544691,
+     0.2209819146544691,
+     0.2209819146544691
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "random": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5347107438016528,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5190082644628099,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5347107438016528,
+     "oracle": 0.6528925619834711
     }
    },
    "llm_involved/all systems/templates/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6296644890145046,
+      0.642062790834899,
+      0.6531887150992733,
+      0.6532590354700818,
+      0.6254268132498262
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5938453226014957,
+      0.5938453226014957,
+      0.5938453226014957,
+      0.5938453226014957,
+      0.5938453226014957
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6282598630725583,
+      0.6454126650658947,
+      0.6330602668848196,
+      0.6318854542559662,
+      0.6266575929799927
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8319947859725842,
+      0.8319947859725842,
+      0.8319947859725842,
+      0.8319947859725842,
+      0.8319947859725842
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.03441454047106263,
+     0.05156734246439898,
+     0.03921494428332395,
+     0.03804013165447051,
+     0.03281227037849699
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.23814946337108855,
+     0.23814946337108855,
+     0.23814946337108855,
+     0.23814946337108855,
+     0.23814946337108855
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 11,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "Linux",
+     "OpenSSH",
+     "OpenStack",
+     "Spark",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5545454545454546,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5388429752066116,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5545454545454546,
+     "oracle": 0.6776859504132231
     }
    },
    "llm_involved/held-out/lines/5": {
     "means": {
      "random": [
-      0.9997133027522935,
-      0.5008600917431193,
-      0.9994266055045872,
-      1.0,
-      0.9994266055045872
+      0.35553349765457976,
+      0.1452838771812736,
+      0.2566802964484834,
+      0.3602598455679098,
+      0.2788797733187203
      ],
      "frequent": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.48977196337106627,
+      0.48977196337106627,
+      0.48977196337106627,
+      0.48977196337106627,
+      0.48977196337106627
      ],
      "dsize": [
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935,
-      0.9997133027522935
+      0.5718975672358005,
+      0.5923126680349784,
+      0.5718975672358005,
+      0.5718975672358005,
+      0.5923126680349784
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7843827172157494,
+      0.7843827172157494,
+      0.7843827172157494,
+      0.7843827172157494,
+      0.7843827172157494
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.08212560386473428,
+     0.10254070466391213,
+     0.08212560386473428,
+     0.08212560386473428,
+     0.10254070466391213
     ],
     "oracle_minus_frequency": [
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887,
-     0.00028669724770646887
+     0.2946107538446831,
+     0.2946107538446831,
+     0.2946107538446831,
+     0.2946107538446831,
+     0.2946107538446831
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "random": 1
+     "dsize": 2,
+     "frequent": 3,
+     "random": 4
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5790123456790124,
     "a12_all_vs_frequency": {
-     "random": 0.475,
+     "random": 0.3814814814814815,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5790123456790124,
+     "oracle": 0.7222222222222222
     }
    },
    "llm_involved/held-out/lines/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.41495709860087454,
+      0.4109110079956673,
+      0.31346138056909656,
+      0.41435374595132707,
+      0.3238926184623686
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7000883870984924,
+      0.7000883870984924,
+      0.7000883870984924,
+      0.7000883870984924,
+      0.7000883870984924
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7000883870984924,
+      0.717809166082014,
+      0.7000883870984924,
+      0.7128080109539738,
+      0.7000883870984924
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8553631281559428,
+      0.8553631281559428,
+      0.8553631281559428,
+      0.8553631281559428,
+      0.8553631281559428
      ]
     },
     "d_minus_frequency": [
      0.0,
+     0.017720778983521535,
      0.0,
-     0.0,
-     0.0,
+     0.012719623855481421,
      0.0
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.15527474105745043,
+     0.15527474105745043,
+     0.15527474105745043,
+     0.15527474105745043,
+     0.15527474105745043
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 2,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "dsize": 2,
+     "frequent": 2,
+     "random": 3
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5024691358024691,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.3345679012345679,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5024691358024691,
+     "oracle": 0.6049382716049383
     }
    },
    "llm_involved/held-out/lines/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.4985095102776491,
+      0.5014228536282404,
+      0.4480368294654503,
+      0.5187637742660868,
+      0.4460398105979211
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7822297010214875,
+      0.7822297010214875,
+      0.7822297010214875,
+      0.7822297010214875,
+      0.7822297010214875
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7916712750628042,
+      0.7807462453106838,
+      0.7901621160780745,
+      0.7934198878936013,
+      0.7885742624389824
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8869320993088059,
+      0.8869320993088059,
+      0.8869320993088059,
+      0.8869320993088059,
+      0.8869320993088059
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.009441574041316736,
+     -0.0014834557108036606,
+     0.007932415056587039,
+     0.011190186872113816,
+     0.006344561417494954
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.10470239828731842,
+     0.10470239828731842,
+     0.10470239828731842,
+     0.10470239828731842,
+     0.10470239828731842
     ],
-    "positive_seeds": 0,
-    "negative_seeds": 0,
-    "n_systems": 2,
+    "positive_seeds": 4,
+    "negative_seeds": 1,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5037037037037037,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.3358024691358025,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5037037037037037,
+     "oracle": 0.6358024691358025
     }
    },
    "llm_involved/held-out/lines/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6288850112568614,
+      0.6642004775067423,
+      0.6423255068451099,
+      0.780512764959675,
+      0.5655758186043686
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8675631744645034,
+      0.8675631744645034,
+      0.8675631744645034,
+      0.8675631744645034,
+      0.8675631744645034
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8804981173775386,
+      0.883238332507227,
+      0.876278235432239,
+      0.8814090740940466,
+      0.8740314269189328
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.9072590147855552,
+      0.9072590147855552,
+      0.9072590147855552,
+      0.9072590147855552,
+      0.9072590147855552
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.012934942913035208,
+     0.01567515804272368,
+     0.008715060967735666,
+     0.01384589962954319,
+     0.006468252454429391
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.03969584032105178,
+     0.03969584032105178,
+     0.03969584032105178,
+     0.03969584032105178,
+     0.03969584032105178
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5370370370370371,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.38395061728395063,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5370370370370371,
+     "oracle": 0.5740740740740741
     }
    },
    "llm_involved/held-out/templates/5": {
     "means": {
      "random": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      1.0,
-      0.8333333333333333
+      0.3758810852011592,
+      0.29512926943546736,
+      0.21884468445523023,
+      0.38049453316181653,
+      0.2799174809042215
      ],
      "frequent": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.227201919493008,
+      0.227201919493008,
+      0.227201919493008,
+      0.227201919493008,
+      0.227201919493008
      ],
      "dsize": [
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333,
-      0.8333333333333333
+      0.31609080838189685,
+      0.3177011143400289,
+      0.31609080838189685,
+      0.31609080838189685,
+      0.3177011143400289
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736,
+      0.5205033871006736
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.08888888888888885,
+     0.0904991948470209,
+     0.08888888888888885,
+     0.08888888888888885,
+     0.0904991948470209
     ],
     "oracle_minus_frequency": [
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674,
-     0.16666666666666674
+     0.29330146760766557,
+     0.29330146760766557,
+     0.29330146760766557,
+     0.29330146760766557,
+     0.29330146760766557
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
      "oracle": 1,
+     "dsize": 2,
      "random": 2,
-     "frequent": 2,
-     "dsize": 2
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5271604938271605,
     "a12_all_vs_frequency": {
-     "random": 0.55,
+     "random": 0.5765432098765432,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.75
+     "dsize": 0.5271604938271605,
+     "oracle": 0.7654320987654321
     }
    },
    "llm_involved/held-out/templates/10": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5091667634452093,
+      0.5123868006230017,
+      0.35620788742897896,
+      0.48347287612628354,
+      0.37621673988463994
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.48485575250915985,
+      0.48485575250915985,
+      0.48485575250915985,
+      0.48485575250915985,
+      0.48485575250915985
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.48485575250915985,
+      0.4868398794932868,
+      0.48485575250915985,
+      0.48990625755966494,
+      0.48485575250915985
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027,
+      0.5965623297569027
      ]
     },
     "d_minus_frequency": [
      0.0,
+     0.0019841269841269216,
      0.0,
-     0.0,
-     0.0,
+     0.005050505050505083,
      0.0
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.11170657724774286,
+     0.11170657724774286,
+     0.11170657724774286,
+     0.11170657724774286,
+     0.11170657724774286
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 2,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
+     "oracle": 1,
      "dsize": 1,
-     "oracle": 1
+     "frequent": 1,
+     "random": 1
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5049382716049383,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.49506172839506174,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5049382716049383,
+     "oracle": 0.5925925925925926
     }
    },
    "llm_involved/held-out/templates/20": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5771952376947751,
+      0.5566995632135935,
+      0.5379530403813475,
+      0.5293019842048519,
+      0.5444004936373115
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5271650694869936,
+      0.5271650694869936,
+      0.5271650694869936,
+      0.5271650694869936,
+      0.5271650694869936
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.5431446900765433,
+      0.5357160470096024,
+      0.5369718505703704,
+      0.5377001739937293,
+      0.5422828975480841
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154,
+      0.7363345360570154
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.015979620589549715,
+     0.008550977522608805,
+     0.009806781083376848,
+     0.01053510450673567,
+     0.015117828061090521
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.20916946657002178,
+     0.20916946657002178,
+     0.20916946657002178,
+     0.20916946657002178,
+     0.20916946657002178
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.519753086419753,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5271604938271605,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.519753086419753,
+     "oracle": 0.6296296296296297
     }
    },
    "llm_involved/held-out/templates/50": {
     "means": {
      "random": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.7106408341375965,
+      0.7291057536586368,
+      0.7272415986954994,
+      0.7242897789845062,
+      0.6964849884985562
      ],
      "frequent": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6510162043618719,
+      0.6510162043618719,
+      0.6510162043618719,
+      0.6510162043618719,
+      0.6510162043618719
      ],
      "dsize": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.6805168441384908,
+      0.7091442151571662,
+      0.6871776551471278,
+      0.6857417730451958,
+      0.6839772332371777
      ],
      "oracle": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634,
+      0.8660888653950634
      ]
     },
     "d_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.029500639776618875,
+     0.05812801079529428,
+     0.0361614507852559,
+     0.03472556868332388,
+     0.03296102887530583
     ],
     "oracle_minus_frequency": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0
+     0.21507266103319145,
+     0.21507266103319145,
+     0.21507266103319145,
+     0.21507266103319145,
+     0.21507266103319145
     ],
-    "positive_seeds": 0,
+    "positive_seeds": 5,
     "negative_seeds": 0,
-    "n_systems": 2,
+    "n_systems": 9,
     "systems": [
      "Apache",
-     "HPC"
+     "BGL",
+     "HPC",
+     "Hadoop",
+     "HealthApp",
+     "OpenSSH",
+     "OpenStack",
+     "Thunderbird",
+     "Zookeeper"
     ],
     "sk_esd": {
-     "random": 1,
-     "frequent": 1,
-     "dsize": 1,
-     "oracle": 1
+     "oracle": 1,
+     "random": 2,
+     "dsize": 2,
+     "frequent": 2
     },
-    "a12_d_frequency": 0.5,
+    "a12_d_frequency": 0.5481481481481482,
     "a12_all_vs_frequency": {
-     "random": 0.5,
+     "random": 0.5444444444444444,
      "frequent": 0.5,
-     "dsize": 0.5,
-     "oracle": 0.5
+     "dsize": 0.5481481481481482,
+     "oracle": 0.6419753086419753
     }
    }
   },
@@ -3560,22 +6649,114 @@
     "minimum_prompt_tokens": 8193,
     "failed_line": 394,
     "completed_calls": 263
-   },
-   "OpenSSH": {
-    "model": "llama",
-    "system": "OpenSSH",
-    "utc": "2026-11-11T14:44:25.154022+00:00",
-    "status": "runtime_error",
-    "skip_per_protocol": false,
-    "reason": "AssertionError",
-    "log": "logs/adaparser_e2e_llama_OpenSSH.log",
-    "upstream_commit": "232951a"
    }
   },
   "n5_common": [
    "Apache",
-   "HPC"
+   "BGL",
+   "HDFS",
+   "HPC",
+   "Hadoop",
+   "HealthApp",
+   "Linux",
+   "OpenStack",
+   "Spark",
+   "Thunderbird",
+   "Zookeeper"
   ],
-  "every_seed_wins": []
+  "every_seed_wins": [
+   "all/all systems/lines/5",
+   "all/all systems/templates/5",
+   "all/all systems/templates/50",
+   "all/held-out/lines/5",
+   "all/held-out/lines/50",
+   "all/held-out/templates/5",
+   "all/held-out/templates/50",
+   "llm_only/all systems/lines/5",
+   "llm_only/all systems/lines/10",
+   "llm_only/all systems/lines/20",
+   "llm_only/all systems/lines/50",
+   "llm_only/all systems/templates/5",
+   "llm_only/all systems/templates/10",
+   "llm_only/all systems/templates/20",
+   "llm_only/all systems/templates/50",
+   "llm_only/held-out/lines/5",
+   "llm_only/held-out/lines/50",
+   "llm_only/held-out/templates/5",
+   "llm_only/held-out/templates/20",
+   "llm_only/held-out/templates/50",
+   "llm_involved/all systems/lines/5",
+   "llm_involved/all systems/lines/10",
+   "llm_involved/all systems/lines/20",
+   "llm_involved/all systems/lines/50",
+   "llm_involved/all systems/templates/5",
+   "llm_involved/all systems/templates/10",
+   "llm_involved/all systems/templates/20",
+   "llm_involved/all systems/templates/50",
+   "llm_involved/held-out/lines/5",
+   "llm_involved/held-out/lines/50",
+   "llm_involved/held-out/templates/5",
+   "llm_involved/held-out/templates/20",
+   "llm_involved/held-out/templates/50",
+   "BGL/all/lines/50",
+   "BGL/all/templates/50",
+   "BGL/llm_only/lines/50",
+   "BGL/llm_only/templates/50",
+   "BGL/llm_involved/lines/50",
+   "BGL/llm_involved/templates/50",
+   "Hadoop/all/lines/50",
+   "Hadoop/all/templates/50",
+   "Hadoop/llm_only/lines/20",
+   "Hadoop/llm_only/lines/50",
+   "Hadoop/llm_only/templates/20",
+   "Hadoop/llm_only/templates/50",
+   "Hadoop/llm_involved/lines/20",
+   "Hadoop/llm_involved/lines/50",
+   "Hadoop/llm_involved/templates/20",
+   "Hadoop/llm_involved/templates/50",
+   "HealthApp/all/lines/5",
+   "HealthApp/all/templates/5",
+   "HealthApp/all/templates/50",
+   "Linux/all/lines/50",
+   "Linux/all/templates/50",
+   "Linux/llm_only/lines/20",
+   "Linux/llm_only/lines/50",
+   "Linux/llm_only/templates/50",
+   "Linux/llm_involved/lines/20",
+   "Linux/llm_involved/lines/50",
+   "Linux/llm_involved/templates/20",
+   "Linux/llm_involved/templates/50",
+   "OpenStack/llm_only/lines/5",
+   "OpenStack/llm_only/templates/5",
+   "OpenStack/llm_involved/lines/5",
+   "OpenStack/llm_involved/templates/5",
+   "Spark/all/lines/10",
+   "Spark/all/lines/20",
+   "Spark/all/templates/10",
+   "Spark/all/templates/20",
+   "Spark/llm_only/lines/10",
+   "Spark/llm_only/lines/20",
+   "Spark/llm_only/templates/10",
+   "Spark/llm_only/templates/20",
+   "Spark/llm_involved/lines/10",
+   "Spark/llm_involved/lines/20",
+   "Spark/llm_involved/templates/10",
+   "Spark/llm_involved/templates/20",
+   "Thunderbird/all/templates/50",
+   "Thunderbird/llm_only/lines/20",
+   "Thunderbird/llm_only/lines/50",
+   "Thunderbird/llm_only/templates/20",
+   "Thunderbird/llm_only/templates/50",
+   "Thunderbird/llm_involved/lines/20",
+   "Thunderbird/llm_involved/lines/50",
+   "Thunderbird/llm_involved/templates/20",
+   "Thunderbird/llm_involved/templates/50",
+   "Zookeeper/all/lines/50",
+   "Zookeeper/all/templates/50",
+   "Zookeeper/llm_only/lines/50",
+   "Zookeeper/llm_only/templates/50",
+   "Zookeeper/llm_involved/lines/50",
+   "Zookeeper/llm_involved/templates/50"
+  ]
  }
 }
