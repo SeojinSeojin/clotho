@@ -12,7 +12,7 @@ Session deadline: **18:15 EST / 23:15 UTC, 2026-11-11**. Stop long jobs at **17:
 |---|---|---|
 | G1 Llama real AdaParser | Complete: 12/13 systems; Mac context-limit skip | `reports/adaparser_e2e_{details,review}.{md,json}`; fresh GPU hidden states verified. At 20 reviews: frequency 0.578, D × size 0.557, Oracle 0.881 of wrong lines fixed. Pure-LLM D beats frequency on 5/5 seeds at N=5/10/20/50. |
 | G2 Llama cache restoration | Complete | HDFS/OpenSSH caches uploaded; all 50 stored E1 curves each reproduced. N1/N2/N3 now cover all 13 systems; reports, Lorenz and paper_numbers refreshed. Recreated confidence/entropy selector differences are recorded in Decisions and verification JSON. |
-| G3 Gemma real AdaParser | Running: 9/12 systems saved; Mac active | HDFS/OpenSSH/BGL/HPC/Zookeeper/Spark/Hadoop/Linux/Thunderbird saved. Then OpenStack/HealthApp, hidden, immediate CPU sim/report. |
+| G3 Gemma real AdaParser | Running: 11/12 systems saved; HealthApp active | HDFS/OpenSSH/BGL/HPC/Zookeeper/Spark/Hadoop/Linux/Thunderbird/Mac/OpenStack saved; no Gemma skips so far. Then hidden, immediate CPU sim/report. |
 | G4 Sem-Ent subset / E5 | Queued after G3 GPU work | CPU preflight complete: 8 tasks, 85,850 inputs; fixed subsets total 12,000. Then E5 report and `paper/table_e5.py`. |
 | G5 U token pooling / V2 | Conditional | Start only after all G1–G4 GPU and CPU work completes; finalize remaining protocol details before computing results. |
 
