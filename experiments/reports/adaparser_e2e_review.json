@@ -3546,6 +3546,32 @@
     }
    }
   },
+  "failures": {
+   "Mac": {
+    "model": "llama",
+    "system": "Mac",
+    "utc": "2026-11-11T14:44:24.271761+00:00",
+    "status": "unsupported_context",
+    "skip_per_protocol": true,
+    "reason": "Correction dialogue exceeds the fixed local context; original client exhausted its retries.",
+    "log": "logs/adaparser_e2e_llama_Mac.log",
+    "upstream_commit": "232951a",
+    "configured_context": 8192,
+    "minimum_prompt_tokens": 8193,
+    "failed_line": 394,
+    "completed_calls": 263
+   },
+   "OpenSSH": {
+    "model": "llama",
+    "system": "OpenSSH",
+    "utc": "2026-11-11T14:44:25.154022+00:00",
+    "status": "runtime_error",
+    "skip_per_protocol": false,
+    "reason": "AssertionError",
+    "log": "logs/adaparser_e2e_llama_OpenSSH.log",
+    "upstream_commit": "232951a"
+   }
+  },
   "n5_common": [
    "Apache",
    "HPC"

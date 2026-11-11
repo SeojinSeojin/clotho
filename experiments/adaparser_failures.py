@@ -8,7 +8,9 @@ from pathlib import Path
 
 def context_error(text):
     m=re.search(r'maximum context length is (\d+) tokens.*?at least (\d+) input tokens',text,re.S)
-    return {'configured_context':int(m[1]),'minimum_prompt_tokens':int(m[2])} if m else None
+    if m and 'Error code: 400' in text and int(m[2]) > int(m[1]):
+        return {'configured_context':int(m[1]),'minimum_prompt_tokens':int(m[2])}
+    return None
 
 
 def record(exp,model,system,log,push=False):

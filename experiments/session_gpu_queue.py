@@ -137,7 +137,10 @@ def main(existing):
     if todo:
         for s in todo:
             q=EXP/'logs'/f'adaparser_e2e_llama_{s}.log'
-            if q.exists():shutil.copy2(q,q.with_name(q.stem+'_first_attempt.log'))
+            if q.exists():
+                archive = q.with_name(q.stem+'_first_attempt.log')
+                shutil.copy2(q,archive)
+                hub_push([archive.relative_to(EXP)])
         run('G1_retry',[PY,'log_parsing_adaparser_e2e.py','run','--push','-s',*todo])
     if missing('llama'):raise RuntimeError('Incomplete G1 run: '+str(missing('llama')))
     status('G1 Llama hidden')

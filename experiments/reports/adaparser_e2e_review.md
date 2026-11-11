@@ -4,6 +4,11 @@ The official parser preloads 32 labelled Loghub-2.0 candidates per system; prove
 
 ## llama: partial: 3/13; provisional cached-state replay, fresh GPU check pending: Apache, HDFS, HPC
 
+| System | Disposition | Reason | Failed line |
+|---|---|---|---|
+| Mac | unsupported_context | Correction dialogue exceeds the fixed local context; original client exhausted its retries. | 394 |
+| OpenSSH | runtime_error | AssertionError | — |
+
 | System | Output templates | Candidate insertions | PA_0 | Wrong first-line | Wrong majority | Line share candidate / LLM / mixed / unknown | Template share candidate / LLM / mixed / unknown |
 |---|---|---|---|---|---|---|---|
 | Apache | 29 | 32 | 0.999 | 0.069 | 0.069 | 0.998 / 0.002 / 0.000 / 0.000 | 0.828 / 0.172 / 0.000 / 0.000 |

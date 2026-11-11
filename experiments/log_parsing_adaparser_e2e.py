@@ -49,6 +49,7 @@ RES = EXP / f"results_phase3{MC.SUFFIX}" / "adaparser_e2e"
 DROP = {"llama": {"Proxifier"}, "gemma": {"Proxifier", "Apache"}}[MODEL]
 SYSTEMS = [s for s in ST.SYSTEMS if s not in DROP]
 PORT = 8011
+MAX_MODEL_LEN = 8192
 SERVED = f"local-{MODEL}"
 GEMMA_TEMPLATE = (
     "{{ bos_token }}{% set ns = namespace(sys='', first=true) %}{% for m in messages %}{% if m['role'] == 'system' %}"
@@ -77,7 +78,7 @@ def start_server():
     import urllib.request
     env = dict(os.environ, VLLM_USE_FLASHINFER_SAMPLER="0", HF_HUB_OFFLINE="1")
     cmd = [str(EXP.parent / ".venv-vllm" / "bin" / "vllm"), "serve", pr.MODEL_IDS[MODEL], "--served-model-name", SERVED,
-           "--port", str(PORT), "--dtype", "bfloat16", "--max-model-len", "8192", "--seed", "0",
+           "--port", str(PORT), "--dtype", "bfloat16", "--max-model-len", str(MAX_MODEL_LEN), "--seed", "0",
            "--gpu-memory-utilization", "0.90", "--generation-config", "vllm"]
     if MODEL == "gemma":
         cmd += ["--chat-template", str(WORK / "gemma_chat_template.jinja")]
@@ -139,6 +140,12 @@ def run(push):
                 rows = ST.read_stretch(s)
                 csv_path.parent.mkdir(parents=True, exist_ok=True)
                 pd.DataFrame({'LineId': [r[0] for r in rows], 'Content': [r[1] for r in rows]}).to_csv(csv_path, index=False)
+            failure = DATA / f'{s}.failure.json'
+            if failure.exists():
+                disposition = json.loads(failure.read_text())
+                if disposition.get('skip_per_protocol') and disposition.get('configured_context') == MAX_MODEL_LEN:
+                    print(s, 'skipped: recorded fixed-context incompatibility', flush=True)
+                    continue
             outdir = WORK / "result" / s
             code = RUNNER.format(exp=str(EXP), bench=str(WORK / "benchmark"), indir=str(WORK / "full_dataset" / s), outdir=str(outdir),
                                  model=SERVED, log=f"{s}_full.log")
