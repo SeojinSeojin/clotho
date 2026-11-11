@@ -285,7 +285,12 @@ def report(push=False):
                 L.append(f"\n## {model}: no system completed (failed: {', '.join(fails)})\n")
             continue
         J[model] = jm = {"systems": {}}
-        L.append(f"\n## {model} ({len(R)} systems" + (f"; failed: {', '.join(fails)}" if fails else "") + ")\n")
+        expected = 13 if model == 'llama' else 12
+        pending = [s for s, r in R.items() if not r.get('hidden_verified')]
+        label = f'{len(R)}/{expected} systems'
+        if pending:
+            label += '; PROVISIONAL cached states pending fresh GPU check: ' + ', '.join(pending)
+        L.append(f"\n## {model} ({label}" + (f"; failed: {', '.join(fails)}" if fails else "") + ")\n")
         L.append("| system | groups (templates) | queries | LLM calls | wall s | PA_0 | wrong groups | gap D x size - Most frequent @20 |")
         L.append("|---|---|---|---|---|---|---|---|")
         for s, r in R.items():
