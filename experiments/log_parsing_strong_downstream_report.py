@@ -41,6 +41,15 @@ def main():
             for split,v in a['conditions'][p]['split_diagnostics'].items():rows.append([s,p,split,v['units'],v['wrong_text_units'],v['word_changed_units'],v['unseen_event_units'] if a['splits']['train']['normal'] else 'NA: empty normal training'])
     table(['Dataset','Parser','Split','Units','Any wrong text','Any changed N3 word bag','Any normal-train OOV event'],rows)
     out.append('In BGL test, both parsers change text in6/500 windows and the N3 word bag in4/500; all are normal windows. That permits a future false-positive diagnostic only, not anomaly recovery/recall claims on this test. Word-bag changes are representation proxies, not verified semantic harm. HDFS OOV counts are uninterpretable because normal training is empty.\n')
+    types=[]
+    for model,suffix in [('llama',''),('gemma','_gemma')]:
+        for system in ['HDFS','BGL']:
+            audit=load(EXP/f'results_phase3{suffix}/severity_audit/{system}.json')['streams']['real_adaparser']
+            types.append({'dataset':system,'model':model,'groups':audit['groups'],'first_line_wrong_groups':audit['wrong_groups'],'primary_counts':audit['primary_counts']})
+    table(['Dataset','Model','Final groups','First-line wrong groups','Exclusive primary proxies from completed audit'],[[r['dataset'],r['model'],r['groups'],r['first_line_wrong_groups'],r['primary_counts']] for r in types])
+    save(ROOT/'reused_error_composition.json',types)
+    out.append('The completed consequential-error audit is reused without rerunning it. These are first-line group proxy counts: extraction/representation labels can overlap other attributes, and the uncertain group is not forced into a semantic category. BGL has18/7 wrong final groups (Llama/Gemma), but no anomalous held-out detection units to test their correction benefit. No single-error downstream intervention is evaluated or summed into a recovery claim.\n')
+
     out.append('## Detector and review-stage status\n')
     table(['Detector family','Required input / supervision','Sensitivity being tested','Implementation/execution status'],[
     ['DeepLog-style','normal event-ID sequences','assignment merging/splitting, OOV','Pinned LSTM source; not integrated/trained'],['LogBERT','normal masked event sequences; hypersphere objective','context/event assignments','Author source pinned; not integrated/trained'],['LogRobust-style','semantic word vectors; labelled sequence training','template constants/semantic distortion','Faithful attention/Bi-LSTM implementation unresolved; not trained'],['PCA control','event count vectors','partition changes; invariant to bijective relabels','Existing prefix results preserved; no fit on invalid new split']])

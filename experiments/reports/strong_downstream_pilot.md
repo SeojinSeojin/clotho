@@ -97,6 +97,15 @@ BGL AdaParser affects only 2 GT event types through splitting, with no mixed-GT 
 
 In BGL test, both parsers change text in 6/500 windows and the N3 word bag in 4/500; all are normal windows. That permits a future false-positive diagnostic only, not anomaly recovery/recall claims on this test. Word-bag changes are representation proxies, not verified semantic harm. HDFS OOV counts are uninterpretable because normal training is empty.
 
+| Dataset | Model | Final groups | First-line wrong groups | Exclusive primary proxies from completed audit |
+|---|---|---|---|---|
+| HDFS | llama | 13 | 0 | {'exact': 13} |
+| BGL | llama | 66 | 18 | {'exact': 48, 'nonmatching_representation_proxy': 12, 'variable_extraction_proxy': 5, 'uncertain': 1} |
+| HDFS | gemma | 13 | 0 | {'exact': 13} |
+| BGL | gemma | 57 | 7 | {'exact': 50, 'nonmatching_representation_proxy': 2, 'variable_extraction_proxy': 4, 'uncertain': 1} |
+
+The completed consequential-error audit is reused without rerunning it. These are first-line group proxy counts: extraction/representation labels can overlap other attributes, and the uncertain group is not forced into a semantic category. BGL has18/7 wrong final groups (Llama/Gemma), but no anomalous held-out detection units to test their correction benefit. No single-error downstream intervention is evaluated or summed into a recovery claim.
+
 ## Detector and review-stage status
 
 | Detector family | Required input / supervision | Sensitivity being tested | Implementation/execution status |
