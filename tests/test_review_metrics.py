@@ -41,6 +41,23 @@ class ReviewMetricTests(unittest.TestCase):
         self.assertAlmostEqual(result['lines'], 2/3)
         self.assertEqual(result['FTA'], 0)
 
+    def test_time_limited_fta_incumbent_is_evaluated_without_claiming_optimality(self):
+        from unittest.mock import patch
+        from scipy.optimize import milp
+        d = {'G': 1, 'templates': ['A'], 'grp': np.array([0]), 'gtl': np.array([0]),
+             'first': np.array([0]), 'major': [0], 'cnt': [Counter({0: 1})]}
+
+        def limited(*args, **kwargs):
+            result = milp(*args, **kwargs)
+            result.x[-1] = 0  # feasible, slack correctness indicator
+            result.status = 1
+            return result
+
+        with patch('scipy.optimize.milp', side_effect=limited):
+            result = ReviewMetrics(d, ['wrong']).oracle(1, [0], 'FTA')
+        self.assertEqual(result['value'], 1)
+        self.assertFalse(result['certified'])
+
     def test_zero_target_gate_obeys_arrival_budget(self):
         from log_parsing_zero_target import gate
 

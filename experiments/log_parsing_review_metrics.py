@@ -132,9 +132,17 @@ class ReviewMetrics:
             value = self.evaluate(seq)['FTA']
             y = round(sum(res.x[i] for i in yi.values()))
             z = round(sum(res.x[i] for i in zi.values()))
-            assert abs(value - 2*z/(y+len(truths))) < 1e-8
+            solver_value = 2*z/(y+len(truths))
+            if res.status == 0:
+                assert abs(value-solver_value) < 1e-8, (value, solver_value, res.status)
+            else:
+                # A time-limited incumbent can leave optional z variables at 0
+                # even when its chosen review set makes those GT templates
+                # correct. Evaluate that set exactly; do not certify optimality.
+                assert value >= solver_value-1e-8, (value, solver_value, res.status)
             best = {'seq': seq, 'value': value, 'certified': False, 'solver_status': int(res.status),
-                    'iterations': iteration+1, 'mip_gap': float(getattr(res, 'mip_gap', np.nan))}
+                    'solver_value': solver_value, 'iterations': iteration+1,
+                    'mip_gap': float(getattr(res, 'mip_gap', np.nan))}
             if res.status == 0 and abs(2*z-ratio*(y+len(truths))) < 1e-8:
                 best['certified'] = True
                 break
