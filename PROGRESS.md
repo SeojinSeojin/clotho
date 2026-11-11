@@ -124,7 +124,17 @@ All requested jobs finished and results were uploaded before the session cutoff.
 
 Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation methods shift +0.024 / +0.021 (noisier 5-sample label); net of that, output entropy +0.125 / +0.132, LOHSvar +0.067 / +0.070, Sem-Ent +0.040 / +0.038, Tok-Prob +0.009 / +0.011, Tok-Ent +0.003 / +0.003.
 
-## Decisions (still in force)
+## Decisions
+
+### Strong downstream preflight (2026-11-11 23:05 UTC, before results)
+
+- The hard shutdown remains 23:15 UTC; the 22:30 long-job and 22:45 persistence cutoffs already passed at task arrival (23:02). No detector training/model download/parser inference starts this session. Execute bounded CPU artifact/session diagnostics and persist immediately; Stage2/expansion remain unexecuted, not negative detector results.
+- Audit both HDFS/BGL and both saved parser models. Verify every covered raw line against structured content and stored GT/Drain/AdaParser row counts. Use actual final AdaParser template strings as event assignments, never Drain IDs. Record implementation/provenance, labelled candidate ancestry, queries, calls and all source digests. No filling uncovered lines.
+- Full raw-file scan, CPU only: count lines/alerts and measure HDFS coverage closure for every block appearing in the assigned prefix. Deduplicate repeated block IDs per line; compare prefix/full counts. Keep all lines of a block or exclude it, never call a truncated block complete. Record unmatched anomaly labels, multi-block shared lines and overlap with verified parser candidate content.
+- Freeze diagnostic splits by covered raw-line index before labels/outcomes: boundaries floor(0.6*n), floor(0.8*n). HDFS keeps only fully covered blocks lying wholly in one interval; any block spanning intervals is purged, so no shared raw line crosses splits. Normal-only detector training excludes labelled anomalies. BGL uses nonoverlapping 20-line windows (existing unit), labels any alert; discard any window crossing a cut. No random window/session splitting. Save exact line/member IDs and split hashes; report all counts, including empty/one-class partitions, without adapting cuts to labels.
+- GT, Drain, cached LLM and final real AdaParser conditions share these exact units. Measure PA, ARI, split/merge counts, changed-unit shares and training-vocabulary OOV by condition; these are representation diagnostics, not trained-detector performance. Stage1 only; no downstream superiority, significance or recovery ratio can be inferred.
+- Audit author/reference implementations and pin source revisions before a future training pilot. Main future scenario: retrain detector on each corrected training representation; tune only on common validation units, freeze choices before test, seeds0–4, paired session/window-cluster uncertainty (BGL contiguous time clusters). Record parser warm-start labels and prior/transductive whole-stream adaptation explicitly. Stage2 must pass alignment, detector health, interpretable GT/parser gap with uncertainty, and reviewable errors before Stage3.
+ (still in force)
 
 Historical session deadlines, resolved preflight fixes, and superseded queue notes are preserved in [progress_history.md](experiments/reports/progress_history.md). Experimental protocols and result-affecting deviations below remain in force; later dated deviations take precedence.
 
