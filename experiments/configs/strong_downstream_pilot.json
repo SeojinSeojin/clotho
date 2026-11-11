@@ -1,0 +1,24 @@
+{
+  "protocol_version": 1,
+  "status": "stage1_complete_stage2_blocked_by_data_validity_and_session_cutoff",
+  "session_deadline_utc": "2026-11-11T23:15:00Z",
+  "long_job_cutoff_utc": "2026-11-11T22:30:00Z",
+  "datasets": ["HDFS", "BGL"],
+  "parser_models": ["llama", "gemma"],
+  "parser_conditions": ["GT", "Drain", "cache", "AdaParser_actual_final_template_assignments"],
+  "coverage_policy": "Use only explicitly assigned raw LineIds; never fill with GT. Inspect full raw files for session closure.",
+  "split": {"ratios": [0.6,0.2,0.2], "basis": "covered raw-line positions before anomaly labels", "HDFS": "fully covered blocks wholly in one interval; purge crossing sessions; no shared raw lines across splits", "BGL": "nonoverlapping 20-line windows; any-alert label; purge crossing windows"},
+  "training": {"DeepLog_and_LogBERT": "normal training units only", "semantic_supervised": "labelled training units only; account for anomaly labels separately", "vocabulary_and_IDF": "training only; explicit unseen token", "seeds": [0,1,2,3,4]},
+  "future_detector_candidates": {
+    "sequence": {"reference": "https://github.com/d0ng1ee/logdeep", "revision": "ec18b29f95f089380568aee552843272e7e79164", "label": "DeepLog-style until adapter/protocol validated", "reference_configuration": {"window_size":10,"input_size":1,"hidden_size":64,"layers":2}, "status":"source inspected; not integrated or trained"},
+    "contextual": {"reference": "https://github.com/HelenGuohx/logbert", "revision": "a845e612e919a6930065b69a40098eaaac26e1a3", "reference_configuration":{"hidden":256,"layers":4,"attention_heads":4,"mask_ratio":0.65,"max_length":512,"hypersphere_loss":true},"status":"source inspected; not integrated or trained"},
+    "semantic": {"paper": "https://www.microsoft.com/en-us/research/publication/robust-log-based-anomaly-detection-on-unstable-log-data/", "required": "semantic word vectors plus attention-based bidirectional LSTM; supervised labels", "rejected_as_exact_reproduction":"logdeep robustlog is unidirectional last-state LSTM without attention", "status":"faithful implementation and fixed word-vector source unresolved; no silent substitution"},
+    "control": {"reference":"existing loglizer_vendor/PCA.py", "status":"existing validated results only; no new split fit"}
+  },
+  "thresholds": "Tune only on shared validation units. Choose epoch and anomaly threshold/candidate cutoff by validation; freeze before final test. Never alter splits after seeing these diagnostics.",
+  "review": {"budgets":[0,5,10,20,50],"main_scenario":"offline commissioning: retrain after corrections, keeping detector choices fixed across strategies", "unit":"original final parser group", "template_only":"review replaces all member strings by majority GT; no membership repair", "grouping_aware":"separate intervention requiring actual line reassignment; not equated to template review", "warm_start_costs":"32 labelled parser candidates common to strategies; U target labels additional if used; D source labels separate", "downstream_oracle":"local intervention gains only; never summed as additive recovery"},
+  "metrics":["precision","recall","F1","AUPRC","AUROC","FPR","train_seconds","inference_seconds"],
+  "statistics":"paired seeds; session-level cluster bootstrap for HDFS; contiguous time-block clusters for BGL; no line/seed IID tests; two datasets do not establish generalization",
+  "expansion_gate":"alignment, functioning detector, interpretable GT-parser gap with uncertainty, and reviewable errors; all must hold",
+  "recovery":"undefined if GT minus no-review metric is zero or negative; no ratio reported then"
+}

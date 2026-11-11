@@ -1,0 +1,19 @@
+\begin{tabular}{llrrrr}
+\toprule
+Dataset & Parser & PA & ARI & Normal train & Test anomalies \\
+\midrule
+HDFS & GT & 1.0000 & 1.000000 & 0 & 24 \\
+HDFS & Drain & 0.5287 & 1.000000 & 0 & 24 \\
+HDFS & llama/cache & 0.6821 & 1.000000 & 0 & 24 \\
+HDFS & llama/AdaParser & 1.0000 & 1.000000 & 0 & 24 \\
+HDFS & gemma/cache & 0.4470 & 1.000000 & 0 & 24 \\
+HDFS & gemma/AdaParser & 1.0000 & 1.000000 & 0 & 24 \\
+\midrule
+BGL & GT & 1.0000 & 1.000000 & 1300 & 0 \\
+BGL & Drain & 0.2019 & 1.000000 & 1300 & 0 \\
+BGL & llama/cache & 0.1100 & 1.000000 & 1300 & 0 \\
+BGL & llama/AdaParser & 0.9950 & 0.999985 & 1300 & 0 \\
+BGL & gemma/cache & 0.1049 & 1.000000 & 1300 & 0 \\
+BGL & gemma/AdaParser & 0.9955 & 0.999996 & 1300 & 0 \\
+\bottomrule
+\end{tabular}
