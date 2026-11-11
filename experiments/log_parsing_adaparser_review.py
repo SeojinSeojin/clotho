@@ -153,7 +153,7 @@ def report(exp, push=False):
     import math
     import log_parsing_stats as STT
     L = ['# Real AdaParser: provenance, concentration and review outcomes\n',
-         'Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Parser cache seed 0; seeds 0–4 apply to review policies. Candidate/LLM/mixed/unknown provenance tracks final trie ancestry. LLM-only excludes mixed groups; LLM-involved includes them. Both restrictions exclude unknowns and refit within their own queue. Budgets are capped at the cohort’s available templates; actual review counts are saved per run.\n']
+         'The official parser preloads 32 labelled Loghub-2.0 candidates per system; provenance shares count only templates with stream lines. Strict scoring; seeds 0–4; mean ± sample std of per-seed system macro means. Template failures use the first-line verdict, and a majority correction fixes one only when it equals that first-line GT. Line and template Oracles optimize their own metric. Parser cache seed 0; seeds 0–4 apply to review policies. Candidate/LLM/mixed/unknown provenance tracks final trie ancestry. LLM-only excludes mixed groups; LLM-involved includes them. Both restrictions exclude unknowns and refit within their own queue. Budgets are capped at the cohort’s available templates; actual review counts are saved per run.\n']
     J = {}
     def table(h,rows):
         L.extend(['| '+' | '.join(h)+' |','|'+'|'.join('---' for _ in h)+'|'])
@@ -193,10 +193,10 @@ def report(exp, push=False):
         rows=[]
         for s,r in R.items():
             pr=r['provenance'];lc=pr.get('line_shares',{});tc=pr.get('template_shares',{})
-            rows.append([s,r['G'],f"{r['pa0']:.3f}",f"{r['wrong_groups']:.3f}",f"{r['wrong_majority_groups']:.3f}",
+            rows.append([s,r['G'],pr.get('candidate_insertions','—'),f"{r['pa0']:.3f}",f"{r['wrong_groups']:.3f}",f"{r['wrong_majority_groups']:.3f}",
                          ' / '.join(f'{lc.get(k,float("nan")):.3f}' for k in ('candidate','llm','mixed','unknown')),
                          ' / '.join(f'{tc.get(k,float("nan")):.3f}' for k in ('candidate','llm','mixed','unknown'))])
-        table(['System','Output templates','PA_0','Wrong first-line','Wrong majority','Line share candidate / LLM / mixed / unknown','Template share candidate / LLM / mixed / unknown'],rows)
+        table(['System','Output templates','Candidate insertions','PA_0','Wrong first-line','Wrong majority','Line share candidate / LLM / mixed / unknown','Template share candidate / LLM / mixed / unknown'],rows)
         rows=[]
         for s,r in R.items():
             q=r['n1'];rows.append([s,f"{q['gini']:.3f}",' / '.join(f"{q['top_shares'][str(k)]:.3f}" for k in (1,5,10,20)),
@@ -215,6 +215,9 @@ def report(exp, push=False):
                 if not systems:continue
                 for metric in ('lines','templates'):
                     L.append(f'### {subset}, {bucket}: share of initially wrong {metric} fixed\n')
+                    eligible = [s for s in systems if 'runs' in R[s]['subsets'].get(subset,{}) and
+                                R[s]['subsets'][subset]['runs']['frequent']['0']['budgets']['5'][metric] is not None]
+                    L.append(f'Eligible systems: {len(eligible)}/{len(systems)}; absent cohorts and zero initial-error denominators are excluded.\n')
                     rows=[]
                     for N in NS:
                         vals={m:values(R,subset,metric,m,N,systems) for m in ('random','frequent','dsize','oracle')}
@@ -235,7 +238,7 @@ def report(exp, push=False):
                         key=f'{subset}/{bucket}/{metric}/{N}'
                         jm['summary'][key]={'means':{m:v for m,v in vals.items()},'d_minus_frequency':gap,
                           'oracle_minus_frequency':ogap,'positive_seeds':sum(x>0 for x in gap),'negative_seeds':sum(x<0 for x in gap),
-                          'sk_esd':ranks,'a12_d_frequency':a12,'a12_all_vs_frequency':{m:STT.a12(obs[m],obs['frequent']) for m in obs}}
+                          'n_systems':len(eligible),'systems':eligible,'sk_esd':ranks,'a12_d_frequency':a12,'a12_all_vs_frequency':{m:STT.a12(obs[m],obs['frequent']) for m in obs}}
                         rows.append([N,*[ms(vals[m]) for m in ('random','frequent','dsize','oracle')],
                                      f'{ms(gap)} (+{sum(x>0 for x in gap)}/−{sum(x<0 for x in gap)}/5)',ms(ogap),
                                      '; '.join(f'{m}:{ranks[m]}' for m in ranks),f'{a12:.3f} ({STT.magnitude(a12)})'])
