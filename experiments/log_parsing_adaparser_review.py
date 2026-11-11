@@ -164,6 +164,16 @@ def report(exp, push=False):
         rd = exp/f'results_phase3{suffix}'/'adaparser_e2e'
         R = {p.stem:json.loads(p.read_text()) for p in sorted(rd.glob('*.json'))}
         R = {s:r for s,r in R.items() if r.get('review_version')==1}
+        for system, r in R.items():
+            meta = json.loads((exp/f'data/adaparser_e2e/{model}/{system}.json').read_text())
+            updated = n5(system, meta, model)
+            if updated != r['n5']:
+                r['n5'] = updated
+                q = rd/f'{system}.json'
+                q.write_text(json.dumps(r, default=float))
+                if push:
+                    import hub_sync as hs
+                    hs.commit_files(hs.get_results_repo(), {str(q.relative_to(exp)):q}, f'N5 refresh {model} {system}')
         if not R:continue
         J[model] = jm = {'systems':R,'summary':{}}
         L.append(f'## {model}: {len(R)} completed systems (partial until all model systems finish)\n')
