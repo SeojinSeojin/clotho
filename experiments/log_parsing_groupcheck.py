@@ -265,7 +265,7 @@ def report(push=False):
             L.append("|---|---|---|---|---|---|")
             jm["gate"] = {}
             for q in QS:
-                per = {m: [] for m in ("W gate (2nd line)", "D (online, creation)", "Random (creation)")}
+                per = {m: [] for m in ("W gate (2nd line)", "U/V best (creation)", "D (online, creation)", "Random (creation)")}
                 for k in SEEDS:
                     vals = {m: [] for m in per}
                     for s, r in R.items():
@@ -273,6 +273,9 @@ def report(push=False):
                         if x["pa0"] >= 1:
                             continue
                         vals["W gate (2nd line)"].append(x)
+                        su = stream_u(model, parser, s)
+                        if su:
+                            vals["U/V best (creation)"].append(su["gate"][str(q)][str(k)])
                         for m, f in (("D (online, creation)", f"dgate_w{json.loads((EXP / f'results_phase3{MODELS[model]}' / 'gate' / 'tune' / 'chosen.json').read_text())['w']}"),
                                      ("Random (creation)", "random")):
                             p = gp / s / f"{f}_q{int(q * 100)}_s{k}.json"

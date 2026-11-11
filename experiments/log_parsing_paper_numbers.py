@@ -205,7 +205,7 @@ def build():
            "(both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, "
            "`table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, "
            "`fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); "
-           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3), `fig_lorenz.py` (N1). "
+           "tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3), `fig_lorenz.py` (N1), `fig_difficulty.py` (L), `fig_crossmodel.py` (J), `table_downstream.py` (H, N3), `table_unseen.py` (U, V), `fig_groupcheck.py` (W). "
            "Bold = best in its column and ahead of the runner-up on every seed. RQ outline: "
            "`paper/results_outline.md`.\n"]
     for n, key, title, name, script, until in (
@@ -238,7 +238,15 @@ def build():
             (24, "crossmodel", "J: cross-model failure prediction (2026-11-10)",
              "crossmodel_details.md", "log_parsing_crossmodel.py", None),
             (25, "cpu", "N1-N3: frequency vs oracle, counterfactual parser accuracy (simulation), template-word detectors (2026-11-10)",
-             "cpu_analyses_details.md", "log_parsing_cpu_analyses.py", None)):
+             "cpu_analyses_details.md", "log_parsing_cpu_analyses.py", None),
+            (26, "gate", "N4: review gate at template creation time (2026-11-10)",
+             "gate_details.md", "log_parsing_gate.py", None),
+            (27, "drain_templates", "N5: Drain templates vs the LLM cache (2026-11-10)",
+             "drain_templates.md", "log_parsing_drain_templates.py", None),
+            (28, "unseen", "U and V: zero-extra-call failure prediction for unseen templates (2026-11-10)",
+             "unseen_details.md", "log_parsing_unseen.py", None),
+            (29, "groupcheck", "W: same-group validation in the streams; U/V best in review and gate (2026-11-10)",
+             "groupcheck_details.md", "log_parsing_groupcheck.py", None)):
         p = REP / name
         if not p.exists():
             continue
@@ -250,7 +258,9 @@ def build():
                + (("). Setting fair_leakfree, standard split, 5 seeds.\n") if n < 16 else
                   ("). Protocol in PROGRESS.md Decisions (E; TRIAGE and E1-E5), 5 seeds.\n") if n < 18 else
                   ("). Protocol in PROGRESS.md Decisions (F; G; H-M).\n") if n < 25 else
-                  ("). Protocol in PROGRESS.md Decisions (N1-N3).\n"))]
+                  ("). Protocol in PROGRESS.md Decisions (N1-N3).\n") if n == 25 else
+                  ("). Protocol in PROGRESS.md Decisions (N4-N5).\n") if n < 28 else
+                  ("). Protocol in PROGRESS.md Decisions (U, V, W, P).\n"))]
         L_ += [("#" + l) if l.startswith("#") else l for l in lines[i:j]] + [READ.get(key, ""), ""]
     L_ += ["## Other reports\n",
            "- Qualitative examples (HDFS, Hadoop): `reports/log_parsing_qualitative.md` (`log_parsing_qualitative.py`).",

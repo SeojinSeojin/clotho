@@ -407,9 +407,13 @@ def score_config(c, ds, ref_rows, test_rows, seed):
     X = block_matrix(ds, c, ref_rows)
     y = f["y"][ref_rows]
     w = np.ones(len(y))
+    hard = c.get("v8") == "a" and c["clf"][0] == "mlp"       # sklearn 1.6.1 MLP has no sample_weight: hard template target
     if c.get("v8") == "a":
         r = template_targets(ds, ref_rows)
-        X, y, w = np.vstack([X, X]), np.r_[np.ones(len(r), bool), np.zeros(len(r), bool)], np.r_[r, 1 - r] + 1e-9
+        if hard:
+            y = r >= 0.5
+        else:
+            X, y, w = np.vstack([X, X]), np.r_[np.ones(len(r), bool), np.zeros(len(r), bool)], np.r_[r, 1 - r] + 1e-9
     if c.get("ws", 0) > 0:
         for s in source_ds(ds):
             fs = F_(s)
@@ -420,7 +424,9 @@ def score_config(c, ds, ref_rows, test_rows, seed):
             Xs_ = block_matrix(s, c, None, target=ds)
             ys_ = fs["y"]
             ws_ = np.full(len(ys_), c["ws"])
-            if c.get("v8") == "a":
+            if c.get("v8") == "a" and hard:
+                ys_ = template_targets(s, np.arange(len(ys_))) >= 0.5
+            elif c.get("v8") == "a":
                 r = template_targets(s, np.arange(len(ys_)))
                 Xs_, ys_, ws_ = np.vstack([Xs_, Xs_]), np.r_[np.ones(len(r), bool), np.zeros(len(r), bool)], np.r_[r, 1 - r] * c["ws"] + 1e-9
             X, y, w = np.vstack([X, Xs_]), np.r_[y, ys_], np.r_[w, ws_]

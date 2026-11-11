@@ -71,6 +71,7 @@ python experiments/sharded/run_sharded.py --stage hidden -t <task> -d <dataset> 
 | `experiments/log_parsing_pass_rates.py` | PASS rates per system for the current model and the 10-90% drop rule |
 | `experiments/log_parsing_paper_numbers.py` | Builds `reports/paper_numbers.md`, the single source of numbers for the paper |
 | `experiments/log_parsing_cpu_analyses.py`, `paper/fig_lorenz.py` | 2026-11-10 evening, CPU only: N1 group-size concentration vs the frequency/oracle gap, N2 counterfactual parser accuracy (simulation), N3 template-word TF-IDF detectors; outputs `results_phase3{,_gemma}/cpu/` |
+| `experiments/log_parsing_gate.py`, `log_parsing_drain_templates.py`, `log_parsing_unseen.py`, `log_parsing_stream_u.py`, `log_parsing_groupcheck.py` | 2026-11-10 night, CPU only: N4 creation-time gate, N5 Drain templates vs LLM cache, U/V zero-extra-call unseen-template prediction (features cached in `data/unseen_feats/`), U/V best in the streams, W same-group validation; outputs `results_phase3{,_gemma}/{gate,unseen,stream_u,groupcheck}/` |
 | `experiments/sharded/git_backup.py` | Uploads a git bundle of `main` to RESULTS_REPO `git_bundles/` when `git push` has no credentials |
 | `AGENTS.md`, `CLAUDE.md`, `PROGRESS.md` | Agent memory |
 

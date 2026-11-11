@@ -452,7 +452,7 @@ Reading: every Llama finding about the pre-generation methods and lookups holds 
 
 ## 10. Paper artefacts
 
-`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3), `fig_lorenz.py` (N1). Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
+`experiments/paper/`: one script per LaTeX table (`tables/*.tex`, booktabs) and figure (`figures/*.pdf`), all reading the same per-job JSON as the sections above (`paper/common.py`). Tables: `table_main.py` (both models, capped vs natural, standard split), `table_disjoint.py`, `table_leakage.py`, `table_cross.py`, `table_literature.py` (A, B). Figures: `fig_cost_auc.py`, `fig_clotho_vs_lookup.py`, `fig_within_template.py`, `fig_budget.py` (C), `fig_transfer.py` (D, paired), `fig_triage.py` (TRIAGE E1); tables `table_triage_ablation.py` (E2), `table_e5.py` (E5 and G); `fig_strong_gap.py` (F3), `fig_lorenz.py` (N1), `fig_difficulty.py` (L), `fig_crossmodel.py` (J), `table_downstream.py` (H, N3), `table_unseen.py` (U, V), `fig_groupcheck.py` (W). Bold = best in its column and ahead of the runner-up on every seed. RQ outline: `paper/results_outline.md`.
 
 ## 11. Literature baselines: LLMLog selection score (A), AdaParser corrector (B)
 
@@ -2446,6 +2446,1212 @@ Overtake point (largest t from which D x size > Most frequent at every smaller t
 | gemma D x size @20 | 0.230 ± 0.003 | 0.406 ± 0.054 | 0.161 ± 0.005 | 0.013 ± 0.000 | 0.007 ± 0.000 | 0.087 ± 0.000 | 0.056 | 0.019 |
 
 2500 sessions, 233 anomalous (92 in the test half).
+
+
+## 26. N4: review gate at template creation time (2026-11-10)
+
+Copied from `reports/gate_details.md` (`log_parsing_gate.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (N4-N5).
+
+### llama: D refit weight w = 1 (tuning, mean share @ q = 10 on Linux, Spark: w 1: 0.105, w 10: 0.085, w 100: 0.053)
+
+
+#### llama, base parser, q = 5%, all systems (11)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 45.6 | 0.795 ± 0.017 | 0.066 ± 0.008 | 0.664 ± 0.017 | 0.763 ± 0.028 | 0.10 | -0.013 (3/5) |  |
+| LLMLog confidence | 34.7 | 0.872 ± 0.000 | 0.069 ± 0.000 | 0.709 ± 0.000 | 0.800 ± 0.000 | 0.10 | -0.010 (2/5) | +0.003 (3/5) |
+| Output entropy | 44.1 | 0.787 ± 0.008 | 0.068 ± 0.007 | 0.711 ± 0.001 | 0.840 ± 0.012 | 0.10 | -0.012 (2/5) | +0.001 (3/5) |
+| Random | 56.8 | 0.610 ± 0.035 | 0.079 ± 0.022 | 0.710 ± 0.030 | 0.826 ± 0.023 | 0.11 |  | +0.013 (3/5) |
+
+SK-ESD (share, over (system, seed)): 1. Random 0.079; 1. LLMLog confidence 0.069; 1. Output entropy 0.068; 1. D (online) 0.066. A12 D vs: LLMLog confidence 0.43 (small); Output entropy 0.47 (negligible); Random 0.44 (negligible)
+
+#### llama, base parser, q = 5%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 53.0 | 0.795 ± 0.016 | 0.076 ± 0.008 | 0.610 ± 0.021 | 0.729 ± 0.034 | 0.12 | -0.017 (4/5) |  |
+| LLMLog confidence | 39.7 | 0.873 ± 0.000 | 0.083 ± 0.000 | 0.666 ± 0.000 | 0.775 ± 0.000 | 0.13 | -0.009 (2/5) | +0.008 (4/5) |
+| Output entropy | 50.9 | 0.774 ± 0.010 | 0.081 ± 0.008 | 0.667 ± 0.002 | 0.823 ± 0.015 | 0.12 | -0.012 (2/5) | +0.005 (4/5) |
+| Random | 66.6 | 0.593 ± 0.050 | 0.093 ± 0.021 | 0.667 ± 0.037 | 0.807 ± 0.028 | 0.14 |  | +0.017 (4/5) |
+
+#### llama, base parser, q = 10%, all systems (11)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 87.3 | 0.823 ± 0.032 | 0.107 ± 0.013 | 0.747 ± 0.019 | 0.859 ± 0.025 | 0.14 | -0.015 (4/5) |  |
+| LLMLog confidence | 80.3 | 0.863 ± 0.000 | 0.134 ± 0.000 | 0.800 ± 0.000 | 0.898 ± 0.000 | 0.17 | +0.011 (4/5) | +0.027 (5/5) |
+| Output entropy | 90.3 | 0.792 ± 0.003 | 0.094 ± 0.005 | 0.801 ± 0.000 | 0.903 ± 0.000 | 0.12 | -0.029 (4/5) | -0.014 (5/5) |
+| Random | 114.5 | 0.594 ± 0.034 | 0.123 ± 0.028 | 0.818 ± 0.021 | 0.899 ± 0.018 | 0.15 |  | +0.015 (4/5) |
+
+SK-ESD (share, over (system, seed)): 1. LLMLog confidence 0.134; 1. Random 0.123; 1. D (online) 0.107; 1. Output entropy 0.094. A12 D vs: LLMLog confidence 0.43 (small); Output entropy 0.50 (negligible); Random 0.47 (negligible)
+
+#### llama, base parser, q = 10%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 100.7 | 0.811 ± 0.041 | 0.108 ± 0.016 | 0.707 ± 0.024 | 0.843 ± 0.031 | 0.15 | -0.035 (4/5) |  |
+| LLMLog confidence | 92.0 | 0.857 ± 0.000 | 0.156 ± 0.000 | 0.771 ± 0.000 | 0.889 ± 0.000 | 0.20 | +0.013 (4/5) | +0.048 (5/5) |
+| Output entropy | 104.3 | 0.773 ± 0.003 | 0.111 ± 0.006 | 0.773 ± 0.000 | 0.896 ± 0.000 | 0.14 | -0.032 (4/5) | +0.003 (3/5) |
+| Random | 134.0 | 0.563 ± 0.042 | 0.143 ± 0.035 | 0.794 ± 0.026 | 0.891 ± 0.022 | 0.18 |  | +0.035 (4/5) |
+
+#### llama, base parser, q = 20%, all systems (11)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 188.7 | 0.795 ± 0.013 | 0.181 ± 0.021 | 0.905 ± 0.003 | 0.939 ± 0.002 | 0.20 | -0.046 (5/5) |  |
+| LLMLog confidence | 195.5 | 0.812 ± 0.000 | 0.186 ± 0.000 | 0.912 ± 0.000 | 0.941 ± 0.000 | 0.20 | -0.040 (5/5) | +0.005 (2/5) |
+| Output entropy | 186.2 | 0.797 ± 0.002 | 0.165 ± 0.002 | 0.914 ± 0.000 | 0.941 ± 0.000 | 0.18 | -0.062 (5/5) | -0.016 (4/5) |
+| Random | 230.1 | 0.606 ± 0.008 | 0.227 ± 0.018 | 0.909 ± 0.017 | 0.942 ± 0.001 | 0.25 |  | +0.046 (5/5) |
+
+SK-ESD (share, over (system, seed)): 1. Random 0.227; 1. LLMLog confidence 0.186; 1. D (online) 0.181; 1. Output entropy 0.165. A12 D vs: LLMLog confidence 0.48 (negligible); Output entropy 0.51 (negligible); Random 0.46 (negligible)
+
+#### llama, base parser, q = 20%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 218.2 | 0.774 ± 0.022 | 0.162 ± 0.027 | 0.895 ± 0.004 | 0.935 ± 0.002 | 0.18 | -0.082 (5/5) |  |
+| LLMLog confidence | 226.6 | 0.789 ± 0.000 | 0.216 ± 0.000 | 0.904 ± 0.000 | 0.938 ± 0.000 | 0.24 | -0.028 (5/5) | +0.055 (5/5) |
+| Output entropy | 215.3 | 0.774 ± 0.002 | 0.179 ± 0.002 | 0.906 ± 0.000 | 0.938 ± 0.000 | 0.20 | -0.065 (5/5) | +0.017 (4/5) |
+| Random | 269.3 | 0.578 ± 0.010 | 0.244 ± 0.011 | 0.901 ± 0.020 | 0.939 ± 0.002 | 0.27 |  | +0.082 (5/5) |
+
+#### llama, strong parser, q = 5%, all systems (13)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 42.3 | 0.496 ± 0.025 | 0.040 ± 0.011 | 0.479 ± 0.003 | 0.735 ± 0.003 | 0.08 | +0.007 (4/5) |  |
+| LLMLog confidence | 24.9 | 0.425 ± 0.000 | 0.034 ± 0.000 | 0.526 ± 0.000 | 0.748 ± 0.000 | 0.06 | +0.001 (3/5) | -0.006 (3/5) |
+| Output entropy | 31.5 | 0.475 ± 0.012 | 0.034 ± 0.006 | 0.472 ± 0.002 | 0.749 ± 0.001 | 0.07 | +0.001 (4/5) | -0.005 (2/5) |
+| Random | 47.8 | 0.344 ± 0.027 | 0.033 ± 0.014 | 0.508 ± 0.057 | 0.744 ± 0.033 | 0.06 |  | -0.007 (4/5) |
+
+SK-ESD (share, over (system, seed)): 1. D (online) 0.040; 1. Output entropy 0.034; 1. LLMLog confidence 0.034; 1. Random 0.033. A12 D vs: LLMLog confidence 0.52 (negligible); Output entropy 0.51 (negligible); Random 0.54 (negligible)
+
+#### llama, strong parser, q = 5%, held-out systems (10)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 52.2 | 0.482 ± 0.027 | 0.042 ± 0.009 | 0.440 ± 0.005 | 0.676 ± 0.004 | 0.09 | +0.003 (3/5) |  |
+| LLMLog confidence | 29.8 | 0.367 ± 0.000 | 0.039 ± 0.000 | 0.501 ± 0.000 | 0.693 ± 0.000 | 0.08 | +0.001 (3/5) | -0.002 (1/5) |
+| Output entropy | 38.4 | 0.458 ± 0.005 | 0.043 ± 0.008 | 0.431 ± 0.002 | 0.695 ± 0.002 | 0.10 | +0.004 (4/5) | +0.001 (3/5) |
+| Random | 59.4 | 0.313 ± 0.026 | 0.038 ± 0.012 | 0.478 ± 0.074 | 0.688 ± 0.043 | 0.08 |  | -0.003 (3/5) |
+
+#### llama, strong parser, q = 10%, all systems (13)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 82.0 | 0.538 ± 0.020 | 0.066 ± 0.008 | 0.548 ± 0.026 | 0.798 ± 0.008 | 0.12 | +0.008 (3/5) |  |
+| LLMLog confidence | 58.3 | 0.468 ± 0.000 | 0.055 ± 0.000 | 0.589 ± 0.000 | 0.782 ± 0.000 | 0.09 | -0.004 (3/5) | -0.011 (5/5) |
+| Output entropy | 70.4 | 0.576 ± 0.001 | 0.063 ± 0.002 | 0.593 ± 0.001 | 0.814 ± 0.001 | 0.11 | +0.005 (4/5) | -0.003 (2/5) |
+| Random | 96.2 | 0.395 ± 0.016 | 0.058 ± 0.008 | 0.585 ± 0.026 | 0.814 ± 0.013 | 0.10 |  | -0.008 (3/5) |
+
+SK-ESD (share, over (system, seed)): 1. D (online) 0.066; 1. Output entropy 0.063; 1. Random 0.058; 1. LLMLog confidence 0.055. A12 D vs: LLMLog confidence 0.54 (negligible); Output entropy 0.48 (negligible); Random 0.53 (negligible)
+
+#### llama, strong parser, q = 10%, held-out systems (10)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 101.0 | 0.532 ± 0.027 | 0.070 ± 0.014 | 0.525 ± 0.034 | 0.754 ± 0.011 | 0.13 | -0.000 (3/5) |  |
+| LLMLog confidence | 70.6 | 0.429 ± 0.000 | 0.064 ± 0.000 | 0.579 ± 0.000 | 0.734 ± 0.000 | 0.11 | -0.007 (4/5) | -0.006 (2/5) |
+| Output entropy | 86.1 | 0.576 ± 0.004 | 0.078 ± 0.003 | 0.584 ± 0.002 | 0.775 ± 0.001 | 0.13 | +0.007 (5/5) | +0.007 (3/5) |
+| Random | 119.8 | 0.372 ± 0.028 | 0.071 ± 0.006 | 0.574 ± 0.034 | 0.775 ± 0.016 | 0.12 |  | +0.000 (3/5) |
+
+#### llama, strong parser, q = 20%, all systems (13)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 155.0 | 0.562 ± 0.021 | 0.121 ± 0.021 | 0.688 ± 0.006 | 0.844 ± 0.011 | 0.18 | -0.018 (4/5) |  |
+| LLMLog confidence | 164.9 | 0.574 ± 0.000 | 0.173 ± 0.000 | 0.634 ± 0.000 | 0.846 ± 0.000 | 0.27 | +0.034 (5/5) | +0.052 (5/5) |
+| Output entropy | 150.3 | 0.586 ± 0.009 | 0.263 ± 0.002 | 0.695 ± 0.000 | 0.856 ± 0.000 | 0.38 | +0.124 (5/5) | +0.142 (5/5) |
+| Random | 193.0 | 0.415 ± 0.028 | 0.139 ± 0.037 | 0.664 ± 0.034 | 0.859 ± 0.007 | 0.21 |  | +0.018 (4/5) |
+
+SK-ESD (share, over (system, seed)): 1. Output entropy 0.263; 2. LLMLog confidence 0.173; 2. Random 0.139; 2. D (online) 0.121. A12 D vs: LLMLog confidence 0.43 (small); Output entropy 0.31 (medium); Random 0.49 (negligible)
+
+#### llama, strong parser, q = 20%, held-out systems (10)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 190.6 | 0.566 ± 0.029 | 0.137 ± 0.032 | 0.704 ± 0.008 | 0.810 ± 0.014 | 0.20 | -0.024 (4/5) |  |
+| LLMLog confidence | 203.8 | 0.568 ± 0.000 | 0.156 ± 0.000 | 0.634 ± 0.000 | 0.813 ± 0.000 | 0.25 | -0.005 (3/5) | +0.019 (4/5) |
+| Output entropy | 184.3 | 0.598 ± 0.012 | 0.283 ± 0.002 | 0.713 ± 0.000 | 0.826 ± 0.000 | 0.40 | +0.122 (5/5) | +0.146 (5/5) |
+| Random | 240.6 | 0.402 ± 0.030 | 0.161 ± 0.042 | 0.673 ± 0.044 | 0.829 ± 0.009 | 0.24 |  | +0.024 (4/5) |
+
+### gemma: D refit weight w = 1 (tuning, mean share @ q = 10 on HDFS, Linux, Spark: w 1: 0.263, w 10: 0.256, w 100: 0.256)
+
+
+#### gemma, base parser, q = 5%, all systems (12)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 46.2 | 0.674 ± 0.000 | 0.126 ± 0.000 | 0.581 ± 0.000 | 0.725 ± 0.000 | 0.22 | +0.014 (4/5) |  |
+| LLMLog confidence | 43.1 | 0.752 ± 0.000 | 0.100 ± 0.000 | 0.680 ± 0.000 | 0.758 ± 0.000 | 0.15 | -0.011 (3/5) | -0.026 (5/5) |
+| Output entropy | 42.7 | 0.813 ± 0.012 | 0.123 ± 0.004 | 0.726 ± 0.002 | 0.805 ± 0.001 | 0.17 | +0.011 (4/5) | -0.003 (5/5) |
+| Random | 52.2 | 0.581 ± 0.033 | 0.112 ± 0.022 | 0.671 ± 0.045 | 0.780 ± 0.017 | 0.17 |  | -0.014 (4/5) |
+
+SK-ESD (share, over (system, seed)): 1. D (online) 0.126; 1. Output entropy 0.123; 1. Random 0.112; 1. LLMLog confidence 0.100. A12 D vs: LLMLog confidence 0.50 (negligible); Output entropy 0.43 (small); Random 0.49 (negligible)
+
+#### gemma, base parser, q = 5%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 58.6 | 0.601 ± 0.000 | 0.083 ± 0.000 | 0.533 ± 0.000 | 0.721 ± 0.000 | 0.16 | -0.009 (3/5) |  |
+| LLMLog confidence | 54.7 | 0.716 ± 0.000 | 0.077 ± 0.000 | 0.666 ± 0.000 | 0.766 ± 0.000 | 0.12 | -0.015 (4/5) | -0.007 (5/5) |
+| Output entropy | 54.0 | 0.773 ± 0.001 | 0.103 ± 0.005 | 0.726 ± 0.002 | 0.828 ± 0.001 | 0.14 | +0.011 (4/5) | +0.020 (5/5) |
+| Random | 66.6 | 0.521 ± 0.047 | 0.092 ± 0.017 | 0.653 ± 0.060 | 0.794 ± 0.023 | 0.14 |  | +0.009 (3/5) |
+
+#### gemma, base parser, q = 10%, all systems (12)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 93.4 | 0.651 ± 0.000 | 0.144 ± 0.000 | 0.740 ± 0.000 | 0.820 ± 0.000 | 0.19 | +0.001 (3/5) |  |
+| LLMLog confidence | 92.2 | 0.752 ± 0.000 | 0.116 ± 0.000 | 0.813 ± 0.000 | 0.849 ± 0.000 | 0.14 | -0.028 (5/5) | -0.029 (5/5) |
+| Output entropy | 85.3 | 0.829 ± 0.010 | 0.205 ± 0.005 | 0.827 ± 0.000 | 0.862 ± 0.000 | 0.25 | +0.061 (5/5) | +0.060 (5/5) |
+| Random | 105.1 | 0.551 ± 0.035 | 0.143 ± 0.022 | 0.796 ± 0.030 | 0.869 ± 0.034 | 0.18 |  | -0.001 (3/5) |
+
+SK-ESD (share, over (system, seed)): 1. Output entropy 0.205; 1. D (online) 0.144; 1. Random 0.143; 1. LLMLog confidence 0.116. A12 D vs: LLMLog confidence 0.50 (negligible); Output entropy 0.36 (small); Random 0.46 (negligible)
+
+#### gemma, base parser, q = 10%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 118.7 | 0.575 ± 0.000 | 0.105 ± 0.000 | 0.739 ± 0.000 | 0.842 ± 0.000 | 0.14 | -0.026 (5/5) |  |
+| LLMLog confidence | 117.0 | 0.711 ± 0.000 | 0.094 ± 0.000 | 0.836 ± 0.000 | 0.881 ± 0.000 | 0.11 | -0.037 (5/5) | -0.011 (5/5) |
+| Output entropy | 107.7 | 0.785 ± 0.013 | 0.128 ± 0.006 | 0.854 ± 0.000 | 0.898 ± 0.000 | 0.15 | -0.003 (3/5) | +0.023 (5/5) |
+| Random | 134.0 | 0.505 ± 0.037 | 0.131 ± 0.025 | 0.814 ± 0.040 | 0.881 ± 0.022 | 0.16 |  | +0.026 (5/5) |
+
+#### gemma, base parser, q = 20%, all systems (12)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 194.8 | 0.722 ± 0.000 | 0.232 ± 0.000 | 0.859 ± 0.000 | 0.926 ± 0.000 | 0.27 | -0.019 (3/5) |  |
+| LLMLog confidence | 188.2 | 0.706 ± 0.000 | 0.162 ± 0.000 | 0.869 ± 0.000 | 0.928 ± 0.000 | 0.19 | -0.088 (5/5) | -0.070 (5/5) |
+| Output entropy | 167.8 | 0.842 ± 0.004 | 0.281 ± 0.001 | 0.870 ± 0.000 | 0.928 ± 0.000 | 0.32 | +0.030 (4/5) | +0.049 (5/5) |
+| Random | 211.1 | 0.552 ± 0.035 | 0.251 ± 0.028 | 0.861 ± 0.018 | 0.924 ± 0.018 | 0.29 |  | +0.019 (3/5) |
+
+SK-ESD (share, over (system, seed)): 1. Output entropy 0.281; 1. Random 0.251; 1. D (online) 0.232; 2. LLMLog confidence 0.162. A12 D vs: LLMLog confidence 0.61 (small); Output entropy 0.40 (small); Random 0.47 (negligible)
+
+#### gemma, base parser, q = 20%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 247.1 | 0.691 ± 0.000 | 0.215 ± 0.000 | 0.890 ± 0.000 | 0.932 ± 0.000 | 0.24 | -0.023 (5/5) |  |
+| LLMLog confidence | 238.7 | 0.649 ± 0.000 | 0.153 ± 0.000 | 0.904 ± 0.000 | 0.935 ± 0.000 | 0.17 | -0.085 (5/5) | -0.062 (5/5) |
+| Output entropy | 211.2 | 0.806 ± 0.005 | 0.217 ± 0.002 | 0.905 ± 0.000 | 0.934 ± 0.000 | 0.24 | -0.020 (5/5) | +0.002 (4/5) |
+| Random | 269.2 | 0.503 ± 0.034 | 0.237 ± 0.008 | 0.894 ± 0.024 | 0.932 ± 0.005 | 0.27 |  | +0.023 (5/5) |
+
+#### gemma, strong parser, q = 5%, all systems (12)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 44.9 | 0.627 ± 0.000 | 0.038 ± 0.000 | 0.523 ± 0.000 | 0.714 ± 0.000 | 0.07 | +0.005 (3/5) |  |
+| LLMLog confidence | 41.5 | 0.724 ± 0.000 | 0.034 ± 0.000 | 0.547 ± 0.000 | 0.728 ± 0.000 | 0.06 | -0.000 (2/5) | -0.005 (5/5) |
+| Output entropy | 43.9 | 0.642 ± 0.015 | 0.035 ± 0.002 | 0.562 ± 0.017 | 0.738 ± 0.003 | 0.06 | +0.001 (3/5) | -0.003 (5/5) |
+| Random | 51.6 | 0.428 ± 0.040 | 0.034 ± 0.015 | 0.572 ± 0.043 | 0.722 ± 0.046 | 0.06 |  | -0.005 (3/5) |
+
+SK-ESD (share, over (system, seed)): 1. D (online) 0.038; 1. Output entropy 0.035; 1. Random 0.034; 1. LLMLog confidence 0.034. A12 D vs: LLMLog confidence 0.44 (negligible); Output entropy 0.44 (small); Random 0.53 (negligible)
+
+#### gemma, strong parser, q = 5%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 57.0 | 0.674 ± 0.000 | 0.035 ± 0.000 | 0.490 ± 0.000 | 0.631 ± 0.000 | 0.07 | -0.007 (2/5) |  |
+| LLMLog confidence | 52.4 | 0.797 ± 0.000 | 0.042 ± 0.000 | 0.521 ± 0.000 | 0.650 ± 0.000 | 0.08 | +0.000 (3/5) | +0.007 (5/5) |
+| Output entropy | 55.6 | 0.677 ± 0.012 | 0.044 ± 0.002 | 0.542 ± 0.022 | 0.663 ± 0.004 | 0.08 | +0.003 (3/5) | +0.010 (5/5) |
+| Random | 65.9 | 0.455 ± 0.054 | 0.042 ± 0.015 | 0.554 ± 0.057 | 0.642 ± 0.061 | 0.08 |  | +0.007 (2/5) |
+
+#### gemma, strong parser, q = 10%, all systems (12)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 92.3 | 0.620 ± 0.000 | 0.054 ± 0.000 | 0.622 ± 0.000 | 0.778 ± 0.000 | 0.09 | -0.000 (2/5) |  |
+| LLMLog confidence | 95.7 | 0.676 ± 0.000 | 0.093 ± 0.000 | 0.662 ± 0.000 | 0.789 ± 0.000 | 0.14 | +0.039 (5/5) | +0.039 (5/5) |
+| Output entropy | 86.9 | 0.655 ± 0.003 | 0.080 ± 0.007 | 0.651 ± 0.001 | 0.784 ± 0.000 | 0.12 | +0.026 (5/5) | +0.026 (5/5) |
+| Random | 104.0 | 0.439 ± 0.014 | 0.054 ± 0.015 | 0.651 ± 0.018 | 0.800 ± 0.009 | 0.08 |  | +0.000 (2/5) |
+
+SK-ESD (share, over (system, seed)): 1. LLMLog confidence 0.093; 1. Output entropy 0.080; 2. Random 0.054; 2. D (online) 0.054. A12 D vs: LLMLog confidence 0.46 (negligible); Output entropy 0.38 (small); Random 0.51 (negligible)
+
+#### gemma, strong parser, q = 10%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 117.4 | 0.686 ± 0.000 | 0.055 ± 0.000 | 0.618 ± 0.000 | 0.714 ± 0.000 | 0.09 | -0.011 (3/5) |  |
+| LLMLog confidence | 121.7 | 0.748 ± 0.000 | 0.064 ± 0.000 | 0.670 ± 0.000 | 0.728 ± 0.000 | 0.10 | -0.001 (3/5) | +0.010 (5/5) |
+| Output entropy | 109.8 | 0.703 ± 0.002 | 0.088 ± 0.009 | 0.655 ± 0.001 | 0.722 ± 0.000 | 0.13 | +0.022 (5/5) | +0.033 (5/5) |
+| Random | 132.9 | 0.451 ± 0.032 | 0.066 ± 0.015 | 0.655 ± 0.024 | 0.743 ± 0.012 | 0.10 |  | +0.011 (3/5) |
+
+#### gemma, strong parser, q = 20%, all systems (12)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 188.6 | 0.563 ± 0.000 | 0.105 ± 0.000 | 0.717 ± 0.000 | 0.850 ± 0.000 | 0.15 | -0.042 (4/5) |  |
+| LLMLog confidence | 189.3 | 0.582 ± 0.000 | 0.170 ± 0.000 | 0.708 ± 0.000 | 0.841 ± 0.000 | 0.24 | +0.023 (3/5) | +0.064 (5/5) |
+| Output entropy | 165.4 | 0.676 ± 0.003 | 0.183 ± 0.025 | 0.709 ± 0.000 | 0.820 ± 0.000 | 0.26 | +0.035 (4/5) | +0.077 (5/5) |
+| Random | 208.8 | 0.453 ± 0.008 | 0.147 ± 0.046 | 0.726 ± 0.006 | 0.851 ± 0.006 | 0.20 |  | +0.042 (4/5) |
+
+SK-ESD (share, over (system, seed)): 1. Output entropy 0.183; 1. LLMLog confidence 0.170; 1. Random 0.147; 2. D (online) 0.105. A12 D vs: LLMLog confidence 0.42 (small); Output entropy 0.37 (small); Random 0.45 (negligible)
+
+#### gemma, strong parser, q = 20%, held-out systems (9)
+
+| method | reviews (mean per system) | precision | share fixed | Most frequent @same N | Oracle @same N | share / Most frequent | minus Random | minus D |
+|---|---|---|---|---|---|---|---|---|
+| D (online) | 239.4 | 0.603 ± 0.000 | 0.119 ± 0.000 | 0.741 ± 0.000 | 0.806 ± 0.000 | 0.16 | -0.052 (4/5) |  |
+| LLMLog confidence | 240.9 | 0.621 ± 0.000 | 0.166 ± 0.000 | 0.729 ± 0.000 | 0.794 ± 0.000 | 0.23 | -0.006 (2/5) | +0.047 (5/5) |
+| Output entropy | 208.2 | 0.716 ± 0.002 | 0.222 ± 0.033 | 0.730 ± 0.000 | 0.766 ± 0.000 | 0.30 | +0.051 (4/5) | +0.103 (5/5) |
+| Random | 266.9 | 0.472 ± 0.013 | 0.171 ± 0.053 | 0.753 ± 0.008 | 0.807 ± 0.008 | 0.23 |  | +0.052 (4/5) |
+
+
+## 27. N5: Drain templates vs the LLM cache (2026-11-10)
+
+Copied from `reports/drain_templates.md` (`log_parsing_drain_templates.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (N4-N5).
+
+### Per system (PA; FTA in brackets)
+
+| system | groups | small-group lines | drain | llama/base | llama/strong | gemma/base | gemma/strong |
+|---|---|---|---|---|---|---|---|
+| Apache | 29 | 2 | 0.722 (0.517) | 0.721 (0.414) | 0.860 (0.793) | - | - |
+| BGL | 51 | 13 | 0.202 (0.229) | 0.110 (0.423) | 0.989 (0.731) | 0.105 (0.442) | 0.988 (0.712) |
+| HDFS | 14 | 2 | 0.529 (0.444) | - | 1.000 (0.846) | 0.447 (0.296) | 1.000 (0.923) |
+| HPC | 68 | 47 | 0.180 (0.114) | 0.189 (0.341) | 0.745 (0.683) | 0.745 (0.698) | 0.745 (0.698) |
+| Hadoop | 261 | 53 | 0.537 (0.387) | 0.234 (0.393) | 0.308 (0.530) | 0.546 (0.471) | 0.591 (0.540) |
+| HealthApp | 6695 | 6668 | 0.304 (0.013) | 0.208 (0.347) | 0.732 (0.471) | 0.539 (0.625) | 0.778 (0.623) |
+| Linux | 430 | 96 | 0.111 (0.260) | 0.234 (0.269) | 0.251 (0.321) | 0.587 (0.414) | 0.094 (0.442) |
+| Mac | 1952 | 1566 | 0.376 (0.104) | 0.246 (0.163) | 0.368 (0.242) | 0.361 (0.223) | 0.464 (0.369) |
+| OpenSSH | 26 | 3 | 0.440 (0.528) | - | 0.998 (0.604) | 0.386 (0.340) | 0.995 (0.528) |
+| OpenStack | 2616 | 4066 | 0.029 (0.004) | 0.159 (0.070) | 0.813 (0.434) | 0.149 (0.182) | 0.822 (0.381) |
+| Spark | 139 | 35 | 0.029 (0.384) | 0.018 (0.290) | 0.027 (0.420) | 0.025 (0.385) | 0.034 (0.480) |
+| Thunderbird | 630 | 109 | 0.235 (0.248) | 0.179 (0.293) | 0.399 (0.374) | 0.269 (0.426) | 0.427 (0.431) |
+| Zookeeper | 77 | 9 | 0.850 (0.614) | 0.508 (0.497) | 0.810 (0.687) | 0.211 (0.590) | 0.620 (0.687) |
+
+### llama: macro over 11 systems with both caches (HDFS, OpenSSH missing)
+
+| parser | PA | FTA | PA small groups | PA large groups | LLM minus Drain, PA small (systems LLM wins) | LLM minus Drain, PA large (wins) |
+|---|---|---|---|---|---|---|
+| Drain | 0.325 | 0.261 | 0.113 | 0.330 |  |  |
+| LLM base | 0.255 | 0.318 | 0.353 | 0.254 | +0.240 (10 win / 1 lose of 11) | -0.076 (3 win / 8 lose of 11) |
+| LLM strong | 0.573 | 0.517 | 0.451 | 0.585 | +0.338 (10 win / 1 lose of 11) | +0.254 (7 win / 4 lose of 11) |
+| LLM strong, excl. seeds | 0.431 | - | 0.451 | 0.435 | +0.338 (10 win / 1 lose of 11) | +0.051 (6 win / 5 lose of 11) |
+| Drain, excl. strong seeds | 0.378 | - | 0.113 | 0.384 |  |  |
+
+All 13 systems with the strong cache: Drain PA 0.350, LLM strong PA 0.639; FTA 0.296 vs 0.549.
+
+### gemma: macro over 12 systems with both caches (none missing)
+
+| parser | PA | FTA | PA small groups | PA large groups | LLM minus Drain, PA small (systems LLM wins) | LLM minus Drain, PA large (wins) |
+|---|---|---|---|---|---|---|
+| Drain | 0.318 | 0.277 | 0.201 | 0.323 |  |  |
+| LLM base | 0.364 | 0.424 | 0.417 | 0.368 | +0.216 (10 win / 2 lose of 12) | +0.044 (6 win / 6 lose of 12) |
+| LLM strong | 0.630 | 0.568 | 0.498 | 0.641 | +0.297 (10 win / 0 lose of 12) | +0.318 (10 win / 2 lose of 12) |
+| LLM strong, excl. seeds | 0.455 | - | 0.498 | 0.472 | +0.297 (10 win / 0 lose of 12) | +0.065 (6 win / 5 lose of 12) |
+| Drain, excl. strong seeds | 0.401 | - | 0.201 | 0.406 |  |  |
+
+Small-group lines are 12669 of 623921 stream lines in total (2.0% per system on average).
+
+
+## 28. U and V: zero-extra-call failure prediction for unseen templates (2026-11-10)
+
+Copied from `reports/unseen_details.md` (`log_parsing_unseen.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (U, V, W, P).
+
+### llama
+
+Tuning (HDFS, Spark, Linux, disjoint @100): S1: `S1|L24|p16|lr1.0|ws0.1` 0.803; S2: `S2|lr0.1|ws0` 0.723; S3: `S3|lr0.1|ws0` 0.725; S1+S2: `S1+S2|lr1.0|ws0.1` 0.797; S1+S3: `S1+S3|lr1.0|ws0.1` 0.819; S2+S3: `S2+S3|lr1.0|ws0.1` 0.771; S1+S2+S3: `S1+S2+S3|lr1.0|ws0.1` 0.813. **U's best: S1+S3.** V alone: V1cat: `V1cat|p16` 0.722; V1ens: `V1ens` 0.724; V3: `V3|lr1.0` 0.593; V4: `V4|lr0.1` 0.667; V5: `V5|lr1.0` 0.718; V6: `V6|k5` 0.661; V7: `V7|k3` 0.612.
+
+
+#### llama, disjoint, @100, all systems (13)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.645 ± 0.022 |  | -0.132 ± 0.046 (5/5) | -0.151 ± 0.026 (5/5) |
+| MDSA | 0.656 ± 0.025 | +0.011 ± 0.033 (3/5) | -0.120 ± 0.042 (5/5) | -0.139 ± 0.025 (5/5) |
+| Lookup (Drain) | 0.505 ± 0.005 | -0.140 ± 0.023 (5/5) | -0.271 ± 0.028 (5/5) | -0.290 ± 0.017 (5/5) |
+| Output entropy (5 samples)* | 0.796 ± 0.014 | +0.151 ± 0.026 (5/5) | +0.019 ± 0.023 (3/5) |  |
+| Random | 0.502 ± 0.013 | -0.143 ± 0.033 (5/5) | -0.274 ± 0.021 (5/5) | -0.294 ± 0.016 (5/5) |
+| U:S1 | 0.749 ± 0.032 | +0.104 ± 0.049 (5/5) | -0.027 ± 0.007 (5/5) | -0.047 ± 0.026 (5/5) |
+| U:S1+S2 | 0.745 ± 0.035 | +0.100 ± 0.052 (5/5) | -0.032 ± 0.010 (5/5) | -0.051 ± 0.028 (5/5) |
+| U:S1+S2+S3 | 0.773 ± 0.032 | +0.128 ± 0.048 (5/5) | -0.004 ± 0.005 (3/5) | -0.023 ± 0.025 (3/5) |
+| U:S1+S3 | 0.776 ± 0.028 | +0.132 ± 0.046 (5/5) |  | -0.019 ± 0.023 (3/5) |
+| U:S2 | 0.710 ± 0.014 | +0.065 ± 0.030 (5/5) | -0.067 ± 0.036 (5/5) | -0.086 ± 0.023 (5/5) |
+| U:S2+S3 | 0.745 ± 0.015 | +0.100 ± 0.032 (5/5) | -0.031 ± 0.020 (5/5) | -0.050 ± 0.011 (5/5) |
+| U:S3 | 0.669 ± 0.017 | +0.024 ± 0.034 (4/5) | -0.107 ± 0.015 (5/5) | -0.127 ± 0.010 (5/5) |
+| V:V1cat | 0.711 ± 0.030 | +0.067 ± 0.035 (5/5) | -0.065 ± 0.034 (5/5) | -0.084 ± 0.032 (5/5) |
+| V:V1ens | 0.720 ± 0.024 | +0.075 ± 0.028 (5/5) | -0.056 ± 0.030 (5/5) | -0.075 ± 0.025 (5/5) |
+| V:V3 | 0.593 ± 0.008 | -0.051 ± 0.026 (5/5) | -0.183 ± 0.033 (5/5) | -0.202 ± 0.019 (5/5) |
+| V:V4 | 0.624 ± 0.019 | -0.021 ± 0.033 (4/5) | -0.153 ± 0.014 (5/5) | -0.172 ± 0.013 (5/5) |
+| V:V5 | 0.683 ± 0.020 | +0.039 ± 0.033 (4/5) | -0.093 ± 0.019 (5/5) | -0.112 ± 0.008 (5/5) |
+| V:V6 | 0.637 ± 0.025 | -0.008 ± 0.044 (3/5) | -0.139 ± 0.038 (5/5) | -0.159 ± 0.033 (5/5) |
+| V:V7 | 0.591 ± 0.009 | -0.054 ± 0.018 (5/5) | -0.185 ± 0.036 (5/5) | -0.204 ± 0.021 (5/5) |
+| U+V1 | 0.781 ± 0.019 | +0.136 ± 0.038 (5/5) | +0.005 ± 0.013 (4/5) | -0.015 ± 0.015 (4/5) |
+| U+V3 | 0.776 ± 0.029 | +0.131 ± 0.047 (5/5) | -0.001 ± 0.002 (4/5) | -0.020 ± 0.024 (3/5) |
+| U+V4 | 0.781 ± 0.030 | +0.137 ± 0.046 (5/5) | +0.005 ± 0.006 (3/5) | -0.014 ± 0.024 (3/5) |
+| U+V5 | 0.783 ± 0.027 | +0.139 ± 0.043 (5/5) | +0.007 ± 0.006 (5/5) | -0.012 ± 0.020 (3/5) |
+| U+V6 | 0.762 ± 0.025 | +0.117 ± 0.045 (5/5) | -0.015 ± 0.012 (5/5) | -0.034 ± 0.023 (5/5) |
+| U+V7 | 0.775 ± 0.028 | +0.130 ± 0.046 (5/5) | -0.001 ± 0.001 (4/5) | -0.021 ± 0.023 (4/5) |
+| U+V8a | 0.774 ± 0.029 | +0.129 ± 0.047 (5/5) | -0.002 ± 0.003 (5/5) | -0.022 ± 0.024 (5/5) |
+| U+V8b | 0.778 ± 0.026 | +0.133 ± 0.042 (5/5) | +0.001 ± 0.005 (2/5) | -0.018 ± 0.020 (4/5) |
+
+SK-ESD over (system, seed): 1. Output entropy (5 samples)* 0.796; 1. U+V5 0.783; 1. U+V4 0.781; 1. U+V1 0.781; 1. U+V8b 0.778; 1. U:S1+S3 0.776; 1. U+V3 0.776; 1. U+V7 0.775; 1. U+V8a 0.774; 1. U:S1+S2+S3 0.773; 2. U+V6 0.762; 2. U:S1 0.749; 2. U:S2+S3 0.745; 2. U:S1+S2 0.745; 3. V:V1ens 0.720; 3. V:V1cat 0.711; 3. U:S2 0.710; 3. V:V5 0.683; 4. U:S3 0.669; 4. MDSA 0.656; 4. Clotho 0.645; 4. V:V6 0.637; 4. V:V4 0.624; 5. V:V3 0.593; 5. V:V7 0.591; 6. Lookup (Drain) 0.505; 6. Random 0.502
+
+A12 U's best vs: Clotho 0.85 (large); MDSA 0.82 (large); Lookup (Drain) 0.98 (large); Output entropy (5 samples)* 0.41 (small); Random 0.98 (large)
+
+#### llama, disjoint, @100, held-out systems (10)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.634 ± 0.022 |  | -0.129 ± 0.054 (5/5) | -0.150 ± 0.029 (5/5) |
+| MDSA | 0.637 ± 0.039 | +0.002 ± 0.041 (3/5) | -0.127 ± 0.057 (5/5) | -0.147 ± 0.038 (5/5) |
+| Lookup (Drain) | 0.503 ± 0.005 | -0.131 ± 0.025 (5/5) | -0.260 ± 0.036 (5/5) | -0.281 ± 0.019 (5/5) |
+| Output entropy (5 samples)* | 0.784 ± 0.016 | +0.150 ± 0.029 (5/5) | +0.020 ± 0.027 (3/5) |  |
+| Random | 0.510 ± 0.012 | -0.124 ± 0.034 (5/5) | -0.253 ± 0.027 (5/5) | -0.274 ± 0.016 (5/5) |
+| U:S1 | 0.733 ± 0.038 | +0.098 ± 0.056 (5/5) | -0.031 ± 0.010 (5/5) | -0.051 ± 0.029 (5/5) |
+| U:S1+S2 | 0.729 ± 0.044 | +0.095 ± 0.061 (5/5) | -0.035 ± 0.014 (5/5) | -0.055 ± 0.035 (5/5) |
+| U:S1+S2+S3 | 0.761 ± 0.042 | +0.127 ± 0.058 (5/5) | -0.003 ± 0.006 (3/5) | -0.023 ± 0.031 (3/5) |
+| U:S1+S3 | 0.764 ± 0.036 | +0.129 ± 0.054 (5/5) |  | -0.020 ± 0.027 (3/5) |
+| U:S2 | 0.706 ± 0.018 | +0.071 ± 0.032 (5/5) | -0.058 ± 0.044 (5/5) | -0.078 ± 0.030 (5/5) |
+| U:S2+S3 | 0.737 ± 0.022 | +0.103 ± 0.037 (5/5) | -0.026 ± 0.022 (4/5) | -0.047 ± 0.016 (5/5) |
+| U:S3 | 0.652 ± 0.026 | +0.018 ± 0.041 (3/5) | -0.111 ± 0.018 (5/5) | -0.132 ± 0.013 (5/5) |
+| V:V1cat | 0.708 ± 0.033 | +0.074 ± 0.043 (5/5) | -0.056 ± 0.040 (4/5) | -0.076 ± 0.033 (5/5) |
+| V:V1ens | 0.719 ± 0.026 | +0.085 ± 0.037 (5/5) | -0.044 ± 0.033 (4/5) | -0.065 ± 0.024 (5/5) |
+| V:V3 | 0.594 ± 0.008 | -0.041 ± 0.029 (5/5) | -0.170 ± 0.036 (5/5) | -0.190 ± 0.020 (5/5) |
+| V:V4 | 0.611 ± 0.027 | -0.024 ± 0.039 (3/5) | -0.153 ± 0.018 (5/5) | -0.173 ± 0.014 (5/5) |
+| V:V5 | 0.673 ± 0.024 | +0.039 ± 0.037 (4/5) | -0.091 ± 0.021 (5/5) | -0.111 ± 0.011 (5/5) |
+| V:V6 | 0.630 ± 0.036 | -0.004 ± 0.056 (3/5) | -0.134 ± 0.042 (5/5) | -0.154 ± 0.043 (5/5) |
+| V:V7 | 0.585 ± 0.017 | -0.049 ± 0.020 (5/5) | -0.178 ± 0.051 (5/5) | -0.199 ± 0.032 (5/5) |
+| U+V1 | 0.771 ± 0.024 | +0.137 ± 0.043 (5/5) | +0.008 ± 0.015 (3/5) | -0.013 ± 0.015 (4/5) |
+| U+V3 | 0.763 ± 0.037 | +0.129 ± 0.055 (5/5) | -0.000 ± 0.001 (3/5) | -0.021 ± 0.027 (3/5) |
+| U+V4 | 0.769 ± 0.039 | +0.135 ± 0.055 (5/5) | +0.006 ± 0.007 (4/5) | -0.015 ± 0.028 (3/5) |
+| U+V5 | 0.770 ± 0.035 | +0.136 ± 0.052 (5/5) | +0.007 ± 0.006 (4/5) | -0.014 ± 0.024 (3/5) |
+| U+V6 | 0.754 ± 0.035 | +0.119 ± 0.055 (5/5) | -0.010 ± 0.017 (3/5) | -0.030 ± 0.030 (5/5) |
+| U+V7 | 0.762 ± 0.036 | +0.127 ± 0.055 (5/5) | -0.002 ± 0.002 (4/5) | -0.022 ± 0.027 (4/5) |
+| U+V8a | 0.761 ± 0.037 | +0.127 ± 0.056 (5/5) | -0.003 ± 0.004 (3/5) | -0.023 ± 0.028 (4/5) |
+| U+V8b | 0.766 ± 0.034 | +0.131 ± 0.051 (5/5) | +0.002 ± 0.007 (2/5) | -0.018 ± 0.024 (4/5) |
+
+#### llama, disjoint, @200, all systems (13)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.657 ± 0.012 |  | -0.123 ± 0.031 (5/5) | -0.139 ± 0.017 (5/5) |
+| MDSA | 0.657 ± 0.023 | +0.001 ± 0.023 (2/5) | -0.122 ± 0.037 (5/5) | -0.139 ± 0.022 (5/5) |
+| Lookup (Drain) | 0.508 ± 0.003 | -0.149 ± 0.013 (5/5) | -0.271 ± 0.025 (5/5) | -0.288 ± 0.014 (5/5) |
+| Output entropy (5 samples)* | 0.796 ± 0.014 | +0.139 ± 0.017 (5/5) | +0.016 ± 0.017 (4/5) |  |
+| Random | 0.511 ± 0.019 | -0.145 ± 0.019 (5/5) | -0.268 ± 0.029 (5/5) | -0.284 ± 0.019 (5/5) |
+| U:S1 | 0.755 ± 0.028 | +0.099 ± 0.034 (5/5) | -0.024 ± 0.006 (5/5) | -0.041 ± 0.020 (5/5) |
+| U:S1+S2 | 0.752 ± 0.033 | +0.095 ± 0.039 (5/5) | -0.028 ± 0.010 (5/5) | -0.044 ± 0.025 (5/5) |
+| U:S1+S2+S3 | 0.776 ± 0.030 | +0.119 ± 0.035 (5/5) | -0.004 ± 0.007 (3/5) | -0.020 ± 0.021 (3/5) |
+| U:S1+S3 | 0.779 ± 0.024 | +0.123 ± 0.031 (5/5) |  | -0.016 ± 0.017 (4/5) |
+| U:S2 | 0.710 ± 0.028 | +0.053 ± 0.033 (5/5) | -0.070 ± 0.043 (5/5) | -0.086 ± 0.035 (5/5) |
+| U:S2+S3 | 0.750 ± 0.016 | +0.094 ± 0.023 (5/5) | -0.029 ± 0.015 (5/5) | -0.045 ± 0.013 (5/5) |
+| U:S3 | 0.686 ± 0.018 | +0.029 ± 0.022 (4/5) | -0.094 ± 0.015 (5/5) | -0.110 ± 0.016 (5/5) |
+| V:V1cat | 0.737 ± 0.029 | +0.080 ± 0.034 (5/5) | -0.043 ± 0.028 (4/5) | -0.059 ± 0.028 (5/5) |
+| V:V1ens | 0.746 ± 0.022 | +0.090 ± 0.023 (5/5) | -0.033 ± 0.027 (4/5) | -0.049 ± 0.021 (5/5) |
+| V:V3 | 0.586 ± 0.012 | -0.070 ± 0.020 (5/5) | -0.193 ± 0.027 (5/5) | -0.209 ± 0.021 (5/5) |
+| V:V4 | 0.625 ± 0.016 | -0.032 ± 0.016 (5/5) | -0.155 ± 0.022 (5/5) | -0.171 ± 0.008 (5/5) |
+| V:V5 | 0.692 ± 0.010 | +0.035 ± 0.011 (5/5) | -0.088 ± 0.021 (5/5) | -0.104 ± 0.006 (5/5) |
+| V:V6 | 0.653 ± 0.021 | -0.004 ± 0.029 (3/5) | -0.127 ± 0.026 (5/5) | -0.143 ± 0.026 (5/5) |
+| V:V7 | 0.591 ± 0.009 | -0.065 ± 0.009 (5/5) | -0.188 ± 0.033 (5/5) | -0.204 ± 0.021 (5/5) |
+| U+V1 | 0.787 ± 0.015 | +0.131 ± 0.022 (5/5) | +0.008 ± 0.013 (3/5) | -0.008 ± 0.010 (4/5) |
+| U+V3 | 0.779 ± 0.025 | +0.122 ± 0.032 (5/5) | -0.001 ± 0.001 (4/5) | -0.017 ± 0.018 (4/5) |
+| U+V4 | 0.786 ± 0.027 | +0.130 ± 0.032 (5/5) | +0.007 ± 0.005 (4/5) | -0.009 ± 0.017 (3/5) |
+| U+V5 | 0.786 ± 0.023 | +0.130 ± 0.029 (5/5) | +0.007 ± 0.004 (5/5) | -0.009 ± 0.015 (3/5) |
+| U+V6 | 0.772 ± 0.023 | +0.115 ± 0.031 (5/5) | -0.008 ± 0.011 (4/5) | -0.024 ± 0.021 (5/5) |
+| U+V7 | 0.778 ± 0.024 | +0.122 ± 0.031 (5/5) | -0.001 ± 0.000 (5/5) | -0.017 ± 0.017 (4/5) |
+| U+V8a | 0.774 ± 0.023 | +0.118 ± 0.031 (5/5) | -0.005 ± 0.004 (5/5) | -0.021 ± 0.017 (5/5) |
+| U+V8b | 0.782 ± 0.023 | +0.126 ± 0.030 (5/5) | +0.003 ± 0.007 (4/5) | -0.014 ± 0.016 (4/5) |
+
+#### llama, disjoint, @200, held-out systems (10)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.646 ± 0.012 |  | -0.119 ± 0.033 (5/5) | -0.138 ± 0.013 (5/5) |
+| MDSA | 0.641 ± 0.034 | -0.005 ± 0.026 (3/5) | -0.125 ± 0.049 (5/5) | -0.143 ± 0.034 (5/5) |
+| Lookup (Drain) | 0.506 ± 0.003 | -0.141 ± 0.011 (5/5) | -0.260 ± 0.033 (5/5) | -0.278 ± 0.016 (5/5) |
+| Output entropy (5 samples)* | 0.784 ± 0.016 | +0.138 ± 0.013 (5/5) | +0.018 ± 0.020 (4/5) |  |
+| Random | 0.508 ± 0.018 | -0.138 ± 0.019 (5/5) | -0.258 ± 0.040 (5/5) | -0.276 ± 0.024 (5/5) |
+| U:S1 | 0.738 ± 0.035 | +0.092 ± 0.036 (5/5) | -0.027 ± 0.008 (5/5) | -0.046 ± 0.023 (5/5) |
+| U:S1+S2 | 0.734 ± 0.043 | +0.087 ± 0.043 (5/5) | -0.032 ± 0.013 (5/5) | -0.050 ± 0.031 (5/5) |
+| U:S1+S2+S3 | 0.761 ± 0.039 | +0.115 ± 0.039 (5/5) | -0.004 ± 0.009 (3/5) | -0.023 ± 0.026 (3/5) |
+| U:S1+S3 | 0.766 ± 0.032 | +0.119 ± 0.033 (5/5) |  | -0.018 ± 0.020 (4/5) |
+| U:S2 | 0.702 ± 0.031 | +0.056 ± 0.035 (5/5) | -0.064 ± 0.051 (5/5) | -0.082 ± 0.040 (5/5) |
+| U:S2+S3 | 0.742 ± 0.023 | +0.095 ± 0.026 (5/5) | -0.024 ± 0.016 (5/5) | -0.042 ± 0.016 (5/5) |
+| U:S3 | 0.674 ± 0.023 | +0.028 ± 0.027 (4/5) | -0.091 ± 0.018 (5/5) | -0.110 ± 0.018 (5/5) |
+| V:V1cat | 0.731 ± 0.034 | +0.085 ± 0.033 (5/5) | -0.035 ± 0.032 (4/5) | -0.053 ± 0.029 (5/5) |
+| V:V1ens | 0.742 ± 0.027 | +0.096 ± 0.024 (5/5) | -0.023 ± 0.030 (4/5) | -0.042 ± 0.020 (5/5) |
+| V:V3 | 0.594 ± 0.014 | -0.052 ± 0.023 (5/5) | -0.172 ± 0.033 (5/5) | -0.190 ± 0.023 (5/5) |
+| V:V4 | 0.614 ± 0.015 | -0.032 ± 0.009 (5/5) | -0.151 ± 0.028 (5/5) | -0.170 ± 0.009 (5/5) |
+| V:V5 | 0.683 ± 0.017 | +0.037 ± 0.014 (5/5) | -0.083 ± 0.025 (5/5) | -0.101 ± 0.009 (5/5) |
+| V:V6 | 0.646 ± 0.036 | +0.000 ± 0.045 (3/5) | -0.119 ± 0.037 (5/5) | -0.138 ± 0.040 (5/5) |
+| V:V7 | 0.585 ± 0.017 | -0.061 ± 0.024 (5/5) | -0.180 ± 0.048 (5/5) | -0.199 ± 0.032 (5/5) |
+| U+V1 | 0.778 ± 0.018 | +0.132 ± 0.019 (5/5) | +0.012 ± 0.016 (3/5) | -0.006 ± 0.008 (4/5) |
+| U+V3 | 0.765 ± 0.033 | +0.119 ± 0.033 (5/5) | -0.001 ± 0.001 (3/5) | -0.019 ± 0.021 (4/5) |
+| U+V4 | 0.774 ± 0.036 | +0.128 ± 0.035 (5/5) | +0.008 ± 0.007 (4/5) | -0.010 ± 0.022 (3/5) |
+| U+V5 | 0.772 ± 0.031 | +0.126 ± 0.031 (5/5) | +0.006 ± 0.004 (5/5) | -0.012 ± 0.018 (4/5) |
+| U+V6 | 0.762 ± 0.031 | +0.116 ± 0.036 (5/5) | -0.003 ± 0.017 (3/5) | -0.022 ± 0.026 (5/5) |
+| U+V7 | 0.764 ± 0.031 | +0.118 ± 0.032 (5/5) | -0.002 ± 0.001 (5/5) | -0.020 ± 0.020 (4/5) |
+| U+V8a | 0.759 ± 0.031 | +0.113 ± 0.032 (5/5) | -0.006 ± 0.006 (4/5) | -0.025 ± 0.021 (4/5) |
+| U+V8b | 0.771 ± 0.031 | +0.125 ± 0.031 (5/5) | +0.005 ± 0.009 (4/5) | -0.013 ± 0.019 (4/5) |
+
+#### llama, standard, @100, all systems (13)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.749 ± 0.010 |  | -0.033 ± 0.011 (5/5) | -0.043 ± 0.010 (5/5) |
+| MDSA | 0.715 ± 0.008 | -0.034 ± 0.003 (5/5) | -0.068 ± 0.009 (5/5) | -0.077 ± 0.008 (5/5) |
+| Lookup (Drain) | 0.680 ± 0.006 | -0.069 ± 0.014 (5/5) | -0.102 ± 0.006 (5/5) | -0.111 ± 0.005 (5/5) |
+| Output entropy (5 samples)* | 0.792 ± 0.001 | +0.043 ± 0.010 (5/5) | +0.009 ± 0.004 (5/5) |  |
+| Random | 0.504 ± 0.004 | -0.245 ± 0.012 (5/5) | -0.279 ± 0.006 (5/5) | -0.288 ± 0.005 (5/5) |
+| U:S1 | 0.753 ± 0.005 | +0.004 ± 0.010 (4/5) | -0.029 ± 0.002 (5/5) | -0.038 ± 0.004 (5/5) |
+| U:S1+S2 | 0.756 ± 0.004 | +0.007 ± 0.010 (4/5) | -0.027 ± 0.002 (5/5) | -0.036 ± 0.003 (5/5) |
+| U:S1+S2+S3 | 0.783 ± 0.003 | +0.034 ± 0.009 (5/5) | +0.000 ± 0.002 (4/5) | -0.009 ± 0.002 (5/5) |
+| U:S1+S3 | 0.782 ± 0.005 | +0.033 ± 0.011 (5/5) |  | -0.009 ± 0.004 (5/5) |
+| U:S2 | 0.723 ± 0.008 | -0.026 ± 0.011 (5/5) | -0.059 ± 0.006 (5/5) | -0.068 ± 0.008 (5/5) |
+| U:S2+S3 | 0.739 ± 0.001 | -0.010 ± 0.011 (5/5) | -0.043 ± 0.006 (5/5) | -0.053 ± 0.002 (5/5) |
+| U:S3 | 0.684 ± 0.004 | -0.064 ± 0.009 (5/5) | -0.098 ± 0.005 (5/5) | -0.107 ± 0.003 (5/5) |
+| V:V1cat | 0.778 ± 0.007 | +0.029 ± 0.015 (5/5) | -0.004 ± 0.006 (5/5) | -0.014 ± 0.006 (5/5) |
+| V:V1ens | 0.784 ± 0.007 | +0.035 ± 0.015 (5/5) | +0.002 ± 0.006 (3/5) | -0.008 ± 0.005 (4/5) |
+| V:V3 | 0.594 ± 0.007 | -0.155 ± 0.008 (5/5) | -0.188 ± 0.009 (5/5) | -0.198 ± 0.007 (5/5) |
+| V:V4 | 0.621 ± 0.010 | -0.128 ± 0.015 (5/5) | -0.161 ± 0.013 (5/5) | -0.171 ± 0.010 (5/5) |
+| V:V5 | 0.688 ± 0.006 | -0.061 ± 0.014 (5/5) | -0.094 ± 0.008 (5/5) | -0.103 ± 0.005 (5/5) |
+| V:V6 | 0.753 ± 0.004 | +0.005 ± 0.010 (4/5) | -0.029 ± 0.007 (5/5) | -0.038 ± 0.004 (5/5) |
+| V:V7 | 0.595 ± 0.003 | -0.154 ± 0.010 (5/5) | -0.188 ± 0.005 (5/5) | -0.197 ± 0.004 (5/5) |
+| U+V1 | 0.801 ± 0.006 | +0.052 ± 0.012 (5/5) | +0.019 ± 0.002 (5/5) | +0.010 ± 0.005 (5/5) |
+| U+V3 | 0.781 ± 0.005 | +0.032 ± 0.011 (5/5) | -0.001 ± 0.001 (5/5) | -0.010 ± 0.004 (5/5) |
+| U+V4 | 0.788 ± 0.005 | +0.040 ± 0.010 (5/5) | +0.006 ± 0.003 (5/5) | -0.003 ± 0.004 (4/5) |
+| U+V5 | 0.790 ± 0.005 | +0.041 ± 0.011 (5/5) | +0.008 ± 0.001 (5/5) | -0.001 ± 0.004 (3/5) |
+| U+V6 | 0.816 ± 0.004 | +0.068 ± 0.013 (5/5) | +0.034 ± 0.004 (5/5) | +0.025 ± 0.004 (5/5) |
+| U+V7 | 0.782 ± 0.005 | +0.033 ± 0.011 (5/5) | -0.000 ± 0.001 (3/5) | -0.010 ± 0.004 (5/5) |
+| U+V8a | 0.781 ± 0.006 | +0.032 ± 0.011 (5/5) | -0.001 ± 0.001 (4/5) | -0.010 ± 0.005 (5/5) |
+| U+V8b | 0.778 ± 0.003 | +0.030 ± 0.009 (5/5) | -0.004 ± 0.002 (5/5) | -0.013 ± 0.003 (5/5) |
+
+#### llama, standard, @100, held-out systems (10)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.737 ± 0.010 |  | -0.034 ± 0.011 (5/5) | -0.043 ± 0.010 (5/5) |
+| MDSA | 0.695 ± 0.008 | -0.042 ± 0.004 (5/5) | -0.076 ± 0.009 (5/5) | -0.085 ± 0.008 (5/5) |
+| Lookup (Drain) | 0.675 ± 0.005 | -0.061 ± 0.013 (5/5) | -0.095 ± 0.006 (5/5) | -0.104 ± 0.005 (5/5) |
+| Output entropy (5 samples)* | 0.780 ± 0.001 | +0.043 ± 0.010 (5/5) | +0.009 ± 0.003 (5/5) |  |
+| Random | 0.500 ± 0.004 | -0.237 ± 0.013 (5/5) | -0.271 ± 0.005 (5/5) | -0.280 ± 0.004 (5/5) |
+| U:S1 | 0.736 ± 0.005 | -0.000 ± 0.011 (3/5) | -0.035 ± 0.002 (5/5) | -0.044 ± 0.004 (5/5) |
+| U:S1+S2 | 0.741 ± 0.004 | +0.004 ± 0.011 (4/5) | -0.030 ± 0.002 (5/5) | -0.039 ± 0.003 (5/5) |
+| U:S1+S2+S3 | 0.773 ± 0.003 | +0.036 ± 0.010 (5/5) | +0.002 ± 0.002 (4/5) | -0.007 ± 0.002 (5/5) |
+| U:S1+S3 | 0.771 ± 0.004 | +0.034 ± 0.011 (5/5) |  | -0.009 ± 0.003 (5/5) |
+| U:S2 | 0.722 ± 0.009 | -0.015 ± 0.014 (4/5) | -0.049 ± 0.008 (5/5) | -0.058 ± 0.009 (5/5) |
+| U:S2+S3 | 0.735 ± 0.002 | -0.001 ± 0.010 (2/5) | -0.035 ± 0.006 (5/5) | -0.044 ± 0.003 (5/5) |
+| U:S3 | 0.674 ± 0.004 | -0.063 ± 0.007 (5/5) | -0.097 ± 0.005 (5/5) | -0.106 ± 0.004 (5/5) |
+| V:V1cat | 0.773 ± 0.010 | +0.036 ± 0.019 (5/5) | +0.002 ± 0.009 (4/5) | -0.007 ± 0.009 (4/5) |
+| V:V1ens | 0.780 ± 0.008 | +0.044 ± 0.016 (5/5) | +0.009 ± 0.007 (4/5) | +0.000 ± 0.007 (2/5) |
+| V:V3 | 0.600 ± 0.010 | -0.136 ± 0.010 (5/5) | -0.171 ± 0.011 (5/5) | -0.180 ± 0.010 (5/5) |
+| V:V4 | 0.600 ± 0.012 | -0.137 ± 0.014 (5/5) | -0.171 ± 0.014 (5/5) | -0.180 ± 0.012 (5/5) |
+| V:V5 | 0.679 ± 0.006 | -0.057 ± 0.014 (5/5) | -0.091 ± 0.009 (5/5) | -0.100 ± 0.006 (5/5) |
+| V:V6 | 0.749 ± 0.007 | +0.013 ± 0.008 (4/5) | -0.021 ± 0.008 (5/5) | -0.030 ± 0.006 (5/5) |
+| V:V7 | 0.600 ± 0.004 | -0.136 ± 0.011 (5/5) | -0.170 ± 0.004 (5/5) | -0.179 ± 0.003 (5/5) |
+| U+V1 | 0.795 ± 0.006 | +0.058 ± 0.013 (5/5) | +0.024 ± 0.002 (5/5) | +0.015 ± 0.005 (5/5) |
+| U+V3 | 0.771 ± 0.004 | +0.034 ± 0.011 (5/5) | -0.000 ± 0.001 (4/5) | -0.009 ± 0.003 (5/5) |
+| U+V4 | 0.777 ± 0.005 | +0.040 ± 0.010 (5/5) | +0.006 ± 0.003 (5/5) | -0.003 ± 0.004 (4/5) |
+| U+V5 | 0.779 ± 0.005 | +0.042 ± 0.012 (5/5) | +0.008 ± 0.001 (5/5) | -0.001 ± 0.004 (4/5) |
+| U+V6 | 0.811 ± 0.006 | +0.074 ± 0.013 (5/5) | +0.040 ± 0.004 (5/5) | +0.031 ± 0.005 (5/5) |
+| U+V7 | 0.770 ± 0.004 | +0.033 ± 0.012 (5/5) | -0.001 ± 0.001 (4/5) | -0.010 ± 0.003 (5/5) |
+| U+V8a | 0.769 ± 0.005 | +0.033 ± 0.012 (5/5) | -0.001 ± 0.001 (4/5) | -0.010 ± 0.004 (5/5) |
+| U+V8b | 0.768 ± 0.004 | +0.031 ± 0.011 (5/5) | -0.003 ± 0.001 (5/5) | -0.012 ± 0.003 (5/5) |
+
+#### llama, standard, @200, all systems (13)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.794 ± 0.011 |  | +0.001 ± 0.014 (2/5) | +0.001 ± 0.013 (2/5) |
+| MDSA | 0.737 ± 0.006 | -0.057 ± 0.009 (5/5) | -0.056 ± 0.009 (5/5) | -0.056 ± 0.007 (5/5) |
+| Lookup (Drain) | 0.733 ± 0.005 | -0.061 ± 0.011 (5/5) | -0.060 ± 0.007 (5/5) | -0.061 ± 0.005 (5/5) |
+| Output entropy (5 samples)* | 0.794 ± 0.005 | -0.001 ± 0.013 (2/5) | +0.000 ± 0.007 (3/5) |  |
+| Random | 0.506 ± 0.010 | -0.288 ± 0.015 (5/5) | -0.287 ± 0.009 (5/5) | -0.287 ± 0.009 (5/5) |
+| U:S1 | 0.768 ± 0.002 | -0.027 ± 0.012 (5/5) | -0.026 ± 0.003 (5/5) | -0.026 ± 0.005 (5/5) |
+| U:S1+S2 | 0.768 ± 0.002 | -0.027 ± 0.012 (5/5) | -0.026 ± 0.003 (5/5) | -0.026 ± 0.005 (5/5) |
+| U:S1+S2+S3 | 0.796 ± 0.003 | +0.002 ± 0.013 (4/5) | +0.003 ± 0.001 (5/5) | +0.003 ± 0.006 (3/5) |
+| U:S1+S3 | 0.793 ± 0.004 | -0.001 ± 0.014 (2/5) |  | -0.000 ± 0.007 (3/5) |
+| U:S2 | 0.743 ± 0.008 | -0.052 ± 0.004 (5/5) | -0.051 ± 0.011 (5/5) | -0.051 ± 0.011 (5/5) |
+| U:S2+S3 | 0.744 ± 0.005 | -0.051 ± 0.012 (5/5) | -0.050 ± 0.006 (5/5) | -0.050 ± 0.009 (5/5) |
+| U:S3 | 0.695 ± 0.005 | -0.099 ± 0.012 (5/5) | -0.098 ± 0.003 (5/5) | -0.098 ± 0.009 (5/5) |
+| V:V1cat | 0.810 ± 0.003 | +0.016 ± 0.012 (4/5) | +0.017 ± 0.006 (5/5) | +0.016 ± 0.003 (5/5) |
+| V:V1ens | 0.802 ± 0.005 | +0.008 ± 0.011 (4/5) | +0.009 ± 0.008 (4/5) | +0.008 ± 0.003 (5/5) |
+| V:V3 | 0.594 ± 0.007 | -0.200 ± 0.006 (5/5) | -0.199 ± 0.009 (5/5) | -0.199 ± 0.011 (5/5) |
+| V:V4 | 0.642 ± 0.003 | -0.152 ± 0.012 (5/5) | -0.151 ± 0.005 (5/5) | -0.151 ± 0.003 (5/5) |
+| V:V5 | 0.692 ± 0.007 | -0.102 ± 0.018 (5/5) | -0.102 ± 0.005 (5/5) | -0.102 ± 0.007 (5/5) |
+| V:V6 | 0.789 ± 0.009 | -0.005 ± 0.008 (4/5) | -0.004 ± 0.013 (3/5) | -0.004 ± 0.008 (4/5) |
+| V:V7 | 0.602 ± 0.010 | -0.192 ± 0.013 (5/5) | -0.191 ± 0.009 (5/5) | -0.191 ± 0.013 (5/5) |
+| U+V1 | 0.817 ± 0.003 | +0.023 ± 0.013 (5/5) | +0.024 ± 0.003 (5/5) | +0.024 ± 0.005 (5/5) |
+| U+V3 | 0.793 ± 0.004 | -0.001 ± 0.014 (2/5) | -0.001 ± 0.001 (3/5) | -0.001 ± 0.008 (3/5) |
+| U+V4 | 0.798 ± 0.003 | +0.004 ± 0.013 (4/5) | +0.005 ± 0.001 (5/5) | +0.004 ± 0.006 (3/5) |
+| U+V5 | 0.799 ± 0.003 | +0.005 ± 0.013 (4/5) | +0.006 ± 0.001 (5/5) | +0.005 ± 0.006 (4/5) |
+| U+V6 | 0.833 ± 0.004 | +0.039 ± 0.010 (5/5) | +0.040 ± 0.006 (5/5) | +0.039 ± 0.005 (5/5) |
+| U+V7 | 0.795 ± 0.004 | +0.000 ± 0.014 (3/5) | +0.001 ± 0.001 (5/5) | +0.001 ± 0.007 (2/5) |
+| U+V8a | 0.794 ± 0.004 | +0.000 ± 0.013 (4/5) | +0.001 ± 0.001 (4/5) | +0.001 ± 0.007 (2/5) |
+| U+V8b | 0.791 ± 0.005 | -0.004 ± 0.014 (2/5) | -0.003 ± 0.002 (5/5) | -0.003 ± 0.008 (3/5) |
+
+#### llama, standard, @200, held-out systems (10)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.777 ± 0.014 |  | -0.001 ± 0.017 (4/5) | -0.003 ± 0.015 (4/5) |
+| MDSA | 0.720 ± 0.007 | -0.057 ± 0.011 (5/5) | -0.058 ± 0.011 (5/5) | -0.060 ± 0.008 (5/5) |
+| Lookup (Drain) | 0.713 ± 0.005 | -0.063 ± 0.014 (5/5) | -0.065 ± 0.008 (5/5) | -0.066 ± 0.005 (5/5) |
+| Output entropy (5 samples)* | 0.779 ± 0.006 | +0.003 ± 0.015 (4/5) | +0.001 ± 0.009 (3/5) |  |
+| Random | 0.508 ± 0.016 | -0.268 ± 0.021 (5/5) | -0.270 ± 0.016 (5/5) | -0.271 ± 0.015 (5/5) |
+| U:S1 | 0.747 ± 0.003 | -0.030 ± 0.017 (5/5) | -0.032 ± 0.003 (5/5) | -0.033 ± 0.007 (5/5) |
+| U:S1+S2 | 0.749 ± 0.004 | -0.028 ± 0.017 (5/5) | -0.029 ± 0.003 (5/5) | -0.031 ± 0.006 (5/5) |
+| U:S1+S2+S3 | 0.784 ± 0.004 | +0.007 ± 0.017 (4/5) | +0.006 ± 0.002 (5/5) | +0.004 ± 0.007 (3/5) |
+| U:S1+S3 | 0.778 ± 0.005 | +0.001 ± 0.017 (4/5) |  | -0.001 ± 0.009 (3/5) |
+| U:S2 | 0.737 ± 0.009 | -0.039 ± 0.007 (5/5) | -0.041 ± 0.012 (5/5) | -0.042 ± 0.012 (5/5) |
+| U:S2+S3 | 0.735 ± 0.004 | -0.042 ± 0.014 (5/5) | -0.044 ± 0.006 (5/5) | -0.045 ± 0.009 (5/5) |
+| U:S3 | 0.685 ± 0.006 | -0.092 ± 0.015 (5/5) | -0.093 ± 0.005 (5/5) | -0.094 ± 0.011 (5/5) |
+| V:V1cat | 0.798 ± 0.004 | +0.021 ± 0.017 (4/5) | +0.020 ± 0.007 (5/5) | +0.018 ± 0.005 (5/5) |
+| V:V1ens | 0.792 ± 0.005 | +0.016 ± 0.015 (4/5) | +0.014 ± 0.010 (5/5) | +0.013 ± 0.005 (5/5) |
+| V:V3 | 0.596 ± 0.009 | -0.181 ± 0.009 (5/5) | -0.183 ± 0.013 (5/5) | -0.184 ± 0.012 (5/5) |
+| V:V4 | 0.623 ± 0.003 | -0.154 ± 0.015 (5/5) | -0.156 ± 0.005 (5/5) | -0.157 ± 0.005 (5/5) |
+| V:V5 | 0.682 ± 0.010 | -0.094 ± 0.023 (5/5) | -0.096 ± 0.008 (5/5) | -0.097 ± 0.009 (5/5) |
+| V:V6 | 0.774 ± 0.010 | -0.003 ± 0.012 (4/5) | -0.004 ± 0.015 (3/5) | -0.006 ± 0.008 (4/5) |
+| V:V7 | 0.612 ± 0.010 | -0.165 ± 0.014 (5/5) | -0.166 ± 0.009 (5/5) | -0.168 ± 0.015 (5/5) |
+| U+V1 | 0.805 ± 0.004 | +0.029 ± 0.018 (4/5) | +0.027 ± 0.003 (5/5) | +0.026 ± 0.006 (5/5) |
+| U+V3 | 0.778 ± 0.005 | +0.001 ± 0.017 (3/5) | -0.000 ± 0.001 (3/5) | -0.001 ± 0.009 (3/5) |
+| U+V4 | 0.783 ± 0.004 | +0.006 ± 0.017 (4/5) | +0.005 ± 0.002 (5/5) | +0.004 ± 0.008 (3/5) |
+| U+V5 | 0.783 ± 0.004 | +0.007 ± 0.016 (4/5) | +0.005 ± 0.001 (5/5) | +0.004 ± 0.007 (3/5) |
+| U+V6 | 0.817 ± 0.005 | +0.040 ± 0.014 (5/5) | +0.039 ± 0.007 (5/5) | +0.038 ± 0.005 (5/5) |
+| U+V7 | 0.779 ± 0.005 | +0.002 ± 0.017 (4/5) | +0.001 ± 0.001 (4/5) | -0.001 ± 0.009 (3/5) |
+| U+V8a | 0.779 ± 0.005 | +0.003 ± 0.016 (4/5) | +0.001 ± 0.001 (4/5) | -0.000 ± 0.008 (3/5) |
+| U+V8b | 0.776 ± 0.006 | -0.001 ± 0.017 (2/5) | -0.002 ± 0.001 (5/5) | -0.003 ± 0.009 (3/5) |
+
+#### llama, natural, @100, all systems (13)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.831 ± 0.013 |  | -0.009 ± 0.015 (4/5) | +0.042 ± 0.012 (5/5) |
+| MDSA | 0.815 ± 0.006 | -0.016 ± 0.008 (5/5) | -0.025 ± 0.008 (5/5) | +0.026 ± 0.005 (5/5) |
+| Lookup (Drain) | 0.838 ± 0.013 | +0.006 ± 0.014 (3/5) | -0.003 ± 0.013 (3/5) | +0.049 ± 0.012 (5/5) |
+| Output entropy (5 samples)* | 0.789 ± 0.003 | -0.042 ± 0.012 (5/5) | -0.051 ± 0.007 (5/5) |  |
+| Random | 0.505 ± 0.010 | -0.326 ± 0.010 (5/5) | -0.335 ± 0.008 (5/5) | -0.284 ± 0.011 (5/5) |
+| U:S1 | 0.841 ± 0.004 | +0.010 ± 0.012 (4/5) | +0.000 ± 0.003 (3/5) | +0.052 ± 0.005 (5/5) |
+| U:S1+S2 | 0.842 ± 0.006 | +0.011 ± 0.011 (4/5) | +0.002 ± 0.004 (4/5) | +0.053 ± 0.006 (5/5) |
+| U:S1+S2+S3 | 0.846 ± 0.003 | +0.015 ± 0.012 (5/5) | +0.005 ± 0.004 (4/5) | +0.057 ± 0.004 (5/5) |
+| U:S1+S3 | 0.840 ± 0.006 | +0.009 ± 0.015 (4/5) |  | +0.051 ± 0.007 (5/5) |
+| U:S2 | 0.815 ± 0.010 | -0.016 ± 0.022 (4/5) | -0.025 ± 0.014 (5/5) | +0.026 ± 0.011 (5/5) |
+| U:S2+S3 | 0.761 ± 0.014 | -0.071 ± 0.027 (5/5) | -0.080 ± 0.013 (5/5) | -0.028 ± 0.016 (5/5) |
+| U:S3 | 0.672 ± 0.019 | -0.159 ± 0.027 (5/5) | -0.168 ± 0.020 (5/5) | -0.117 ± 0.022 (5/5) |
+| V:V3 | 0.614 ± 0.010 | -0.218 ± 0.023 (5/5) | -0.227 ± 0.011 (5/5) | -0.175 ± 0.013 (5/5) |
+| V:V4 | 0.711 ± 0.010 | -0.120 ± 0.022 (5/5) | -0.129 ± 0.013 (5/5) | -0.078 ± 0.010 (5/5) |
+| V:V5 | 0.672 ± 0.011 | -0.159 ± 0.022 (5/5) | -0.168 ± 0.011 (5/5) | -0.117 ± 0.013 (5/5) |
+| V:V6 | 0.834 ± 0.011 | +0.003 ± 0.009 (2/5) | -0.006 ± 0.012 (3/5) | +0.045 ± 0.009 (5/5) |
+| V:V7 | 0.637 ± 0.003 | -0.194 ± 0.015 (5/5) | -0.203 ± 0.007 (5/5) | -0.152 ± 0.004 (5/5) |
+| U+V3 | 0.841 ± 0.005 | +0.010 ± 0.014 (4/5) | +0.001 ± 0.001 (4/5) | +0.052 ± 0.007 (5/5) |
+| U+V4 | 0.843 ± 0.004 | +0.012 ± 0.014 (4/5) | +0.002 ± 0.005 (4/5) | +0.054 ± 0.004 (5/5) |
+| U+V5 | 0.841 ± 0.004 | +0.010 ± 0.014 (4/5) | +0.001 ± 0.002 (4/5) | +0.052 ± 0.006 (5/5) |
+| U+V6 | 0.858 ± 0.010 | +0.027 ± 0.015 (5/5) | +0.018 ± 0.006 (5/5) | +0.069 ± 0.010 (5/5) |
+| U+V7 | 0.844 ± 0.004 | +0.013 ± 0.013 (4/5) | +0.004 ± 0.002 (5/5) | +0.055 ± 0.006 (5/5) |
+| U+V8a | 0.839 ± 0.005 | +0.008 ± 0.014 (4/5) | -0.001 ± 0.001 (5/5) | +0.050 ± 0.007 (5/5) |
+| U+V8b | 0.838 ± 0.004 | +0.006 ± 0.016 (4/5) | -0.003 ± 0.003 (4/5) | +0.049 ± 0.006 (5/5) |
+
+#### llama, natural, @100, held-out systems (10)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.849 ± 0.015 |  | -0.000 ± 0.015 (2/5) | +0.048 ± 0.013 (5/5) |
+| MDSA | 0.819 ± 0.009 | -0.030 ± 0.008 (5/5) | -0.030 ± 0.008 (5/5) | +0.018 ± 0.008 (5/5) |
+| Lookup (Drain) | 0.850 ± 0.019 | +0.000 ± 0.013 (3/5) | -0.000 ± 0.019 (3/5) | +0.049 ± 0.018 (5/5) |
+| Output entropy (5 samples)* | 0.801 ± 0.002 | -0.048 ± 0.013 (5/5) | -0.049 ± 0.010 (5/5) |  |
+| Random | 0.508 ± 0.013 | -0.341 ± 0.010 (5/5) | -0.342 ± 0.010 (5/5) | -0.293 ± 0.013 (5/5) |
+| U:S1 | 0.845 ± 0.006 | -0.004 ± 0.012 (3/5) | -0.005 ± 0.004 (5/5) | +0.044 ± 0.007 (5/5) |
+| U:S1+S2 | 0.844 ± 0.009 | -0.005 ± 0.011 (3/5) | -0.005 ± 0.004 (5/5) | +0.043 ± 0.009 (5/5) |
+| U:S1+S2+S3 | 0.855 ± 0.006 | +0.006 ± 0.011 (3/5) | +0.005 ± 0.005 (4/5) | +0.054 ± 0.006 (5/5) |
+| U:S1+S3 | 0.850 ± 0.009 | +0.000 ± 0.015 (2/5) |  | +0.049 ± 0.010 (5/5) |
+| U:S2 | 0.839 ± 0.006 | -0.010 ± 0.018 (3/5) | -0.010 ± 0.014 (4/5) | +0.038 ± 0.006 (5/5) |
+| U:S2+S3 | 0.769 ± 0.016 | -0.080 ± 0.028 (5/5) | -0.081 ± 0.016 (5/5) | -0.032 ± 0.018 (5/5) |
+| U:S3 | 0.674 ± 0.011 | -0.175 ± 0.023 (5/5) | -0.176 ± 0.014 (5/5) | -0.127 ± 0.013 (5/5) |
+| V:V3 | 0.641 ± 0.008 | -0.208 ± 0.022 (5/5) | -0.209 ± 0.012 (5/5) | -0.160 ± 0.010 (5/5) |
+| V:V4 | 0.736 ± 0.010 | -0.113 ± 0.024 (5/5) | -0.114 ± 0.017 (5/5) | -0.065 ± 0.011 (5/5) |
+| V:V5 | 0.685 ± 0.011 | -0.164 ± 0.026 (5/5) | -0.164 ± 0.015 (5/5) | -0.116 ± 0.013 (5/5) |
+| V:V6 | 0.857 ± 0.015 | +0.008 ± 0.007 (4/5) | +0.008 ± 0.016 (3/5) | +0.056 ± 0.014 (5/5) |
+| V:V7 | 0.641 ± 0.005 | -0.209 ± 0.017 (5/5) | -0.209 ± 0.011 (5/5) | -0.160 ± 0.006 (5/5) |
+| U+V3 | 0.851 ± 0.008 | +0.002 ± 0.014 (2/5) | +0.001 ± 0.001 (4/5) | +0.050 ± 0.009 (5/5) |
+| U+V4 | 0.856 ± 0.007 | +0.006 ± 0.012 (3/5) | +0.006 ± 0.007 (4/5) | +0.054 ± 0.007 (5/5) |
+| U+V5 | 0.851 ± 0.008 | +0.002 ± 0.015 (2/5) | +0.002 ± 0.002 (4/5) | +0.050 ± 0.009 (5/5) |
+| U+V6 | 0.874 ± 0.014 | +0.025 ± 0.014 (5/5) | +0.024 ± 0.009 (5/5) | +0.073 ± 0.014 (5/5) |
+| U+V7 | 0.854 ± 0.007 | +0.005 ± 0.013 (3/5) | +0.005 ± 0.002 (5/5) | +0.053 ± 0.008 (5/5) |
+| U+V8a | 0.848 ± 0.008 | -0.001 ± 0.014 (3/5) | -0.002 ± 0.001 (5/5) | +0.047 ± 0.009 (5/5) |
+| U+V8b | 0.851 ± 0.006 | +0.002 ± 0.016 (3/5) | +0.002 ± 0.004 (3/5) | +0.050 ± 0.008 (5/5) |
+
+#### llama, natural, @200, all systems (13)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.845 ± 0.015 |  | +0.009 ± 0.007 (5/5) | +0.061 ± 0.017 (5/5) |
+| MDSA | 0.838 ± 0.012 | -0.007 ± 0.015 (4/5) | +0.002 ± 0.008 (4/5) | +0.054 ± 0.013 (5/5) |
+| Lookup (Drain) | 0.861 ± 0.006 | +0.016 ± 0.014 (4/5) | +0.025 ± 0.008 (5/5) | +0.077 ± 0.006 (5/5) |
+| Output entropy (5 samples)* | 0.784 ± 0.004 | -0.061 ± 0.017 (5/5) | -0.052 ± 0.012 (5/5) |  |
+| Random | 0.499 ± 0.010 | -0.346 ± 0.018 (5/5) | -0.338 ± 0.011 (5/5) | -0.285 ± 0.010 (5/5) |
+| U:S1 | 0.838 ± 0.012 | -0.007 ± 0.010 (4/5) | +0.002 ± 0.005 (3/5) | +0.054 ± 0.013 (5/5) |
+| U:S1+S2 | 0.850 ± 0.009 | +0.005 ± 0.012 (3/5) | +0.013 ± 0.008 (5/5) | +0.066 ± 0.010 (5/5) |
+| U:S1+S2+S3 | 0.852 ± 0.005 | +0.007 ± 0.012 (3/5) | +0.015 ± 0.006 (5/5) | +0.068 ± 0.007 (5/5) |
+| U:S1+S3 | 0.836 ± 0.011 | -0.009 ± 0.007 (5/5) |  | +0.052 ± 0.012 (5/5) |
+| U:S2 | 0.812 ± 0.011 | -0.033 ± 0.013 (5/5) | -0.024 ± 0.012 (5/5) | +0.028 ± 0.013 (5/5) |
+| U:S2+S3 | 0.781 ± 0.008 | -0.064 ± 0.012 (5/5) | -0.056 ± 0.005 (5/5) | -0.003 ± 0.008 (4/5) |
+| U:S3 | 0.673 ± 0.008 | -0.172 ± 0.019 (5/5) | -0.163 ± 0.015 (5/5) | -0.111 ± 0.007 (5/5) |
+| V:V3 | 0.635 ± 0.014 | -0.210 ± 0.025 (5/5) | -0.201 ± 0.018 (5/5) | -0.149 ± 0.012 (5/5) |
+| V:V4 | 0.718 ± 0.002 | -0.127 ± 0.014 (5/5) | -0.118 ± 0.010 (5/5) | -0.066 ± 0.006 (5/5) |
+| V:V5 | 0.670 ± 0.009 | -0.175 ± 0.021 (5/5) | -0.166 ± 0.015 (5/5) | -0.114 ± 0.009 (5/5) |
+| V:V6 | 0.844 ± 0.009 | -0.001 ± 0.013 (3/5) | +0.008 ± 0.008 (5/5) | +0.060 ± 0.010 (5/5) |
+| V:V7 | 0.632 ± 0.005 | -0.213 ± 0.013 (5/5) | -0.204 ± 0.007 (5/5) | -0.152 ± 0.005 (5/5) |
+| U+V3 | 0.837 ± 0.011 | -0.008 ± 0.008 (5/5) | +0.001 ± 0.001 (4/5) | +0.053 ± 0.012 (5/5) |
+| U+V4 | 0.846 ± 0.004 | +0.001 ± 0.015 (3/5) | +0.010 ± 0.010 (4/5) | +0.062 ± 0.003 (5/5) |
+| U+V5 | 0.840 ± 0.009 | -0.004 ± 0.010 (3/5) | +0.004 ± 0.003 (5/5) | +0.057 ± 0.011 (5/5) |
+| U+V6 | 0.868 ± 0.005 | +0.023 ± 0.015 (5/5) | +0.032 ± 0.011 (5/5) | +0.084 ± 0.009 (5/5) |
+| U+V7 | 0.845 ± 0.009 | -0.000 ± 0.009 (2/5) | +0.008 ± 0.003 (5/5) | +0.061 ± 0.010 (5/5) |
+| U+V8a | 0.834 ± 0.010 | -0.011 ± 0.008 (5/5) | -0.002 ± 0.002 (5/5) | +0.050 ± 0.011 (5/5) |
+| U+V8b | 0.840 ± 0.009 | -0.005 ± 0.009 (4/5) | +0.004 ± 0.004 (4/5) | +0.056 ± 0.011 (5/5) |
+
+#### llama, natural, @200, held-out systems (10)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.867 ± 0.014 |  | +0.017 ± 0.006 (5/5) | +0.069 ± 0.016 (5/5) |
+| MDSA | 0.841 ± 0.015 | -0.026 ± 0.015 (5/5) | -0.009 ± 0.010 (4/5) | +0.043 ± 0.016 (5/5) |
+| Lookup (Drain) | 0.879 ± 0.006 | +0.012 ± 0.013 (4/5) | +0.029 ± 0.011 (5/5) | +0.081 ± 0.006 (5/5) |
+| Output entropy (5 samples)* | 0.798 ± 0.004 | -0.069 ± 0.016 (5/5) | -0.052 ± 0.015 (5/5) |  |
+| Random | 0.498 ± 0.014 | -0.369 ± 0.021 (5/5) | -0.352 ± 0.016 (5/5) | -0.300 ± 0.014 (5/5) |
+| U:S1 | 0.845 ± 0.013 | -0.022 ± 0.009 (5/5) | -0.005 ± 0.005 (4/5) | +0.047 ± 0.014 (5/5) |
+| U:S1+S2 | 0.856 ± 0.009 | -0.011 ± 0.009 (4/5) | +0.006 ± 0.009 (4/5) | +0.058 ± 0.010 (5/5) |
+| U:S1+S2+S3 | 0.867 ± 0.006 | +0.000 ± 0.009 (2/5) | +0.017 ± 0.008 (5/5) | +0.069 ± 0.008 (5/5) |
+| U:S1+S3 | 0.850 ± 0.014 | -0.017 ± 0.006 (5/5) |  | +0.052 ± 0.015 (5/5) |
+| U:S2 | 0.838 ± 0.011 | -0.029 ± 0.014 (5/5) | -0.012 ± 0.012 (4/5) | +0.040 ± 0.010 (5/5) |
+| U:S2+S3 | 0.791 ± 0.009 | -0.076 ± 0.011 (5/5) | -0.059 ± 0.007 (5/5) | -0.007 ± 0.010 (4/5) |
+| U:S3 | 0.672 ± 0.012 | -0.195 ± 0.022 (5/5) | -0.178 ± 0.021 (5/5) | -0.126 ± 0.011 (5/5) |
+| V:V3 | 0.666 ± 0.012 | -0.201 ± 0.023 (5/5) | -0.184 ± 0.021 (5/5) | -0.132 ± 0.010 (5/5) |
+| V:V4 | 0.748 ± 0.006 | -0.118 ± 0.014 (5/5) | -0.102 ± 0.012 (5/5) | -0.049 ± 0.008 (5/5) |
+| V:V5 | 0.687 ± 0.011 | -0.180 ± 0.023 (5/5) | -0.163 ± 0.021 (5/5) | -0.111 ± 0.011 (5/5) |
+| V:V6 | 0.873 ± 0.008 | +0.006 ± 0.011 (3/5) | +0.023 ± 0.009 (5/5) | +0.075 ± 0.011 (5/5) |
+| V:V7 | 0.631 ± 0.007 | -0.236 ± 0.014 (5/5) | -0.219 ± 0.012 (5/5) | -0.167 ± 0.006 (5/5) |
+| U+V3 | 0.851 ± 0.013 | -0.015 ± 0.006 (5/5) | +0.001 ± 0.002 (4/5) | +0.054 ± 0.015 (5/5) |
+| U+V4 | 0.867 ± 0.005 | +0.000 ± 0.013 (3/5) | +0.017 ± 0.013 (4/5) | +0.069 ± 0.004 (5/5) |
+| U+V5 | 0.858 ± 0.011 | -0.009 ± 0.008 (5/5) | +0.008 ± 0.003 (5/5) | +0.060 ± 0.013 (5/5) |
+| U+V6 | 0.895 ± 0.005 | +0.028 ± 0.013 (5/5) | +0.045 ± 0.011 (5/5) | +0.098 ± 0.009 (5/5) |
+| U+V7 | 0.861 ± 0.011 | -0.006 ± 0.007 (4/5) | +0.010 ± 0.004 (5/5) | +0.063 ± 0.013 (5/5) |
+| U+V8a | 0.848 ± 0.012 | -0.019 ± 0.007 (5/5) | -0.003 ± 0.002 (4/5) | +0.050 ± 0.014 (5/5) |
+| U+V8b | 0.855 ± 0.011 | -0.011 ± 0.008 (5/5) | +0.005 ± 0.005 (5/5) | +0.058 ± 0.013 (5/5) |
+
+### gemma
+
+Tuning (HDFS, Spark, Linux, disjoint @100): S1: `S1|L28|p64|lr0.1|ws0.1` 0.801; S2: `S2|lr0.1|ws0.1` 0.726; S3: `S3|mlp0.01|ws1` 0.708; S1+S2: `S1+S2|mlp1.0|ws1` 0.807; S1+S3: `S1+S3|mlp1.0|ws1` 0.815; S2+S3: `S2+S3|lr0.1|ws0.1` 0.756; S1+S2+S3: `S1+S2+S3|mlp1.0|ws1` 0.818. **U's best: S1+S2+S3.** V alone: V1cat: `V1cat|p16` 0.744; V1ens: `V1ens` 0.665; V3: `V3|lr0.01` 0.684; V4: `V4|lr0.1` 0.682; V5: `V5|lr0.1` 0.706; V6: `V6|k10` 0.623; V7: `V7|k10` 0.564.
+
+
+#### gemma, disjoint, @100, all systems (12)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.659 ± 0.025 |  | -0.114 ± 0.039 (5/5) | -0.164 ± 0.033 (5/5) |
+| MDSA | 0.655 ± 0.017 | -0.004 ± 0.025 (3/5) | -0.118 ± 0.026 (5/5) | -0.169 ± 0.020 (5/5) |
+| Lookup (Drain) | 0.508 ± 0.002 | -0.152 ± 0.026 (5/5) | -0.266 ± 0.013 (5/5) | -0.316 ± 0.012 (5/5) |
+| Output entropy (5 samples)* | 0.824 ± 0.012 | +0.164 ± 0.033 (5/5) | +0.050 ± 0.012 (5/5) |  |
+| Random | 0.507 ± 0.012 | -0.153 ± 0.033 (5/5) | -0.267 ± 0.014 (5/5) | -0.317 ± 0.018 (5/5) |
+| U:S1 | 0.762 ± 0.010 | +0.102 ± 0.028 (5/5) | -0.011 ± 0.015 (4/5) | -0.062 ± 0.008 (5/5) |
+| U:S1+S2 | 0.748 ± 0.014 | +0.089 ± 0.036 (5/5) | -0.025 ± 0.009 (5/5) | -0.075 ± 0.010 (5/5) |
+| U:S1+S2+S3 | 0.773 ± 0.015 | +0.114 ± 0.039 (5/5) |  | -0.050 ± 0.012 (5/5) |
+| U:S1+S3 | 0.773 ± 0.015 | +0.113 ± 0.037 (5/5) | -0.001 ± 0.012 (3/5) | -0.051 ± 0.008 (5/5) |
+| U:S2 | 0.698 ± 0.011 | +0.039 ± 0.029 (5/5) | -0.075 ± 0.018 (5/5) | -0.125 ± 0.021 (5/5) |
+| U:S2+S3 | 0.755 ± 0.005 | +0.096 ± 0.027 (5/5) | -0.018 ± 0.014 (5/5) | -0.068 ± 0.011 (5/5) |
+| U:S3 | 0.709 ± 0.008 | +0.050 ± 0.030 (5/5) | -0.064 ± 0.012 (5/5) | -0.114 ± 0.006 (5/5) |
+| V:V1cat | 0.714 ± 0.024 | +0.055 ± 0.032 (5/5) | -0.059 ± 0.029 (5/5) | -0.109 ± 0.020 (5/5) |
+| V:V1ens | 0.683 ± 0.020 | +0.024 ± 0.031 (3/5) | -0.090 ± 0.024 (5/5) | -0.140 ± 0.014 (5/5) |
+| V:V3 | 0.645 ± 0.017 | -0.015 ± 0.037 (3/5) | -0.129 ± 0.015 (5/5) | -0.179 ± 0.017 (5/5) |
+| V:V4 | 0.651 ± 0.024 | -0.009 ± 0.039 (3/5) | -0.122 ± 0.023 (5/5) | -0.173 ± 0.029 (5/5) |
+| V:V5 | 0.706 ± 0.013 | +0.047 ± 0.035 (4/5) | -0.067 ± 0.010 (5/5) | -0.117 ± 0.013 (5/5) |
+| V:V6 | 0.626 ± 0.010 | -0.033 ± 0.020 (5/5) | -0.147 ± 0.021 (5/5) | -0.197 ± 0.018 (5/5) |
+| V:V7 | 0.598 ± 0.029 | -0.061 ± 0.048 (5/5) | -0.175 ± 0.024 (5/5) | -0.225 ± 0.034 (5/5) |
+| U+V1 | 0.770 ± 0.022 | +0.110 ± 0.041 (5/5) | -0.003 ± 0.019 (3/5) | -0.054 ± 0.019 (5/5) |
+| U+V3 | 0.779 ± 0.011 | +0.119 ± 0.033 (5/5) | +0.005 ± 0.010 (3/5) | -0.045 ± 0.005 (5/5) |
+| U+V4 | 0.782 ± 0.013 | +0.122 ± 0.036 (5/5) | +0.008 ± 0.008 (4/5) | -0.042 ± 0.008 (5/5) |
+| U+V5 | 0.784 ± 0.010 | +0.125 ± 0.033 (5/5) | +0.011 ± 0.010 (4/5) | -0.039 ± 0.007 (5/5) |
+| U+V6 | 0.782 ± 0.011 | +0.123 ± 0.030 (5/5) | +0.009 ± 0.016 (3/5) | -0.041 ± 0.011 (5/5) |
+| U+V7 | 0.771 ± 0.015 | +0.112 ± 0.040 (5/5) | -0.002 ± 0.006 (3/5) | -0.053 ± 0.012 (5/5) |
+| U+V8a | 0.766 ± 0.010 | +0.106 ± 0.033 (5/5) | -0.007 ± 0.008 (4/5) | -0.058 ± 0.006 (5/5) |
+| U+V8b | 0.768 ± 0.012 | +0.108 ± 0.037 (5/5) | -0.005 ± 0.005 (5/5) | -0.056 ± 0.012 (5/5) |
+
+SK-ESD over (system, seed): 1. Output entropy (5 samples)* 0.824; 2. U+V5 0.784; 2. U+V6 0.782; 2. U+V4 0.782; 2. U+V3 0.779; 2. U:S1+S2+S3 0.773; 2. U:S1+S3 0.773; 2. U+V7 0.771; 2. U+V1 0.770; 2. U+V8b 0.768; 2. U+V8a 0.766; 2. U:S1 0.762; 2. U:S2+S3 0.755; 2. U:S1+S2 0.748; 3. V:V1cat 0.714; 3. U:S3 0.709; 3. V:V5 0.706; 3. U:S2 0.698; 4. V:V1ens 0.683; 4. Clotho 0.659; 4. MDSA 0.655; 4. V:V4 0.651; 4. V:V3 0.645; 5. V:V6 0.626; 5. V:V7 0.598; 6. Lookup (Drain) 0.508; 6. Random 0.507
+
+A12 U's best vs: Clotho 0.81 (large); MDSA 0.82 (large); Lookup (Drain) 1.00 (large); Output entropy (5 samples)* 0.32 (medium); Random 1.00 (large)
+
+#### gemma, disjoint, @100, held-out systems (9)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.658 ± 0.033 |  | -0.101 ± 0.054 (5/5) | -0.165 ± 0.039 (5/5) |
+| MDSA | 0.648 ± 0.026 | -0.010 ± 0.027 (2/5) | -0.111 ± 0.041 (5/5) | -0.175 ± 0.028 (5/5) |
+| Lookup (Drain) | 0.509 ± 0.002 | -0.149 ± 0.034 (5/5) | -0.250 ± 0.021 (5/5) | -0.314 ± 0.010 (5/5) |
+| Output entropy (5 samples)* | 0.823 ± 0.011 | +0.165 ± 0.039 (5/5) | +0.064 ± 0.016 (5/5) |  |
+| Random | 0.508 ± 0.015 | -0.149 ± 0.039 (5/5) | -0.250 ± 0.026 (5/5) | -0.314 ± 0.021 (5/5) |
+| U:S1 | 0.749 ± 0.019 | +0.091 ± 0.040 (5/5) | -0.009 ± 0.020 (4/5) | -0.074 ± 0.012 (5/5) |
+| U:S1+S2 | 0.729 ± 0.022 | +0.071 ± 0.049 (5/5) | -0.030 ± 0.013 (5/5) | -0.094 ± 0.014 (5/5) |
+| U:S1+S2+S3 | 0.758 ± 0.022 | +0.101 ± 0.054 (5/5) |  | -0.064 ± 0.016 (5/5) |
+| U:S1+S3 | 0.758 ± 0.016 | +0.101 ± 0.044 (5/5) | +0.000 ± 0.015 (3/5) | -0.064 ± 0.010 (5/5) |
+| U:S2 | 0.689 ± 0.016 | +0.032 ± 0.044 (3/5) | -0.069 ± 0.021 (5/5) | -0.133 ± 0.021 (5/5) |
+| U:S2+S3 | 0.755 ± 0.006 | +0.097 ± 0.038 (5/5) | -0.003 ± 0.017 (2/5) | -0.068 ± 0.009 (5/5) |
+| U:S3 | 0.710 ± 0.007 | +0.052 ± 0.037 (5/5) | -0.048 ± 0.019 (5/5) | -0.113 ± 0.010 (5/5) |
+| V:V1cat | 0.705 ± 0.039 | +0.047 ± 0.037 (4/5) | -0.054 ± 0.047 (4/5) | -0.118 ± 0.036 (5/5) |
+| V:V1ens | 0.689 ± 0.028 | +0.032 ± 0.032 (4/5) | -0.069 ± 0.037 (5/5) | -0.134 ± 0.024 (5/5) |
+| V:V3 | 0.631 ± 0.023 | -0.026 ± 0.048 (3/5) | -0.127 ± 0.019 (5/5) | -0.191 ± 0.019 (5/5) |
+| V:V4 | 0.641 ± 0.032 | -0.017 ± 0.057 (3/5) | -0.118 ± 0.028 (5/5) | -0.182 ± 0.033 (5/5) |
+| V:V5 | 0.706 ± 0.019 | +0.049 ± 0.046 (4/5) | -0.052 ± 0.016 (5/5) | -0.116 ± 0.016 (5/5) |
+| V:V6 | 0.627 ± 0.022 | -0.030 ± 0.033 (4/5) | -0.131 ± 0.031 (5/5) | -0.195 ± 0.023 (5/5) |
+| V:V7 | 0.610 ± 0.035 | -0.048 ± 0.063 (3/5) | -0.148 ± 0.023 (5/5) | -0.213 ± 0.034 (5/5) |
+| U+V1 | 0.758 ± 0.025 | +0.100 ± 0.052 (5/5) | -0.000 ± 0.023 (3/5) | -0.065 ± 0.022 (5/5) |
+| U+V3 | 0.762 ± 0.013 | +0.104 ± 0.041 (5/5) | +0.004 ± 0.015 (3/5) | -0.061 ± 0.005 (5/5) |
+| U+V4 | 0.767 ± 0.017 | +0.109 ± 0.045 (5/5) | +0.008 ± 0.012 (4/5) | -0.056 ± 0.007 (5/5) |
+| U+V5 | 0.769 ± 0.012 | +0.111 ± 0.041 (5/5) | +0.011 ± 0.017 (4/5) | -0.054 ± 0.008 (5/5) |
+| U+V6 | 0.771 ± 0.013 | +0.113 ± 0.036 (5/5) | +0.012 ± 0.023 (3/5) | -0.052 ± 0.015 (5/5) |
+| U+V7 | 0.757 ± 0.016 | +0.099 ± 0.048 (5/5) | -0.001 ± 0.009 (2/5) | -0.066 ± 0.012 (5/5) |
+| U+V8a | 0.748 ± 0.014 | +0.091 ± 0.043 (5/5) | -0.010 ± 0.011 (4/5) | -0.074 ± 0.006 (5/5) |
+| U+V8b | 0.752 ± 0.018 | +0.094 ± 0.050 (5/5) | -0.006 ± 0.007 (5/5) | -0.071 ± 0.014 (5/5) |
+
+#### gemma, disjoint, @200, all systems (12)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.671 ± 0.019 |  | -0.109 ± 0.030 (5/5) | -0.152 ± 0.022 (5/5) |
+| MDSA | 0.661 ± 0.017 | -0.010 ± 0.022 (3/5) | -0.119 ± 0.028 (5/5) | -0.162 ± 0.022 (5/5) |
+| Lookup (Drain) | 0.512 ± 0.001 | -0.159 ± 0.019 (5/5) | -0.269 ± 0.015 (5/5) | -0.312 ± 0.012 (5/5) |
+| Output entropy (5 samples)* | 0.824 ± 0.012 | +0.152 ± 0.022 (5/5) | +0.043 ± 0.013 (5/5) |  |
+| Random | 0.504 ± 0.009 | -0.167 ± 0.014 (5/5) | -0.276 ± 0.024 (5/5) | -0.319 ± 0.019 (5/5) |
+| U:S1 | 0.776 ± 0.011 | +0.105 ± 0.020 (5/5) | -0.004 ± 0.020 (2/5) | -0.047 ± 0.010 (5/5) |
+| U:S1+S2 | 0.756 ± 0.016 | +0.085 ± 0.027 (5/5) | -0.024 ± 0.013 (5/5) | -0.067 ± 0.007 (5/5) |
+| U:S1+S2+S3 | 0.780 ± 0.016 | +0.109 ± 0.030 (5/5) |  | -0.043 ± 0.013 (5/5) |
+| U:S1+S3 | 0.781 ± 0.016 | +0.110 ± 0.027 (5/5) | +0.000 ± 0.008 (2/5) | -0.043 ± 0.007 (5/5) |
+| U:S2 | 0.701 ± 0.013 | +0.030 ± 0.024 (4/5) | -0.079 ± 0.023 (5/5) | -0.122 ± 0.023 (5/5) |
+| U:S2+S3 | 0.759 ± 0.004 | +0.088 ± 0.016 (5/5) | -0.022 ± 0.018 (5/5) | -0.065 ± 0.014 (5/5) |
+| U:S3 | 0.709 ± 0.009 | +0.038 ± 0.021 (5/5) | -0.072 ± 0.012 (5/5) | -0.115 ± 0.004 (5/5) |
+| V:V1cat | 0.732 ± 0.019 | +0.061 ± 0.026 (5/5) | -0.048 ± 0.023 (5/5) | -0.091 ± 0.013 (5/5) |
+| V:V1ens | 0.698 ± 0.020 | +0.026 ± 0.031 (4/5) | -0.083 ± 0.025 (5/5) | -0.126 ± 0.017 (5/5) |
+| V:V3 | 0.646 ± 0.025 | -0.025 ± 0.029 (4/5) | -0.134 ± 0.024 (5/5) | -0.177 ± 0.022 (5/5) |
+| V:V4 | 0.662 ± 0.011 | -0.010 ± 0.024 (3/5) | -0.119 ± 0.015 (5/5) | -0.162 ± 0.014 (5/5) |
+| V:V5 | 0.718 ± 0.007 | +0.046 ± 0.013 (5/5) | -0.063 ± 0.020 (5/5) | -0.106 ± 0.011 (5/5) |
+| V:V6 | 0.635 ± 0.013 | -0.036 ± 0.016 (5/5) | -0.145 ± 0.028 (5/5) | -0.188 ± 0.022 (5/5) |
+| V:V7 | 0.598 ± 0.029 | -0.073 ± 0.048 (5/5) | -0.182 ± 0.029 (5/5) | -0.225 ± 0.034 (5/5) |
+| U+V1 | 0.779 ± 0.018 | +0.107 ± 0.027 (5/5) | -0.002 ± 0.009 (3/5) | -0.045 ± 0.017 (5/5) |
+| U+V3 | 0.786 ± 0.013 | +0.115 ± 0.026 (5/5) | +0.006 ± 0.007 (4/5) | -0.037 ± 0.007 (5/5) |
+| U+V4 | 0.788 ± 0.016 | +0.117 ± 0.031 (5/5) | +0.008 ± 0.012 (3/5) | -0.035 ± 0.011 (5/5) |
+| U+V5 | 0.792 ± 0.015 | +0.120 ± 0.029 (5/5) | +0.011 ± 0.008 (5/5) | -0.032 ± 0.009 (5/5) |
+| U+V6 | 0.784 ± 0.008 | +0.113 ± 0.018 (5/5) | +0.003 ± 0.020 (3/5) | -0.040 ± 0.013 (5/5) |
+| U+V7 | 0.783 ± 0.017 | +0.111 ± 0.033 (5/5) | +0.002 ± 0.007 (4/5) | -0.041 ± 0.015 (5/5) |
+| U+V8a | 0.775 ± 0.013 | +0.104 ± 0.028 (5/5) | -0.005 ± 0.010 (3/5) | -0.048 ± 0.008 (5/5) |
+| U+V8b | 0.776 ± 0.017 | +0.105 ± 0.031 (5/5) | -0.005 ± 0.002 (5/5) | -0.048 ± 0.014 (5/5) |
+
+#### gemma, disjoint, @200, held-out systems (9)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.678 ± 0.024 |  | -0.083 ± 0.039 (5/5) | -0.145 ± 0.027 (5/5) |
+| MDSA | 0.659 ± 0.025 | -0.019 ± 0.025 (4/5) | -0.103 ± 0.043 (5/5) | -0.164 ± 0.029 (5/5) |
+| Lookup (Drain) | 0.513 ± 0.001 | -0.166 ± 0.025 (5/5) | -0.249 ± 0.021 (5/5) | -0.310 ± 0.012 (5/5) |
+| Output entropy (5 samples)* | 0.823 ± 0.011 | +0.145 ± 0.027 (5/5) | +0.061 ± 0.017 (5/5) |  |
+| Random | 0.500 ± 0.013 | -0.178 ± 0.018 (5/5) | -0.262 ± 0.034 (5/5) | -0.323 ± 0.021 (5/5) |
+| U:S1 | 0.764 ± 0.019 | +0.086 ± 0.031 (5/5) | +0.002 ± 0.027 (3/5) | -0.059 ± 0.014 (5/5) |
+| U:S1+S2 | 0.737 ± 0.023 | +0.059 ± 0.034 (5/5) | -0.024 ± 0.019 (5/5) | -0.085 ± 0.012 (5/5) |
+| U:S1+S2+S3 | 0.762 ± 0.021 | +0.083 ± 0.039 (5/5) |  | -0.061 ± 0.017 (5/5) |
+| U:S1+S3 | 0.768 ± 0.018 | +0.090 ± 0.031 (5/5) | +0.007 ± 0.010 (4/5) | -0.054 ± 0.010 (5/5) |
+| U:S2 | 0.693 ± 0.022 | +0.015 ± 0.041 (3/5) | -0.068 ± 0.029 (5/5) | -0.129 ± 0.028 (5/5) |
+| U:S2+S3 | 0.757 ± 0.005 | +0.079 ± 0.027 (5/5) | -0.004 ± 0.022 (3/5) | -0.065 ± 0.014 (5/5) |
+| U:S3 | 0.709 ± 0.008 | +0.031 ± 0.026 (4/5) | -0.053 ± 0.019 (5/5) | -0.114 ± 0.007 (5/5) |
+| V:V1cat | 0.720 ± 0.028 | +0.042 ± 0.035 (4/5) | -0.041 ± 0.037 (4/5) | -0.102 ± 0.022 (5/5) |
+| V:V1ens | 0.702 ± 0.032 | +0.024 ± 0.044 (4/5) | -0.060 ± 0.040 (5/5) | -0.121 ± 0.028 (5/5) |
+| V:V3 | 0.631 ± 0.034 | -0.047 ± 0.043 (4/5) | -0.130 ± 0.030 (5/5) | -0.191 ± 0.029 (5/5) |
+| V:V4 | 0.655 ± 0.018 | -0.023 ± 0.038 (3/5) | -0.106 ± 0.012 (5/5) | -0.167 ± 0.015 (5/5) |
+| V:V5 | 0.721 ± 0.009 | +0.043 ± 0.021 (5/5) | -0.040 ± 0.026 (5/5) | -0.101 ± 0.011 (5/5) |
+| V:V6 | 0.639 ± 0.028 | -0.039 ± 0.037 (4/5) | -0.123 ± 0.043 (5/5) | -0.184 ± 0.031 (5/5) |
+| V:V7 | 0.610 ± 0.035 | -0.068 ± 0.058 (5/5) | -0.152 ± 0.031 (5/5) | -0.213 ± 0.034 (5/5) |
+| U+V1 | 0.769 ± 0.019 | +0.091 ± 0.032 (5/5) | +0.007 ± 0.010 (4/5) | -0.054 ± 0.018 (5/5) |
+| U+V3 | 0.770 ± 0.015 | +0.092 ± 0.032 (5/5) | +0.009 ± 0.010 (4/5) | -0.052 ± 0.008 (5/5) |
+| U+V4 | 0.772 ± 0.018 | +0.094 ± 0.036 (5/5) | +0.011 ± 0.014 (4/5) | -0.051 ± 0.010 (5/5) |
+| U+V5 | 0.775 ± 0.018 | +0.097 ± 0.033 (5/5) | +0.013 ± 0.011 (5/5) | -0.048 ± 0.010 (5/5) |
+| U+V6 | 0.771 ± 0.011 | +0.093 ± 0.027 (5/5) | +0.010 ± 0.030 (4/5) | -0.051 ± 0.016 (5/5) |
+| U+V7 | 0.767 ± 0.021 | +0.089 ± 0.041 (5/5) | +0.005 ± 0.009 (4/5) | -0.056 ± 0.017 (5/5) |
+| U+V8a | 0.757 ± 0.020 | +0.079 ± 0.036 (5/5) | -0.004 ± 0.013 (3/5) | -0.065 ± 0.011 (5/5) |
+| U+V8b | 0.757 ± 0.023 | +0.078 ± 0.039 (5/5) | -0.005 ± 0.003 (5/5) | -0.066 ± 0.019 (5/5) |
+
+#### gemma, standard, @100, all systems (12)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.780 ± 0.003 |  | -0.031 ± 0.005 (5/5) | -0.040 ± 0.005 (5/5) |
+| MDSA | 0.718 ± 0.007 | -0.063 ± 0.009 (5/5) | -0.094 ± 0.010 (5/5) | -0.103 ± 0.007 (5/5) |
+| Lookup (Drain) | 0.706 ± 0.009 | -0.074 ± 0.011 (5/5) | -0.105 ± 0.014 (5/5) | -0.114 ± 0.008 (5/5) |
+| Output entropy (5 samples)* | 0.821 ± 0.002 | +0.040 ± 0.005 (5/5) | +0.009 ± 0.007 (4/5) |  |
+| Random | 0.503 ± 0.008 | -0.277 ± 0.008 (5/5) | -0.308 ± 0.013 (5/5) | -0.318 ± 0.008 (5/5) |
+| U:S1 | 0.812 ± 0.001 | +0.031 ± 0.003 (5/5) | +0.000 ± 0.005 (3/5) | -0.009 ± 0.003 (5/5) |
+| U:S1+S2 | 0.795 ± 0.004 | +0.015 ± 0.005 (5/5) | -0.016 ± 0.005 (5/5) | -0.025 ± 0.005 (5/5) |
+| U:S1+S2+S3 | 0.811 ± 0.006 | +0.031 ± 0.005 (5/5) |  | -0.009 ± 0.007 (4/5) |
+| U:S1+S3 | 0.804 ± 0.005 | +0.024 ± 0.004 (5/5) | -0.007 ± 0.004 (5/5) | -0.017 ± 0.007 (5/5) |
+| U:S2 | 0.706 ± 0.004 | -0.074 ± 0.005 (5/5) | -0.105 ± 0.008 (5/5) | -0.114 ± 0.005 (5/5) |
+| U:S2+S3 | 0.760 ± 0.005 | -0.020 ± 0.006 (5/5) | -0.051 ± 0.008 (5/5) | -0.060 ± 0.005 (5/5) |
+| U:S3 | 0.694 ± 0.005 | -0.086 ± 0.007 (5/5) | -0.117 ± 0.008 (5/5) | -0.126 ± 0.004 (5/5) |
+| V:V1cat | 0.817 ± 0.005 | +0.036 ± 0.007 (5/5) | +0.005 ± 0.006 (4/5) | -0.004 ± 0.005 (4/5) |
+| V:V1ens | 0.825 ± 0.005 | +0.044 ± 0.008 (5/5) | +0.013 ± 0.008 (5/5) | +0.004 ± 0.005 (4/5) |
+| V:V3 | 0.667 ± 0.002 | -0.114 ± 0.003 (5/5) | -0.145 ± 0.006 (5/5) | -0.154 ± 0.002 (5/5) |
+| V:V4 | 0.676 ± 0.010 | -0.104 ± 0.010 (5/5) | -0.135 ± 0.010 (5/5) | -0.145 ± 0.010 (5/5) |
+| V:V5 | 0.701 ± 0.010 | -0.079 ± 0.010 (5/5) | -0.110 ± 0.015 (5/5) | -0.119 ± 0.010 (5/5) |
+| V:V6 | 0.757 ± 0.010 | -0.023 ± 0.012 (5/5) | -0.054 ± 0.014 (5/5) | -0.063 ± 0.010 (5/5) |
+| V:V7 | 0.588 ± 0.002 | -0.192 ± 0.003 (5/5) | -0.223 ± 0.006 (5/5) | -0.232 ± 0.004 (5/5) |
+| U+V1 | 0.834 ± 0.005 | +0.054 ± 0.007 (5/5) | +0.023 ± 0.008 (5/5) | +0.014 ± 0.005 (5/5) |
+| U+V3 | 0.811 ± 0.006 | +0.030 ± 0.006 (5/5) | -0.001 ± 0.006 (3/5) | -0.010 ± 0.007 (5/5) |
+| U+V4 | 0.813 ± 0.008 | +0.033 ± 0.007 (5/5) | +0.002 ± 0.009 (2/5) | -0.008 ± 0.009 (4/5) |
+| U+V5 | 0.813 ± 0.007 | +0.033 ± 0.008 (5/5) | +0.002 ± 0.007 (3/5) | -0.007 ± 0.009 (4/5) |
+| U+V6 | 0.841 ± 0.006 | +0.060 ± 0.006 (5/5) | +0.029 ± 0.010 (5/5) | +0.020 ± 0.007 (5/5) |
+| U+V7 | 0.810 ± 0.007 | +0.029 ± 0.005 (5/5) | -0.002 ± 0.008 (3/5) | -0.011 ± 0.009 (5/5) |
+| U+V8a | 0.802 ± 0.002 | +0.022 ± 0.003 (5/5) | -0.009 ± 0.005 (5/5) | -0.018 ± 0.003 (5/5) |
+| U+V8b | 0.811 ± 0.005 | +0.031 ± 0.005 (5/5) | -0.000 ± 0.003 (2/5) | -0.009 ± 0.005 (5/5) |
+
+#### gemma, standard, @100, held-out systems (9)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.785 ± 0.005 |  | -0.022 ± 0.004 (5/5) | -0.039 ± 0.005 (5/5) |
+| MDSA | 0.717 ± 0.011 | -0.068 ± 0.013 (5/5) | -0.090 ± 0.015 (5/5) | -0.107 ± 0.011 (5/5) |
+| Lookup (Drain) | 0.707 ± 0.010 | -0.078 ± 0.014 (5/5) | -0.100 ± 0.017 (5/5) | -0.117 ± 0.010 (5/5) |
+| Output entropy (5 samples)* | 0.824 ± 0.002 | +0.039 ± 0.005 (5/5) | +0.017 ± 0.008 (5/5) |  |
+| Random | 0.504 ± 0.007 | -0.281 ± 0.010 (5/5) | -0.303 ± 0.014 (5/5) | -0.320 ± 0.008 (5/5) |
+| U:S1 | 0.813 ± 0.002 | +0.028 ± 0.005 (5/5) | +0.006 ± 0.009 (4/5) | -0.011 ± 0.003 (5/5) |
+| U:S1+S2 | 0.791 ± 0.008 | +0.006 ± 0.006 (4/5) | -0.016 ± 0.007 (5/5) | -0.034 ± 0.008 (5/5) |
+| U:S1+S2+S3 | 0.807 ± 0.008 | +0.022 ± 0.004 (5/5) |  | -0.017 ± 0.008 (5/5) |
+| U:S1+S3 | 0.802 ± 0.007 | +0.017 ± 0.004 (5/5) | -0.005 ± 0.005 (4/5) | -0.022 ± 0.008 (5/5) |
+| U:S2 | 0.704 ± 0.005 | -0.081 ± 0.007 (5/5) | -0.103 ± 0.010 (5/5) | -0.120 ± 0.007 (5/5) |
+| U:S2+S3 | 0.765 ± 0.005 | -0.019 ± 0.006 (5/5) | -0.041 ± 0.010 (5/5) | -0.059 ± 0.006 (5/5) |
+| U:S3 | 0.695 ± 0.004 | -0.090 ± 0.005 (5/5) | -0.112 ± 0.008 (5/5) | -0.129 ± 0.004 (5/5) |
+| V:V1cat | 0.819 ± 0.007 | +0.034 ± 0.006 (5/5) | +0.012 ± 0.007 (5/5) | -0.005 ± 0.005 (5/5) |
+| V:V1ens | 0.830 ± 0.008 | +0.046 ± 0.009 (5/5) | +0.024 ± 0.011 (5/5) | +0.006 ± 0.007 (4/5) |
+| V:V3 | 0.661 ± 0.002 | -0.124 ± 0.005 (5/5) | -0.145 ± 0.009 (5/5) | -0.163 ± 0.003 (5/5) |
+| V:V4 | 0.675 ± 0.004 | -0.109 ± 0.007 (5/5) | -0.131 ± 0.009 (5/5) | -0.149 ± 0.004 (5/5) |
+| V:V5 | 0.705 ± 0.011 | -0.080 ± 0.015 (5/5) | -0.102 ± 0.018 (5/5) | -0.119 ± 0.012 (5/5) |
+| V:V6 | 0.765 ± 0.012 | -0.020 ± 0.014 (5/5) | -0.041 ± 0.017 (5/5) | -0.059 ± 0.012 (5/5) |
+| V:V7 | 0.602 ± 0.003 | -0.183 ± 0.004 (5/5) | -0.205 ± 0.008 (5/5) | -0.222 ± 0.004 (5/5) |
+| U+V1 | 0.833 ± 0.009 | +0.048 ± 0.009 (5/5) | +0.026 ± 0.011 (5/5) | +0.009 ± 0.009 (4/5) |
+| U+V3 | 0.808 ± 0.007 | +0.023 ± 0.005 (5/5) | +0.001 ± 0.007 (2/5) | -0.016 ± 0.008 (5/5) |
+| U+V4 | 0.809 ± 0.009 | +0.024 ± 0.010 (5/5) | +0.003 ± 0.011 (2/5) | -0.015 ± 0.008 (5/5) |
+| U+V5 | 0.808 ± 0.012 | +0.023 ± 0.009 (5/5) | +0.001 ± 0.011 (2/5) | -0.016 ± 0.012 (5/5) |
+| U+V6 | 0.841 ± 0.006 | +0.056 ± 0.008 (5/5) | +0.034 ± 0.012 (5/5) | +0.017 ± 0.007 (5/5) |
+| U+V7 | 0.807 ± 0.009 | +0.022 ± 0.009 (5/5) | +0.000 ± 0.010 (2/5) | -0.017 ± 0.010 (5/5) |
+| U+V8a | 0.794 ± 0.003 | +0.009 ± 0.004 (5/5) | -0.012 ± 0.007 (5/5) | -0.030 ± 0.003 (5/5) |
+| U+V8b | 0.806 ± 0.006 | +0.021 ± 0.004 (5/5) | -0.000 ± 0.004 (2/5) | -0.018 ± 0.005 (5/5) |
+
+#### gemma, standard, @200, all systems (12)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.832 ± 0.005 |  | -0.015 ± 0.007 (5/5) | +0.014 ± 0.005 (5/5) |
+| MDSA | 0.737 ± 0.006 | -0.095 ± 0.003 (5/5) | -0.110 ± 0.008 (5/5) | -0.081 ± 0.005 (5/5) |
+| Lookup (Drain) | 0.774 ± 0.008 | -0.058 ± 0.006 (5/5) | -0.073 ± 0.008 (5/5) | -0.044 ± 0.006 (5/5) |
+| Output entropy (5 samples)* | 0.818 ± 0.003 | -0.014 ± 0.005 (5/5) | -0.029 ± 0.006 (5/5) |  |
+| Random | 0.503 ± 0.013 | -0.329 ± 0.016 (5/5) | -0.345 ± 0.014 (5/5) | -0.315 ± 0.014 (5/5) |
+| U:S1 | 0.848 ± 0.002 | +0.016 ± 0.005 (5/5) | +0.001 ± 0.003 (3/5) | +0.030 ± 0.005 (5/5) |
+| U:S1+S2 | 0.836 ± 0.009 | +0.003 ± 0.010 (3/5) | -0.012 ± 0.010 (4/5) | +0.018 ± 0.008 (5/5) |
+| U:S1+S2+S3 | 0.847 ± 0.003 | +0.015 ± 0.007 (5/5) |  | +0.029 ± 0.006 (5/5) |
+| U:S1+S3 | 0.839 ± 0.009 | +0.007 ± 0.011 (4/5) | -0.009 ± 0.009 (4/5) | +0.021 ± 0.012 (5/5) |
+| U:S2 | 0.713 ± 0.007 | -0.119 ± 0.003 (5/5) | -0.134 ± 0.010 (5/5) | -0.105 ± 0.007 (5/5) |
+| U:S2+S3 | 0.771 ± 0.003 | -0.061 ± 0.003 (5/5) | -0.076 ± 0.006 (5/5) | -0.047 ± 0.004 (5/5) |
+| U:S3 | 0.696 ± 0.005 | -0.137 ± 0.008 (5/5) | -0.152 ± 0.005 (5/5) | -0.123 ± 0.005 (5/5) |
+| V:V1cat | 0.855 ± 0.006 | +0.023 ± 0.006 (5/5) | +0.008 ± 0.004 (5/5) | +0.037 ± 0.006 (5/5) |
+| V:V1ens | 0.875 ± 0.003 | +0.043 ± 0.003 (5/5) | +0.027 ± 0.005 (5/5) | +0.057 ± 0.002 (5/5) |
+| V:V3 | 0.672 ± 0.002 | -0.160 ± 0.005 (5/5) | -0.175 ± 0.005 (5/5) | -0.146 ± 0.005 (5/5) |
+| V:V4 | 0.687 ± 0.005 | -0.146 ± 0.005 (5/5) | -0.161 ± 0.007 (5/5) | -0.132 ± 0.003 (5/5) |
+| V:V5 | 0.715 ± 0.003 | -0.117 ± 0.005 (5/5) | -0.132 ± 0.006 (5/5) | -0.103 ± 0.002 (5/5) |
+| V:V6 | 0.808 ± 0.007 | -0.025 ± 0.005 (5/5) | -0.040 ± 0.008 (5/5) | -0.011 ± 0.006 (5/5) |
+| V:V7 | 0.590 ± 0.005 | -0.242 ± 0.008 (5/5) | -0.258 ± 0.004 (5/5) | -0.228 ± 0.008 (5/5) |
+| U+V1 | 0.872 ± 0.006 | +0.040 ± 0.008 (5/5) | +0.025 ± 0.004 (5/5) | +0.054 ± 0.009 (5/5) |
+| U+V3 | 0.850 ± 0.005 | +0.018 ± 0.006 (5/5) | +0.002 ± 0.007 (2/5) | +0.032 ± 0.007 (5/5) |
+| U+V4 | 0.853 ± 0.009 | +0.021 ± 0.011 (5/5) | +0.005 ± 0.010 (3/5) | +0.035 ± 0.011 (5/5) |
+| U+V5 | 0.851 ± 0.004 | +0.018 ± 0.003 (5/5) | +0.003 ± 0.006 (4/5) | +0.032 ± 0.006 (5/5) |
+| U+V6 | 0.876 ± 0.005 | +0.044 ± 0.007 (5/5) | +0.029 ± 0.003 (5/5) | +0.058 ± 0.006 (5/5) |
+| U+V7 | 0.848 ± 0.009 | +0.016 ± 0.013 (4/5) | +0.001 ± 0.010 (3/5) | +0.030 ± 0.011 (5/5) |
+| U+V8a | 0.850 ± 0.006 | +0.017 ± 0.010 (5/5) | +0.002 ± 0.005 (3/5) | +0.032 ± 0.005 (5/5) |
+| U+V8b | 0.848 ± 0.005 | +0.016 ± 0.009 (5/5) | +0.001 ± 0.003 (3/5) | +0.030 ± 0.007 (5/5) |
+
+#### gemma, standard, @200, held-out systems (9)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.827 ± 0.009 |  | -0.023 ± 0.011 (5/5) | +0.001 ± 0.011 (3/5) |
+| MDSA | 0.741 ± 0.006 | -0.086 ± 0.006 (5/5) | -0.110 ± 0.010 (5/5) | -0.085 ± 0.008 (5/5) |
+| Lookup (Drain) | 0.768 ± 0.006 | -0.059 ± 0.012 (5/5) | -0.083 ± 0.008 (5/5) | -0.058 ± 0.005 (5/5) |
+| Output entropy (5 samples)* | 0.826 ± 0.003 | -0.001 ± 0.011 (3/5) | -0.025 ± 0.005 (5/5) |  |
+| Random | 0.503 ± 0.007 | -0.324 ± 0.011 (5/5) | -0.348 ± 0.009 (5/5) | -0.323 ± 0.008 (5/5) |
+| U:S1 | 0.848 ± 0.002 | +0.021 ± 0.008 (5/5) | -0.002 ± 0.004 (2/5) | +0.023 ± 0.005 (5/5) |
+| U:S1+S2 | 0.835 ± 0.012 | +0.008 ± 0.012 (4/5) | -0.015 ± 0.014 (5/5) | +0.009 ± 0.013 (3/5) |
+| U:S1+S2+S3 | 0.850 ± 0.004 | +0.023 ± 0.011 (5/5) |  | +0.025 ± 0.005 (5/5) |
+| U:S1+S3 | 0.843 ± 0.009 | +0.016 ± 0.009 (5/5) | -0.007 ± 0.009 (4/5) | +0.017 ± 0.012 (5/5) |
+| U:S2 | 0.715 ± 0.010 | -0.112 ± 0.006 (5/5) | -0.136 ± 0.013 (5/5) | -0.111 ± 0.012 (5/5) |
+| U:S2+S3 | 0.781 ± 0.005 | -0.046 ± 0.010 (5/5) | -0.069 ± 0.007 (5/5) | -0.045 ± 0.006 (5/5) |
+| U:S3 | 0.699 ± 0.006 | -0.128 ± 0.014 (5/5) | -0.151 ± 0.006 (5/5) | -0.127 ± 0.005 (5/5) |
+| V:V1cat | 0.858 ± 0.007 | +0.031 ± 0.009 (5/5) | +0.007 ± 0.006 (4/5) | +0.032 ± 0.008 (5/5) |
+| V:V1ens | 0.877 ± 0.003 | +0.050 ± 0.007 (5/5) | +0.027 ± 0.007 (5/5) | +0.051 ± 0.004 (5/5) |
+| V:V3 | 0.666 ± 0.004 | -0.161 ± 0.009 (5/5) | -0.184 ± 0.006 (5/5) | -0.160 ± 0.006 (5/5) |
+| V:V4 | 0.682 ± 0.005 | -0.145 ± 0.011 (5/5) | -0.169 ± 0.009 (5/5) | -0.144 ± 0.004 (5/5) |
+| V:V5 | 0.724 ± 0.005 | -0.103 ± 0.006 (5/5) | -0.127 ± 0.008 (5/5) | -0.102 ± 0.006 (5/5) |
+| V:V6 | 0.815 ± 0.005 | -0.012 ± 0.010 (5/5) | -0.035 ± 0.006 (5/5) | -0.010 ± 0.005 (5/5) |
+| V:V7 | 0.610 ± 0.004 | -0.217 ± 0.011 (5/5) | -0.241 ± 0.003 (5/5) | -0.216 ± 0.006 (5/5) |
+| U+V1 | 0.872 ± 0.009 | +0.045 ± 0.011 (5/5) | +0.022 ± 0.007 (5/5) | +0.046 ± 0.011 (5/5) |
+| U+V3 | 0.850 ± 0.007 | +0.023 ± 0.006 (5/5) | -0.001 ± 0.009 (3/5) | +0.024 ± 0.010 (5/5) |
+| U+V4 | 0.852 ± 0.009 | +0.025 ± 0.012 (5/5) | +0.002 ± 0.011 (3/5) | +0.027 ± 0.010 (5/5) |
+| U+V5 | 0.851 ± 0.006 | +0.024 ± 0.009 (5/5) | +0.000 ± 0.005 (3/5) | +0.025 ± 0.008 (5/5) |
+| U+V6 | 0.878 ± 0.005 | +0.051 ± 0.010 (5/5) | +0.028 ± 0.003 (5/5) | +0.052 ± 0.007 (5/5) |
+| U+V7 | 0.848 ± 0.011 | +0.021 ± 0.019 (4/5) | -0.002 ± 0.010 (2/5) | +0.022 ± 0.011 (5/5) |
+| U+V8a | 0.848 ± 0.005 | +0.021 ± 0.013 (5/5) | -0.003 ± 0.005 (4/5) | +0.022 ± 0.004 (5/5) |
+| U+V8b | 0.850 ± 0.005 | +0.023 ± 0.011 (5/5) | -0.001 ± 0.002 (2/5) | +0.024 ± 0.006 (5/5) |
+
+#### gemma, natural, @100, all systems (12)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.880 ± 0.018 |  | +0.006 ± 0.018 (3/5) | +0.108 ± 0.019 (5/5) |
+| MDSA | 0.875 ± 0.010 | -0.005 ± 0.009 (4/5) | +0.002 ± 0.012 (3/5) | +0.103 ± 0.012 (5/5) |
+| Lookup (Drain) | 0.916 ± 0.003 | +0.037 ± 0.018 (5/5) | +0.043 ± 0.009 (5/5) | +0.144 ± 0.003 (5/5) |
+| Output entropy (5 samples)* | 0.772 ± 0.002 | -0.108 ± 0.019 (5/5) | -0.102 ± 0.008 (5/5) |  |
+| Random | 0.502 ± 0.012 | -0.378 ± 0.013 (5/5) | -0.371 ± 0.007 (5/5) | -0.270 ± 0.011 (5/5) |
+| U:S1 | 0.897 ± 0.003 | +0.017 ± 0.017 (5/5) | +0.023 ± 0.008 (5/5) | +0.125 ± 0.003 (5/5) |
+| U:S1+S2 | 0.870 ± 0.008 | -0.010 ± 0.022 (4/5) | -0.004 ± 0.015 (3/5) | +0.098 ± 0.010 (5/5) |
+| U:S1+S2+S3 | 0.874 ± 0.009 | -0.006 ± 0.018 (3/5) |  | +0.102 ± 0.008 (5/5) |
+| U:S1+S3 | 0.849 ± 0.013 | -0.031 ± 0.023 (4/5) | -0.025 ± 0.015 (5/5) | +0.077 ± 0.012 (5/5) |
+| U:S2 | 0.725 ± 0.006 | -0.155 ± 0.020 (5/5) | -0.148 ± 0.012 (5/5) | -0.047 ± 0.007 (5/5) |
+| U:S2+S3 | 0.775 ± 0.005 | -0.105 ± 0.015 (5/5) | -0.098 ± 0.010 (5/5) | +0.003 ± 0.006 (3/5) |
+| U:S3 | 0.703 ± 0.008 | -0.177 ± 0.012 (5/5) | -0.170 ± 0.008 (5/5) | -0.069 ± 0.008 (5/5) |
+| V:V3 | 0.711 ± 0.011 | -0.169 ± 0.026 (5/5) | -0.163 ± 0.012 (5/5) | -0.061 ± 0.009 (5/5) |
+| V:V4 | 0.806 ± 0.010 | -0.073 ± 0.012 (5/5) | -0.067 ± 0.008 (5/5) | +0.035 ± 0.010 (5/5) |
+| V:V5 | 0.741 ± 0.008 | -0.139 ± 0.021 (5/5) | -0.132 ± 0.010 (5/5) | -0.031 ± 0.007 (5/5) |
+| V:V6 | 0.917 ± 0.003 | +0.037 ± 0.020 (5/5) | +0.043 ± 0.009 (5/5) | +0.145 ± 0.003 (5/5) |
+| V:V7 | 0.582 ± 0.004 | -0.298 ± 0.015 (5/5) | -0.291 ± 0.008 (5/5) | -0.190 ± 0.005 (5/5) |
+| U+V3 | 0.871 ± 0.004 | -0.009 ± 0.019 (4/5) | -0.003 ± 0.009 (3/5) | +0.099 ± 0.004 (5/5) |
+| U+V4 | 0.875 ± 0.009 | -0.005 ± 0.020 (4/5) | +0.001 ± 0.015 (2/5) | +0.103 ± 0.009 (5/5) |
+| U+V5 | 0.870 ± 0.008 | -0.010 ± 0.019 (4/5) | -0.004 ± 0.016 (1/5) | +0.098 ± 0.010 (5/5) |
+| U+V6 | 0.917 ± 0.004 | +0.037 ± 0.016 (5/5) | +0.044 ± 0.008 (5/5) | +0.145 ± 0.005 (5/5) |
+| U+V7 | 0.867 ± 0.006 | -0.012 ± 0.019 (4/5) | -0.006 ± 0.012 (3/5) | +0.095 ± 0.006 (5/5) |
+| U+V8a | 0.871 ± 0.011 | -0.009 ± 0.013 (3/5) | -0.002 ± 0.008 (3/5) | +0.099 ± 0.011 (5/5) |
+| U+V8b | 0.868 ± 0.011 | -0.012 ± 0.022 (3/5) | -0.005 ± 0.006 (4/5) | +0.096 ± 0.010 (5/5) |
+
+#### gemma, natural, @100, held-out systems (9)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.889 ± 0.026 |  | +0.009 ± 0.026 (3/5) | +0.109 ± 0.027 (5/5) |
+| MDSA | 0.883 ± 0.013 | -0.006 ± 0.014 (4/5) | +0.004 ± 0.015 (3/5) | +0.103 ± 0.015 (5/5) |
+| Lookup (Drain) | 0.928 ± 0.003 | +0.040 ± 0.024 (5/5) | +0.049 ± 0.011 (5/5) | +0.149 ± 0.003 (5/5) |
+| Output entropy (5 samples)* | 0.780 ± 0.003 | -0.109 ± 0.027 (5/5) | -0.100 ± 0.011 (5/5) |  |
+| Random | 0.502 ± 0.012 | -0.386 ± 0.022 (5/5) | -0.377 ± 0.009 (5/5) | -0.277 ± 0.013 (5/5) |
+| U:S1 | 0.901 ± 0.005 | +0.013 ± 0.023 (3/5) | +0.022 ± 0.011 (5/5) | +0.122 ± 0.005 (5/5) |
+| U:S1+S2 | 0.874 ± 0.011 | -0.015 ± 0.030 (4/5) | -0.005 ± 0.020 (3/5) | +0.095 ± 0.013 (5/5) |
+| U:S1+S2+S3 | 0.879 ± 0.012 | -0.009 ± 0.026 (3/5) |  | +0.100 ± 0.011 (5/5) |
+| U:S1+S3 | 0.846 ± 0.017 | -0.043 ± 0.029 (5/5) | -0.034 ± 0.021 (5/5) | +0.066 ± 0.015 (5/5) |
+| U:S2 | 0.725 ± 0.008 | -0.163 ± 0.025 (5/5) | -0.154 ± 0.014 (5/5) | -0.054 ± 0.008 (5/5) |
+| U:S2+S3 | 0.776 ± 0.006 | -0.113 ± 0.020 (5/5) | -0.104 ± 0.012 (5/5) | -0.004 ± 0.008 (2/5) |
+| U:S3 | 0.692 ± 0.009 | -0.196 ± 0.019 (5/5) | -0.187 ± 0.009 (5/5) | -0.087 ± 0.010 (5/5) |
+| V:V3 | 0.728 ± 0.013 | -0.160 ± 0.034 (5/5) | -0.151 ± 0.013 (5/5) | -0.051 ± 0.010 (5/5) |
+| V:V4 | 0.811 ± 0.013 | -0.077 ± 0.015 (5/5) | -0.068 ± 0.011 (5/5) | +0.032 ± 0.014 (5/5) |
+| V:V5 | 0.738 ± 0.008 | -0.151 ± 0.027 (5/5) | -0.142 ± 0.011 (5/5) | -0.042 ± 0.006 (5/5) |
+| V:V6 | 0.929 ± 0.004 | +0.040 ± 0.027 (5/5) | +0.050 ± 0.013 (5/5) | +0.149 ± 0.006 (5/5) |
+| V:V7 | 0.570 ± 0.005 | -0.319 ± 0.021 (5/5) | -0.309 ± 0.012 (5/5) | -0.209 ± 0.007 (5/5) |
+| U+V3 | 0.876 ± 0.007 | -0.012 ± 0.026 (4/5) | -0.003 ± 0.011 (3/5) | +0.097 ± 0.007 (5/5) |
+| U+V4 | 0.877 ± 0.012 | -0.012 ± 0.027 (4/5) | -0.002 ± 0.019 (3/5) | +0.098 ± 0.011 (5/5) |
+| U+V5 | 0.874 ± 0.012 | -0.015 ± 0.026 (4/5) | -0.006 ± 0.022 (2/5) | +0.094 ± 0.014 (5/5) |
+| U+V6 | 0.929 ± 0.006 | +0.041 ± 0.023 (5/5) | +0.050 ± 0.008 (5/5) | +0.150 ± 0.005 (5/5) |
+| U+V7 | 0.871 ± 0.010 | -0.018 ± 0.027 (4/5) | -0.009 ± 0.018 (3/5) | +0.091 ± 0.008 (5/5) |
+| U+V8a | 0.876 ± 0.015 | -0.013 ± 0.020 (3/5) | -0.003 ± 0.010 (4/5) | +0.096 ± 0.015 (5/5) |
+| U+V8b | 0.872 ± 0.015 | -0.017 ± 0.032 (3/5) | -0.007 ± 0.007 (4/5) | +0.092 ± 0.015 (5/5) |
+
+#### gemma, natural, @200, all systems (12)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.855 ± 0.009 |  | -0.042 ± 0.010 (5/5) | +0.093 ± 0.012 (5/5) |
+| MDSA | 0.830 ± 0.009 | -0.025 ± 0.009 (5/5) | -0.067 ± 0.010 (5/5) | +0.068 ± 0.012 (5/5) |
+| Lookup (Drain) | 0.912 ± 0.002 | +0.057 ± 0.009 (5/5) | +0.015 ± 0.003 (5/5) | +0.150 ± 0.006 (5/5) |
+| Output entropy (5 samples)* | 0.762 ± 0.004 | -0.093 ± 0.012 (5/5) | -0.135 ± 0.004 (5/5) |  |
+| Random | 0.502 ± 0.020 | -0.353 ± 0.016 (5/5) | -0.395 ± 0.022 (5/5) | -0.260 ± 0.024 (5/5) |
+| U:S1 | 0.907 ± 0.003 | +0.052 ± 0.010 (5/5) | +0.011 ± 0.002 (5/5) | +0.146 ± 0.006 (5/5) |
+| U:S1+S2 | 0.902 ± 0.004 | +0.047 ± 0.012 (5/5) | +0.006 ± 0.003 (5/5) | +0.140 ± 0.004 (5/5) |
+| U:S1+S2+S3 | 0.897 ± 0.003 | +0.042 ± 0.010 (5/5) |  | +0.135 ± 0.004 (5/5) |
+| U:S1+S3 | 0.891 ± 0.004 | +0.036 ± 0.011 (5/5) | -0.006 ± 0.002 (5/5) | +0.129 ± 0.006 (5/5) |
+| U:S2 | 0.745 ± 0.012 | -0.110 ± 0.008 (5/5) | -0.152 ± 0.013 (5/5) | -0.017 ± 0.012 (5/5) |
+| U:S2+S3 | 0.796 ± 0.007 | -0.060 ± 0.007 (5/5) | -0.101 ± 0.008 (5/5) | +0.034 ± 0.007 (5/5) |
+| U:S3 | 0.693 ± 0.007 | -0.162 ± 0.014 (5/5) | -0.204 ± 0.006 (5/5) | -0.069 ± 0.009 (5/5) |
+| V:V3 | 0.694 ± 0.016 | -0.161 ± 0.015 (5/5) | -0.202 ± 0.017 (5/5) | -0.067 ± 0.014 (5/5) |
+| V:V4 | 0.804 ± 0.010 | -0.051 ± 0.017 (5/5) | -0.093 ± 0.008 (5/5) | +0.042 ± 0.007 (5/5) |
+| V:V5 | 0.736 ± 0.008 | -0.119 ± 0.013 (5/5) | -0.161 ± 0.008 (5/5) | -0.026 ± 0.006 (5/5) |
+| V:V6 | 0.908 ± 0.004 | +0.053 ± 0.006 (5/5) | +0.011 ± 0.007 (5/5) | +0.146 ± 0.008 (5/5) |
+| V:V7 | 0.553 ± 0.003 | -0.302 ± 0.012 (5/5) | -0.343 ± 0.004 (5/5) | -0.208 ± 0.004 (5/5) |
+| U+V3 | 0.893 ± 0.004 | +0.038 ± 0.008 (5/5) | -0.004 ± 0.005 (4/5) | +0.131 ± 0.004 (5/5) |
+| U+V4 | 0.903 ± 0.004 | +0.047 ± 0.010 (5/5) | +0.006 ± 0.003 (5/5) | +0.141 ± 0.004 (5/5) |
+| U+V5 | 0.896 ± 0.006 | +0.041 ± 0.012 (5/5) | -0.000 ± 0.006 (2/5) | +0.135 ± 0.002 (5/5) |
+| U+V6 | 0.917 ± 0.005 | +0.062 ± 0.006 (5/5) | +0.020 ± 0.006 (5/5) | +0.155 ± 0.009 (5/5) |
+| U+V7 | 0.893 ± 0.009 | +0.038 ± 0.009 (5/5) | -0.003 ± 0.010 (3/5) | +0.132 ± 0.012 (5/5) |
+| U+V8a | 0.888 ± 0.003 | +0.033 ± 0.011 (5/5) | -0.008 ± 0.003 (5/5) | +0.127 ± 0.006 (5/5) |
+| U+V8b | 0.897 ± 0.003 | +0.042 ± 0.011 (5/5) | +0.000 ± 0.003 (2/5) | +0.135 ± 0.006 (5/5) |
+
+#### gemma, natural, @200, held-out systems (9)
+
+| method | AUC | minus Clotho | minus U's best | minus output entropy |
+|---|---|---|---|---|
+| Clotho | 0.870 ± 0.014 |  | -0.050 ± 0.013 (5/5) | +0.097 ± 0.013 (5/5) |
+| MDSA | 0.834 ± 0.011 | -0.036 ± 0.015 (5/5) | -0.085 ± 0.014 (5/5) | +0.061 ± 0.014 (5/5) |
+| Lookup (Drain) | 0.936 ± 0.003 | +0.066 ± 0.012 (5/5) | +0.016 ± 0.004 (5/5) | +0.163 ± 0.005 (5/5) |
+| Output entropy (5 samples)* | 0.773 ± 0.006 | -0.097 ± 0.013 (5/5) | -0.147 ± 0.003 (5/5) |  |
+| Random | 0.504 ± 0.018 | -0.366 ± 0.019 (5/5) | -0.416 ± 0.022 (5/5) | -0.269 ± 0.021 (5/5) |
+| U:S1 | 0.928 ± 0.004 | +0.058 ± 0.013 (5/5) | +0.008 ± 0.002 (5/5) | +0.155 ± 0.004 (5/5) |
+| U:S1+S2 | 0.926 ± 0.003 | +0.056 ± 0.015 (5/5) | +0.006 ± 0.004 (4/5) | +0.153 ± 0.005 (5/5) |
+| U:S1+S2+S3 | 0.919 ± 0.005 | +0.050 ± 0.013 (5/5) |  | +0.147 ± 0.003 (5/5) |
+| U:S1+S3 | 0.913 ± 0.004 | +0.043 ± 0.013 (5/5) | -0.007 ± 0.004 (5/5) | +0.140 ± 0.006 (5/5) |
+| U:S2 | 0.745 ± 0.017 | -0.125 ± 0.005 (5/5) | -0.174 ± 0.016 (5/5) | -0.027 ± 0.015 (5/5) |
+| U:S2+S3 | 0.801 ± 0.013 | -0.069 ± 0.006 (5/5) | -0.119 ± 0.012 (5/5) | +0.028 ± 0.010 (5/5) |
+| U:S3 | 0.685 ± 0.006 | -0.184 ± 0.016 (5/5) | -0.234 ± 0.005 (5/5) | -0.087 ± 0.007 (5/5) |
+| V:V3 | 0.730 ± 0.014 | -0.140 ± 0.016 (5/5) | -0.189 ± 0.013 (5/5) | -0.043 ± 0.010 (5/5) |
+| V:V4 | 0.817 ± 0.013 | -0.053 ± 0.018 (5/5) | -0.102 ± 0.010 (5/5) | +0.044 ± 0.011 (5/5) |
+| V:V5 | 0.747 ± 0.013 | -0.123 ± 0.018 (5/5) | -0.172 ± 0.011 (5/5) | -0.026 ± 0.011 (5/5) |
+| V:V6 | 0.935 ± 0.005 | +0.065 ± 0.011 (5/5) | +0.015 ± 0.008 (5/5) | +0.162 ± 0.008 (5/5) |
+| V:V7 | 0.546 ± 0.007 | -0.324 ± 0.012 (5/5) | -0.374 ± 0.011 (5/5) | -0.227 ± 0.010 (5/5) |
+| U+V3 | 0.914 ± 0.008 | +0.044 ± 0.012 (5/5) | -0.006 ± 0.007 (4/5) | +0.141 ± 0.005 (5/5) |
+| U+V4 | 0.926 ± 0.006 | +0.056 ± 0.013 (5/5) | +0.006 ± 0.004 (5/5) | +0.153 ± 0.004 (5/5) |
+| U+V5 | 0.919 ± 0.010 | +0.049 ± 0.015 (5/5) | -0.000 ± 0.007 (2/5) | +0.147 ± 0.005 (5/5) |
+| U+V6 | 0.943 ± 0.005 | +0.073 ± 0.010 (5/5) | +0.024 ± 0.006 (5/5) | +0.170 ± 0.006 (5/5) |
+| U+V7 | 0.915 ± 0.011 | +0.045 ± 0.011 (5/5) | -0.004 ± 0.012 (3/5) | +0.143 ± 0.013 (5/5) |
+| U+V8a | 0.914 ± 0.003 | +0.044 ± 0.016 (5/5) | -0.005 ± 0.004 (4/5) | +0.141 ± 0.005 (5/5) |
+| U+V8b | 0.921 ± 0.004 | +0.051 ± 0.015 (5/5) | +0.001 ± 0.004 (3/5) | +0.148 ± 0.004 (5/5) |
+
+
+## 29. W: same-group validation in the streams; U/V best in review and gate (2026-11-10)
+
+Copied from `reports/groupcheck_details.md` (`log_parsing_groupcheck.py report`; protocol in the script docstring). Protocol in PROGRESS.md Decisions (U, V, W, P).
+
+### llama, base parser (11 systems)
+
+Groups that never get a 2nd line: 0.273 of groups, holding 0.017 of mis-parsed lines (W cannot help there).
+
+| arrival point | recall | recall (reached) | precision | share of bad lines in flagged groups | flagged groups / system |
+|---|---|---|---|---|---|
+| line 2 | 0.251 | 0.383 | 0.890 | 0.409 | 244.1 |
+| line 3 | 0.212 | 0.386 | 0.905 | 0.407 | 79.7 |
+| line 5 | 0.191 | 0.389 | 0.936 | 0.408 | 55.0 |
+
+| review order | share N=5 | share N=10 | share N=20 | share N=50 |
+|---|---|---|---|---|
+| W first, then Most frequent | 0.357 ± 0.000 | 0.524 ± 0.000 | 0.668 ± 0.000 | 0.792 ± 0.000 |
+| Most frequent | 0.713 ± 0.000 | 0.777 ± 0.000 | 0.836 ± 0.000 | 0.886 ± 0.000 |
+| D x size | 0.665 ± 0.007 | 0.770 ± 0.019 | 0.824 ± 0.016 | 0.887 ± 0.000 |
+| U/V best x size | 0.662 ± 0.024 | 0.764 ± 0.005 | 0.808 ± 0.001 | 0.886 ± 0.001 |
+
+W first minus Most frequent: N=5 -0.355; N=10 -0.252; N=20 -0.168; N=50 -0.094
+
+| gate (q) | method | reviews | precision | share fixed | Most frequent @same N |
+|---|---|---|---|---|---|
+| 5% | W gate (2nd line) | 11.1 | 0.822 ± 0.002 | 0.070 ± 0.001 | 0.570 ± 0.015 |
+| 5% | U/V best (creation) | 50.7 | 0.842 ± 0.022 | 0.065 ± 0.001 | 0.651 ± 0.006 |
+| 5% | D (online, creation) | 45.6 | 0.795 ± 0.017 | 0.066 ± 0.008 | 0.664 ± 0.017 |
+| 5% | Random (creation) | 56.8 | 0.610 ± 0.035 | 0.079 ± 0.022 | 0.710 ± 0.030 |
+| 10% | W gate (2nd line) | 24.6 | 0.880 ± 0.025 | 0.116 ± 0.018 | 0.734 ± 0.003 |
+| 10% | U/V best (creation) | 102.7 | 0.863 ± 0.018 | 0.084 ± 0.011 | 0.819 ± 0.010 |
+| 10% | D (online, creation) | 87.3 | 0.823 ± 0.032 | 0.107 ± 0.013 | 0.747 ± 0.019 |
+| 10% | Random (creation) | 114.5 | 0.594 ± 0.034 | 0.123 ± 0.028 | 0.818 ± 0.021 |
+| 20% | W gate (2nd line) | 48.1 | 0.896 ± 0.019 | 0.295 ± 0.023 | 0.817 ± 0.022 |
+| 20% | U/V best (creation) | 204.4 | 0.863 ± 0.012 | 0.168 ± 0.016 | 0.912 ± 0.001 |
+| 20% | D (online, creation) | 188.7 | 0.795 ± 0.013 | 0.181 ± 0.021 | 0.905 ± 0.003 |
+| 20% | Random (creation) | 230.1 | 0.606 ± 0.008 | 0.227 ± 0.018 | 0.909 ± 0.017 |
+
+### llama, strong parser (13 systems)
+
+Groups that never get a 2nd line: 0.299 of groups, holding 0.044 of mis-parsed lines (W cannot help there).
+
+| arrival point | recall | recall (reached) | precision | share of bad lines in flagged groups | flagged groups / system |
+|---|---|---|---|---|---|
+| line 2 | 0.231 | 0.348 | 0.860 | 0.412 | 196.9 |
+| line 3 | 0.213 | 0.347 | 0.876 | 0.400 | 61.5 |
+| line 5 | 0.204 | 0.367 | 0.866 | 0.416 | 41.6 |
+
+| review order | share N=5 | share N=10 | share N=20 | share N=50 |
+|---|---|---|---|---|
+| W first, then Most frequent | 0.469 ± 0.000 | 0.527 ± 0.000 | 0.617 ± 0.000 | 0.711 ± 0.000 |
+| Most frequent | 0.597 ± 0.000 | 0.720 ± 0.000 | 0.791 ± 0.000 | 0.843 ± 0.000 |
+| D x size | 0.609 ± 0.006 | 0.707 ± 0.007 | 0.771 ± 0.004 | 0.836 ± 0.010 |
+| U/V best x size | 0.641 ± 0.003 | 0.742 ± 0.005 | 0.794 ± 0.001 | 0.841 ± 0.000 |
+
+W first minus Most frequent: N=5 -0.128; N=10 -0.193; N=20 -0.175; N=50 -0.132
+
+| gate (q) | method | reviews | precision | share fixed | Most frequent @same N |
+|---|---|---|---|---|---|
+| 5% | W gate (2nd line) | 10.0 | 0.579 ± 0.003 | 0.027 ± 0.008 | 0.457 ± 0.029 |
+| 5% | U/V best (creation) | 39.1 | 0.483 ± 0.021 | 0.034 ± 0.007 | 0.473 ± 0.004 |
+| 5% | D (online, creation) | 42.3 | 0.496 ± 0.025 | 0.040 ± 0.011 | 0.479 ± 0.003 |
+| 5% | Random (creation) | 47.8 | 0.344 ± 0.027 | 0.033 ± 0.014 | 0.508 ± 0.057 |
+| 10% | W gate (2nd line) | 17.9 | 0.664 ± 0.023 | 0.064 ± 0.018 | 0.538 ± 0.012 |
+| 10% | U/V best (creation) | 83.3 | 0.561 ± 0.022 | 0.062 ± 0.006 | 0.559 ± 0.031 |
+| 10% | D (online, creation) | 82.0 | 0.538 ± 0.020 | 0.066 ± 0.008 | 0.548 ± 0.026 |
+| 10% | Random (creation) | 96.2 | 0.395 ± 0.016 | 0.058 ± 0.008 | 0.585 ± 0.026 |
+| 20% | W gate (2nd line) | 36.6 | 0.696 ± 0.012 | 0.229 ± 0.033 | 0.647 ± 0.029 |
+| 20% | U/V best (creation) | 167.2 | 0.641 ± 0.004 | 0.183 ± 0.025 | 0.693 ± 0.004 |
+| 20% | D (online, creation) | 155.0 | 0.562 ± 0.021 | 0.121 ± 0.021 | 0.688 ± 0.006 |
+| 20% | Random (creation) | 193.0 | 0.415 ± 0.028 | 0.139 ± 0.037 | 0.664 ± 0.034 |
+
+### gemma, base parser (12 systems)
+
+Groups that never get a 2nd line: 0.266 of groups, holding 0.026 of mis-parsed lines (W cannot help there).
+
+| arrival point | recall | recall (reached) | precision | share of bad lines in flagged groups | flagged groups / system |
+|---|---|---|---|---|---|
+| line 2 | 0.227 | 0.303 | 0.843 | 0.284 | 207.0 |
+| line 3 | 0.220 | 0.319 | 0.864 | 0.282 | 62.2 |
+| line 5 | 0.215 | 0.367 | 0.866 | 0.351 | 41.9 |
+
+| review order | share N=5 | share N=10 | share N=20 | share N=50 |
+|---|---|---|---|---|
+| W first, then Most frequent | 0.403 ± 0.000 | 0.506 ± 0.000 | 0.659 ± 0.000 | 0.712 ± 0.000 |
+| Most frequent | 0.712 ± 0.000 | 0.781 ± 0.000 | 0.833 ± 0.000 | 0.878 ± 0.000 |
+| D x size | 0.697 ± 0.000 | 0.763 ± 0.000 | 0.814 ± 0.000 | 0.884 ± 0.000 |
+| U/V best x size | 0.739 ± 0.004 | 0.800 ± 0.002 | 0.840 ± 0.002 | 0.889 ± 0.002 |
+
+W first minus Most frequent: N=5 -0.309; N=10 -0.276; N=20 -0.174; N=50 -0.166
+
+| gate (q) | method | reviews | precision | share fixed | Most frequent @same N |
+|---|---|---|---|---|---|
+| 5% | W gate (2nd line) | 12.0 | 0.600 ± 0.000 | 0.129 ± 0.000 | 0.531 ± 0.000 |
+| 5% | U/V best (creation) | 43.8 | 0.769 ± 0.011 | 0.127 ± 0.001 | 0.611 ± 0.023 |
+| 5% | D (online, creation) | 46.2 | 0.674 ± 0.000 | 0.126 ± 0.000 | 0.581 ± 0.000 |
+| 5% | Random (creation) | 52.2 | 0.581 ± 0.033 | 0.112 ± 0.022 | 0.671 ± 0.045 |
+| 10% | W gate (2nd line) | 24.4 | 0.637 ± 0.019 | 0.146 ± 0.001 | 0.725 ± 0.000 |
+| 10% | U/V best (creation) | 94.7 | 0.818 ± 0.024 | 0.171 ± 0.024 | 0.766 ± 0.040 |
+| 10% | D (online, creation) | 93.4 | 0.651 ± 0.000 | 0.144 ± 0.000 | 0.740 ± 0.000 |
+| 10% | Random (creation) | 105.1 | 0.551 ± 0.035 | 0.143 ± 0.022 | 0.796 ± 0.030 |
+| 20% | W gate (2nd line) | 51.6 | 0.725 ± 0.009 | 0.277 ± 0.002 | 0.817 ± 0.005 |
+| 20% | U/V best (creation) | 189.0 | 0.825 ± 0.014 | 0.310 ± 0.033 | 0.866 ± 0.008 |
+| 20% | D (online, creation) | 194.8 | 0.722 ± 0.000 | 0.232 ± 0.000 | 0.859 ± 0.000 |
+| 20% | Random (creation) | 211.1 | 0.552 ± 0.035 | 0.251 ± 0.028 | 0.861 ± 0.018 |
+
+### gemma, strong parser (12 systems)
+
+Groups that never get a 2nd line: 0.315 of groups, holding 0.137 of mis-parsed lines (W cannot help there).
+
+| arrival point | recall | recall (reached) | precision | share of bad lines in flagged groups | flagged groups / system |
+|---|---|---|---|---|---|
+| line 2 | 0.223 | 0.348 | 0.828 | 0.395 | 205.8 |
+| line 3 | 0.218 | 0.363 | 0.856 | 0.391 | 60.6 |
+| line 5 | 0.239 | 0.410 | 0.861 | 0.429 | 40.8 |
+
+| review order | share N=5 | share N=10 | share N=20 | share N=50 |
+|---|---|---|---|---|
+| W first, then Most frequent | 0.495 ± 0.000 | 0.599 ± 0.000 | 0.628 ± 0.000 | 0.731 ± 0.000 |
+| Most frequent | 0.616 ± 0.000 | 0.693 ± 0.000 | 0.778 ± 0.000 | 0.824 ± 0.000 |
+| D x size | 0.603 ± 0.000 | 0.678 ± 0.000 | 0.772 ± 0.000 | 0.819 ± 0.000 |
+| U/V best x size | 0.631 ± 0.007 | 0.725 ± 0.005 | 0.779 ± 0.004 | 0.826 ± 0.003 |
+
+W first minus Most frequent: N=5 -0.121; N=10 -0.094; N=20 -0.150; N=50 -0.093
+
+| gate (q) | method | reviews | precision | share fixed | Most frequent @same N |
+|---|---|---|---|---|---|
+| 5% | W gate (2nd line) | 12.2 | 0.488 ± 0.000 | 0.035 ± 0.000 | 0.477 ± 0.000 |
+| 5% | U/V best (creation) | 45.8 | 0.703 ± 0.020 | 0.048 ± 0.007 | 0.568 ± 0.035 |
+| 5% | D (online, creation) | 44.9 | 0.627 ± 0.000 | 0.038 ± 0.000 | 0.523 ± 0.000 |
+| 5% | Random (creation) | 51.6 | 0.428 ± 0.040 | 0.034 ± 0.015 | 0.572 ± 0.043 |
+| 10% | W gate (2nd line) | 23.3 | 0.569 ± 0.000 | 0.103 ± 0.000 | 0.548 ± 0.000 |
+| 10% | U/V best (creation) | 93.0 | 0.737 ± 0.030 | 0.116 ± 0.008 | 0.650 ± 0.010 |
+| 10% | D (online, creation) | 92.3 | 0.620 ± 0.000 | 0.054 ± 0.000 | 0.622 ± 0.000 |
+| 10% | Random (creation) | 104.0 | 0.439 ± 0.014 | 0.054 ± 0.015 | 0.651 ± 0.018 |
+| 20% | W gate (2nd line) | 47.3 | 0.638 ± 0.000 | 0.170 ± 0.000 | 0.663 ± 0.000 |
+| 20% | U/V best (creation) | 185.8 | 0.712 ± 0.019 | 0.201 ± 0.046 | 0.720 ± 0.014 |
+| 20% | D (online, creation) | 188.6 | 0.563 ± 0.000 | 0.105 ± 0.000 | 0.717 ± 0.000 |
+| 20% | Random (creation) | 208.8 | 0.453 ± 0.008 | 0.147 ± 0.046 | 0.726 ± 0.006 |
 
 
 ## Other reports
