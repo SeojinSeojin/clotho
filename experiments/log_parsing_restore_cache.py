@@ -23,9 +23,24 @@ def verify(system):
             actual=np.array(T.curve(d,cache,r['seq'],prop=name!='no_prop'))/d['n']
             np.testing.assert_allclose(actual,r['pa'],atol=1e-12,rtol=0,err_msg=f'{system}/{name}/seed{seed}')
             checks+=1
+    # Recompute policies as well as replaying stored sequences: new confidence/
+    # entropy values must not silently alter the stored review outcomes.
+    src=T.source_data()
+    phases=[(np.ones(d['G'],bool),np.bincount(d['grp'],minlength=d['G']).astype(float),T.NMAX)]
+    regenerated=sequence_matches=0
+    for name,factories in T.policies(system,'base',src,job['M'],list(job['runs'])).items():
+        for seed,factory in factories:
+            np.random.seed(seed)
+            seq=T.run_policy(system,'base',factory(),phases,ver)
+            actual=np.array(T.curve(d,cache,seq,prop=name!='no_prop'))/d['n']
+            stored=job['runs'][name][str(seed)]
+            np.testing.assert_allclose(actual,stored['pa'],atol=1e-12,rtol=0,err_msg=f'regenerated {system}/{name}/seed{seed}')
+            regenerated+=1
+            sequence_matches+=seq==stored['seq']
+    assert regenerated==checks,(system,'policy coverage',regenerated,checks)
     out=EXP/'results_phase3/cache_restore'/f'{system}.json'
     out.parent.mkdir(parents=True,exist_ok=True)
-    out.write_text(json.dumps({'system':system,'pa0':pa0,'greedy_correct_groups':float(ver.mean()),'curves_verified':checks,'tolerance':1e-12}))
+    out.write_text(json.dumps({'system':system,'pa0':pa0,'greedy_correct_groups':float(ver.mean()),'curves_verified':checks,'regenerated_curves_verified':regenerated,'matching_sequences':sequence_matches,'tolerance':1e-12}))
     print(system,'stored E1 reproduced:',checks,'curves; PA_0',pa0,flush=True)
     return out
 

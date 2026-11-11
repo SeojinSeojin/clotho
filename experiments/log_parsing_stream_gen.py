@@ -109,6 +109,9 @@ def main():
             if a.verify_e1:
                 v = EXP / 'results_phase3/cache_restore' / f'{s}.json'
                 files[str(v.relative_to(EXP))] = v
+                same = EXP / 'data/stream' / f'{s}_same.json'
+                if same.exists():
+                    files[str(same.relative_to(EXP))] = same
             hs.commit_files(hs.get_results_repo(), files, f"stream gen {MODEL} {s}")
 
 
