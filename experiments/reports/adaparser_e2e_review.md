@@ -38,14 +38,14 @@ The official parser preloads 32 labelled Loghub-2.0 candidates per system; prove
 | Thunderbird | 0.780 | 0.227 / 0.403 / 0.489 / 0.563 | 0.300 | 0.300 | -0.2645863415768722 | -0.26091942661191475 |
 | Zookeeper | 0.889 | 0.140 / 0.695 / 0.845 / 0.981 | 0.150 | 0.150 | -0.36830216732123067 | -0.36830216732123067 |
 
-N5 comparison uses the same 11 systems for every parser, all stream lines; strong retains its 10 verified seed templates.
+N5 comparison uses the same 12 systems for every parser, all stream lines; strong retains its 10 verified seed templates.
 
 | Parser | Strict PA | PTA | RTA | FTA |
 |---|---|---|---|---|
-| AdaParser | 0.923 | 0.762 | 0.823 | 0.790 |
-| Drain | 0.339 | 0.284 | 0.350 | 0.292 |
-| base | 0.295 | 0.328 | 0.334 | 0.330 |
-| strong | 0.630 | 0.576 | 0.570 | 0.572 |
+| AdaParser | 0.929 | 0.763 | 0.829 | 0.793 |
+| Drain | 0.347 | 0.305 | 0.364 | 0.312 |
+| base | 0.327 | 0.346 | 0.350 | 0.347 |
+| strong | 0.661 | 0.579 | 0.572 | 0.574 |
 
 ### all, all systems: share of initially wrong lines fixed
 
