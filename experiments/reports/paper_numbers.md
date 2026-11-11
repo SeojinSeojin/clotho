@@ -3690,7 +3690,7 @@ Suite PASS rates increase under L1/L2. The disjoint U-best advantage over Clotho
 
 ## R2. Template metrics and the tail
 
-**At 20 reviews, gains over frequency on every seed occur in:** llama/base/full/groups: llmlog_risk 0.294 ± 0.000; llama/base/full/FTA: llmlog_risk 0.172 ± 0.000; llama/base/full/lines: llmlog_risk 0.006 ± 0.000; gemma/base/full/groups: usize 0.096 ± 0.014; gemma/base/full/FTA: usize 0.035 ± 0.004; gemma/base/full/lines: usize 0.001 ± 0.000; gemma/base/tail/groups: drisk 0.125 ± 0.000; gemma/base/tail/FTA: llmlog_size 0.057 ± 0.000.
+**At 20 reviews, gains over frequency on every seed occur in:** llama/base/full/groups: urisk 0.089 ± 0.003; llama/base/full/FTA: llmlog_size 0.025 ± 0.000; llama/base/tail/groups: urisk 0.119 ± 0.002; llama/base/tail/FTA: urisk 0.077 ± 0.002; llama/base/tail/lines: usize 0.057 ± 0.002; llama/strong/full/groups: urisk 0.128 ± 0.004; llama/strong/full/FTA: llmlog_size 0.016 ± 0.000; llama/strong/full/lines: usize 0.003 ± 0.001; llama/strong/tail/groups: urisk 0.050 ± 0.001; llama/strong/tail/FTA: usize 0.073 ± 0.001; llama/strong/tail/lines: usize 0.024 ± 0.001; gemma/base/full/groups: urisk 0.066 ± 0.008; gemma/base/full/FTA: usize 0.020 ± 0.001; gemma/base/full/lines: usize 0.007 ± 0.002; gemma/base/tail/groups: urisk 0.071 ± 0.013; gemma/base/tail/FTA: llmlog_size 0.025 ± 0.000; gemma/base/tail/lines: usize 0.054 ± 0.005; gemma/strong/full/groups: urisk 0.053 ± 0.006; gemma/strong/full/FTA: wfirst 0.014 ± 0.000; gemma/strong/tail/groups: drisk 0.090 ± 0.000; gemma/strong/tail/FTA: llmlog_size 0.018 ± 0.000; gemma/strong/tail/lines: usize 0.061 ± 0.006.
 
 U in R2 uses 100 target labels; U-zero in R3 uses none. Output entropy requires extra samples and is excluded from this headline.
 
@@ -3698,18 +3698,30 @@ Only completed systems are shown; the system count below makes partial coverage 
 
 | model/parser | systems | scope | metric | largest observed predictor gain | minus frequency (positive seeds) |
 |---|---:|---|---|---|---|
-| llama/base | 1 | full | groups | llmlog_risk | 0.294 ± 0.000 (5/5) |
-| llama/base | 1 | full | FTA | llmlog_risk | 0.172 ± 0.000 (5/5) |
-| llama/base | 1 | full | lines | llmlog_risk | 0.006 ± 0.000 (5/5) |
-| llama/base | 1 | tail | groups | llmlog_size | 0.000 ± 0.000 (0/5) |
-| llama/base | 1 | tail | FTA | llmlog_size | 0.000 ± 0.000 (0/5) |
-| llama/base | 1 | tail | lines | llmlog_size | 0.000 ± 0.000 (0/5) |
-| gemma/base | 3 | full | groups | usize | 0.096 ± 0.014 (5/5) |
-| gemma/base | 3 | full | FTA | usize | 0.035 ± 0.004 (5/5) |
-| gemma/base | 3 | full | lines | usize | 0.001 ± 0.000 (5/5) |
-| gemma/base | 2 | tail | groups | drisk | 0.125 ± 0.000 (5/5) |
-| gemma/base | 2 | tail | FTA | llmlog_size | 0.057 ± 0.000 (5/5) |
-| gemma/base | 2 | tail | lines | wfirst | 0.000 ± 0.000 (0/5) |
+| llama/base | 11 | full | groups | urisk | 0.089 ± 0.003 (5/5) |
+| llama/base | 11 | full | FTA | llmlog_size | 0.025 ± 0.000 (5/5) |
+| llama/base | 11 | full | lines | dsize | -0.011 ± 0.016 (2/5) |
+| llama/base | 11 | tail | groups | urisk | 0.119 ± 0.002 (5/5) |
+| llama/base | 11 | tail | FTA | urisk | 0.077 ± 0.002 (5/5) |
+| llama/base | 11 | tail | lines | usize | 0.057 ± 0.002 (5/5) |
+| llama/strong | 13 | full | groups | urisk | 0.128 ± 0.004 (5/5) |
+| llama/strong | 13 | full | FTA | llmlog_size | 0.016 ± 0.000 (5/5) |
+| llama/strong | 13 | full | lines | usize | 0.003 ± 0.001 (5/5) |
+| llama/strong | 10 | tail | groups | urisk | 0.050 ± 0.001 (5/5) |
+| llama/strong | 10 | tail | FTA | usize | 0.073 ± 0.001 (5/5) |
+| llama/strong | 10 | tail | lines | usize | 0.024 ± 0.001 (5/5) |
+| gemma/base | 12 | full | groups | urisk | 0.066 ± 0.008 (5/5) |
+| gemma/base | 12 | full | FTA | usize | 0.020 ± 0.001 (5/5) |
+| gemma/base | 12 | full | lines | usize | 0.007 ± 0.002 (5/5) |
+| gemma/base | 11 | tail | groups | urisk | 0.071 ± 0.013 (5/5) |
+| gemma/base | 11 | tail | FTA | llmlog_size | 0.025 ± 0.000 (5/5) |
+| gemma/base | 11 | tail | lines | usize | 0.054 ± 0.005 (5/5) |
+| gemma/strong | 12 | full | groups | urisk | 0.053 ± 0.006 (5/5) |
+| gemma/strong | 12 | full | FTA | wfirst | 0.014 ± 0.000 (5/5) |
+| gemma/strong | 12 | full | lines | usize | 0.001 ± 0.004 (4/5) |
+| gemma/strong | 10 | tail | groups | drisk | 0.090 ± 0.000 (5/5) |
+| gemma/strong | 10 | tail | FTA | llmlog_size | 0.018 ± 0.000 (5/5) |
+| gemma/strong | 10 | tail | lines | usize | 0.061 ± 0.006 (5/5) |
 
 ## R3. U without target-system labels
 
@@ -3717,6 +3729,6 @@ Pending: no complete cell available.
 
 ## R4. Full-length concentration
 
-Not started; priority remains R1–R3. No wrongness is measured by R4.
+Queued only if R1–R3 finish with at least 30 minutes before the CPU cutoff. No wrongness is measured by R4.
 
 All per-system artifacts and statistics are in [cpu_round3_details.md](cpu_round3_details.md). Tail budgets are additional reviews after the 20 largest eligible groups; FTA uses only remaining lines. “Largest observed gain” describes results, not a held-out method-selection rule.
