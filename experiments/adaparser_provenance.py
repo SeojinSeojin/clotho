@@ -3,7 +3,9 @@
 Track final trie-node insertion ancestry, including merges, and the ancestry used
 at each arrival. Candidate insertions precede all LLM-triggered updates.
 """
-from collections import Counter
+import json
+import time
+from pathlib import Path
 
 
 def instrument(parser):
@@ -13,6 +15,31 @@ def instrument(parser):
     pending = [None]
     arrivals = []
     candidate_insertions = [0]
+    completed_calls = [0]
+    t0 = time.monotonic()
+    progress_path = (Path(__file__).resolve().parent / 'logs' /
+                     f'adaparser_progress_{parser.model}_{Path(parser.indir).name}.json')
+
+    def publish(done=False):
+        if parser.model not in ('local-llama', 'local-gemma'):
+            return
+        status = {'system': Path(parser.indir).name, 'model': parser.model, 'line': len(arrivals),
+                  'total_lines': len(parser.df_log) if parser.df_log is not None else None,
+                  'completed_calls': completed_calls[0], 'wall_s': time.monotonic() - t0, 'done': done}
+        try:
+            progress_path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = progress_path.with_suffix('.tmp')
+            tmp.write_text(json.dumps(status));tmp.replace(progress_path)
+        except OSError:
+            pass  # A status-log failure must not alter the upstream parser.
+
+    original_query = parser.query_template_from_ChatGPT
+    def query(*args, **kwargs):
+        value = original_query(*args, **kwargs)
+        completed_calls[0] += 1
+        publish()
+        return value
+    parser.query_template_from_ChatGPT = query
 
     def node_for(template):
         node = trie.root
@@ -36,6 +63,8 @@ def instrument(parser):
     def search(message):
         node, flag = original['search'](message)
         arrivals.append(sorted(getattr(node, '_clotho_origins', set())) if flag else ['llm'])
+        if len(arrivals) % 500 == 0:
+            publish()
         return node, flag
 
     def update(template, stop_node, logID):
@@ -67,6 +96,7 @@ def instrument(parser):
         assert len(arrivals) == len(final)
         missing = sum(x is None for x in final)
         final = [x if x is not None else ['unknown'] for x in final]
+        publish(done=True)
         return {'version': 1, 'candidate_insertions': candidate_insertions[0],
                 'arrival_origins': arrivals, 'final_origins': final,
                 'duplicate_line_writes': duplicate_writes[0], 'unassigned_lines': missing,
