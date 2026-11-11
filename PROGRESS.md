@@ -125,6 +125,8 @@ Historical session deadlines, resolved preflight fixes, and superseded queue not
 
 ### Active G1–G5 session and amendments
 
+**G5 extraction preflight correction (2026-11-11 19:02 UTC, before Gemma pooled results).** Gemma stream layer28 was never stored (the original stream uses nearest layer21). The extractor incorrectly required an old layer28 stream array for parity and stopped on BGL before saving any Gemma pooled result. Require full wrapper parity for every extracted layer; compare with stored arrays only where they exist (Gemma suite21/28 and stream21), explicitly recording absent old stream28 parity. No prompts, pooled values, layers, evaluation configs or seeds change. Llama extraction and its successful baseline-verified CPU jobs remain valid.
+
 **G5 baseline coverage clarification (2026-11-11, before review computation).** Stored U/V stream review jobs do not exist for Llama/base HDFS and OpenSSH because their caches were missing. For these two cells compute the unchanged frozen review baseline on the G2-verified greedy cache and label it newly reconstructed, not reproduced from a nonexistent job. Every available stored review baseline still must match at 1e-12. Compare each ablation and its baseline on identical complete systems; show original-baseline verification coverage and full five-seed coverage explicitly.
 
 

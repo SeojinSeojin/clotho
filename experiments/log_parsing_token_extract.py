@@ -25,7 +25,7 @@ def extract(push):
         if p.exists() and meta.exists():continue
         src=L.SUITES/f'{ds}.jsonl';rows=[json.loads(x)['content'] for x in src.read_text().splitlines()]
         stream=ST.load(system)['first_content']
-        arrays={};parity={};t0=time.time()
+        arrays={};parity={};stored_parity={};t0=time.time()
         for kind,contents in [('suite',rows),('stream',stream)]:
             values={f'{kind}_{pool}_{layer}':[] for layer in LAYERS for pool in ('mean','max')}
             lengths=[]
@@ -38,9 +38,15 @@ def extract(push):
                         full=w.get_hidden_states(text,fn,produce_inference_results=False)['hidden_states']
                         for layer in LAYERS:
                             assert torch.equal(hs[layer],full[layer]),(system,kind,layer,'base/wrapper parity')
-                            stored=U.hidden(ds,layer)[0] if kind=='suite' else np.asarray(T.states(system,layer))[0]
-                            actual=hs[layer][0,-1].float().cpu().numpy()
-                            assert np.array_equal(actual,stored),(system,kind,layer,'stored last token parity',float(np.max(abs(actual-stored))))
+                            try:
+                                stored=U.hidden(ds,layer)[0] if kind=='suite' else np.asarray(T.states(system,layer))[0]
+                            except FileNotFoundError:
+                                assert MC.MODEL=='gemma' and kind=='stream' and layer==28
+                                stored_parity[f'{kind}_{layer}']=None
+                            else:
+                                actual=hs[layer][0,-1].float().cpu().numpy()
+                                assert np.array_equal(actual,stored),(system,kind,layer,'stored last token parity',float(np.max(abs(actual-stored))))
+                                stored_parity[f'{kind}_{layer}']=True
                             parity[f'{kind}_{layer}']=True
                         del full
                     for layer in LAYERS:
@@ -53,7 +59,7 @@ def extract(push):
             arrays.update({k:np.asarray(v,dtype=np.float32) for k,v in values.items()});arrays[kind+'_lengths']=np.asarray(lengths)
         np.savez_compressed(p,**arrays)
         meta.write_text(json.dumps({'model':MC.MODEL,'system':system,'ds':ds,'layers':LAYERS,'pool_dtype':'float32',
-            'suite_source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'parity':parity,
+            'suite_source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'parity':parity,'stored_parity':stored_parity,
             'suite_n':len(rows),'stream_n':len(stream),'wall_s':time.time()-t0,'seed':0},indent=1))
         print(system,'DONE',len(rows),len(stream),f'{time.time()-t0:.0f}s',flush=True)
         if push:
