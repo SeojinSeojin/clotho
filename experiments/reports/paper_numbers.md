@@ -3676,6 +3676,8 @@ W first minus Most frequent: N=5 -0.121; N=10 -0.094; N=20 -0.150; N=50 -0.093
 | gemma / capped | 12 | 0.454 | 0.535 | 0.549 | 488 / 1 | 574 / 1 |
 | gemma / natural | 12 | 0.409 | 0.469 | 0.485 | 367 / 1 | 462 / 1 |
 
+**Completed disjoint result (@100):** U-best remains above Clotho on all five seeds under L1 and L2 (Llama +0.095 / +0.099 AUC; Gemma +0.096 / +0.104). Absolute U-best AUC falls to 0.714 / 0.713 (Llama) and 0.744 / 0.749 (Gemma), from strict 0.776 / 0.773. This strengthens confidence in the relative U-over-Clotho result while weakening its absolute score; it does not settle stream robustness.
+
 Per-system audit, reliable between-template variance and completed disjoint AUCs (including U-best @100, paired signs, SK-ESD and A12) are in [cpu_round3_details.md](cpu_round3_details.md). Standard coverage is partial; no natural AUC is reported.
 
 **Stream headline:** lenient PA_0 and whether Most frequent remains close to Oracle with no predictor beating it at 20 reviews are unresolved. Existing strict results are unchanged.
