@@ -14,18 +14,15 @@ Session deadline: **18:15 EST / 23:15 UTC, 2026-11-11**. Stop long jobs at **17:
 | G2 Llama cache restoration | Complete | HDFS/OpenSSH caches uploaded; all 50 stored E1 curves each reproduced. N1/N2/N3 now cover all 13 systems; reports, Lorenz and paper_numbers refreshed. Recreated confidence/entropy selector differences are recorded in Decisions and verification JSON. |
 | G3 Gemma real AdaParser | Complete: 12/12 systems | Parser, fresh GPU hidden states, CPU sim/report uploaded and pushed; no skips. At 20 reviews: frequency 0.614, D × size 0.670 (5/5 positive seeds), Oracle 0.852 of wrong lines fixed. Error-share macros exclude 3 perfect systems. |
 | G4 Sem-Ent subset / E5 | Complete: all 8 tasks | All 12,000 selected inputs, matched-input E5 report and `paper/table_e5.py` uploaded/pushed. G1–G4 GPU and CPU jobs all succeeded. |
-| G5 U token pooling / V2 | Eligible; implementation in progress | Start only after all G1–G4 GPU and CPU work completes; finalize remaining protocol details before computing results. |
+| G5 U token pooling / V2 | Running | Frozen protocol committed; Llama then Gemma GPU pooling, V2 CPU features saved for both models, matched suite/review evaluation queued. |
 
-Driver: `experiments/session_gpu_queue.py`, tmux `clotho_gpu_queue4` (root PID 58498). Status: `experiments/results_phase3/gpu_session_20261111/status.json`; log: `experiments/logs/gpu_session_queue4.log`. The owned-process watchdog enforces the cutoff. Per-system parser outputs, states and CPU results are pushed to RESULTS_REPO as they finish; Gemma provenance/N1/N5 descriptors run in parallel. No competing model job.
+G1–G4 driver: `experiments/session_gpu_queue.py` (finished successfully). Status: `experiments/results_phase3/gpu_session_20261111/status.json`. G5: tmux `clotho_g5_extract` (root PID 92382; logs `g5_extract_{llama,gemma}.log`) and `clotho_g5_cpu` (root PID 92719; logs `g5_{suites,reviews}_{llama,gemma}.log`), all under `experiments/logs/`. V2 CPU extraction is complete. The owned-process watchdog covers these jobs and enforces the cutoff. Per-system outputs are uploaded as they finish. One GPU model job at a time.
 
 ## Next
-- G4 semantic entropy subset and E5 report complete; queue status: `experiments/results_phase3/gpu_session_20261111/status.json`.
-- G3 Gemma AdaParser complete; queue status: `experiments/results_phase3/gpu_session_20261111/status.json`.
 
-1. Let G3 finish, then run its hidden/sim/report and G4 in the queued order. Retain explicit skips and successful-system coverage; do not use partial coverage as a full-system headline.
-2. If eligible, run G5 under its Decisions protocol. Otherwise record the unfinished stage and reason before shutdown.
-3. Regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` after final results. Upload artifacts, update this status, commit and push. LaTeX is unavailable; `.tex` is not compiled here.
-4. Meeting examples exist: `experiments/reports/meeting_examples.md` (E2 per-input risk percentiles were unavailable in saved outputs).
+1. Finish G5 pooled states and five-seed suite/review jobs, checking stored baseline reproduction. Generate `log_parsing_token_followups.md` only from complete paired systems; retain explicit alignment coverage and any unfinished stage.
+2. Regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` after final results. Upload artifacts, update this status, commit and push. LaTeX is unavailable; `.tex` is not compiled here.
+3. Meeting examples exist: `experiments/reports/meeting_examples.md` (E2 per-input risk percentiles were unavailable in saved outputs).
 
 ### Fresh-machine setup
 
