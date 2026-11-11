@@ -11,8 +11,10 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 - R1 complete: **The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds for gemma/base/L1, gemma/base/L2.
 - R2 pending/partial; no final claim from incomplete cells.
 - R3 pending/partial; no final claim from incomplete cells.
-- Runner status: running; milestone R1 complete. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
+- Runner status: failed; milestone failed during R2; partial results retained. Deadline 2026-11-11T10:00:00+00:00, long jobs stop 2026-11-11T09:15:00+00:00. Results and reports uploaded at each milestone.
 <!-- OVERNIGHT SUMMARY END -->
+
+
 
 
 
@@ -97,6 +99,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
 - Latest CPU queue status: `experiments/results_phase3/overnight/status.json`; current report `cpu_round3.md`. Resume only incomplete stage outputs; do not rerun completed cells.
@@ -221,6 +224,7 @@ R2-R4 not started; their full protocols will be recorded before computation if R
 - N4 row for U's best is added by `log_parsing_stream_u.py` (above); N1-N3, N5 and the N4 core are done (summary 24-26 and the N4/N5 reports).
 
 ## Known issues
+- The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.
 - The earlier 05:00 UTC deadline was a timezone conversion error; corrected to 10:00 UTC using EST timestamps and process elapsed times. Historical partial-session notes below describe the premature stop, not the current run.

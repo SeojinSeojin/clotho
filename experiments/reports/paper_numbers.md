@@ -3690,7 +3690,7 @@ Suite PASS rates increase under L1/L2. The disjoint U-best advantage over Clotho
 
 ## R2. Template metrics and the tail
 
-**At 20 reviews, gains over frequency on every seed occur in:** gemma/base/full/groups: dsize 0.118 ± 0.000; gemma/base/full/lines: dsize 0.002 ± 0.000; gemma/base/tail/groups: drisk 0.250 ± 0.000; gemma/base/tail/FTA: llmlog_size 0.114 ± 0.000.
+**At 20 reviews, gains over frequency on every seed occur in:** llama/base/full/groups: llmlog_risk 0.294 ± 0.000; llama/base/full/FTA: llmlog_risk 0.172 ± 0.000; llama/base/full/lines: llmlog_risk 0.006 ± 0.000; gemma/base/full/groups: usize 0.096 ± 0.014; gemma/base/full/FTA: usize 0.035 ± 0.004; gemma/base/full/lines: usize 0.001 ± 0.000; gemma/base/tail/groups: drisk 0.125 ± 0.000; gemma/base/tail/FTA: llmlog_size 0.057 ± 0.000.
 
 U in R2 uses 100 target labels; U-zero in R3 uses none. Output entropy requires extra samples and is excluded from this headline.
 
@@ -3698,12 +3698,18 @@ Only completed systems are shown; the system count below makes partial coverage 
 
 | model/parser | systems | scope | metric | largest observed predictor gain | minus frequency (positive seeds) |
 |---|---:|---|---|---|---|
-| gemma/base | 1 | full | groups | dsize | 0.118 ± 0.000 (5/5) |
-| gemma/base | 1 | full | FTA | llmlog_size | 0.000 ± 0.000 (0/5) |
-| gemma/base | 1 | full | lines | dsize | 0.002 ± 0.000 (5/5) |
-| gemma/base | 1 | tail | groups | drisk | 0.250 ± 0.000 (5/5) |
-| gemma/base | 1 | tail | FTA | llmlog_size | 0.114 ± 0.000 (5/5) |
-| gemma/base | 1 | tail | lines | wfirst | 0.000 ± 0.000 (0/5) |
+| llama/base | 1 | full | groups | llmlog_risk | 0.294 ± 0.000 (5/5) |
+| llama/base | 1 | full | FTA | llmlog_risk | 0.172 ± 0.000 (5/5) |
+| llama/base | 1 | full | lines | llmlog_risk | 0.006 ± 0.000 (5/5) |
+| llama/base | 1 | tail | groups | llmlog_size | 0.000 ± 0.000 (0/5) |
+| llama/base | 1 | tail | FTA | llmlog_size | 0.000 ± 0.000 (0/5) |
+| llama/base | 1 | tail | lines | llmlog_size | 0.000 ± 0.000 (0/5) |
+| gemma/base | 3 | full | groups | usize | 0.096 ± 0.014 (5/5) |
+| gemma/base | 3 | full | FTA | usize | 0.035 ± 0.004 (5/5) |
+| gemma/base | 3 | full | lines | usize | 0.001 ± 0.000 (5/5) |
+| gemma/base | 2 | tail | groups | drisk | 0.125 ± 0.000 (5/5) |
+| gemma/base | 2 | tail | FTA | llmlog_size | 0.057 ± 0.000 (5/5) |
+| gemma/base | 2 | tail | lines | wfirst | 0.000 ± 0.000 (0/5) |
 
 ## R3. U without target-system labels
 
