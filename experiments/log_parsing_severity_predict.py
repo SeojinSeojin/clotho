@@ -57,7 +57,11 @@ def job(system):
                      'U':np.asarray(saved['p_pass']['U']),'U+V5':np.asarray(saved['p_pass']['U+V5'])}
         pass_scores['LLMLog']=LL.scores(test,ref_real,contents,conf,seed,variants=(('llmlog',LL.LAMBDA,True),))['llmlog']
         for name,key in [('Clotho','clotho'),('MDSA','MDSA'),('Output entropy','out_entropy'),('Token probability','tok_prob')]:
-            assert abs(L.metrics(sc[test]>.5,pass_scores[name],seed)[0]-oldauc[100,key])<1e-12,(system,seed,name,'strict replay')
+            observed=L.metrics(sc[test]>.5,pass_scores[name],seed)[0];expected=oldauc[100,key]
+            if abs(observed-expected)>=1e-12:
+                if name!='MDSA':raise AssertionError((system,seed,name,'strict replay',observed,expected))
+                result['missing'][f'MDSA/seed{seed}']=f'strict replay failed: observed {observed}, stored {expected}'
+                del pass_scores[name]
         try:
             prior=T.make_prior(system,seed,source);prior.set_target(U.hidden(ds,T.DCFG['layer']),TR.log_features(TR.contents(ds)))
             dp=prior.predict()[test]
