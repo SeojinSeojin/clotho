@@ -3667,7 +3667,7 @@ CPU only: stored outputs, hidden states and stream caches; no new LLM calls or m
 
 ## R1. Does scoring convention explain the conclusions?
 
-**The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds in [('gemma', 'base', 'L1'), ('gemma', 'base', 'L2')].
+**The 20-review frequency claim changes under lenient scoring:** D x size beats Most frequent on all five seeds for gemma/base/L1, gemma/base/L2.
 
 “Close to Oracle” is quantified below, rather than assumed. L1/L2 are sensitivity analyses, not a new ground truth.
 
@@ -3690,7 +3690,20 @@ Suite PASS rates increase under L1/L2. The disjoint U-best advantage over Clotho
 
 ## R2. Template metrics and the tail
 
-Pending: no complete cell available.
+**At 20 reviews, gains over frequency on every seed occur in:** gemma/base/full/groups: dsize 0.118 ± 0.000; gemma/base/full/lines: dsize 0.002 ± 0.000; gemma/base/tail/groups: drisk 0.250 ± 0.000; gemma/base/tail/FTA: llmlog_size 0.114 ± 0.000.
+
+U in R2 uses 100 target labels; U-zero in R3 uses none. Output entropy requires extra samples and is excluded from this headline.
+
+Only completed systems are shown; the system count below makes partial coverage explicit. R2 details also compare frequency-20 then risk with uninterrupted frequency at equal total budgets.
+
+| model/parser | systems | scope | metric | largest observed predictor gain | minus frequency (positive seeds) |
+|---|---:|---|---|---|---|
+| gemma/base | 1 | full | groups | dsize | 0.118 ± 0.000 (5/5) |
+| gemma/base | 1 | full | FTA | llmlog_size | 0.000 ± 0.000 (0/5) |
+| gemma/base | 1 | full | lines | dsize | 0.002 ± 0.000 (5/5) |
+| gemma/base | 1 | tail | groups | drisk | 0.250 ± 0.000 (5/5) |
+| gemma/base | 1 | tail | FTA | llmlog_size | 0.114 ± 0.000 (5/5) |
+| gemma/base | 1 | tail | lines | wfirst | 0.000 ± 0.000 (0/5) |
 
 ## R3. U without target-system labels
 
