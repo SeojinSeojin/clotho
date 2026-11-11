@@ -50,19 +50,25 @@ def instrument(parser):
     def result():
         final = [None] * len(parser.df_log)
         templates = {}
+        duplicate_writes = [0]
 
         def visit(node):
             if node.is_end_of_token and node.logIDs:
                 origin = sorted(node._clotho_origins)
                 templates[node.tokens] = origin
                 for line_id in node.logIDs:
-                    assert final[line_id - 1] is None
+                    if final[line_id - 1] is not None:
+                        duplicate_writes[0] += 1
+                    # Upstream outputResult also writes in DFS order: last write wins.
                     final[line_id - 1] = origin
             for child in node.children.values():
                 visit(child)
         visit(trie.root)
-        assert len(arrivals) == len(final) and all(final)
+        assert len(arrivals) == len(final)
+        missing = sum(x is None for x in final)
+        final = [x if x is not None else ['unknown'] for x in final]
         return {'version': 1, 'candidate_insertions': candidate_insertions[0],
                 'arrival_origins': arrivals, 'final_origins': final,
+                'duplicate_line_writes': duplicate_writes[0], 'unassigned_lines': missing,
                 'template_ancestry': templates}
     return result

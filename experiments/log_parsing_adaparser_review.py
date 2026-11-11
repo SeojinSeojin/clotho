@@ -51,7 +51,7 @@ def provenance(meta, grp, G):
     prov = meta.get('provenance', {})
     if prov.get('version') != 1:
         return {'available': False}, None
-    names = {('candidate',): 'candidate', ('llm',): 'llm', ('candidate', 'llm'): 'mixed'}
+    names = {('candidate',): 'candidate', ('llm',): 'llm', ('candidate', 'llm'): 'mixed', ('unknown',): 'unknown'}
     origins = [names[tuple(x)] for x in prov['final_origins']]
     group_origins = []
     for g in range(G):
@@ -59,10 +59,11 @@ def provenance(meta, grp, G):
         # Distinct terminal nodes can normalize to the same output string.
         group_origins.append(next(iter(vals)) if len(vals) == 1 else 'mixed')
     return {'available': True, 'candidate_insertions': prov['candidate_insertions'],
-            'line_counts': dict(Counter(origins)), 'line_shares': {k: origins.count(k) / len(origins) for k in ('candidate','llm','mixed')},
+            'line_counts': dict(Counter(origins)), 'line_shares': {k: origins.count(k) / len(origins) for k in ('candidate','llm','mixed','unknown')},
             'template_counts': dict(Counter(group_origins)),
-            'template_shares': {k: group_origins.count(k) / G for k in ('candidate','llm','mixed')},
+            'template_shares': {k: group_origins.count(k) / G for k in ('candidate','llm','mixed','unknown')},
             'arrival_counts': dict(Counter(names[tuple(x)] for x in prov['arrival_origins'])),
+            'duplicate_line_writes': prov.get('duplicate_line_writes',0), 'unassigned_lines': prov.get('unassigned_lines',0),
             'group_origins': group_origins}, np.array(group_origins) == 'llm'
 
 
