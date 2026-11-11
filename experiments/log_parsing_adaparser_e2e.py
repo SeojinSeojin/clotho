@@ -147,6 +147,8 @@ def run(push):
             (EXP / "logs" / f"adaparser_e2e_{MODEL}_{s}.log").write_text(r.stdout[-200000:] + "\n--- stderr ---\n" + r.stderr[-50000:])
             if r.returncode != 0 or "@@RESULT@@" not in r.stdout:
                 print(f"{s}: FAILED (see logs/adaparser_e2e_{MODEL}_{s}.log)", flush=True)
+                from adaparser_failures import record
+                record(EXP, MODEL, s, EXP / 'logs' / f'adaparser_e2e_{MODEL}_{s}.log', push)
                 continue
             meta = json.loads(r.stdout.split("@@RESULT@@")[1].splitlines()[0])
             df = pd.read_csv(outdir / f"{s}_full.log_structured.csv")
@@ -154,10 +156,15 @@ def run(push):
             meta["llm_calls"] = sum(1 for l in r.stdout.splitlines() if l.startswith(("pred (", "match (", "constant (")))
             res = {"model": MODEL, "system": s, **meta, "templates": df["EventTemplate"].fillna("").astype(str).tolist()}
             out.write_text(json.dumps(res))
+            from adaparser_failures import resolved
+            resolved_marker = resolved(EXP, MODEL, s, out)
             print(f"{s}: {meta['queries']} queries, {meta['wall_s']:.0f}s", flush=True)
             if push:
                 import hub_sync as hs
-                hs.commit_files(hs.get_results_repo(), {str(out.relative_to(EXP)): out}, f"AdaParser e2e {MODEL} {s}")
+                files = {str(out.relative_to(EXP)): out}
+                if resolved_marker:
+                    files[str(resolved_marker.relative_to(EXP))] = resolved_marker
+                hs.commit_files(hs.get_results_repo(), files, f"AdaParser e2e {MODEL} {s}")
     finally:
         proc.terminate()
         proc.wait(timeout=120)
@@ -186,7 +193,7 @@ def hidden(push):
     for s in SYSTEMS:
         p = DATA / f"{s}_layer{D_LAYER}.npy"
         source = DATA / f"{s}.json"
-        if not source.exists():
+        if not source.exists() or json.loads(source.read_text()).get('provenance', {}).get('version') != 1:
             continue
         digest = hashlib.sha256(source.read_bytes()).hexdigest()
         meta_path = p.with_suffix('.meta.json')
@@ -254,7 +261,7 @@ def sim_job(system):
 
 def sim(push):
     from multiprocessing import Pool
-    todo = [s for s in SYSTEMS if (DATA / f"{s}.json").exists() and (DATA / f"{s}_layer{24 if MODEL == 'llama' else 35}.npy").exists()]
+    todo = [s for s in SYSTEMS if (DATA / f"{s}.json").exists() and json.loads((DATA / f"{s}.json").read_text()).get("provenance", {}).get("version") == 1 and (DATA / f"{s}_layer{24 if MODEL == 'llama' else 35}.npy").exists()]
     with Pool(min(4, len(todo)), maxtasksperchild=1) as p:      # each worker installs one system (fresh process per task)
         for r in p.imap_unordered(sim_job, todo, chunksize=1):
             print(*r, flush=True)

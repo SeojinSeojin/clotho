@@ -192,12 +192,20 @@ def report(exp, push=False):
             system_summary[system]['cohorts'] = {k:{x:v[x] for x in ('groups','lines','reason') if x in v}
                                                 for k,v in r['subsets'].items()}
         J[model] = jm = {'systems':system_summary,'summary':{}}
+        from adaparser_failures import load as load_failures
+        failures = load_failures(exp, model)
+        jm['failures'] = failures
+        skipped = [s for s, f in failures.items() if f.get('skip_per_protocol')]
         expected = 13 if model == 'llama' else 12
         state = 'complete' if len(R) == expected else f'partial: {len(R)}/{expected}'
+        if len(R) + len(skipped) == expected and skipped:
+            state = f'complete with protocol skips: {len(R)}/{expected} successful; skipped: ' + ', '.join(skipped)
         provisional = [s for s, r in R.items() if not r.get('hidden_verified')]
         if provisional:
             state += '; provisional cached-state replay, fresh GPU check pending: ' + ', '.join(provisional)
         L.append(f'## {model}: {state}\n')
+        if failures:
+            table(['System','Disposition','Reason','Failed line'], [[s, f['status'], f['reason'], f.get('failed_line','—')] for s,f in failures.items()])
         rows=[]
         for s,r in R.items():
             pr=r['provenance'];lc=pr.get('line_shares',{});tc=pr.get('template_shares',{})

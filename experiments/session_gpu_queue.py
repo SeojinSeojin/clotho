@@ -52,7 +52,7 @@ def hub_push(paths):
 
 def status(stage,**extra):
     prev=json.loads(STATUS.read_text()) if STATUS.exists() else {'completed':[]}
-    prev.update(stage=stage,utc=dt.datetime.now(dt.timezone.utc).isoformat(),**extra)
+    prev.update(stage=stage,utc=dt.datetime.now(dt.timezone.utc).isoformat(),queue_pid=os.getpid(),**extra)
     STATUS.parent.mkdir(parents=True,exist_ok=True);STATUS.write_text(json.dumps(prev,indent=1))
     hub_push([STATUS.relative_to(EXP)])
 
@@ -112,7 +112,16 @@ def missing(model):
     out=[]
     for s in systems:
         p=EXP/f'data/adaparser_e2e/{model}/{s}.json'
-        if not p.exists() or json.loads(p.read_text()).get('provenance',{}).get('version')!=1:out.append(s)
+        if p.exists() and json.loads(p.read_text()).get('provenance',{}).get('version')==1:
+            continue
+        marker=p.with_name(s+'.failure.json')
+        log=EXP/'logs'/f'adaparser_e2e_{model}_{s}.log'
+        if not marker.exists() and log.exists():
+            from adaparser_failures import context_error, record
+            if context_error(log.read_text()):record(EXP,model,s,log,push=True)
+        if marker.exists() and json.loads(marker.read_text()).get('skip_per_protocol'):
+            continue
+        out.append(s)
     return out
 
 
