@@ -6,6 +6,13 @@ Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_pa
 
 ## Summary of findings
 
+**CPU round 3 (2026-11-11 UTC, partial R1; reports `cpu_round3.md`, `cpu_round3_details.md`).**
+- R1 **changes** the interpretation of strict PASS rates: capped Llama 0.330 -> 0.433 / 0.439 (L1/L2), Gemma 0.454 -> 0.535 / 0.549; natural Llama 0.351 -> 0.481 / 0.487, Gemma 0.409 -> 0.470 / 0.485. Official AdaParser includes semantic abstraction, not just formatting. Full robustness is unresolved: disjoint suite jobs completed (65 Llama / 60 Gemma files, original skips preserved), standard partial (40 / 35 files), natural AUC and lenient streams incomplete. No lenient PA_0 or 20-review headline is established.
+- R2 **not assessed**: no result strengthening, weakening or changing the frequency claim.
+- R3 **not assessed**: no result strengthening, weakening or changing the target-label claim.
+- R4 not started. Earlier priority work was preserved instead.
+
+
 **Core (2026-11-07/08; Gemma replicates every pre-generation finding).**
 1. Standard split: Clotho beats MDSA and Lookup (Drain) on every seed (Llama 0.749 / 0.794 @100 / @200; Gemma 0.780 / 0.832), also on held-out systems and against baselines with random reference sets. Template-disjoint split: Clotho ties MDSA, every lookup is at chance.
 2. Leakage: the original Clotho protocol computes labels and post-generation scores from the same 10 generations; net leakage +0.125 / +0.132 AUC for output entropy, +0.067 / +0.070 LOHSvar. Leak-free output entropy still beats Clotho @100 and ties @200; it needs 4 samples to match Clotho @100 (2.4x Clotho's batched HF cost, 8.3x a vLLM prefill, 36x online; Gemma 1.5x / 6.9x / 22x).
@@ -81,6 +88,7 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - I note: AdaParser inserts its 32 labelled Loghub-2.0 candidates per system into its trie first; on HDFS they cover every line (0 LLM queries). ~7 LLM calls per new template, ~1.4 s per call.
 
 ## Next
+- CPU round 3: finish R1 first with `log_parsing_robustness.py suites` and `log_parsing_robustness_stream.py` for both models; inspect partial artifacts and validate stream script before reuse. R2-R4 not started; preregister detailed protocols before computation. Resumable outputs in `results_phase3{,_gemma}/robustness/` are pushed to RESULTS_REPO. Report `cpu_round3.md` is explicitly partial.
 - Fresh machine: `setup.sh` pulls only `data/` and `results_clotho*/`. Also pull the job JSON: in `experiments/sharded/`, `python -c "import hub_sync as hs; hs.download_prefix(hs.get_results_repo(), ['results_phase3/**','results_phase3_gemma/**'], hs.EXP_DIR)"`. Do not pull `reports/**` over the git copies. Gemma needs `python hub_sync.py download-model google/gemma-2-9b-it` (~6 min). Before rerunning the AdaParser corrector: `uv pip install --python .venv-vllm/bin/python python-dateutil`. setup's results pull can fail on a transient Hub error (429); rerun `hub_sync.py pull-results`.
 - Paper: after any rerun, regenerate `paper_numbers.md` and every `experiments/paper/table_*.py` / `fig_*.py` (matplotlib in `.venv`). No LaTeX on the server, so the `.tex` files are not compiled (booktabs and `\includegraphics` only).
 - TRIAGE data: `data/stream/`, `data/stream_gen/<model>/`, `data/stream_hidden/<model>/` are in RESULTS_REPO (gitignored); raw Loghub zips are re-downloaded to `~/.cache/loghub2` by `log_parsing_stream.py prep` only if `data/stream/` is missing (the zips are needed for `prep` and the `_same.json` cache). Clotho Zenodo data for E5: download `data.tar.gz` (record 19693236, 1.3 GB) to its own directory, extract `data/results_llama`, pass `--data`. Disk is tight (~6 GB free with both models cached).
@@ -97,6 +105,8 @@ Leakage (fair_leaky minus fair_leakfree, standard, @100 / @200): pre-generation 
 - Fixed systems: current capped/natural job systems, preserve current exclusions and split skips; flag departures from 10-90% PASS without dropping new systems. Seeds 0-4; seed macro over systems then sample std; held-out excludes HDFS/Spark/Linux; paired sign counts, Python SK-ESD/A12 as log_parsing_stats. Strong retains verified seed groups outside queues. Llama base only 11 systems (missing HDFS/OpenSSH); other stream cells remain complete.
 - Suites: rescore samples 0-9 and initial tests, fair_leakfree labels from 5-9, output entropy from scorer-canonical parsed predictions 0-4; token/hidden-state post scores remain unchanged and are evaluated with new labels. Before rerunning a stored job assert strict Clotho/Drain AUCs and test inputs reproduce. Rerun Clotho/MDSA/Drain lookup/output entropy/Random standard and disjoint @100/@200 on capped and natural suites (natural disjoint only if stored), U best disjoint @100 using its frozen settings with source/reference labels rescored. Reliable between-template variance uses the stored 40-sample outputs and label_noise formula (also raw 10-sample share), strict baseline asserted where stored. No hyperparameter retuning.
 - Streams: same scorer for Drain/base/strong. Recompute line PA, first-line wrong verdicts, group gains by setting reviewed groups to their original majority GT (then applying scorer consistently), FTA via canonical predicted strings and GT, rare <=2 vs frequent >=3 lines, strong excluding seed groups as N5. Strict PA/curves/N5 must reproduce stored numbers first. N1 size concentration unchanged; recompute size/wrongness, top-20 wrong share, proxy size x wrong vs actual gap (r/MAE). Review Random/Most frequent/D x size/Oracle at 5/10/20/50: D source labels rebuilt from capped samples 5-9, frozen D settings, online refit every 5 exactly as existing code. Report all/held-out, scorer PA_0 and whether Most frequent remains close to Oracle and D fails to beat it at 20 reviews. Later protocol changes must be recorded as deviations before computing affected results.
+
+R1 time deviation (2026-11-11, after stopping): long jobs stopped at 04:17 UTC, about two minutes later than the conservative 04:15 cutoff because tool execution returned after the cutoff. No further long jobs started. R1 partial results are retained and explicitly labelled; R2-R4 deferred.
 
 R2-R4 not started; their full protocols will be recorded before computation if R1 completes before cutoff. R2 uses strict caches and metric-specific oracles; R3 uses no target labels; R4 no wrongness claims.
 
@@ -185,6 +195,7 @@ R2-R4 not started; their full protocols will be recorded before computation if R
 - N4 row for U's best is added by `log_parsing_stream_u.py` (above); N1-N3, N5 and the N4 core are done (summary 24-26 and the N4/N5 reports).
 
 ## Known issues
+- R1 incomplete at conservative deadline. Local VCL end not exposed; assumed 05:00 UTC from 19:00 machine setup plus 10 h. Long jobs stopped at 04:17 UTC (about 2 min late vs 04:15 cutoff); only owned PIDs/descendants stopped. No new long jobs afterwards. Report only complete five-seed systems; partial standard coverage must not become a paper main-table claim. Stream scorer/review code unvalidated beyond saved strict baselines; incomplete stream artifacts are not lenient results.
 - A new machine needs `gh auth login` and `gh auth setup-git` before `git push` works.
 - A fully skipped `gen_vllm` run still loads the vLLM engine (~45 s) before noticing nothing is pending.
 - RESULTS_REPO holds harmless extras: spell_check verification shards under `.../size200/`, and results of an abandoned `log_parsing_rules` task (superseded by `rules_template`, not reproducible).

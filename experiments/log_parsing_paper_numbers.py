@@ -341,7 +341,11 @@ def main():
         print("\n".join(main_table() + ["@@PAIRED@@"] + paired_lines()))
         return
     out = REP / "paper_numbers.md"
-    out.write_text("\n".join(build()) + "\n")
+    lines = build()
+    round3 = REP / "cpu_round3.md"
+    if round3.exists():
+        lines += ["", "## 30. CPU round 3 robustness (partial)", ""] + round3.read_text().splitlines()[2:]
+    out.write_text("\n".join(lines) + "\n")
     print(out.read_text())
     if a.push:
         F._push([out])
