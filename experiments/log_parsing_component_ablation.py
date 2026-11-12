@@ -205,7 +205,10 @@ def run(path, force=False):
         c = capture_final(B, old)
         data = np.load(path.with_suffix('.npz'))
         d0 = old['PCA_dimensions']
-        replay_coordinate_error = float(np.max(np.abs(data['Xref'] - c['blocks'][d0][ref])))
+        replay_coordinate_error = float(np.max(np.abs(data['Xref'] - c['blocks'][d0][ref]))) if d0 in c['blocks'] else None
+        if d0 not in c['blocks']:
+            assert not c['candidate_recovery_valid']
+            c['blocks'][d0] = np.full((len(H), d0), np.nan, dtype=data['Xref'].dtype)
         inputs = load(path.with_name(f'seed{seed}_inputs.json.gz'))
         original_risk = np.array([r['risk'] for r in inputs])
         # The archived coordinates/scores are the primary original representation.

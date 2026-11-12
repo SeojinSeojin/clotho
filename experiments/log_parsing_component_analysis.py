@@ -11,6 +11,23 @@ from log_parsing_component_ablation import ROOT, OLD, REPS, SELECTORS, SCORES, m
 BASE = 'transductive/random/pass'
 
 
+def save_estimates(name, records):
+    """Keep bootstrap draws losslessly in compressed numeric arrays, not giant JSON."""
+    arrays, metadata = {}, []
+    for index, row in enumerate(records):
+        item = dict(row)
+        key = f'estimate_{index:05d}'
+        draws = np.asarray(item.pop('bootstrap'), dtype=np.float64)
+        assert len(draws) == 4000
+        assert np.allclose(np.quantile(draws, [.025, .975]), item['CI95'], rtol=0, atol=1e-12)
+        arrays[key] = draws
+        item['bootstrap_file'] = f'bootstrap_{name}.npz'
+        item['bootstrap_key'] = key
+        metadata.append(item)
+    np.savez_compressed(ROOT / f'bootstrap_{name}.npz', **arrays)
+    save(ROOT / f'{name}.json', metadata)
+
+
 def estimate(frame):
     """Rows are a complete system×five-seed panel of matched differences."""
     panel = frame.pivot(index='system', columns='seed', values='value').sort_index()
@@ -84,8 +101,9 @@ def collect():
                 if mode == 'grouped':
                     assert f['overlap_groups'] == 0
                     assert not set(j['groups'][i] for i in f['train']) & set(j['groups'][i] for i in f['validation'])
-                for dim, scores in v.get('validation_scores', {}).items():
-                    cvrows.append(dict(**common, fold=k, candidate_dimension=int(dim), validation_score=scores[k],
+                for dim, scores in v.get('validation_scores', {'0': [None] * len(v.get('folds', []))}).items():
+                    cvrows.append(dict(**common, fold=k, candidate_dimension=int(dim) if dim != '0' else None, validation_score=scores[k],
+                                       eligible='ineligible' not in v,
                                        **{a: b for a, b in f.items() if a not in ('train', 'validation')}))
         for r in j['rows']:
             for cohort in ('original5', 'reliable40', 'stable40', 'stable10'):
@@ -100,6 +118,16 @@ def collect():
                 risks = z[r['method']][np.array(j['test_failure']) == label]
                 distributions.append(dict(model=model, split=split, system=system, seed=seed, method=r['method'], failure=label,
                                           quantiles=np.quantile(risks, [.05, .25, .5, .75, .95]).tolist()))
+        if split == 'disjoint':
+            upath = EXP / f'results_phase3{"" if model == "llama" else "_gemma"}/unseen/run/disjoint' / f'loghub_{system.lower()}_500' / f'seed{seed}.json'
+            if upath.exists():
+                u = load(upath)
+                ua = next(r['auc'] for r in u['rows'] if r['ref'] == 100 and r['method'] == 'clotho')
+                assert abs(ua - old['original_AUC']) < 1e-12
+                s1 = next(r['auc'] for r in u['rows'] if r['ref'] == 100 and r['method'] == 'U:S1')
+                records.append(dict(model=model, split=split, system=system, seed=seed, method='context/S1',
+                                    representation='context', selection='published', scoring='S1', dimension=None,
+                                    cohort='original5', metric='AUROC', value=s1, n=len(j['test']), failures=sum(j['test_failure'])))
     frame = pd.DataFrame(records)
     frame.to_csv(ROOT / 'metrics_long.csv', index=False)
     pd.DataFrame(cvrows).to_csv(ROOT / 'cv_folds.csv', index=False)
@@ -228,7 +256,7 @@ def analyze(df, jobs):
     for name, value in [('summary', summaries), ('paired', comparisons), ('factor_contrasts', interactions),
                         ('full_test_gaps', gaps), ('shared_input_gap_reductions', shared), ('label_sensitivity', noise),
                         ('paired_vs_fixed_linear', linear_comparisons)]:
-        save(ROOT / f'{name}.json', value)
+        save_estimates(name, value)
         small = [{k: v for k, v in r.items() if k not in ('bootstrap', 'per_system')} for r in value]
         pd.DataFrame(small).to_csv(ROOT / f'{name}.csv', index=False)
     # Explicit per-system rows average over five seeds; no independent-seed inference.
@@ -255,7 +283,7 @@ def figures(summary, interactions, paired):
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.5), sharey=True)
     for ax, model in zip(axes, ('llama', 'gemma')):
         for k, score in enumerate(SCORES):
-            ax.plot(range(3), [val(model, 'disjoint', f'{r}/random/{score}') for r in REPS], 'o-', label=score, color=colors[k])
+            ax.plot(range(3), [val(model, 'disjoint', f'{r}/frozen16/{score}') for r in REPS], 'o-', label=score, color=colors[k])
         ax.set_xticks(range(3), ['Original PCA', 'Reference raw', 'Reference scaled'])
         ax.set_title(C.LABEL[model]); ax.set_ylabel('Disjoint AUROC'); ax.legend(frameon=False)
     finish(fig, 'scoring_representation')
@@ -280,9 +308,13 @@ def figures(summary, interactions, paired):
     for col, model in enumerate(('llama', 'gemma')):
         for row, selection in enumerate(('random', 'frozen16')):
             ax = axes[row, col]
+            panel_methods = {f'{rep}/{selection}/{s}' for rep in REPS for s in SCORES}
+            panel_rows = [r for r in summary if r['model'] == model and r['split'] == 'disjoint' and r['method'] in panel_methods and r['metric'] == 'AUROC' and r['cohort'] == 'original5']
+            common = set.intersection(*(set(r['systems']) for r in panel_rows))
             for k, rep in enumerate(REPS):
-                ax.plot(range(3), [val(model, 'disjoint', f'{rep}/{selection}/{s}') for s in SCORES], 'o-', color=colors[k], label=rep)
-            ax.set_xticks(range(3), SCORES); ax.set_title(f'{model}, {selection}'); ax.set_ylabel('Disjoint AUROC')
+                vals = [np.mean([next(r for r in panel_rows if r['method'] == f'{rep}/{selection}/{s}')['per_system'][sy] for sy in sorted(common)]) for s in SCORES]
+                ax.plot(range(3), vals, 'o-', color=colors[k], label=rep)
+            ax.set_xticks(range(3), SCORES); ax.set_title(f'{model}, {selection}, N={len(common)}'); ax.set_ylabel('Disjoint AUROC')
     axes[0, 1].legend(fontsize=7, frameon=False)
     finish(fig, 'factor_interactions')
     fig, axes = plt.subplots(1, 2, figsize=(9, 4))
