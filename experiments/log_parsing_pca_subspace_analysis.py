@@ -109,6 +109,20 @@ def main():
   base=df[(df.model==model)&(df.split=='disjoint')].assign(value=lambda x:x.AUROC)[['system','seed','method','value']]
   combined=pd.concat([base,d[['system','seed','method','value']]])
   for s in SPACES:contrast(combined,f'{s}/lr','context/S1',f'LR vs external S1 {s}',model=model,split='disjoint',metric='AUROC')
+ # Complete all six pairwise subspace contrasts; no new fits/configurations.
+ for (model,split),g in df.groupby(['model','split']):
+  for metric in ('AUROC','AP'):
+   dd=g.assign(value=g[metric])
+   for left,right in itertools.combinations(SPACES[1:],2):
+    contrast(dd,f'{right}/lr',f'{left}/lr',f'pairwise {right} vs {left}/lr',model=model,split=split,metric=metric)
+    for ridge,scoring in itertools.product(('isotropic','reference_cov'),('pass','relative')):
+     contrast(dd,f'{right}/{ridge}/common/{scoring}',f'{left}/{ridge}/common/{scoring}',f'pairwise {right} vs {left}/{ridge}/{scoring}',model=model,split=split,metric=metric)
+ # Post-hoc robustness description: every leave-one-system-out mean, no selection.
+ loo=[]
+ for model,g in df[df.split=='disjoint'].groupby('model'):
+  p=g.pivot(index=['system','seed'],columns='method',values='AUROC');v=(p['reference/lr']-p['global/lr']).groupby('system').mean()
+  for system in v.index:loo.append(dict(model=model,omitted=system,mean=float(v.drop(system).mean()),systems=len(v)-1,post_hoc=True))
+ pd.DataFrame(loo).to_csv(ROOT/'leave_one_system_out.csv',index=False)
  save(ROOT/'estimates.json',EST);np.savez_compressed(ROOT/'bootstrap.npz',**BOOT);pd.DataFrame(PAIRS).to_csv(ROOT/'paired_differences.csv',index=False)
  save(ROOT/'aggregation.json',dict(jobs=len(jobs),rows=len(df),estimates=len(EST),bootstrap_draws=B,bootstrap_seed=SEED,unit='system; all five seeds retained',systems={m:sorted(g.system.unique()) for m,g in df.groupby('model')}))
  figures(df,geo,info,sen)
@@ -155,4 +169,12 @@ def figures(df,geo,info,sen):
    d=df[(df.model==model)&(df.method=='probe/'+s)];ax.plot([0,1],[d[d.split==sp].AUROC.mean() for sp in ('standard','disjoint')],'o-',label=s)
   ax.set_xticks([0,1],['Standard','Disjoint']);ax.set_title(model);ax.set_ylabel('Fixed failure probe AUROC');ax.legend()
  done(fig,'retained_information')
+ fig,axs=plt.subplots(1,2,figsize=(8,2.8),sharex=True)
+ for ax,model in zip(axs,('llama','gemma')):
+  for i,name in enumerate(('subspace reference/lr','subspace reference/isotropic/common/relative','subspace reference/reference_cov/common/relative')):
+   e=next(e for e in EST if e['kind']=='paired' and e['name']==name and e['model']==model and e.get('split')=='disjoint' and e['metric']=='AUROC')
+   ax.errorbar(e['mean'],i,xerr=[[e['mean']-e['ci_low']],[e['ci_high']-e['mean']]],fmt='o',capsize=3)
+  ax.set_yticks([0,1,2],['LR','Relative, isotropic','Relative, reference covariance']);ax.axvline(0,color='black',lw=.7);ax.set_xlabel('Reference minus global AUROC');ax.set_title(model)
+ done(fig,'paired_effects_ci')
+
 if __name__=='__main__':main()

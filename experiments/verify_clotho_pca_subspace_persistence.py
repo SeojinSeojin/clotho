@@ -8,6 +8,7 @@ def main():
  paths=sorted(p for p in ROOT.rglob('*') if p.is_file() and p.name not in ('persistence_validation.json','run.lock'))
  paths+=sorted(EXP.glob('*clotho_pca_subspace*.py'))
  paths+=sorted(EXP.glob('log_parsing_pca_subspace*.py'))
+ paths+=[EXP/'diagnose_clotho_pca_lr_gate.py']
  paths+=sorted((EXP/'reports').glob('clotho_pca_subspace*.md'))
  paths+=sorted((EXP/'configs').glob('clotho_pca_subspace*'))
  paths=sorted(set(paths));repo=H.get_results_repo();api=H.api();records=[]
