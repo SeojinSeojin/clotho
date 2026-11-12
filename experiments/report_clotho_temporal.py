@@ -74,7 +74,7 @@ Thunderbird is the supplied16.6M corpus, not the historical211M release. Its arc
 
 100 actual past references include10 seeded random warmup calls, then the original half-entropy/half-diversity Clotho acquisition restricted to earlier candidates. No synthetic references lack chronological provenance. The same ordered100 are passed to every method. Past-only Clotho PCA fits all531 earlier candidate covariates; LR/shared PCA fits only100 references. A separately labeled original all630 PCA scorer uses unlabeled future covariates but the same frozen reference order. Neither uses future labels. Full details and findings are in the generalization report.
 
-Archived benchmark acquisition cannot be faithfully replayed here: its IDs/reference histories belong to different shuffled suites. Comparing that history against a newly constructed chronological policy would not preserve equal information or populations. Therefore no acquisition/diversity arm is run and future-diversity benefit remains unanswered. No method is selected using final future AUROC.
+Archived benchmark acquisition cannot be faithfully replayed here: its IDs/reference histories belong to different shuffled suites. Comparing that history against a newly constructed chronological policy would not preserve equal information or populations. Therefore no archived-history/diversity arm is run and future-diversity benefit remains unanswered. Reimplementing both algorithms on the new past pool is technically possible, but that distinct policy comparison was omitted from the frozen predictor-focused pilot; unavailable archived IDs are not a claim that all temporal policy simulations are infeasible. No method is selected using final future AUROC.
 
 All states and outputs for the eligible target already exist: new GPU calls=0, generation=0. Every method requires531 candidate states for the common Clotho acquisition and99 future states. Saved single-layer extraction timings imply roughly22.0s/31.6s for the past Llama/Gemma candidates and4.1s/5.9s for future inputs on the original L40S; these are historical estimates, not current timing measurements. Equal input-label budget100 corresponds to500 repeated correctness checks if implementing this five-output oracle literally; it is not an experiment with100 single-generation outputs. Costs of GT/human template creation are not measured.
 
@@ -149,7 +149,7 @@ The last two Llama windows have8 FAIL and0 PASS each, so a monotonic deteriorati
 
 ## Computation and references
 
-All candidates use saved last-prompt states; there is no output-derived feature. Common acquisition uses531 states, inference99;500 actual generation correctness checks per100-input budget if the five-output oracle is implemented literally. Existing generation stores10 outputs per630 input per model, shared across all simulated seeds. Labels are revealed only after selection. Diversity was not compared; archived shuffled-suite histories cannot be treated as past labels for this stream. No claim that diversity improves future prediction.
+All candidates use saved last-prompt states; there is no output-derived feature. Common acquisition uses531 states, inference99;500 actual generation correctness checks per100-input budget if the five-output oracle is implemented literally. Existing generation stores10 outputs per630 input per model, shared across all simulated seeds. Labels are revealed only after selection. Diversity was not compared in this frozen predictor-focused pilot; archived shuffled-suite histories cannot be treated as past labels for this stream. A newly simulated pair of algorithms is technically possible but was not preregistered here; this omission is a scope limitation, not missing-label evidence. No claim that diversity improves future prediction.
 
 '''+table(f)+'''
 
@@ -208,7 +208,7 @@ AdaParser 수정 결과나 이후 그룹 구성원 다수결 정답을 쓰지 �
 - **공유 Gaussian:** LR과 똑같은 PCA16 좌표에서 PASS/FAIL 평균과 공유 공분산을 추정한다. 위험 점수는 log p(x|FAIL)−log p(x|PASS), 클래스 사전확률은 넣지 않는다. 정규화 α는 이전 연구의 Thunderbird를 제외한 시스템에서 미리 고정한0.0096712/0.0038248이며 이번 미래 정답을 보며 조절하지 않는다.
 - **미래 공변량 Clotho:** 같은100개 과거 참조를 재생하되 원래처럼 미래를 포함한630개로 PCA를 fit_transform한다. 미래 정답은 보지 않지만 미래 입력 분포를 보는 transductive 설정이다. 실제 미래를 아직 모르는 배포와 구분한다. 획득 과정까지 원래 transductive 방식으로 다시 돌리면 참조 자체가 달라지므로 이번에는 하지 않았다.
 
-원래 benchmark의 획득 기록은 다른 무작위 표본 ID에 대한 것이다. 이를 이 stream의 ‘과거에서 선택한 기록’으로 둔갑시키지 않았다. 따라서 다양성 정책의 미래 이득은 이번에 검증하지 않았다.
+원래 benchmark의 획득 기록은 다른 무작위 표본 ID에 대한 것이다. 이를 이 stream의 ‘과거에서 선택한 기록’으로 둔갑시키지 않았다. 따라서 다양성 정책의 미래 이득은 이번에 검증하지 않았다. 새 과거 후보에서 두 알고리즘을 다시 시뮬레이션하는 것은 기술적으로 가능하지만, 이번 사전 고정 비교는 예측기 차이에 한정했다. 모든 시간 순서 획득 비교가 자료상 불가능하다는 뜻은 아니다.
 
 ## 3. AUROC와 AUPRC는 무엇이며 어떤 수치가 나왔는가?
 

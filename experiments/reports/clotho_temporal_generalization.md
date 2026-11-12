@@ -144,7 +144,7 @@ The last two Llama windows have8 FAIL and0 PASS each, so a monotonic deteriorati
 
 ## Computation and references
 
-All candidates use saved last-prompt states; there is no output-derived feature. Common acquisition uses531 states, inference99;500 actual generation correctness checks per100-input budget if the five-output oracle is implemented literally. Existing generation stores10 outputs per630 input per model, shared across all simulated seeds. Labels are revealed only after selection. Diversity was not compared; archived shuffled-suite histories cannot be treated as past labels for this stream. No claim that diversity improves future prediction.
+All candidates use saved last-prompt states; there is no output-derived feature. Common acquisition uses531 states, inference99;500 actual generation correctness checks per100-input budget if the five-output oracle is implemented literally. Existing generation stores10 outputs per630 input per model, shared across all simulated seeds. Labels are revealed only after selection. Diversity was not compared in this frozen predictor-focused pilot; archived shuffled-suite histories cannot be treated as past labels for this stream. A newly simulated pair of algorithms is technically possible but was not preregistered here; this omission is a scope limitation, not missing-label evidence. No claim that diversity improves future prediction.
 
 |model|seed|reference_failures|clotho_dimension|clotho_components|clotho_ridge|clotho_fit_s|transductive_fit_s|lr_fit_s|shared_fit_s|
 |---|---|---|---|---|---|---|---|---|---|
