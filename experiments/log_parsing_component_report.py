@@ -103,6 +103,21 @@ def main():
                       f'{folds.validation_seen_fraction.mean():.3f}', f'{folds.train_groups.mean():.1f}/{folds.validation_groups.mean():.1f}',
                       f'{folds.train_fail_prevalence.mean():.3f}/{folds.validation_fail_prevalence.mean():.3f}'])
     technical.append(table(['Model', 'Outer split', 'PCA', 'CV', 'Eligible jobs', 'Mean selected d', 'Validation seen-GT share', 'Mean train/validation groups', 'Train/validation FAIL share'], cvsum))
+    matched_cv = []
+    for model, split, rep in itertools.product(('llama', 'gemma'), ('standard', 'disjoint'), REPS):
+        effect = find(factors, model=model, split=split, kind='selection', name=f'grouped-random|{rep}|pass')
+        if effect is None:
+            continue
+        random = sm(model, f'{rep}/random/pass', split)
+        grouped = sm(model, f'{rep}/grouped/pass', split)
+        systems = effect['systems']
+        a = np.mean([random['per_system'][sy] for sy in systems])
+        b = np.mean([grouped['per_system'][sy] for sy in systems])
+        assert abs(b - a - effect['mean']) < 1e-12
+        broader = sm(model, BASE, split)['systems']
+        matched_cv.append([model, split, rep, len(systems), f'{a:.4f}', f'{b:.4f}', ci(effect), ', '.join(sorted(set(broader) - set(systems))) or 'none'])
+    technical.append('Absolute PASS-density results on each common five-seed eligible system set are below. The broader available-population results are in the main table; they must not be subtracted from these restricted means.')
+    technical.append(table(['Model', 'Split', 'PCA', 'Common N', 'Random AUC', 'Grouped AUC', 'Paired Δ[CI]', 'Systems absent from this comparison'], matched_cv))
     technical.append('GroupKFold uses min(3,number of reference groups), never mixes a GT between train and validation, and is not label-stratified. We mark the cell ineligible if any fold lacks both validation classes, has fewer than2 validation rows, or has fewer than k passing training references. No random fallback is used for grouped CV. Original random CV retains its original insufficient-PASS fallback. Full indices, candidate validation scores, convergence status and class/group counts are in each job JSON and cv_folds.csv. These diagnostics describe actual final-step folds, unlike the earlier overlap-only audit.')
     changes = load(ROOT / 'cv_selection_changes.json')
     technical.append(table(['Matched original-PCA jobs', 'Mean random d', 'Mean grouped d', 'Share changing dimension'], [[f"{r['model']}/{r['split']} (N={len(r['systems'])})", f"{r['mean_random']:.2f}", f"{r['mean_grouped']:.2f}", f"{r['fraction_changed']:.1%}"] for r in changes if r['representation'] == 'transductive']))
@@ -120,6 +135,12 @@ def main():
                 r = sm(model, method, cohort=cohort)
                 rr.append([model, method, cohort, r['n_systems'] if r else 0, fmt(r), 'reference' if method == BASE else ci(delta(model, method, cohort=cohort))])
     technical.append(table(['Model', 'Method', 'Evaluation label/cohort', 'Systems with all5 seeds', 'Disjoint AUROC', 'Δmatched Clotho'], rr))
+    reliable_factors = load(ROOT / 'factor_contrasts_reliable40.json')
+    reliability_questions = ['relative-pass|transductive|random', 'grouped-random|transductive|pass',
+                             'reference_raw-transductive|frozen16|lr', 'reference_scaled-reference_raw|frozen16|relative']
+    technical.append('Every prespecified factor contrast was also evaluated against40-vote labels and stable40, not only the headline score changes. Representative40-vote contrasts are:')
+    technical.append(table(['Same trained models,40-vote evaluation', 'Llama Δ[CI]', 'Gemma Δ[CI]'], [[name] + [ci(find(reliable_factors, model=model, split='disjoint', name=name)) for model in ('llama', 'gemma')] for name in reliability_questions]))
+    technical.append('Thus the main representation interaction and conditional reference-PCA LR benefit persist; oracle final-CV gains remain small/uncertain. Llama40-vote grouped-PASS has a lower interval endpoint just below0, not affirmative evidence of a general CV remedy. Full reliable/stable factor contrasts and draws are in factor_contrasts_{reliable40,stable40}.json and linked bootstrap arrays.')
     technical.append('Matched40 coverage is100% of each job’s original test inputs. Stable-cohort coverage and per-job counts are saved in metrics_long.csv. Label_sensitivity.json compares40 versus5 on identical full test inputs. Do not subtract AUCs from different stable-system populations to estimate a “noise penalty.” Method rankings under40 are descriptive for historically observed data; reliable test labels never enter training or model selection.')
     technical.append('Stable10 here requires both classes in every seed, whereas the earlier mechanism report required at least10 observations per class in every seed. Accordingly its earlier four-system Llama stable10 result and these broader12-system rows are different populations, not failed reproductions. Stable40 is also a class-present sensitivity cohort; individual class counts can be small. Use the full40-label, full-input comparison for the main reliability conclusion.')
     technical.append('Among the headline controls, the order U > reference-PCA16 LR > original-coordinate relative density > same-space LR > Clotho is unchanged under original5 versus40-vote labels in both models. This is not a claim that all27 close configurations preserve every rank. The earlier joint reference-scaled PCA16+LR result is reproduced; the new evidence separates raw fitting scope, scaling, scoring and final selection around it.')
@@ -176,6 +197,8 @@ def main():
         '## 7. 더 신뢰할 평가 라벨로 바꾸면 결론이 달라지는가?\n\n이미 저장된40회 출력이 Llama13/Gemma12 모두에 있었다. 새로 생성하지 않았다. 원래5회 라벨로 계속 학습하고 평가 정답만40회 다수결로 바꿨다. 예를 들어 원래2/5 성공이라 FAIL이었지만 새25/40 성공이면40회 평가에서는 PASS다. 예측점수와 학습은 고정되므로 지표 변화가 라벨정의에 얼마나 민감한지 볼 수 있다.40회도 진짜 확률을 완벽히 아는 것은 아니다.',
     ])
     ko.append(table(['모델', '방법', '원래5회 AUROC', '40회 AUROC', '40회에서 ΔClotho[구간]', 'stable40 ΔClotho[구간]'], [[mo,m,fmt(sm(mo,m)),fmt(sm(mo,m,cohort='reliable40')),ci(delta(mo,m,cohort='reliable40')),ci(delta(mo,m,cohort='stable40'))] for mo in ('llama','gemma') for m in reliable_methods[1:]]))
+    ko.append(table(['같은 학습모형을40회 라벨로 평가한 요인 차이', 'Llama Δ[구간]', 'Gemma Δ[구간]'], [[name] + [ci(find(reliable_factors, model=model, split='disjoint', name=name)) for model in ('llama', 'gemma')] for name in reliability_questions[1:]]))
+    ko.append('점수만 확인한 것이 아니다.40회에서도 참조raw PCA의 LR 이득은+0.0247/+0.0185이고, 참조raw→표준화의 상대밀도 손해는−0.0676/−0.0315다. 그룹CV의 PASS 변화는+0.0071/−0.0005로 작고 구간이0을 포함한다. Llama의 하한은0보다 아주 조금 낮아 표에서 반올림되어 보이므로 이를 확정적 개선이라고 해석하지 않는다. 모든 사전 지정 요인 차이를40회와stable40에서도 계산해 저장했다. 평가 정답만 바뀌었고 학습·차원선택에는 원래5회 라벨만 사용했다.')
     ko.extend(['전체 테스트 입력의40회 매칭률은100%다. stable40은40회 성공률≤0.1 또는≥0.9이며 원래5회 라벨과 동의하는 입력만 남긴다. 부분집합에 클래스가 없거나 어떤 시드가 부적격이면 그 시스템 전체를 paired 평균에서 뺀다. 전체집합 AUC와 안정집합 AUC를 바로 빼서 라벨노이즈의 인과 기여라고 말하면 안 된다. 순위가 바뀌는지와 개선의 부호가 유지되는지를 matched 표로 확인한다.',
         '## 8. 숫자를 어떻게 집계했는가?\n\n한 작업 AUROC는 FAIL/PASS 쌍 중 FAIL 위험이 큰 비율(동점0.5)이다. AP는 precision을 recall 증가량으로 가중한 평균이며, 실패비율이 높으면 무작위 AP 기준도 높다. 각 시드에서 시스템들을 같은 가중치로 평균한 뒤5시드 평균±표본표준편차를 계산했다. CI는 시스템을4,000회 복원추출하며 해당 시스템의5시드를 함께 옮겼다. 로그 수나5개 시드를 독립 실험으로 세지 않는다. 모든시드에서 이겼다는 사실만으로 통계적 유의성을 주장하지 않는다.',
         '## 9. 연구자가 방어할 수 있는 결론과 못 하는 주장\n\n아래 결정 메모는 검증된 비교를 보고 작성한다. 기존 결과 재현, 새 통제 관찰, 메커니즘의 설명력, 아직 분리하지 못한 원인을 구분한다. U/S1의0.749/0.762와 U-best의0.7764/0.7732는 다른 층·소스 라벨·출력특징이 섞인 문맥 비교다. 이를 우리 점수 하나의 기여율로 분해하지 않는다. 참조GT를 사용하지 않는 고정16 모형은 추론 때도 GT가 필요 없지만, 그룹CV는 개발단계에 GT가 필요하다. 성능 향상만으로 새 방법의 독창성이 증명되지 않는다.',

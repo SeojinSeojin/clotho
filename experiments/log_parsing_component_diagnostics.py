@@ -6,7 +6,7 @@ from collections import Counter
 from functools import lru_cache
 from scipy.stats import spearmanr
 from log_parsing_component_ablation import ROOT
-from log_parsing_component_analysis import estimate
+from log_parsing_component_analysis import estimate, contrast, save_estimates
 
 BASE = 'transductive/random/pass'
 METHODS = ['transductive/random/relative', 'transductive/random/lr', 'reference_raw/frozen16/relative', 'reference_scaled/frozen16/lr']
@@ -99,6 +99,18 @@ def main():
                             fraction_changed=float((panel.random != panel.grouped).mean()),
                             mean_dimension_change=float((panel.grouped - panel.random).mean())))
     save(ROOT / 'cv_selection_changes.json', changes)
+    # Re-evaluate every prespecified factor contrast, not just selected score gains,
+    # against independent40-vote targets without touching trained predictors.
+    metrics = pd.read_csv(ROOT / 'metrics_long.csv')
+    factors = load(ROOT / 'factor_contrasts.json')
+    panels = {key: frame for key, frame in metrics.groupby(['model', 'split'])}
+    for cohort in ('reliable40', 'stable40'):
+        reliable_contrasts = []
+        for row in factors:
+            result = contrast(panels[row['model'], row['split']], row['terms'], cohort=cohort)
+            if result:
+                reliable_contrasts.append(dict(model=row['model'], split=row['split'], kind=row['kind'], name=row['name'], **result))
+        save_estimates(f'factor_contrasts_{cohort}', reliable_contrasts)
     print('Saved exact AUROC-gain decomposition and descriptive CV/imbalance associations.')
 
 

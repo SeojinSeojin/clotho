@@ -207,6 +207,23 @@ Positive means a smaller standard−disjoint gap on identical input intersection
 | llama | standard | transductive | grouped | 63/65 | 26.59 | 0.000 | 50.6/25.3 | 0.654/0.654 |
 | llama | standard | transductive | random | 63/65 | 26.27 | 0.305 | 53.4/28.8 | 0.654/0.654 |
 
+Absolute PASS-density results on each common five-seed eligible system set are below. The broader available-population results are in the main table; they must not be subtracted from these restricted means.
+
+| Model | Split | PCA | Common N | Random AUC | Grouped AUC | Paired Δ[CI] | Systems absent from this comparison |
+|---|---|---|---|---|---|---|---|
+| llama | standard | transductive | 12 | 0.7674 | 0.7713 | +0.0039 [-0.0010, +0.0094] (N=12) | Thunderbird |
+| llama | standard | reference_raw | 12 | 0.7724 | 0.7689 | -0.0035 [-0.0100, +0.0028] (N=12) | Thunderbird |
+| llama | standard | reference_scaled | 12 | 0.7669 | 0.7625 | -0.0044 [-0.0135, +0.0040] (N=12) | Thunderbird |
+| llama | disjoint | transductive | 11 | 0.6572 | 0.6619 | +0.0046 [-0.0003, +0.0103] (N=11) | Apache, Linux |
+| llama | disjoint | reference_raw | 11 | 0.6623 | 0.6549 | -0.0074 [-0.0224, +0.0066] (N=11) | Apache, Linux |
+| llama | disjoint | reference_scaled | 11 | 0.6497 | 0.6499 | +0.0002 [-0.0146, +0.0170] (N=11) | Apache, Linux |
+| gemma | standard | transductive | 10 | 0.7925 | 0.7938 | +0.0013 [-0.0031, +0.0055] (N=10) | BGL, Linux |
+| gemma | standard | reference_raw | 10 | 0.7881 | 0.7850 | -0.0031 [-0.0100, +0.0056] (N=10) | BGL, Linux |
+| gemma | standard | reference_scaled | 10 | 0.7799 | 0.7842 | +0.0043 [-0.0018, +0.0107] (N=10) | BGL, Linux |
+| gemma | disjoint | transductive | 12 | 0.6594 | 0.6596 | +0.0001 [-0.0067, +0.0075] (N=12) | none |
+| gemma | disjoint | reference_raw | 12 | 0.6654 | 0.6605 | -0.0050 [-0.0130, +0.0023] (N=12) | none |
+| gemma | disjoint | reference_scaled | 12 | 0.6502 | 0.6560 | +0.0059 [-0.0031, +0.0170] (N=12) | none |
+
 GroupKFold uses min(3,number of reference groups), never mixes a GT between train and validation, and is not label-stratified. We mark the cell ineligible if any fold lacks both validation classes, has fewer than2 validation rows, or has fewer than k passing training references. No random fallback is used for grouped CV. Original random CV retains its original insufficient-PASS fallback. Full indices, candidate validation scores, convergence status and class/group counts are in each job JSON and cv_folds.csv. These diagnostics describe actual final-step folds, unlike the earlier overlap-only audit.
 
 | Matched original-PCA jobs | Mean random d | Mean grouped d | Share changing dimension |
@@ -301,6 +318,17 @@ Existing40-generation files were found and restored for **all13 Llama and12 Gemm
 | gemma | reference_scaled/frozen16/lr | reliable40 | 12 | 0.7302 ± 0.0098 | +0.0608 [+0.0254, +0.1015] (N=12) |
 | gemma | reference_scaled/frozen16/lr | stable40 | 12 | 0.7952 ± 0.0216 | +0.0770 [+0.0446, +0.1146] (N=12) |
 | gemma | reference_scaled/frozen16/lr | stable10 | 12 | 0.8070 ± 0.0246 | +0.0781 [+0.0443, +0.1160] (N=12) |
+
+Every prespecified factor contrast was also evaluated against40-vote labels and stable40, not only the headline score changes. Representative40-vote contrasts are:
+
+| Same trained models,40-vote evaluation | Llama Δ[CI] | Gemma Δ[CI] |
+|---|---|---|
+| relative-pass|transductive|random | +0.0602 [+0.0211, +0.1060] (N=13) | +0.0406 [+0.0229, +0.0610] (N=12) |
+| grouped-random|transductive|pass | +0.0071 [-0.0000, +0.0161] (N=11) | -0.0005 [-0.0087, +0.0080] (N=12) |
+| reference_raw-transductive|frozen16|lr | +0.0247 [+0.0104, +0.0418] (N=13) | +0.0185 [-0.0045, +0.0458] (N=12) |
+| reference_scaled-reference_raw|frozen16|relative | -0.0676 [-0.0961, -0.0420] (N=13) | -0.0315 [-0.0636, -0.0055] (N=12) |
+
+Thus the main representation interaction and conditional reference-PCA LR benefit persist; oracle final-CV gains remain small/uncertain. Llama40-vote grouped-PASS has a lower interval endpoint just below0, not affirmative evidence of a general CV remedy. Full reliable/stable factor contrasts and draws are in factor_contrasts_{reliable40,stable40}.json and linked bootstrap arrays.
 
 Matched40 coverage is100% of each job’s original test inputs. Stable-cohort coverage and per-job counts are saved in metrics_long.csv. Label_sensitivity.json compares40 versus5 on identical full test inputs. Do not subtract AUCs from different stable-system populations to estimate a “noise penalty.” Method rankings under40 are descriptive for historically observed data; reliable test labels never enter training or model selection.
 

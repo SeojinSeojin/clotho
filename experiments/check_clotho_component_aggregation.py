@@ -11,7 +11,7 @@ def main():
     pivots = {key: frame.pivot(index=['system', 'seed'], columns='method', values='value') for key, frame in groups.items()}
     checks = 0
     max_error = 0.
-    for name in ('summary', 'paired', 'factor_contrasts', 'full_test_gaps', 'shared_input_gap_reductions', 'label_sensitivity', 'paired_vs_fixed_linear'):
+    for name in ('summary', 'paired', 'factor_contrasts', 'factor_contrasts_reliable40', 'factor_contrasts_stable40', 'full_test_gaps', 'shared_input_gap_reductions', 'label_sensitivity', 'paired_vs_fixed_linear'):
         rows = load(ROOT / f'{name}.json')
         arrays = np.load(ROOT / f'bootstrap_{name}.npz')
         for row in rows:
@@ -25,7 +25,7 @@ def main():
             assert np.allclose(np.quantile(draws, [.025, .975]), row['CI95'], rtol=0, atol=1e-12)
             assert abs(np.mean(row['per_seed']) - row['mean']) < 1e-12
             assert abs(np.std(row['per_seed'], ddof=1) - row['seed_sd']) < 1e-12
-            if name in ('summary', 'paired', 'factor_contrasts', 'paired_vs_fixed_linear'):
+            if name in ('summary', 'paired', 'paired_vs_fixed_linear') or name.startswith('factor_contrasts'):
                 key = row['model'], row['split'], row['cohort'], row['metric']
                 pivot = pivots[key]
                 terms = {row['method']: 1} if name == 'summary' else row['terms']
