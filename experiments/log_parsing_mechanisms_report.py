@@ -43,7 +43,7 @@ Original standard job files did not retain per-input scores. We reconstructed th
 '''+baseline+'''
 Binary TP/FN/FP/TN are diagnostic decisions, not calibrated predictions. Original-test GT templates are deterministically split by the existing SHA256(model,system,seed,GT) parity into calibration/evaluation halves. Maximum balanced accuracy chooses a raw-risk threshold on calibration only (larger threshold breaks ties); evaluation templates never choose it. All250 thresholds are finite. Classification, case selection and regressions use evaluation halves only; continuous headline AUC uses the full original test. This uses GT solely to partition the diagnostic population, not as a deployable feature. These are historically evaluated data, not a new prospective test. Margins divide score−threshold by calibration IQR; “extreme” does not mean calibrated confidence. Threshold calibration halves add labels for this diagnostic and are not a new equal-cost deployable predictor claim.
 
-Statistics first average systems per seed; ± is SD of five macro means. Paired intervals resample systems4,000 times (seed20261112), retaining their five seeds together. They describe variation across the included systems, not independently sampled lines or universal coverage. All-system results are primary; individual controls are fixed, untuned diagnostic probes. No multiple-comparison significance claims are made. Per-job and per-system values, AP, prevalence and missing-stratum counts are saved.
+Raw log-density scales are not comparable across models, systems, seeds or selected dimensions; all AUROC/AP calculations occur within a job before macro aggregation. Statistics first average systems per seed; ± is SD of five macro means. Paired intervals resample systems4,000 times (seed20261112), retaining their five seeds together. They describe variation across the included systems, not independently sampled lines or universal coverage. All-system results are primary; individual controls are fixed, untuned diagnostic probes. No multiple-comparison significance claims are made. Per-job and per-system values, AP, prevalence and missing-stratum counts are saved.
 
 ## Quantitative findings
 
@@ -187,6 +187,8 @@ To restore completed results rather than recompute, use restore.py --outputs-onl
 **결과.** 250/250개 작업이 통과했다. 비중복125개 점수 벡터의 최대 오차는0이다. 총81,890개 입력×작업 관측치, 중복을 제거한 모델×시스템×입력은12,470개다. 같은 로그가 여러 시드/분할에 나타나므로81,890개를 독립 표본이라고 계산하지 않았다.
 
 '''+baseline+'''
+**지표 뜻.** AUROC는 임의 FAIL/PASS 쌍에서 FAIL 위험이 더 큰 비율이며 동점은0.5로 센다. AP는 위험순으로 임계값을 내릴 때 재현율 증가량으로 가중한 precision 평균이다. 실패 비율이 높으면 무작위 AP 기준도 높아진다. 균형 정확도는 FAIL 재현율과 PASS 재현율의 평균이다. Spearman은 값 자체가 아닌 순위의 상관이다. Clotho의 로그밀도 크기는 시스템/모델/PCA 차원 사이 직접 비교할 수 없어, 작업 안에서 지표를 구한 뒤 macro 평균한다.
+
 **의미와 한계.** 복원된 실험의 모집단이 기존 실험과 일치하므로 새 비교를 붙일 수 있다. 이것 자체가 새로운 성능 개선은 아니다. 표준 점수는 저장 원본 벡터가 아니라 정확한 시드 복원이고, 비중복 점수는 저장 벡터와도 일치한다. 표의 AP는 **실패를 양성으로 한 average precision**이므로 과거 PASS-positive AP와 직접 비교하면 안 된다.
 
 **가설 구분.** 모집단·시드 변경을 H1/H2/H3의 증거로 오인하는 위험을 먼저 제거한다. 같은 테스트 입력의 교집합에서도 표준→비중복 Clotho AUROC는 Llama0.7531→0.6345, Gemma0.7810→0.6611로 떨어졌다. 단순히 더 어려운 테스트 로그가 뽑혔다는 설명만으로는 부족하지만, 참조 구성/PCA까지 같게 고정한 인과 실험은 아니다. 추가로 같은 입력에서 `(비중복 AUC−표준 AUC)_새방법 − (비중복 AUC−표준 AUC)_Clotho`를 계산했다. 상대밀도 점수의 격차 축소는 Llama0.0142 [−0.0175,0.0430], Gemma0.0057 [−0.0143,0.0242]로 구간이0을 포함한다. 동일 좌표 LR도0.0255/0.0178이며 두 구간이0을 포함한다. 반면 참조 PCA16+LR은0.0637 [0.0318,0.0963]/0.0617 [0.0221,0.1038]를 줄이지만 투영·정규화·transduction·점수가 함께 바뀐다. 따라서 **동일 좌표의 점수 개선은 확인했지만 그것이 미관측 템플릿 격차의 특수 원인이라고 확정한 것은 아니다.** 이 음성 대조가 H2를 과도하게 해석하지 않게 한다.
