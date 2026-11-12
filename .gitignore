@@ -82,3 +82,5 @@ experiments/data/strong_downstream_preflight/
 experiments/data/cpu_research/
 
 experiments/data/cpu_remaining/
+
+.venv-mechanisms/
