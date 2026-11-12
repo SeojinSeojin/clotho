@@ -77,11 +77,18 @@ def main():
    z=[next(r for r in err if r['model']==mo and r['split']==sp and r['outcome']==o) for o in ('FN','FP','TP','TN')];ax.bar(np.arange(4)+dx,[r['stable10_fraction'] for r in z],width=.35,label=sp)
   ax.set_xticks(range(4),['FN','FP','TP','TN']);ax.set_title(mo);ax.set_ylim(0,1);ax.set_ylabel('All-ten-consistent fraction');ax.legend()
  fig.tight_layout();fig.savefig(FIG/'prediction_errors_stability.pdf');fig.savefig(FIG/'prediction_errors_stability.png',dpi=180);plt.close(fig)
+ dis=load(ROOT/'score_disagreements.json');fig,axs=plt.subplots(1,2,figsize=(9,3.6),sharey=True)
+ for ax,mo in zip(axs,('llama','gemma')):
+  a=[next(r for r in dis if r['model']==mo and r['split']=='disjoint' and r['method']==m) for m in ('same_space_LR','raw_hidden_LR','U_published')]
+  ax.bar(np.arange(3)-.18,[100*r['macro']['Clotho_low_other_high'] for r in a],width=.35,label='Clotho low / other high')
+  ax.bar(np.arange(3)+.18,[100*r['macro']['Clotho_high_other_low'] for r in a],width=.35,label='Clotho high / other low')
+  ax.set_xticks(range(3),['Same PCA LR','Ref PCA16 LR','Saved U']);ax.set_title(mo+' disjoint');ax.set_ylabel('% of actual FAIL examples');ax.set_ylim(0,5.5);ax.legend(fontsize=7)
+ fig.tight_layout();fig.savefig(FIG/'clotho_u_disagreements.pdf');fig.savefig(FIG/'clotho_u_disagreements.png',dpi=180);plt.close(fig)
  notes={line.split('\t',1)[0]:line.rstrip().split('\t',1)[1] for line in (EXP/'data/clotho_mechanisms/assistant_case_notes.tsv').read_text().splitlines()};cases=load(ROOT/'qualitative_cases.json');assert set(notes)=={r['case_id'] for r in cases}
  annotated=[{**r,'assistant_exploratory_observation':notes[r['case_id']],'independent_human_annotation':False} for r in cases];save(ROOT/'qualitative_cases_annotated.json',annotated)
  md=['# Systematically sampled cases: assistant qualitative inspection\n','All112 selected cases were inspected by the assistant. These are exploratory language judgments, not independent expert semantic labels. Selection/outcomes use held-out template-hash evaluation halves and seed0. Risk is negative PASS log density; percentiles refer to the full original job test population. First/last votes are strict successes out of five; sample0 is not the target label. Three nearest real references are raw-hidden cosine neighbors. Full packets and matching records preserve original identifiers.\n']
  for r in annotated:
   md.extend([f"\n## {r['case_id']}: {r['model']}/{r['split']}/{r['system']}/{r['outcome']}\n",f"ID `{r['source_id']}`, index{r['input_index']}, seed0, slot{r['sampling_slot']}; seen GT={r['seen_template']}. Risk{r['risk']:.6f}, threshold{r['threshold']:.6f}, percentile{100*r['risk_quantile']:.2f}%, margin/IQR{r['margin_IQR']:.4f}. First/last votes{r['pass_count_first5']}/5,{r['pass_count5']}/5; failure label={r['failure']}. Other method percentiles: "+', '.join(f'{k}={100*v:.1f}%' for k,v in r['method_risk_quantiles'].items())+'\n',f"Raw log:\n```text\n{r['content']}\n```\nGT:\n```text\n{r['GT']}\n```\nSample0:\n```text\n{r['stored_samples']['0']['predicted']}\n```\n",'All ten stored parsed outputs (0–4 diagnostics;5–9 target):\n'+ '\n'.join(f"- Sample{k}, strict PASS={r['all_generation_strict_success'][k]}: `{r['all_generation_templates'][k]}`" for k in range(10))+'\n','Nearest labeled references:\n'+'\n'.join(f"- Index{x['input_index']}, FAIL={x['failure']}: `{x['content']}`; GT=`{x['GT']}`" for x in r['nearest_real_references'])+'\n',notes[r['case_id']]+'\n'])
  (REP/'clotho_failure_mechanisms_cases.md').write_text('\n'.join(md))
- print('figures8, common-cohort rows',len(strata),'annotated cases',len(annotated))
+ print('figures10, common-cohort rows',len(strata),'annotated cases',len(annotated))
 if __name__=='__main__':main()

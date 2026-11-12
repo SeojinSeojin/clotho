@@ -105,6 +105,10 @@ These pooled characteristics repeat inputs across seeds and are descriptive, not
 
 Using within-job top/bottom risk quartiles,2.95% of Llama disjoint failures and4.33% of Gemma failures are bottom-quartile Clotho but top-quartile published U. Conversely2.70%/2.66% are high Clotho/low U. Both-high shares are18.70%/18.81%. These are macro descriptive fractions, not recall at a common calibrated threshold, and extreme reversals account for only a portion of the AUC difference. U has reciprocal misses; it is not an oracle. The exact-coordinate and hidden-only reference-PCA controls establish useful hidden information without U's output features; U's larger gain remains confounded by sources/layers/features.
 
+![Clotho and alternative score disagreements](../results_phase3/clotho_mechanisms/figures/clotho_u_disagreements.png)
+
+The disagreement plot uses opposite within-job score quartiles; it omits middle-ranked cases and is not recall at a shared calibrated threshold.
+
 Inspection also found original PCA-dimension CV uses ordinary shuffled3-fold reference KFold. In the final100-row reference fold partitions, real reference-validation rows have a GT family represented in their CV-training fold32.8%/29.4% in standard jobs and45.1%/41.6% in disjoint jobs (Llama/Gemma). Outer disjoint tests remain leakage-free: **this is an inner-validation distribution mismatch, not test-template leakage.** More repeated families in the smaller reference pool can favor configurations selected under warmer-family conditions than the outer task. These partition counts do not assert that all earlier iteration CV folds executed (the implementation can exit early). No grouped-CV refit was done, so this is H4, a falsifiable alternative, not an established cause. Prior V8b changes U's classifier CV, not Clotho's PCA-selection CV, so it does not resolve this question.
 
 ## Qualitative case studies and matched contrasts
