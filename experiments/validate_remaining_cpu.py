@@ -10,6 +10,11 @@ def records(p):
  with gzip.open(p,'rt') as f:
   for line in f:yield json.loads(line)
 def main():
+ input_paths=[]
+ for folder in ('data/stream','data/stream_drain_templates','data/adaparser_e2e/llama','data/adaparser_e2e/gemma','data/severity_audit/llama','data/severity_audit/gemma','results_phase3/severity_audit','results_phase3/severity_audit/prediction','results_phase3_gemma/severity_audit','results_phase3_gemma/severity_audit/prediction'):
+  input_paths.extend(p for p in (EXP/folder).glob('*.json*') if '_same' not in p.name)
+ input_paths.extend(EXP/f'results_phase3/cpu_research/feasibility_{s}.json' for s in ('HDFS','BGL'))
+ save(ROOT/'input_manifest.json',{'sha256':{str(p.relative_to(EXP)):sha(p) for p in sorted(set(input_paths))},'raw_archive_hashes':'recorded in *_inventory.json and Hadoop_alignment.json','no_model_weights_required':True})
  out={};corr=load(ROOT/'correction_opportunity.json');assert len(corr)==87
  for r in corr:
   assert r['exact_unavoidable_wrong_lines']+r['exact_max_correct_lines_one_string_per_group']==r['lines'];assert r['pure_wrong_text_lines']+r['mixed_wrong_text_lines']==r['currently_wrong_text_lines'];assert r['gross_newly_correct_lines']-r['newly_wrong_lines']==r['net_correct_line_gain'];assert (r['mixed_groups']==0)==(r['exact_unavoidable_wrong_lines']==0)
