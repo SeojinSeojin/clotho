@@ -1,0 +1,20 @@
+# Component ablation: pre-experiment audit
+
+Read AGENTS.md, latest PROGRESS.md, paper_numbers.md, the mechanism reports (technical and Korean), original PCA/GMM/CV/acquisition code, phase3 harness, mechanism replay/probes, U/S1 feature/training code, label-noise code, and paper plotting helpers. A fresh CPU environment and narrow stored-artifact restoration are required after the machine wipe. No model weights or GPU jobs are needed.
+
+| Question | Existing status | Reusable artifacts | Missing controlled comparison |
+|---|---|---|---|
+| Original standard/disjoint gap | Completed; prior250-job exact recovery | mechanism jobs JSON/NPZ, original final jobs, cached disjoint vectors | Independently validate recovered densities and labels |
+| PASS vs two-density | Completed at captured PCA coordinates | same_space_two_density scores; PASS GMM parameters | Capacity/background/regularization controls; crossed representations/CV |
+| Same-space LR | Completed, C1 balanced/reference coordinate scaling | same_space_LR scores | Same classifier crossed with independently changed PCA scope/selection |
+| Reference PCA | Partial: standardized reference PCA16 + LR changes several factors | raw_hidden_LR scores, stored raw hidden vectors | Raw reference PCA vs raw transductive PCA at identical dimension, then scaling diagnostic |
+| Clotho inner CV | Overlap audit only; grouped Clotho intervention absent | reference identities and labels, original code | Exact final-step candidate/selection recovery; matched random vs grouped intervention |
+| U/S1 | Completed; different layers, sometimes source labels, real-only references | saved U/S1 scalar rows and U per-input scores | Fair-layer same-space LR is the controlled baseline; published U is contextual |
+| Label reliability | Completed40-generation analysis (Llama subset), stable10 diagnostics | label_noise per-system p40;10 stored generations | Evaluate new frozen component scores with reliable test labels only |
+| Full factorial | Not previously completed | all of the above | Three scores × three representations × three final-stage selection protocols |
+
+Original PCA is centered raw hidden states, no feature z-scoring or whitening. It fits all510 rows, including unlabeled test and synthetic rows. Final density is a full-covariance PASS-only GMM; FAIL affects acquisition and dimension selection. The original CV is3-fold shuffled, unstratified KFold(seed), n_init10, optimizing correlation with **continuous five-generation pass rate**, not AUROC or the binary label. Its lower-dimension branch has an additional minimum-fold-correlation condition. GMM regularization is increased during early acquisition to produce nonzero component-assignment entropy; this inherited choice must be frozen to isolate final selection.
+
+The previous relative-density probe preserves the original PASS GMM and adds a FAIL GMM with identical k/reg/n_init30/seed. Therefore its improvement is not caused by changed dimension, reference labels, PASS fit, or training population size. It does add FAIL-specific parameters and supervised FAIL fitting. Earlier raw_hidden_LR changes normalization, dimension, PCA scope and score simultaneously. Neither is a completed factorial or a capacity-isolated explanation.
+
+Full end-to-end CV replacement cannot preserve balanced reference examples. The preregistered intervention therefore freezes earlier acquisition and changes only final-reference dimension selection. Primary random CV must reproduce the original final-step decision exactly before interpreting its grouped counterpart. The protocol explicitly describes this scope and the inner-validation-covariate access of frozen transforms.

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "date": "2026-11-12",
+  "hypotheses": {
+    "scoring": "Relative FAIL/PASS density adds predictive information at fixed coordinates; additional capacity may explain part of the gain.",
+    "representation": "Reference-only PCA fitting and feature standardization may affect disjoint generalization independently of scoring.",
+    "selection": "Template-grouped final-reference CV may select dimensions with better disjoint performance than random KFold.",
+    "interaction": "Scoring gains may depend on representation and dimension selection; improvements need not be additive."
+  },
+  "population": "Llama13/Gemma12, fair layers16/21, standard/disjoint, reference100, seeds0-4, unchanged strict samples5-9 labels",
+  "outer_control": "Freeze exact original ordered references and tests, including10 synthetic references; no new inference.",
+  "dependency": "Earlier CV affects balanced acquisition. Freeze original acquisition history. Intervene only on final-reference selection using exact original final-step candidate dimensions, pre-update component count and regularization. This is not an end-to-end grouped acquisition experiment.",
+  "scoring": ["pass_gmm", "relative_gmm", "lr_C1_balanced"],
+  "representation": ["original_transductive_raw_PCA", "reference_raw_PCA", "reference_standardized_PCA"],
+  "selection": ["original_random_KFold3", "oracle_GroupKFold3", "frozen16"],
+  "selection_objective": "Original PASS-density normalized rank vs continuous reference pass-rate correlation, original asymmetric dimension selection rule; identical selected dimension for all scoring methods. No classifier-specific tuning.",
+  "group_rules": "GT strings for reference rows only; synthetic templates unique. GroupKFold min(3,n_groups). Require every fold >=original k passing training rows, both validation classes, >=2 validation rows. Otherwise grouped cell ineligible; no random fallback.",
+  "PCA": "Original captured candidate coordinates unchanged. New PCA fits per dimension once, sklearn PCA default with explicit random_state=seed. Reference_raw does not standardize. Reference_standardized uses StandardScaler reference only. Reference transforms may see inner-validation covariates but never outer-test covariates or labels; this dependence is documented.",
+  "density": "Original final component count/reg_covar frozen across primary cells; full covariance, n_init30, max_iter500,tol1e-3,seed. CV n_init10. LR reference-coordinate StandardScaler,C1,balanced,max_iter3000.",
+  "capacity_controls": "At original coordinates/selection: PASS-only2k components (approximately same density parameter budget as two k-component densities), relative pooled/PASS with k-component pooled reference background, and reg_covar sensitivity0.01/1.0 for both PASS and relative density. Controls explicitly change fitting population or flexibility, not perfect identification.",
+  "fit_estimate": "250 jobs;27 primary cells/job. Reuse fits per representation/dimension; <=250*(original replay~300 mixture fits +3 representations*3 candidates*3 folds*10-start fits+3*4 dims*2 final30-start fits+controls) ~110000 estimator fits counting multistart as one estimator. Approximately1-3 CPU hours with4 processes; benchmark before expansion. No GPU.",
+  "secondary": "Reference200 only if primary full validation/reporting fits session budget; repeat all primary cells, never choose by outer performance. Otherwise explicitly omit.",
+  "reliable_labels": "Reuse stored p40 per-input rates if present, else restore existing40-generation files. Never change training/CV labels. Evaluate original5,40-majority, stable40(p40<=0.1 or>=0.9 and agrees with5). Explicitly report coverage and common systems.",
+  "statistics": "AUROC,FAIL-positive average precision,prevalence; per-job then per-seed system macro mean and sample SD. Paired system-cluster bootstrap4000,seed20261112,retaining5 seeds. Common systems must have all5 seeds for each paired contrast. Difference-in-differences for interactions; split gap on identical test-index intersections as well as full tests.",
+  "validation": "Original scores/AUC vs captured/stored baseline tolerance1e-12; final CV choice exactly original; reference/test order and labels identical; zero grouped overlap; all scores finite; report convergence/failures; deterministic isolated rerun; old artifact hashes unchanged. Do not relax tolerances."
+}
