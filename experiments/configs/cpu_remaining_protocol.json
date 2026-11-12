@@ -1,0 +1,19 @@
+{
+ "scope":"New A/B/C analyses; do not rerun CPU feasibility, representation review curves, cost analysis or severity classification",
+ "seed":20261112,
+ "suitability_priority":["verified anomaly-label provenance and detection unit","complete labelled train/validation/test units without overlap and both evaluation classes","original-ID aligned actual parser assignments plus GT","observed errors visible to the selected representation","temporal novelty and attainable coverage; resource cost"],
+ "suitability_gate":"No dataset is ready for parser-recovery training without the first three criteria. Grouping/text headroom is a necessary representation opportunity, never a downstream performance guarantee. No detector outcomes used to rank candidates.",
+ "candidate_scope":"All 13 existing stream systems and primary-source label documentation; HDFS_v2/v3 noted as distinct unsupported variants",
+ "B":"Fixed operational groups: optimal one-output-string per group equals majority GT; exact residual N-sum_g max_t n_gt. Coalescing corrected strings may merge pure splits; cannot split mixed groups. GT membership repair is a separate oracle.",
+ "C":{
+  "population":"Previously verified saved disjoint@100 score vectors, strict FAIL majority samples5-9; seeds0-4",
+  "raw_probability_methods":["U","U+V5","D-zero"],
+  "ranking_only_methods":["Clotho","LLMLog","Output entropy","Token probability"],
+  "local_calibration":"Partition original untouched-test templates using SHA256(model,system,seed,template) first64bits modulo2; half calibrate, half evaluate; no template overlap. No base model refits.",
+  "mapping":"StandardScaler + LogisticRegression(C=1, class_weight=None), separate calibrator per method/model/system/seed, minimum10 calibration rows and2 examples each class; no test tuning",
+  "ECE":"10 equal-width bins; FAIL=positive; 5 and15 bins sensitivity",
+  "frequency":"Ground-truth template occurrences in original capped500 suite:1,2-5,6+; descriptor only, not predictor feature",
+  "cross_system":"Raw D-zero gives source-trained target evaluation. Calibration transfer for label-independent baselines and local-only Clotho from HDFS/Spark/Linux calibrate templates to held-out systems evaluation templates. Do not claim clean U/D calibration-map transfer: saved source-system models can have trained on held-out target labels.",
+  "statistics":"Per-system five-seed means; system-cluster bootstrap of paired Brier differences; never line-IID tests; report calibration label cost and eligible cohort"
+ }
+}
