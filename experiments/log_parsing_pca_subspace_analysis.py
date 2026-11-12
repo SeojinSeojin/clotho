@@ -23,6 +23,7 @@ def contrast(df,left,right,name,**meta):
 
 def main():
  jobs=[load(p) for p in sorted((ROOT/'jobs').glob('*/*/*/*.json'))];assert len(jobs)==250
+ pd.DataFrame([{k:a[k] for k in ('model','split','system','seed','layer','dimension','original_k','original_reg','alpha')} for a in jobs]).to_csv(ROOT/'hyperparameters.csv',index=False)
  df=pd.DataFrame([r for a in jobs for r in a['rows']]);df.to_csv(ROOT/'metrics.csv',index=False)
  keys=['model','split','method','space','scoring'];df.groupby(keys+['seed'],dropna=False)[['AUROC','AP','prevalence']].mean().reset_index().to_csv(ROOT/'per_seed.csv',index=False)
  df.groupby(keys+['system'],dropna=False)[['AUROC','AP','prevalence']].mean().reset_index().to_csv(ROOT/'per_system.csv',index=False)
@@ -64,6 +65,9 @@ def main():
  sen=pd.DataFrame(sensitivity);sen.to_csv(ROOT/'initialization.csv',index=False)
  for (model,split,space,scoring),g in sen.groupby(['model','split','space','scoring']):
   for col in ('AUROC_range','AUROC_std','AUROC_average'):estimate(g.assign(value=g[col]),f'initialization {space}/{scoring}/{col}',kind='initialization',metric=col,model=model,split=split)
+ for (model,split,scoring),g in sen.groupby(['model','split','scoring']):
+  p=g.pivot(index=['system','seed'],columns='space',values='AUROC_average')
+  for s in SPACES[1:]:estimate((p[s]-p['global']).rename('value').reset_index(),'init-average subspace '+s,kind='initialization_paired',metric='AUROC',model=model,split=split,scoring=scoring)
  # Outer gaps have different test populations; supplement with identical-input gaps below.
  primary=df[df.method.str.contains('/common/')|df.method.isin([f'{s}/lr' for s in SPACES]+['anchor/original'])]
  for (model,method),g in primary.groupby(['model','method']):

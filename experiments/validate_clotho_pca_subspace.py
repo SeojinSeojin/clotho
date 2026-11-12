@@ -9,7 +9,7 @@ from scipy.stats import multivariate_normal
 
 def main():
  jobs=sorted((ROOT/'jobs').glob('*/*/*/*.json'));assert len(jobs)==250
- cmax={};changes={};sourcefiles={};nrows=0;nchecks=0;nonconv=[];warnings=[];max_orth=0;min_eig=float('inf');condition=0;max_metric_error=0;aliases=0
+ cmax={};changes={};rank_changes={};tie_changes={};sourcefiles={};nrows=0;nchecks=0;nonconv=[];warnings=[];max_orth=0;min_eig=float('inf');condition=0;max_metric_error=0;aliases=0
  for p in jobs:
   a=load(p);src=load(SOURCE/p.relative_to(ROOT/'jobs'));assert all(a[k]==src[k] for k in ('ref','test','ref_failure','test_failure','layer','model','system','seed','split'))
   for rel,h in {**a['source_sha'],**a['raw_sha']}.items():
@@ -23,7 +23,7 @@ def main():
    for key in ('AUROC','AP'):max_metric_error=max(max_metric_error,abs(m[key]-r[key]));assert abs(m[key]-r[key])<=1e-12
   nrows+=len(a['rows'])
   for c in a['checks']:
-   key=c['kind'];cmax[key]=max(cmax.get(key,0),c['max_normalized_error']);changes[key]=changes.get(key,0)+int(abs(c['auc_delta'])>1e-12 or abs(c.get('ap_delta',0))>1e-12);nchecks+=1
+   key=c['kind'];rank_changes[key]=rank_changes.get(key,0)+int(c['strict_pair_inversions']>0);tie_changes[key]=tie_changes.get(key,0)+int(c['tie_status_changes']>0);cmax[key]=max(cmax.get(key,0),c['max_normalized_error']);changes[key]=changes.get(key,0)+int(abs(c['auc_delta'])>1e-12 or abs(c.get('ap_delta',0))>1e-12);nchecks+=1
   for s in ('global','reference','pooled','scaled_span'):
    q=z['basis/'+s];max_orth=max(max_orth,float(np.max(abs(q.T@q-np.eye(16)))))
   if a['split']=='standard':assert np.array_equal(z['coordinates/global'],z['coordinates/pooled']);aliases+=1
@@ -33,7 +33,7 @@ def main():
    if f['warnings']:warnings.append([str(p),f])
  assert min_eig>0
  # Check gates without relaxing preregistered tolerance.
- gates={k:bool(v<=1e-7 and changes[k]==0) for k,v in cmax.items()}
+ gates={k:bool(v<=1e-7 and changes[k]==0 and rank_changes[k]==0 and tie_changes[k]==0) for k,v in cmax.items()}
  # Independent SciPy density calculation (no sklearn precision scoring).
  density_checks=[]
  for model,system in (('gemma','BGL'),('llama','HDFS')):
@@ -70,6 +70,6 @@ def main():
   else:
    pp=d[d.method.isin([e['left'],e['right']])].pivot(index=['system','seed'],columns='method',values=e['metric']);v=(pp[e['left']]-pp[e['right']]).groupby('seed').mean().reindex(range(5)).values
   err=float(np.max(abs(v-np.array(e['per_seed']))));max_agg=max(max_agg,err);assert err<1e-12
- summary=dict(status='validated' if all(gates.values()) and not nonconv else 'completed with explicit validation exceptions',jobs=len(jobs),rows=nrows,invariance_checks=nchecks,max_normalized_errors=cmax,changed_metric_checks=changes,invariance_gates=gates,max_orthogonality_error=max_orth,min_covariance_eigenvalue=min_eig,max_covariance_condition=condition,nonconverged=nonconv,warnings=warnings,max_metric_error=max_metric_error,source_files=len(sourcefiles),source_hashes=sourcefiles,standard_alias_jobs=aliases,scipy_density=density_checks,deterministic_replays=replay,estimates_checked=len(estimates),max_bootstrap_error=max_boot,max_csv_aggregation_error=max_agg,test_label_use='metrics/diagnostics only; transductive PCA uses covariates explicitly',no_gpu_or_generation=True)
+ summary=dict(status='validated' if all(gates.values()) and not nonconv else 'completed with explicit validation exceptions',jobs=len(jobs),rows=nrows,invariance_checks=nchecks,max_normalized_errors=cmax,changed_metric_checks=changes,rank_change_checks=rank_changes,tie_change_checks=tie_changes,invariance_gates=gates,max_orthogonality_error=max_orth,min_covariance_eigenvalue=min_eig,max_covariance_condition=condition,nonconverged=nonconv,warnings=warnings,max_metric_error=max_metric_error,source_files=len(sourcefiles),source_hashes=sourcefiles,standard_alias_jobs=aliases,scipy_density=density_checks,deterministic_replays=replay,estimates_checked=len(estimates),max_bootstrap_error=max_boot,max_csv_aggregation_error=max_agg,test_label_use='metrics/diagnostics only; transductive PCA uses covariates explicitly',no_gpu_or_generation=True)
  save(ROOT/'validation.json',summary);print({k:v for k,v in summary.items() if k not in ('source_hashes','nonconverged','warnings')})
 if __name__=='__main__':main()
