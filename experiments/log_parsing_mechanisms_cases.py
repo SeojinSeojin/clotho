@@ -14,7 +14,16 @@ def packet(r):
  return {**r,'content':z['content'],'GT':z['ground_truth'],'stored_samples':z['samples'],'nearest_real_references':refs}
 def stability(r):return 'stable' if r['stable'] else ('borderline' if r['borderline'] else 'other')
 def main():
- rows=load(ROOT/'all_inputs.json.gz');rng=np.random.default_rng(20261112);selected=[];coverage=[]
+ rows=load(ROOT/'all_inputs.json.gz')
+ from scipy.stats import rankdata
+ groups={}
+ for r in rows:groups.setdefault((r['model'],r['system'],r['split'],r['seed']),[]).append(r)
+ for group in groups.values():
+  for r in group:r['method_risk_quantiles']={}
+  for method in group[0]['risks']:
+   ranks=(rankdata([r['risks'][method] for r in group])-.5)/len(group)
+   for r,q in zip(group,ranks):r['method_risk_quantiles'][method]=float(q)
+ rng=np.random.default_rng(20261112);selected=[];coverage=[]
  for mo in ('llama','gemma'):
   for sp in ('standard','disjoint'):
    for out in ('FN','FP','TP','TN'):
