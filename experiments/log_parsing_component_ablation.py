@@ -144,6 +144,14 @@ def capture_final(B, old):
     seed, split = old['seed'], old['split']
     capture = {}
     original = L.rci.get_next_n_features
+    original_extend = L._extend_balanced
+    def frozen_extend(scorer, Z, ref, pool, num_add):
+        # The preregistered intervention conditions on archived acquisition.
+        # Float32 BLAS drift can perturb diversity ties on another CPU.
+        assert list(ref) == old['ref'][:len(ref)]
+        if len(ref) < 100:
+            return old['ref'][len(ref):len(ref) + num_add]
+        return [int(i) for i in pool if i not in set(ref)][:num_add]
     def hook(H, reps, ref, labels, current, max_features, method, cfg):
         before = asdict(cfg)
         selected = original(H, reps, ref, labels, current, max_features, method, cfg)
@@ -153,6 +161,7 @@ def capture_final(B, old):
                            blocks={d: np.asarray(reps[d]).copy() for d in dims})
         return selected
     L.rci.get_next_n_features = hook
+    L._extend_balanced = frozen_extend
     pool, test = F.disjoint_pool(B['templates'], np.arange(500), seed) if split == 'disjoint' else (np.arange(500), None)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -161,6 +170,7 @@ def capture_final(B, old):
                               ref_sizes=(100,), method='balanced')[100]
     finally:
         L.rci.get_next_n_features = original
+        L._extend_balanced = original_extend
     assert replay['ref'].tolist() == old['ref'] == capture['ref']
     assert replay['test'].tolist() == old['test']
     assert capture['selected'] == old['PCA_dimensions']

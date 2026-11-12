@@ -105,13 +105,19 @@ def collect():
 
 
 def analyze(df, jobs):
-    summaries, comparisons, interactions, gaps, shared, noise = [], [], [], [], [], []
+    summaries, comparisons, interactions, gaps, shared, noise, linear_comparisons = [], [], [], [], [], [], []
     for (model, split), group in df.groupby(['model', 'split']):
         for (method, cohort, met), f in group.groupby(['method', 'cohort', 'metric']):
             est = estimate(f[['system', 'seed', 'value']])
             if est:
                 summaries.append(dict(model=model, split=split, method=method, metric=met, cohort=cohort, **est))
         methods = sorted(group.method.unique())
+        for method in methods:
+            ref = 'reference_scaled/frozen16/lr'
+            if method != ref:
+                est = contrast(group, {method: 1, ref: -1})
+                if est:
+                    linear_comparisons.append(dict(model=model, split=split, method=method, reference=ref, **est))
         for method in methods:
             if method == BASE:
                 continue
@@ -197,7 +203,8 @@ def analyze(df, jobs):
             if est:
                 shared.append(dict(model=model, method=method, contrast='paired reduction in standard-minus-disjoint gap on same inputs', **est))
     for name, value in [('summary', summaries), ('paired', comparisons), ('factor_contrasts', interactions),
-                        ('full_test_gaps', gaps), ('shared_input_gap_reductions', shared), ('label_sensitivity', noise)]:
+                        ('full_test_gaps', gaps), ('shared_input_gap_reductions', shared), ('label_sensitivity', noise),
+                        ('paired_vs_fixed_linear', linear_comparisons)]:
         save(ROOT / f'{name}.json', value)
         small = [{k: v for k, v in r.items() if k not in ('bootstrap', 'per_system')} for r in value]
         pd.DataFrame(small).to_csv(ROOT / f'{name}.csv', index=False)
