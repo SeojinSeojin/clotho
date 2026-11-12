@@ -1,17 +1,23 @@
 """Frozen stratified selection, diagnostic matching, and inspectable real case packets."""
 from cpu_research_common import *
-import numpy as np
+import numpy as np,sys
+sys.path.insert(0,str(EXP.parent))
+from clotho.dataset.log_parsing.output_parsers import score_output
 from collections import Counter
 from functools import lru_cache
 ROOT=EXP/'results_phase3/clotho_mechanisms'
 @lru_cache(None)
 def ann(m,s):return load(EXP/'data/severity_audit'/m/f'capped_{s}.json.gz')
+@lru_cache(None)
+def generations(m,s):return load(EXP/f'data/results_{m}/log_parsing/inference_results/rules_template/loghub_{s.lower()}_500_R10_T0.8.json')
 def packet(r):
  a=ann(r['model'],r['system']);z=a[r['input_index']];j=load(ROOT/'jobs'/r['model']/r['split']/r['system']/f"seed{r['seed']}.json")
  with np.load(ROOT/'jobs'/r['model']/r['split']/r['system']/f"seed{r['seed']}.npz") as f:
   k=j['test'].index(r['input_index']);nn=np.argsort(f['hcos'][k])[-3:][::-1]
  refs=[{'input_index':j['reference_real'][int(i)],'content':a[j['reference_real'][int(i)]]['content'],'GT':a[j['reference_real'][int(i)]]['ground_truth'],'failure':a[j['reference_real'][int(i)]]['targets']['strict']} for i in nn]
- return {**r,'content':z['content'],'GT':z['ground_truth'],'stored_samples':z['samples'],'nearest_real_references':refs}
+ g=generations(r['model'],r['system'])[r['input_index']];parsed=[score_output(o,g['GT'],'rules_template') for o in g['inferences']];assert sum(v['strict_match'] for v in parsed[:5])==r['pass_count_first5'] and sum(v['strict_match'] for v in parsed[5:])==r['pass_count5']
+ assert all(z['samples'][str(k)]['predicted']==parsed[k]['parsed'] for k in (0,5,6,7,8,9))
+ return {**r,'all_raw_generation_outputs':g['inferences'],'all_generation_templates':[v['parsed'] for v in parsed],'all_generation_strict_success':[v['strict_match'] for v in parsed],'generation_artifact':f"data/results_{r['model']}/log_parsing/inference_results/rules_template/loghub_{r['system'].lower()}_500_R10_T0.8.json",'content':z['content'],'GT':z['ground_truth'],'stored_samples':z['samples'],'nearest_real_references':refs}
 def stability(r):return 'stable' if r['stable'] else ('borderline' if r['borderline'] else 'other')
 def main():
  rows=load(ROOT/'all_inputs.json.gz')

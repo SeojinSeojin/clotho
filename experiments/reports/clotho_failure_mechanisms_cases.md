@@ -20,12 +20,17 @@ Sample0:
 ******* GOODBYE <*> ********
 ```
 
-Target-batch parsed outputs:
-- Sample5: `******* GOODBYE <*> ********`
-- Sample6: `********* GOODBYE <*> *********`
-- Sample7: `********** GOODBYE <*> ********`
-- Sample8: `********* GOODBYE <*> *********`
-- Sample9: `******* GOODBYE <*> ********`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `******* GOODBYE <*> ********`
+- Sample1, strict PASS=True: `******* GOODBYE <*> ********`
+- Sample2, strict PASS=True: `******* GOODBYE <*> ********`
+- Sample3, strict PASS=True: `******* GOODBYE <*> ********`
+- Sample4, strict PASS=True: `******* GOODBYE <*> ********`
+- Sample5, strict PASS=True: `******* GOODBYE <*> ********`
+- Sample6, strict PASS=False: `********* GOODBYE <*> *********`
+- Sample7, strict PASS=False: `********** GOODBYE <*> ********`
+- Sample8, strict PASS=False: `********* GOODBYE <*> *********`
+- Sample9, strict PASS=True: `******* GOODBYE <*> ********`
 
 Nearest labeled references:
 - Index92, FAIL=False: `******* GOODBYE /10.10.34.11:52690 ********`; GT=`******* GOODBYE <*> ********`
@@ -52,12 +57,17 @@ Sample0:
 environment:host.name=<*>,
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Server environment:host.<*>`
-- Sample6: `Server environment:host.name=<*>`
-- Sample7: `Server environment:host.name=<*>`
-- Sample8: `Server environment: host.name=<*>`
-- Sample9: `Server environment:host.<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `environment:host.name=<*>,`
+- Sample1, strict PASS=False: `Server environment:host.name=<*>>`
+- Sample2, strict PASS=True: `Server environment:host.name=<*>`
+- Sample3, strict PASS=False: `Server environment:host.name=<*>,`
+- Sample4, strict PASS=False: `Server environment:host.<*>:node3`
+- Sample5, strict PASS=False: `Server environment:host.<*>`
+- Sample6, strict PASS=True: `Server environment:host.name=<*>`
+- Sample7, strict PASS=True: `Server environment:host.name=<*>`
+- Sample8, strict PASS=False: `Server environment: host.name=<*>`
+- Sample9, strict PASS=False: `Server environment:host.<*>`
 
 Nearest labeled references:
 - Index242, FAIL=False: `Server environment:host.name=node2`; GT=`Server environment:host.name=<*>`
@@ -84,12 +94,17 @@ Sample0:
 Still have <*> requests outstanding when connection from mesos-slave-07/<*>:<*> is closed
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Still have <*>, outstanding when connection from <*> is closed`
-- Sample6: `Still have <*> requests outstanding when connection from <*>/<*>:<*> is closed`
-- Sample7: `Still have 1 requests outstanding when connection from <*>:54953 is closed`
-- Sample8: `Still have 1 requests outstanding when connection from <*> is closed`
-- Sample9: `Still have <*> requests outstanding when connection from <*> is closed`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Still have <*> requests outstanding when connection from mesos-slave-07/<*>:<*> is closed`
+- Sample1, strict PASS=False: `Still have 1 requests outstanding when connection from mesos-slave-07/10.10.34.17:54953 is closed`
+- Sample2, strict PASS=False: `Still have <* requests outstanding when connection from <*>/<*>:<*> is closed`
+- Sample3, strict PASS=False: `Still have 1 requests outstanding when connection from <*> is closed`
+- Sample4, strict PASS=False: `Still have 1 requests outstanding when connection from  <*>  <*>: <*>  is closed`
+- Sample5, strict PASS=False: `Still have <*>, outstanding when connection from <*> is closed`
+- Sample6, strict PASS=False: `Still have <*> requests outstanding when connection from <*>/<*>:<*> is closed`
+- Sample7, strict PASS=False: `Still have 1 requests outstanding when connection from <*>:54953 is closed`
+- Sample8, strict PASS=False: `Still have 1 requests outstanding when connection from <*> is closed`
+- Sample9, strict PASS=True: `Still have <*> requests outstanding when connection from <*> is closed`
 
 Nearest labeled references:
 - Index101, FAIL=False: `Lost executor 4 on mesos-slave-11: Executor heartbeat timed out after 147429 ms`; GT=`Lost executor <*> on <*>: Executor heartbeat timed out after <*> ms`
@@ -116,12 +131,17 @@ Sample0:
 aggregateHiHealthData() time = 1514890379521, totalTime = 35
 ```
 
-Target-batch parsed outputs:
-- Sample5: `aggregate<*>Data() time = 1514890379521, totalTime = 35`
-- Sample6: `aggregateHiHealthData() time = <>, totalTime = <>`
-- Sample7: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
-- Sample8: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
-- Sample9: `aggregateHiHealthData() time = <*>, totalTime = <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
+- Sample1, strict PASS=False: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
+- Sample2, strict PASS=False: `aggregateHiHealthData() time = <*> time = <*>, totalTime = <*>`
+- Sample3, strict PASS=False: `aggregateHiHealthData() time = <*>, totalTime = <*>`
+- Sample4, strict PASS=False: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
+- Sample5, strict PASS=False: `aggregate<*>Data() time = 1514890379521, totalTime = 35`
+- Sample6, strict PASS=False: `aggregateHiHealthData() time = <>, totalTime = <>`
+- Sample7, strict PASS=False: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
+- Sample8, strict PASS=False: `aggregateHiHealthData() time = 1514890379521, totalTime = 35`
+- Sample9, strict PASS=False: `aggregateHiHealthData() time = <*>, totalTime = <*>`
 
 Nearest labeled references:
 - Index147, FAIL=False: `saveRealTimeHealthDatasStat() size = 1,totalTime = 29`; GT=`saveRealTimeHealthDatasStat() size = <*>,totalTime = <*>`
@@ -148,12 +168,17 @@ Sample0:
 registerLogCallback <*>@<*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `registerLogCallback com.huawei.health.c.c@<*>`
-- Sample6: `registerLogCallback com.huawei.<*>@<>`
-- Sample7: `registerLogCallback com.huawei.health.c.c@<>`
-- Sample8: `registerLogCallback com.huawei.health.c.c@<*>`
-- Sample9: `registerLogCallback com.huawei.health.c.c@<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `registerLogCallback <*>@<*>.`
+- Sample1, strict PASS=False: `registerLogCallback com.huawei.health.c.c@<*>`
+- Sample2, strict PASS=False: `registerLogCallback com.huawei.health.c.c@<>`
+- Sample3, strict PASS=False: `registerLogCallback com.<*>.@<*>.`
+- Sample4, strict PASS=False: `registerLogCallback com.huawei.<*>@<>`
+- Sample5, strict PASS=False: `registerLogCallback com.huawei.health.c.c@<*>`
+- Sample6, strict PASS=False: `registerLogCallback com.huawei.<*>@<>`
+- Sample7, strict PASS=False: `registerLogCallback com.huawei.health.c.c@<>`
+- Sample8, strict PASS=False: `registerLogCallback com.huawei.health.c.c@<*>`
+- Sample9, strict PASS=False: `registerLogCallback com.huawei.health.c.c@<*>`
 
 Nearest labeled references:
 - Index399, FAIL=True: `registerLogCallback com.huawei.health.c.c@d990a94`; GT=`registerLogCallback <*>`
@@ -180,19 +205,24 @@ Sample0:
 named <*> failed
 ```
 
-Target-batch parsed outputs:
-- Sample5: `named <*> failed`
-- Sample6: `named <*> failed`
-- Sample7: `named <*shutdown*> failed`
-- Sample8: `named <*>, shutdown failed`
-- Sample9: `named <*> failed`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `named <*> failed`
+- Sample1, strict PASS=False: `named shutdown failed`
+- Sample2, strict PASS=False: `named <+> failed`
+- Sample3, strict PASS=False: `named <*> failed`
+- Sample4, strict PASS=False: `named shutdown failed`
+- Sample5, strict PASS=False: `named <*> failed`
+- Sample6, strict PASS=False: `named <*> failed`
+- Sample7, strict PASS=False: `named <*shutdown*> failed`
+- Sample8, strict PASS=False: `named <*>, shutdown failed`
+- Sample9, strict PASS=False: `named <*> failed`
 
 Nearest labeled references:
 - Index302, FAIL=False: `Kerberos authentication failed`; GT=`Kerberos authentication failed`
 - Index438, FAIL=True: `ntpd shutdown succeeded`; GT=`<*> shutdown succeeded`
 - Index86, FAIL=True: `crond shutdown succeeded`; GT=`<*> shutdown succeeded`
 
-All ten fail by masking shutdown rather than named. Low score near a successful authentication phrase illustrates that general short-message similarity need not encode which word is variable; compare high-risk short failures C015.
+All ten fail; displayed outputs retain named or mask shutdown rather than named. Low score near a successful authentication phrase illustrates that general short-message similarity need not encode which word is variable; compare high-risk short failures C015.
 
 
 ## C007: llama/standard/Mac/FN
@@ -212,12 +242,17 @@ Sample0:
 [HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*>::start Could not make a string from out poweredoff notification <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::start Could not make a string from out <*> notification <*>`
-- Sample6: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::start Could not make a string from out <*> key`
-- Sample7: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*>Error> Could not make a string from out <*>`
-- Sample8: `[HID] [ATC] [Error] <*>::start Could not make a string from out <*> notification key`
-- Sample9: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*>::start Could not make a string from out <*> notification <*> key`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*>::start Could not make a string from out poweredoff notification <*>`
+- Sample1, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*> [Could not make a string from out <*> notification key]`
+- Sample2, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::start Could not make a string from out <*> notification <*>`
+- Sample3, strict PASS=False: `[HID] [ATC] [Error] <*>::start Could not make a string from out <*> notification key`
+- Sample4, strict PASS=False: `[HID] [ATC] [Error] <*>::*::* Could not make a string from out <*> notification key`
+- Sample5, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::start Could not make a string from out <*> notification <*>`
+- Sample6, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::start Could not make a string from out <*> key`
+- Sample7, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*>Error> Could not make a string from out <*>`
+- Sample8, strict PASS=False: `[HID] [ATC] [Error] <*>::start Could not make a string from out <*> notification key`
+- Sample9, strict PASS=False: `[HID] [ATC] [Error] AppleDeviceManagementHIDEventService::<*>::start Could not make a string from out <*> notification <*> key`
 
 Nearest labeled references:
 - Index205, FAIL=True: `Metadata.framework [Error]: void _MDItemMarkAsUsedForPath(CFStringRef): was called with a NULL path`; GT=`Metadata.framework [Error]: void _MDItemMarkAsUsedForPath(<*>): was called with a <*> path`
@@ -244,12 +279,17 @@ Sample0:
 [client <*>] File does not exist: /<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[client <*>] File does not exist: <*>`
-- Sample6: `[client <*>] File does not exist: <*>`
-- Sample7: `[client <*>] File does not exist: <*>`
-- Sample8: `[client <*>] File does not exist: <*>`
-- Sample9: `[client <*>] File does not exist: /<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[client <*>] File does not exist: /<*>`
+- Sample1, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample2, strict PASS=False: `[client <*>] File does not exist: /<*>`
+- Sample3, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample4, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample5, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample6, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample7, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample8, strict PASS=True: `[client <*>] File does not exist: <*>`
+- Sample9, strict PASS=False: `[client <*>] File does not exist: /<*>`
 
 Nearest labeled references:
 - Index48, FAIL=True: `[client 220.176.190.155] File does not exist: /var/www/html/scripts/..\xc1\x1c..`; GT=`[client <*>] File does not exist: <*>`
@@ -276,12 +316,17 @@ Sample0:
 mod_jk child <*> in error state <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `mod_jk child workerEnv in error state <*>`
-- Sample6: `mod_jk child workerEnv in error state <*>`
-- Sample7: `mod_jk child workerEnv in error state <*>`
-- Sample8: `mod_jk child workerEnv in error state <*>`
-- Sample9: `mod_jk <*> child <*> in error <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `mod_jk child <*> in error state <*>`
+- Sample1, strict PASS=True: `mod_jk child workerEnv in error state <*>`
+- Sample2, strict PASS=True: `mod_jk child workerEnv in error state <*>`
+- Sample3, strict PASS=False: `mod_jk child <*> in error state 7`
+- Sample4, strict PASS=False: `mod_jk child <*> in error state <*>`
+- Sample5, strict PASS=True: `mod_jk child workerEnv in error state <*>`
+- Sample6, strict PASS=True: `mod_jk child workerEnv in error state <*>`
+- Sample7, strict PASS=True: `mod_jk child workerEnv in error state <*>`
+- Sample8, strict PASS=True: `mod_jk child workerEnv in error state <*>`
+- Sample9, strict PASS=False: `mod_jk <*> child <*> in error <*>`
 
 Nearest labeled references:
 - Index176, FAIL=True: `mod_jk child workerEnv in error state 6`; GT=`mod_jk child workerEnv in error state <*>`
@@ -308,12 +353,17 @@ Sample0:
 ambient=<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `ambient=<*>`
-- Sample6: `ambient=<*>`
-- Sample7: `ambient=<*>`
-- Sample8: `ambient=<*>`
-- Sample9: `ambient=<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `ambient=<*>`
+- Sample1, strict PASS=True: `ambient=<*>`
+- Sample2, strict PASS=True: `ambient=<*>`
+- Sample3, strict PASS=False: `ambient=<>`
+- Sample4, strict PASS=True: `ambient=<*>`
+- Sample5, strict PASS=True: `ambient=<*>`
+- Sample6, strict PASS=True: `ambient=<*>`
+- Sample7, strict PASS=True: `ambient=<*>`
+- Sample8, strict PASS=True: `ambient=<*>`
+- Sample9, strict PASS=True: `ambient=<*>`
 
 Nearest labeled references:
 - Index444, FAIL=False: `ambient=34`; GT=`ambient=<*>`
@@ -340,12 +390,17 @@ Sample0:
 machine check status register: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `machine check status register: <*>`
-- Sample6: `machine check status register: <*>`
-- Sample7: `machine check status register: <*>`
-- Sample8: `machine check status register: <*>`
-- Sample9: `machine check status register: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `machine check status register: <*>`
+- Sample1, strict PASS=True: `machine check status register: <*>`
+- Sample2, strict PASS=True: `machine check status register: <*>`
+- Sample3, strict PASS=True: `machine check status register: <*>`
+- Sample4, strict PASS=True: `machine check status register: <*>`
+- Sample5, strict PASS=True: `machine check status register: <*>`
+- Sample6, strict PASS=True: `machine check status register: <*>`
+- Sample7, strict PASS=True: `machine check status register: <*>`
+- Sample8, strict PASS=True: `machine check status register: <*>`
+- Sample9, strict PASS=True: `machine check status register: <*>`
 
 Nearest labeled references:
 - Index279, FAIL=False: `Floating Point Status and Control Register: 0x82004000`; GT=`Floating Point Status and Control Register: <*>`
@@ -372,12 +427,17 @@ Sample0:
 getMidWareCache mRemote=<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `getMidWareCache mRemote=<*>@<>`
-- Sample6: `getMidWareCache mRemote=<*>`
-- Sample7: `getMidWareCache mRemote=com.huawei.health.c.c@<*>`
-- Sample8: `getMidWareCache mRemote=<*>`
-- Sample9: `getMidWareCache mRemote=<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `getMidWareCache mRemote=<*>`
+- Sample1, strict PASS=False: `getMidWareCache mRemote=<>@<>`
+- Sample2, strict PASS=False: `getMidWareCache mRemote=<*>@<>`
+- Sample3, strict PASS=False: `getMidWareCache mRemote=<*>@<>`
+- Sample4, strict PASS=False: `getMidWareCache mRemote=<*>@<>`
+- Sample5, strict PASS=False: `getMidWareCache mRemote=<*>@<>`
+- Sample6, strict PASS=True: `getMidWareCache mRemote=<*>`
+- Sample7, strict PASS=False: `getMidWareCache mRemote=com.huawei.health.c.c@<*>`
+- Sample8, strict PASS=True: `getMidWareCache mRemote=<*>`
+- Sample9, strict PASS=True: `getMidWareCache mRemote=<*>`
 
 Nearest labeled references:
 - Index153, FAIL=True: `getTodaySportData mStepsRecordManager=com.huawei.health.g.c@8a2a501`; GT=`getTodaySportData mStepsRecordManager=<*>`
@@ -404,12 +464,17 @@ Sample0:
 Failed to renew lease for <*> for <*> seconds. Will retry shortly ...
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
-- Sample6: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
-- Sample7: `Failed to renew lease for <*> for 53 seconds. Will retry shortly ...`
-- Sample8: `Failed to renew lease for <*> for 53 seconds. Will retry shortly ...`
-- Sample9: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
+- Sample1, strict PASS=False: `Failed to renew lease for [<*>] for <*> seconds. Will retry shortly ...`
+- Sample2, strict PASS=False: `Failed to renew lease for <*> for <*> seconds. Will retry <*> shortly ...`
+- Sample3, strict PASS=True: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
+- Sample4, strict PASS=True: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
+- Sample5, strict PASS=True: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
+- Sample6, strict PASS=True: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
+- Sample7, strict PASS=False: `Failed to renew lease for <*> for 53 seconds. Will retry shortly ...`
+- Sample8, strict PASS=False: `Failed to renew lease for <*> for 53 seconds. Will retry shortly ...`
+- Sample9, strict PASS=True: `Failed to renew lease for <*> for <*> seconds. Will retry shortly ...`
 
 Nearest labeled references:
 - Index68, FAIL=True: `Failed to connect to MININT-FNANLI5.fareast.corp.microsoft.com:13562 with 1 map outputs`; GT=`Failed to connect to <*> with <*> map outputs`
@@ -436,12 +501,17 @@ Sample0:
 Snapshotting: <*> to <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Snapshotting: <*> to <*>`
-- Sample6: `Snapshotting: <*> to <*>`
-- Sample7: `Snapshotting: <*> to <*>/<*>/snapshot.d<*>*.`
-- Sample8: `Snapshotting: <*> to <*>`
-- Sample9: `Snapshotting: <*> to <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample1, strict PASS=False: `Snapshotting: <*> to /var/lib/zookeeper/version-2/<*>`
+- Sample2, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample3, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample4, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample5, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample6, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample7, strict PASS=False: `Snapshotting: <*> to <*>/<*>/snapshot.d<*>*.`
+- Sample8, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample9, strict PASS=True: `Snapshotting: <*> to <*>`
 
 Nearest labeled references:
 - Index290, FAIL=True: `Snapshotting: 0xb00000084 to /var/lib/zookeeper/version-2/snapshot.b00000084`; GT=`Snapshotting: <*> to <*>`
@@ -468,19 +538,24 @@ Sample0:
 Stopping squid: <*> is going down after <*> is terminated.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Stopping <*>:.`
-- Sample6: `None`
-- Sample7: `Jul 18 05:08:10  <*> squid[<*>]: squid[<*>] process received <*> signal.`
-- Sample8: `Stopping squid`
-- Sample9: `Stopping squid: <*> has crashed on <*> with error: <*> failed to connect to <*> on '*' in <*>s: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Stopping squid: <*> is going down after <*> is terminated.`
+- Sample1, strict PASS=False: `Stopping <*>.`
+- Sample2, strict PASS=False: `None`
+- Sample3, strict PASS=False: `Stopping <*>:.`
+- Sample4, strict PASS=False: `None`
+- Sample5, strict PASS=False: `Stopping <*>:.`
+- Sample6, strict PASS=False: `None`
+- Sample7, strict PASS=False: `Jul 18 05:08:10  <*> squid[<*>]: squid[<*>] process received <*> signal.`
+- Sample8, strict PASS=False: `Stopping squid`
+- Sample9, strict PASS=False: `Stopping squid: <*> has crashed on <*> with error: <*> failed to connect to <*> on '*' in <*>s: <*>`
 
 Nearest labeled references:
 - Index83, FAIL=True: `*** info [client.c(284)]:`; GT=`*** info [client.c(<*>)]:`
 - Index10, FAIL=True: `BIOS-provided physical RAM map:`; GT=`BIOS-provided physical RAM map:`
 - Index236, FAIL=True: `Linux Plug and Play Support v0.97 (c) Adam Belay`; GT=`Linux Plug and Play Support <*> (c) Adam Belay`
 
-Variable-free service header triggers invented continuation and malformed outputs in all ten. Very high risk and a failing short-header neighbor fit novelty-related success of prediction; compare successful short header C037.
+Variable-free service header receives invented continuations, overmasking or malformed outputs; all ten fail. Very high risk and a failing short-header neighbor fit novelty-related success of prediction; compare successful short header C037.
 
 
 ## C016: llama/standard/Linux/TP
@@ -500,19 +575,24 @@ Sample0:
 Starting <*>:
 ```
 
-Target-batch parsed outputs:
-- Sample5: `None`
-- Sample6: `Starting background readahead: req_8812_03 to 192.168.0.5`
-- Sample7: `Starting background readahead:`
-- Sample8: `Starting background readahead: <*>.`
-- Sample9: `Starting background readahead: by/default/data/req_8812_03 for /192.168.0.7:8080 on worker-3`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Starting <*>:`
+- Sample1, strict PASS=False: `None`
+- Sample2, strict PASS=False: `None`
+- Sample3, strict PASS=False: `Starting <*>`
+- Sample4, strict PASS=False: `Starting <*>: <*>`
+- Sample5, strict PASS=False: `None`
+- Sample6, strict PASS=False: `Starting background readahead: req_8812_03 to 192.168.0.5`
+- Sample7, strict PASS=True: `Starting background readahead:`
+- Sample8, strict PASS=False: `Starting background readahead: <*>.`
+- Sample9, strict PASS=False: `Starting background readahead: by/default/data/req_8812_03 for /192.168.0.7:8080 on worker-3`
 
 Nearest labeled references:
 - Index10, FAIL=True: `BIOS-provided physical RAM map:`; GT=`BIOS-provided physical RAM map:`
 - Index83, FAIL=True: `*** info [client.c(284)]:`; GT=`*** info [client.c(<*>)]:`
 - Index175, FAIL=True: `checking if image is initramfs...it isn't (no cpio magic); looks like an initrd`; GT=`checking if image is initramfs...it isn't (no cpio magic); looks like an initrd`
 
-A second variable-free header often triggers continuation; only one label-batch generation succeeds. This TP supports short-header risk but C037/C093 show that shortness is not sufficient for failure.
+A second variable-free header often receives continuations or malformed completions; only one label-batch generation succeeds. This TP supports short-header risk but C037/C093 show that shortness is not sufficient for failure.
 
 
 ## C017: llama/standard/Mac/TP
@@ -532,12 +612,17 @@ Sample0:
 Page bounds {{<*>}, {<*>}}
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Page bounds {{<*>}, {<*>}}`
-- Sample6: `Page bounds {{<*>, <*>}`
-- Sample7: `Page bounds {{<*>}, {<*>}}`
-- Sample8: `Page bounds {{<*>}, {<*>}}`
-- Sample9: `Page bounds {{<*>, <*>}, <*, *>}.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Page bounds {{<*>}, {<*>}}`
+- Sample1, strict PASS=True: `Page bounds {{<*>, <*>}, {<*>, <*>}}`
+- Sample2, strict PASS=False: `Page bounds {{<*>, <*>}, {*>, *>}}`
+- Sample3, strict PASS=True: `Page bounds {{<*>, <*>}, {<*>, <*>}}`
+- Sample4, strict PASS=False: `Page bounds {{<*>, <*>}, <*>}.`
+- Sample5, strict PASS=False: `Page bounds {{<*>}, {<*>}}`
+- Sample6, strict PASS=False: `Page bounds {{<*>, <*>}`
+- Sample7, strict PASS=False: `Page bounds {{<*>}, {<*>}}`
+- Sample8, strict PASS=False: `Page bounds {{<*>}, {<*>}}`
+- Sample9, strict PASS=False: `Page bounds {{<*>, <*>}, <*, *>}.`
 
 Nearest labeled references:
 - Index2, FAIL=True: `Arranged view frame: {{261, 0}, {450, 877}}`; GT=`Arranged view frame: {{<*>, <*>}, {<*>, <*>}}`
@@ -564,12 +649,17 @@ Sample0:
 In stop, writing event <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `In <*> writing event MAP_ATTEMPT_FAILED`
-- Sample6: `In stop, writing event <*>*`
-- Sample7: `In stop, writing <*> MAP_ATTEMPT_FAILED`
-- Sample8: `In stop, writing event MAP_ATTEMPT_FAILED`
-- Sample9: `In stop, writing event <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `In stop, writing event <*>`
+- Sample1, strict PASS=True: `In stop, writing event <*>`
+- Sample2, strict PASS=False: `In <*> stop, writing event <*>`
+- Sample3, strict PASS=True: `In stop, writing event <*>`
+- Sample4, strict PASS=False: `In <*> event MAP_ATTEMPT_FAILED`
+- Sample5, strict PASS=False: `In <*> writing event MAP_ATTEMPT_FAILED`
+- Sample6, strict PASS=False: `In stop, writing event <*>*`
+- Sample7, strict PASS=False: `In stop, writing <*> MAP_ATTEMPT_FAILED`
+- Sample8, strict PASS=False: `In stop, writing event MAP_ATTEMPT_FAILED`
+- Sample9, strict PASS=True: `In stop, writing event <*>`
 
 Nearest labeled references:
 - Index131, FAIL=False: `Merging 8 sorted segments`; GT=`Merging <*> sorted segments`
@@ -596,12 +686,17 @@ Sample0:
 Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
-- Sample6: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
-- Sample7: `Follower sid: 2 : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
-- Sample8: `Follower sid: 2 : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
-- Sample9: `Follower sid:  : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<>`
+- Sample1, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample2, strict PASS=False: `Follower sid: <*>, : <*>, : <*>, org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample3, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample4, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample5, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample6, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample7, strict PASS=False: `Follower sid: 2 : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample8, strict PASS=False: `Follower sid: 2 : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample9, strict PASS=False: `Follower sid:  : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@`
 
 Nearest labeled references:
 - Index218, FAIL=True: `Follower sid: 1 : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@274c150e`; GT=`Follower sid: <*> : info : <*>`
@@ -628,12 +723,17 @@ Sample0:
 Snapshotting: <*> to <*>/<*>.<*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Snapshotting: <*> to <*>.`
-- Sample6: `Snapshotting: <*> to <*>.`
-- Sample7: `Snapshotting: <*> to <*>`
-- Sample8: `Snapshotting: <*> to <*>.`
-- Sample9: `Snapshotting: <*> to <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Snapshotting: <*> to <*>/<*>.<*>.`
+- Sample1, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample2, strict PASS=False: `Snapshotting: <*> to <*>.`
+- Sample3, strict PASS=False: `Snapshotting: 0x<*> to <*>`
+- Sample4, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample5, strict PASS=False: `Snapshotting: <*> to <*>.`
+- Sample6, strict PASS=False: `Snapshotting: <*> to <*>.`
+- Sample7, strict PASS=True: `Snapshotting: <*> to <*>`
+- Sample8, strict PASS=False: `Snapshotting: <*> to <*>.`
+- Sample9, strict PASS=True: `Snapshotting: <*> to <*>`
 
 Nearest labeled references:
 - Index290, FAIL=True: `Snapshotting: 0xb00000084 to /var/lib/zookeeper/version-2/snapshot.b00000084`; GT=`Snapshotting: <*> to <*>`
@@ -660,12 +760,17 @@ Sample0:
 dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> dear <*> (5438708) iar <*> dear <*> (5438709) iar <*> dear <*> (5438710) iar <*> dear <*> (5438711) iar <*> dear <*> (5438712) iar <*> dear <*> (5438713) iar <*> dear <*> (5438714) iar <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*> , dear <*>`
-- Sample6: `dear <*> (<*>) KERNEL INFO Kernel detected <*> integer alignment exceptions (<*>) iar <*>`
-- Sample7: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*> , dear <*>`
-- Sample8: `dear <*> (<* RAS KERNEL INFO <*> integer alignment exceptions (<*>) iar <*>>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>>`
-- Sample9: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> dear <*> (5438708) iar <*> dear <*> (5438709) iar <*> dear <*> (5438710) iar <*> dear <*> (5438711) iar <*> dear <*> (5438712) iar <*> dear <*> (5438713) iar <*> dear <*> (5438714) iar <*>`
+- Sample1, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*>, dear <*> (5438708) iar <*>, dear <*> (5438709) iar <*>, dear <*> (5438710) iar <*>, dear <*> (5438711) iar <*>, dear <*> (5438712) iar <*>, dear <*> (5438713) iar <*>, dear <*> (5438714) iar <*>`
+- Sample2, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*> .`
+- Sample3, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*>`
+- Sample4, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected <*> integer alignment exceptions (<*>) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*> , dear <*>`
+- Sample5, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*> , dear <*>`
+- Sample6, strict PASS=False: `dear <*> (<*>) KERNEL INFO Kernel detected <*> integer alignment exceptions (<*>) iar <*>`
+- Sample7, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*> , dear <*>`
+- Sample8, strict PASS=False: `dear <*> (<* RAS KERNEL INFO <*> integer alignment exceptions (<*>) iar <*>>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>>, dear <*> (<*>) iar <*>>`
+- Sample9, strict PASS=False: `dear <*> (543 RAS KERNEL INFO Kernel detected 5438714 integer alignment exceptions (5438707) iar <*> , dear <*> (5438708) iar <*> , dear <*> (5438709) iar <*> , dear <*> (5438710) iar <*> , dear <*> (5438711) iar <*> , dear <*> (5438712) iar <*> , dear <*> (5438713) iar <*> , dear <*> (5438714) iar <*>`
 
 Nearest labeled references:
 - Index69, FAIL=True: `dear 0x01fc1e20 (421 RAS KERNEL INFO Kernel detected 4211600 integer alignment exceptions (4211593) iar 0x00544ea8, dear 0x01fc1e00 (4211594) iar 0x00544eb8, dear 0x01fc1e20 (4211595) iar 0x00544ea8, dear 0x01fc1e40 (4211596) iar 0x00544eb8, dear 0x01fc1e60 (4211597) iar 0x00544ee0, dear 0x01fc1e80 (4211598) iar 0x00544ef0, dear 0x01fc1ea0 (4211599) iar 0x00544ee0, dear 0x01fc1ec0 (4211600) iar 0x00544ef0, dear 0x01fc1ee0`; GT=`dear <*> (<*> RAS KERNEL INFO Kernel detected <*> integer alignment exceptions (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*> (<*>) iar <*>, dear <*>`
@@ -692,12 +797,17 @@ Sample0:
 Received connection request <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Received connection request <*>`
-- Sample6: `Received connection request <*>`
-- Sample7: `Received connection request <*>`
-- Sample8: `Received connection request <*>`
-- Sample9: `Received connection request <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Received connection request <*>`
+- Sample1, strict PASS=True: `Received connection request <*>`
+- Sample2, strict PASS=True: `Received connection request <*>`
+- Sample3, strict PASS=True: `Received connection request <*>`
+- Sample4, strict PASS=True: `Received connection request <*>`
+- Sample5, strict PASS=True: `Received connection request <*>`
+- Sample6, strict PASS=True: `Received connection request <*>`
+- Sample7, strict PASS=True: `Received connection request <*>`
+- Sample8, strict PASS=True: `Received connection request <*>`
+- Sample9, strict PASS=True: `Received connection request <*>`
 
 Nearest labeled references:
 - Index327, FAIL=False: `Received connection request /10.10.34.12:49455`; GT=`Received connection request <*>`
@@ -724,12 +834,17 @@ Sample0:
 Received connection request <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Received connection request /<*>/:<*>`
-- Sample6: `Received connection request <*>`
-- Sample7: `Received connection request <*>`
-- Sample8: `Received connection request <*>`
-- Sample9: `Received connection request <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Received connection request <*>`
+- Sample1, strict PASS=True: `Received connection request <*>`
+- Sample2, strict PASS=True: `Received connection request <*>`
+- Sample3, strict PASS=True: `Received connection request <*>`
+- Sample4, strict PASS=True: `Received connection request <*>`
+- Sample5, strict PASS=False: `Received connection request /<*>/:<*>`
+- Sample6, strict PASS=True: `Received connection request <*>`
+- Sample7, strict PASS=True: `Received connection request <*>`
+- Sample8, strict PASS=True: `Received connection request <*>`
+- Sample9, strict PASS=True: `Received connection request <*>`
 
 Nearest labeled references:
 - Index422, FAIL=False: `Received connection request /10.10.34.11:58842`; GT=`Received connection request <*>`
@@ -756,12 +871,17 @@ Sample0:
 jk2_init() Found child <*> in scoreboard slot 1
 ```
 
-Target-batch parsed outputs:
-- Sample5: `jk2_init() Found child <*> in scoreboard slot <*>`
-- Sample6: `jk2_init() Found child <*> in scoreboard slot <*>`
-- Sample7: `jk2_init() Found child <*> in scoreboard slot <*>`
-- Sample8: `jk2_init() Found child <*> in scoreboard slot <*>`
-- Sample9: `jk2_init() Found child <-> in scoreboard slot <->`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `jk2_init() Found child <*> in scoreboard slot 1`
+- Sample1, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample2, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample3, strict PASS=False: `jk2_init() Found child <*> in scoreboard <*> slot <*>`
+- Sample4, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample5, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample6, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample7, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample8, strict PASS=True: `jk2_init() Found child <*> in scoreboard slot <*>`
+- Sample9, strict PASS=False: `jk2_init() Found child <-> in scoreboard slot <->`
 
 Nearest labeled references:
 - Index129, FAIL=False: `jk2_init() Found child 3143 in scoreboard slot 4`; GT=`jk2_init() Found child <*> in scoreboard slot <*>`
@@ -788,12 +908,17 @@ Sample0:
 Missing parents: List(ShuffleMapStage <*> )
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Missing parents: List(<*>  <*>)`
-- Sample6: `Missing parents: List(<*>)`
-- Sample7: `Missing parents: List(<*>)`
-- Sample8: `Missing parents: List(<*>)`
-- Sample9: `Missing parents: List(<*>Stage <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Missing parents: List(ShuffleMapStage <*> )`
+- Sample1, strict PASS=False: `Missing parents: List(<*> <*>>)`
+- Sample2, strict PASS=False: `Missing parents: List(ShuffleMapStage <*>)`
+- Sample3, strict PASS=True: `Missing parents: List(<*>)`
+- Sample4, strict PASS=True: `Missing parents: List(<*>)`
+- Sample5, strict PASS=False: `Missing parents: List(<*>  <*>)`
+- Sample6, strict PASS=True: `Missing parents: List(<*>)`
+- Sample7, strict PASS=True: `Missing parents: List(<*>)`
+- Sample8, strict PASS=True: `Missing parents: List(<*>)`
+- Sample9, strict PASS=False: `Missing parents: List(<*>Stage <*>`
 
 Nearest labeled references:
 - Index168, FAIL=True: `Parents of final stage: List(ShuffleMapStage 98)`; GT=`Parents of final stage: List(ShuffleMapStage <*>)`
@@ -820,12 +945,17 @@ Sample0:
 Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
-- Sample6: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
-- Sample7: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
-- Sample8: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
-- Sample9: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample1, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample2, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample3, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample4, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample5, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample6, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample7, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample8, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
+- Sample9, strict PASS=True: `Removing executor <*> with no recent heartbeats: <*> ms exceeds timeout <*> ms`
 
 Nearest labeled references:
 - Index333, FAIL=False: `Lost executor 9 on mesos-slave-06: Executor heartbeat timed out after 154834 ms`; GT=`Lost executor <*> on <*>: Executor heartbeat timed out after <*> ms`
@@ -852,12 +982,17 @@ Sample0:
 agpgart: AGP aperture is <*> @ <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `agpgart: AGP aperture is <*> @ <*>`
-- Sample6: `agpgart: AGP aperture is <*> @ <*>`
-- Sample7: `agpgart: AGP aperture is <*> @ 0x<*>`
-- Sample8: `agpgart: AGP aperture is <*> @ <*>`
-- Sample9: `agpgart: AGP aperture is <*>M @ <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `agpgart: AGP aperture is <*> @ <*>`
+- Sample1, strict PASS=False: `agpgart: AGP aperture is 64M @ <*>`
+- Sample2, strict PASS=False: `agpgart: AGP aperture is <*>M @ <*>`
+- Sample3, strict PASS=False: `agpgart: AGP <*> is <*> @ <*>`
+- Sample4, strict PASS=True: `agpgart: AGP aperture is <*> @ <*>`
+- Sample5, strict PASS=True: `agpgart: AGP aperture is <*> @ <*>`
+- Sample6, strict PASS=True: `agpgart: AGP aperture is <*> @ <*>`
+- Sample7, strict PASS=False: `agpgart: AGP aperture is <*> @ 0x<*>`
+- Sample8, strict PASS=True: `agpgart: AGP aperture is <*> @ <*>`
+- Sample9, strict PASS=False: `agpgart: AGP aperture is <*>M @ <*>`
 
 Nearest labeled references:
 - Index333, FAIL=True: `PCI: Found IRQ 11 for device 0000:00:1f.2`; GT=`PCI: Found IRQ <*> for device <*>`
@@ -884,12 +1019,17 @@ Sample0:
 [client <*>] script not found or unable to stat: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[client <*>] script not found or unable to stat: <*>`
-- Sample6: `[client <*>] script not found or unable to stat: <*>`
-- Sample7: `[client <*>] script not found or unable to stat: /var/www/cgi-bin/awstats`
-- Sample8: `[client <*>] script not found or unable to stat: <*>`
-- Sample9: `[client <*>] script not found or unable to stat: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
+- Sample1, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
+- Sample2, strict PASS=False: `[client <*>] script not found or unable to stat: /var/www/cgi-bin/awstats`
+- Sample3, strict PASS=False: `[client <*>] script not found or unable to stat: /var/www/cgi-bin/awstats`
+- Sample4, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
+- Sample5, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
+- Sample6, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
+- Sample7, strict PASS=False: `[client <*>] script not found or unable to stat: /var/www/cgi-bin/awstats`
+- Sample8, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
+- Sample9, strict PASS=True: `[client <*>] script not found or unable to stat: <*>`
 
 Nearest labeled references:
 - Index204, FAIL=False: `[client 69.64.38.143] script not found or unable to stat: /var/www/cgi-bin/awstats`; GT=`[client <*>] script not found or unable to stat: <*>`
@@ -916,19 +1056,24 @@ Sample0:
 boot (<*>) Error: Console-Busy Port already in use
 ```
 
-Target-batch parsed outputs:
-- Sample5: `boot (<*>) Error: Console-Busy Port already in use`
-- Sample6: `boot (command <*>) Error: <*> Port already in use`
-- Sample7: `boot (<*)> Error: Console-Busy <*> already in use`
-- Sample8: `boot (command <*> ) Error: <*>-Busy Port already in use`
-- Sample9: `boot (<*>) Error: <*> Port already in use.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `boot (<*>) Error: Console-Busy Port already in use`
+- Sample1, strict PASS=False: `boot (<*> ) Error: Console-Busy Port already in use`
+- Sample2, strict PASS=False: `boot (command <*> ) Error: Console-Busy Port already in use`
+- Sample3, strict PASS=False: `boot (<*> ) Error: Console-Busy Port already in use`
+- Sample4, strict PASS=False: `boot (<*> command <*> ) Error: <*> Port already in use`
+- Sample5, strict PASS=False: `boot (<*>) Error: Console-Busy Port already in use`
+- Sample6, strict PASS=False: `boot (command <*>) Error: <*> Port already in use`
+- Sample7, strict PASS=False: `boot (<*)> Error: Console-Busy <*> already in use`
+- Sample8, strict PASS=False: `boot (command <*> ) Error: <*>-Busy Port already in use`
+- Sample9, strict PASS=False: `boot (<*>) Error: <*> Port already in use.`
 
 Nearest labeled references:
 - Index432, FAIL=True: `boot (command 2341) Error: node went to SRM while trying to boot`; GT=`boot (command <*>) Error: node went to SRM while trying to boot`
 - Index35, FAIL=True: `boot (command 2836) Error: node went to SRM while trying to boot`; GT=`boot (command <*>) Error: node went to SRM while trying to boot`
 - Index23, FAIL=True: `boot (command 2142) Error: node went to SRM while trying to boot`; GT=`boot (command <*>) Error: node went to SRM while trying to boot`
 
-All ten fail command-word or Error-phrase boundaries, yet this unseen line has bottom-ranked risk and a failing boot neighbor. Strong counterexample to insufficient familiarity alone; compare C051's same-GT stochastic success.
+All ten fail through command-word, spacing or Error-phrase boundaries, yet this unseen line has bottom-ranked risk and a failing boot neighbor. Strong counterexample to insufficient familiarity alone; compare C051's same-GT stochastic success.
 
 
 ## C030: llama/disjoint/HPC/FN
@@ -948,12 +1093,17 @@ Sample0:
 ServerFileSystem: ServerFileSystem <*> storage <*> is full
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Server<*>: Server<*> domain <*> is full`
-- Sample6: `ServerFileSystem: ServerFileSystem <*> is full`
-- Sample7: `ServerFileSystem: ServerFileSystem <*> is full`
-- Sample8: `ServerFileSystem: ServerFileSystem <*> is full.`
-- Sample9: `ServerFileSystem: ServerFileSystem <*> is full`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> storage <*> is full`
+- Sample1, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full`
+- Sample2, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full`
+- Sample3, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full`
+- Sample4, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> storage <*> is full`
+- Sample5, strict PASS=False: `Server<*>: Server<*> domain <*> is full`
+- Sample6, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full`
+- Sample7, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full`
+- Sample8, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full.`
+- Sample9, strict PASS=False: `ServerFileSystem: ServerFileSystem <*> is full`
 
 Nearest labeled references:
 - Index409, FAIL=False: `ServerFileSystem: An ServerFileSystem domain panic has occurred on storage442`; GT=`ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>`
@@ -980,12 +1130,17 @@ Sample0:
 Unknown username "<*>" in message bus configuration file
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Unknown username <*> in message bus configuration file`
-- Sample6: `Unknown username <*> in message bus configuration file`
-- Sample7: `Unknown username "<*>" in message bus configuration file`
-- Sample8: `Unknown username "<*>" in message bus configuration file`
-- Sample9: `Unknown username "<*" in <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Unknown username "<*>" in message bus configuration file`
+- Sample1, strict PASS=True: `Unknown username <*> in message bus configuration file`
+- Sample2, strict PASS=True: `Unknown username <*> in message bus configuration file`
+- Sample3, strict PASS=True: `Unknown username <*> in message bus configuration file`
+- Sample4, strict PASS=False: `Unknown username "<*>" in message bus configuration file`
+- Sample5, strict PASS=True: `Unknown username <*> in message bus configuration file`
+- Sample6, strict PASS=True: `Unknown username <*> in message bus configuration file`
+- Sample7, strict PASS=False: `Unknown username "<*>" in message bus configuration file`
+- Sample8, strict PASS=False: `Unknown username "<*>" in message bus configuration file`
+- Sample9, strict PASS=False: `Unknown username "<*" in <*>`
 
 Nearest labeled references:
 - Index189, FAIL=True: `task migration cache decay timeout: 1 msecs.`; GT=`task migration cache decay timeout: <*> msecs.`
@@ -1012,12 +1167,17 @@ Sample0:
 Successfully started service '<*>' on port <*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port <*>.`
-- Sample6: `Successfully started service '<*>' on port<*>.`
-- Sample7: `Successfully started service '<*>' on port <*>.`
-- Sample8: `Successfully started service '<*>' on port <*>.`
-- Sample9: `Successfully started service '<*> on port <*>'.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Successfully started service '<*>' on port <*>.`
+- Sample1, strict PASS=False: `Successfully started service '<*>' on port <*>.`
+- Sample2, strict PASS=False: `Successfully started service '<*>' on port '<*>'.`
+- Sample3, strict PASS=False: `Successfully started service '<*>' on port <*>.`
+- Sample4, strict PASS=False: `Successfully started service '<*>' on port <*>.`
+- Sample5, strict PASS=False: `Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port <*>.`
+- Sample6, strict PASS=False: `Successfully started service '<*>' on port<*>.`
+- Sample7, strict PASS=False: `Successfully started service '<*>' on port <*>.`
+- Sample8, strict PASS=False: `Successfully started service '<*>' on port <*>.`
+- Sample9, strict PASS=False: `Successfully started service '<*> on port <*>'.`
 
 Nearest labeled references:
 - Index467, FAIL=True: `Stopped Spark web UI at http://10.10.34.24:42843`; GT=`Stopped Spark web UI at <*>`
@@ -1044,12 +1204,17 @@ Sample0:
 PacketResponder <*>, 2 Exception <*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `PacketResponder <*> 2 Exception java.io.EOFException`
-- Sample6: `PacketResponder <*> 2 Exception java.io.<*>Exception`
-- Sample7: `PacketResponder <*> 2 Exception <*>`
-- Sample8: `PacketResponder <*> 2 Exception java.io.EOFException`
-- Sample9: `PacketResponder <*> 2 Exception <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `PacketResponder <*>, 2 Exception <*>.`
+- Sample1, strict PASS=False: `PacketResponder <*> 2 Exception <*>`
+- Sample2, strict PASS=False: `PacketResponder <*> 2 Exception java.io.EOFException`
+- Sample3, strict PASS=False: `PacketResponder blk_<*> Exception java.io.<*>`
+- Sample4, strict PASS=False: `PacketResponder <*> 2 Exception java.io.EOFException.`
+- Sample5, strict PASS=False: `PacketResponder <*> 2 Exception java.io.EOFException`
+- Sample6, strict PASS=False: `PacketResponder <*> 2 Exception java.io.<*>Exception`
+- Sample7, strict PASS=False: `PacketResponder <*> 2 Exception <*>`
+- Sample8, strict PASS=False: `PacketResponder <*> 2 Exception java.io.EOFException`
+- Sample9, strict PASS=False: `PacketResponder <*> 2 Exception <*>`
 
 Nearest labeled references:
 - Index485, FAIL=True: `Exception in receiveBlock for block blk_377785190538046925 java.io.EOFException`; GT=`Exception in receiveBlock for block <*> java.io.EOFException`
@@ -1076,12 +1241,17 @@ Sample0:
 Task<*>Handler thread <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Task<*>Handler <*>`
-- Sample6: `Task<*> Handler <*>`
-- Sample7: `Task<*>Handler thread interrupted`
-- Sample8: `Task<*>Handler thread <*>.`
-- Sample9: `Task<*>Handler thread interrupted`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Task<*>Handler thread <*>`
+- Sample1, strict PASS=False: `Task<*>Handler thread interrupted`
+- Sample2, strict PASS=False: `Task<*>Handler thread <*>`
+- Sample3, strict PASS=False: `Task<* *> interrupted`
+- Sample4, strict PASS=False: `Task<*>Handler thread interrupted`
+- Sample5, strict PASS=False: `Task<*>Handler <*>`
+- Sample6, strict PASS=False: `Task<*> Handler <*>`
+- Sample7, strict PASS=False: `Task<*>Handler thread interrupted`
+- Sample8, strict PASS=False: `Task<*>Handler thread <*>.`
+- Sample9, strict PASS=False: `Task<*>Handler thread interrupted`
 
 Nearest labeled references:
 - Index399, FAIL=True: `Process Thread Dump: Communication exception`; GT=`Process Thread Dump: Communication exception`
@@ -1108,12 +1278,17 @@ Sample0:
 Successfully connected to <*> for BP- <*>- <*>:blk_ <*>_<>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Successfully connected to <*> for <*>:blk_<*>`
-- Sample6: `Successfully connected to <*> for <*>:blk_<>_<>`
-- Sample7: `Successfully connected to <*> for <*>:blk_<>_<>`
-- Sample8: `Successfully connected to <*>:50010 for <*>-<*>:*blk_*_*`
-- Sample9: `Successfully connected to <*> for BP-<*>:<*>:blk_<*>_<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Successfully connected to <*> for BP- <*>- <*>:blk_ <*>_<>`
+- Sample1, strict PASS=False: `Successfully connected to <*> for <*>: <*>: <*>`
+- Sample2, strict PASS=False: `Successfully connected to <*> for <*>: <*>:blk_<*>_<>`
+- Sample3, strict PASS=False: `Successfully connected to <*> for <*>: <*>`
+- Sample4, strict PASS=False: `Successfully connected to <*> for <*>:blk_<*>_<*>`
+- Sample5, strict PASS=False: `Successfully connected to <*> for <*>:blk_<*>`
+- Sample6, strict PASS=False: `Successfully connected to <*> for <*>:blk_<>_<>`
+- Sample7, strict PASS=False: `Successfully connected to <*> for <*>:blk_<>_<>`
+- Sample8, strict PASS=False: `Successfully connected to <*>:50010 for <*>-<*>:*blk_*_*`
+- Sample9, strict PASS=False: `Successfully connected to <*> for BP-<*>:<*>:blk_<*>_<*>`
 
 Nearest labeled references:
 - Index350, FAIL=True: `TaskAttempt killed because it ran on unusable node 04DN8IQ.fareast.corp.microsoft.com:55452. AttemptId:attempt_1445087491445_0001_m_000011_0`; GT=`TaskAttempt killed because it ran on unusable node <*>. AttemptId:<*>`
@@ -1140,12 +1315,17 @@ Sample0:
 Stopping syslog-ng: <>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Stopping syslog-ng:`
-- Sample6: `Stopping syslog-ng:`
-- Sample7: `Stopping syslog-ng: req_8812_03.`
-- Sample8: `Stopping syslog-ng:`
-- Sample9: `Stopping syslog-ng: <*>.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Stopping syslog-ng: <>`
+- Sample1, strict PASS=True: `Stopping syslog-ng:`
+- Sample2, strict PASS=True: `Stopping syslog-ng:`
+- Sample3, strict PASS=True: `Stopping syslog-ng:`
+- Sample4, strict PASS=True: `Stopping syslog-ng:`
+- Sample5, strict PASS=True: `Stopping syslog-ng:`
+- Sample6, strict PASS=True: `Stopping syslog-ng:`
+- Sample7, strict PASS=False: `Stopping syslog-ng: req_8812_03.`
+- Sample8, strict PASS=True: `Stopping syslog-ng:`
+- Sample9, strict PASS=False: `Stopping syslog-ng: <*>.`
 
 Nearest labeled references:
 - Index142, FAIL=True: `ACPI wakeup devices:`; GT=`ACPI wakeup devices:`
@@ -1172,19 +1352,24 @@ Sample0:
 program
 ```
 
-Target-batch parsed outputs:
-- Sample5: `program`
-- Sample6: `program`
-- Sample7: `program`
-- Sample8: `program`
-- Sample9: `program`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `program`
+- Sample1, strict PASS=False: `<*>`
+- Sample2, strict PASS=True: `program`
+- Sample3, strict PASS=True: `program`
+- Sample4, strict PASS=True: `program`
+- Sample5, strict PASS=True: `program`
+- Sample6, strict PASS=True: `program`
+- Sample7, strict PASS=True: `program`
+- Sample8, strict PASS=True: `program`
+- Sample9, strict PASS=True: `program`
 
 Nearest labeled references:
 - Index149, FAIL=False: `Microloader Assertion`; GT=`Microloader Assertion`
 - Index138, FAIL=False: `kernel panic`; GT=`kernel panic`
 - Index89, FAIL=False: `shutdown complete`; GT=`shutdown complete`
 
-One-word program is copied correctly in all ten despite extremely high risk. Successful nearest short assertion refutes a universal low-familiarity-implies-parser-failure account; compare C043.
+One-word program is copied correctly in9/10 generations, including all five target outputs, despite extremely high risk. Successful nearest short assertion refutes a universal low-familiarity-implies-parser-failure account; compare C043.
 
 
 ## C038: llama/disjoint/OpenStack/FP
@@ -1204,12 +1389,17 @@ Sample0:
 [instance: <*>] VM Resumed (Lifecycle Event)
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[instance: <*>] VM Resumed (Lifecycle Event)`
-- Sample6: `[instance: <*>] VM Resumed (Lifecycle Event)`
-- Sample7: `[instance: <*>] VM Resumed (Lifecycle Event)`
-- Sample8: `[instance: <*>] <*> Resumed (Lifecycle Event)`
-- Sample9: `[instance: <*>] VM Resumed (Lifecycle Event)`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample1, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample2, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample3, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample4, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample5, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample6, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample7, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
+- Sample8, strict PASS=False: `[instance: <*>] <*> Resumed (Lifecycle Event)`
+- Sample9, strict PASS=True: `[instance: <*>] VM Resumed (Lifecycle Event)`
 
 Nearest labeled references:
 - Index12, FAIL=False: `[instance: dd06a15b-3d81-47b9-9ec1-273fd3e4dce2] VM Paused (Lifecycle Event)`; GT=`[instance: <*>] VM Paused (Lifecycle Event)`
@@ -1236,12 +1426,17 @@ Sample0:
 PCI: Invalid <*>-<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `PCI: Invalid ACPI-PCI IRQ routing table`
-- Sample6: `PCI: Invalid <*>-PCI <*> routing table`
-- Sample7: `PCI: Invalid ACPI-<*> IRQ routing table`
-- Sample8: `PCI: Invalid ACPI-PCI IRQ routing table`
-- Sample9: `PCI: Invalid ACPI-PCI IRQ routing table`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `PCI: Invalid <*>-<*>`
+- Sample1, strict PASS=False: `PCI: Invalid <*>-PCI <*> routing table`
+- Sample2, strict PASS=True: `PCI: Invalid ACPI-PCI IRQ routing table`
+- Sample3, strict PASS=True: `PCI: Invalid ACPI-PCI IRQ routing table`
+- Sample4, strict PASS=False: `PCI: Invalid <*>-PCI IRQ <*>routing table`
+- Sample5, strict PASS=True: `PCI: Invalid ACPI-PCI IRQ routing table`
+- Sample6, strict PASS=False: `PCI: Invalid <*>-PCI <*> routing table`
+- Sample7, strict PASS=False: `PCI: Invalid ACPI-<*> IRQ routing table`
+- Sample8, strict PASS=True: `PCI: Invalid ACPI-PCI IRQ routing table`
+- Sample9, strict PASS=True: `PCI: Invalid ACPI-PCI IRQ routing table`
 
 Nearest labeled references:
 - Index81, FAIL=True: `isapnp: No Plug & Play device found`; GT=`isapnp: No Plug & Play device found`
@@ -1268,12 +1463,17 @@ Sample0:
 Disabling executor <*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Disabling executor <*>.`
-- Sample6: `Disabling executor <*>.`
-- Sample7: `Disabling executor <*>.`
-- Sample8: `Disabling executor <*>.`
-- Sample9: `Disabling executor <*>.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Disabling executor <*>.`
+- Sample1, strict PASS=True: `Disabling executor <*>.`
+- Sample2, strict PASS=True: `Disabling executor <*>.`
+- Sample3, strict PASS=True: `Disabling executor <*>.`
+- Sample4, strict PASS=True: `Disabling executor <*>.`
+- Sample5, strict PASS=True: `Disabling executor <*>.`
+- Sample6, strict PASS=True: `Disabling executor <*>.`
+- Sample7, strict PASS=True: `Disabling executor <*>.`
+- Sample8, strict PASS=True: `Disabling executor <*>.`
+- Sample9, strict PASS=True: `Disabling executor <*>.`
 
 Nearest labeled references:
 - Index253, FAIL=False: `Got assigned task 151786`; GT=`Got assigned task <*>`
@@ -1300,12 +1500,17 @@ Sample0:
 Remoting shut down.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Remoting shut down.`
-- Sample6: `Remoting shut down.`
-- Sample7: `Remoting shut down.`
-- Sample8: `Remoting shut down.`
-- Sample9: `Remoting shut down.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Remoting shut down.`
+- Sample1, strict PASS=True: `Remoting shut down.`
+- Sample2, strict PASS=True: `Remoting shut down.`
+- Sample3, strict PASS=True: `Remoting shut down.`
+- Sample4, strict PASS=True: `Remoting shut down.`
+- Sample5, strict PASS=True: `Remoting shut down.`
+- Sample6, strict PASS=True: `Remoting shut down.`
+- Sample7, strict PASS=True: `Remoting shut down.`
+- Sample8, strict PASS=True: `Remoting shut down.`
+- Sample9, strict PASS=True: `Remoting shut down.`
 
 Nearest labeled references:
 - Index42, FAIL=True: `Stage 3 was cancelled`; GT=`Stage <*> was cancelled`
@@ -1332,12 +1537,17 @@ Sample0:
 Deleting block <*> file <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Deleting block <*> file /mnt/hadoop/dfs/data/current/subdir46/<*>`
-- Sample6: `Deleting block <*> file <*>`
-- Sample7: `Deleting block <*> file <*>`
-- Sample8: `Deleting block <*> file /mnt/hadoop/dfs/data/current/subdir46/<*>`
-- Sample9: `Deleting block <*> file <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Deleting block <*> file <*>`
+- Sample1, strict PASS=True: `Deleting block <*> file <*>`
+- Sample2, strict PASS=False: `Deleting block <*>, file <*>.`
+- Sample3, strict PASS=True: `Deleting block <*> file <*>`
+- Sample4, strict PASS=True: `Deleting block <*> file <*>`
+- Sample5, strict PASS=False: `Deleting block <*> file /mnt/hadoop/dfs/data/current/subdir46/<*>`
+- Sample6, strict PASS=True: `Deleting block <*> file <*>`
+- Sample7, strict PASS=True: `Deleting block <*> file <*>`
+- Sample8, strict PASS=False: `Deleting block <*> file /mnt/hadoop/dfs/data/current/subdir46/<*>`
+- Sample9, strict PASS=True: `Deleting block <*> file <*>`
 
 Nearest labeled references:
 - Index466, FAIL=True: `10.251.30.6:50010:Transmitted block blk_-4262646822082772935 to /10.251.194.245:50010`; GT=`<*>:Transmitted block <*> to <*>`
@@ -1364,12 +1574,17 @@ Sample0:
 Mem-info:<*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `None`
-- Sample6: `None`
-- Sample7: `None`
-- Sample8: `None`
-- Sample9: `Mem-info: from <IPaddress>:<port>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Mem-info:<*>.`
+- Sample1, strict PASS=False: `None`
+- Sample2, strict PASS=False: `None`
+- Sample3, strict PASS=False: `Mem-info: <*>`
+- Sample4, strict PASS=False: `None`
+- Sample5, strict PASS=False: `None`
+- Sample6, strict PASS=False: `None`
+- Sample7, strict PASS=False: `None`
+- Sample8, strict PASS=False: `None`
+- Sample9, strict PASS=False: `Mem-info: from <IPaddress>:<port>`
 
 Nearest labeled references:
 - Index142, FAIL=True: `ACPI wakeup devices:`; GT=`ACPI wakeup devices:`
@@ -1396,12 +1611,17 @@ Sample0:
 Stopping squid: <*> is going down after <*> is terminated.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Stopping <*>:.`
-- Sample6: `None`
-- Sample7: `Jul 18 05:08:10  <*> squid[<*>]: squid[<*>] process received <*> signal.`
-- Sample8: `Stopping squid`
-- Sample9: `Stopping squid: <*> has crashed on <*> with error: <*> failed to connect to <*> on '*' in <*>s: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Stopping squid: <*> is going down after <*> is terminated.`
+- Sample1, strict PASS=False: `Stopping <*>.`
+- Sample2, strict PASS=False: `None`
+- Sample3, strict PASS=False: `Stopping <*>:.`
+- Sample4, strict PASS=False: `None`
+- Sample5, strict PASS=False: `Stopping <*>:.`
+- Sample6, strict PASS=False: `None`
+- Sample7, strict PASS=False: `Jul 18 05:08:10  <*> squid[<*>]: squid[<*>] process received <*> signal.`
+- Sample8, strict PASS=False: `Stopping squid`
+- Sample9, strict PASS=False: `Stopping squid: <*> has crashed on <*> with error: <*> failed to connect to <*> on '*' in <*>s: <*>`
 
 Nearest labeled references:
 - Index35, FAIL=True: `Starting background readahead:`; GT=`Starting background readahead:`
@@ -1428,12 +1648,17 @@ Sample0:
 pam_unix(sshd:auth): authentication failure; logname= <*> uid=<> euid=<> tty=ssh ruser= rhost=<*> user=<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `pam_unix(<*>:auth): authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>`
-- Sample6: `pam_unix(sshd:auth): authentication failure; logname=<*> uid=<> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>`
-- Sample7: `pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*> user=<*>`
-- Sample8: `pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=<*> user=<*>`
-- Sample9: `pam_unix(sshd:auth): authentication failure; logname= <*>  uid=<> euid=<> tty=<> ruser= <*> rhost=<*> user=<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= <*> uid=<> euid=<> tty=ssh ruser= rhost=<*> user=<*>`
+- Sample1, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= <*> uid=<> euid=<> tty=ssh ruser= rhost=<*> user=<*>`
+- Sample2, strict PASS=False: `pam_unix(sshd:<*>): authentication failure; logname= uid=<*> euid=<*> tty=<*> ruser= rhost=<191.201.195.56> user=<*>`
+- Sample3, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*> user=<*>`
+- Sample4, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= <*> uid=<*> euid=<*> tty=ssh ruser= rhost=<*> user=<*>`
+- Sample5, strict PASS=False: `pam_unix(<*>:auth): authentication failure; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>`
+- Sample6, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname=<*> uid=<> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>`
+- Sample7, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*> user=<*>`
+- Sample8, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=<*> user=<*>`
+- Sample9, strict PASS=False: `pam_unix(sshd:auth): authentication failure; logname= <*>  uid=<> euid=<> tty=<> ruser= <*> rhost=<*> user=<*>`
 
 Nearest labeled references:
 - Index165, FAIL=True: `PAM 4 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.151.237.154 user=root`; GT=`PAM <*> more authentication failures; logname=<*> uid=<*> euid=<*> tty=<*> ruser=<*> rhost=<*> user=<*>`
@@ -1460,12 +1685,17 @@ Sample0:
 VFS: Mounted root (<*>).
 ```
 
-Target-batch parsed outputs:
-- Sample5: `VFS: Mounted <*> ( <*> filesystem).`
-- Sample6: `VFS: Mounted <*> ( <*> filesystem).`
-- Sample7: `VFS: Mounted <*> (<*> filesystem).`
-- Sample8: `VFS: Mounted root (ext2 filesystem).`
-- Sample9: `VFS: Mounted <*> ( <*> filesystem).`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `VFS: Mounted root (<*>).`
+- Sample1, strict PASS=False: `VFS: Mounted root (<*> filesystem).`
+- Sample2, strict PASS=False: `VFS: Mounted root (<*> filesystem).`
+- Sample3, strict PASS=False: `VFS: Mounted <* filesystem *> (<* filesystem *> filesystem).`
+- Sample4, strict PASS=False: `VFS: Mounted <*> ( <*> filesystem ).`
+- Sample5, strict PASS=False: `VFS: Mounted <*> ( <*> filesystem).`
+- Sample6, strict PASS=False: `VFS: Mounted <*> ( <*> filesystem).`
+- Sample7, strict PASS=False: `VFS: Mounted <*> (<*> filesystem).`
+- Sample8, strict PASS=True: `VFS: Mounted root (ext2 filesystem).`
+- Sample9, strict PASS=False: `VFS: Mounted <*> ( <*> filesystem).`
 
 Nearest labeled references:
 - Index235, FAIL=True: `EXT3-fs: mounted filesystem with ordered data mode.`; GT=`EXT3-fs: mounted filesystem with ordered data mode.`
@@ -1492,12 +1722,17 @@ Sample0:
 Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*>* bytes result sent to driver`
-- Sample6: `Finished task <*> in stage <*>. (TID <*>). <*> bytes result sent to driver`
-- Sample7: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*>* bytes result sent to driver`
-- Sample8: `Finished task <*> in stage <*>. (TID <*>). <*> bytes result sent to driver`
-- Sample9: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*> bytes result sent to driver`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to <*>`
+- Sample1, strict PASS=False: `Finished <*> in <*> (TID <*>). <*> bytes <*> to <*>`
+- Sample2, strict PASS=True: `Finished task <*> in stage <*> (TID <*>). <*> bytes result sent to driver`
+- Sample3, strict PASS=False: `Finished task <*> in stage <*>. (TID <*>). <*> bytes result sent to driver`
+- Sample4, strict PASS=False: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*> bytes result sent to driver`
+- Sample5, strict PASS=False: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*>* bytes result sent to driver`
+- Sample6, strict PASS=False: `Finished task <*> in stage <*>. (TID <*>). <*> bytes result sent to driver`
+- Sample7, strict PASS=False: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*>* bytes result sent to driver`
+- Sample8, strict PASS=False: `Finished task <*> in stage <*>. (TID <*>). <*> bytes result sent to driver`
+- Sample9, strict PASS=False: `Finished task <*>.0 in stage <*>.0 (TID <*>). <*> bytes result sent to driver`
 
 Nearest labeled references:
 - Index258, FAIL=True: `Lost task 1.0 in stage 3.0 (TID 9, mesos-master-2): java.lang.OutOfMemoryError: Requested array size exceeds VM limit`; GT=`Lost task <*> in stage <*> (TID <*>, <*>): java.lang.OutOfMemoryError: Requested array size exceeds VM limit`
@@ -1524,12 +1759,17 @@ Sample0:
 Home page is http://<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Home page is http://#/`
-- Sample6: `Home page is http://<*>/`
-- Sample7: `Home page is <*>`
-- Sample8: `Home page is <*/*>.`
-- Sample9: `Home page is http://#/`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Home page is http://<*>`
+- Sample1, strict PASS=False: `Home page is <*>.`
+- Sample2, strict PASS=False: `Home page is http://<*>`
+- Sample3, strict PASS=False: `Home page is <*>.`
+- Sample4, strict PASS=False: `Home page is http://<*>/`
+- Sample5, strict PASS=False: `Home page is http://#/`
+- Sample6, strict PASS=False: `Home page is http://<*>/`
+- Sample7, strict PASS=True: `Home page is <*>`
+- Sample8, strict PASS=False: `Home page is <*/*>.`
+- Sample9, strict PASS=False: `Home page is http://#/`
 
 Nearest labeled references:
 - Index277, FAIL=True: `Sending warning via mail to #7#@localhost.localdomain ...`; GT=`Sending warning via mail to <*> ...`
@@ -1556,12 +1796,17 @@ Sample0:
 New election. My <*> = <*>, proposed zxid=<*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `New election. My id = <*>, proposed zxid=<*>`
-- Sample6: `New election. My id = <*>, proposed zxid=<*>.`
-- Sample7: `New election. My id = <*>, proposed zxid=0x<*>.`
-- Sample8: `New election. My <*> =<*> , proposed <*>=<*>`
-- Sample9: `New election. My <*> = 2, proposed zxid=<*>.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `New election. My <*> = <*>, proposed zxid=<*>.`
+- Sample1, strict PASS=False: `New election. My id = <*>, proposed zxid=<*>`
+- Sample2, strict PASS=False: `New election. My <*> = <*>, proposed zxid=<*>`
+- Sample3, strict PASS=False: `New election. My <*> = 2, proposed zxid=0x<*>`
+- Sample4, strict PASS=False: `New election. My <*> = <2>, proposed zxid=<*>`
+- Sample5, strict PASS=False: `New election. My id = <*>, proposed zxid=<*>`
+- Sample6, strict PASS=False: `New election. My id = <*>, proposed zxid=<*>.`
+- Sample7, strict PASS=False: `New election. My id = <*>, proposed zxid=0x<*>.`
+- Sample8, strict PASS=False: `New election. My <*> =<*> , proposed <*>=<*>`
+- Sample9, strict PASS=False: `New election. My <*> = 2, proposed zxid=<*>.`
 
 Nearest labeled references:
 - Index151, FAIL=True: `Expiring session 0x34ed9ac1c1e00bb, timeout of 10000ms exceeded`; GT=`Expiring session <*> timeout of <*> exceeded`
@@ -1588,12 +1833,17 @@ Sample0:
 Command has been aborted
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Command has been aborted`
-- Sample6: `Command has been aborted`
-- Sample7: `Command has been aborted`
-- Sample8: `Command has been aborted.`
-- Sample9: `Command has been aborted`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Command has been aborted`
+- Sample1, strict PASS=False: `Command has been aborted.`
+- Sample2, strict PASS=True: `Command has been aborted`
+- Sample3, strict PASS=True: `Command has been aborted`
+- Sample4, strict PASS=True: `Command has been aborted`
+- Sample5, strict PASS=True: `Command has been aborted`
+- Sample6, strict PASS=True: `Command has been aborted`
+- Sample7, strict PASS=True: `Command has been aborted`
+- Sample8, strict PASS=False: `Command has been aborted.`
+- Sample9, strict PASS=True: `Command has been aborted`
 
 Nearest labeled references:
 - Index28, FAIL=False: `Command has completed successfully`; GT=`Command has completed successfully`
@@ -1620,12 +1870,17 @@ Sample0:
 boot (<*> command <*> ) Error: <*>-<> Port already in use
 ```
 
-Target-batch parsed outputs:
-- Sample5: `boot (command <*>) Error: Console-Busy Port already in use`
-- Sample6: `boot (command <*> ) Error: Console-Busy Port already in use`
-- Sample7: `boot (command <*>) Error: Console-Busy Port already in use`
-- Sample8: `boot (<*> ) Error: <*> Port already in use`
-- Sample9: `boot (command <*>) Error: Console-Busy Port already in use`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `boot (<*> command <*> ) Error: <*>-<> Port already in use`
+- Sample1, strict PASS=False: `boot (command <*> ) Error: Console-Busy Port already in use`
+- Sample2, strict PASS=False: `boot (<*> ) Error: Console-Busy Port already in use`
+- Sample3, strict PASS=False: `boot (command <*> ) Error: <*>- <*> Port already in use`
+- Sample4, strict PASS=False: `boot (command <*> ) Error: <*>-Busy Port already in use`
+- Sample5, strict PASS=True: `boot (command <*>) Error: Console-Busy Port already in use`
+- Sample6, strict PASS=False: `boot (command <*> ) Error: Console-Busy Port already in use`
+- Sample7, strict PASS=True: `boot (command <*>) Error: Console-Busy Port already in use`
+- Sample8, strict PASS=False: `boot (<*> ) Error: <*> Port already in use`
+- Sample9, strict PASS=True: `boot (command <*>) Error: Console-Busy Port already in use`
 
 Nearest labeled references:
 - Index35, FAIL=True: `boot (command 2836) Error: node went to SRM while trying to boot`; GT=`boot (command <*>) Error: node went to SRM while trying to boot`
@@ -1652,12 +1907,17 @@ Sample0:
 Revalidating client: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Revalidating client: <*>`
-- Sample6: `Revalidating client: <*>`
-- Sample7: `Revalidating client: <*>`
-- Sample8: `Revalidating client: <*>`
-- Sample9: `Revalidating client: <*>.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Revalidating client: <*>`
+- Sample1, strict PASS=True: `Revalidating client: <*>`
+- Sample2, strict PASS=False: `Revalidating client: <*>.`
+- Sample3, strict PASS=True: `Revalidating client: <*>`
+- Sample4, strict PASS=True: `Revalidating client: <*>`
+- Sample5, strict PASS=True: `Revalidating client: <*>`
+- Sample6, strict PASS=True: `Revalidating client: <*>`
+- Sample7, strict PASS=True: `Revalidating client: <*>`
+- Sample8, strict PASS=True: `Revalidating client: <*>`
+- Sample9, strict PASS=False: `Revalidating client: <*>.`
 
 Nearest labeled references:
 - Index237, FAIL=True: `Got zxid 0xc00000001 expected 0xb00000085`; GT=`Got zxid <*> expected <*>`
@@ -1684,12 +1944,17 @@ Sample0:
 mapreduce.task.io.sort.mb: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `mapreduce.task.io.sort.mb: <*>`
-- Sample6: `mapreduce.task.io.sort.mb: <*>`
-- Sample7: `mapreduce.task.io.sort.mb: <*>`
-- Sample8: `mapreduce.task.io.sort.mb: <*>`
-- Sample9: `mapreduce.task.io.sort.mb: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample1, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample2, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample3, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample4, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample5, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample6, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample7, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample8, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
+- Sample9, strict PASS=True: `mapreduce.task.io.sort.mb: <*>`
 
 Nearest labeled references:
 - Index62, FAIL=True: `Using ShuffleConsumerPlugin: org.apache.hadoop.mapreduce.task.reduce.Shuffle@1fcaf332`; GT=`Using ShuffleConsumerPlugin: <*>`
@@ -1716,12 +1981,17 @@ Sample0:
 BuildActDeviceEntry enter
 ```
 
-Target-batch parsed outputs:
-- Sample5: `BuildActDeviceEntry enter`
-- Sample6: `BuildAct<*>`
-- Sample7: `BuildAct<*>`
-- Sample8: `BuildActDeviceEntry enter`
-- Sample9: `BuildActDeviceEntry enter`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `BuildActDeviceEntry enter`
+- Sample1, strict PASS=False: `BuildActDevice<*>.`
+- Sample2, strict PASS=True: `BuildActDeviceEntry enter`
+- Sample3, strict PASS=False: `BuildActDevice<*> enter`
+- Sample4, strict PASS=True: `BuildActDeviceEntry enter`
+- Sample5, strict PASS=True: `BuildActDeviceEntry enter`
+- Sample6, strict PASS=False: `BuildAct<*>`
+- Sample7, strict PASS=False: `BuildAct<*>`
+- Sample8, strict PASS=True: `BuildActDeviceEntry enter`
+- Sample9, strict PASS=True: `BuildActDeviceEntry enter`
 
 Nearest labeled references:
 - Index459, FAIL=False: `BuildActDeviceEntry exit`; GT=`BuildActDeviceEntry exit`
@@ -1748,12 +2018,17 @@ Sample0:
 Started <*> remote fetches in <*> ms
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Started <*> remote fetches in <*> ms`
-- Sample6: `Started <*> remote fetches in <*> ms`
-- Sample7: `Started <*> remote fetches in <*> ms`
-- Sample8: `Started <*> remote <*> in <*> ms`
-- Sample9: `Started <*> remote fetches in <*> ms`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample1, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample2, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample3, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample4, strict PASS=False: `Started <*> remote <*> in <*> ms`
+- Sample5, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample6, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample7, strict PASS=True: `Started <*> remote fetches in <*> ms`
+- Sample8, strict PASS=False: `Started <*> remote <*> in <*> ms`
+- Sample9, strict PASS=True: `Started <*> remote fetches in <*> ms`
 
 Nearest labeled references:
 - Index188, FAIL=True: `MemoryStore started with capacity 17.7 GB`; GT=`MemoryStore started with capacity <*>`
@@ -1780,12 +2055,17 @@ Sample0:
 calculateCaloriesWithCache totalCalories=<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `calculateCaloriesWithCache totalCalories=<*>`
-- Sample6: `calculateCaloriesWithCache totalCalories=<*>`
-- Sample7: `calculateCaloriesWithCache totalCalories=<*>`
-- Sample8: `calculateCaloriesWithCache totalCalories=<*>`
-- Sample9: `calculateCaloriesWithCache <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `calculateCaloriesWithCache totalCalories=<*>`
+- Sample1, strict PASS=False: `calculateCaloriesWithCache <*>`
+- Sample2, strict PASS=True: `calculateCaloriesWithCache totalCalories=<*>`
+- Sample3, strict PASS=False: `calculateCaloriesWithCache <*>=<*>`
+- Sample4, strict PASS=False: `calculateCaloriesWithCache <*> =<*>.`
+- Sample5, strict PASS=True: `calculateCaloriesWithCache totalCalories=<*>`
+- Sample6, strict PASS=True: `calculateCaloriesWithCache totalCalories=<*>`
+- Sample7, strict PASS=True: `calculateCaloriesWithCache totalCalories=<*>`
+- Sample8, strict PASS=True: `calculateCaloriesWithCache totalCalories=<*>`
+- Sample9, strict PASS=False: `calculateCaloriesWithCache <*>`
 
 Nearest labeled references:
 - Index204, FAIL=False: `calculateAltitudeWithCache totalAltitude=540`; GT=`calculateAltitudeWithCache totalAltitude=<*>`
@@ -1812,12 +2092,17 @@ Sample0:
 [instance: <*>] Deleting instance files /var/lib/nova/instances/<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
-- Sample6: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
-- Sample7: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
-- Sample8: `[instance: <*>] Deleting instance files <*>`
-- Sample9: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample1, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>_del`
+- Sample2, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample3, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample4, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample5, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample6, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample7, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample8, strict PASS=True: `[instance: <*>] Deleting instance files <*>`
+- Sample9, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
 
 Nearest labeled references:
 - Index83, FAIL=False: `[instance: 5e6a95a0-142a-4e6a-ab8e-6627c8ae0872] Deleting instance files /var/lib/nova/instances/5e6a95a0-142a-4e6a-ab8e-6627c8ae0872_del`; GT=`[instance: <*>] Deleting instance files <*>`
@@ -1844,12 +2129,17 @@ Sample0:
 [instance: <*>] Deleting instance files /var/lib/nova/instances/<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
-- Sample6: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
-- Sample7: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
-- Sample8: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>  _del`
-- Sample9: `[instance: <*>] Deleting instance files <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample1, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>_del`
+- Sample2, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample3, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample4, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>_del`
+- Sample5, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample6, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample7, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>`
+- Sample8, strict PASS=False: `[instance: <*>] Deleting instance files /var/lib/nova/instances/<*>  _del`
+- Sample9, strict PASS=True: `[instance: <*>] Deleting instance files <*>`
 
 Nearest labeled references:
 - Index83, FAIL=False: `[instance: 5e6a95a0-142a-4e6a-ab8e-6627c8ae0872] Deleting instance files /var/lib/nova/instances/5e6a95a0-142a-4e6a-ab8e-6627c8ae0872_del`; GT=`[instance: <*>] Deleting instance files <*>`
@@ -1876,12 +2166,17 @@ Sample0:
 Asked to remove non-existent <*> <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Asked to remove non-existent <*>`
-- Sample6: `Asked to remove non-existent <*> <*>`
-- Sample7: `Asked to remove non-existent <*> 1`
-- Sample8: `Asked to remove non-existent <*> <*>`
-- Sample9: `Asked to remove non-existent <*> <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Asked to remove non-existent <*> <*>`
+- Sample1, strict PASS=False: `Asked to remove non-existent <*> <*>`
+- Sample2, strict PASS=False: `Asked to remove non-existent <*>`
+- Sample3, strict PASS=False: `Asked to remove non-existent <*> <*>`
+- Sample4, strict PASS=False: `Asked to remove non-existent <*> <*>`
+- Sample5, strict PASS=False: `Asked to remove non-existent <*>`
+- Sample6, strict PASS=False: `Asked to remove non-existent <*> <*>`
+- Sample7, strict PASS=False: `Asked to remove non-existent <*> 1`
+- Sample8, strict PASS=False: `Asked to remove non-existent <*> <*>`
+- Sample9, strict PASS=False: `Asked to remove non-existent <*> <*>`
 
 Nearest labeled references:
 - Index481, FAIL=False: `Requesting to kill executor(s) 1`; GT=`Requesting to kill executor(s) <*>`
@@ -1908,12 +2203,17 @@ Sample0:
 uncorrectable error detected in external DDR...<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `uncorrectable error detected in external <*>.`
-- Sample6: `uncorrectable error detected in external <*>...0`
-- Sample7: `uncorrectable error detected in external <*>...0`
-- Sample8: `uncorrectable error detected in external <*>... <*>`
-- Sample9: `uncorrectable error detected in external DDR<*>...<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `uncorrectable error detected in external DDR...<*>`
+- Sample1, strict PASS=False: `uncorrectable error detected in external <*>...0`
+- Sample2, strict PASS=False: `uncorrectable error detected in external <*>.`
+- Sample3, strict PASS=False: `uncorrectable error detected in external <*>.`
+- Sample4, strict PASS=False: `uncorrectable error detected in external <*>...0`
+- Sample5, strict PASS=False: `uncorrectable error detected in external <*>.`
+- Sample6, strict PASS=False: `uncorrectable error detected in external <*>...0`
+- Sample7, strict PASS=False: `uncorrectable error detected in external <*>...0`
+- Sample8, strict PASS=False: `uncorrectable error detected in external <*>... <*>`
+- Sample9, strict PASS=False: `uncorrectable error detected in external DDR<*>...<*>`
 
 Nearest labeled references:
 - Index222, FAIL=True: `uncorrectable error detected in directory 1....0`; GT=`uncorrectable error detected in directory <*>....<*>`
@@ -1940,12 +2240,17 @@ Sample0:
 *** -[AVAssetResourceLoadingRequest *** finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
-- Sample6: `*** -[AVAssetResourceLoadingRequest <*> finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
-- Sample7: `*** -[AVAssetResourceLoadingRequest <*>] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
-- Sample8: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of <*> that was already finished. Ignoring.`
-- Sample9: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `*** -[AVAssetResourceLoadingRequest *** finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample1, strict PASS=False: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample2, strict PASS=False: `*** -[AVAssetResourceLoadingRequest <*> finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample3, strict PASS=False: `*** -[AVAssetResourceLoadingRequest <*> was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample4, strict PASS=False: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample5, strict PASS=False: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample6, strict PASS=False: `*** -[AVAssetResourceLoadingRequest <*> finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample7, strict PASS=False: `*** -[AVAssetResourceLoadingRequest <*>] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
+- Sample8, strict PASS=True: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of <*> that was already finished. Ignoring.`
+- Sample9, strict PASS=False: `*** -[AVAssetResourceLoadingRequest finishLoading] was sent to an instance of AVAssetResourceLoadingRequest that was already finished. Ignoring.`
 
 Nearest labeled references:
 - Index77, FAIL=True: `<<<< MediaValidator >>>> mv_ValidateRFC4281CodecId: Unrecognized codec mp3.(null). Failed codec specific check.`; GT=`<<<< MediaValidator >>>> mv_ValidateRFC4281CodecId: Unrecognized codec <*>. Failed codec specific check.`
@@ -1972,12 +2277,17 @@ Sample0:
 Added filter <*> (class=***) to context static
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Added filter <*> (class=<*>) to context static`
-- Sample6: `Added filter <*> (class=<*> ) to context static`
-- Sample7: `Added filter <*> (class=<*>) to context static`
-- Sample8: `Added filter <*> (class=<*>) to context static`
-- Sample9: `Added filter <*> (class=org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter) to context static`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Added filter <*> (class=***) to context static`
+- Sample1, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample2, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample3, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample4, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample5, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample6, strict PASS=False: `Added filter <*> (class=<*> ) to context static`
+- Sample7, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample8, strict PASS=False: `Added filter <*> (class=<*>) to context static`
+- Sample9, strict PASS=False: `Added filter <*> (class=org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter) to context static`
 
 Nearest labeled references:
 - Index459, FAIL=True: `Added filter AM_PROXY_FILTER (class=org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter) to context mapreduce`; GT=`Added filter <*> (class=<*>) to context <*>`
@@ -2004,12 +2314,17 @@ Sample0:
 **** [BroadcomBluetoothHostController][SetupController] -- Delay HCI Reset by <*>ms ****
 ```
 
-Target-batch parsed outputs:
-- Sample5: `****  [<*>][<*>]  -- Delay HCI Reset by <*>ms ****`
-- Sample6: `**** [********][********] -- Delay HCI Reset by <*>ms ****`
-- Sample7: `**** [<*>][<*>] -- Delay HCI Reset by <*>ms ****`
-- Sample8: `**** [BroadcomBluetoothHostController][SetupController] -- Delay HCI Reset by <*>ms ****`
-- Sample9: `**** [<*>][<*>] -- Delay HCI Reset by <*>ms ****`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `**** [BroadcomBluetoothHostController][SetupController] -- Delay HCI Reset by <*>ms ****`
+- Sample1, strict PASS=False: `**** [<*>][<*>] -- Delay HCI Reset by <*>ms ****`
+- Sample2, strict PASS=False: `**** [<*>][<*>] -- Delay HCI Reset by <*>ms ****`
+- Sample3, strict PASS=True: `**** [BroadcomBluetoothHostController][SetupController] -- Delay HCI Reset by <*> ****`
+- Sample4, strict PASS=False: `**** [BroadcomBluetoothHostController][SetupController] -- Delay HCI Reset by <*>ms ****`
+- Sample5, strict PASS=False: `****  [<*>][<*>]  -- Delay HCI Reset by <*>ms ****`
+- Sample6, strict PASS=False: `**** [********][********] -- Delay HCI Reset by <*>ms ****`
+- Sample7, strict PASS=False: `**** [<*>][<*>] -- Delay HCI Reset by <*>ms ****`
+- Sample8, strict PASS=False: `**** [BroadcomBluetoothHostController][SetupController] -- Delay HCI Reset by <*>ms ****`
+- Sample9, strict PASS=False: `**** [<*>][<*>] -- Delay HCI Reset by <*>ms ****`
 
 Nearest labeled references:
 - Index496, FAIL=False: `**** [IOBluetoothFamily][ProcessBluetoothTransportShowsUpActionWL] -- calling IOBluetoothFamily's registerService() -- 0x5fd0 -- 0x9a00 -- 0x1800 ****`; GT=`**** [IOBluetoothFamily][ProcessBluetoothTransportShowsUpActionWL] -- calling IOBluetoothFamily's registerService() -- <*> -- <*> -- <*> ****`
@@ -2036,12 +2351,17 @@ Sample0:
 [15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample6: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample7: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample8: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample9: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url https://r2---sn-n4v7sn7l.c.docs.google.com/videoplayback?id=2e514773f43464a1&itag=22&source=picasa&requiressl=yes&ttl=transient&mm=30&mn=sn-n4v7sn7l&ms=nxu&mv=m&pl=32&ei=bRpcWciBEceg_APrnY7IBg&driveid=1gnwLnyKP9R-fC9jxSRZZwrozP28F1J5SDg&mime=video/mp4&lmt=1491688542449626&mt=1499208228&ip=<*>&ipbits=0&expire=1499222701&cp=QVJOQUNfUVdOQlhNOnlwZFotQjE0cHB4&sparams=ip,ipbits,expire,id,itag,source,requiressl,ttl,mm,mn,ms,mv,pl,ei,driveid,mime,lmt,cp&signature=4A681A1F0098A72657CBEA27CB92E1FA4E53698F.6756F013E02C3C0B007A44B04BBEB1013346BB50&key=ck2&app=explorer&cpn=Vt8eqXHZv-rwrYSf&c=WEB&cver=1.20170627`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample1, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample2, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample3, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample4, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample5, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample6, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample7, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample8, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample9, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url https://r2---sn-n4v7sn7l.c.docs.google.com/videoplayback?id=2e514773f43464a1&itag=22&source=picasa&requiressl=yes&ttl=transient&mm=30&mn=sn-n4v7sn7l&ms=nxu&mv=m&pl=32&ei=bRpcWciBEceg_APrnY7IBg&driveid=1gnwLnyKP9R-fC9jxSRZZwrozP28F1J5SDg&mime=video/mp4&lmt=1491688542449626&mt=1499208228&ip=<*>&ipbits=0&expire=1499222701&cp=QVJOQUNfUVdOQlhNOnlwZFotQjE0cHB4&sparams=ip,ipbits,expire,id,itag,source,requiressl,ttl,mm,mn,ms,mv,pl,ei,driveid,mime,lmt,cp&signature=4A681A1F0098A72657CBEA27CB92E1FA4E53698F.6756F013E02C3C0B007A44B04BBEB1013346BB50&key=ck2&app=explorer&cpn=Vt8eqXHZv-rwrYSf&c=WEB&cver=1.20170627`
 
 Nearest labeled references:
 - Index144, FAIL=True: `[15:45:00.925] HTTPRequest figHttpRequestDidReceiveResponseCallback: received http response 403 (error -12660) for https://r2---sn-n4v7sn7l.c.docs.google.com/videoplayback?id=2e514773f43464a1&itag=22&source=picasa&requiressl=yes&ttl=transient&mm=30&mn=sn-n4v7sn7l&ms=nxu&mv=m&pl=32&ei=bRpcWciBEceg_APrnY7IBg&driveid=1gnwLnyKP9R-fC9jxSRZZwrozP28F1J5SDg&mime=video/mp4&lmt=1491688542449626&mt=1499208228&ip=2607:f140:6000:8:51cf:994c:36cb:1c56&ipbits=0&expire=1499222701&cp=QVJOQUNfUVdOQlhNOnlwZFotQjE0cHB4&sparams=ip,ipbits,expire,id,itag,source,requiressl,ttl,mm,mn,ms,mv,pl,ei,driveid,mime,lmt,cp&signature=4A681A1F0098A72657CBEA27CB92E1FA4E53698F.6756F013E02C3C0B007A44B04BBEB1013346BB50&key=ck2&app=explorer&cpn=Vt8eqXHZv-rwrYSf&c=WEB&cver=1.20170627`; GT=`[<*>] HTTPRequest figHttpRequestDidReceiveResponseCallback: received http response <*> (error <*>) for <*>`
@@ -2068,12 +2388,17 @@ Sample0:
 Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Follower sid: <*> : info : <*>`
-- Sample6: `Follower sid: <*> : info : <*>`
-- Sample7: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
-- Sample8: `Follower sid: <*> : info : <*><*>`
-- Sample9: `Follower sid: <*> : info : <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample1, strict PASS=False: `Follower sid: <*> : info : <*>@ <*>`
+- Sample2, strict PASS=False: `Follower sid: <*> : info : <*>@<*>`
+- Sample3, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>.`
+- Sample4, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample5, strict PASS=True: `Follower sid: <*> : info : <*>`
+- Sample6, strict PASS=True: `Follower sid: <*> : info : <*>`
+- Sample7, strict PASS=False: `Follower sid: <*> : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@<*>`
+- Sample8, strict PASS=False: `Follower sid: <*> : info : <*><*>`
+- Sample9, strict PASS=True: `Follower sid: <*> : info : <*>`
 
 Nearest labeled references:
 - Index194, FAIL=True: `Follower sid: 2 : info : org.apache.zookeeper.server.quorum.QuorumPeer$QuorumServer@9317ccb`; GT=`Follower sid: <*> : info : <*>`
@@ -2100,12 +2425,17 @@ Sample0:
 PacketResponder <*> 1 Exception java.io.IOException: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
-- Sample6: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
-- Sample7: `PacketResponder <*> 1 Exception java.io.IOException: Connection reset by peer`
-- Sample8: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
-- Sample9: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: <*>`
+- Sample1, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+- Sample2, strict PASS=False: `PacketResponder <*> <*> Exception java.io.IOException: <*>`
+- Sample3, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: <*>`
+- Sample4, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+- Sample5, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+- Sample6, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+- Sample7, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: Connection reset by peer`
+- Sample8, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+- Sample9, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
 
 Nearest labeled references:
 - Index16, FAIL=True: `PacketResponder blk_-6059290274455367169 2 Exception java.io.IOException: Connection reset by peer`; GT=`PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
@@ -2132,12 +2462,17 @@ Sample0:
 uploadStaticsToDB() onResult type = <*> obj=<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `uploadStaticsToDB() onResult type = <*> obj=<*>`
-- Sample6: `uploadStaticsToDB() onResult type = <*> obj=<*>`
-- Sample7: `uploadStaticsToDB() onResult type = <*> obj=<*>`
-- Sample8: `uploadStaticsToDB() onResult = <*> obj=<*>`
-- Sample9: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample1, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample2, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample3, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample4, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample5, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample6, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample7, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
+- Sample8, strict PASS=False: `uploadStaticsToDB() onResult = <*> obj=<*>`
+- Sample9, strict PASS=True: `uploadStaticsToDB() onResult type = <*> obj=<*>`
 
 Nearest labeled references:
 - Index419, FAIL=False: `saveRealTimeHealthDatasStat() size = 1,totalTime = 23`; GT=`saveRealTimeHealthDatasStat() size = <*>,totalTime = <*>`
@@ -2164,12 +2499,17 @@ Sample0:
 DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
-- Sample6: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
-- Sample7: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
-- Sample8: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
-- Sample9: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>.`
+- Sample1, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample2, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample3, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample4, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample5, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample6, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample7, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample8, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
+- Sample9, strict PASS=True: `DefaultSpeculator.addSpeculativeAttempt -- we are speculating <*>`
 
 Nearest labeled references:
 - Index296, FAIL=True: `Commit go/no-go request from attempt_1445182159119_0020_r_000000_0`; GT=`Commit go/no-go request from <*>`
@@ -2196,12 +2536,17 @@ Sample0:
 Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local= <*> remote=<*>]
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
-- Sample6: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
-- Sample7: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
-- Sample8: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
-- Sample9: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local= <*> remote=<*>]`
+- Sample1, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample2, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample3, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample4, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample5, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample6, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample7, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample8, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
+- Sample9, strict PASS=True: `Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
 
 Nearest labeled references:
 - Index104, FAIL=True: `Exception in receiveBlock for block blk_584730932939516842 java.net.SocketTimeoutException: 485000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.250.19.227:55473 remote=/10.251.107.50:50010]`; GT=`Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=<*> remote=<*>]`
@@ -2228,12 +2573,17 @@ Sample0:
 INFO: executing scheduler from <*> under UID <*> GID <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `INFO: executing scheduler from <*> under UID <*> GID <*>`
-- Sample6: `INFO: executing scheduler from <*> under UID <*> GID <*>`
-- Sample7: `INFO: executing scheduler from '/var/spool/moab/<*> under UID <*> GID <*>`
-- Sample8: `INFO: executing scheduler from <*> under UID <*> GID <*>`
-- Sample9: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample1, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample2, strict PASS=False: `INFO: executing scheduler from  <*> under UID <*> GID <*>`
+- Sample3, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample4, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample5, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample6, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample7, strict PASS=False: `INFO: executing scheduler from '/var/spool/moab/<*> under UID <*> GID <*>`
+- Sample8, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
+- Sample9, strict PASS=True: `INFO: executing scheduler from <*> under UID <*> GID <*>`
 
 Nearest labeled references:
 - Index249, FAIL=True: `fatal: the Postfix mail system is not running`; GT=`fatal: the Postfix mail system is not running`
@@ -2260,12 +2610,17 @@ Sample0:
 <*>"GET <*> HTTP/1.1" status: <*> len: <*> time: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample6: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample7: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample8: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample9: `<*>"GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `<*>"GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample1, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample2, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample3, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample4, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>.`
+- Sample5, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample6, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample7, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample8, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample9, strict PASS=False: `<*>"GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
 
 Nearest labeled references:
 - Index256, FAIL=True: `10.11.10.1 "GET /v2/54fadb412c4e40cdbaed9335e4c35a9e/servers/detail HTTP/1.1" status: 200 len: 1759 time: 0.2559509`; GT=`<*> "GET <*> <*>" status: <*> len: <*> time: <*>`
@@ -2292,12 +2647,17 @@ Sample0:
 <*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample6: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample7: `<*>"GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample8: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
-- Sample9: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample1, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample2, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample3, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample4, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample5, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample6, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample7, strict PASS=False: `<*>"GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample8, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
+- Sample9, strict PASS=False: `<*> "GET <*> HTTP/1.1" status: <*> len: <*> time: <*>`
 
 Nearest labeled references:
 - Index256, FAIL=True: `10.11.10.1 "GET /v2/54fadb412c4e40cdbaed9335e4c35a9e/servers/detail HTTP/1.1" status: 200 len: 1759 time: 0.2559509`; GT=`<*> "GET <*> <*>" status: <*> len: <*> time: <*>`
@@ -2324,12 +2684,17 @@ Sample0:
 using mwait in idle threads.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `using mwait in idle threads.`
-- Sample6: `using mwait in idle threads.`
-- Sample7: `using mwait in idle threads.`
-- Sample8: `using mwait in idle threads.`
-- Sample9: `using mwait in idle threads.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `using mwait in idle threads.`
+- Sample1, strict PASS=False: `using mwait in idle threads.`
+- Sample2, strict PASS=True: `using <*> in idle threads.`
+- Sample3, strict PASS=False: `using mwait in idle threads.`
+- Sample4, strict PASS=False: `using mwait in idle threads.`
+- Sample5, strict PASS=False: `using mwait in idle threads.`
+- Sample6, strict PASS=False: `using mwait in idle threads.`
+- Sample7, strict PASS=False: `using mwait in idle threads.`
+- Sample8, strict PASS=False: `using mwait in idle threads.`
+- Sample9, strict PASS=False: `using mwait in idle threads.`
 
 Nearest labeled references:
 - Index23, FAIL=False: `SELinux: Disabled at runtime.`; GT=`SELinux: Disabled at runtime.`
@@ -2356,12 +2721,17 @@ Sample0:
 PacketResponder <*> Exception <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
-- Sample6: `PacketResponder <*> <*> Exception java.io.IOException: <*>`
-- Sample7: `PacketResponder <*> 1 Exception java.io.IOException: Connection reset by peer`
-- Sample8: `PacketResponder <*> <*> Exception java.io.IOException: <*>`
-- Sample9: `PacketResponder <*> 1 Exception <*>: Connection reset by peer`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `PacketResponder <*> Exception <*>`
+- Sample1, strict PASS=False: `PacketResponder <*> Exception java.io.IOException: Connection reset by peer`
+- Sample2, strict PASS=False: `PacketResponder <*> Exception <*>`
+- Sample3, strict PASS=False: `PacketResponder <*> Exception java.io.IOException: Connection reset by peer`
+- Sample4, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: <*>`
+- Sample5, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
+- Sample6, strict PASS=False: `PacketResponder <*> <*> Exception java.io.IOException: <*>`
+- Sample7, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: Connection reset by peer`
+- Sample8, strict PASS=False: `PacketResponder <*> <*> Exception java.io.IOException: <*>`
+- Sample9, strict PASS=False: `PacketResponder <*> 1 Exception <*>: Connection reset by peer`
 
 Nearest labeled references:
 - Index16, FAIL=True: `PacketResponder blk_-6059290274455367169 2 Exception java.io.IOException: Connection reset by peer`; GT=`PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
@@ -2388,12 +2758,17 @@ Sample0:
 PacketResponder <*> java.io.IOException: The stream is closed
 ```
 
-Target-batch parsed outputs:
-- Sample5: `PacketResponder <*> 1 Exception java.io.IOException: The stream is closed`
-- Sample6: `PacketResponder <*> Exception java.io.IOException: The stream is closed`
-- Sample7: `PacketResponder <*> 1 Exception java.io.IOException: The stream is closed`
-- Sample8: `PacketResponder <*> <*> Exception java.io.IOException: The stream is closed`
-- Sample9: `PacketResponder <*> <*> Exception java.io.IOException: The stream is closed`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `PacketResponder <*> java.io.IOException: The stream is closed`
+- Sample1, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: The stream is closed`
+- Sample2, strict PASS=False: `PacketResponder <*> Exception java.io.IOException: The stream is closed`
+- Sample3, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: The stream is closed`
+- Sample4, strict PASS=False: `PacketResponder <*> Exception java.io.IOException: The stream is closed`
+- Sample5, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: The stream is closed`
+- Sample6, strict PASS=False: `PacketResponder <*> Exception java.io.IOException: The stream is closed`
+- Sample7, strict PASS=False: `PacketResponder <*> 1 Exception java.io.IOException: The stream is closed`
+- Sample8, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: The stream is closed`
+- Sample9, strict PASS=True: `PacketResponder <*> <*> Exception java.io.IOException: The stream is closed`
 
 Nearest labeled references:
 - Index16, FAIL=True: `PacketResponder blk_-6059290274455367169 2 Exception java.io.IOException: Connection reset by peer`; GT=`PacketResponder <*> <*> Exception java.io.IOException: Connection reset by peer`
@@ -2420,12 +2795,17 @@ Sample0:
 Received disconnect from <*>: <*> Closed due to user request. [preauth]
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
-- Sample6: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
-- Sample7: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
-- Sample8: `Received disconnect from <*>:  Closed due to user request. [preauth]`
-- Sample9: `Received disconnect from <*>: <*>. Closed due to user request. [preauth]`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
+- Sample1, strict PASS=False: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
+- Sample2, strict PASS=False: `Received disconnect from <*>:  Closed due to user request. [preauth]`
+- Sample3, strict PASS=False: `Received disconnect from <*>: Closed due to user request. [preauth]`
+- Sample4, strict PASS=False: `Received disconnect from <*>:  <*> Closed due to user request. [preauth]`
+- Sample5, strict PASS=False: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
+- Sample6, strict PASS=False: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
+- Sample7, strict PASS=False: `Received disconnect from <*>: <*> Closed due to user request. [preauth]`
+- Sample8, strict PASS=False: `Received disconnect from <*>:  Closed due to user request. [preauth]`
+- Sample9, strict PASS=False: `Received disconnect from <*>: <*>. Closed due to user request. [preauth]`
 
 Nearest labeled references:
 - Index496, FAIL=True: `Received disconnect from 103.207.37.179: 11: Closed due to user request. [preauth]`; GT=`Received disconnect from <*>: <*>: Closed due to user request. [preauth]`
@@ -2452,12 +2832,17 @@ Sample0:
 plus <*>................................<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `plus <*>................................<*>`
-- Sample6: `plus zero................................<*>`
-- Sample7: `plus <*>................................<*>`
-- Sample8: `plus <*>................................<*>`
-- Sample9: `plus <*>................................<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `plus <*>................................<*>`
+- Sample1, strict PASS=False: `plus <*>................................<*>`
+- Sample2, strict PASS=False: `plus <*>................................<*>`
+- Sample3, strict PASS=False: `plus <*>................................<*>`
+- Sample4, strict PASS=False: `plus <*>`
+- Sample5, strict PASS=False: `plus <*>................................<*>`
+- Sample6, strict PASS=True: `plus zero................................<*>`
+- Sample7, strict PASS=False: `plus <*>................................<*>`
+- Sample8, strict PASS=False: `plus <*>................................<*>`
+- Sample9, strict PASS=False: `plus <*>................................<*>`
 
 Nearest labeled references:
 - Index498, FAIL=True: `plus infinity............................0`; GT=`plus infinity............................<*>`
@@ -2484,12 +2869,17 @@ Sample0:
 [instance: <*>] Took <*> seconds to build instance.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample6: `[instance: <*>] Took <*> to build instance.`
-- Sample7: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample8: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample9: `[instance: <*>] Took <*> seconds to build instance.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample1, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample2, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample3, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample4, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample5, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample6, strict PASS=False: `[instance: <*>] Took <*> to build instance.`
+- Sample7, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample8, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample9, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
 
 Nearest labeled references:
 - Index469, FAIL=False: `[instance: 308efe9d-0616-473d-b7c3-606936bfabf6] Took 20.17 seconds to build instance.`; GT=`[instance: <*>] Took <*> seconds to build instance.`
@@ -2516,12 +2906,17 @@ Sample0:
 [instance: <*>] Took <*> seconds to build instance.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample6: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample7: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample8: `[instance: <*>] Took <*> seconds to build instance.`
-- Sample9: `[instance: <*>] Took <*> seconds to build instance.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample1, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample2, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample3, strict PASS=False: `[instance: <*>] Took <*> to build instance.`
+- Sample4, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample5, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample6, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample7, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample8, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
+- Sample9, strict PASS=True: `[instance: <*>] Took <*> seconds to build instance.`
 
 Nearest labeled references:
 - Index469, FAIL=False: `[instance: 308efe9d-0616-473d-b7c3-606936bfabf6] Took 20.17 seconds to build instance.`; GT=`[instance: <*>] Took <*> seconds to build instance.`
@@ -2548,19 +2943,24 @@ Sample0:
 CoreAnimation: context hosting changed while locked!
 ```
 
-Target-batch parsed outputs:
-- Sample5: `CoreAnimation: context hosting changed while locked!`
-- Sample6: `CoreAnimation: context hosting changed while locked!`
-- Sample7: `CoreAnimation: context hosting changed while locked!`
-- Sample8: `CoreAnimation: context hosting changed while locked!`
-- Sample9: `CoreAnimation: context hosting changed while locked!`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample1, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample2, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample3, strict PASS=False: `CoreAnimation: <*> <*>`
+- Sample4, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample5, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample6, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample7, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample8, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
+- Sample9, strict PASS=True: `CoreAnimation: context hosting changed while locked!`
 
 Nearest labeled references:
 - Index401, FAIL=False: `AppleThunderboltGenericHAL::earlyWake - complete - took 0 milliseconds`; GT=`AppleThunderboltGenericHAL::earlyWake - complete - took <*> milliseconds`
 - Index402, FAIL=True: `en0::IO80211Interface::postMessage bssid changed`; GT=`<*>::<*>::<*> bssid changed`
 - Index231, FAIL=False: `CoreAnimation: failed to send fence reply: 10000003`; GT=`CoreAnimation: failed to send fence reply: <*>`
 
-Variable-free warning copied correctly in all ten; risk is just below threshold despite unrelated passing hardware neighbor. Unusual natural text can be easy to parse.
+Variable-free warning copied correctly in9/10 generations, including all five target outputs; risk is just below threshold despite unrelated passing hardware neighbor. Unusual natural text can be easy to parse.
 
 
 ## C081: gemma/standard/Thunderbird/TN
@@ -2580,12 +2980,17 @@ Sample0:
 MSchedProcessJobs(0,<*>,<*>).
 ```
 
-Target-batch parsed outputs:
-- Sample5: `MSchedProcessJobs(0,<*>,<*>)`
-- Sample6: `MSchedProcessJobs(<*>,<*>,<*>)`
-- Sample7: `MSchedProcessJobs(<*>,<*>,<*>)`
-- Sample8: `MSchedProcessJobs(0,<*>,<*> )`
-- Sample9: `MSchedProcessJobs(<*>,<*>,<*>)`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `MSchedProcessJobs(0,<*>,<*>).`
+- Sample1, strict PASS=False: `MSchedProcessJobs(<*>, <*>, <*>)`
+- Sample2, strict PASS=False: `MSchedProcessJobs(<*>, <*>, <*> )`
+- Sample3, strict PASS=False: `MSchedProcessJobs(0,* ,*)`
+- Sample4, strict PASS=False: `MSchedProcessJobs(<*> , <*> , <*>)`
+- Sample5, strict PASS=False: `MSchedProcessJobs(0,<*>,<*>)`
+- Sample6, strict PASS=True: `MSchedProcessJobs(<*>,<*>,<*>)`
+- Sample7, strict PASS=True: `MSchedProcessJobs(<*>,<*>,<*>)`
+- Sample8, strict PASS=False: `MSchedProcessJobs(0,<*>,<*> )`
+- Sample9, strict PASS=True: `MSchedProcessJobs(<*>,<*>,<*>)`
 
 Nearest labeled references:
 - Index180, FAIL=True: `MRMInitialize(NULL,EMsg,SC)`; GT=`MRMInitialize(<*>,<*>,<*>)`
@@ -2612,12 +3017,17 @@ Sample0:
 Getting a diff from the leader <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Getting a diff from the leader <*>`
-- Sample6: `Getting a diff from the leader <*>`
-- Sample7: `Getting a diff from the leader <*>.`
-- Sample8: `Getting a diff from the leader <*>`
-- Sample9: `Getting a diff from the leader <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample1, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample2, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample3, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample4, strict PASS=False: `Getting a diff from the leader <*>.`
+- Sample5, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample6, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample7, strict PASS=False: `Getting a diff from the leader <*>.`
+- Sample8, strict PASS=True: `Getting a diff from the leader <*>`
+- Sample9, strict PASS=True: `Getting a diff from the leader <*>`
 
 Nearest labeled references:
 - Index284, FAIL=False: `Getting a diff from the leader 0x100001564`; GT=`Getting a diff from the leader <*>`
@@ -2644,19 +3054,24 @@ Sample0:
 Server environment:os.name=<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Server environment:os.name=<*>`
-- Sample6: `Server environment:os.name=<*>`
-- Sample7: `Server environment:os.name=<*>`
-- Sample8: `Server environment:os.name=<*>`
-- Sample9: `Server environment:os.name=<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Server environment:os.name=<*>`
+- Sample1, strict PASS=True: `Server environment:os.name=<*>`
+- Sample2, strict PASS=True: `Server environment:os.name=<*>`
+- Sample3, strict PASS=True: `Server environment:os.name=<*>`
+- Sample4, strict PASS=False: `Server environment:<*>`
+- Sample5, strict PASS=True: `Server environment:os.name=<*>`
+- Sample6, strict PASS=True: `Server environment:os.name=<*>`
+- Sample7, strict PASS=True: `Server environment:os.name=<*>`
+- Sample8, strict PASS=True: `Server environment:os.name=<*>`
+- Sample9, strict PASS=True: `Server environment:os.name=<*>`
 
 Nearest labeled references:
 - Index283, FAIL=False: `Server environment:os.version=3.16.0-30-generic`; GT=`Server environment:os.version=<*>`
 - Index102, FAIL=False: `Server environment:host.name=mesos-master-2`; GT=`Server environment:host.name=<*>`
 - Index198, FAIL=False: `Server environment:os.arch=amd64`; GT=`Server environment:os.arch=<*>`
 
-Unseen environment key is consistently correct near successful os.version family. Contrast C002: lexical family transfers but does not guarantee identical generation stability across models/keys.
+Unseen environment key is correct in9/10 outputs near successful os.version family. Contrast C002: lexical family transfers but does not guarantee identical generation stability across models/keys.
 
 
 ## C084: gemma/standard/HDFS/TN
@@ -2676,12 +3091,17 @@ Sample0:
 Received block blk_ <*> of size <*> from <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Received block <*> of size <*> from <*>`
-- Sample6: `Received block <*> of size <*> from <*>`
-- Sample7: `Received block <*> of size <*> from <*>`
-- Sample8: `Received block blk_* of size <*> from <*>`
-- Sample9: `Received block <*> of size <*> from <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Received block blk_ <*> of size <*> from <*>`
+- Sample1, strict PASS=True: `Received block <*> of size <*> from <*>`
+- Sample2, strict PASS=False: `Received block blk_<*> of size <*> from <*>`
+- Sample3, strict PASS=True: `Received block <*> of size <*> from <*>`
+- Sample4, strict PASS=True: `Received block <*> of size <*> from <*>`
+- Sample5, strict PASS=True: `Received block <*> of size <*> from <*>`
+- Sample6, strict PASS=True: `Received block <*> of size <*> from <*>`
+- Sample7, strict PASS=True: `Received block <*> of size <*> from <*>`
+- Sample8, strict PASS=False: `Received block blk_* of size <*> from <*>`
+- Sample9, strict PASS=True: `Received block <*> of size <*> from <*>`
 
 Nearest labeled references:
 - Index479, FAIL=False: `Received block blk_244609771404984724 of size 67108864 from /10.250.10.213`; GT=`Received block <*> of size <*> from <*>`
@@ -2708,12 +3128,17 @@ Sample0:
 binding to port <*>/<*>:2181
 ```
 
-Target-batch parsed outputs:
-- Sample5: `binding to port <*>:<*>`
-- Sample6: `binding to port <*>:<*>`
-- Sample7: `binding to port <*>:<*>`
-- Sample8: `binding to port <*>:<*>`
-- Sample9: `binding to port <*><*>:2181`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `binding to port <*>/<*>:2181`
+- Sample1, strict PASS=False: `binding to port <*>:<*>`
+- Sample2, strict PASS=False: `binding to port <*><*>:2181`
+- Sample3, strict PASS=False: `binding to port <*>:<*>`
+- Sample4, strict PASS=False: `binding to port <*><*>:2181`
+- Sample5, strict PASS=False: `binding to port <*>:<*>`
+- Sample6, strict PASS=False: `binding to port <*>:<*>`
+- Sample7, strict PASS=False: `binding to port <*>:<*>`
+- Sample8, strict PASS=False: `binding to port <*>:<*>`
+- Sample9, strict PASS=False: `binding to port <*><*>:2181`
 
 Nearest labeled references:
 - Index189, FAIL=True: `Unexpected exception, tries=0, connecting to /10.10.34.12:2888`; GT=`Unexpected exception, tries=<*>, connecting to <*>`
@@ -2740,12 +3165,17 @@ Sample0:
 TCP NoDelay set to: true
 ```
 
-Target-batch parsed outputs:
-- Sample5: `TCP <*> set to: true`
-- Sample6: `TCP <*> set to: <*>`
-- Sample7: `TCP NoDelay set to: true`
-- Sample8: `TCP <* set to: true`
-- Sample9: `TCP NoDelay set to: true`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `TCP NoDelay set to: true`
+- Sample1, strict PASS=True: `TCP NoDelay set to: <*>`
+- Sample2, strict PASS=True: `TCP NoDelay set to: <*>`
+- Sample3, strict PASS=False: `TCP NoDelay set to: true`
+- Sample4, strict PASS=False: `TCP NoDelay set to: true`
+- Sample5, strict PASS=False: `TCP <*> set to: true`
+- Sample6, strict PASS=False: `TCP <*> set to: <*>`
+- Sample7, strict PASS=False: `TCP NoDelay set to: true`
+- Sample8, strict PASS=False: `TCP <* set to: true`
+- Sample9, strict PASS=False: `TCP NoDelay set to: true`
 
 Nearest labeled references:
 - Index198, FAIL=False: `Server environment:os.arch=amd64`; GT=`Server environment:os.arch=<*>`
@@ -2772,12 +3202,17 @@ Sample0:
 round toward +infinity...................<*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `<*>`
-- Sample6: `round toward +infinity...................<*>`
-- Sample7: `round toward <*>....................<*>`
-- Sample8: `round toward +infinity...................<*>`
-- Sample9: `round toward <*>....................<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `round toward +infinity...................<*>`
+- Sample1, strict PASS=True: `round toward +infinity...................<*>`
+- Sample2, strict PASS=True: `round toward +infinity...................<*>`
+- Sample3, strict PASS=True: `round toward +infinity...................<*>`
+- Sample4, strict PASS=True: `round toward +infinity...................<*>`
+- Sample5, strict PASS=False: `<*>`
+- Sample6, strict PASS=True: `round toward +infinity...................<*>`
+- Sample7, strict PASS=False: `round toward <*>....................<*>`
+- Sample8, strict PASS=True: `round toward +infinity...................<*>`
+- Sample9, strict PASS=False: `round toward <*>....................<*>`
 
 Nearest labeled references:
 - Index498, FAIL=True: `plus infinity............................0`; GT=`plus infinity............................<*>`
@@ -2804,19 +3239,24 @@ Sample0:
 Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@<*>: <*>)
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
-- Sample6: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(<*> )`
-- Sample7: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@<*>:*)`
-- Sample8: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
-- Sample9: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@<*>: <*>)`
+- Sample1, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(<*>)`
+- Sample2, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(<*>)`
+- Sample3, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
+- Sample4, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(<*>)@<*>:<?>`
+- Sample5, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
+- Sample6, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(<*> )`
+- Sample7, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@<*>:*)`
+- Sample8, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
+- Sample9, strict PASS=False: `Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://<*>:<*>)`
 
 Nearest labeled references:
 - Index415, FAIL=True: `Starting job: count at pnmf_dblp.py:420`; GT=`Starting job: count at <*>`
 - Index441, FAIL=True: `Opening proxy : mesos-slave-17:41511`; GT=`Opening proxy : <*>`
 - Index300, FAIL=False: `Still have 1 requests outstanding when connection from mesos-slave-20/10.10.34.30:41009 is closed`; GT=`Still have <*> requests outstanding when connection from <*> is closed`
 
-All ten split endpoint content inconsistently within fixed wrapper. Failing Spark-job neighbor is loose; stable low-risk error remains after excluding uncertain labels.
+All ten fail endpoint scope or syntax, through splitting the endpoint or removing its fixed wrapper content. Failing Spark-job neighbor is loose; stable low-risk error remains after excluding uncertain labels.
 
 
 ## C089: gemma/disjoint/Spark/FN
@@ -2836,12 +3276,17 @@ Sample0:
 Started reading broadcast variable <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Started reading broadcast <*> <*>`
-- Sample6: `Started reading broadcast <*> <*>`
-- Sample7: `Started reading broadcast <*> <*>`
-- Sample8: `Started reading broadcast variable <*>`
-- Sample9: `Started reading broadcast <*> <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Started reading broadcast variable <*>`
+- Sample1, strict PASS=False: `Started reading broadcast <*> <*>`
+- Sample2, strict PASS=False: `Started reading broadcast <*> <*>`
+- Sample3, strict PASS=False: `Started reading broadcast <*>`
+- Sample4, strict PASS=False: `Started reading broadcast <*> <*>`
+- Sample5, strict PASS=False: `Started reading broadcast <*> <*>`
+- Sample6, strict PASS=False: `Started reading broadcast <*> <*>`
+- Sample7, strict PASS=False: `Started reading broadcast <*> <*>`
+- Sample8, strict PASS=True: `Started reading broadcast variable <*>`
+- Sample9, strict PASS=False: `Started reading broadcast <*> <*>`
 
 Nearest labeled references:
 - Index253, FAIL=False: `Got assigned task 151786`; GT=`Got assigned task <*>`
@@ -2868,19 +3313,24 @@ Sample0:
 couldn't obtain the vcpu count from domain id: <*>, exception: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
-- Sample6: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
-- Sample7: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
-- Sample8: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
-- Sample9: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+- Sample1, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+- Sample2, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: Requested operation is not valid: cpu affinity is not supported`
+- Sample3, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*> , exception: <*>`
+- Sample4, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*> , exception: <*>`
+- Sample5, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+- Sample6, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+- Sample7, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+- Sample8, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
+- Sample9, strict PASS=False: `couldn't obtain the vcpu count from domain id: <*>, exception: <*>`
 
 Nearest labeled references:
 - Index490, FAIL=True: `[instance: 65d8375a-4bc7-4706-b5fe-1049ba733851] Deletion of /var/lib/nova/instances/65d8375a-4bc7-4706-b5fe-1049ba733851_del complete`; GT=`[instance: <*>] Deletion of <*> complete`
 - Index479, FAIL=True: `[instance: 657e9e59-0d1a-4043-b413-5f8912e6fecb] Deletion of /var/lib/nova/instances/657e9e59-0d1a-4043-b413-5f8912e6fecb_del complete`; GT=`[instance: <*>] Deletion of <*> complete`
 - Index349, FAIL=False: `[instance: 05aab6c8-0298-43a3-b439-102d389a632d] disk limit not specified, defaulting to unlimited`; GT=`[instance: <*>] disk limit not specified, defaulting to unlimited`
 
-All ten overmask a constant exception explanation and keep a comma absent from GT. Population rank is already 76th percentile but system threshold is higher; this FN is not globally low-ranked.
+All ten fail: outputs overmask a constant exception explanation and/or keep a comma absent from GT. Population rank is already 76th percentile but system threshold is higher; this FN is not globally low-ranked.
 
 
 ## C091: gemma/disjoint/Thunderbird/FN
@@ -2900,12 +3350,17 @@ Sample0:
 [<*>]: No configuration change required
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[<*>]: No configuration change required`
-- Sample6: `[<*>]: <*>`
-- Sample7: `[<*]: <*>`
-- Sample8: `[<*>]: <*>`
-- Sample9: `[<*>]: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `[<*>]: No configuration change required`
+- Sample1, strict PASS=False: `[<*>:<*>]: No configuration change required`
+- Sample2, strict PASS=False: `[<*>:*]]: No configuration change required`
+- Sample3, strict PASS=False: `[<*>]: <*>`
+- Sample4, strict PASS=True: `[<*>]: No configuration change required`
+- Sample5, strict PASS=True: `[<*>]: No configuration change required`
+- Sample6, strict PASS=False: `[<*>]: <*>`
+- Sample7, strict PASS=False: `[<*]: <*>`
+- Sample8, strict PASS=False: `[<*>]: <*>`
+- Sample9, strict PASS=False: `[<*>]: <*>`
 
 Nearest labeled references:
 - Index324, FAIL=True: `Unmounting PanFS filesystems: succeeded`; GT=`Unmounting <*> filesystems: <*>`
@@ -2932,12 +3387,17 @@ Sample0:
 [15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample6: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample7: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample8: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
-- Sample9: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url https://r2---sn-n4v7sn7l.c.docs.google.com/videoplayback?id=2e514773f43464a1&itag=22&source=picasa&requiressl=yes&ttl=transient&mm=30&mn=sn-n4v7sn7l&ms=nxu&mv=m&pl=32&ei=bRpcWciBEceg_APrnY7IBg&driveid=1gnwLnyKP9R-fC9jxSRZZwrozP28F1J5SDg&mime=video/mp4&lmt=1491688542449626&mt=1499208228&ip=<*>&ipbits=0&expire=1499222701&cp=QVJOQUNfUVdOQlhNOnlwZFotQjE0cHB4&sparams=ip,ipbits,expire,id,itag,source,requiressl,ttl,mm,mn,ms,mv,pl,ei,driveid,mime,lmt,cp&signature=4A681A1F0098A72657CBEA27CB92E1FA4E53698F.6756F013E02C3C0B007A44B04BBEB1013346BB50&key=ck2&app=explorer&cpn=Vt8eqXHZv-rwrYSf&c=WEB&cver=1.20170627`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample1, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample2, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample3, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample4, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample5, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample6, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample7, strict PASS=True: `[<*>] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample8, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url <*>`
+- Sample9, strict PASS=False: `[15:45:00.925] HTTPRequest figHTTPDumpFinalURLAndRemoteAddress: address <*> final url https://r2---sn-n4v7sn7l.c.docs.google.com/videoplayback?id=2e514773f43464a1&itag=22&source=picasa&requiressl=yes&ttl=transient&mm=30&mn=sn-n4v7sn7l&ms=nxu&mv=m&pl=32&ei=bRpcWciBEceg_APrnY7IBg&driveid=1gnwLnyKP9R-fC9jxSRZZwrozP28F1J5SDg&mime=video/mp4&lmt=1491688542449626&mt=1499208228&ip=<*>&ipbits=0&expire=1499222701&cp=QVJOQUNfUVdOQlhNOnlwZFotQjE0cHB4&sparams=ip,ipbits,expire,id,itag,source,requiressl,ttl,mm,mn,ms,mv,pl,ei,driveid,mime,lmt,cp&signature=4A681A1F0098A72657CBEA27CB92E1FA4E53698F.6756F013E02C3C0B007A44B04BBEB1013346BB50&key=ck2&app=explorer&cpn=Vt8eqXHZv-rwrYSf&c=WEB&cver=1.20170627`
 
 Nearest labeled references:
 - Index144, FAIL=True: `[15:45:00.925] HTTPRequest figHttpRequestDidReceiveResponseCallback: received http response 403 (error -12660) for https://r2---sn-n4v7sn7l.c.docs.google.com/videoplayback?id=2e514773f43464a1&itag=22&source=picasa&requiressl=yes&ttl=transient&mm=30&mn=sn-n4v7sn7l&ms=nxu&mv=m&pl=32&ei=bRpcWciBEceg_APrnY7IBg&driveid=1gnwLnyKP9R-fC9jxSRZZwrozP28F1J5SDg&mime=video/mp4&lmt=1491688542449626&mt=1499208228&ip=2607:f140:6000:8:51cf:994c:36cb:1c56&ipbits=0&expire=1499222701&cp=QVJOQUNfUVdOQlhNOnlwZFotQjE0cHB4&sparams=ip,ipbits,expire,id,itag,source,requiressl,ttl,mm,mn,ms,mv,pl,ei,driveid,mime,lmt,cp&signature=4A681A1F0098A72657CBEA27CB92E1FA4E53698F.6756F013E02C3C0B007A44B04BBEB1013346BB50&key=ck2&app=explorer&cpn=Vt8eqXHZv-rwrYSf&c=WEB&cver=1.20170627`; GT=`[<*>] HTTPRequest figHttpRequestDidReceiveResponseCallback: received http response <*> (error <*>) for <*>`
@@ -2964,12 +3424,17 @@ Sample0:
 you want, please write a subnet declaration
 ```
 
-Target-batch parsed outputs:
-- Sample5: `you want, please write a subnet declaration`
-- Sample6: `you want, please write a subnet declaration`
-- Sample7: `you want, please write a subnet declaration`
-- Sample8: `you want, please write a subnet declaration`
-- Sample9: `you want, please write a subnet declaration`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `you want, please write a subnet declaration`
+- Sample1, strict PASS=True: `you want, please write a subnet declaration`
+- Sample2, strict PASS=True: `you want, please write a subnet declaration`
+- Sample3, strict PASS=True: `you want, please write a subnet declaration`
+- Sample4, strict PASS=True: `you want, please write a subnet declaration`
+- Sample5, strict PASS=True: `you want, please write a subnet declaration`
+- Sample6, strict PASS=True: `you want, please write a subnet declaration`
+- Sample7, strict PASS=True: `you want, please write a subnet declaration`
+- Sample8, strict PASS=True: `you want, please write a subnet declaration`
+- Sample9, strict PASS=True: `you want, please write a subnet declaration`
 
 Nearest labeled references:
 - Index429, FAIL=False: `stopping the Postfix mail system`; GT=`stopping the Postfix mail system`
@@ -2996,12 +3461,17 @@ Sample0:
 Calibrating delay loop... <*> BogoMIPS
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Calibrating delay loop... <*> BogoMIPS`
-- Sample6: `Calibrating delay loop... <*> BogoMIPS`
-- Sample7: `Calibrating delay loop... <*> BogoMIPS`
-- Sample8: `Calibrating delay loop... <*> BogoMIPS`
-- Sample9: `Calibrating delay loop... <*> BogoMIPS`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample1, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample2, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample3, strict PASS=False: `Calibrating delay loop... <*> <*>`
+- Sample4, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample5, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample6, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample7, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample8, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
+- Sample9, strict PASS=True: `Calibrating delay loop... <*> BogoMIPS`
 
 Nearest labeled references:
 - Index59, FAIL=True: `FDC 0 is a National Semiconductor PC87306`; GT=`FDC <*> is a National Semiconductor <*>`
@@ -3028,12 +3498,17 @@ Sample0:
 ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
-- Sample6: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>/com.microsoft.Word/com.microsoft.Word.savedState`
-- Sample7: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
-- Sample8: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
-- Sample9: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample1, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample2, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample3, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample4, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample5, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample6, strict PASS=False: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>/com.microsoft.Word/com.microsoft.Word.savedState`
+- Sample7, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample8, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
+- Sample9, strict PASS=True: `ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to <*>`
 
 Nearest labeled references:
 - Index338, FAIL=True: `realpath() returned NULL for /var/folders/zz/zyxvpxvq6csfxvn_n00000s0000068/C/com.apple.SoftwareUpdate`; GT=`realpath() returned <*> for <*>`
@@ -3060,12 +3535,17 @@ Sample0:
 Failed password for invalid user <*> from <*> port <*> ssh2
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Failed password for invalid user <*> from <*> port <*> ssh2`
-- Sample6: `Failed password for invalid user <*> from <*> <*> ssh2`
-- Sample7: `Failed password for invalid user <*> from <*> port <*> ssh2`
-- Sample8: `Failed password for invalid user <*> from <*> port <*> ssh2`
-- Sample9: `Failed password for invalid user <*> from <*> port <*> ssh2`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample1, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample2, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample3, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample4, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample5, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample6, strict PASS=False: `Failed password for invalid user <*> from <*> <*> ssh2`
+- Sample7, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample8, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
+- Sample9, strict PASS=True: `Failed password for invalid user <*> from <*> port <*> ssh2`
 
 Nearest labeled references:
 - Index82, FAIL=True: `Received disconnect from 45.32.81.34: 11: Bye Bye [preauth]`; GT=`Received disconnect from <*>: <*>: Bye Bye [preauth]`
@@ -3092,12 +3572,17 @@ Sample0:
 risBoot (command <*>)
 ```
 
-Target-batch parsed outputs:
-- Sample5: `risBoot (command <*> )`
-- Sample6: `risBoot (command <*>)`
-- Sample7: `risBoot (command <*>)`
-- Sample8: `risBoot (command <*>)`
-- Sample9: `risBoot (command <*> )`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `risBoot (command <*>)`
+- Sample1, strict PASS=False: `risBoot (<*> )`
+- Sample2, strict PASS=True: `risBoot (command <*>)`
+- Sample3, strict PASS=True: `risBoot (command <*>)`
+- Sample4, strict PASS=False: `risBoot (command <*> )`
+- Sample5, strict PASS=False: `risBoot (command <*> )`
+- Sample6, strict PASS=True: `risBoot (command <*>)`
+- Sample7, strict PASS=True: `risBoot (command <*>)`
+- Sample8, strict PASS=True: `risBoot (command <*>)`
+- Sample9, strict PASS=False: `risBoot (command <*> )`
 
 Nearest labeled references:
 - Index66, FAIL=True: `boot (command 2607)`; GT=`boot (command <*>)`
@@ -3124,12 +3609,17 @@ Sample0:
 server <*> not responding, still <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `server <*> not responding, still trying`
-- Sample6: `server <*> not responding, still trying`
-- Sample7: `server <*> not responding, still trying`
-- Sample8: `server <*> not responding, still trying`
-- Sample9: `server <*> not responding, still trying`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `server <*> not responding, still <*>`
+- Sample1, strict PASS=True: `server <*> not responding, still trying`
+- Sample2, strict PASS=True: `server <*> not responding, still trying`
+- Sample3, strict PASS=True: `server <*> not responding, still trying`
+- Sample4, strict PASS=True: `server <*> not responding, still trying`
+- Sample5, strict PASS=True: `server <*> not responding, still trying`
+- Sample6, strict PASS=True: `server <*> not responding, still trying`
+- Sample7, strict PASS=True: `server <*> not responding, still trying`
+- Sample8, strict PASS=True: `server <*> not responding, still trying`
+- Sample9, strict PASS=True: `server <*> not responding, still trying`
 
 Nearest labeled references:
 - Index112, FAIL=True: `sda: asking for cache data failed`; GT=`<*>: asking for cache data failed`
@@ -3156,12 +3646,17 @@ Sample0:
 Executing with <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Executing with <*>`
-- Sample6: `Executing with tokens: <*> <*> <*>`
-- Sample7: `Executing with tokens: <*>`
-- Sample8: `Executing with tokens: <*>`
-- Sample9: `Executing with tokens: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Executing with <*>`
+- Sample1, strict PASS=False: `Executing with tokens: <*>`
+- Sample2, strict PASS=False: `Executing with tokens: <*>`
+- Sample3, strict PASS=False: `Executing with tokens: <*>`
+- Sample4, strict PASS=False: `Executing with tokens: <*>.`
+- Sample5, strict PASS=False: `Executing with <*>`
+- Sample6, strict PASS=False: `Executing with tokens: <*> <*> <*>`
+- Sample7, strict PASS=False: `Executing with tokens: <*>`
+- Sample8, strict PASS=False: `Executing with tokens: <*>`
+- Sample9, strict PASS=False: `Executing with tokens: <*>`
 
 Nearest labeled references:
 - Index494, FAIL=True: `Setting job diagnostics to`; GT=`Setting job diagnostics to`
@@ -3188,12 +3683,17 @@ Sample0:
 General Purpose Registers: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `General Purpose Registers:  <*> <*> <*> <*> <*>  <*> <*> <*>`
-- Sample6: `General Purpose Registers: <*> <*> <*>`
-- Sample7: `General Purpose Registers: <*>  <*> <*>`
-- Sample8: `General Purpose Registers:  <*>  <*>  <*>  <*>  <*>  <*>  <*>`
-- Sample9: `General Purpose Registers: <*> <*> <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `General Purpose Registers: <*>`
+- Sample1, strict PASS=False: `General Purpose Registers: <*> <*>`
+- Sample2, strict PASS=False: `General Purpose Registers: <*>`
+- Sample3, strict PASS=False: `General Purpose Registers: <*> <*>`
+- Sample4, strict PASS=False: `General Purpose Registers: <*>  <*>  <*>`
+- Sample5, strict PASS=False: `General Purpose Registers:  <*> <*> <*> <*> <*>  <*> <*> <*>`
+- Sample6, strict PASS=False: `General Purpose Registers: <*> <*> <*>`
+- Sample7, strict PASS=False: `General Purpose Registers: <*>  <*> <*>`
+- Sample8, strict PASS=False: `General Purpose Registers:  <*>  <*>  <*>  <*>  <*>  <*>  <*>`
+- Sample9, strict PASS=False: `General Purpose Registers: <*> <*> <*>`
 
 Nearest labeled references:
 - Index149, FAIL=True: `Microloader Assertion`; GT=`Microloader Assertion`
@@ -3220,12 +3720,17 @@ Sample0:
 OutputCommitter set in config <*> null
 ```
 
-Target-batch parsed outputs:
-- Sample5: `OutputCommitter set in config <*> null`
-- Sample6: `OutputCommitter set in config <*> null`
-- Sample7: `OutputCommitter set in config <*> null`
-- Sample8: `OutputCommitter set in config <*> null`
-- Sample9: `OutputCommitter set in config <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `OutputCommitter set in config <*> null`
+- Sample1, strict PASS=True: `OutputCommitter set in config <*>`
+- Sample2, strict PASS=False: `OutputCommitter set in config <*> null`
+- Sample3, strict PASS=True: `OutputCommitter set in config <*>`
+- Sample4, strict PASS=True: `OutputCommitter set in config <*>`
+- Sample5, strict PASS=False: `OutputCommitter set in config <*> null`
+- Sample6, strict PASS=False: `OutputCommitter set in config <*> null`
+- Sample7, strict PASS=False: `OutputCommitter set in config <*> null`
+- Sample8, strict PASS=False: `OutputCommitter set in config <*> null`
+- Sample9, strict PASS=True: `OutputCommitter set in config <*>`
 
 Nearest labeled references:
 - Index326, FAIL=True: `ReduceTask metrics system started`; GT=`<*> metrics system started`
@@ -3252,12 +3757,17 @@ Sample0:
 Ignored failure: java.io.IOException: Failed to send RPC <*> to <*">: java.nio.channels.ClosedChannelException
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Ignored failure: java.io.IOException: Failed to send RPC <*> to mesos-slave-05/<*>: <*>: java.nio.channels.ClosedChannelException`
-- Sample6: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: <*>: java.nio.channels.ClosedChannelException`
-- Sample7: `Ignored failure: java.io.IOException: Failed to send RPC <*> to mesos-slave-<*>:<*>: java.nio.channels.ClosedChannelException`
-- Sample8: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*><*>: java.nio.channels.ClosedChannelException`
-- Sample9: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: java.nio.channels.ClosedChannelException`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*">: java.nio.channels.ClosedChannelException`
+- Sample1, strict PASS=True: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: java.nio.channels.ClosedChannelException`
+- Sample2, strict PASS=True: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: java.nio.channels.ClosedChannelException`
+- Sample3, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: <*>: java.nio.channels.ClosedChannelException`
+- Sample4, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: <*>`
+- Sample5, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to mesos-slave-05/<*>: <*>: java.nio.channels.ClosedChannelException`
+- Sample6, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: <*>: java.nio.channels.ClosedChannelException`
+- Sample7, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to mesos-slave-<*>:<*>: java.nio.channels.ClosedChannelException`
+- Sample8, strict PASS=False: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*><*>: java.nio.channels.ClosedChannelException`
+- Sample9, strict PASS=True: `Ignored failure: java.io.IOException: Failed to send RPC <*> to <*>: java.nio.channels.ClosedChannelException`
 
 Nearest labeled references:
 - Index368, FAIL=False: `Lost task 1.0 in stage 5.0 (TID 9, mesos-slave-08): java.lang.OutOfMemoryError: Requested array size exceeds VM limit`; GT=`Lost task <*> in stage <*> (TID <*>, <*>): java.lang.OutOfMemoryError: Requested array size exceeds VM limit`
@@ -3284,12 +3794,17 @@ Sample0:
 Link error on broadcast tree <*>: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Link error on broadcast tree <*>`
-- Sample6: `Link error on broadcast tree <*> <*>`
-- Sample7: `Link error on broadcast tree <*>`
-- Sample8: `Link error on broadcast tree <*><*>`
-- Sample9: `Link error on broadcast tree <*><*>::<*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Link error on broadcast tree <*>: <*>`
+- Sample1, strict PASS=False: `Link error on broadcast tree <*>  <*>:<*>:<*>`
+- Sample2, strict PASS=False: `Link error on broadcast tree <*> <*>:<*>;`
+- Sample3, strict PASS=False: `Link error on broadcast tree <*> <*>`
+- Sample4, strict PASS=False: `Link error on broadcast tree <*>:00:2:7`
+- Sample5, strict PASS=True: `Link error on broadcast tree <*>`
+- Sample6, strict PASS=False: `Link error on broadcast tree <*> <*>`
+- Sample7, strict PASS=True: `Link error on broadcast tree <*>`
+- Sample8, strict PASS=False: `Link error on broadcast tree <*><*>`
+- Sample9, strict PASS=False: `Link error on broadcast tree <*><*>::<*>`
 
 Nearest labeled references:
 - Index93, FAIL=False: `ServerFileSystem: An ServerFileSystem domain panic has occurred on storage1432`; GT=`ServerFileSystem: An ServerFileSystem domain panic has occurred on <*>`
@@ -3316,12 +3831,17 @@ Sample0:
 [com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> ; data: {
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*>> (entity: SubscriptionInfo; id: <*>; data: {`
-- Sample6: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*>  ; data: {`
-- Sample7: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> <*> ; data: {}`
-- Sample8: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> ; data: {`
-- Sample9: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: <*>; id: <*> <*>; data: {`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> ; data: {`
+- Sample1, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> ; data: {`
+- Sample2, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: 0x401eeb <*> ; data: {}`
+- Sample3, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> <*> ; data: {`
+- Sample4, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> ; data: {`
+- Sample5, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*>> (entity: SubscriptionInfo; id: <*>; data: {`
+- Sample6, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*>  ; data: {`
+- Sample7, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> <*> ; data: {}`
+- Sample8, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: SubscriptionInfo; id: <*> ; data: {`
+- Sample9, strict PASS=False: `[com.apple.calendar.store.log.subscription] [Failed to refresh <*> (entity: <*>; id: <*> <*>; data: {`
 
 Nearest labeled references:
 - Index431, FAIL=True: `[com.apple.calendar.store.log.caldav.queue] [Account refresh failed with error: Error Domain=CoreDAVHTTPStatusErrorDomain Code=504 "(null)" UserInfo={AccountName=163, CalDAVErrFromRefresh=YES, CoreDAVHTTPHeaders=<CFBasicHash 0x7fa11af6e180 [0x7fff7abc1440]>{type = immutable dict, count = 5,`; GT=`[<*>] [Account refresh failed with error: Error Domain=CoreDAVHTTPStatusErrorDomain <*> "(<*>)" UserInfo={AccountName=<*>, CalDAVErrFromRefresh=<*>, CoreDAVHTTPHeaders=<*>{type = <*>, count = <*>,`
@@ -3348,19 +3868,24 @@ Sample0:
 Unable to handle kernel NULL pointer dereference at <*> RIP: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
-- Sample6: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
-- Sample7: `Unable to handle kernel NULL pointer dereference at <*>> RIP:`
-- Sample8: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
-- Sample9: `Unable to handle kernel <*> dereference at <*> RIP:  <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample1, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample2, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample3, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample4, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample5, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample6, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample7, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*>> RIP:`
+- Sample8, strict PASS=False: `Unable to handle kernel NULL pointer dereference at <*> RIP: <*>`
+- Sample9, strict PASS=False: `Unable to handle kernel <*> dereference at <*> RIP:  <*>`
 
 Nearest labeled references:
 - Index485, FAIL=False: `frequency initialized 133.783 PPM from /var/lib/ntp/drift`; GT=`frequency initialized <*> PPM from <*>`
 - Index2, FAIL=False: `Frequency format error in /var/lib/ntp/drift`; GT=`Frequency format error in <*>`
 - Index70, FAIL=True: `[ib_sm_assign.c:389]: Failed to set LID on switch=66a100400017e, because NO RESPONSE`; GT=`[<*>]: Failed to set LID on switch=<*>, because NO RESPONSE`
 
-Kernel header adds invented RIP variable in every target generation. High score despite a passing frequency neighbor shows useful risk information beyond nearest-label matching.
+All target generations fail through invented RIP payload, an extra bracket or overmasking NULL pointer text. High score despite a passing frequency neighbor shows useful risk information beyond nearest-label matching.
 
 
 ## C106: gemma/disjoint/Zookeeper/TN
@@ -3380,12 +3905,17 @@ Sample0:
 FollowerRequestProcessor exited loop!
 ```
 
-Target-batch parsed outputs:
-- Sample5: `<*> exited loop!`
-- Sample6: `FollowerRequestProcessor exited loop!`
-- Sample7: `FollowerRequestProcessor exited loop!`
-- Sample8: `FollowerRequestProcessor exited loop!`
-- Sample9: `FollowerRequestProcessor exited loop!`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `FollowerRequestProcessor exited loop!`
+- Sample1, strict PASS=True: `FollowerRequestProcessor exited loop!`
+- Sample2, strict PASS=False: `<*> exited loop!`
+- Sample3, strict PASS=False: `<* exited loop!<*>`
+- Sample4, strict PASS=True: `FollowerRequestProcessor exited loop!`
+- Sample5, strict PASS=False: `<*> exited loop!`
+- Sample6, strict PASS=True: `FollowerRequestProcessor exited loop!`
+- Sample7, strict PASS=True: `FollowerRequestProcessor exited loop!`
+- Sample8, strict PASS=True: `FollowerRequestProcessor exited loop!`
+- Sample9, strict PASS=True: `FollowerRequestProcessor exited loop!`
 
 Nearest labeled references:
 - Index347, FAIL=False: `CommitProcessor exited loop!`; GT=`CommitProcessor exited loop!`
@@ -3412,12 +3942,17 @@ Sample0:
 shutdown called
 ```
 
-Target-batch parsed outputs:
-- Sample5: `shutdown called`
-- Sample6: `shutdown called`
-- Sample7: `shutdown called`
-- Sample8: `shutdown called`
-- Sample9: `shutdown called`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `shutdown called`
+- Sample1, strict PASS=True: `shutdown called`
+- Sample2, strict PASS=True: `shutdown called`
+- Sample3, strict PASS=True: `shutdown called`
+- Sample4, strict PASS=True: `shutdown called`
+- Sample5, strict PASS=True: `shutdown called`
+- Sample6, strict PASS=True: `shutdown called`
+- Sample7, strict PASS=True: `shutdown called`
+- Sample8, strict PASS=True: `shutdown called`
+- Sample9, strict PASS=True: `shutdown called`
 
 Nearest labeled references:
 - Index150, FAIL=False: `Shutdown called`; GT=`Shutdown called`
@@ -3444,12 +3979,17 @@ Sample0:
 Host added was in lost list earlier: <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `Host added was in lost list earlier: <*>`
-- Sample6: `Host added was in lost list earlier: <*>`
-- Sample7: `Host added was in lost list earlier: <*>`
-- Sample8: `Host added was in lost list earlier: <*>`
-- Sample9: `Host added was in lost list earlier: <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample1, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample2, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample3, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample4, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample5, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample6, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample7, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample8, strict PASS=True: `Host added was in lost list earlier: <*>`
+- Sample9, strict PASS=True: `Host added was in lost list earlier: <*>`
 
 Nearest labeled references:
 - Index34, FAIL=False: `Got told to re-register updating block broadcast_14_piece0`; GT=`Got told to re-register updating block <*>`
@@ -3476,12 +4016,17 @@ Sample0:
 DB Error: <*> "no such table: <*>"
 ```
 
-Target-batch parsed outputs:
-- Sample5: `DB Error: <*> "no such table: <*>"`
-- Sample6: `DB Error: <*> "no such table: <*>"`
-- Sample7: `DB Error: <*> "no such table: <*>_<*>"`
-- Sample8: `DB Error: <*> "no such table: <*>"`
-- Sample9: `DB Error: <*> "no such table: <*>"`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample1, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample2, strict PASS=False: `DB Error: <*> "no such table: <*> "`
+- Sample3, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample4, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample5, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample6, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample7, strict PASS=False: `DB Error: <*> "no such table: <*>_<*>"`
+- Sample8, strict PASS=True: `DB Error: <*> "no such table: <*>"`
+- Sample9, strict PASS=True: `DB Error: <*> "no such table: <*>"`
 
 Nearest labeled references:
 - Index107, FAIL=True: `ARPT: 770595.414824: framerdy 0x0 bmccmd 3 framecnt 1024`; GT=`ARPT: <*>: framerdy <*> bmccmd <*> framecnt <*>`
@@ -3508,12 +4053,17 @@ Sample0:
 [instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.
 ```
 
-Target-batch parsed outputs:
-- Sample5: `[instance: <*>] Took 19.03 seconds to spawn the instance on the hypervisor.`
-- Sample6: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
-- Sample7: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
-- Sample8: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
-- Sample9: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample1, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample2, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample3, strict PASS=False: `[instance: <*>] Took 19.03 seconds to spawn the instance on the hypervisor.`
+- Sample4, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample5, strict PASS=False: `[instance: <*>] Took 19.03 seconds to spawn the instance on the hypervisor.`
+- Sample6, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample7, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample8, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
+- Sample9, strict PASS=True: `[instance: <*>] Took <*> seconds to spawn the instance on the hypervisor.`
 
 Nearest labeled references:
 - Index237, FAIL=False: `[instance: 21c1242e-d320-42a7-9029-84d90a0c875c] Took 0.49 seconds to deallocate network for instance.`; GT=`[instance: <*>] Took <*> seconds to deallocate network for instance.`
@@ -3540,12 +4090,17 @@ Sample0:
 removing device node <*>
 ```
 
-Target-batch parsed outputs:
-- Sample5: `removing device node <*>`
-- Sample6: `removing device node <*>`
-- Sample7: `removing device node <*>`
-- Sample8: `removing device node <*>`
-- Sample9: `removing device node <*>`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=True: `removing device node <*>`
+- Sample1, strict PASS=True: `removing device node <*>`
+- Sample2, strict PASS=True: `removing device node <*>`
+- Sample3, strict PASS=True: `removing device node <*>`
+- Sample4, strict PASS=True: `removing device node <*>`
+- Sample5, strict PASS=True: `removing device node <*>`
+- Sample6, strict PASS=True: `removing device node <*>`
+- Sample7, strict PASS=True: `removing device node <*>`
+- Sample8, strict PASS=True: `removing device node <*>`
+- Sample9, strict PASS=True: `removing device node <*>`
 
 Nearest labeled references:
 - Index411, FAIL=False: `creating device node '/udev/vcs5'`; GT=`creating device node <*>`
@@ -3572,12 +4127,17 @@ Sample0:
 PM response took <*> ms ( <*>, <*>)
 ```
 
-Target-batch parsed outputs:
-- Sample5: `PM response took <*> ms (<*, <*>)`
-- Sample6: `PM response took <*> ms ( <*>, <*>)`
-- Sample7: `PM response took <*> ms (<*>, <*>)`
-- Sample8: `PM response took <*> ms (<*>, <*>)`
-- Sample9: `PM response took <*> ms (<*>, <*>)`
+All ten stored parsed outputs (0–4 diagnostics;5–9 target):
+- Sample0, strict PASS=False: `PM response took <*> ms ( <*>, <*>)`
+- Sample1, strict PASS=False: `PM response took <*> ms ( <*>, <*>)`
+- Sample2, strict PASS=False: `PM response took <*> ms ( <*>, <*> )`
+- Sample3, strict PASS=False: `PM response took <*> ms (<*>, <*> )`
+- Sample4, strict PASS=False: `PM response took <*> ( <*>, <*> )`
+- Sample5, strict PASS=False: `PM response took <*> ms (<*, <*>)`
+- Sample6, strict PASS=False: `PM response took <*> ms ( <*>, <*>)`
+- Sample7, strict PASS=True: `PM response took <*> ms (<*>, <*>)`
+- Sample8, strict PASS=True: `PM response took <*> ms (<*>, <*>)`
+- Sample9, strict PASS=True: `PM response took <*> ms (<*>, <*>)`
 
 Nearest labeled references:
 - Index401, FAIL=False: `AppleThunderboltGenericHAL::earlyWake - complete - took 0 milliseconds`; GT=`AppleThunderboltGenericHAL::earlyWake - complete - took <*> milliseconds`

@@ -3,7 +3,7 @@ C002	Host-name family is familiar, but deleting name or changing spacing produce
 C003	Host/IP/port boundary variants mostly fail despite a successful heartbeat neighbor. The near-zero margin gives weak evidence of a confident miss; compare consistently correct numeric boundary case C026.
 C004	All ten fail, including copying numeric values and comma retention. A successful health-data neighbor does not transfer its boundary convention; near-threshold FN is not solely label noise. Compare C056.
 C005	All ten fail on an object-like word variable and a same-family failing neighbor exists, yet risk is low. Familiarity is insufficient and PASS-density scoring can disagree with local failure evidence; compare correctly high-risk C019.
-C006	All ten fail by masking shutdown rather than named. Low score near a successful authentication phrase illustrates that general short-message similarity need not encode which word is variable; compare high-risk short failures C015.
+C006	All ten fail; displayed outputs retain named or mask shutdown rather than named. Low score near a successful authentication phrase illustrates that general short-message similarity need not encode which word is variable; compare high-risk short failures C015.
 C007	All ten fail on word-like poweredoff or constant class structure. A failing error-message neighbor does not ensure high-enough risk; near-system-relative high rank still falls below the learned threshold. Compare C104.
 C008	Escaped path looks unusual and the closest family example fails, but this line passes 4/5 in the label batch. High risk may reflect rare path form and unstable family outcome, not incapacity to parse paths; compare C028.
 C009	Closest numeric-state family example fails, while this line passes 4/5. Family-level failure concentration can generate FP even for a seen template; compare stable TP C019.
@@ -12,8 +12,8 @@ C011	All ten correctly mask a hexadecimal value, with another successful registe
 C012	Object-reference boundaries vary across generations; 1/5 versus 3/5 successes flip majority. A nearby failing object-field family makes high risk understandable but not correct for this batch; compare C005.
 C013	Lease duration is sometimes retained, and both batches are 3/5 successful. Risk is near the threshold; a failing connection neighbor is only a loose structural match. Compare stable numeric success C026.
 C014	Same-family failing snapshot reference coexists with 4/5 successes in both batches. Risk can inherit family difficulty despite mostly correct path abstraction; compare TP C020 from this family.
-C015	Variable-free service header triggers invented continuation and malformed outputs in all ten. Very high risk and a failing short-header neighbor fit novelty-related success of prediction; compare successful short header C037.
-C016	A second variable-free header often triggers continuation; only one label-batch generation succeeds. This TP supports short-header risk but C037/C093 show that shortness is not sufficient for failure.
+C015	Variable-free service header receives invented continuations, overmasking or malformed outputs; all ten fail. Very high risk and a failing short-header neighbor fit novelty-related success of prediction; compare successful short header C037.
+C016	A second variable-free header often receives continuations or malformed completions; only one label-batch generation succeeds. This TP supports short-header risk but C037/C093 show that shortness is not sufficient for failure.
 C017	Nested coordinate pairs are collapsed into fewer slots in every label-batch generation. Similar failing coordinate reference and just-above-threshold risk support a structural association, not a precise confidence claim.
 C018	Sample0 is correct but label-batch 1/5 succeeds; masking event-name words varies. TP is a correct majority prediction with an unstable opposite first batch, illustrating the target differs from sample0.
 C019	Object identity is repeatedly retained; all ten fail and same-family reference also fails. Here familiarity and high risk agree, countering an explanation that Clotho invariably misses word-like variables.
@@ -26,7 +26,7 @@ C025	Two first-batch versus three last-batch successes reverse the label. Simila
 C026	All ten mask executor and two timing values correctly on an unseen template. A passing heartbeat family supports generalization beyond exact identity; counters novelty-as-failure.
 C027	Size-unit and hex-prefix boundaries alternate, but the majority succeeds narrowly. A failing PCI neighbor does not prevent low risk; H3 is plausible for this threshold-sensitive case.
 C028	Mostly correct path abstraction and passing same-family reference produce TN. This counters C008: path variables and Apache family membership alone do not determine prediction failure.
-C029	All ten fail command-word or Error-phrase boundaries, yet this unseen line has bottom-ranked risk and a failing boot neighbor. Strong counterexample to insufficient familiarity alone; compare C051's same-GT stochastic success.
+C029	All ten fail through command-word, spacing or Error-phrase boundaries, yet this unseen line has bottom-ranked risk and a failing boot neighbor. Strong counterexample to insufficient familiarity alone; compare C051's same-GT stochastic success.
 C030	All ten fail word-like storage-domain boundaries near a successful ServerFileSystem family. Low risk confuses a familiar prefix with correct abstraction; compare correct word-variable C056.
 C031	Quotes around username are inconsistently retained; first batch succeeds 3/5 and last 2/5. Near-threshold FN can arise from batch instability rather than a robust hidden-state miss.
 C032	All ten mishandle quotes or service-name scope. A failing web-UI reference and low-ish risk show a stable unseen-boundary miss, not just stochastic majority reversal.
@@ -34,7 +34,7 @@ C033	All ten fail to jointly mask responder index and block ID or retain excepti
 C034	A variable-free thread message is overmasked in every generation. Low risk near another failing thread message counters the claim that only conspicuous variable types create FN.
 C035	Compound block-pool ID is fragmented in all ten. Nearby failed task message is loosely related; low risk shows familiar Hadoop vocabulary does not guarantee failure-sensitive geometry.
 C036	Short service header has invented completions in some outputs, but both batches majority succeed. Very high risk overgeneralizes the same short-header behavior correctly flagged in C043/C044.
-C037	One-word program is copied correctly in all ten despite extremely high risk. Successful nearest short assertion refutes a universal low-familiarity-implies-parser-failure account; compare C043.
+C037	One-word program is copied correctly in9/10 generations, including all five target outputs, despite extremely high risk. Successful nearest short assertion refutes a universal low-familiarity-implies-parser-failure account; compare C043.
 C038	Resumed lifecycle template is unseen but close to a successful Paused family and mostly parsed correctly. Near-threshold FP is weak evidence; compare low-risk lifecycle success C110.
 C039	Variable-free PCI phrase is sometimes overmasked and changes majority between batches. Near-threshold FP is compatible with H3; compare stable correct no-variable C093.
 C040	All ten correctly mask executor index despite unseen template and modestly high score. A successful numeric-task neighbor is available; high density novelty is not identical to failure risk.
@@ -77,17 +77,17 @@ C076	Extra colon after disconnect reason is omitted in all ten. Same-family fail
 C077	The word zero is overmasked while trailing numeric field should be masked. A failing infinity neighbor and modest high score fit transfer of formatting difficulty.
 C078	Instance/timing sentence mostly abstracted correctly with passing same-template neighbor. Very low risk fits H1; compare path-boundary FN C057 within instance vocabulary.
 C079	A second build-instance line is correct in all target generations. Correlated same-family TN supports reference familiarity but cannot isolate its causal contribution.
-C080	Variable-free warning copied correctly in all ten; risk is just below threshold despite unrelated passing hardware neighbor. Unusual natural text can be easy to parse.
+C080	Variable-free warning copied correctly in9/10 generations, including all five target outputs; risk is just below threshold despite unrelated passing hardware neighbor. Unusual natural text can be easy to parse.
 C081	Function arguments switch from 0/5 to 3/5 success; retaining zero and punctuation explain unstable labels. Near-threshold TN should not be interpreted as stable correctness.
 C082	Hex leader position mostly masked correctly with same-family passing neighbor. Low risk fits familiar-success transfer and counters generic hex-failure hypothesis.
-C083	Unseen environment key is consistently correct near successful os.version family. Contrast C002: lexical family transfers but does not guarantee identical generation stability across models/keys.
+C083	Unseen environment key is correct in9/10 outputs near successful os.version family. Contrast C002: lexical family transfers but does not guarantee identical generation stability across models/keys.
 C084	Sample0 retains block prefix while last batch mostly correct; same-family passing reference and low risk fit majority label. One displayed generation is insufficient to call FN.
 C085	All ten retain port or split one address variable. Failing connection neighbor exists but very low risk misses it; familiar networking syntax can conceal failure from PASS-density score.
 C086	All target generations retain true or mask NoDelay, though reference environment assignment passes. Low risk conflates common key/value form with correct word-boundary choice.
 C087	First batch all succeeds while last only 2/5 succeed through overmasking infinity. Near-threshold FN fits H3; a failing numeric-format neighbor does not make this stable failure.
-C088	All ten split endpoint content inconsistently within fixed wrapper. Failing Spark-job neighbor is loose; stable low-risk error remains after excluding uncertain labels.
+C088	All ten fail endpoint scope or syntax, through splitting the endpoint or removing its fixed wrapper content. Failing Spark-job neighbor is loose; stable low-risk error remains after excluding uncertain labels.
 C089	Most generations mask the constant broadcast or lose variable. Successful numeric-task neighbor and low risk show simple numeric shape does not ensure constant preservation; sample0 is correct.
-C090	All ten overmask a constant exception explanation and keep a comma absent from GT. Population rank is already 76th percentile but system threshold is higher; this FN is not globally low-ranked.
+C090	All ten fail: outputs overmask a constant exception explanation and/or keep a comma absent from GT. Population rank is already 76th percentile but system threshold is higher; this FN is not globally low-ranked.
 C091	Bracketed filename line changes from 2/5 to 1/5 success; exact sample0 hides overmasking in target batch. Low risk cannot be explained from one displayed generation alone.
 C092	Same long URL input as C064 remains an FP in disjoint data. An almost identical URL in a failing response message makes content-similarity confounding plausible, while batch instability persists.
 C093	Variable-free sentence copied correctly in all ten yet 99th-percentile risk. Strong unfamiliar-success counterexample to novelty-as-failure; compare header TP C099/C100.
@@ -102,7 +102,7 @@ C101	Null is alternately retained after placeholder; 3/5 versus 1/5 success flip
 C102	Compound destination and exception boundary variants mostly fail. Nearby task failure has a successful parsing label, yet score barely flags failure; neighbor label is not determinative.
 C103	Broadcast-tree identifier is fragmented in three target generations; 2/5 succeed. Nearby passing storage-domain reference and TP counter a strict nearest-label account.
 C104	Long nested calendar object repeatedly retains subscription channel or corrupts brackets. Failing calendar reference and high risk fit cross-template structural transfer, contrasting stable low-risk C061.
-C105	Kernel header adds invented RIP variable in every target generation. High score despite a passing frequency neighbor shows useful risk information beyond nearest-label matching.
+C105	All target generations fail through invented RIP payload, an extra bracket or overmasking NULL pointer text. High score despite a passing frequency neighbor shows useful risk information beyond nearest-label matching.
 C106	Follower/CommitProcessor exit-loop family is mostly copied correctly. Low risk generalizes successful family beyond exact template despite a few overmasking outputs.
 C107	Only capitalization distinguishes a passing reference Shutdown called from shutdown called. All ten correct and low risk illustrate exact-GT disjoint does not imply structural novelty.
 C108	All ten abstract host name correctly on unseen template, with a successful re-registration reference. Near-threshold TN is not strong evidence for a specific nearest-neighbor mechanism.
