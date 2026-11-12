@@ -9,6 +9,17 @@ import log_parsing_component_ablation as A
 
 def main():
     root = A.ROOT
+    synthetic = []
+    for model in ('llama', 'gemma'):
+        initial = load(EXP / f'initial_tests_{model}/log_parsing@rules_template/inference_results.json')['ground_truths']
+        assert all(isinstance(g, str) or len(g) == 1 for g in initial)
+        templates = [g if isinstance(g, str) else g[0] for g in initial]
+        for system in sorted(p.name for p in (root / 'jobs' / model / 'disjoint').iterdir()):
+            suite = A.load_lines(EXP.parent / f'clotho/dataset/log_parsing/loghub_{system.lower()}_500.jsonl')
+            overlap = sorted(set(templates) & {r['template'] for r in suite})
+            assert len(set(templates)) == 10 and not overlap
+            synthetic.append(dict(model=model, system=system, synthetic_GT_unique=True, synthetic_suite_GT_overlap=overlap))
+    save(root / 'synthetic_group_validation.json', synthetic)
     hashes = load(root / 'source_hashes.json')
     assert all(sha(EXP / p) == h for p, h in hashes.items()), 'Earlier artifacts modified'
     jobs = sorted((root / 'jobs').glob('*/*/*/seed[0-4].json'))
@@ -17,6 +28,7 @@ def main():
     for p in jobs:
         j = load(p)
         assert len(j['ref']) == 100 and len(set(j['ref'])) == 100
+        assert j['p40_coverage'] == len(j['test']), 'Restore existing40-generation artifacts before validating this complete-label study'
         assert not set(j['ref']) & set(j['test'])
         assert j['layer'] == (16 if j['model'] == 'llama' else 21)
         assert j['cv']['transductive/random'].get('selected', j['original_current']) == j['original_dimension']
@@ -70,10 +82,12 @@ def main():
     assert all(sha(EXP / p) == h for p, h in hashes.items())
     save(root / 'validation.json', dict(jobs=250, scored_cells=rows, sources_unchanged=len(hashes),
          no_GPU=True, no_new_inference=True, original_AUROC_tolerance=1e-12,
-         archived_baseline_vectors_identical=True, grouped_ineligible=ineligible,
+         archived_baseline_vectors_identical=True, ineligible_cells=ineligible,
+         matched40_input_coverage=1.0,
+         grouped_ineligible=[r for r in ineligible if r['cell'].endswith('/grouped')],
          nonconverged_fits=nonconverged, deterministic_replays=replay,
          note='Cross-hardware original PCA is not bit-identical; archived controls preserved. See protocol and baseline_validation.json.'))
-    print('Validated250 jobs,', rows, 'score cells;', len(ineligible), 'grouped cells ineligible;', len(nonconverged), 'nonconverged density fits.')
+    print('Validated250 jobs,', rows, 'score cells;', len(ineligible), 'CV cells ineligible;', len(nonconverged), 'nonconverged density fits.')
 
 
 if __name__ == '__main__':

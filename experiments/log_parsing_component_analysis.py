@@ -94,7 +94,7 @@ def collect():
             rep, mode = name.split('/')
             common = dict(model=model, split=split, system=system, seed=seed, representation=rep, selection=mode)
             selection.append(dict(**common, dimension=v.get('selected', j['original_current'] if 'fallback' in v else None),
-                                  eligible='ineligible' not in v, reason=v.get('ineligible', v.get('fallback'))))
+                                  eligible='ineligible' not in v and not v.get('archived_original_only', False), reason=v.get('ineligible', v.get('recovery_ineligible', v.get('fallback')))))
             if 'ineligible' in v or 'fallback' in v:
                 fallback.append(dict(**common, **v))
             for k, f in enumerate(v.get('folds', [])):
@@ -152,6 +152,14 @@ def collect():
                            coverage=len(original5), source_sha256=sha(source) if source.exists() else None,
                            matched_label_agreement=float(np.mean([(p40[i] <= .5) == y for i, y in original5.items()])) if p40 is not None else None))
     save(ROOT / 'reliable_label_verification.json', labels)
+    save(ROOT / 'computational_accounting.json', dict(completed_jobs=len(jobs),
+         sum_completed_job_wall_s=sum(j['wall_s'] for j in jobs),
+         median_completed_job_wall_s=float(np.median([j['wall_s'] for j in jobs])),
+         max_completed_job_wall_s=max(j['wall_s'] for j in jobs),
+         primary_cells=sum(r['representation'] in REPS and r['scoring'] in SCORES for j in jobs for r in j['rows']),
+         GPU_jobs=0, new_generations=0,
+         reference200='omitted: original ordered200-reference/PCA snapshots not archived; strict recovery not established',
+         note='Sum of job wall time is not measured CPU process time and excludes failed recovery attempts.'))
     return frame, jobs
 
 
@@ -283,9 +291,9 @@ def figures(summary, interactions, paired):
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.5), sharey=True)
     for ax, model in zip(axes, ('llama', 'gemma')):
         for k, score in enumerate(SCORES):
-            ax.plot(range(3), [val(model, 'disjoint', f'{r}/frozen16/{score}') for r in REPS], 'o-', label=score, color=colors[k])
+            ax.plot(range(3), [val(model, 'disjoint', f'{r}/frozen16/{score}') for r in REPS], 'o-', label={'pass':'PASS density', 'relative':'Relative density', 'lr':'Logistic regression'}[score], color=colors[k])
         ax.set_xticks(range(3), ['Original PCA', 'Reference raw', 'Reference scaled'])
-        ax.set_title(C.LABEL[model]); ax.set_ylabel('Disjoint AUROC'); ax.legend(frameon=False)
+        ax.set_title(C.LABEL[model] + ', fixed16'); ax.set_ylabel('Disjoint AUROC'); ax.legend(frameon=False)
     finish(fig, 'scoring_representation')
     methods = [BASE, 'transductive/random/relative', 'reference_raw/frozen16/relative', 'reference_scaled/frozen16/lr']
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
@@ -301,7 +309,11 @@ def figures(summary, interactions, paired):
         rr = [r for r in interactions if r['model'] == model and r['split'] == 'disjoint' and r['kind'] == 'selection' and r['name'].startswith('grouped-')]
         for i, r in enumerate(rr):
             ax.errorbar(r['mean'], i, xerr=np.array([[r['mean'] - r['CI95'][0]], [r['CI95'][1] - r['mean']]]), fmt='o', color=C.COL['clotho'])
-        ax.set_yticks(range(len(rr)), [r['name'].replace('grouped-random|', '') for r in rr], fontsize=7)
+        labels = []
+        for r in rr:
+            _, rep, score = r['name'].split('|')
+            labels.append(f"{dict(transductive='Original',reference_raw='Ref raw',reference_scaled='Ref scaled')[rep]} / {dict(pass_='PASS',relative='Relative',lr='LR').get(score, 'PASS')} (N={r['n_systems']})")
+        ax.set_yticks(range(len(rr)), labels, fontsize=7)
         ax.axvline(0, color=C.INK2, lw=.8); ax.set_xlabel('Grouped − random AUROC (matched systems)'); ax.set_title(C.LABEL[model])
     finish(fig, 'grouped_cv')
     fig, axes = plt.subplots(2, 2, figsize=(9, 6), sharey=True)

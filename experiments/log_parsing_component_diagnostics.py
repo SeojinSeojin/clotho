@@ -69,16 +69,36 @@ def main():
             results.append(dict(model=model, method=method, proxy=proxy, **est))
     save(ROOT / 'failure_proxy_contributions.json', results)
     pd.DataFrame(descriptors).to_csv(ROOT / 'mechanism_descriptors_by_job.csv', index=False)
-    system = pd.DataFrame(descriptors).groupby(['model', 'system'], as_index=False).mean(numeric_only=True)
+    descriptor_frame = pd.DataFrame(descriptors)
+    system = descriptor_frame.groupby(['model', 'system'], as_index=False).mean(numeric_only=True)
+    counts = descriptor_frame.groupby(['model', 'system']).count()
+    counts.to_csv(ROOT / 'mechanism_descriptor_seed_counts.csv')
     system.to_csv(ROOT / 'mechanism_descriptors_by_system.csv', index=False)
     associations = []
     for model, f in system.groupby('model'):
         for x, y in [('overlap', 'grouped_delta'), ('original_dimension', 'relative_delta'), ('ref_fail_prevalence', 'relative_delta'), ('log10_regularization', 'relative_delta')]:
             eligible = f.dropna(subset=[x, y])
+            eligible = eligible[[counts.loc[(model, sy), x] == 5 and counts.loc[(model, sy), y] == 5 for sy in eligible.system]]
             rho = spearmanr(eligible[x], eligible[y]).statistic
             associations.append(dict(model=model, x=x, y=y, n_systems=len(eligible), spearman=float(rho) if np.isfinite(rho) else None,
                                      interpretation='descriptive system-level association; no causal or significance claim'))
     save(ROOT / 'mechanism_associations.json', associations)
+    dims = pd.read_csv(ROOT / 'selected_dimensions.csv')
+    changes = []
+    for row in load(ROOT / 'factor_contrasts.json'):
+        if row['kind'] != 'selection' or not row['name'].startswith('grouped-random|') or not row['name'].endswith('|pass'):
+            continue
+        rep = row['name'].split('|')[1]
+        f = dims[(dims.model == row['model']) & (dims.split == row['split']) &
+                 (dims.representation == rep) & dims.system.isin(row['systems']) &
+                 dims.selection.isin(['random', 'grouped']) & dims.eligible]
+        panel = f.pivot(index=['system', 'seed'], columns='selection', values='dimension').dropna()
+        assert len(panel) == 5 * row['n_systems']
+        changes.append(dict(model=row['model'], split=row['split'], representation=rep, systems=row['systems'],
+                            mean_random=float(panel.random.mean()), mean_grouped=float(panel.grouped.mean()),
+                            fraction_changed=float((panel.random != panel.grouped).mean()),
+                            mean_dimension_change=float((panel.grouped - panel.random).mean())))
+    save(ROOT / 'cv_selection_changes.json', changes)
     print('Saved exact AUROC-gain decomposition and descriptive CV/imbalance associations.')
 
 
