@@ -1,0 +1,13 @@
+# Audit: Clotho unseen-template mechanism analysis
+
+Read AGENTS.md/PROGRESS.md, paper_numbers, phase3_final/followups, label_noise, template_difficulty, unseen/U ablations, token pooling, qualitative examples, severity audit and calibration reports; inspected their producers.
+
+Already established (not rerun as a new result): standard/disjoint AUC gap; template-level concentration (reliable variance mostly between templates); weak same-template AUC and label reliability; structural factors associated with parser FAIL; U/S1 and pooling ablations; input-only soft edit-distance lookup; capped-suite severity targets; score semantics and held-out probability calibration. Previous qualitative examples show selected Llama HDFS/Hadoop failures, not balanced FN/FP/TP/TN across both models/splits. Earlier within-template analysis controls template identity in ranking, but does not identify reference-space geometry or scoring-model mechanisms.
+
+Missing comparisons to execute: maximum lexical/observable structural/raw-hidden reference similarity versus Clotho ranking/error, same-template-excluded neighbor failure agreement, diagnostic template-neighbor structure, captured **identical Clotho PCA coordinates and reference labels** for a discriminative scoring control, stable-label Clotho/control gaps on original disjoint tests, and predeclared balanced systematic case inspection with explicit near/extreme scores and reference examples.
+
+Published S1 is not a classifier-only ablation: Llama layer24/PCA16/LR C1/source weight0.1; Gemma layer28/PCA64/LR C0.1/source weight0.1. Clotho uses fair layer16/21, adaptive PCA/GMM, ten synthetic initial tests and no external source pool. U-best additionally uses sample0 checks (Llama) and line/output features (Gemma). Therefore its published improvement cannot by itself isolate classifier choice. New same-space probes use no extra source/output features; production-U saved disjoint vectors remain a separate comparator.
+
+Score recovery requirement: original jobs mostly save scalar AUCs/test IDs, not vectors. Cached severity joined vectors cover disjoint@100; standard vectors need exact seeded harness replay. Only jobs passing original test-population, reference and AUC checks can support downstream mechanism analysis. A failed recovery will be an explicit missing comparison, not a near-enough reconstruction. No LLM/model weights will be loaded.
+
+Protocol, threshold/sampling/matching choices and hypotheses were frozen before new results in configs/clotho_mechanisms_protocol.json. This is observational/diagnostic research, not proof of causal template memorization or a new tuned failure-prediction method.

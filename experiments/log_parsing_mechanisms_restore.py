@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0,str(EXP/'sharded'));import hub_sync as H
 ROOT=EXP/'results_phase3/clotho_mechanisms'
 def wanted(f):
+ if f.startswith(('data/severity_audit/llama/','data/severity_audit/gemma/')) and ('/capped_' in f or '/joined_scores_' in f):return f.endswith('.json.gz')
+ if f.startswith(('results_phase3/severity_audit/prediction/','results_phase3_gemma/severity_audit/prediction/')):return f.endswith('.json')
  if f.startswith(('results_phase3/final/fair_leakfree/','results_phase3_gemma/final/fair_leakfree/')) and '/natural/' not in f and f.endswith('.json'):return True
  if f.startswith(('results_phase3/token_followups/suites/','results_phase3_gemma/token_followups/suites/','results_phase3/unseen/tune_u/','results_phase3_gemma/unseen/tune_u/','data/template_difficulty/')) and f.endswith('.json'):return True
  if f.startswith(('data/results_llama/log_parsing/input_hidden_states/rules_template/','data/results_gemma/log_parsing/input_hidden_states/rules_template/')) and '_nat500/' not in f and ('/layer_16/' in f if 'results_llama' in f else '/layer_21/' in f):return f.endswith('hidden_vectors.pt')
