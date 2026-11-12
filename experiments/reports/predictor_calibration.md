@@ -40,6 +40,9 @@ Brier=mean((p_failure−y_failure)^2); smaller is better. ECE uses10 equal-width
 | llama | U | local_sigmoid | 13 | 0.1882 ± 0.0127 | 0.1708 ± 0.0295 |
 | llama | U+V5 | local_sigmoid | 13 | 0.1843 ± 0.0111 | 0.1636 ± 0.0268 |
 | llama | D-zero | local_sigmoid | 13 | 0.2076 ± 0.0241 | 0.1836 ± 0.0333 |
+| llama | Output entropy | local_sigmoid | 13 | 0.1774 ± 0.0160 | 0.1371 ± 0.0307 |
+| llama | Token probability | local_sigmoid | 13 | 0.2291 ± 0.0202 | 0.1383 ± 0.0415 |
+| llama | LLMLog | local_sigmoid | 13 | 0.2043 ± 0.0143 | 0.1566 ± 0.0258 |
 | llama | Calibration prevalence | local | 13 | 0.2265 ± 0.0190 | 0.1245 ± 0.0406 |
 | gemma | U | raw | 12 | 0.1916 ± 0.0126 | 0.1613 ± 0.0209 |
 | gemma | U+V5 | raw | 12 | 0.1877 ± 0.0073 | 0.1555 ± 0.0207 |
@@ -48,6 +51,9 @@ Brier=mean((p_failure−y_failure)^2); smaller is better. ECE uses10 equal-width
 | gemma | U | local_sigmoid | 12 | 0.1934 ± 0.0191 | 0.1551 ± 0.0147 |
 | gemma | U+V5 | local_sigmoid | 12 | 0.1901 ± 0.0163 | 0.1502 ± 0.0085 |
 | gemma | D-zero | local_sigmoid | 12 | 0.2222 ± 0.0181 | 0.1694 ± 0.0184 |
+| gemma | Output entropy | local_sigmoid | 12 | 0.1673 ± 0.0092 | 0.1255 ± 0.0152 |
+| gemma | Token probability | local_sigmoid | 12 | 0.2472 ± 0.0154 | 0.1446 ± 0.0188 |
+| gemma | LLMLog | local_sigmoid | 12 | 0.2186 ± 0.0205 | 0.1695 ± 0.0130 |
 | gemma | Calibration prevalence | local | 12 | 0.2472 ± 0.0165 | 0.1210 ± 0.0242 |
 
 **한국어 설명:** 각 행의 Brier는 예측 실패확률과0/1 실패라벨 차이를 제곱해 평균한 값이다. ECE는10개 확률 구간의 예측값-관측 실패율 차이를 표본수로 가중한 값이다. 예를 들어 Llama raw U의 Brier0.1950/ECE0.2091은 순위가 유용해도 수치 확률은 어긋날 수 있음을 보여준다. 단순 유병률 예측이 낮은 ECE를 얻을 수 있어 ECE만으로 방법의 실용성을 판정할 수 없다.
@@ -139,4 +145,4 @@ A clean transferred U/D calibrator is unavailable: the saved source-system U/D m
 
 Frozen rankings cannot be used as risk probabilities without this semantic/probability check. Raw U/D have nontrivial calibration errors and local post-processing is not uniformly beneficial under template shift. Large target calibration sets and prior-label costs weaken any claim of a cost-free operational fix. Calibration is worth reporting as a limitation/diagnostic, not currently a reason for another GPU failure-predictor training grid. Capped500 labels predict stochastic five-sample strict failure, not final cached/AdaParser correctness, semantic harm or anomaly-detector damage. No natural/standard split or unsupported parser probability claim is made.
 
-[Reliability and per-system figure](../results_phase3/cpu_remaining/calibration.pdf). Pooled reliability curves are descriptive with repeated seeds, without line-IID confidence bands. All result records include Korean calculation, interpretation and limitation fields; fitted maps and probability vectors are persisted.
+[Reliability and per-system figure](../results_phase3/cpu_remaining/calibration.pdf). Pooled reliability curves are descriptive with repeated seeds, without line-IID confidence bands; pooling can hide opposite system-specific calibration errors, so they need not equal the macro ECE table. All result records include Korean calculation, interpretation and limitation fields; fitted maps and probability vectors are persisted.

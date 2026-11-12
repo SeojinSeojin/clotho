@@ -24,7 +24,7 @@ Protocol: configs/cpu_remaining_protocol.json. In order: (1) independently sourc
 | Thunderbird | confirmed_line_alerts | 50000 | 540 | 85.3 | 21 | 15/16 | 1359/2446 | 0.27% |
 | Zookeeper | not_provided_here | 50000 | 89 | 13.3 | 2 | 1/1 | 10/10 | 0.15% |
 
-Effective types = exp(Shannon entropy of GT line frequencies), so dominance can make an apparently large vocabulary effectively small. OOV is measured under the saved prefix’s raw-line60/20/20 cuts, not a complete-session benchmark. All parser conditions shown have actual saved prefix outputs; Llama real AdaParser excludes Mac, Gemma excludes Apache. Full-horizon predictions remain missing. Full machine-readable rows, source hashes and Korean explanations are in dataset_selection.{json,csv}.
+Effective types = exp(Shannon entropy of GT line frequencies), so dominance can make an apparently large vocabulary effectively small. OOV is measured under the saved prefix’s raw-line60/20/20 cuts, not a complete-session benchmark. All parser conditions shown have actual saved prefix outputs; Llama real AdaParser excludes Mac, Gemma excludes Apache. Full-horizon predictions remain missing for the labelled HDFS/BGL/Thunderbird settings; Linux covers all supplied rows but lacks anomaly labels. Full machine-readable rows, source hashes and Korean explanations are in dataset_selection.{json,csv}.
 
 **한국어 설명:** 표의 혼합 그룹 수는 한 파서 그룹에 서로 다른 정답 이벤트가 들어간 횟수이고, 잔여 줄 수는 그룹마다 정답 다수 템플릿을 주어도 남는 오류다. 어휘/오류 수는 표현 변화를 뜻할 뿐 탐지 피해를 뜻하지 않는다. 라벨이 없는 시스템을 큰 오류 수 때문에 추천하지 않았다.
 

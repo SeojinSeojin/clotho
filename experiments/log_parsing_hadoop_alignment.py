@@ -12,9 +12,10 @@ def main():
    with z.open(member) as f:
     for line in f:lookup[hashlib.sha256(line.rstrip()).digest()].add(job);counts[job]+=1;allraw+=1
  categories=Counter();prefixcats=Counter();uniquejob=Counter();ambiguousjobs=Counter();unmatched=[]
- with zipfile.ZipFile(Path.home()/'.cache/loghub2/Hadoop.zip') as z,z.open('Hadoop/Hadoop_full.log') as f:
+ with zipfile.ZipFile(Path.home()/'.cache/loghub2/Hadoop.zip') as z,z.open('Hadoop/Hadoop_full.log') as f,(ROOT/'Hadoop_row_job_candidates.jsonl.gz').open('wb') as raw,gzip.GzipFile(fileobj=raw,mode='wb',mtime=0) as mapping:
   for i,line in enumerate(f,1):
    jobs=lookup.get(hashlib.sha256(line.rstrip()).digest(),set());kind='no_exact_match' if not jobs else 'unique_job' if len(jobs)==1 else 'ambiguous_jobs';categories[kind]+=1
+   mapping.write((json.dumps({'LineId':i,'exact_source_job_candidates':sorted(jobs),'saved_parser_coverage':i<=50000},sort_keys=True)+'\n').encode())
    if i<=50000:
     prefixcats[kind]+=1
     if len(jobs)==1:uniquejob[next(iter(jobs))]+=1

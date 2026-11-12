@@ -21,7 +21,7 @@ def selection():
  '## Criteria fixed before ranking',
  'Protocol: configs/cpu_remaining_protocol.json. In order: (1) independently sourced anomaly labels with an explicit detection unit/quality audit; (2) complete, nonoverlapping train/validation/test units and evaluation positives; (3) original-ID aligned GT and actual parser outputs; (4) representation-visible errors and a correction mechanism able to repair them; (5) distribution shift, rarity, case independence and feasible inference cost. Passing these necessary conditions is not sufficient for anomaly recovery. Large error counts without labels do not make a suitable anomaly benchmark.',
  '## Existing coverage and representation opportunities',table(['System','Available label evidence','Parser prefix lines','Prefix GT types','Effective GT types','Drain mixed groups','Ada mixed groups L/G','Ada residual lines L/G','Prefix-test OOV positions'],matrix),
- 'Effective types = exp(Shannon entropy of GT line frequencies), so dominance can make an apparently large vocabulary effectively small. OOV is measured under the saved prefix’s raw-line60/20/20 cuts, not a complete-session benchmark. All parser conditions shown have actual saved prefix outputs; Llama real AdaParser excludes Mac, Gemma excludes Apache. Full-horizon predictions remain missing. Full machine-readable rows, source hashes and Korean explanations are in dataset_selection.{json,csv}.',
+ 'Effective types = exp(Shannon entropy of GT line frequencies), so dominance can make an apparently large vocabulary effectively small. OOV is measured under the saved prefix’s raw-line60/20/20 cuts, not a complete-session benchmark. All parser conditions shown have actual saved prefix outputs; Llama real AdaParser excludes Mac, Gemma excludes Apache. Full-horizon predictions remain missing for the labelled HDFS/BGL/Thunderbird settings; Linux covers all supplied rows but lacks anomaly labels. Full machine-readable rows, source hashes and Korean explanations are in dataset_selection.{json,csv}.',
  '**한국어 설명:** 표의 혼합 그룹 수는 한 파서 그룹에 서로 다른 정답 이벤트가 들어간 횟수이고, 잔여 줄 수는 그룹마다 정답 다수 템플릿을 주어도 남는 오류다. 어휘/오류 수는 표현 변화를 뜻할 뿐 탐지 피해를 뜻하지 않는다. 라벨이 없는 시스템을 큰 오류 수 때문에 추천하지 않았다.',
  '## Full-supplied-corpus event coverage',
  table(['Dataset','Supplied full rows','Full GT event types'],[[r['system'],r['full_supplied_catalogue']['rows'],r['full_supplied_catalogue']['GT_types']] for r in rows if r.get('full_supplied_catalogue')]),
@@ -76,7 +76,7 @@ def correction():
 def calibration():
  r=load(ROOT/'calibration_metrics.json');pairs=load(ROOT/'calibration_paired.json');man=load(ROOT/'calibration_manifests.json');fits=load(ROOT/'calibration_fits.json');summary=[];paired=[];systems=[];frequency=[];transfer=[]
  for model in ('llama','gemma'):
-  for method,variant in [('U','raw'),('U+V5','raw'),('D-zero','raw'),('Clotho','local_sigmoid'),('U','local_sigmoid'),('U+V5','local_sigmoid'),('D-zero','local_sigmoid'),('Calibration prevalence','local')]:
+  for method,variant in [('U','raw'),('U+V5','raw'),('D-zero','raw'),('Clotho','local_sigmoid'),('U','local_sigmoid'),('U+V5','local_sigmoid'),('D-zero','local_sigmoid'),('Output entropy','local_sigmoid'),('Token probability','local_sigmoid'),('LLMLog','local_sigmoid'),('Calibration prevalence','local')]:
    z=[q for q in r if q['model']==model and q['method']==method and q['variant']==variant and q['group']=='all'];summary.append([model,method,variant,len({q['system'] for q in z}),ms(macro(z,'Brier')),ms(macro(z,'ECE'))])
   for method in ('U','D-zero'):
    for group in ('frequency1','frequency2_5','frequency6plus'):
@@ -124,7 +124,7 @@ def calibration():
  '**한국어 설명:** Clotho/출력 점수의 보정기를HDFS·Spark·Linux에서만 학습해 다른 시스템에 적용했고 겹치는 정답 템플릿은 평가에서 제외했다. U/D의 원본 보정용 점수를 만든 모델은 최종 대상 시스템 라벨을 이미 학습했을 수 있어, 동일 절차를 깨끗한 교차 시스템 보정이라고 주장하지 않았다. D의 보정 전 결과는 원래 source→target 예측의 확률 검증으로 해석한다.',
  '## Implications',
  'Frozen rankings cannot be used as risk probabilities without this semantic/probability check. Raw U/D have nontrivial calibration errors and local post-processing is not uniformly beneficial under template shift. Large target calibration sets and prior-label costs weaken any claim of a cost-free operational fix. Calibration is worth reporting as a limitation/diagnostic, not currently a reason for another GPU failure-predictor training grid. Capped500 labels predict stochastic five-sample strict failure, not final cached/AdaParser correctness, semantic harm or anomaly-detector damage. No natural/standard split or unsupported parser probability claim is made.',
- '[Reliability and per-system figure](../results_phase3/cpu_remaining/calibration.pdf). Pooled reliability curves are descriptive with repeated seeds, without line-IID confidence bands. All result records include Korean calculation, interpretation and limitation fields; fitted maps and probability vectors are persisted.'
+ '[Reliability and per-system figure](../results_phase3/cpu_remaining/calibration.pdf). Pooled reliability curves are descriptive with repeated seeds, without line-IID confidence bands; pooling can hide opposite system-specific calibration errors, so they need not equal the macro ECE table. All result records include Korean calculation, interpretation and limitation fields; fitted maps and probability vectors are persisted.'
  ])
 
 def memo():

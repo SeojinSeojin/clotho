@@ -6,6 +6,7 @@ def fetch(url):
  with urllib.request.urlopen(url,timeout=60) as f:return f.read()
 def main():
  DEST.mkdir(parents=True,exist_ok=True)
+ if (DEST/'manifest.json').exists():print('using persisted pinned source snapshot');return
  rev=json.loads(fetch('https://api.github.com/repos/logpai/loghub/commits/master'))['sha'];manifest={}
  for rel in ('README.md','Hadoop/README.md','Hadoop/abnormal_label.txt','OpenStack/README.md','Thunderbird/README.md','HPC/README.md','HDFS/README.md'):
   url=f'https://raw.githubusercontent.com/logpai/loghub/{rev}/{rel}'
