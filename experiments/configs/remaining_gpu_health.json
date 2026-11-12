@@ -1,0 +1,14 @@
+{
+ "system":"Thunderbird",
+ "version":"Loghub-2.0 record8275861, 16601745 supplied raw rows; not original211M corpus",
+ "condition":"GT",
+ "unit":"nonoverlapping20-line any-alert windows; last short unit retained",
+ "split":"raw-line60/20/20; purge crossings; no label-based test selection",
+ "base_detector_config":"configs/cpu_gpu_pilot.json",
+ "hyperparameters":"inherit existing DeepLog-style/contextual pilot settings unchanged",
+ "train":"10000 normal training units, lowest SHA256(unit ID)",
+ "evaluation":"all validation/test windows, original prevalence; seeds0-4",
+ "first":"seed0 DeepLog-style GT health, with UNK-only and always-anomaly controls; not parser utility",
+ "expansion":"no real-parser utility training until matched new predictions and demonstrable nonzero headroom on the labelled population exist",
+ "original_BGL_config_preserved":true
+}
