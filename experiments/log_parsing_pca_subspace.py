@@ -171,7 +171,7 @@ def safe(path):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--workers',type=int,default=4);ap.add_argument('--limit',type=int);args=ap.parse_args();ROOT.mkdir(parents=True,exist_ok=True)
  lock=(ROOT/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
- paths=sorted(SOURCE.glob('*/*/*/seed*.json'));paths=[p for p in paths if not (ROOT/'jobs'/p.relative_to(SOURCE)).exists()]
+ paths=sorted(SOURCE.glob('*/*/*/seed[0-4].json'));paths=[p for p in paths if not (ROOT/'jobs'/p.relative_to(SOURCE)).exists()]
  if args.limit:paths=paths[:args.limit]
  save(ROOT/'execution.json',dict(status='running',pid=os.getpid(),jobs_pending=len(paths),start=time.time(),workers=args.workers,protocol_sha=sha(EXP/'configs/clotho_pca_subspace_protocol.json')))
  with ProcessPoolExecutor(args.workers) as pool:
