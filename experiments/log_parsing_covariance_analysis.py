@@ -58,11 +58,38 @@ def collect():
         errors.extend(dict(job=rel,**e) for e in j['fitting_errors'])
         source = SOURCE/(rel+'.json');coord=COORD/(rel+'.npz')
         assert sha(source)==j['source_sha256'] and sha(coord)==j['coordinate_sha256']
+        previous=load(source)
+        original_meta=COORD/(rel+'.json')
+        assert sha(original_meta)==previous['original_source_sha256']
         sources[str(source.relative_to(EXP))]=j['source_sha256']
         sources[str(coord.relative_to(EXP))]=j['coordinate_sha256']
+        sources[str(original_meta.relative_to(EXP))]=previous['original_source_sha256']
     save(ROOT/'source_hashes.json',sources)
     save(ROOT/'fitting_errors.json',errors)
     frame, covariance = pd.DataFrame(rows),pd.DataFrame(cov)
+    identity=[]
+    for (model,split),g in frame.groupby(['model','split']):
+        panel=g.pivot(index=['system','seed'],columns='method',values=['AUROC','AP'])
+        for score in ('pass','relative','lr'):
+            name=f'refit/fixed/identity/{score}' if score!='lr' else 'refit/lr_std/identity/lr'
+            anchor=f'anchor/archived/identity/{score}'
+            identity.append(dict(model=model,split=split,scoring=score,
+                                 max_AUROC_error=float((panel['AUROC'][name]-panel['AUROC'][anchor]).abs().max()),
+                                 max_AP_error=float((panel['AP'][name]-panel['AP'][anchor]).abs().max())))
+    save(ROOT/'identity_metric_agreement.json',identity)
+    objectives=[]
+    for j in jobs:
+        for scale in ('diagonal','unit_sd'):
+            for label in (0,1):
+                a=j['covariance'][f'native/transported/{scale}/class{label}']
+                b=j['covariance'][f'refit/transported/{scale}/class{label}']
+                objectives.append(dict(model=j['model'],split=j['split'],system=j['system'],seed=j['seed'],
+                                       scale=scale,label=label,train_lower_bound_difference=a['lower_bound']-b['lower_bound'],
+                                       native_iterations=a['iterations'],controlled_iterations=b['iterations']))
+    pd.DataFrame(objectives).to_csv(ROOT/'initialization_objective_diagnostics.csv',index=False)
+    import platform,sklearn,scipy
+    save(ROOT/'environment.json',dict(python=platform.python_version(),numpy=np.__version__,sklearn=sklearn.__version__,
+                                      scipy=scipy.__version__,pandas=pd.__version__,GPU_used=False))
     frame.to_csv(ROOT/'metrics.csv',index=False)
     covariance.to_csv(ROOT/'covariance_diagnostics.csv',index=False)
     checks=[]
@@ -85,7 +112,7 @@ def collect():
 
 
 def analyze(frame,jobs):
-    summary,paired,contrasts=[],[],[]
+    summary,paired,contrasts,linear=[],[],[],[]
     for (model,split),g in frame.groupby(['model','split']):
         for method,f in g.groupby('method'):
             for met in ('AUROC','AP','prevalence'):
@@ -97,6 +124,9 @@ def analyze(frame,jobs):
                 for met in ('AUROC','AP'):
                     r=compare(g,method,baseline,met)
                     if r:paired.append(dict(model=model,split=split,**r))
+            for met in ('AUROC','AP'):
+                r=compare(g,method,'refit/lr_std/identity/lr',met)
+                if r:linear.append(dict(model=model,split=split,**r))
         pairs=[]
         for scale in SCALES:
             for scoring in ('pass','relative'):
@@ -111,6 +141,7 @@ def analyze(frame,jobs):
     summary=save_estimates('summary',summary)
     paired=save_estimates('paired',paired)
     contrasts=save_estimates('contrasts',contrasts)
+    save_estimates('paired_vs_lr',linear)
     # Per-system/seed means retained separately from clustered inference.
     frame.groupby(['model','split','method','system'],as_index=False)[['AUROC','AP','prevalence']].mean().to_csv(ROOT/'per_system.csv',index=False)
     frame.groupby(['model','split','method','seed'],as_index=False)[['AUROC','AP','prevalence']].mean().to_csv(ROOT/'per_seed.csv',index=False)

@@ -21,6 +21,9 @@ def main():
         assert j['ref']==sj['ref'] and j['test']==sj['test']
         assert j['ref_failure']==sj['ref_failure'] and j['test_failure']==sj['test_failure']
         assert sha(source)==j['source_sha256'] and sha(old.with_suffix('.npz'))==j['coordinate_sha256']
+        assert sha(old)==sj['original_source_sha256']
+        assert j['components']==sj['original_k'] and j['original_reg']==sj['original_reg']
+        assert j['dimension']==sj['original_dimension']
         canonical=load(EXP/f"results_phase3{'' if j['model']=='llama' else '_gemma'}/final/fair_leakfree"/j['split']/f"loghub_{j['system'].lower()}_500"/p.name)
         assert j['test']==canonical['runs']['100']['test']
         original=next(r['auc']for r in canonical['rows']if r['method']=='clotho'and r['ref']==100)
@@ -92,7 +95,7 @@ def main():
             replays.append(dict(model=model,split=split,system=system,seed=0,identical=True))
         C.ROOT=root
     save(root/'validation.json',dict(jobs=250,score_cells=cells,maximum_original_AUROC_error=max(anchor_errors),
-         source_files_unchanged=500,math_gaussian_jacobian_error=math_error,scalar_EM_checks=scalar_checks,
+         source_files_unchanged=750,math_gaussian_jacobian_error=math_error,scalar_EM_checks=scalar_checks,
          uniform_scaling_effective_lambda_checks=uniform_checks,deterministic_replays=replays,
          invariance_gate_breaches=breaches,nonconverged_fits=nonconverged,nonpositive_eigenvalue_records=bad_spd,
          note='Refit invariance breaches are measured numerical/optimization outcomes, not silently discarded or fixed. Analytical mathematical tolerances remain unchanged.'))

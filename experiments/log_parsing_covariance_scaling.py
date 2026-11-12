@@ -276,10 +276,12 @@ if __name__ == '__main__':
     from datetime import datetime, timezone
     parser = argparse.ArgumentParser()
     parser.add_argument('--workers', type=int, default=4)
-    parser.add_argument('--model')
+    parser.add_argument('--model', choices=('llama','gemma'))
     parser.add_argument('--system')
     parser.add_argument('--seed', type=int)
     args = parser.parse_args()
+    if args.workers < 1:
+        parser.error('--workers must be positive')
     ROOT.mkdir(parents=True, exist_ok=True)
     lock = (ROOT / 'run.lock').open('a')
     try:
@@ -290,6 +292,8 @@ if __name__ == '__main__':
     paths = [p for p in paths if (not args.model or p.parts[-4] == args.model) and
              (not args.system or p.parts[-2] == args.system) and
              (args.seed is None or p.stem == f'seed{args.seed}')]
+    if not paths:
+        raise SystemExit('No matching archived jobs; no experiment launched.')
     execution = dict(status='running', pid=os.getpid(), jobs=len(paths), workers=args.workers,
                      started_utc=datetime.now(timezone.utc).isoformat(), results=[],
                      protocol_sha256=sha(EXP / 'configs/clotho_covariance_scaling_protocol.json'))
