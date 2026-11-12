@@ -29,7 +29,7 @@ def core(H,values,past,future,seed,replay=None):
  guard=Guard(values,past,init);blocks={};scorers=[];pca_fit=[]
  original_pca=PCAFeatureReducer.fit_transform;original_extend=L._extend_balanced;original_construct=L.rci.construct_scorer
  def transform(self,A):
-  fit_ids=past if replay is None else np.arange(len(A));self.pca.fit(A[fit_ids]);Z=torch.tensor(self.pca.transform(A));blocks[self.n_features]=Z;pca_fit.append(dict(d=self.n_features,fit_ids=list(map(int,fit_ids))));return Z
+  fit_ids=past if replay is None else np.arange(len(A));Z=original_pca(self,A) if replay is not None else torch.tensor(self.pca.fit(A[fit_ids]).transform(A));blocks[self.n_features]=Z;pca_fit.append(dict(d=self.n_features,fit_ids=list(map(int,fit_ids))));return Z
  def extend(s,Z,ref,pool,n):
   if replay is None:ids=original_extend(s,Z,ref,pool,n)
   elif len(ref)<100:ids=list(map(int,replay[len(ref):len(ref)+n]))
