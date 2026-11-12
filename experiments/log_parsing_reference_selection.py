@@ -73,7 +73,7 @@ def run(path,root=None):
  for policy in POLICIES:
   selected,events,updates,selection_s=select(policy,H,pool,init,LabelOracle(y,np.r_[init,pool]),seed,structD,hiddenD,a['ref']);manifests[policy]=dict(selected=selected,events=events,updates=updates,selection_s=selection_s,history_replayed=policy=='clotho_archived')
   for budget in (50,100):
-   ref=np.array(selected[:budget]);known={i:v for ev in events for i,v in zip(ev['selected'],ev['revealed'])};yr=np.array([known[int(i)]for i in ref]);t=time.perf_counter();m=fit_lr(H[ref],yr,seed);fit_s=time.perf_counter()-t;t=time.perf_counter();risk=predict(m,H[test]);predict_s=time.perf_counter()-t
+   ref=np.array(selected[:budget]);known={i:v for ev in events if ev['known_before']<budget for i,v in zip(ev['selected'],ev['revealed'])};yr=np.array([known[int(i)]for i in ref]);t=time.perf_counter();m=fit_lr(H[ref],yr,seed);fit_s=time.perf_counter()-t;t=time.perf_counter();risk=predict(m,H[test]);predict_s=time.perf_counter()-t
    if policy=='clotho_archived'and budget==100:
     anchor=z['reference/lr'];assert abs(metrics(y[test],risk)['AUROC']-metrics(y[test],anchor)['AUROC'])<1e-12,('anchor AUROC mismatch',model,system,seed);anchorerror=float(np.max(abs(risk-anchor)));risk=anchor
    real=ref[ref<500];loc=[int(np.flatnonzero(pool==i)[0])for i in real];sub=hiddenD[np.ix_(loc,loc)];pairwise=sub[np.triu_indices(len(loc),1)];pat_n=len(set(patterns[real]));gt_n=len(set(gt[real]));method=f'{policy}/{budget}';arrays['risk/'+method]=risk;arrays['ref/'+method]=ref
