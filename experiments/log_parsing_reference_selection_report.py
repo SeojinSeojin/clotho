@@ -71,7 +71,7 @@ At launch no exact acquisition task was running, completed locally or saved remo
 
 Verification: `log_parsing_reference_acquisition_audit.py` restored250 existing fairness job outputs and independently reconstructed every report AUC cell at its printed precision; no models were fit. It also recomputed original Clotho100/200 macros from250 canonical jobs and checked saved strategy per-seed means. Tuning's saved four-decimal aggregate/report were verified; its old raw-model fitting was not replayed. Exact fairness numbers are in `prior_inventory.json`, not inferred from rounded table subtraction. `prior_fairness_metrics.csv` retains system/seed rows.
 
-**Found narrative mismatch:** `log_parsing_strategy.md` puts455 versus419 acquired failures beside its B100 example. Saved machine decomposition identifies those as B50 quantities. For B100, the actual acquired counts are927.8 versus847.6; total found2047.2 versus1690. The older strategy budget is B *real* examples plus10 initial references, unlike nominal reference100=90 real+10 here. We document this without editing the earlier artifacts.
+**Found narrative mismatch:** `log_parsing_strategy.md` puts455 versus419 acquired failures beside its B100 example. The saved detailed table identifies455.2 versus418.6 as the B50 Clotho-versus-Drain quantities; the same comparison at B100 is927.8 versus842.0. Separately, the machine decomposition gives B100 Clotho-versus-random acquired counts927.8 versus847.6 and total found2047.2 versus1690. Do not silently change the comparator when correcting the budget. The older strategy budget is B *real* examples plus10 initial references, unlike nominal reference100=90 real+10 here. We document this without editing the earlier artifacts.
 
 ## A–G gap assessment
 
@@ -242,7 +242,7 @@ Random 대 원래 ‘balanced’ 선택은 이미 비교되었다. 예전 Llama 
 
 이후 fairness 실험은 동일 GT비중복 test에서 MDSA 참조를 바꾸었다. Llama는 원래 참조 약0.656 대 random0.645, Gemma0.655 대0.648이었다. GMMb에서는 Llama가 오히려 random0.576 대 원래0.564였다. 즉 ‘참조 정책은 예측기와 상호작용한다’는 문제는 원래부터 있었다.250개 저장 fairness 작업으로 보고서 모든 AUC 셀을 다시 계산해 확인했고, 원래 Clotho100/200 quantity도250개 canonical 결과에서 재집계했다. 기존 예측기를 재학습하지 않았다.
 
-실패 발견 budget 연구도 있었다. Llama natural에서 B100 실제 입력을 라벨링하고 나머지 중100개를 더 확인하면 Clotho는2047.2 실패, random은1690을 찾았다. 단, 이는 future-template AUROC가 아니다. 또 그 B100은실제100+초기10개라 이번 nominal100=실제90+초기10개와 다르다. 원래 짧은 strategy 설명의455 대419는 B50 수치가 B100 문장에 섞인 것이며, 저장 decomposition의 B100 획득 FAIL 수는927.8 대847.6이다. 예전 파일을 덮어쓰지 않고 이 audit에 바로잡아 적었다.
+실패 발견 budget 연구도 있었다. Llama natural에서 B100 실제 입력을 라벨링하고 나머지 중100개를 더 확인하면 Clotho는2047.2 실패, random은1690을 찾았다. 단, 이는 future-template AUROC가 아니다. 또 그 B100은실제100+초기10개라 이번 nominal100=실제90+초기10개와 다르다. 원래 짧은 strategy 설명의455 대419는 B50 수치가 B100 문장에 섞인 것이며, 같은 Clotho 대 Drain 비교의 B100 획득 FAIL 수는 상세표에서927.8 대842.0이다. 별도로 machine decomposition에서 Clotho 대 random B100은927.8 대847.6이고 총발견수는2047.2 대1690이다. Budget을바로잡으며비교대상까지몰래바꾸지않는다. 예전 파일을 덮어쓰지 않고 이 audit에 바로잡아 적었다.
 
 기존 PCA/밀도/LR 연구는 참조를 고정했다. Gaussian 실험의 bootstrap도 같은100개 안의 perturbation이지 새 후보를 어떤 순서로 라벨링할지 비교한 것이 아니었다. 그래서 **고정 reference-PCA16 LR에서, 실제로 숨겨진 candidate 라벨을 하나씩 얻는 정책 비교**만 남은 좁은 질문이었다. 이 비교는 단순 이름 바꾸기가 아니라 predictor–acquisition interaction의 미측정 부분이다. 기존 연구가 없었다고 주장하지 않는다.
 

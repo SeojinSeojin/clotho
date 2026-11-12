@@ -19,12 +19,13 @@ def main():
    summary.append(dict(model=model,split=split,budget=int(budget),method=method,mean=mean,seed_sd=sd,per_seed=per.tolist(),systems=int(g.system.nunique()),verification='raw stored job metrics reconstruct report'))
  pd.DataFrame(rows).to_csv(ROOT/'prior_fairness_metrics.csv',index=False)
  q=EXP/'reports/log_parsing_tuning.json';t=load(q);hashes[str(q.relative_to(EXP))]=sha(q);assert t['sampling_layer21_macro']['random@100']==.7296 and t['sampling_layer21_macro']['balanced@100']==.7639
+ detail=EXP/'reports/log_parsing_strategy_details.md';assert '| Drain-propagate + Clotho | 100 | 1983.4' in detail.read_text() and '842.0 ± 2.3' in detail.read_text();hashes[str(detail.relative_to(EXP))]=sha(detail)
  q=EXP/'reports/log_parsing_strategy_details.json';st=load(q);hashes[str(q.relative_to(EXP))]=sha(q)
  for group,a in st.items():
   for budget,v in a['found'].items():
    for method,r in v.items():assert abs(np.mean(r['seeds'])-r['mean'])<1e-10
  assert st['llama/natural']['found']['100']['clotho']['mean']==2047.2
- note=dict(stale_strategy_narrative='strategy.md associates455vs419 with B100; machine decomp shows those are B50 quantities. At B100 acquired FAILs927.8 active vs847.6 random, total found2047.2 vs1690.',active100=st['llama/natural']['decomp']['100']['clotho|clotho']['found_labelled'],random100=st['llama/natural']['decomp']['100']['random|random']['found_labelled'])
+ note=dict(stale_strategy_narrative='strategy.md associates455vs419 Clotho-vs-Drain with B100; detailed saved table identifies455.2vs418.6 as B50. At B100 the same comparison is927.8vs842.0. Separately machine decomposition gives927.8 active vs847.6 random, total found2047.2vs1690.',active100=st['llama/natural']['decomp']['100']['clotho|clotho']['found_labelled'],random100=st['llama/natural']['decomp']['100']['random|random']['found_labelled'])
  # Quantity under original predictor, existing fair labels and fixed disjoint tests.
  quantity=[]
  for model,suffix in (('llama',''),('gemma','_gemma')):

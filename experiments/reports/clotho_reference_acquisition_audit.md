@@ -22,7 +22,7 @@ At launch no exact acquisition task was running, completed locally or saved remo
 
 Verification: `log_parsing_reference_acquisition_audit.py` restored250 existing fairness job outputs and independently reconstructed every report AUC cell at its printed precision; no models were fit. It also recomputed original Clotho100/200 macros from250 canonical jobs and checked saved strategy per-seed means. Tuning's saved four-decimal aggregate/report were verified; its old raw-model fitting was not replayed. Exact fairness numbers are in `prior_inventory.json`, not inferred from rounded table subtraction. `prior_fairness_metrics.csv` retains system/seed rows.
 
-**Found narrative mismatch:** `log_parsing_strategy.md` puts455 versus419 acquired failures beside its B100 example. Saved machine decomposition identifies those as B50 quantities. For B100, the actual acquired counts are927.8 versus847.6; total found2047.2 versus1690. The older strategy budget is B *real* examples plus10 initial references, unlike nominal reference100=90 real+10 here. We document this without editing the earlier artifacts.
+**Found narrative mismatch:** `log_parsing_strategy.md` puts455 versus419 acquired failures beside its B100 example. The saved detailed table identifies455.2 versus418.6 as the B50 Clotho-versus-Drain quantities; the same comparison at B100 is927.8 versus842.0. Separately, the machine decomposition gives B100 Clotho-versus-random acquired counts927.8 versus847.6 and total found2047.2 versus1690. Do not silently change the comparator when correcting the budget. The older strategy budget is B *real* examples plus10 initial references, unlike nominal reference100=90 real+10 here. We document this without editing the earlier artifacts.
 
 ## A–G gap assessment
 
