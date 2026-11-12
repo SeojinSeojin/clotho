@@ -83,7 +83,7 @@ Verification: `log_parsing_reference_acquisition_audit.py` restored250 existing 
 |D difficulty|Original GMM component-assignment entropy and failure-discovery budgets exist|LR margin uncertainty now tested, without improvement over random/archived baseline. Margin uncertainty is not measured intrinsic label noise|
 |E redundancy|Group concentration and coverage measured in review work|Pilot diversity reduces current-pool redundancy; this does not prove future label transfer|
 |F distribution shift|GT-disjoint outer evaluation and cross-system transfer exist|No genuine prospective/chronological future-template acquisition experiment; random GT holdout cannot settle it|
-|G predictor interaction|Recent estimator studies froze original acquisition|Narrow fixed-LR policy comparison is new; shared-Gaussian acquisition interaction remains untested and is not used to restart the density branch|
+|G predictor interaction|Recent estimator studies froze original acquisition|Narrow fixed-LR policy comparison is new; shared-Gaussian acquisition interaction remains untested; no formal cross-predictor interaction is estimated or used to restart the density branch|
 
 ## Feasibility and leakage audit
 
@@ -106,6 +106,19 @@ At100, hidden diversity−archived Clotho is+0.0075[−0.0010,0.0150] Llama/+0.0
 No oracle labels/GT features are needed by P1–P4, but hidden/uncertainty require all candidate states while random/text diversity need selected states only. Equal label counts do not imply equal compute/human minutes. No new actual extraction occurred; prospective state costs are reported as counts, not zero.
 
 **Decision:**the narrow gap was worth a small controlled check; the result does not justify developing a novel acquisition method. Do not repeat these policies under new names, assume balanced labels/diversity are universally better, or restart PCA/density tuning. Remaining class/coverage/PCA mediation and real future shift are not causally isolated. If one confirmation were commissioned, freeze original versus one predetermined diversity policy on an untouched chronological unseen-template population with matched supervision granularity and state/label cost. That is the single falsifiable follow-up, not a recommendation for another search on these test systems.
+
+## Ten-question research decision
+
+1. **Already adequately studied?** Generic random/active, quantity and group-first questions have prior evidence; the strict fixed-LR acquisition comparison was missing.
+2. **Still unknown?** Class/coverage/PCA causal mediation, other predictors and genuinely future chronological shift; not a claim that all policies are exhausted.
+3. **Feasible/leakage-free?** Yes as a cached-label simulation, with candidate-only P1–P4 and immutable tests. P5 is a qualified archived transductive baseline.
+4. **Equal-label improvement?** Gemma100 diversity improves over random; Llama50 hidden diversity improves over original. No tested budget gives a clear original-policy advantage across both LLMs.
+5. **Across systems/LLMs?** Heterogeneous and not robust against the existing policy in both; HPC/OpenSSH are explicit counterexamples.
+6. **Mechanism explained?** No: counts/coverage/redundancy associations are descriptive and PCA changes with selected references.
+7. **Deployable?** P1–P4 need only available candidate inputs/acquired labels, with different feature costs. GT is an evaluation diagnostic; P5 retains historical transduction/richer feedback.
+8. **New method justified?** No, stop method development on this benchmark rather than expand a sampling search.
+9. **Distinct from Clotho?** The controlled learner interaction is new evidence; max-min/uncertainty policies are known and original Clotho already includes diversity. No algorithmic novelty established.
+10. **Single decisive follow-up?** A preregistered original-versus-one-diversity comparison on an untouched chronological template-shift population, equal feedback and state/label costs; conditional confirmation only, not another tuning loop here.
 
 Machine artifacts: prior inventory/source hashes, pilot manifests/predictions, metrics/paired bootstrap estimates, leakage/poison/replay records and figures in `results_phase3/clotho_reference_selection/`. Old results are unchanged. Reports and outputs are persisted/remote-hash checked before updating PROGRESS.
 '''
@@ -186,7 +199,7 @@ At100, structural diversity−original is+0.0821 on Llama HPC but−0.0395 on Ge
 |Class counts drive gains|Counts differ measurably|Near-balanced P4 is not best, and P2/P3 do not acquire more FAIL than P5. No class-matched causal ablation|
 |There is little remaining policy headroom over original|Both budgets lack clear cross-model improvement over original; original already includes diversity|Llama50 conditional gain and finite-system uncertainty leave room; no optimality theorem or prospective guarantee|
 
-Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic warmup and repeated research use limit external validity. The archived baseline has richer reference feedback and transductive geometry; it is not an otherwise identical candidate-only selector. The new policies use binary feedback and no future feature access. Reference histories are original outcomes, not live counterfactual reruns or fair historical timing benchmarks. This pilot studies one final learner, not all shared-Gaussian interactions. No policy/class/representation hyperparameter search occurred.
+Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic warmup and repeated research use limit external validity. The archived baseline has richer reference feedback and transductive geometry; it is not an otherwise identical candidate-only selector. The new policies use binary feedback and no future feature access. Reference histories are original outcomes, not live counterfactual reruns or fair historical timing benchmarks. This pilot studies one final learner, not a full predictor×policy factorial or all shared-Gaussian interactions. No policy/class/representation hyperparameter search occurred.
 
 ## Validation, artifacts and decision
 
@@ -198,6 +211,9 @@ Saved root `results_phase3/clotho_reference_selection/`:ordered pools/tests, lab
 
 ```bash
 set -a; source ~/.clotho_env; set +a
+# If needed, restore saved artifacts first:
+.venv-mechanisms/bin/python experiments/log_parsing_reference_selection_restore.py  # --outputs-only for inspection
+# CPU dependencies pinned in configs/clotho_reference_selection_environment.txt
 .venv-mechanisms/bin/python experiments/log_parsing_reference_selection.py --workers 4
 .venv-mechanisms/bin/python experiments/log_parsing_reference_selection_analysis.py
 .venv-mechanisms/bin/python experiments/validate_clotho_reference_selection.py

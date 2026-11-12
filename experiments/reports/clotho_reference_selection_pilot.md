@@ -153,7 +153,7 @@ At100, structural diversity−original is+0.0821 on Llama HPC but−0.0395 on Ge
 |Class counts drive gains|Counts differ measurably|Near-balanced P4 is not best, and P2/P3 do not acquire more FAIL than P5. No class-matched causal ablation|
 |There is little remaining policy headroom over original|Both budgets lack clear cross-model improvement over original; original already includes diversity|Llama50 conditional gain and finite-system uncertainty leave room; no optimality theorem or prospective guarantee|
 
-Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic warmup and repeated research use limit external validity. The archived baseline has richer reference feedback and transductive geometry; it is not an otherwise identical candidate-only selector. The new policies use binary feedback and no future feature access. Reference histories are original outcomes, not live counterfactual reruns or fair historical timing benchmarks. This pilot studies one final learner, not all shared-Gaussian interactions. No policy/class/representation hyperparameter search occurred.
+Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic warmup and repeated research use limit external validity. The archived baseline has richer reference feedback and transductive geometry; it is not an otherwise identical candidate-only selector. The new policies use binary feedback and no future feature access. Reference histories are original outcomes, not live counterfactual reruns or fair historical timing benchmarks. This pilot studies one final learner, not a full predictor×policy factorial or all shared-Gaussian interactions. No policy/class/representation hyperparameter search occurred.
 
 ## Validation, artifacts and decision
 
@@ -165,6 +165,9 @@ Saved root `results_phase3/clotho_reference_selection/`:ordered pools/tests, lab
 
 ```bash
 set -a; source ~/.clotho_env; set +a
+# If needed, restore saved artifacts first:
+.venv-mechanisms/bin/python experiments/log_parsing_reference_selection_restore.py  # --outputs-only for inspection
+# CPU dependencies pinned in configs/clotho_reference_selection_environment.txt
 .venv-mechanisms/bin/python experiments/log_parsing_reference_selection.py --workers 4
 .venv-mechanisms/bin/python experiments/log_parsing_reference_selection_analysis.py
 .venv-mechanisms/bin/python experiments/validate_clotho_reference_selection.py
