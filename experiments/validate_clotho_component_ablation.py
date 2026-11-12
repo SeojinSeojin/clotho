@@ -40,7 +40,7 @@ def main():
             assert abs(met['AUROC'] - row['AUROC']) < 1e-12
             assert abs(met['AP'] - row['AP']) < 1e-12
             rows += 1
-        expected_primary = 27 - 3 * sum('ineligible' in j['cv'][f'{rep}/grouped'] for rep in A.REPS)
+        expected_primary = 3 * sum('ineligible' not in info for info in j['cv'].values())
         assert len([r for r in j['rows'] if r['representation'] in A.REPS and r['scoring'] in A.SCORES]) == expected_primary
         error = p.with_name(p.stem + '_error.json')
         if error.exists():
@@ -58,6 +58,9 @@ def main():
             fresh = A.ROOT / original.relative_to(root)
             a, b = load(original), load(fresh)
             a.pop('wall_s'); b.pop('wall_s')
+            for key in ('candidate_recovery_valid', 'replay_AUROC_error'):
+                if key not in a:
+                    b.pop(key, None)
             assert a == b, 'non-deterministic metadata/CV/metrics'
             za, zb = np.load(original.with_suffix('.npz')), np.load(fresh.with_suffix('.npz'))
             assert za.files == zb.files

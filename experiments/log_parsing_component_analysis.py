@@ -56,6 +56,10 @@ def collect():
         assert sha(oldpath) == j['original_source_sha256']
         assert sha(oldpath.with_suffix('.npz')) == j['source_npz_sha256']
         old = load(oldpath)
+        canonical = load(EXP / f'results_phase3{"" if model == "llama" else "_gemma"}/final/fair_leakfree' / split / f'loghub_{system.lower()}_500' / f'seed{seed}.json')
+        original_auc = next(r['auc'] for r in canonical['rows'] if r['ref'] == 100 and r['method'] == 'clotho')
+        assert j['test'] == canonical['runs']['100']['test']
+        assert abs(old['original_AUC'] - original_auc) < 1e-12
         assert j['ref'] == old['ref'] and j['test'] == old['test']
         assert np.isfinite(j['replay_max_error'])
         current = next(r for r in j['rows'] if r['method'] == BASE)
@@ -66,7 +70,9 @@ def collect():
         assert np.array_equal(z[BASE], [r['risk'] for r in original_inputs])
         validation.append(dict(model=model, system=system, split=split, seed=seed, baseline_AUC_error=abs(current['AUROC'] - old['original_AUC']),
                                replay_coordinate_error=j['replay_coordinate_error'], replay_score_error=j['replay_max_error'],
-                               density_parameter_score_error=j['density_parameter_error']))
+                               density_parameter_score_error=j['density_parameter_error'],
+                               fresh_replay_AUROC_error=j.get('replay_AUROC_error', 0),
+                               candidate_recovery_valid=j.get('candidate_recovery_valid', True)))
         for name, v in j['cv'].items():
             rep, mode = name.split('/')
             common = dict(model=model, split=split, system=system, seed=seed, representation=rep, selection=mode)
@@ -101,6 +107,23 @@ def collect():
     save(ROOT / 'fallbacks.json', fallback)
     save(ROOT / 'score_distributions.json', distributions)
     save(ROOT / 'baseline_validation.json', validation)
+    from log_parsing_component_ablation import reliable
+    labels = []
+    for model, system in sorted({(j['model'], j['system']) for j in jobs}):
+        p40 = reliable(model, system)
+        first = next(j for j in jobs if j['model'] == model and j['system'] == system)
+        old_input = load(OLD / model / 'standard' / system / 'seed0_inputs.json.gz')
+        # Full original5 labels are assembled from the union of the five standard test sets.
+        original5 = {}
+        for j in jobs:
+            if j['model'] == model and j['system'] == system:
+                original5.update(zip(j['test'], j['test_failure']))
+        source = EXP / f'data/results_{model}/log_parsing/extra_samples/rules_template/loghub_{system.lower()}_500_R40_T0.8_seed1.json'
+        labels.append(dict(model=model, system=system, p40=p40.tolist() if p40 is not None else None,
+                           original5_test_union={str(i): y for i, y in original5.items()},
+                           coverage=len(original5), source_sha256=sha(source) if source.exists() else None,
+                           matched_label_agreement=float(np.mean([(p40[i] <= .5) == y for i, y in original5.items()])) if p40 is not None else None))
+    save(ROOT / 'reliable_label_verification.json', labels)
     return frame, jobs
 
 

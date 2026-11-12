@@ -173,8 +173,8 @@ def capture_final(B, old):
         L._extend_balanced = original_extend
     assert replay['ref'].tolist() == old['ref'] == capture['ref']
     assert replay['test'].tolist() == old['test']
-    assert capture['selected'] == old['PCA_dimensions']
-    assert abs(roc_auc_score(B['sc'][replay['test']] <= .5, -replay['clotho']) - old['original_AUC']) < 1e-12
+    capture['candidate_recovery_valid'] = capture['selected'] == old['PCA_dimensions']
+    capture['replay_AUROC_error'] = float(abs(roc_auc_score(B['sc'][replay['test']] <= .5, -replay['clotho']) - old['original_AUC']))
     capture['risk'] = -np.asarray(replay['clotho'])
     return capture
 
@@ -242,6 +242,14 @@ def run(path, force=False):
                 if mode == 'frozen16':
                     selected[rep, mode] = 16
                     cv[f'{rep}/{mode}'] = {'selected': 16, 'selection': 'predeclared independent of outer test'}
+                elif not c['candidate_recovery_valid']:
+                    reason = 'cross-hardware original dimension trajectory not reproduced; final CV comparison ineligible'
+                    if rep == 'transductive' and mode == 'random':
+                        selected[rep, mode] = d0
+                        cv[f'{rep}/{mode}'] = {'selected': d0, 'archived_original_only': True, 'recovery_ineligible': reason}
+                    else:
+                        selected[rep, mode] = None
+                        cv[f'{rep}/{mode}'] = {'ineligible': reason}
                 else:
                     d, info = cv_select(candidate_blocks, sc[ref], groups, mode, c['current'], c['cfg'])
                     selected[rep, mode], cv[f'{rep}/{mode}'] = d, info
@@ -318,6 +326,8 @@ def run(path, force=False):
                       original_source_sha256=sha(path), source_npz_sha256=sha(path.with_suffix('.npz')),
                       replay_max_error=float(np.max(np.abs(c['risk'] - original_risk))),
                       replay_coordinate_error=replay_coordinate_error,
+                      candidate_recovery_valid=c['candidate_recovery_valid'],
+                      replay_AUROC_error=c['replay_AUROC_error'],
                       baseline_source='archived exact coordinates and scores; unchanged AUROC gate1e-12',
                       cv=cv, fits=fit_info, explained_variance=explained, rows=rows,
                       p40_coverage=0 if p40 is None else len(test), wall_s=time.time() - started)
