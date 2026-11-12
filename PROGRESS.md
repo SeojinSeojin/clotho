@@ -4,6 +4,12 @@ Last updated: 2026-11-11; CPU research follow-up complete; full-horizon GT pilot
 
 Single source of numbers: `experiments/reports/paper_numbers.md` (`python log_parsing_paper_numbers.py`). Paper files: `experiments/paper/` (one script per table/figure, `results_outline.md`). Main setting **fair_leakfree** everywhere: balanced reference sampling (the paper's method), fair layer (Llama 16, Gemma 21), label from samples 5-9 (PASS if >= 3 of 5 strict template matches), post-generation scores from samples 0-4; rules_template prompt, strict match. Every number is mean ± std over 5 seeds of the per-seed macro mean over systems (Llama 13 systems, Gemma 12; skips explicitly reported).
 
+## Remaining CPU investigations A/B/C (in progress)
+
+Protocol frozen in `configs/cpu_remaining_protocol.json` before new outcomes. Previous feasibility/representation/review-cost analyses and severity classification are reused, not rerun. Calibration uses only verified saved disjoint@100 vectors; no frozen predictor refits or GPU inference. Source documentation is pinned to Loghub revision dd61d0952749ee7963bde24220d1be5ede023033.
+
+Milestone: 87 exact correction-ceiling conditions completed; 125 calibration jobs verified against saved indices and samples5–9 labels. Clotho is log-density (no raw Brier); U/D are classifier probabilities. Local calibrators use separate GT-template halves. OpenStack original archive contains4 positive VM IDs; complete saved coverage contains335 confirmed-normal and4 positive explicit-tag traces (194 other-case VM IDs remain unknown). These positives share one injected-case file, so no independent-run generalization claim. Hadoop original labels cover55 jobs (11 normal/44 anomalous); published label-quality warning remains unresolved. Full Thunderbird label/template/shift inventory is running; no new parser inference. New results isolated under `results_phase3/cpu_remaining/`; final reports/persistence/validation will be recorded below when complete.
+
 ## CPU-only research follow-up (after the closed GPU session)
 
 Completed the requested repository audit and three CPU analyses, with no LLM generation, pretrained-model download, CUDA inference or detector training. New work is isolated in `results_phase3/cpu_research/` and `data/cpu_research/`; previous results are preserved. The old GPU-session deadline below is historical, not an instruction to resume those jobs.
