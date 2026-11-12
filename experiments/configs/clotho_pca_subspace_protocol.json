@@ -1,0 +1,28 @@
+{
+ "status":"frozen before new prediction outcomes, 2026-11-12",
+ "question":"Does retained PCA subspace matter after controlling coordinate metric, ridge and mixture starts?",
+ "population":"All 250 existing fair_leakfree component jobs; Llama layer16/Gemma21, standard/disjoint, references100 including10 synthetic, seeds0..4, unchanged samples5..9 failure labels and ordered indices",
+ "dimension":16,
+ "subspaces":{
+  "global":"Original float32 sklearn PCA16 auto/random_state=outerseed on all510 vectors. Preserve fitted directions; QR in float64 makes raw-space orthonormal coordinates with common reference mean. Primary uses true projection, not approximate randomized-SVD fit_transform scores.",
+  "reference":"Raw PCA16 fitted only on100 references; same orthonormalization and common origin.",
+  "pooled":"Raw PCA16 fitted on sorted union reference and outertest. Standard aliases global. Unlabeled transductive diagnostic; no test labels.",
+  "scaled_span":"Reference-only feature StandardScaler then PCA16; map component directions back to raw features by dividing by feature scales, thin QR. Same information as prior standardized PCA16, raw orthonormal metric removes within-span units. Chosen because prior scoring-by-representation interaction, not new outcomes."
+ },
+ "scoring":["negative PASS log density","FAIL log density minus PASS log density","balanced LR C1 on full-reference-whitened coordinates, max_iter3000 tol1e-10"],
+ "regularizers":{
+  "isotropic":"original per-job lambda I in orthonormal raw metric",
+  "reference_cov":"alpha Cov_reference(Z), alpha=lambda/mean(diag(Cov_reference(Z_global))); common ambient alpha Cov_reference(H), no outer labels or ridge search"
+ },
+ "estimator":"Original per-job k, 30 starts, full covariance, max_iter500,tol.001. Common initial responsibility matrices from global class-specific KMeans seed=outerseed, reused across subspaces and ridges. Separately native per-subspace starts. Reference_cov native sensitivity seeds outerseed+1000,+2000; report all3, never select on test.",
+ "basis_check":"Seeded orthogonal16x16 rotation for every subspace/ridge. Analytic covariance/mean transport with refactorized precision, plus actual EM refit with same responsibilities and transported ridge. Expected zero Jacobian, preserved scores/rankings. Check errors <=1e-7 normalized and AUROC/AP 1e-12; failures reported, no tolerance relaxation.",
+ "information_diagnostics":"Reference-whitened fixed LR outer AUROC/AP; global PC1..8 versus9..16 probes, diagnostic only. Reference-only GT centroid classifier on standard tests with seen GT, report eligibility/coverage/chance. Adjusted one-way reference template scatter eta2 (undefined singleton groups explicit). Nearest real-reference label balanced agreement excluding same GT as oracle diagnostic; template hit/familiarity. GT never predictor features.",
+ "geometry":"Principal angles and normalized projection distance; raw explained variance on references/all510; report native PCA variance separately.",
+ "statistics":"Per-system and seed metrics; macro mean and sample SD over5 seed macros. Paired system-cluster bootstrap4000 draws RandomState20261112, retain5 seeds/system; AUROC/AP contrasts, interactions and gaps, common-input gap supplementary. Never lines/seeds as independent systems.",
+ "anchors":"Reuse original archived score vectors and fixed16 legacy vectors. Validate original canonical AUROC1e-12, unchanged indices/labels/source hashes. Approximate fit_transform versus geometric projection explicitly quantified, legacy anchors not silently replaced.",
+ "ineligibility":"No ridge epsilon/fallback; singular reference covariance or single-class diagnostics explicitly ineligible. Matched-system comparisons only, report omissions.",
+ "cost_bound":"At most16000 GMM estimators/480000 starts plus250 PCA/diagnostic jobs, standard pooled alias and identical native/global starts reused. Four CPU workers, all BLAS threads1. Incremental JSON/NPZ, resume completed jobs; no GPU/generation.",
+ "hypotheses":["H1 retained information: subspace contrasts persist for invariant linear probe and controlled densities","H2 estimator: effects differ by regularizer/initialization and fail to reproduce in fixed probe","H3 identity: dominant directions preferentially support seen-template identity while weaker directions support unseen-template failure; associations not causal proof","H4 discriminator: invariant same-space LR extracts failure information more reliably than density"],
+ "validation":"Finite scores, SPD covariance, convergence/warnings, original anchor reproduction, no test-label preprocessing, disjoint GT check, deterministic two-job recomputation, independent aggregation/bootstrap reconstruction, remote hashes before PROGRESS update",
+ "scope":"No dimension search, new layer/features/inference, covariance-scaling rerun, supervised subspace search, reliable-label retraining or secondary ref200. At most one next experiment after results."
+}
