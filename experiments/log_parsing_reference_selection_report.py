@@ -105,7 +105,7 @@ At100, hidden diversity−archived Clotho is+0.0075[−0.0010,0.0150] Llama/+0.0
 
 No oracle labels/GT features are needed by P1–P4, but hidden/uncertainty require all candidate states while random/text diversity need selected states only. Equal label counts do not imply equal compute/human minutes. No new actual extraction occurred; prospective state costs are reported as counts, not zero.
 
-**Decision:**the narrow gap was worth a small controlled check; the result does not justify developing a novel acquisition method. Do not repeat these policies under new names, assume balanced labels/diversity are universally better, or restart PCA/density tuning. Remaining class/coverage/PCA mediation and real future shift are not causally isolated. If one confirmation were commissioned, freeze original versus one predetermined diversity policy on an untouched chronological unseen-template population with matched supervision granularity and state/label cost. That is the single falsifiable follow-up, not a recommendation for another search on these test systems.
+**Decision:**the narrow gap was worth a small controlled check; the result does not justify developing a novel acquisition method. Do not repeat these policies under new names, assume balanced labels/diversity are universally better, or restart PCA/density tuning. Remaining class/coverage/PCA mediation and real future shift are not causally isolated. If one confirmation were commissioned, freeze original versus one predetermined diversity policy on an untouched chronological unseen-template population, using a candidate-only reproduction of the original rule and matched supervision granularity/state-label cost accounting. That is the single falsifiable follow-up, not a recommendation for another search on these test systems.
 
 ## Ten-question research decision
 
@@ -118,7 +118,7 @@ No oracle labels/GT features are needed by P1–P4, but hidden/uncertainty requi
 7. **Deployable?** P1–P4 need only available candidate inputs/acquired labels, with different feature costs. GT is an evaluation diagnostic; P5 retains historical transduction/richer feedback.
 8. **New method justified?** No, stop method development on this benchmark rather than expand a sampling search.
 9. **Distinct from Clotho?** The controlled learner interaction is new evidence; max-min/uncertainty policies are known and original Clotho already includes diversity. No algorithmic novelty established.
-10. **Single decisive follow-up?** A preregistered original-versus-one-diversity comparison on an untouched chronological template-shift population, equal feedback and state/label costs; conditional confirmation only, not another tuning loop here.
+10. **Single decisive follow-up?** A preregistered original-versus-one-diversity comparison on an untouched chronological template-shift population, reproducing the original rule on candidates only, with equal feedback and explicit state/label costs; conditional confirmation only, not another tuning loop here.
 
 Machine artifacts: prior inventory/source hashes, pilot manifests/predictions, metrics/paired bootstrap estimates, leakage/poison/replay records and figures in `results_phase3/clotho_reference_selection/`. Old results are unchanged. Reports and outputs are persisted/remote-hash checked before updating PROGRESS.
 '''
@@ -199,7 +199,7 @@ At100, structural diversity−original is+0.0821 on Llama HPC but−0.0395 on Ge
 |Class counts drive gains|Counts differ measurably|Near-balanced P4 is not best, and P2/P3 do not acquire more FAIL than P5. No class-matched causal ablation|
 |There is little remaining policy headroom over original|Both budgets lack clear cross-model improvement over original; original already includes diversity|Llama50 conditional gain and finite-system uncertainty leave room; no optimality theorem or prospective guarantee|
 
-Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic warmup and repeated research use limit external validity. The archived baseline has richer reference feedback and transductive geometry; it is not an otherwise identical candidate-only selector. The new policies use binary feedback and no future feature access. Reference histories are original outcomes, not live counterfactual reruns or fair historical timing benchmarks. This pilot studies one final learner, not a full predictor×policy factorial or all shared-Gaussian interactions. No policy/class/representation hyperparameter search occurred.
+Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic warmup and repeated research use limit external validity. The archived baseline has richer reference feedback and transductive geometry; it is not an otherwise identical candidate-only selector. The new policies use binary feedback and no future feature access. Reference histories are original outcomes, not live counterfactual reruns or fair historical timing benchmarks. Lower state demand for masked-text selection is potentially useful, but no prespecified noninferiority margin was tested, so equal performance at lower cost is not established. This pilot studies one final learner, not a full predictor×policy factorial or all shared-Gaussian interactions. No policy/class/representation hyperparameter search occurred.
 
 ## Validation, artifacts and decision
 
@@ -207,7 +207,7 @@ Fixed13/12 systems, capped500 inputs, five noisy-generation labels, synthetic wa
 
 Saved root `results_phase3/clotho_reference_selection/`:ordered pools/tests, labels/source hashes, per-step oracle histories, selected prefixes, update/fallback timing, risks, structural/hidden distance matrices, diagnostic coverage, per-system/per-seed metrics, all paired policy/budget estimates and bootstrap draws, prior inventory/verification, privacy and deterministic replay records,3 PDF+PNG figures. Label truth is stored for audit but never given to selectors as an array. `validation.json` records the isolation checks. Remote persistence hashes are checked before PROGRESS update.
 
-**Decision:**reference policy can matter conditionally; this pilot does not justify a new acquisition method or broad search. Known diversity policies beat random most clearly for Gemma, and hidden50 helps Llama, but none robustly improves the original reference policy across both LLMs. Stop acquisition-method development on these test systems. If a single confirmation were commissioned, preregister original versus one fixed diversity policy on an untouched chronological unseen-template population with equal supervision granularity/state costs; it could falsify a real future-coverage benefit. Do not tune selectors here or revive density/PCA searches.
+**Decision:**reference policy can matter conditionally; this pilot does not justify a new acquisition method or broad search. Known diversity policies beat random most clearly for Gemma, and hidden50 helps Llama, but none robustly improves the original reference policy across both LLMs. Stop acquisition-method development on these test systems. If a single confirmation were commissioned, preregister original versus one fixed diversity policy on an untouched chronological unseen-template population, restricting the original rule to available candidate features and equal supervision granularity, with explicit state costs; it could falsify a real future-coverage benefit. Do not tune selectors here or revive density/PCA searches.
 
 ```bash
 set -a; source ~/.clotho_env; set +a
@@ -229,7 +229,7 @@ set -a; source ~/.clotho_env; set +a
 '''
  (EXP/'reports/clotho_reference_selection_pilot.md').write_text(pilot)
  (EXP/'reports/clotho_reference_acquisition_explained.md').write_text(korean())
- save(ROOT/'decision.json',dict(prior_topic_already_studied=True,narrow_fixed_LR_gap_was_new=True,pilot_feasible_and_executed=True,primary_policies_tuned_on_test=False,clear_cross_model_gain_over_original=False,branch='stop acquisition-method development on current benchmark',conditional_findings=['Gemma100 diversity versus random','Llama50 hidden diversity versus archived original'],next_single_confirmation='untouched chronological template-shift population, fixed original versus one predetermined diversity policy, equal feedback and state costs',new_method_novelty_claim=False))
+ save(ROOT/'decision.json',dict(prior_topic_already_studied=True,narrow_fixed_LR_gap_was_new=True,pilot_feasible_and_executed=True,primary_policies_tuned_on_test=False,clear_cross_model_gain_over_original=False,branch='stop acquisition-method development on current benchmark',conditional_findings=['Gemma100 diversity versus random','Llama50 hidden diversity versus archived original'],next_single_confirmation='untouched chronological template shift: candidate-only original rule versus one fixed diversity policy, equal feedback and explicit state/label cost accounting',new_method_novelty_claim=False))
 
 def korean():
  return fr'''# 어떤 참조를 고르는가: 기존 연구와 고정 LR 선택 실험을 구분하기
@@ -308,9 +308,9 @@ Diversity가자기가최적화한coverage를높이는것은예상되는algorithm
 
 하지만현재13/12개시스템을여러연구에재사용했고GT random holdout이지실제미래시간shift가아니다. 고정recipe에서PCA가참조선택에따라바뀌는mediator도남는다. P5는원래더풍부한feedback/global covariate를썼고, 다른정책은binary feedback/candidate-only라access가완전히같지않다. 새policy가배포가능한입력만사용한다는것과, 그효과가새시스템에확증됐다는것은다르다.
 
-**판단:** 기존참조연구는있었지만현대simple predictor와의좁은상호작용은새롭게검사할가치가있었다. 결과는새acquisition방법개발을정당화하지못한다. 이benchmark에서다른이름의sampling/PCA/density탐색을계속하지말고, 조건부이득과반례를포함한통제된실증결과로정리한다. Originalpolicy가최적이라고증명하거나reference선택이무의미하다고도하지않는다.
+**판단:** 기존참조연구는있었지만현대simple predictor와의좁은상호작용은새롭게검사할가치가있었다. 결과는새acquisition방법개발을정당화하지못한다. 이benchmark에서다른이름의sampling/PCA/density탐색을계속하지말고, 조건부이득과반례를포함한통제된실증결과로정리한다. Original policy가 최적이라고 증명하거나 reference 선택이 무의미하다고도 하지 않는다. Structural policy의 적은 후보-state 비용은 유용할 수 있지만 noninferiority margin을 사전 정의해 검정하지 않았으므로 같은 성능을 보장하는 비용절감 방법이라고도 주장하지 않는다.
 
-**만약확인실험하나를의뢰한다면:** original대사전에정한diversity정책하나를새로운독립chronological unseen-template population에서동일label피드백/state비용으로고정비교한다. ‘현재coverage의작은이득이미래에도전달된다’는가설을가장직접반박/검증할수있다. 현재결과만으로그확장이나새방법개발을권고하는것은아니며, 여기서추가GPU실험은하지않았다.
+**만약확인실험하나를의뢰한다면:** original entropy/diversity 규칙을 candidate-only로 재현한 대조와 사전에 정한 diversity 정책 하나를 새로운 독립 chronological unseen-template population에서 동일 label 피드백과 명시적 state 비용으로 고정 비교한다. ‘현재coverage의작은이득이미래에도전달된다’는가설을가장직접반박/검증할수있다. 현재결과만으로그확장이나새방법개발을권고하는것은아니며, 여기서추가GPU실험은하지않았다.
 
 [기존연구audit](clotho_reference_acquisition_audit.md), [상세pilot](clotho_reference_selection_pilot.md), `results_phase3/clotho_reference_selection/`의manifest·prior_inventory·metrics·paired bootstrap·validation·PDF/PNG를함께보면수치와한계를확인할수있다. 이전결과를덮어쓰지않았고원격hash보존후PROGRESS를갱신한다.
 '''

@@ -123,8 +123,8 @@ Diversity가자기가최적화한coverage를높이는것은예상되는algorithm
 
 하지만현재13/12개시스템을여러연구에재사용했고GT random holdout이지실제미래시간shift가아니다. 고정recipe에서PCA가참조선택에따라바뀌는mediator도남는다. P5는원래더풍부한feedback/global covariate를썼고, 다른정책은binary feedback/candidate-only라access가완전히같지않다. 새policy가배포가능한입력만사용한다는것과, 그효과가새시스템에확증됐다는것은다르다.
 
-**판단:** 기존참조연구는있었지만현대simple predictor와의좁은상호작용은새롭게검사할가치가있었다. 결과는새acquisition방법개발을정당화하지못한다. 이benchmark에서다른이름의sampling/PCA/density탐색을계속하지말고, 조건부이득과반례를포함한통제된실증결과로정리한다. Originalpolicy가최적이라고증명하거나reference선택이무의미하다고도하지않는다.
+**판단:** 기존참조연구는있었지만현대simple predictor와의좁은상호작용은새롭게검사할가치가있었다. 결과는새acquisition방법개발을정당화하지못한다. 이benchmark에서다른이름의sampling/PCA/density탐색을계속하지말고, 조건부이득과반례를포함한통제된실증결과로정리한다. Original policy가 최적이라고 증명하거나 reference 선택이 무의미하다고도 하지 않는다. Structural policy의 적은 후보-state 비용은 유용할 수 있지만 noninferiority margin을 사전 정의해 검정하지 않았으므로 같은 성능을 보장하는 비용절감 방법이라고도 주장하지 않는다.
 
-**만약확인실험하나를의뢰한다면:** original대사전에정한diversity정책하나를새로운독립chronological unseen-template population에서동일label피드백/state비용으로고정비교한다. ‘현재coverage의작은이득이미래에도전달된다’는가설을가장직접반박/검증할수있다. 현재결과만으로그확장이나새방법개발을권고하는것은아니며, 여기서추가GPU실험은하지않았다.
+**만약확인실험하나를의뢰한다면:** original entropy/diversity 규칙을 candidate-only로 재현한 대조와 사전에 정한 diversity 정책 하나를 새로운 독립 chronological unseen-template population에서 동일 label 피드백과 명시적 state 비용으로 고정 비교한다. ‘현재coverage의작은이득이미래에도전달된다’는가설을가장직접반박/검증할수있다. 현재결과만으로그확장이나새방법개발을권고하는것은아니며, 여기서추가GPU실험은하지않았다.
 
 [기존연구audit](clotho_reference_acquisition_audit.md), [상세pilot](clotho_reference_selection_pilot.md), `results_phase3/clotho_reference_selection/`의manifest·prior_inventory·metrics·paired bootstrap·validation·PDF/PNG를함께보면수치와한계를확인할수있다. 이전결과를덮어쓰지않았고원격hash보존후PROGRESS를갱신한다.

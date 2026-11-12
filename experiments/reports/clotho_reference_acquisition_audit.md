@@ -59,7 +59,7 @@ At100, hidden diversity−archived Clotho is+0.0075[−0.0010,0.0150] Llama/+0.0
 
 No oracle labels/GT features are needed by P1–P4, but hidden/uncertainty require all candidate states while random/text diversity need selected states only. Equal label counts do not imply equal compute/human minutes. No new actual extraction occurred; prospective state costs are reported as counts, not zero.
 
-**Decision:**the narrow gap was worth a small controlled check; the result does not justify developing a novel acquisition method. Do not repeat these policies under new names, assume balanced labels/diversity are universally better, or restart PCA/density tuning. Remaining class/coverage/PCA mediation and real future shift are not causally isolated. If one confirmation were commissioned, freeze original versus one predetermined diversity policy on an untouched chronological unseen-template population with matched supervision granularity and state/label cost. That is the single falsifiable follow-up, not a recommendation for another search on these test systems.
+**Decision:**the narrow gap was worth a small controlled check; the result does not justify developing a novel acquisition method. Do not repeat these policies under new names, assume balanced labels/diversity are universally better, or restart PCA/density tuning. Remaining class/coverage/PCA mediation and real future shift are not causally isolated. If one confirmation were commissioned, freeze original versus one predetermined diversity policy on an untouched chronological unseen-template population, using a candidate-only reproduction of the original rule and matched supervision granularity/state-label cost accounting. That is the single falsifiable follow-up, not a recommendation for another search on these test systems.
 
 ## Ten-question research decision
 
@@ -72,6 +72,6 @@ No oracle labels/GT features are needed by P1–P4, but hidden/uncertainty requi
 7. **Deployable?** P1–P4 need only available candidate inputs/acquired labels, with different feature costs. GT is an evaluation diagnostic; P5 retains historical transduction/richer feedback.
 8. **New method justified?** No, stop method development on this benchmark rather than expand a sampling search.
 9. **Distinct from Clotho?** The controlled learner interaction is new evidence; max-min/uncertainty policies are known and original Clotho already includes diversity. No algorithmic novelty established.
-10. **Single decisive follow-up?** A preregistered original-versus-one-diversity comparison on an untouched chronological template-shift population, equal feedback and state/label costs; conditional confirmation only, not another tuning loop here.
+10. **Single decisive follow-up?** A preregistered original-versus-one-diversity comparison on an untouched chronological template-shift population, reproducing the original rule on candidates only, with equal feedback and explicit state/label costs; conditional confirmation only, not another tuning loop here.
 
 Machine artifacts: prior inventory/source hashes, pilot manifests/predictions, metrics/paired bootstrap estimates, leakage/poison/replay records and figures in `results_phase3/clotho_reference_selection/`. Old results are unchanged. Reports and outputs are persisted/remote-hash checked before updating PROGRESS.
