@@ -69,7 +69,7 @@ def figures(df,stability,cov):
   for i,(left,right) in enumerate(contrasts):
    e=next(e for e in S.EST if e['kind']=='paired' and e['model']==model and e.get('split')=='disjoint' and e['metric']=='AUROC' and e['left']==left and e['right']==right)
    ax.errorbar(e['mean'],i,xerr=[[e['mean']-e['ci_low']],[e['ci_high']-e['mean']]],fmt='o',capsize=3)
-  ax.set_yticks(range(5),[labels[l]+' − '+labels[r]for l,r in contrasts]);ax.axvline(0,color='black',lw=.7);ax.set_title(model);ax.set_xlabel('Disjoint AUROC difference, system-cluster95% CI')
+  ax.set_yticks(range(5),[labels[l]+' − '+labels[r]for l,r in contrasts]);ax.axvline(0,color='black',lw=.7);ax.set_title(model);ax.set_xlabel('Disjoint AUROC difference, 95% system-cluster CI')
  done(fig,'paired_effects')
  fig,axs=plt.subplots(1,2,figsize=(10,3.4),sharey=True)
  for ax,model in zip(axs,('llama','gemma')):
